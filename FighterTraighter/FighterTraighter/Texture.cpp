@@ -1,17 +1,18 @@
 #include "Texture.h"
+#include <exception>
+#include <assert.h>
 
 void Texture::clean() {
 	SDL_DestroyTexture(texture);
 	texture = nullptr;
-	width = height = fWidth = fHeight = nCols = nRows = 0;
 }
 
 void Texture::load(string filename, int cols, int rows) {
 	SDL_Surface* tempSurface = IMG_Load(filename.c_str());
-	if (tempSurface == nullptr); //Excepción
+	if (tempSurface == nullptr) throw "Unable to load " + filename; // TODO: change to proper exception
 	clean();
 	texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
-	if (texture == nullptr); //Excepción
+	//assert(texture == nullptr); // For debugging
 
 	nCols = cols;
 	nRows = rows;
@@ -23,14 +24,13 @@ void Texture::load(string filename, int cols, int rows) {
 	SDL_FreeSurface(tempSurface);
 }
 
-void Texture::render(const SDL_Rect& rect, SDL_RendererFlip flip) const{
-	SDL_Rect srcRect;
-	srcRect.x = 0; srcRect.y = 0;
-	srcRect.w = width; srcRect.h = height;
-	SDL_RenderCopyEx(renderer, texture, &srcRect, &rect, 0, 0, flip);
+// Render whole image, or first frame
+void Texture::render(const SDL_Rect& destRect, SDL_RendererFlip flip) const{
+	render(destRect, 0, 0, 0, flip);
 }
 
-void Texture::renderFrame(const SDL_Rect& destRect, int row, int col, int angle, SDL_RendererFlip flip) const {
+// Render only a frame, or at an angle
+void Texture::render(const SDL_Rect& destRect, int row, int col, int angle, SDL_RendererFlip flip) const {
 	SDL_Rect srcRect;
 	srcRect.x = fWidth * col; srcRect.y = fHeight * row;
 	srcRect.w = fWidth; srcRect.h = fHeight;
