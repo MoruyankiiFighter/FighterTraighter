@@ -1,0 +1,4 @@
+﻿SDL2main.lib(SDL_windows_main.obj) : error LNK2019: símbolo externo SDL_main sin resolver al que se hace referencia en la función main_getcmdline
+    Sugerencia sobre los símbolos definidos que podrían coincidir:
+      "int __cdecl SDL_main(void)" (?SDL_main@@YAHXZ)
+C:\Users\Gallvanos\Documents\UCM\P2\AñadirLibrerías\x64\Debug\AñadirLibrerías.exe : fatal error LNK1120: 1 externos sin resolver
