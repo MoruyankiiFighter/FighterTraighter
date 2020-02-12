@@ -1,5 +1,1 @@
-﻿  Game.cpp
-  Texture.cpp
-  Vector2D.cpp
-  Generando código...
-C:\Users\Gallvanos\Documents\UCM\P2\repo\MF-FighterTraighter\MF-FighterTraighter\Texture.cpp(11,29): error C3861: 'IMG_Load': no se encontró el identificador
+﻿  MF-FighterTraighter.vcxproj -> C:\Users\Gallvanos\Documents\UCM\P2\repo\MF-FighterTraighter\x64\Debug\MF-FighterTraighter.exe
