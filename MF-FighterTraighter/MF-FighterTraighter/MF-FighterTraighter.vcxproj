@@ -131,16 +131,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CharacterSelection.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Fight.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
+    <ClCompile Include="RenderAnimation.cpp" />
+    <ClCompile Include="RenderImage.cpp" />
+    <ClCompile Include="SkillSelection.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Training.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="CharacterSelection.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Fight.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="PauseMenu.h" />
+    <ClInclude Include="RenderAnimation.h" />
+    <ClInclude Include="RenderImage.h" />
+    <ClInclude Include="SkillSelection.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Training.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,6 +1,0 @@
-﻿  Game.cpp
-  Texture.cpp
-  Vector2D.cpp
-  Generando código...
-SDL2main.lib(SDL_windows_main.obj) : error LNK2019: símbolo externo SDL_main sin resolver al que se hace referencia en la función main_getcmdline
-C:\Users\ampac\Documents\git_Repositorios\UCM_Repos\FighterTraigter\FighterTraighter\x64\Debug\FighterTraighter.exe : fatal error LNK1120: 1 externos sin resolver

@@ -1,1 +1,17 @@
-﻿  MF-FighterTraighter.vcxproj -> C:\Users\Gallvanos\Documents\UCM\P2\repo\MF-FighterTraighter\x64\Debug\MF-FighterTraighter.exe
+﻿  Button.cpp
+  CharacterSelection.cpp
+  Component.cpp
+  Entity.cpp
+  Fight.cpp
+  GameState.cpp
+  MainMenu.cpp
+  RenderAnimation.cpp
+  RenderImage.cpp
+  SkillSelection.cpp
+  Texture.cpp
+C:\Users\ampac\Documents\git_Repositorios\UCM_Repos\FighterTraighter\MF-FighterTraighter\MF-FighterTraighter\Fight.cpp(1,10): fatal error C1083: No se puede abrir el archivo incluir: 'FightScene.h': No such file or directory
+  Training.cpp
+  Transform.cpp
+  Vector2D.cpp
+  Generando código...
+C:\Users\ampac\Documents\git_Repositorios\UCM_Repos\FighterTraighter\MF-FighterTraighter\MF-FighterTraighter\Texture.h(3,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL_image.h': No such file or directory
