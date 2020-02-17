@@ -2,5 +2,7 @@
 #include "Component.h"
 class RenderImage: public Component
 {
+public:
+private:
 };
 

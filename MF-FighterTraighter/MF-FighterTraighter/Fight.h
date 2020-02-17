@@ -1,5 +1,6 @@
 #pragma once
-class Fight
+#include "GameState.h"
+class Fight: public GameState
 {
 };
 

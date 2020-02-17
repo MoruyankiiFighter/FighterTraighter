@@ -1,5 +1,11 @@
 #pragma once
-class CharacterSelection
+#include "GameState.h"
+class CharacterSelection: public GameState
 {
+
+public:
+
+private:
+
 };
 

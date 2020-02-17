@@ -1,5 +1,12 @@
 #pragma once
-class PauseMenu
+#include "GameState.h"
+
+class PauseMenu: public GameState
 {
+
+public:
+
+private:
+
 };
 

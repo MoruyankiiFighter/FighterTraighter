@@ -1,5 +1,12 @@
 #pragma once
-class SkillSelection
+#include "GameState.h"
+
+class SkillSelection: public GameState
 {
+
+public:
+
+private:
+
 };
 

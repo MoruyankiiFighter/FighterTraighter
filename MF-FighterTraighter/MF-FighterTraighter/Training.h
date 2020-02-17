@@ -1,5 +1,10 @@
 #pragma once
-class Training
+#include "GameState.h"
+class Training: public GameState
 {
+public:
+
+private:
+
 };
 
