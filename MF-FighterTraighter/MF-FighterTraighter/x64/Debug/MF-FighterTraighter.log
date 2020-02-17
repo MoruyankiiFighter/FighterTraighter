@@ -1,16 +1,2 @@
 ﻿  App.cpp
-  Button.cpp
-  CharacterSelection.cpp
-  Component.cpp
-  Entity.cpp
-  Fight.cpp
-  MainMenu.cpp
-  PauseMenu.cpp
-  RenderAnimation.cpp
-  RenderImage.cpp
-  SkillSelection.cpp
-  Texture.cpp
-  Training.cpp
-  Transform.cpp
-  Generando código...
   MF-FighterTraighter.vcxproj -> C:\Users\ampac\Documents\git_Repositorios\UCM_Repos\FighterTraighter\MF-FighterTraighter\x64\Debug\MF-FighterTraighter.exe

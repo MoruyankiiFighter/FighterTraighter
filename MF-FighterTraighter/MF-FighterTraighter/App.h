@@ -14,6 +14,13 @@ public:
 	void render();	//calls render of the current state
 	
 private:
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+
+	static bool exit;
+	void init();	//open the window and creates everything
+	void clean();	//deletes everything on the app
+
 
 };
 
