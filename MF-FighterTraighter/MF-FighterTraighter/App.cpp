@@ -7,6 +7,10 @@ App::App()
 
 App::~App()
 {
+	// Se borran atributos de SDL
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
 
 void App::run()
@@ -34,8 +38,10 @@ void App::init()	//creates the window and the renderer
 	if (!window || !renderer) {
 		//throw another Error
 	}
+	
 }
 
 void App::clean()
 {
+
 }
