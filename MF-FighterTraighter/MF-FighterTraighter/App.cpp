@@ -7,18 +7,45 @@ App::App()
 
 App::~App()
 {
-	// Se borran atributos de SDL
+	// Delete SDL's attributes
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 }
 
+//main loop
 void App::run()
 {
+	exit = false;
+
+	while (!exit) {
+		Uint32 startTime = SDL_GetTicks();
+		
+		handleInput();
+		update();
+		render();
+
+		Uint32 frameTime = SDL_GetTicks() - startTime;
+		if (frameTime < 10)
+			SDL_Delay(10 - frameTime);
+	}
+}
+//testing, probably remove it
+void App::handleInput() {
+	
+	
+	SDL_Event event;
+	while (SDL_PollEvent(&event) && !exit) {
+		if (event.type == SDL_QUIT) exit = true;
+		else if (event.key.keysym.sym == SDLK_ESCAPE) {
+			exit=true;
+		}
+	}
 }
 
 void App::update()
 {
+	std::cout << "Pulsa ESCAPE para cerrar la ventana"<<std::endl;//testing
 }
 
 void App::render()
