@@ -143,5 +143,8 @@
     <ClInclude Include="GameStateMachine.h">
       <Filter>Archivos de encabezado\GameState</Filter>
     </ClInclude>
+    <ClInclude Include="ecs.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

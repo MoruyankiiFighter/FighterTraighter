@@ -2,6 +2,7 @@
 
 #include "Vector2D.h"
 #include "Component.h"
+#include "ecs.h"
 class Transform: public Component
 {
 public:

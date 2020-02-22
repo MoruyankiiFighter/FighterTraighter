@@ -155,6 +155,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ecs.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Fight.h" />
     <ClInclude Include="GameState.h" />

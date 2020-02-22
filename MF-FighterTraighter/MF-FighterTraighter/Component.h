@@ -2,21 +2,21 @@
 
 #include <SDL.h>
 #include "App.h"
-
+#include "ecs.h"
 class Entity;
 class Component
 {
 
 public:
 	Component();
-	Component(int id);
+	Component(ecs::CmpId id);
 	~Component();
 
 	void setEntity(Entity* entity) { entity_ = entity; }
 	void setGame(App* app) { app_ = app; }
-	void setID(int id) { id_ = id; }
+	void setID(ecs::CmpId id) { id_ = id; }
 
-	int getID() { return id_; }
+	ecs::CmpId getID() { return id_; }
 
 	virtual void init() {}
 	virtual void update() {}
@@ -26,6 +26,6 @@ public:
 protected:
 	Entity* entity_;
 	App* app_;
-	int id_;
+	ecs::CmpId id_;
 };
 
