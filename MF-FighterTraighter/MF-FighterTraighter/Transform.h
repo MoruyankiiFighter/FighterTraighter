@@ -5,6 +5,7 @@
 class Transform: public Component
 {
 public:
+	//constructor and destructor
 	Transform(Vector2D position, Vector2D speed, double width, double height, double rotation);
 	Transform();
 	virtual ~Transform();
