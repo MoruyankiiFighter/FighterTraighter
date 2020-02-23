@@ -10,6 +10,7 @@ namespace ecs {
 		/*
 		
 		*/
+		_LastCmptId_
 	};
 
 	constexpr std::size_t maxComponents = _LastCmptId_;

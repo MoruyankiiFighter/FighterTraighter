@@ -7,7 +7,7 @@ Transform::Transform(Vector2D position, Vector2D speed, double width, double hei
 }
 
 Transform::Transform():
-	Component(0),position_(),speed_(),width_(),height_(),rotation_()
+	Component(ecs::Transform),position_(),speed_(),width_(),height_(),rotation_()
 {
 	std::cout << "Transform added" << std::endl;
 }

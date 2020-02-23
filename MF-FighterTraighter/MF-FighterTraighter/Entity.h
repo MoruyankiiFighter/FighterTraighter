@@ -14,7 +14,7 @@ public:
 	
 	template<typename T>
 	T* getComponent(int id) {
-		return static_cast<T*>(componentsArray_[id]);
+		return static_cast<T*>(components_[id]);
 	}
 
 	bool hasComponent(int id) {
