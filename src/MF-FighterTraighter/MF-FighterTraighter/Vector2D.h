@@ -1,6 +1,4 @@
-#ifndef VECTOR2D_H
-
-#define Vector2D_H
+#pragma once
 class Vector2D
 {
 public:
@@ -23,6 +21,3 @@ public:
 private:
 	double _x = 0, _y = 0;
 };
-
-#endif
-
