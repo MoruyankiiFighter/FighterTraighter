@@ -48,10 +48,12 @@ void App::handleInput() {
 void App::update()
 {
 	std::cout << "Pulsa ESCAPE para cerrar la ventana"<<std::endl;//testing
+	stateMachine_->getCurrentState()->update();
 }
 
 void App::render()
 {
+	stateMachine_->getCurrentState()->render();
 }
 
 void App::init()	//creates the window and the renderer
