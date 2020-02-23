@@ -32,17 +32,13 @@ void App::run()
 			SDL_Delay(10 - frameTime);
 	}
 }
-//testing, probably remove it
+
 void App::handleInput() {
-	
-	
-	SDL_Event event;
-	while (SDL_PollEvent(&event) && !exit) {
-		if (event.type == SDL_QUIT) exit = true;
-		else if (event.key.keysym.sym == SDLK_ESCAPE) {
-			exit=true;
-		}
-	}
+
+	// update input state
+	inputManager_->update();
+
+	stateMachine_->getCurrentState()->handleInput();
 }
 
 void App::update()

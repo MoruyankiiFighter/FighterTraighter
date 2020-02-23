@@ -21,6 +21,12 @@ public:
 		return components_[id] != nullptr;
 	}
 	
+	void handleInput() {
+		for (auto& c : components_) {
+			c->handleInput();
+		}
+	}
+
 	void update() {
 		for (auto& c : components_) {
 			c->update();

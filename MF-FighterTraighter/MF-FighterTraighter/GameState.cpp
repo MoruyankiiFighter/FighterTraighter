@@ -8,6 +8,13 @@ void GameState::init()
 {
 }
 
+void GameState::handleInput()
+{
+	for (auto it = scene.begin(); it != scene.end(); ++it) {
+		(*it)->handleInput();
+	}
+}
+
 void GameState::update()
 {
 	for (auto it = scene.begin(); it != scene.end(); ++it) {

@@ -18,9 +18,10 @@ public:
 
 	ecs::CmpId getID() { return id_; }
 
-	virtual void init() {}
-	virtual void update() {}
-	virtual void render() {}
+	virtual void init() {} // get required pointers at runtime
+	virtual void handleInput() {} // gets called before update, use for input
+	virtual void update() {} // main update of the component
+	virtual void render() {} // render textures
 
 
 protected:
