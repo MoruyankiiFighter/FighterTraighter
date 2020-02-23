@@ -7,6 +7,7 @@ namespace ecs {
 
 	enum CmpId : CmpIdType {
 		Transform = 0,
+		PlayerController = 1,
 		/*
 		
 		*/
