@@ -1,0 +1,1 @@
+Usamos arquitecura por componentes y posiblemente con mensajes

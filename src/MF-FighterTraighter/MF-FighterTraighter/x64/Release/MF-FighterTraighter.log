@@ -1,0 +1,22 @@
+﻿  Button.cpp
+  CharacterSelection.cpp
+  Component.cpp
+  Entity.cpp
+  Fight.cpp
+  Game.cpp
+  GameState.cpp
+  main.cpp
+  MainMenu.cpp
+  PauseMenu.cpp
+  RenderAnimation.cpp
+  RenderImage.cpp
+  SkillSelection.cpp
+  Texture.cpp
+  Training.cpp
+  Transform.cpp
+  Vector2D.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 14 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  MF-FighterTraighter.vcxproj -> U:\hlocal\xd\FighterTraighter\MF-FighterTraighter\x64\Release\MF-FighterTraighter.exe
