@@ -8,18 +8,12 @@ class App;
 class InputManager
 {
 public:
-	static InputManager* instance() {
-		if (instance_.get() == nullptr) {
-			instance_.reset(new InputManager());
-		}
-		return instance_.get();
-	};
 	enum MouseButton : Uint8 {
 		Left = 0,
 		Right = 1,
 		Middle = 2
 	};
-	InputManager();
+	InputManager(App* app);
 	InputManager(InputManager&) = delete;
 	InputManager& operator= (InputManager&) = delete;
 
@@ -74,9 +68,8 @@ private:
 		}
 	};
 
-	static std::unique_ptr<InputManager> instance_;
+	App* app_;
 	Uint8* keyboardState_;
 	Vector2D mousePos_;
 	std::array<bool, 3> mouseState_; // true = pressed
 };
-

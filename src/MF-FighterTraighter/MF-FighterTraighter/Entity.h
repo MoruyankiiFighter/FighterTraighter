@@ -38,7 +38,10 @@ public:
 		}
 	}
 
+	inline App* getApp() const { return app_; }
+	inline void setApp(App* app) { app_ = app; }
 private:
+	App* app_;
 	std::vector<std::unique_ptr<Component>> components_;
 	std::array<Component*, ecs::_LastCmptId_> componentsArray_ = {}; // to prevent the vector from resizing, and delete automatically
 
@@ -52,6 +55,7 @@ inline T* Entity::addComponent(TArgs ...args)
 	components_.push_back(std::move(c));
 	componentsArray_[c->getID()] = c;
 	c->setEntity(this);
+	c->setApp(app_);
 	c->init();
 	return c;
 }

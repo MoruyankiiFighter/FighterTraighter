@@ -1,9 +1,7 @@
 #include "InputManager.h"
 #include "App.h"
 
-std::unique_ptr<InputManager> InputManager::instance_;
-
-InputManager::InputManager()
+InputManager::InputManager(App* app) : app_(app)
 {
 	clearState();
 	SDL_GetKeyboardState(NULL);
@@ -16,11 +14,11 @@ void InputManager::update()
 	while (SDL_PollEvent(&e)) {
 		switch (e.type) {
 		case SDL_QUIT:
-			App::instance()->exitApp();
+			app_->exitApp();
 			break;
 		case SDL_KEYDOWN:
 			if (e.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-				App::instance()->exitApp();
+				app_->exitApp();
 			break;
 		case SDL_KEYUP:
 			break;
