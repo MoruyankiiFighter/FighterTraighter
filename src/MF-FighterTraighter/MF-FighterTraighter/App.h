@@ -9,6 +9,8 @@ class App
 {
 public:
 	App();			//constructor
+	App(App&) = delete;
+	App& operator= (App&) = delete;
 	~App();			//destructor
 
 	void run();		//main
