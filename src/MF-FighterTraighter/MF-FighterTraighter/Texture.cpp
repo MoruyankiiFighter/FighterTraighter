@@ -29,6 +29,12 @@ void Texture::render(const SDL_Rect& destRect, SDL_RendererFlip flip) const{
 	render(destRect, 0, 0, 0, flip);
 }
 
+void Texture::render(Vector2D pos, int widthMul, int heightMult, SDL_RendererFlip flip) const
+{
+	SDL_Rect rect = { pos.getX(), pos.getY(), width * widthMul, height *  heightMult };
+	render(rect, 0, 0, 0, flip);
+}
+
 // Render only a frame, or at an angle
 void Texture::render(const SDL_Rect& destRect, int row, int col, int angle, SDL_RendererFlip flip) const {
 	SDL_Rect srcRect;

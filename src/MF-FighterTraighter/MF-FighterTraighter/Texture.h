@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "SDL_image.h"
+#include "Vector2D.h"
 #include <iostream>
 
 using namespace std;
@@ -31,5 +32,6 @@ public:
 	void load(string filename, int cols, int fils);
 	void clean();
 	void render(const SDL_Rect& rect, SDL_RendererFlip flip = SDL_FLIP_NONE) const; 
+	void render(Vector2D pos, int widthMul, int heightMult, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
 	void render(const SDL_Rect& destRect, int row, int col, int angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
 };
