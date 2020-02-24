@@ -12,7 +12,7 @@ public:
 	T* addComponent(TArgs ...args);
 	
 	template<typename T>
-	T* getComponent(int id) {
+	T* getComponent(ecs::CmpIdType id) {
 		return static_cast<T*>(componentsArray_[id]);
 	}
 
@@ -39,9 +39,8 @@ public:
 	}
 
 private:
-	std::vector<Component*> components_;
-	std::array<std::unique_ptr<Component>, ecs::_LastCmptId_> componentsArray_ = {}; // to prevent the vector from resizing, and delete automatically
-	App* app_;
+	std::vector<std::unique_ptr<Component>> components_;
+	std::array<Component*, ecs::_LastCmptId_> componentsArray_ = {}; // to prevent the vector from resizing, and delete automatically
 
 };
 
@@ -53,7 +52,6 @@ inline T* Entity::addComponent(TArgs ...args)
 	components_.push_back(std::move(c));
 	componentsArray_[c->getID()] = c;
 	c->setEntity(this);
-	c->setGame(app_);
 	c->init();
 	return c;
 }

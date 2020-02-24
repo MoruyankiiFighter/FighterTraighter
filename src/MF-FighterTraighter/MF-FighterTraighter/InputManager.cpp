@@ -1,6 +1,8 @@
 #include "InputManager.h"
 #include "App.h"
 
+std::unique_ptr<InputManager> InputManager::instance_;
+
 InputManager::InputManager()
 {
 	clearState();
@@ -14,11 +16,11 @@ void InputManager::update()
 	while (SDL_PollEvent(&e)) {
 		switch (e.type) {
 		case SDL_QUIT:
-			app_->exitApp();
+			App::instance()->exitApp();
 			break;
 		case SDL_KEYDOWN:
 			if (e.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-				app_->exitApp();
+				App::instance()->exitApp();
 			break;
 		case SDL_KEYUP:
 			break;

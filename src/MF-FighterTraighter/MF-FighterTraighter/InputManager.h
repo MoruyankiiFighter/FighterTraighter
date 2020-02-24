@@ -78,6 +78,5 @@ private:
 	Uint8* keyboardState_;
 	Vector2D mousePos_;
 	std::array<bool, 3> mouseState_; // true = pressed
-	App* app_; // for exiting
 };
 

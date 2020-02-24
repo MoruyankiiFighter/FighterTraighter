@@ -1,5 +1,7 @@
 #include "App.h"
 
+std::unique_ptr<App> App::instance_;
+
 App::App()
 {
 	init();
@@ -36,7 +38,7 @@ void App::run()
 void App::handleInput() {
 
 	// update input state
-	inputManager_->update();
+	InputManager::instance()->update();
 
 	stateMachine_->getCurrentState()->handleInput();
 }
@@ -67,6 +69,10 @@ void App::init()	//creates the window and the renderer
 	}
 	
 	stateMachine_ = new GameStateMachine();
+
+	// PLACE STATE
+								// PLACE STATE
+															// PLACE STATE
 }
 
 void App::clean()

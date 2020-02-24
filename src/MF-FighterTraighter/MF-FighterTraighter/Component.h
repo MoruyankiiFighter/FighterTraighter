@@ -12,7 +12,6 @@ public:
 	~Component();
 
 	void setEntity(Entity* entity) { entity_ = entity; }
-	void setGame(App* app) { app_ = app; }
 
 	ecs::CmpId getID() { return id_; }
 
@@ -24,7 +23,6 @@ public:
 
 protected:
 	Entity* entity_;
-	App* app_;
 	ecs::CmpId id_;
 };
 
