@@ -9,16 +9,15 @@ public:
 	~Entity();
 
 	template<typename T, typename ... TArgs>
-
 	T* addComponent(TArgs ...args);
 	
 	template<typename T>
 	T* getComponent(int id) {
-		return static_cast<T*>(components_[id]);
+		return static_cast<T*>(componentsArray_[id]);
 	}
 
 	bool hasComponent(int id) {
-		return components_[id] != nullptr;
+		return componentsArray_[id] != nullptr;
 	}
 	
 	void handleInput() {
@@ -41,7 +40,20 @@ public:
 
 private:
 	std::vector<Component*> components_;
-	//std::array<Component*> componentsArray_ = {};
+	std::array<std::unique_ptr<Component>, ecs::_LastCmptId_> componentsArray_ = {}; // to prevent the vector from resizing, and delete automatically
+	App* app_;
 
 };
 
+template<typename T, typename ...TArgs>
+inline T* Entity::addComponent(TArgs ...args)
+{
+	T* t = new T(std::forward(static_cast<TArgs>(args)...));
+	std::unique_ptr<Component> c(t);
+	components_.push_back(std::move(c));
+	componentsArray_[c->getID()] = c;
+	c->setEntity(this);
+	c->setGame(app_);
+	c->init();
+	return c;
+}
