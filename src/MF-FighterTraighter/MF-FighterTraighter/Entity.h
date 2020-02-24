@@ -53,7 +53,7 @@ inline T* Entity::addComponent(TArgs ...args)
 	T* t(new T(std::forward<TArgs>(args)...));
 	std::unique_ptr<Component> c(t);
 	components_.push_back(std::move(c));
-	componentsArray_[c->getID()] = t;
+	componentsArray_[t->getID()] = t;
 	t->setEntity(this);
 	t->setApp(app_);
 	t->init();
