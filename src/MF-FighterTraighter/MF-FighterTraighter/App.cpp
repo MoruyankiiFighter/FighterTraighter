@@ -11,8 +11,6 @@ App::~App()
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
-
-	delete stateMachine_;
 }
 
 //main loop
@@ -66,7 +64,7 @@ void App::init()	//creates the window and the renderer
 		//throw another Error
 	}
 	
-	stateMachine_ = new GameStateMachine();
+	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 
 	// PLACE STATE

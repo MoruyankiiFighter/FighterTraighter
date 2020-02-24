@@ -13,7 +13,7 @@ public:
 
 	void run();		//main
 
-	inline GameStateMachine* getStateMachine() const { return stateMachine_; };
+	inline GameStateMachine* getStateMachine() const { return stateMachine_.get(); };
 	inline InputManager* getInputManager() const { return inputManager_.get(); };
 
 	void update();	//calls update of the current state
@@ -24,7 +24,7 @@ private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
-	GameStateMachine* stateMachine_;
+	std::unique_ptr<GameStateMachine> stateMachine_;
 	std::unique_ptr<InputManager> inputManager_;
 
 	/*static*/ bool exit;
