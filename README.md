@@ -1,4 +1,4 @@
-# Fighter Traighter
+## Fighter Traighter
 
 Fighter Traighter es un videojuego de peleas en el cual antes de cada combate hay una fase de entrenamiento. En esta fase se golpea un saco para cumplir un objetivo, otorgando habilidades a los que lo golpean. Una vez terminada esta fase, hay una de combate en la que se pelea haciendo uso de movimientos característicos de cada personaje, y las habilidades obtenidas.
 
@@ -11,6 +11,6 @@ Hay 4 personajes principales: Aisha, una mutante; Mk WH00P, un robot; Mockingbir
 |Sergio Alberto Luis Cano|Raúl Blas Ruiz|Daniel Cortijo Gamboa|Pedro Pablo Cubells Talavera|Anass Carreau Allagui|Andrés de la Cuesta López|Eloy Moreno Cortijo|Pablo Rodriguez Bobada|Amparo Rubio Bellón|Sebastián Sanchez-Hombría|
 |--|--|--|--|--|--|--|--|--|--|
 
-- Enlace a Github: https://github.com/MoruyankiiFighter/FighterTraighter.
-
-- Página web del juego: 
+* Enlace a Github: https://github.com/MoruyankiiFighter/FighterTraighter.
+* Enlace al GDD: https://github.com/MoruyankiiFighter/FighterTraighter/wiki
+* Página web del juego: 
