@@ -4,7 +4,7 @@
 InputManager::InputManager(App* app) : app_(app)
 {
 	clearState();
-	SDL_GetKeyboardState(NULL);
+	keyboardState_ = SDL_GetKeyboardState(NULL);
 }
 
 void InputManager::update()

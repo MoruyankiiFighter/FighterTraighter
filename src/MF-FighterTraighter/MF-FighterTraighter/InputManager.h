@@ -69,7 +69,7 @@ private:
 	};
 
 	App* app_;
-	Uint8* keyboardState_;
+	const Uint8* keyboardState_;
 	Vector2D mousePos_;
 	std::array<bool, 3> mouseState_; // true = pressed
 };
