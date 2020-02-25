@@ -3,7 +3,7 @@
 class Fight: public GameState
 {
 public:
-	Fight(App* app);
+	Fight(App* app, SDL_Renderer* rend);
 	void init() override;
 	void update() override;
 	virtual ~Fight();

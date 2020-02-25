@@ -2,15 +2,19 @@
 #include <exception>
 #include <assert.h>
 
-void Texture::clean() {
-	SDL_DestroyTexture(texture);
-	texture = nullptr;
+void Texture::cleanTexture() {
+	if (texture != nullptr) {
+		SDL_DestroyTexture(texture); // delete current texture
+		texture = nullptr;
+		width = 0;
+		height = 0;
+	}
 }
 
 void Texture::load(string filename, int cols, int rows) {
 	SDL_Surface* tempSurface = IMG_Load(filename.c_str());
-	if (tempSurface == nullptr) throw "Unable to load " + filename; // TODO: change to proper exception
-	clean();
+	if (tempSurface == nullptr) throw ("Unable to load " + filename); // TODO: change to proper exception
+	cleanTexture();
 	texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
 	//assert(texture == nullptr); // For debugging
 

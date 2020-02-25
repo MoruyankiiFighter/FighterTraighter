@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "App.h"
 
-GameState::GameState(App* app) : app_(app) {
+GameState::GameState(App* app, SDL_Renderer* rend) : app_(app), rend_(rend) {
 
 }
 void GameState::init()
