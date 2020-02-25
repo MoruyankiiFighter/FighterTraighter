@@ -50,12 +50,12 @@ private:
 template<typename T, typename ...TArgs>
 inline T* Entity::addComponent(TArgs ...args)
 {
-	T* t = new T(std::forward(static_cast<TArgs>(args)...));
+	T* t(new T(std::forward<TArgs>(args)...));
 	std::unique_ptr<Component> c(t);
 	components_.push_back(std::move(c));
-	componentsArray_[c->getID()] = c;
-	c->setEntity(this);
-	c->setApp(app_);
-	c->init();
-	return c;
+	componentsArray_[t->getID()] = t;
+	t->setEntity(this);
+	t->setApp(app_);
+	t->init();
+	return t;
 }

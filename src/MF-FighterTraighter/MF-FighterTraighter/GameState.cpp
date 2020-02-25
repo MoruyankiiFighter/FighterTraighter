@@ -1,7 +1,8 @@
 #include "GameState.h"
 #include "Entity.h"
+#include "App.h"
 
-GameState::GameState() {
+GameState::GameState(App* app) : app_(app) {
 
 }
 void GameState::init()

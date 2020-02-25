@@ -21,13 +21,13 @@ public:
 
 	// Keyboard
 	inline bool isKeyUp(SDL_Scancode code) {
-		return keyboardState_[code] == 1;
+		return keyboardState_[code] == 0;
 	};
 	inline bool isKeyUp(SDL_Keycode code) {
 		return isKeyUp(SDL_GetScancodeFromKey(code));
 	};
 	inline bool isKeyDown(SDL_Scancode code) {
-		return keyboardState_[code] == 0;
+		return keyboardState_[code] == 1;
 	};
 	inline bool isKeyDown(SDL_Keycode code) {
 		return isKeyDown(SDL_GetScancodeFromKey(code));
@@ -69,7 +69,7 @@ private:
 	};
 
 	App* app_;
-	Uint8* keyboardState_;
+	const Uint8* keyboardState_;
 	Vector2D mousePos_;
 	std::array<bool, 3> mouseState_; // true = pressed
 };
