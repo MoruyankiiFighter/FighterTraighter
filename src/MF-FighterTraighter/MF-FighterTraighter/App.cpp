@@ -1,4 +1,5 @@
 #include "App.h"
+#include "Fight.h"
 
 App::App()
 {
@@ -67,9 +68,7 @@ void App::init()	//creates the window and the renderer
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 
-	// PLACE STATE
-								// PLACE STATE
-															// PLACE STATE
+	stateMachine_->pushState(new Fight(this));
 }
 
 void App::clean()

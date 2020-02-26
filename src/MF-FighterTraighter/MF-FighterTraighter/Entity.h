@@ -32,7 +32,7 @@ public:
 		}
 	}
 
-	void draw() {
+	void render() {
 		for (auto& c : components_) {
 			c->render();
 		}
