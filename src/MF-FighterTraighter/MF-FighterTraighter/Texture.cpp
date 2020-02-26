@@ -12,20 +12,24 @@ void Texture::cleanTexture() {
 }
 
 void Texture::load(string filename, int cols, int rows) {
-	SDL_Surface* tempSurface = IMG_Load(filename.c_str());
-	if (tempSurface == nullptr) throw ("Unable to load " + filename); // TODO: change to proper exception
-	cleanTexture();
-	texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
-	//assert(texture == nullptr); // For debugging
+	SDL_Surface* tempSurface;
+	tempSurface = IMG_Load(filename.c_str());
+	if (tempSurface == nullptr)
+		std::cout << ("Me cago en Dios") << endl; // TODO: change to proper exception
+	else {
+		cleanTexture();
+		texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
+		//assert(texture == nullptr); // For debugging
 
-	nCols = cols;
-	nRows = rows;
-	width = tempSurface->w;
-	height = tempSurface->h;
-	fWidth = width / cols;
-	fHeight = height / rows;
+		nCols = cols;
+		nRows = rows;
+		width = tempSurface->w;
+		height = tempSurface->h;
+		fWidth = width / cols;
+		fHeight = height / rows;
 
-	SDL_FreeSurface(tempSurface);
+		SDL_FreeSurface(tempSurface);
+	}
 }
 
 // Render whole image, or first frame

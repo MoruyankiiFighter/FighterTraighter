@@ -6,17 +6,18 @@
 
 
 
-Fight::Fight(App* app, SDL_Renderer* rend) : GameState(app, rend)
+Fight::Fight(App* app) : GameState(app)
 {
 		init();
 }
 
 void Fight::init()
 {
-	Texture* tex = new Texture(rend_, "../../../assets/Assets/personaje.png" , 1, 1);
+	string filePath = "personaje.jpg";
+	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str() , 1, 1);
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
-	e->addComponent<Transform>(Vector2D(), Vector2D(), 50, 50, 0);
+	e->addComponent<Transform>(Vector2D(), Vector2D(), 5, 5, 0);
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(tex);
 	scene.push_back(e);
@@ -27,6 +28,13 @@ void Fight::update()
 	GameState::update();
 	Vector2D v = scene.front()->getComponent<Transform>(ecs::Transform)->getPosition(); // Temporary testing
 	std::cout << v.getX() << std::endl; // Temporary testing
+}
+
+void Fight::render() {
+	SDL_RenderClear(app_->getRenderer());
+	GameState::render();
+	scene.front()->getComponent<RenderImage>(ecs::RenderImage)->render();
+	SDL_RenderPresent(app_->getRenderer());
 }
 
 Fight::~Fight()
