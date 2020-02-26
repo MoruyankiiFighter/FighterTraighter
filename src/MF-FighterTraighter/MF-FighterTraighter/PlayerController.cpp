@@ -13,11 +13,11 @@ void PlayerController::init()
 
 void PlayerController::handleInput()
 {
-	if (InputManager::instance()->isKeyDown(SDL_SCANCODE_A)) {
+	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_A)) {
 		tr_->setSpeed(-1, 0);
 	}
-	else if (InputManager::instance()->isKeyDown(SDL_SCANCODE_D)) {
-		tr_->setSpeed(11, 0);
+	else if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_D)) {
+		tr_->setSpeed(1, 0);
 	}
 	else tr_->setSpeed(0, 0);
 }
