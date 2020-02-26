@@ -3,12 +3,14 @@
 
 bool Health::LoseLife(unsigned int  damage) {
 	health -= damage;
+	std::cout << health;
 
 	if (health > 0) {		
 		return true;
 	}
 	else
 	{
+		health = 0;
 		std::cout << "memori";
 		return false;
 	}
@@ -31,5 +33,7 @@ void  Health::GainLife(unsigned int life)
 	{
 		health = maxHealth;
 	}
+	std::cout << health;
+
 }
 
