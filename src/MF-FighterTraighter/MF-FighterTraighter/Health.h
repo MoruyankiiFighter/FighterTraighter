@@ -13,9 +13,9 @@ public:
 	};
 	//virtual ~Health();
 	//si pierdes vida devuelve true si no es porque estas muerto y devuelve false
-	bool LoseLife(int damage);
+	bool LoseLife(unsigned int  damage);
 	//sumas una cantidad a la vida sin pasar los limites
-	void GainLife(int life);
+	void GainLife(unsigned int life);
 	//set la vida 
 	void setLife(int health);
 	//return la vida 

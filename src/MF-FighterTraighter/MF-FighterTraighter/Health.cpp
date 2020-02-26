@@ -1,7 +1,7 @@
 #include "Health.h"
 
 
-bool Health::LoseLife(int damage) {
+bool Health::LoseLife(unsigned int  damage) {
 	health -= damage;
 
 	if (health > 0) {		
@@ -23,7 +23,7 @@ void  Health::setLife(int health_)
 {
 	health = health_;
 }
-void  Health::GainLife(int life)
+void  Health::GainLife(unsigned int life)
 {
 	health += life;
 
