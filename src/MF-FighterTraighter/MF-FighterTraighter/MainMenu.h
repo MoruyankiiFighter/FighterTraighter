@@ -10,6 +10,7 @@ private:
 	Button* onevsoneButton;
 	Button* optionsButton;
 	Button* exitButton;
+	vector<Texture*>buttons;
 public:
 	MainMenu(App* app, Transform* arcButt, Transform* oneVsone, Transform* exit, Transform* options);
 	virtual std::string getStateID() const { return s_menuID; };

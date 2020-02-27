@@ -68,10 +68,51 @@ void App::init()	//creates the window and the renderer
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 
+	/*Transform* arcButt = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
+	Transform* oneVsone = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
+	Transform* exit = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
+	Transform* options = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
+	stateMachine_->pushState(new MainMenu(this, arcButt, oneVsone, exit, options));*/
 	stateMachine_->pushState(new Fight(this));
 }
 
 void App::clean()
 {
 
+}
+
+void App::PlayArcade() {
+	//getStateMachine()->pushState(new PlayArcade());
+}
+
+void App::PlayOnevsOne() {
+	//getStateMachine()->pushState(new PlayOneVsOne());
+}
+
+void App::ContinuePlaying() {
+	//getStateMachine()->pushState(new PlayArcade());
+}
+
+void App::Exit() {
+	SDL_Quit();
+}
+
+void App::Pause() {
+	//getStateMachine()->pushState(new Pause());
+}
+
+void App::Menu() {
+	Transform* arcButt = new Transform(Vector2D(250,250), Vector2D(0,0), 100,100, NULL);
+	Transform* oneVsone = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
+	Transform* exit = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
+	Transform* options = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
+	getStateMachine()->pushState(new MainMenu(this, arcButt, oneVsone, exit, options));
+}
+
+void App::Options() {
+	//getStateMachine()->pushState(new Options());
+}
+
+void App::Movements() {
+	//getStateMachine()->pushState(new Movements());
 }

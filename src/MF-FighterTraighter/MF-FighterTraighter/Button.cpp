@@ -5,35 +5,35 @@ Button::Button(Transform* butt, Texture* button_, GameState* state_, CallBackOnC
 }
 
 void ArcadeCallback(App* app) {
-	//app->PlayArcade();
+	app->PlayArcade();
 }
 
 void PauseCallback(App* app) {
-	//app->Pause();
+	app->Pause();
 }
 
 void ExitCallback(App* app) {
-	//app->Exit();
+	app->Exit();
 }
 
 void OnevsOneCallback(App* app) {
-	//app->PlayOnevsOne();
+	app->PlayOnevsOne();
 }
 
 void ContinuePlayingCallback(App* app) {
-	//app->ContinuePlaying();
+	app->ContinuePlaying();
 }
 
 void OptionsCallback(App* app) {
-	//app->Options();
+	app->Options();
 }
 
 void MenuCallback(App* app) {
-	//app->Menu();
+	app->Menu();
 }
 
 void MovementsCallback(App* app) {
-	//app->Menu();
+	app->Movements();
 }
 
 void Button::render() {

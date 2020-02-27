@@ -22,6 +22,7 @@ void MenuCallback(App* app);
 class Button : public Entity
 {
 private:
+	
 	Transform* button;
 	Texture* buttonTex;
 	GameState* state;
