@@ -16,6 +16,7 @@ public:
 	virtual void render();
 	virtual void empty();
 	virtual ~GameState();
+	App* giveMeApp() { return app_; };
 protected:
 	std::list<Entity*> scene;
 	App* app_;

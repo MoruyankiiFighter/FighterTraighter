@@ -1,11 +1,19 @@
 #pragma once
 #include "GameState.h"
-class MainMenu: public GameState
+#include "Button.h"
+class MainMenu : public GameState
 {
 
-public:
-
 private:
-
+	static const std::string s_menuID;
+	Button* arcadeButton;
+	Button* onevsoneButton;
+	Button* optionsButton;
+	Button* exitButton;
+public:
+	MainMenu(App* app, Transform* arcButt, Transform* oneVsone, Transform* exit, Transform* options);
+	virtual std::string getStateID() const { return s_menuID; };
 };
+
+
 
