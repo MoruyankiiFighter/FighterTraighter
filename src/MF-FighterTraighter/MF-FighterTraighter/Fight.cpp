@@ -13,7 +13,7 @@ Fight::Fight(App* app) : GameState(app)
 
 void Fight::init()
 {
-	string filePath = "personaje.jpg";
+	string filePath = "../../../../assets/Assets/personaje.png";
 	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str() , 1, 1);
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
