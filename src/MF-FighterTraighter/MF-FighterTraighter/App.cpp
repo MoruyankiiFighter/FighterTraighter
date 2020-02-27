@@ -101,12 +101,12 @@ void App::Pause() {
 	//getStateMachine()->pushState(new Pause());
 }
 
-void App::Menu() {
+void App::Menu() {/*
 	Transform* arcButt = new Transform(Vector2D(250,250), Vector2D(0,0), 100,100, NULL);
 	Transform* oneVsone = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
 	Transform* exit = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
 	Transform* options = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
-	getStateMachine()->pushState(new MainMenu(this, arcButt, oneVsone, exit, options));
+	getStateMachine()->pushState(new MainMenu(this, arcButt, oneVsone, exit, options));*/
 }
 
 void App::Options() {

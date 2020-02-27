@@ -1,20 +1,23 @@
 #pragma once
 #include "GameState.h"
-#include "Button.h"
+#include "Texture.h"
+class App;
 class MainMenu : public GameState
 {
+public:
+	MainMenu(App* app);
+	~MainMenu();
+	void init();
+	virtual void render() override;
+	virtual void update() override;
+	void handleInput();
 
 private:
-	static const std::string s_menuID;
-	Button* arcadeButton;
-	Button* onevsoneButton;
-	Button* optionsButton;
-	Button* exitButton;
-	vector<Texture*>buttons;
-public:
-	MainMenu(App* app, Transform* arcButt, Transform* oneVsone, Transform* exit, Transform* options);
-	virtual std::string getStateID() const { return s_menuID; };
+	Entity* arcade;
+	Entity* pvp;
+	Entity* options;
+	Entity* exit;
+
+	Texture* texture_=nullptr;
+	Texture* logo_=nullptr;
 };
-
-
-

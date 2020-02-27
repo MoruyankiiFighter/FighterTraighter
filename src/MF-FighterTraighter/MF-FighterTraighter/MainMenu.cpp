@@ -1,17 +1,55 @@
 #include "MainMenu.h"
+#include "InputManager.h"
+#include "Entity.h"
+#include "RenderImage.h"
+#include "Transform.h"
+#include "App.h"
+MainMenu::MainMenu(App* app): GameState(app)
+{
+	scene.push_back(arcade);
+	scene.push_back(pvp);
+	scene.push_back(options);
+	scene.push_back(exit);
+
+}
+
+MainMenu::~MainMenu()
+{
+}
+
+void MainMenu::init()
+{
+	arcade->addComponent<RenderImage>(texture_); //añadir textura
+	Transform* t=arcade->addComponent<Transform>();
+	t->setPosition(200, 300);
+	t->setWidth(400);
+	t->setHeight(150);
+
+	pvp->addComponent<RenderImage>(texture_); //añadir textura
+	t = pvp->addComponent<Transform>();
+	t->setPosition(200, 500);
+	t->setWidth(400);
+	t->setHeight(150);
+
+	options->addComponent<RenderImage>(texture_); //añadir textura
+	t = options->addComponent<Transform>();
+	t->setPosition(200, 700);
+	t->setWidth(400);
+	t->setHeight(150);
 
 
-MainMenu::MainMenu(App* app, Transform* arcButt, Transform* oneVsone, Transform* exit, Transform* options) : GameState(app) {
-	//cargar texturas de botones del menu principal
-	buttons.at(0)->load("logofightertraighter.png", 1, 1);
-	buttons.at(1)->load("buttons.png", 3, 1);
+}
+
+void MainMenu::render()
+{
+
+}
+
+void MainMenu::update()
+{
+}
+
+void MainMenu::handleInput()
+{
 	
-	arcadeButton = new Button(arcButt, buttons.at(1)/*app->getTexture()*/, this, ArcadeCallback);
-	onevsoneButton = new Button(oneVsone, buttons.at(1)/*app->getTexture()*/, this, OnevsOneCallback);
-	exitButton = new Button(exit, buttons.at(1)/*app->getTexture()*/, this, ExitCallback);
-	optionsButton = new Button(options, buttons.at(1)/*app->getTexture()*/, this, OptionsCallback);
-	scene.emplace_back(arcadeButton);
-	scene.emplace_back(onevsoneButton);
-	scene.emplace_back(exitButton);
-	scene.emplace_back(optionsButton);
 }
