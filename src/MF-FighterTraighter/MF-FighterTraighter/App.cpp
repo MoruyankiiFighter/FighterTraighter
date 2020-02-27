@@ -68,7 +68,7 @@ void App::init()	//creates the window and the renderer
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 
-	stateMachine_->pushState(new Fight(this));
+	stateMachine_->pushState(new Fight(this)); // Here goes first state // Menu probably
 }
 
 void App::clean()
