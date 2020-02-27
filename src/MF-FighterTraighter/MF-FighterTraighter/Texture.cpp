@@ -2,31 +2,45 @@
 #include <exception>
 #include <assert.h>
 
-void Texture::clean() {
-	SDL_DestroyTexture(texture);
-	texture = nullptr;
+void Texture::cleanTexture() {
+	if (texture != nullptr) {
+		SDL_DestroyTexture(texture); // delete current texture
+		texture = nullptr;
+		width = 0;
+		height = 0;
+	}
 }
 
 void Texture::load(string filename, int cols, int rows) {
-	SDL_Surface* tempSurface = IMG_Load(filename.c_str());
-	if (tempSurface == nullptr) throw "Unable to load " + filename; // TODO: change to proper exception
-	clean();
-	texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
-	//assert(texture == nullptr); // For debugging
+	SDL_Surface* tempSurface;
+	tempSurface = IMG_Load(filename.c_str());
+	if (tempSurface == nullptr)
+		std::cout << ("Me cago en Dios") << endl; // TODO: change to proper exception
+	else {
+		cleanTexture();
+		texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
+		//assert(texture == nullptr); // For debugging
 
-	nCols = cols;
-	nRows = rows;
-	width = tempSurface->w;
-	height = tempSurface->h;
-	fWidth = width / cols;
-	fHeight = height / rows;
+		nCols = cols;
+		nRows = rows;
+		width = tempSurface->w;
+		height = tempSurface->h;
+		fWidth = width / cols;
+		fHeight = height / rows;
 
-	SDL_FreeSurface(tempSurface);
+		SDL_FreeSurface(tempSurface);
+	}
 }
 
 // Render whole image, or first frame
 void Texture::render(const SDL_Rect& destRect, SDL_RendererFlip flip) const{
 	render(destRect, 0, 0, 0, flip);
+}
+
+void Texture::render(Vector2D pos, int widthMul, int heightMult, SDL_RendererFlip flip) const
+{
+	SDL_Rect rect = { pos.getX(), pos.getY(), width * widthMul, height *  heightMult };
+	render(rect, 0, 0, 0, flip);
 }
 
 // Render only a frame, or at an angle
