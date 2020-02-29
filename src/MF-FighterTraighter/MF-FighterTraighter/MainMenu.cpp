@@ -19,6 +19,11 @@ MainMenu::~MainMenu()
 
 void MainMenu::init()
 {
+	
+	string filePath = "../../../../Assets/Assets/UI/buttons.png";
+	texture_ = new Texture(app_->getRenderer(),filePath.c_str(), 1, 3);
+	arcade = new Entity();
+	arcade->setApp(app_);
 	arcade->addComponent<RenderImage>(texture_); //añadir textura
 	Transform* t=arcade->addComponent<Transform>();
 	t->setPosition(200, 300);
