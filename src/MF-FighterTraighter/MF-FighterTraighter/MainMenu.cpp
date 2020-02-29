@@ -20,11 +20,23 @@ void MainMenu::init()
 
 	cout << "init" << endl;
 	string filePath = "../../../../assets/Assets/UI/buttons.png";
+	string filename_logo = "../../../../assets/Assets/UI/logo.png";
 	texture_ = new Texture(app_->getRenderer(),filePath.c_str(), 1, 1);
+	logo_ = new Texture(app_->getRenderer(), filename_logo.c_str(), 1, 1);
 
+	Entity* logo = new Entity();
+
+	Transform* transform=logo->addComponent<Transform>();
+	transform->setWidthHeight(1, 1);
+	transform->setPosition(150, 50);
+	
+
+
+	RenderImage* img = logo->addComponent<RenderImage>(logo_);
+	scene.push_back(logo);
 	arcade = new Entity();
 	Transform* t=arcade->addComponent<Transform>();
-	t->setPosition(50, 150);
+	t->setPosition(150, 250);
 	t->setWidth(2); //doble de ancho
 	t->setHeight(1);
 	t->setRotation(0);
@@ -33,7 +45,7 @@ void MainMenu::init()
 
 	pvp = new Entity();
 	t = pvp->addComponent<Transform>();
-	t->setPosition(50, 300);
+	t->setPosition(50, 400);
 	t->setWidth(1);
 	t->setHeight(2); //doble de alto
 	t->setRotation(0);
@@ -42,7 +54,7 @@ void MainMenu::init()
 
 	options = new Entity();
 	t = options->addComponent<Transform>();
-	t->setPosition(50, 550);
+	t->setPosition(50, 650);
 	t->setWidth(1);
 	t->setHeight(1);
 	t->setRotation(0);
