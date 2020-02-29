@@ -42,7 +42,7 @@ void App::handleInput() {
 
 void App::update()
 {
-	std::cout << "Pulsa ESCAPE para cerrar la ventana"<<std::endl;//testing
+	//std::cout << "Pulsa ESCAPE para cerrar la ventana"<<std::endl;//testing
 	stateMachine_->getCurrentState()->update();
 }
 

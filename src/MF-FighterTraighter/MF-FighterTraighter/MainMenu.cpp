@@ -53,12 +53,9 @@ void MainMenu::init()
 
 void MainMenu::render()
 {
-
-	//REVISAR ESTO AAAAAAAAAAA
-
 	SDL_RenderClear(app_->getRenderer());
 	GameState::render();
-	cout << "render" << endl;
+	//cout << "render" << endl;
 	for (auto e : scene) {
 		e->getComponent<RenderImage>(ecs::RenderImage)->render();
 	}
@@ -73,13 +70,13 @@ void MainMenu::handleInput()
 {
 	InputManager* input = app_->getInputManager();
 	SDL_Event event;
-
+	
 	while (SDL_PollEvent(&event)) {
-
+		cout << "handle events main menu";
 		//botones
 		if (input->isMouseButtonPressed(input->Left)) 
 		{ 
-		
+			cout << "click";
 			SDL_Point p = { input->getMousePosX(),input->getMousePosY() };
 
 			if (SDL_PointInRect(&p, arcade->getComponent<Transform>(ecs::Transform)->getDestRect())) 
