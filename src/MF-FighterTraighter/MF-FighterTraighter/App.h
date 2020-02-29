@@ -22,6 +22,22 @@ public:
 	void render();	//calls render of the current state
 	void handleInput(); //calls handleInput of current state
 	inline void exitApp() { exit = true; };
+
+
+
+
+
+
+	//LE BORRARXDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+
+	SDL_Renderer* getRenderer() { return renderer; };
+
+
+	//BOTTOM TEXTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+	//TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+
+
+
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
