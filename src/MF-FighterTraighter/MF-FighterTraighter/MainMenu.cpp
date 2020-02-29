@@ -29,6 +29,7 @@ void MainMenu::init()
 	t->setPosition(200, 300);
 	t->setWidth(400);
 	t->setHeight(150);
+	t->setRotation(0);
 	scene.push_back(arcade);
 
 	pvp = new Entity();
@@ -37,6 +38,7 @@ void MainMenu::init()
 	t->setPosition(200, 500);
 	t->setWidth(400);
 	t->setHeight(150);
+	t->setRotation(0);
 	scene.push_back(pvp);
 
 	options = new Entity();
@@ -45,27 +47,19 @@ void MainMenu::init()
 	t->setPosition(200, 700);
 	t->setWidth(400);
 	t->setHeight(150);
-
+	t->setRotation(0);
 	scene.push_back(options);
 	cout << "init" << endl;
 }
 
 void MainMenu::render()
 {
+
+	//REVISAR ESTO AAAAAAAAAAA
+
 	SDL_RenderClear(app_->getRenderer());
 	cout << "render" << endl;
-	for (auto i : scene) {
-		
-		RenderImage* img=i->getComponent<RenderImage>(ecs::RenderImage);
-		if (img != nullptr) {
-			cout << "f";
-			img->render();
-		}
-		else {
-			cout << "aqui va una excepcion uwu";
-		}
-
-	}
+	scene.front()->getComponent<RenderImage>(ecs::RenderImage)->render();
 	SDL_RenderPresent(app_->getRenderer());
 }
 
@@ -79,17 +73,39 @@ void MainMenu::handleInput()
 	SDL_Event event;
 
 	while (SDL_PollEvent(&event)) {
-		if (input->isMouseButtonPressed(input->Left)) { 
+
+		//botones
+		if (input->isMouseButtonPressed(input->Left)) 
+		{ 
 		
 			SDL_Point p = { input->getMousePosX(),input->getMousePosY() };
 
-			//revisar si coincide con nuestros botones y en caso de ello llamar al metodo correspondiente
+			if (SDL_PointInRect(&p, arcade->getComponent<Transform>(ecs::Transform)->getDestRect())) 
+			{
+				cout << "arcade";
+				app_->PlayArcade();
+			}
+			else if (SDL_PointInRect(&p, options->getComponent<Transform>(ecs::Transform)->getDestRect())) {
+				cout << "options";
+				app_->Options();
+			}
+			else if (SDL_PointInRect(&p, pvp->getComponent<Transform>(ecs::Transform)->getDestRect())) {
+				cout << "pvp";
+				app_->PlayOnevsOne();
+			}
+			else if (SDL_PointInRect(&p, exit->getComponent<Transform>(ecs::Transform)->getDestRect())) {
+				app_->Exit();
+			}
 			cout << "click";
-
 		}
+
+		/* mando
 		
+		
+		*/
 
-
+		/* teclado
+		
+		*/
 	}
-
 }
