@@ -27,8 +27,8 @@ void MainMenu::init()
 	Entity* logo = new Entity();
 
 	Transform* transform=logo->addComponent<Transform>();
-	transform->setWidthHeight(1, 1);
-	transform->setPosition(150, 50);
+	transform->setWidthHeight(2, 2);
+	transform->setPosition(0, 50);
 	
 
 

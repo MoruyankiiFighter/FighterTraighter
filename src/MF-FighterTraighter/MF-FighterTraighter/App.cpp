@@ -58,7 +58,7 @@ void App::init()	//creates the window and the renderer
 		//throw an error
 	}
 	window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		800, 800, SDL_WINDOW_SHOWN); //añadir constantes aqui
+		1200, 880, SDL_WINDOW_SHOWN); //añadir constantes aqui
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	if (!window || !renderer) {
