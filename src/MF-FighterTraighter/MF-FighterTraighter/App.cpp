@@ -68,7 +68,7 @@ void App::init()	//creates the window and the renderer
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 
-	stateMachine_->pushState(new MainMenu(this));
+	Menu();
 
 	//stateMachine_->pushState(new Fight(this));
 }
@@ -98,12 +98,8 @@ void App::Pause() {
 	//getStateMachine()->pushState(new Pause());
 }
 
-void App::Menu() {/*
-	Transform* arcButt = new Transform(Vector2D(250,250), Vector2D(0,0), 100,100, NULL);
-	Transform* oneVsone = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
-	Transform* exit = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
-	Transform* options = new Transform(Vector2D(250, 250), Vector2D(0, 0), 100, 100, NULL);
-	getStateMachine()->pushState(new MainMenu(this, arcButt, oneVsone, exit, options));*/
+void App::Menu() {
+	stateMachine_->pushState(new MainMenu(this));
 }
 
 void App::Options() {
