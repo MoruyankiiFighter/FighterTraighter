@@ -19,35 +19,34 @@ void MainMenu::init()
 {
 
 	cout << "init" << endl;
-	string filePath = "../../../../Assets/Assets/UI/buttons.png";
+	string filePath = "../../../../assets/Assets/UI/buttons.png";
 	texture_ = new Texture(app_->getRenderer(),filePath.c_str(), 1, 1);
 
 	arcade = new Entity();
-	arcade->setApp(app_);
-	arcade->addComponent<RenderImage>(texture_); //añadir textura
 	Transform* t=arcade->addComponent<Transform>();
-	t->setPosition(200, 300);
-	t->setWidth(400);
-	t->setHeight(150);
+	t->setPosition(50, 150);
+	t->setWidth(2); //doble de ancho
+	t->setHeight(1);
 	t->setRotation(0);
+	arcade->addComponent<RenderImage>(texture_); //añadir textura
 	scene.push_back(arcade);
 
 	pvp = new Entity();
-	pvp->addComponent<RenderImage>(texture_); //añadir textura
 	t = pvp->addComponent<Transform>();
-	t->setPosition(200, 500);
-	t->setWidth(400);
-	t->setHeight(150);
+	t->setPosition(50, 300);
+	t->setWidth(1);
+	t->setHeight(2); //doble de alto
 	t->setRotation(0);
+	pvp->addComponent<RenderImage>(texture_); //añadir textura
 	scene.push_back(pvp);
 
 	options = new Entity();
-	options->addComponent<RenderImage>(texture_); //añadir textura
 	t = options->addComponent<Transform>();
-	t->setPosition(200, 700);
-	t->setWidth(400);
-	t->setHeight(150);
+	t->setPosition(50, 550);
+	t->setWidth(1);
+	t->setHeight(1);
 	t->setRotation(0);
+	options->addComponent<RenderImage>(texture_); //añadir textura
 	scene.push_back(options);
 	cout << "init" << endl;
 }
@@ -58,8 +57,11 @@ void MainMenu::render()
 	//REVISAR ESTO AAAAAAAAAAA
 
 	SDL_RenderClear(app_->getRenderer());
+	GameState::render();
 	cout << "render" << endl;
-	scene.front()->getComponent<RenderImage>(ecs::RenderImage)->render();
+	for (auto e : scene) {
+		e->getComponent<RenderImage>(ecs::RenderImage)->render();
+	}
 	SDL_RenderPresent(app_->getRenderer());
 }
 
