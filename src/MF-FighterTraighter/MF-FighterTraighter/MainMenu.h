@@ -12,6 +12,9 @@ public:
 	virtual void update() override;
 	void handleInput();
 
+	//Funciones botones
+	void OnButtClick(string text);
+
 private:
 	Entity* arcade;
 	Entity* pvp;

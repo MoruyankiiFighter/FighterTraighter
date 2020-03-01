@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "RenderImage.h"
 #include "Transform.h"
+#include "Button.h"
 #include "App.h"
 MainMenu::MainMenu(App* app): GameState(app)
 {
@@ -15,6 +16,8 @@ MainMenu::~MainMenu()
 {
 }
 
+void MainMenu::OnButtClick(string text) { std::cout << "Botón activado: "<< text << endl; };
+
 void MainMenu::init()
 {
 
@@ -25,27 +28,25 @@ void MainMenu::init()
 	logo_ = new Texture(app_->getRenderer(), filename_logo.c_str(), 1, 1);
 
 	Entity* logo = new Entity();
-
 	Transform* transform=logo->addComponent<Transform>();
 	transform->setWidthHeight(2, 2);
 	transform->setPosition(0, 50);
-	
-
-
 	RenderImage* img = logo->addComponent<RenderImage>(logo_);
 	scene.push_back(logo);
+
 	arcade = new Entity();
 	Transform* t=arcade->addComponent<Transform>();
-	t->setPosition(150, 250);
+	t->setPosition(150, 350);
 	t->setWidth(2); //doble de ancho
 	t->setHeight(1);
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(texture_); //añadir textura
+	arcade->addComponent<Button>(OnButtClick);
 	scene.push_back(arcade);
 
 	pvp = new Entity();
 	t = pvp->addComponent<Transform>();
-	t->setPosition(50, 400);
+	t->setPosition(150, 450);
 	t->setWidth(1);
 	t->setHeight(2); //doble de alto
 	t->setRotation(0);
@@ -54,7 +55,7 @@ void MainMenu::init()
 
 	options = new Entity();
 	t = options->addComponent<Transform>();
-	t->setPosition(50, 650);
+	t->setPosition(150, 650);
 	t->setWidth(1);
 	t->setHeight(1);
 	t->setRotation(0);
