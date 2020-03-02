@@ -25,6 +25,12 @@ public:
 	double getWidth() const { return width_; }
 	double getHeight() const { return height_; }
 
+	double getWMult() const { return wMult_; }
+	double getHMult() const { return hMult_; }
+
+	void setHMult(double i) { hMult_ = i; }
+	void setWMult(double i) { wMult_ = i; }
+
 	void setWidth(double width) { width_ = width; }
 	void setHeight(double height) { height_ = height; }
 
