@@ -41,5 +41,6 @@ private:
 	Vector2D position_;
 	Vector2D speed_;
 	double width_=0, height_=0, rotation_=0;
+	double wMult_ = 1, hMult_ = 1;
 };
 
