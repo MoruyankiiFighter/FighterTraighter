@@ -8,36 +8,18 @@ Collider::Collider(Entity* e) :
 
 void Collider::init()
 {
-	tr_ = en_->getComponent<Transform>(ecs::Transform);
-}
-
-/*void Collider::update()
-{
-	pos_ = tr_->getPosition();
-	/*enum posicion{stand,onAir,crouch};
-	switch (posicion)
-	{
-	case stand:
-		//dar tama�o
-		break;
-	case onAir:
-		//dar tama�o
-		break;
-	case crouch:
-		//dar tama�o
-		break;
-	default:
-		break;
-	}
-	//actualizar posicion del collider
 	
+	//tr_ = en_->getComponent<Transform>(ecs::Transform);
 	
 }
 
 void Collider::render()
 {
+	if (debug) {
+		tex->render(tr_->getPosition(), tr_->getWidth(), tr_->getHeight());
+	}
 	//pintar linea visual
-}*/
+}
 
 Collider::~Collider()
 {
@@ -50,7 +32,3 @@ void Collider::update()
 	cout << "collider actualiza pos_" << endl;
 }
 
-Collider::~Collider()
-{
-
-}
