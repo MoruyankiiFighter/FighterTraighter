@@ -3,7 +3,8 @@
 #include "Vector2D.h"
 #include "Component.h"
 #include "ecs.h"
-class Transform : public Component
+
+class Transform: public Component
 {
 public:
 	//constructor and destructor
@@ -25,27 +26,29 @@ public:
 	double getWidth() const { return width_; }
 	double getHeight() const { return height_; }
 
+	double getWMult() const { return wMult_; }
+	double getHMult() const { return hMult_; }
+
+	void setHMult(double i) { hMult_ = i; }
+	void setWMult(double i) { wMult_ = i; }
+
 	void setWidth(double width) { width_ = width; }
 	void setHeight(double height) { height_ = height; }
 
-	void setWidthHeight(double width, double height) {
+	void setWidthHeight(double width, double height) { 
 		setWidth(width);
-		setHeight(height);
+		setHeight(height); 
 	}
 
 	//get and set for rotation
 	double getRotation() { return rotation_; }
 	void setRotation(double rotation) { rotation_ = rotation; }
-	SDL_Rect* getDestRect() {
-		destRect->x = position_.getX();  destRect->y = position_.getY();
-		destRect->w = getWidth(); destRect->h = getHeight();
-		return destRect;
-	};
 
 private:
 	Vector2D position_;
 	Vector2D speed_;
-	SDL_Rect* destRect;
-	double width_ = 0, height_ = 0, rotation_ = 0;
+	double width_=0, height_=0, rotation_=0;
+	double wMult_ = 1, hMult_ = 1;
+
 };
 

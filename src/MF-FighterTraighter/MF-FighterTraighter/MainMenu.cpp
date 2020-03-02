@@ -41,7 +41,7 @@ void MainMenu::init()
 	t->setHeight(1);
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(texture_); //añadir textura
-	arcade->addComponent<Button>(OnButtClick);
+	//arcade->addComponent<Button>(OnButtClick);
 	scene.push_back(arcade);
 
 	pvp = new Entity();
@@ -92,22 +92,20 @@ void MainMenu::handleInput()
 			cout << "click";
 			SDL_Point p = { input->getMousePosX(),input->getMousePosY() };
 
-			if (SDL_PointInRect(&p, arcade->getComponent<Transform>(ecs::Transform)->getDestRect())) 
+			if (SDL_PointInRect(&p, &arcade->getComponent<RenderImage>(ecs::RenderImage)->getDestRect()))
 			{
 				cout << "arcade";
 				app_->PlayArcade();
 			}
-			else if (SDL_PointInRect(&p, options->getComponent<Transform>(ecs::Transform)->getDestRect())) {
+			else if (SDL_PointInRect(&p, &options->getComponent<RenderImage>(ecs::RenderImage)->getDestRect())) {
 				cout << "options";
 				app_->Options();
 			}
-			else if (SDL_PointInRect(&p, pvp->getComponent<Transform>(ecs::Transform)->getDestRect())) {
+			else if (SDL_PointInRect(&p, &pvp->getComponent<RenderImage>(ecs::RenderImage)->getDestRect())) {
 				cout << "pvp";
 				app_->PlayOnevsOne();
 			}
-			else if (SDL_PointInRect(&p, exit->getComponent<Transform>(ecs::Transform)->getDestRect())) {
-				app_->Exit();
-			}
+			
 			cout << "click";
 		}
 
