@@ -142,6 +142,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Move.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="RenderAnimation.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Move.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="RenderAnimation.h" />
