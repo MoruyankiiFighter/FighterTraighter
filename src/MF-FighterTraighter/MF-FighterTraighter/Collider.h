@@ -13,7 +13,8 @@ public:
 	//virtual void handleInput(); // gets called before update, use for input
 	virtual void render(); // render textures
 private:
-	//Transform* tr_;
+	Transform* tr_;
+	Entity* en_;
 	Vector2D pos_;
 	Entity* en_;
 	Transform* tr_;
