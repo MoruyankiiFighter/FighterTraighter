@@ -9,6 +9,7 @@ Collider::Collider(Entity* e) :
 void Collider::init()
 {
 	tr_ = en_->getComponent<Transform>(ecs::Transform);
+	text_ = new Texture(app_->getRenderer(), filePath.c_str(), 1, 1);
 }
 
 /*void Collider::update()
@@ -32,15 +33,11 @@ void Collider::init()
 	//actualizar posicion del collider
 	
 	
-}
+}*/
 
 void Collider::render()
 {
 	//pintar linea visual
-}*/
-
-Collider::~Collider()
-{
 }
 
 void Collider::update()
@@ -52,5 +49,4 @@ void Collider::update()
 
 Collider::~Collider()
 {
-
 }
