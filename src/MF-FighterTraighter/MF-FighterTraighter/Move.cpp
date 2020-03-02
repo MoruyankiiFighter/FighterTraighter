@@ -7,13 +7,13 @@ void Move::update()
 			activeHitbox_ = hitboxData_[index_];
 		}
 	}
-	else if (frameData_[index_].getX() == activeFrame_) {
+	else if (frameData_[index_].getY() == activeFrame_) {
 		delete activeHitbox_;
 		activeHitbox_ = nullptr;
 		index_++;
 	}
 
-	if (index_ > hitboxData_.size()) {
+	if (index_ > endingFrame_) {
 		//Movimiento acabado
 		//Player->returnControl();
 	}

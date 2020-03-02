@@ -30,6 +30,7 @@ public:
 	void render();
 private:
 	int activeFrame_ = 0;
+	int endingFrame_ = 50; //para endlag
 	int index_ = 0;
 	string name_;
 	idMovimiento id_;
