@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include "SDL.h"
 class Entity;
 class App;
 
@@ -12,7 +13,7 @@ public:
 	virtual void init();
 	virtual void handleInput();
 	virtual void update();
-	virtual void render() const;
+	virtual void render();
 	virtual void empty();
 	virtual ~GameState();
 protected:
