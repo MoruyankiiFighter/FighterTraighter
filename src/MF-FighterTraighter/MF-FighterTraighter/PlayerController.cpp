@@ -19,6 +19,7 @@ void PlayerController::handleInput()
 	else if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_D)) {
 		tr_->setSpeed(1, 0);
 	}
+	
 	else tr_->setSpeed(0, 0);
 }
 
