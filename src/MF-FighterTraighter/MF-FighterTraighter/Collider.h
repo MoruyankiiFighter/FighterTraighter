@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "Transform.h"
 #include "RenderImage.h"
+#include "Texture.h"
 
 class Collider : public Component
 {
@@ -14,11 +15,12 @@ public:
 	virtual void render(); // render textures
 private:
 	Transform* tr_ = new Transform ( Vector2D(300,500), Vector2D(0,0), 50.0, 50.0, 0 );
-	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str(), 1, 1);
+	Texture* tex_ = new Texture(app_->getRenderer(), filePath.c_str(), 1, 1);
 	Entity* en_;
 	Vector2D pos_;	
-	bool debug = true;
+	bool debug_ = true;
+
 	std::string filePath = "../../../../assets/Assets/hitbox.png";
-	RenderImage* ri_ = new RenderImage (tex);
+	RenderImage* ri_ = new RenderImage (tex_);
 };
 
