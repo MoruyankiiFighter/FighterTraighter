@@ -7,7 +7,7 @@
 class RenderImage: public Component
 {
 public:
-	RenderImage(Texture* texture) : Component(ecs::RenderImage), texture_(texture) { init(); };
+	RenderImage(Texture* texture) : Component(ecs::RenderImage), texture_(texture) { }//init(); };
 	void init() override { trans_ = entity_->getComponent<Transform>(ecs::Transform); };
 	virtual void render() override;
 	~RenderImage() {};

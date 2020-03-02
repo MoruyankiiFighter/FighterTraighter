@@ -20,11 +20,12 @@ void App::run()
 	exit = false;
 
 	while (!exit) {
+		
 		Uint32 startTime = SDL_GetTicks();
 		
-		handleInput();
 		update();
 		render();
+		handleInput();
 
 		Uint32 frameTime = SDL_GetTicks() - startTime;
 		if (frameTime < 10)
@@ -79,7 +80,7 @@ void App::clean()
 }
 
 void App::PlayArcade() {
-	//getStateMachine()->pushState(new PlayArcade());
+	getStateMachine()->pushState(new Fight(this));
 }
 
 void App::PlayOnevsOne() {
