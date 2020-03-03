@@ -2,6 +2,7 @@
 PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn)
 	: Transform()
 {
+	
 	b2BodyDef bodydef;
 	bodydef.position.Set(position.getX(), position.getY());
 	//position_ = bodydef.position();
@@ -17,7 +18,14 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 
 	width_ = width;
 	height_ = height;
+	position_ = position;
+	speed_ = speed;
+	rotation_ = rotation;
 
+}
+
+PhysicsTransform::~PhysicsTransform() {
+	//delete body_;
 }
 
 void PhysicsTransform::setHeight(double height) {

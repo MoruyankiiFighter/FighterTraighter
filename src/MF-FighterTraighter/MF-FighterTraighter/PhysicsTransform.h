@@ -2,14 +2,17 @@
 #include "Transform.h"
 #include "Box2D\Box2D.h"
 
-class PhysicsTransform :
-	public Transform
+class PhysicsTransform : public Transform
 {
+public:
 	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn = true);
-	PhysicsTransform();
+	//PhysicsTransform();
 	virtual ~PhysicsTransform();
 	// get and set for position
-	const Vector2D& getPosition() const { return Vector2D(body_->GetTransform().p.x, body_->GetTransform().p.y); }
+	const Vector2D& getPosition() const {
+		const Vector2D& pos = { body_->GetTransform().p.x, body_->GetTransform().p.y };
+		return  pos;
+	}
 	void setPosition(const Vector2D& v) {/* body_->SetTransform(b2Vec2());*/ }
 	void setPosition(double x, double y) { body_->SetTransform({ (float32)x,(float32)y }, body_->GetAngle()); }
 
