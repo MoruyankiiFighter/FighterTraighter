@@ -8,7 +8,7 @@ PlayerController::PlayerController() : Component(ecs::PlayerController), tr_(nul
 
 void PlayerController::init()
 {
-	tr_ = entity_->getComponent<Transform>(ecs::PhysicsTransform);
+	tr_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 
 void PlayerController::handleInput()

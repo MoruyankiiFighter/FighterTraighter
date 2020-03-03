@@ -7,7 +7,10 @@ Vector2D::Vector2D(double x, double y) : _x(x), _y(y)	{}
 
 Vector2D::Vector2D(const Vector2D& v)
 {
-	set(v);
+	//No funciona bien llamandolo desde el constructor por copia, es lo mismo pero ahora si va 
+	//set(v);
+	_x = v._x;
+	_y = v._y;
 }
 
 //operator +

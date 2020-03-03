@@ -9,7 +9,7 @@ namespace ecs {
 		Transform = 0,
 		PlayerController = 1,
 		RenderImage = 2,
-		PhysicsTransform = 3,
+		//PhysicsTransform = 3,
 		/*
 		
 		*/
