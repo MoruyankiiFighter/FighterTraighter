@@ -20,7 +20,7 @@ void Fight::init()
 	e->addComponent<Transform>(Vector2D(), Vector2D(), 5, 5, 0);
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(tex);
-	e->addComponent<Collider>(e);
+	e->addComponent<Collider>();
 	scene.push_back(e);
 }
 

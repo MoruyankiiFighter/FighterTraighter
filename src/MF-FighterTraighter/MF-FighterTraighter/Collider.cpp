@@ -1,39 +1,35 @@
 #include "Collider.h"
 
-Collider::Collider(Entity* e) :
-	Component(ecs::Collider), 
-	en_(e)	
-{	
+Collider::Collider() :
+	Component(ecs::Collider)
+{	//Empty
 	
 }
 
 void Collider::init()
 {
-	tr_ = en_->getComponent<Transform>(ecs::Transform);
-	tex_ = new Texture(en_->getApp()->getRenderer(), filePath.c_str(), 1, 1);
-	tex_->render(tr_->getPosition(), tr_->getWidth(), tr_->getHeight());
-	//Entity* col_ = new Entity(); // Until we have factories
-	//col_->setApp(app_);
-	//col_->addComponent<RenderImage>(tex_);
-	
+	tr_ = entity_->getComponent<Transform>(ecs::Transform); 
+	// get entity transform
+	tex_ = new Texture(entity_->getApp()->getRenderer(), filePath.c_str(), 1, 1);	
+	// creates new texture whith Greenbox file path
 }
 
 void Collider::render()
 {
-	/*if (debug_) {
-		tex_->render(tr_->getPosition(), tr_->getWidth(), tr_->getHeight());
-	}*/
+	if (debug_) {
+		//tex_->render(/*falta SDL_Rect*/);
+	}
 	//pintar linea visual
-	ri_->render();
+	
 }
 
 Collider::~Collider()
-{
+{ //Empty
 }
 
 void Collider::update()
 {
 	
-	pos_ = en_ ->getComponent<Transform>(ecs::Transform)->getPosition();
+	pos_ = tr_->getPosition(); //update position from entity
 	
 }

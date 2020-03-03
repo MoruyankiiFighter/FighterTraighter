@@ -7,20 +7,19 @@
 class Collider : public Component
 {
 public:
-	Collider(Entity* e);
-	~Collider();
+	Collider();//Constructora vacia
+	~Collider();//Destructora vacia
 	virtual void update(); // main update of the component
 	virtual void init(); // get required pointers at runtime
 	virtual void render(); // render textures
 private:
-	Transform* tr_ = new Transform(Vector2D(300, 500), Vector2D(0, 0), 5.0, 5.0, 0);
-	Texture* tex_; 
-	Entity* en_;
-	Vector2D pos_;	
-	bool debug_ = true;
-	RenderImage* ri_ = new RenderImage(tex_);
+	Transform* tr_; //Banana for Scale
+	Texture* tex_;  //Green square
+	Vector2D pos_;	//Entity_ position
+	bool debug_ = true; //for debugging purpouses
+	
 
-	std::string filePath = "../../../../assets/Assets/hitbox.png";
+	std::string filePath = "../../../../assets/Assets/hitbox.png"; //filepath Greenbox
 	
 };
 
