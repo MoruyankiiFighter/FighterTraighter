@@ -34,10 +34,12 @@ void Fight::update()
 	//Vector2D v;v = scene.front()->getComponent<PhysicsTransform>(ecs::PhysicsTransform)->getPosition(); // Temporary testing
 	//std::cout << v.getX() << std::endl; // Temporary testing
 	world->Step(1.0/30,8,3);//update box2d
-	scene.front()->getComponent<PhysicsTransform>(ecs::PhysicsTransform)->getPosition();
+	Vector2D v1 =  scene.front()->getComponent<PhysicsTransform>(ecs::PhysicsTransform)->getPosition();
+	//Vector2D v = scene.front()->getComponent<Transform>(ecs::Transform)->getPosition(); // Temporary testing
+
 	//
 	 if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_W)) {
-		 std::cout  << std::endl;
+		 std::cout  <<v1.getY()<< std::endl;
 	}
 	//scene.front()->getComponent<Transform>(ecs::Transform)->setPosition(body_->GetPosition().x, body_->GetPosition().y);
 
