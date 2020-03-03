@@ -140,6 +140,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Jump.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Jump.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PhysicsTransform.h" />

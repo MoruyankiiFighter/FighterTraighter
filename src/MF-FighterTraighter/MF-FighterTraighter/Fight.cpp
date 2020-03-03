@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "PlayerController.h"
 #include "RenderImage.h"
-
+#include "Jump.h"
 
 
 Fight::Fight(App* app) : GameState(app)
@@ -21,6 +21,7 @@ void Fight::init()
 	pTR_ = e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 5, 5, 0,world);
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(tex);
+	e->addComponent<Jump>(-10000);
 	scene.push_back(e);	
 }
 

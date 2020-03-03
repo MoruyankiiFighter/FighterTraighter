@@ -97,7 +97,10 @@
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsTransform.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Jump.cpp">
+      <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,11 +161,14 @@
     <ClInclude Include="InputManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerController.h">
+    <ClInclude Include="PhysicsTransform.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Jump.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsTransform.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="PlayerController.h">
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

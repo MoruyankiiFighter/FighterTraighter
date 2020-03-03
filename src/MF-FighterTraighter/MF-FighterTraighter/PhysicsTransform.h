@@ -33,6 +33,11 @@ public:
 	//get and set for rotation
 	virtual double getRotation() { return body_->GetTransform().q.GetAngle(); }
 	virtual void setRotation(double rotation) { body_->SetTransform(body_->GetTransform().p, rotation); }
+
+	//forces
+	virtual void ApplyLinearImpulse(float32 xImp, float32 yImp) {
+		body_->ApplyLinearImpulse({xImp, yImp}, body_->GetWorldCenter(), true);
+	}
 private:
 	b2Body* body_;
 };
