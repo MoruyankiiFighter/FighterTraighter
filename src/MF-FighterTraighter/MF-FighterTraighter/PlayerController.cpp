@@ -8,7 +8,7 @@ PlayerController::PlayerController() : Component(ecs::PlayerController), tr_(nul
 
 void PlayerController::init()
 {
-	tr_ = entity_->getComponent<Transform>(ecs::Transform);
+	tr_ = entity_->getComponent<Transform>(ecs::PhysicsTransform);
 }
 
 void PlayerController::handleInput()
@@ -19,6 +19,7 @@ void PlayerController::handleInput()
 	else if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_D)) {
 		tr_->setSpeed(1, 0);
 	}
+	
 	else tr_->setSpeed(0, 0);
 }
 
