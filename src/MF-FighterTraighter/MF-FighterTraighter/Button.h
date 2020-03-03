@@ -2,9 +2,10 @@
 using callBackOnClick = void(string text);
 
 class Button : public Component {
-	Button(callBackOnClick* funct) : Component(ecs::Button), funct_(funct) {};
+
+public:
+	Button() : Component(ecs::Button) {};
 	~Button() {};
 	void handleInput() override;
 private:
-	callBackOnClick* funct_;
 };

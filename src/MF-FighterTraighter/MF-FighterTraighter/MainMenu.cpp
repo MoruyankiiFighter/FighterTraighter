@@ -62,6 +62,7 @@ void MainMenu::init()
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(texture_); //añadir textura
 	scene.push_back(arcade);
+	arcade->addComponent<Button>();
 
 
 }
@@ -83,21 +84,7 @@ void MainMenu::update()
 
 void MainMenu::handleInput()
 {
-	SDL_Event event;
-
-	if (SDL_PollEvent(&event)) {
-
-		if (event.type == SDL_MOUSEBUTTONUP||event.type==SDL_MOUSEBUTTONDOWN) {
-			SDL_Point p = {event.button.x, event.button.y};
-
-			if (SDL_PointInRect(&p, &arcade->getComponent<RenderImage>(ecs::RenderImage)->getDestRect())) {
-				cout << "arcade";
-				app_->PlayArcade();
-			}
-			cout << "click";
-		}
-		if (event.type == SDL_KEYUP) {
-			cout << "keyboard";
-		}
+	for (auto var : scene) {
+		var->handleInput();
 	}
 }
