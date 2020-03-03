@@ -11,16 +11,16 @@ public:
 	~Collider();
 	virtual void update(); // main update of the component
 	virtual void init(); // get required pointers at runtime
-	//virtual void handleInput(); // gets called before update, use for input
 	virtual void render(); // render textures
 private:
-	Transform* tr_ = new Transform ( Vector2D(300,500), Vector2D(0,0), 50.0, 50.0, 0 );
-	Texture* tex_ = new Texture(app_->getRenderer(), filePath.c_str(), 1, 1);
+	Transform* tr_ = new Transform(Vector2D(300, 500), Vector2D(0, 0), 5.0, 5.0, 0);
+	Texture* tex_; 
 	Entity* en_;
 	Vector2D pos_;	
 	bool debug_ = true;
+	RenderImage* ri_ = new RenderImage(tex_);
 
 	std::string filePath = "../../../../assets/Assets/hitbox.png";
-	RenderImage* ri_ = new RenderImage (tex_);
+	
 };
 
