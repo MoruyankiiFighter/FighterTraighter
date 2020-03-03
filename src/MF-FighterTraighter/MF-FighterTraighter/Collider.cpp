@@ -17,7 +17,7 @@ void Collider::init()
 void Collider::render()
 {
 	if (debug_) {
-		//tex_->render(/*falta SDL_Rect*/);
+		//app_->getRenderer()
 	}
 	//pintar linea visual
 	
@@ -31,5 +31,8 @@ void Collider::update()
 {
 	
 	pos_ = tr_->getPosition(); //update position from entity
-	
+	if (debug_) {
+		std::cout << "pos collider: " << pos_.getX() << " x, " << pos_.getY() << " y." << endl;
+	}
+	//for debugging purpouses
 }
