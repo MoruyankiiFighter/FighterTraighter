@@ -14,9 +14,26 @@ MainMenu::MainMenu(App* app): GameState(app)
 
 MainMenu::~MainMenu()
 {
+	delete arcade;
+	arcade = nullptr;
+	
+	delete pvp;
+	pvp = nullptr;
+
+	delete options;
+	options = nullptr;
+
+	delete exit;
+	exit= nullptr;
+
+	for (auto i : scene) {
+		delete i;
+		i = nullptr;
+	}
+
 }
 
-void MainMenu::OnButtClick(string text) { std::cout << "Botón activado: "<< text << endl; };
+//void MainMenu::OnButtClick(string text) { std::cout << "Botón activado: "<< text << endl; };
 
 void MainMenu::init()
 {
@@ -44,42 +61,19 @@ void MainMenu::init()
 	t->setHeight(150);
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(texture_); //añadir textura
-	//arcade->addComponent<Button>(OnButtClick);
 	scene.push_back(arcade);
 
-	//pvp = new Entity();
 
-	//pvp->setApp(app_);
-	//t = pvp->addComponent<Transform>();
-	//t->setPosition(450, 450);
-	//t->setWidth(300);
-	//t->setHeight(300); 
-	//t->setRotation(0);
-	//
-	//pvp->addComponent<RenderImage>(texture_); //añadir textura
-	//scene.push_back(pvp);
-
-	//options = new Entity();
-
-	//options->setApp(app_);
-	//t = options->addComponent<Transform>();
-	//t->setPosition(450, 650);
-	//t->setWidth(100);
-	//t->setHeight(200);
-	//t->setRotation(0);
-	//options->addComponent<RenderImage>(texture_); //añadir textura
-	//scene.push_back(options);
-	//cout << "init" << endl;
 }
 
 void MainMenu::render()
 {
 	SDL_RenderClear(app_->getRenderer());
-	//GameState::render();
-	//cout << "render" << endl;
+	
 	for (auto e : scene) {
 		e->getComponent<RenderImage>(ecs::RenderImage)->render();
 	}
+	
 	SDL_RenderPresent(app_->getRenderer());
 }
 
@@ -90,41 +84,20 @@ void MainMenu::update()
 void MainMenu::handleInput()
 {
 	SDL_Event event;
-	
-	while (SDL_PollEvent(&event)) {
-		cout << event.type<<endl;
-		//botones
-		
-		if (event.type!=SDL_MOUSEBUTTONUP) 
-		{ 
-			
-			SDL_Point p { event.button.x,event.button.y };
-			//cout << p.x << endl;
-			
-			if (SDL_PointInRect(&p, &arcade->getComponent<RenderImage>(ecs::RenderImage)->getDestRect()))
-			{
+
+	if (SDL_PollEvent(&event)) {
+
+		if (event.type == SDL_MOUSEBUTTONUP||event.type==SDL_MOUSEBUTTONDOWN) {
+			SDL_Point p = {event.button.x, event.button.y};
+
+			if (SDL_PointInRect(&p, &arcade->getComponent<RenderImage>(ecs::RenderImage)->getDestRect())) {
 				cout << "arcade";
 				app_->PlayArcade();
 			}
-			/*else if (SDL_PointInRect(&p, &options->getComponent<RenderImage>(ecs::RenderImage)->getDestRect())) {
-				cout << "options";
-				app_->Options();
-			}
-			else if (SDL_PointInRect(&p, &pvp->getComponent<RenderImage>(ecs::RenderImage)->getDestRect())) {
-				cout << "pvp";
-				app_->PlayOnevsOne();
-			}*/
-			
 			cout << "click";
 		}
-
-		/* mando
-		
-		
-		*/
-
-		/* teclado
-		
-		*/
+		if (event.type == SDL_KEYUP) {
+			cout << "keyboard";
+		}
 	}
 }
