@@ -1,9 +1,8 @@
 #include "Fight.h"
 #include "Entity.h"
-#include "PhysicsTransform.h"
 #include "PlayerController.h"
 #include "RenderImage.h"
-
+#include "Jump.h"
 
 
 Fight::Fight(App* app) : GameState(app)
@@ -13,19 +12,22 @@ Fight::Fight(App* app) : GameState(app)
 
 void Fight::init()
 {
-	world = new b2World(b2Vec2(0.0, 2.81));
+	world = new b2World(b2Vec2(0.0, 9.81));//inicializamos el mundo para las f�sicas de b2D
 
 	string filePath = "../../../../assets/Assets/personaje.png";
 	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str() , 1, 1);
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
-	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 5, 5, 0,world);
+	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 50, 50, 0,world);
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(tex);
-	scene.push_back(e);
+	e->addComponent<Jump>(-1000);
+	scene.push_back(e);	
 
-	
-
+	Entity* floor = new Entity();
+	floor->addComponent<PhysicsTransform>(Vector2D(0, 500), Vector2D(0,0), 100, 100, 0, world, false);
+	floor->addComponent<RenderImage>(tex);
+	scene.push_back(floor);
 }
 
 void Fight::update()
@@ -34,15 +36,14 @@ void Fight::update()
 	//Vector2D v;v = scene.front()->getComponent<PhysicsTransform>(ecs::PhysicsTransform)->getPosition(); // Temporary testing
 	//std::cout << v.getX() << std::endl; // Temporary testing
 	world->Step(1.0/30,8,3);//update box2d
-	Vector2D v1 =  scene.front()->getComponent<PhysicsTransform>(ecs::PhysicsTransform)->getPosition();
-	//Vector2D v = scene.front()->getComponent<Transform>(ecs::Transform)->getPosition(); // Temporary testing
-
+	//scene.front()->getComponent<Transform>(ecs::Transform)->getPosition();
 	//
-	 if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_W)) {
-		 std::cout  <<v1.getY()<< std::endl;
-	}
+	/*if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_W)) {
+		Vector2D v = pTR_->getPosition();
+		
+		std::cout << v.getX() << std::endl << v.getY() << std::endl;
+	}*/
 	//scene.front()->getComponent<Transform>(ecs::Transform)->setPosition(body_->GetPosition().x, body_->GetPosition().y);
-
 }
 
 void Fight::render() {

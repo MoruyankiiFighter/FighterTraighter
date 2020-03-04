@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "Box2D\Box2D.h"
+#include "PhysicsTransform.h"
 
 class Fight: public GameState
 {
@@ -14,6 +15,7 @@ private:
 
 
 	b2World* world;
-
+	//Debugging physics transform
+	//Transform* pTR_ = nullptr;
 };
 

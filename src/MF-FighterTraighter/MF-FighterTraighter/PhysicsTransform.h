@@ -9,31 +9,34 @@ public:
 	//PhysicsTransform();
 	virtual ~PhysicsTransform();
 	// get and set for position
-	const Vector2D& getPosition() const {
-		const Vector2D& pos = { body_->GetTransform().p.x, body_->GetTransform().p.y };
+	virtual const Vector2D& getPosition() const {
+		Vector2D pos { body_->GetTransform().p.x, body_->GetTransform().p.y };
 		return  pos;
 	}
-	void setPosition(const Vector2D& v) {/* body_->SetTransform(b2Vec2());*/ }
-	void setPosition(double x, double y) { body_->SetTransform({ (float32)x,(float32)y }, body_->GetAngle()); }
+	virtual void setPosition(const Vector2D& v) {/* body_->SetTransform(b2Vec2());*/ }
+	virtual void setPosition(double x, double y) { body_->SetTransform({ (float32)x,(float32)y }, body_->GetAngle()); }
 
 	//get and set for speed
-	const Vector2D& getSpeed() const { /*return speed_;*/ return { body_->GetLinearVelocity().x,body_->GetLinearVelocity().y }; }
-	void setSpeed(const Vector2D& v) { /*speed_ = v;*/ }
-	void setSpeed(double x, double y) { body_->SetLinearVelocity({ (float32)x,(float32)y }); }
+	virtual const Vector2D& getSpeed() const { /*return speed_;*/ Vector2D pos{ body_->GetLinearVelocity().x,body_->GetLinearVelocity().y };
+	return pos;
+	}
+	virtual void setSpeed(const Vector2D& v) { /*speed_ = v;*/ }
+	virtual void setSpeed(double x, double y) { body_->SetLinearVelocity({ (float32)x,(float32)y }); }
 
-	// get and set for width and height
-	double getWidth() const { return width_; }
-	double getHeight() const { return height_; }
+	virtual void setWidth(double width);
+	virtual void setHeight(double height);
 
-	void setWidth(double width);
-	void setHeight(double height);
+	virtual void setWidthHeight(double width, double height);
 
-	void setWidthHeight(double width, double height);
+	//forces
+	virtual void ApplyLinearImpulse(float32 xImp, float32 yImp) {
+		body_->ApplyLinearImpulse({xImp, yImp}, body_->GetWorldCenter(), true);
+	}
 
-	//get and set for rotation
-	double getRotation() { return body_->GetTransform().q.GetAngle(); }
-	void setRotation(double rotation) { body_->SetTransform(body_->GetTransform().p, rotation); }
+	//void update() override { std::cout << body_->GetPosition().x << "/" <<body_->GetPosition().y << std::endl;} para testear
+
 private:
+	b2World* world_;	//puntero al mundo para destruirse
 	b2Body* body_;
 };
 

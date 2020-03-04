@@ -8,19 +8,21 @@ PlayerController::PlayerController() : Component(ecs::PlayerController), tr_(nul
 
 void PlayerController::init()
 {
-	tr_ = entity_->getComponent<Transform>(ecs::PhysicsTransform);
+	tr_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 
 void PlayerController::handleInput()
 {
+	Vector2D speed;
+	speed = tr_->getSpeed();
 	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_A)) {
-		tr_->setSpeed(-1, 0);
+		tr_->setSpeed(-10, speed.getY());
 	}
 	else if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_D)) {
-		tr_->setSpeed(1, 0);
+		tr_->setSpeed(10, speed.getY());
 	}
 	
-	else tr_->setSpeed(0, 0);
+	else tr_->setSpeed(0, speed.getY());
 }
 
 void PlayerController::update()
