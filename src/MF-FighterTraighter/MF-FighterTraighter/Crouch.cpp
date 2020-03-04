@@ -4,22 +4,27 @@
 
 Crouch::Crouch() : Component(ecs::PlayerController), tr_(nullptr)
 {
-	can = true;
+	crouched = true;
 }
 
 void Crouch::init()
 {
-	tr_ = entity_->getComponent<Transform>(ecs::Transform);
+	tr_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 }
 
 void Crouch::handleInput()
 {
-	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_S) && CanCrouch()) {
+	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_S) && crouched) {
 		crouch();
 	}
-	else if(app_->getInputManager()->isKeyUp(SDL_SCANCODE_S))
+	
+	if(app_->getInputManager()->isKeyUp(SDL_SCANCODE_S))
 	{
-		uncrouch();
+		if (!crouched)
+		{
+			uncrouch();
+
+		}
 	}
 	
 	
@@ -31,28 +36,20 @@ void Crouch::update()
 }
 void Crouch::crouch()
 {
-	can = false;
+	crouched = false;
+	tr_->setPosition(tr_->getPosition() + Vector2D(0,  tr_->getHeight()));
 
 	tr_->setHeight(tr_->getHeight() / 2);
-	tr_->setPosition(tr_->getPosition() + Vector2D(0,tr_->getHeight()));
 	//animaciones de agachar
 }void Crouch::uncrouch()
 {
-	can = true;
+	crouched = true;
+	tr_->setHeight(tr_->getHeight() * 2);
+
 	tr_->setPosition(tr_->getPosition() + Vector2D(0, tr_->getHeight())*(-1));
 	//animaciones por defecto
 }
-bool Crouch::CanCrouch()
-{
 
-	/*if (true)
-	{
-
-	}*/
-	//if para comprobar todo lo que necesita para saber si puede agacharse o no 
-	return can;
-	//animaciones por defecto
-}
 
 
 

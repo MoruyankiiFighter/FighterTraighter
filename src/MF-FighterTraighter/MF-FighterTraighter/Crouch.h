@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-#include "Transform.h"
+#include "PhysicsTransform.h"
 
 class Crouch :
 	public Component
@@ -13,12 +13,13 @@ public:
 	void crouch();
 	void uncrouch();
 	//poder 
-	bool CanCrouch();
-	
+	//CanCrouch(){return  !crouched;};
 	virtual ~Crouch();
 private:
-	Transform* tr_;
-	bool can;
+	//Transform* tr_;
+	PhysicsTransform* tr_ = nullptr;
+
+	bool crouched=false;
 	Vector2D dir_;
 };
 

@@ -36,7 +36,7 @@ void PhysicsTransform::setHeight(double height) {
 	shape.SetAsBox(width_ / 2, height / 2);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 1.0;
+	fixturedef.density = 0;
 
 	body_->CreateFixture(&fixturedef);
 
@@ -50,7 +50,7 @@ void PhysicsTransform::setWidth(double width) {
 	shape.SetAsBox(width / 2, height_ / 2);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 1.0;
+	fixturedef.density = 0;
 
 	body_->CreateFixture(&fixturedef);
 	width_ = width;
@@ -63,7 +63,7 @@ void PhysicsTransform::setWidthHeight(double width, double height) {
 	shape.SetAsBox(width / 2, height / 2);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 1.0;
+	fixturedef.density = 0;
 
 	body_->CreateFixture(&fixturedef);
 	width_ = width;
