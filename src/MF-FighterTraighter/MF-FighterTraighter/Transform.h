@@ -25,6 +25,12 @@ public:
 	double getWidth() const { return width_; }
 	double getHeight() const { return height_; }
 
+	double getWMult() const { return wMult_; }
+	double getHMult() const { return hMult_; }
+
+	void setHMult(double i) { hMult_ = i; }
+	void setWMult(double i) { wMult_ = i; }
+
 	void setWidth(double width) { width_ = width; }
 	void setHeight(double height) { height_ = height; }
 
@@ -41,5 +47,6 @@ private:
 	Vector2D position_;
 	Vector2D speed_;
 	double width_=0, height_=0, rotation_=0;
+	double wMult_ = 1, hMult_ = 1;
 };
 

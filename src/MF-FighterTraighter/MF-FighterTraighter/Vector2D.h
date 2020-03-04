@@ -6,8 +6,8 @@ public:
 	Vector2D(double x, double y);
 	Vector2D(const Vector2D& v);
 
-	inline double getX() { return _x; };
-	inline double getY() { return _y; };
+	inline const double& getX() { return _x; };
+	inline const double& getY() { return _y; };
 
 	inline void setX(double x) { _x = x; };
 	inline void setY(double y) { _y = y; };

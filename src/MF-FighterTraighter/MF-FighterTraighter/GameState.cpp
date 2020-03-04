@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "App.h"
 
-GameState::GameState(App* app) : app_(app) {
+GameState::GameState(App* app) : app_(app){
 
 }
 void GameState::init()
@@ -23,10 +23,10 @@ void GameState::update()
 	}
 }
 
-void GameState::render() const
+void GameState::render()
 {
 	for (auto it = scene.begin(); it != scene.end(); ++it) {
-		(*it)->draw();
+		(*it)->render();
 	}
 }
 

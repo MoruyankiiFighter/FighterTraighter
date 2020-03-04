@@ -9,6 +9,7 @@ namespace ecs {
 		Transform = 0,
 		PlayerController = 1,
 		Health,
+		RenderImage = 2,
 		/*
 		
 		*/
