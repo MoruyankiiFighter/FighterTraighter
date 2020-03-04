@@ -15,12 +15,12 @@ void Jump::handleInput()
 {
 	if (onGround && app_->getInputManager()->isKeyDown(SDL_SCANCODE_W)) {
 		//pTR_->setSpeed(0, 5);
-		pTR_->ApplyLinearImpulse(0, -500);
+		pTR_->ApplyLinearImpulse(0, jumpImpulse);
 	}
 }
 
 void Jump::update()
 {
 	Vector2D velocity = pTR_->getSpeed();
-	//onGround = abs(velocity.getY()) <= 0.1;
+	onGround = abs(velocity.getY()) <= 0.1;
 }

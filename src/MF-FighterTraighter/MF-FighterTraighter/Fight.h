@@ -16,6 +16,6 @@ private:
 
 	b2World* world;
 	//Debugging physics transform
-	Transform* pTR_ = nullptr;
+	//Transform* pTR_ = nullptr;
 };
 
