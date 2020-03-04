@@ -17,7 +17,9 @@ public:
 	virtual void setPosition(double x, double y) { body_->SetTransform({ (float32)x,(float32)y }, body_->GetAngle()); }
 
 	//get and set for speed
-	virtual const Vector2D& getSpeed() const { /*return speed_;*/ return { body_->GetLinearVelocity().x,body_->GetLinearVelocity().y }; }
+	virtual const Vector2D& getSpeed() const { /*return speed_;*/ Vector2D pos{ body_->GetLinearVelocity().x,body_->GetLinearVelocity().y };
+	return pos;
+	}
 	virtual void setSpeed(const Vector2D& v) { /*speed_ = v;*/ }
 	virtual void setSpeed(double x, double y) { body_->SetLinearVelocity({ (float32)x,(float32)y }); }
 
@@ -39,6 +41,7 @@ public:
 		body_->ApplyLinearImpulse({xImp, yImp}, body_->GetWorldCenter(), true);
 	}
 private:
+	b2World* world_;	//puntero al mundo para destruirse
 	b2Body* body_;
 };
 

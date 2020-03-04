@@ -15,17 +15,18 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	fixturedef.density = 1.0;
 
 	body_->CreateFixture(&fixturedef);
-
+	//---no hacen falta
 	width_ = width;
 	height_ = height;
 	position_ = position;
 	speed_ = speed;
 	rotation_ = rotation;
-
+	//----
+	world_ = world;
 }
 
 PhysicsTransform::~PhysicsTransform() {
-	//delete body_;
+	world_->DestroyBody(body_);
 }
 
 void PhysicsTransform::setHeight(double height) {

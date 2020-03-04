@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "PhysicsTransform.h"
+#include <math.h>
 
 class Jump : public Component
 {

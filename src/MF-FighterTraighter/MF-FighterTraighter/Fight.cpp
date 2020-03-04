@@ -12,17 +12,23 @@ Fight::Fight(App* app) : GameState(app)
 
 void Fight::init()
 {
-	world = new b2World(b2Vec2(0.0, 981));//inicializamos el mundo para las físicas de b2D
+	world = new b2World(b2Vec2(0.0, 9.81));//inicializamos el mundo para las físicas de b2D
 
 	string filePath = "../../../../assets/Assets/personaje.png";
 	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str() , 1, 1);
 	Entity* e = new Entity(); // Until we have factories
-	e->setApp(app_);
-	pTR_ = e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 5, 5, 0,world);
-	e->addComponent<PlayerController>();
-	e->addComponent<RenderImage>(tex);
-	e->addComponent<Jump>(-10000);
+	//e->setApp(app_);
+	//e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 5, 5, 0,world);
+	//e->addComponent<Transform>(Vector2D(10, 10), Vector2D(10, 0), 5, 5, 0);
+	//e->addComponent<PlayerController>();
+	//e->addComponent<RenderImage>(tex);
+	//e->addComponent<Jump>(-100);
 	scene.push_back(e);	
+
+	/*Entity* floor = new Entity();
+	floor->addComponent <PhysicsTransform>(Vector2D(300, 500), Vector2D(0,0), 1000, 100, 0, world, false);
+	floor->addComponent<RenderImage>(tex);
+	scene.push_back(floor);*/
 }
 
 void Fight::update()

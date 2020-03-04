@@ -44,6 +44,8 @@ double Vector2D::operator*(const Vector2D& v)
 
 Vector2D Vector2D::operator=(const Vector2D& v)
 {
-	set(v);
+	//set(v); Lo mismo que antes
+	_x = v._x;
+	_y = v._y;
 	return *this;
 }
