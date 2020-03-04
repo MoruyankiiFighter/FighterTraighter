@@ -18,7 +18,7 @@ void Fight::init()
 	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str() , 1, 1);
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
-	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 5, 5, 0,world);
+	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 50, 50, 0,world);
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(tex);
 	e->addComponent<Jump>(-1000);

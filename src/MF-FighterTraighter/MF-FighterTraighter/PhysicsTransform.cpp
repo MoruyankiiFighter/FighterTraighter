@@ -12,7 +12,7 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	shape.SetAsBox(width / 2, height / 2);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 1.0;
+	fixturedef.density = 0;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
 
 	body_->CreateFixture(&fixturedef);
 	//---no hacen falta
