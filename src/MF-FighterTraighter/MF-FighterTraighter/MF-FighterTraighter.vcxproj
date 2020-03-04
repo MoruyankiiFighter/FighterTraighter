@@ -142,6 +142,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Options.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="RenderAnimation.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="consts.h" />
     <ClInclude Include="ecs.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Fight.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Options.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="RenderAnimation.h" />

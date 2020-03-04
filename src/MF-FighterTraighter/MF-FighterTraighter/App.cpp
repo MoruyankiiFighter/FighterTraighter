@@ -1,5 +1,9 @@
 #include "App.h"
+#include "consts.h"
+
+#include "PauseMenu.h"
 #include "Fight.h"
+
 
 App::App()
 {
@@ -33,9 +37,9 @@ void App::run()
 	}
 }
 
-void App::handleInput() {
+void App::handleInput() 
+{
 
-	// update input state
 	inputManager_->update();
 
 	stateMachine_->getCurrentState()->handleInput();
@@ -43,7 +47,6 @@ void App::handleInput() {
 
 void App::update()
 {
-	//std::cout << "Pulsa ESCAPE para cerrar la ventana"<<std::endl;//testing
 	stateMachine_->getCurrentState()->update();
 }
 
@@ -52,26 +55,27 @@ void App::render()
 	stateMachine_->getCurrentState()->render();
 }
 
-void App::init()	//creates the window and the renderer
+//creates the window and the renderer also set up the state machine and the input manager
+void App::init()	
 {
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
 		//throw an error
 	}
+	
 	window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		1200, 880, SDL_WINDOW_SHOWN); //añadir constantes aqui
+		WINDOW_WIDTH_, WINDOW_HEIGHT_, SDL_WINDOW_SHOWN);
+	
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	if (!window || !renderer) {
 		//throw another Error
 	}
-	
+
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 
 	Menu();
-
-	//stateMachine_->pushState(new Fight(this));
 }
 
 void App::clean()
@@ -79,33 +83,43 @@ void App::clean()
 
 }
 
-void App::PlayArcade() {
-	getStateMachine()->pushState(new Fight(this));
-}
 
-void App::PlayOnevsOne() {
-	//getStateMachine()->pushState(new PlayOneVsOne());
-}
-
-void App::ContinuePlaying() {
-	//getStateMachine()->pushState(new PlayArcade());
-}
-
-void App::Exit() {
-	SDL_Quit();
-}
-
-void App::Pause() {
-	//getStateMachine()->pushState(new Pause());
-}
-
+//init the main menu
 void App::Menu() {
 	stateMachine_->pushState(new MainMenu(this));
 }
 
-void App::Options() {
-	//getStateMachine()->pushState(new Options());
+//set up arcade state
+void App::PlayArcade() {
+	getStateMachine()->pushState(new Fight(this));
 }
+
+//set up the options state
+void App::Options() {
+	//getStateMachine()->pushState(new Options(this));
+}
+
+
+//set up pvp state
+void App::PlayOnevsOne() {
+	//getStateMachine()->pushState(new PlayOneVsOne());
+}
+
+//quit pause state to previous state
+void App::ContinuePlaying() {
+	getStateMachine()->popState();
+}
+
+//quit game
+void App::Exit() {
+	SDL_Quit();
+}
+
+//pause the game
+void App::Pause() {
+	//getStateMachine()->pushState(new PauseMenu(this));
+}
+
 
 void App::Movements() {
 	//getStateMachine()->pushState(new Movements());

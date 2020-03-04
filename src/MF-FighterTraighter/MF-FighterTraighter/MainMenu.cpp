@@ -1,10 +1,16 @@
 #include "MainMenu.h"
+
 #include "InputManager.h"
+
 #include "Entity.h"
+
 #include "RenderImage.h"
 #include "Transform.h"
 #include "Button.h"
+
 #include "App.h"
+#include "consts.h"
+
 MainMenu::MainMenu(App* app): GameState(app)
 {
 	
@@ -39,16 +45,16 @@ void MainMenu::init()
 {
 
 	cout << "init" << endl;
-	string filePath = "../../../../assets/Assets/UI/buttons.png";
-	string filename_logo = "../../../../assets/Assets/UI/logo.png";
+	string filePath = "../../../../assets/Assets/images/UI/buttons.png";
+	string filename_logo = "../../../../assets/Assets/images/UI/logo.png";
 	texture_ = new Texture(app_->getRenderer(),filePath.c_str(), 1, 1);
 	logo_ = new Texture(app_->getRenderer(), filename_logo.c_str(), 1, 1);
 
 	Entity* logo = new Entity();
 	
 	Transform* transform=logo->addComponent<Transform>();
-	transform->setWidthHeight(200, 200);
-	transform->setPosition(0, 50);
+	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
+	transform->setPosition(WINDOW_WIDTH_/2, POS_Y_LOGO);
 	
 	RenderImage* img = logo->addComponent<RenderImage>(logo_);
 	scene.push_back(logo);
@@ -56,9 +62,9 @@ void MainMenu::init()
 	arcade = new Entity();
 	arcade->setApp(app_);
 	Transform* t=arcade->addComponent<Transform>();
-	t->setPosition(150, 350);
-	t->setWidth(300); 
-	t->setHeight(150);
+	t->setPosition(POS_X_ARCADE, POS_Y_ARCADE);
+	t->setWidth(WIDTH_BUTTON); 
+	t->setHeight(HEIGHT_BUTTON);
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(texture_); //añadir textura
 	scene.push_back(arcade);
