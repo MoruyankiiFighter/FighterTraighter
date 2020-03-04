@@ -3,7 +3,7 @@
 #include "Transform.h"
 #include "PlayerController.h"
 #include "RenderImage.h"
-
+#include "Collider.h"
 
 
 Fight::Fight(App* app) : GameState(app)
@@ -20,6 +20,7 @@ void Fight::init()
 	e->addComponent<Transform>(Vector2D(), Vector2D(), 50, 50, 0);
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(tex);
+	e->addComponent<Collider>();
 	scene.push_back(e);
 }
 
