@@ -1,6 +1,5 @@
 #include "App.h"
-
-std::unique_ptr<App> App::instance_;
+#include "Fight.h"
 
 App::App()
 {
@@ -13,8 +12,6 @@ App::~App()
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
-
-	delete stateMachine_;
 }
 
 //main loop
@@ -38,7 +35,7 @@ void App::run()
 void App::handleInput() {
 
 	// update input state
-	InputManager::instance()->update();
+	inputManager_->update();
 
 	stateMachine_->getCurrentState()->handleInput();
 }
@@ -68,11 +65,10 @@ void App::init()	//creates the window and the renderer
 		//throw another Error
 	}
 	
-	stateMachine_ = new GameStateMachine();
+	stateMachine_.reset(new GameStateMachine());
+	inputManager_.reset(new InputManager(this));
 
-	// PLACE STATE
-								// PLACE STATE
-															// PLACE STATE
+	stateMachine_->pushState(new Fight(this));
 }
 
 void App::clean()

@@ -11,7 +11,8 @@ public:
 	Component(ecs::CmpId id);
 	~Component();
 
-	void setEntity(Entity* entity) { entity_ = entity; }
+	inline void setEntity(Entity* entity) { entity_ = entity; }
+	inline void setApp(App* app) { app_ = app; }
 
 	ecs::CmpId getID() { return id_; }
 
@@ -23,6 +24,7 @@ public:
 
 protected:
 	Entity* entity_;
+	App* app_;
 	ecs::CmpId id_;
 };
 

@@ -6,6 +6,7 @@ GameStateMachine::GameStateMachine(){ }
 GameStateMachine::~GameStateMachine()
 {
 	while (!states.empty()) {
+		delete states.top();
 		popState();
 	}
 }
@@ -18,4 +19,13 @@ GameState* GameStateMachine::getCurrentState() //if there is a state then return
 	else {
 		return nullptr;
 	}
+}
+
+//Return second state
+GameState* GameStateMachine::getSecond() {
+	GameState* top = getCurrentState();
+	popState();
+	GameState* secondTop = getCurrentState();
+	pushState(top);
+	return secondTop;
 }

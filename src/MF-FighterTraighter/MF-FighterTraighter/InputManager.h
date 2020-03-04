@@ -8,18 +8,12 @@ class App;
 class InputManager
 {
 public:
-	static InputManager* instance() {
-		if (instance_.get() == nullptr) {
-			instance_.reset(new InputManager());
-		}
-		return instance_.get();
-	};
 	enum MouseButton : Uint8 {
 		Left = 0,
 		Right = 1,
 		Middle = 2
 	};
-	InputManager();
+	InputManager(App* app);
 	InputManager(InputManager&) = delete;
 	InputManager& operator= (InputManager&) = delete;
 
@@ -27,13 +21,13 @@ public:
 
 	// Keyboard
 	inline bool isKeyUp(SDL_Scancode code) {
-		return keyboardState_[code] == 1;
+		return keyboardState_[code] == 0;
 	};
 	inline bool isKeyUp(SDL_Keycode code) {
 		return isKeyUp(SDL_GetScancodeFromKey(code));
 	};
 	inline bool isKeyDown(SDL_Scancode code) {
-		return keyboardState_[code] == 0;
+		return keyboardState_[code] == 1;
 	};
 	inline bool isKeyDown(SDL_Keycode code) {
 		return isKeyDown(SDL_GetScancodeFromKey(code));
@@ -74,9 +68,8 @@ private:
 		}
 	};
 
-	static std::unique_ptr<InputManager> instance_;
-	Uint8* keyboardState_;
+	App* app_;
+	const Uint8* keyboardState_;
 	Vector2D mousePos_;
 	std::array<bool, 3> mouseState_; // true = pressed
 };
-

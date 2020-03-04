@@ -32,13 +32,16 @@ public:
 		}
 	}
 
-	void draw() {
+	void render() {
 		for (auto& c : components_) {
 			c->render();
 		}
 	}
 
+	inline App* getApp() const { return app_; }
+	inline void setApp(App* app) { app_ = app; }
 private:
+	App* app_;
 	std::vector<std::unique_ptr<Component>> components_;
 	std::array<Component*, ecs::_LastCmptId_> componentsArray_ = {}; // to prevent the vector from resizing, and delete automatically
 
@@ -47,11 +50,12 @@ private:
 template<typename T, typename ...TArgs>
 inline T* Entity::addComponent(TArgs ...args)
 {
-	T* t = new T(std::forward(static_cast<TArgs>(args)...));
+	T* t(new T(std::forward<TArgs>(args)...));
 	std::unique_ptr<Component> c(t);
 	components_.push_back(std::move(c));
-	componentsArray_[c->getID()] = c;
-	c->setEntity(this);
-	c->init();
-	return c;
+	componentsArray_[t->getID()] = t;
+	t->setEntity(this);
+	t->setApp(app_);
+	t->init();
+	return t;
 }
