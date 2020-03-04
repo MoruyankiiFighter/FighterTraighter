@@ -7,6 +7,38 @@ void Button::init()
 	render_ = entity_->getComponent<RenderImage>(ecs::RenderImage);
 }
 
+void ArcadeCallback(App* app) {
+	app->PlayArcade();
+}
+
+void OneVsOneCallback(App* app) {
+	app->PlayOnevsOne();
+}
+
+void PauseCallback(App* app) {
+	app->Pause();
+}
+
+void ExitCallback(App* app) {
+	app->Exit();
+}
+
+void OptionsCallback(App* app) {
+	app->Options();
+}
+
+void ContinuePlayingCallback(App* app) {
+	app->ContinuePlaying();
+}
+
+void MovementsCallback(App* app) {
+	app->Movements();
+}
+
+void MenuCallback(App* app) {
+	app->Menu();
+}
+
 void Button::handleInput()
 {
 	if (app_->getInputManager()->isMouseButtonPressed(app_->getInputManager()->Left)) {
@@ -15,6 +47,7 @@ void Button::handleInput()
 
 		if (SDL_PointInRect(&p, &render_->getDestRect())) {
 			cout << "arcade";
+			callbackbutton(app_);
 		}
 
 		//app_->PlayArcade();

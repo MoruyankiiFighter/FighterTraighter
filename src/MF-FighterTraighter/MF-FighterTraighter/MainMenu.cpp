@@ -62,7 +62,7 @@ void MainMenu::init()
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(texture_); //añadir textura
 	scene.push_back(arcade);
-	arcade->addComponent<Button>();
+	arcade->addComponent<Button>(ArcadeCallback);
 
 
 }
