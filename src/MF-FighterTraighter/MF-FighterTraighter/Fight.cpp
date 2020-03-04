@@ -13,13 +13,11 @@ Fight::Fight(App* app) : GameState(app)
 
 void Fight::init()
 {
-	string filePath = "../../../../assets/Assets/personaje.png";
-	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str() , 1, 1);
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
 	e->addComponent<Transform>(Vector2D(), Vector2D(), 50, 50, 0);
 	e->addComponent<PlayerController>();
-	e->addComponent<RenderImage>(tex);
+	e->addComponent<RenderImage>(app_->getTextureManager()->getTexture(0));
 	scene.push_back(e);
 }
 
