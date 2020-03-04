@@ -1,8 +1,7 @@
 #include "PhysicsTransform.h"
 PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn)
-	: Transform()
+	: Transform(position, speed, width, height, rotation)
 {
-	
 	b2BodyDef bodydef;
 	bodydef.position.Set(position.getX(), position.getY());
 	//position_ = bodydef.position();
