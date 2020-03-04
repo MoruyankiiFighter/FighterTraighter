@@ -29,7 +29,7 @@ void Fight::init()
 	scene.push_back(e);	
 
 	Entity* floor = new Entity();
-	floor->addComponent <PhysicsTransform>(Vector2D(300, 500), Vector2D(0,0), 1000, 100, 0, world, false);
+	floor->addComponent<PhysicsTransform>(Vector2D(0, 500), Vector2D(0,0), 100, 100, 0, world, false);
 	floor->addComponent<RenderImage>(tex);
 	scene.push_back(floor);
 }
@@ -48,7 +48,6 @@ void Fight::update()
 		std::cout << v.getX() << std::endl << v.getY() << std::endl;
 	}*/
 	//scene.front()->getComponent<Transform>(ecs::Transform)->setPosition(body_->GetPosition().x, body_->GetPosition().y);
-
 }
 
 void Fight::render() {

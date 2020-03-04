@@ -10,6 +10,7 @@ namespace ecs {
 		PlayerController = 1,
 		RenderImage = 2,
 		Jump = 3,
+		PhysicsTransform = 4,
 		/*
 		
 		*/
