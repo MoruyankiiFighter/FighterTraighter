@@ -1,7 +1,9 @@
 #pragma once
 #include "Component.h"
 #include "Texture.h"
-#include "Transform.h"
+//#include "Transform.h"
+#include "PhysicsTransform.h"
+
 #include "Entity.h"
 
 class RenderImage: public Component

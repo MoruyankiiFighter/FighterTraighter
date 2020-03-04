@@ -1,5 +1,4 @@
 #include "RenderImage.h"
-#include "RenderImage.h"
 
 void RenderImage::render()
 {
