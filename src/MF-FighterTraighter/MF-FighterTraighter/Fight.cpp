@@ -7,13 +7,17 @@
 
 Fight::Fight(App* app) : GameState(app)
 {
-		init();
+	init();
 }
 
 void Fight::init()
 {
 	world = new b2World(b2Vec2(0.0, 9.81));//inicializamos el mundo para las f�sicas de b2D
-
+	//---------Debuggear hitbox-------------------------------------------
+	debugInstance = new SDLDebugDraw(app_->getRenderer());
+	world->SetDebugDraw(debugInstance);
+	debugInstance->SetFlags(b2Draw::e_aabbBit);
+	//---------------------------------------------------------------
 	string filePath = "../../../../assets/Assets/personaje.png";
 	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str() , 1, 1);
 	Entity* e = new Entity(); // Until we have factories
@@ -50,12 +54,13 @@ void Fight::update()
 void Fight::render() {
 	SDL_RenderClear(app_->getRenderer());
 	GameState::render();
-	scene.front()->getComponent<RenderImage>(ecs::RenderImage)->render();
+	//scene.front()->getComponent<RenderImage>(ecs::RenderImage)->render();
+	world->DrawDebugData();
 	SDL_RenderPresent(app_->getRenderer());
-
 }
 
 Fight::~Fight()
 {
 	delete world;
+	delete debugInstance;
 }
