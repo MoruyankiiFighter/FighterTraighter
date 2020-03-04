@@ -67,6 +67,7 @@ void App::init()	//creates the window and the renderer
 	
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
+	textureManager_.reset(new TextureManager(this));
 
 	stateMachine_->pushState(new Fight(this));
 }
