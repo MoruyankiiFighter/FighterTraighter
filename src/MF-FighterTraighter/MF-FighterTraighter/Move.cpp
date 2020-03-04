@@ -1,23 +1,15 @@
 #include "Move.h"
 
-void Move::update()
+bool Move::update()
 {
-	if (activeHitbox_ == nullptr) {
-		if (frameData_[index_].getX() == activeFrame_) {
-			activeHitbox_ = hitboxData_[index_];
-		}
+	if (activeFrame_ = endingFrame_) {
+		generateHitbox();
+		return true;
 	}
-	else if (frameData_[index_].getY() == activeFrame_) {
-		delete activeHitbox_;
-		activeHitbox_ = nullptr;
-		index_++;
+	else {
+		activeFrame_++;
+		return false;
 	}
-
-	if (index_ > endingFrame_) {
-		//Movimiento acabado
-		//Player->returnControl();
-	}
-	activeFrame_++;
 }
 
 void Move::render()

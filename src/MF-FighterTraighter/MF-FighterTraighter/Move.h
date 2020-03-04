@@ -4,8 +4,9 @@
 #include "Texture.h"
 
 using namespace std;
+using callBackOnEnd = void();
 
-enum idMovimiento {
+/*enum idMovimiento {
 	PuñoN = 0,
 	PuñoF = 1,
 	PatadaN = 2,
@@ -18,24 +19,21 @@ enum idMovimiento {
 	PuñoFC = 9,
 	PatadaNC = 10,
 	PatadaFC = 11,
-};
+};*/
 
 class Move {
 public:
-	Move(string name, idMovimiento id, Texture* animSheet) : 
-	name_(name), id_(id), animaSheet_(animSheet) {};
+	Move(/*string name, idMovimiento id, */int endingFrame, Texture* animSheet) : 
+	/*name_(name), id_(id), */endingFrame_(endingFrame), animaSheet_(animSheet) {};
 	~Move() {};
 
-	void update();
+	bool update();
 	void render();
 private:
 	int activeFrame_ = 0;
-	int endingFrame_ = 50; //para endlag
-	int index_ = 0;
-	string name_;
-	idMovimiento id_;
+	int endingFrame_ = 15; 
+	/*string name_;
+	dMovimiento id_;*/
 	Texture* animaSheet_;
-	SDL_Rect* activeHitbox_ = nullptr;
-	vector<SDL_Rect*> hitboxData_;
-	vector<Vector2D> frameData_;
+	callBackOnEnd generateHitbox; //crea hitboxes con daño, posición, escala, empuje y frames de vida
 };
