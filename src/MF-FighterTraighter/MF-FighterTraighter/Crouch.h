@@ -13,13 +13,12 @@ public:
 	void crouch();
 	void uncrouch();
 	//poder 
-	//CanCrouch(){return  !crouched;};
+	//CanCrouch(){return  !cancrouched;};
 	virtual ~Crouch();
 private:
 	//Transform* tr_;
 	PhysicsTransform* tr_ = nullptr;
 
-	bool crouched=false;
-	Vector2D dir_;
+	bool cancrouched=false;
 };
 

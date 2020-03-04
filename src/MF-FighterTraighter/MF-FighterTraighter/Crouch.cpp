@@ -4,7 +4,7 @@
 
 Crouch::Crouch() : Component(ecs::PlayerController), tr_(nullptr)
 {
-	crouched = true;
+	cancrouched = true;
 }
 
 void Crouch::init()
@@ -14,13 +14,13 @@ void Crouch::init()
 
 void Crouch::handleInput()
 {
-	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_S) && crouched) {
+	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_S) && cancrouched) {
 		crouch();
 	}
 	
 	if(app_->getInputManager()->isKeyUp(SDL_SCANCODE_S))
 	{
-		if (!crouched)
+		if (!cancrouched)
 		{
 			uncrouch();
 
@@ -36,14 +36,14 @@ void Crouch::update()
 }
 void Crouch::crouch()
 {
-	crouched = false;
+	cancrouched = false;
 	tr_->setPosition(tr_->getPosition() + Vector2D(0,  tr_->getHeight()));
 
 	tr_->setHeight(tr_->getHeight() / 2);
 	//animaciones de agachar
 }void Crouch::uncrouch()
 {
-	crouched = true;
+	cancrouched = true;
 	tr_->setHeight(tr_->getHeight() * 2);
 
 	tr_->setPosition(tr_->getPosition() + Vector2D(0, tr_->getHeight())*(-1));
