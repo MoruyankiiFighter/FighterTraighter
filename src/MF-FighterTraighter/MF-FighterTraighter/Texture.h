@@ -33,5 +33,7 @@ public:
 	void cleanTexture();
 	void render(const SDL_Rect& rect, SDL_RendererFlip flip = SDL_FLIP_NONE) const; 
 	void render(Vector2D pos, int widthMul, int heightMult, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
-	void render(const SDL_Rect& destRect, int row, int col, int angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
+	/*void render(const SDL_Rect& destRect, int row, int col, int angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
+	void render(const SDL_Rect& dest, double angle) const;*/
+
 };

@@ -16,11 +16,14 @@ void Collider::init()
 
 void Collider::render()
 {
-	if (debug_) {
-		//app_->getRenderer()
-	}
-	//pintar linea visual
-	
+	Vector2D pos = tr_->getPosition();
+	double rot = tr_->getRotation();
+	SDL_Rect dest = SDL_Rect();
+	dest.x = pos.getX();
+	dest.y = pos.getY();
+	dest.w = tr_->getWidth();
+	dest.h = tr_->getHeight();
+	//tex_->render(dest, rot);	
 }
 
 Collider::~Collider()
@@ -36,3 +39,4 @@ void Collider::update()
 	}
 	//for debugging purpouses
 }
+
