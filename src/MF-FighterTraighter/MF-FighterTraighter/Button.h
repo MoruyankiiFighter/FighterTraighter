@@ -2,11 +2,7 @@
 #include "RenderImage.h"
 
 using CallBackOnClick = void(App* app);
-//callbacks para el menu principal
-void ArcadeCallback(App* app);
-void OneVsOneCallback(App* app);
-void OptionsCallback(App* app);
-void ExitCallback(App* app);
+
 //callback para el juego
 void PauseCallback(App* app);
 //callbacks para el menu pausa
