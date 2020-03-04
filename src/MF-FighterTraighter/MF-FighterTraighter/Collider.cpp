@@ -19,11 +19,11 @@ void Collider::render()
 	Vector2D pos = tr_->getPosition();
 	double rot = tr_->getRotation();
 	SDL_Rect dest = SDL_Rect();
-	dest.x = pos.getX();
-	dest.y = pos.getY();
-	dest.w = tr_->getWidth();
-	dest.h = tr_->getHeight();
-	//tex_->render(dest, rot);	
+	dest.x = pos.getX()-1.5;
+	dest.y = pos.getY()-1.5;
+	dest.w = tr_->getWidth()+3;
+	dest.h = tr_->getHeight()+3;
+	tex_->render(dest, rot);	
 }
 
 Collider::~Collider()
@@ -31,12 +31,13 @@ Collider::~Collider()
 }
 
 void Collider::update()
-{
-	
+{	
 	pos_ = tr_->getPosition(); //update position from entity
 	if (debug_) {
-		std::cout << "pos collider: " << pos_.getX() << " x, " << pos_.getY() << " y." << endl;
+		std::cout << "pos COLlider: " << pos_.getX() << " x, " << pos_.getY() << " y." << endl;
 	}
 	//for debugging purpouses
+	render();
+	cout << "COLLIDER" << endl;
 }
 

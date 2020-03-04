@@ -51,17 +51,16 @@ void Texture::render(const SDL_Rect& destRect, int row, int col, int angle, SDL_
 	SDL_RenderCopyEx(renderer, texture, &srcRect, &destRect, angle, 0, flip);
 }
 
-//// Clip:
-//void Texture::render(const SDL_Rect& dest, double angle,
-//	const SDL_Rect& clip) const {
-//	if (texture_) {
-//		SDL_RenderCopyEx(renderer_, texture_, &clip, &dest, angle, nullptr,
-//			SDL_FLIP_NONE);
-//	}
-//}
-//
-//// Destino + rotación:
-//void Texture::render(const SDL_Rect& dest, double angle) const {
-//	SDL_Rect clip = { 0, 0, width_, height_ };
-//	render(dest, angle, clip);
-//}
+// Clip:
+void Texture::render(const SDL_Rect& dest, double angle, const SDL_Rect& clip) const {
+	if (texture) {
+		SDL_RenderCopyEx(renderer, texture, &clip, &dest, angle, nullptr,
+			SDL_FLIP_NONE);
+	}
+}
+
+// Destino + rotación:
+void Texture::render(const SDL_Rect& dest, double angle) const {
+	SDL_Rect clip = { 0, 0, width, height };
+	render(dest, angle, clip);
+}
