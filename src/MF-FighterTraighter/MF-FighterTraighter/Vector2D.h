@@ -11,8 +11,14 @@ public:
 
 	inline void setX(double x) { _x = x; };
 	inline void setY(double y) { _y = y; };
-	inline void set(double x, double y) { _x = x; _y = y; };
-	inline void set(const Vector2D& v) { _x = v._x; _y = v._y; };
+	inline void set(double x, double y) { 
+		_x = x;
+		_y = y; 
+	};
+	inline void set(const Vector2D& v) { 
+		_x = v._x; 
+		_y = v._y; 
+	};
 
 	Vector2D operator+(const Vector2D& v) const;
 	Vector2D operator*(double d) const;
