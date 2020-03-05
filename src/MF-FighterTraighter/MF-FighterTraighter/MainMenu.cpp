@@ -20,22 +20,6 @@ MainMenu::MainMenu(App* app): GameState(app)
 
 MainMenu::~MainMenu()
 {
-	delete arcade;
-	arcade = nullptr;
-	
-	delete pvp;
-	pvp = nullptr;
-
-	delete options;
-	options = nullptr;
-
-	delete exit;
-	exit= nullptr;
-
-	for (auto i : scene) {
-		delete i;
-		i = nullptr;
-	}
 
 }
 
@@ -67,10 +51,8 @@ void MainMenu::init()
 	t->setHeight(HEIGHT_BUTTON);
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(texture_); //añadir textura
-	scene.push_back(arcade);
 	arcade->addComponent<Button>(ArcadeCallback);
-
-
+	scene.push_back(arcade);
 }
 
 void MainMenu::render()
