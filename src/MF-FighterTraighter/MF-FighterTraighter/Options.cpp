@@ -24,10 +24,14 @@ void Options::init()
 	Entity* options_logo=new Entity();
 
 	Transform* t_logo = options_logo->addComponent<Transform>(); 
-
 	t_logo->setPosition(WINDOW_WIDTH_ / 2, 200);
+	t_logo->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
+
 
 	Entity* fullscreen = new Entity();
+
+	Transform* button_ = fullscreen->addComponent<Transform>();
+	
 	Entity* audiovolume= new Entity(); //boton que se deslizará
 	Entity* botonmas = new Entity();
 	Entity* botonmenos = new Entity();

@@ -20,8 +20,6 @@ public:
 private:
 
 	//by the moment for changing resolutions
-	Entity* fullscreen;
-	Entity* audiovolume;
-	Entity* backtomenu;
+	
 };
 

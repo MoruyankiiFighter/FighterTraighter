@@ -30,9 +30,22 @@ const double POS_Y_OPTIONS=750;
 const double POS_X_EXIT= WINDOW_WIDTH_ / 2;
 const double POS_Y_EXIT=900;
 
+///OPTIONS
+const double WIDTH_LITTLE_BUTTONS=50;
+const double HEIGHT_LITTLE_BUTTONS=50;
+
+const double POS_X_BUTTON_VOLUME_PLUS=400;
+const double POS_Y_BUTTON_VOLUME_PLUS=300;
+
+const double POS_X_BUTTON_VOLUME_MINUS=400;
+const double POS_Y_BUTTON_VOLUME_MINUS=300;
+
+
 
 ///CHARACTER SELECTION
 
+
+//FIGHT
 //MKWHOOP
 
 
