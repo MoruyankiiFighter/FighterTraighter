@@ -17,6 +17,7 @@ public:
 		for (int32 i = 0; i < vertexCount; i++) {
 			SDL_RenderDrawLine(renderer, vertices[i].x, vertices[i].y, vertices[(i + 1) % vertexCount].x, vertices[(i + 1) % vertexCount].y);
 		}
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 	}
 	void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)override {}
 	void DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color)override {}
