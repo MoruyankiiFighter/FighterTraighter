@@ -30,7 +30,7 @@ void Fight::init()
 	scene.push_back(e);	
 
 	Entity* floor = new Entity();
-	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 1000, 100, 0, world, false);
+	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
 	floor->addComponent<RenderImage>(tex);
 	scene.push_back(floor);
 	

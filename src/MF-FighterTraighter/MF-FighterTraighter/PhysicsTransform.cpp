@@ -10,7 +10,7 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	if (dyn)  bodydef.type = b2_dynamicBody;
 	body_ = world->CreateBody(&bodydef);
 	b2PolygonShape shape;
-	shape.SetAsBox(width/2 , height/2 );
+	shape.SetAsBox(width * wMult_/2 , height * hMult_/2 );
 	//shape.s
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;

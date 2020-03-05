@@ -10,7 +10,7 @@ public:
 	virtual ~PhysicsTransform();
 	// get and set for position
 	virtual const Vector2D& getPosition() const {
-		Vector2D pos { body_->GetTransform().p.x - width_/2, body_->GetTransform().p.y  - height_/2};
+		Vector2D pos { body_->GetTransform().p.x - width_ * wMult_/2, body_->GetTransform().p.y  - height_ * hMult_/2};
 		return  pos;
 	}
 	virtual void setPosition(const Vector2D& v) {/* body_->SetTransform(b2Vec2());*/ }

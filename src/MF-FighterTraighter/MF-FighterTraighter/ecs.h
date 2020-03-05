@@ -11,6 +11,7 @@ namespace ecs {
 		Button = 3,
 		Jump = 4,
 		PhysicsTransform = 5,
+		PlayerController = 6,
 		/*
 		
 		*/
