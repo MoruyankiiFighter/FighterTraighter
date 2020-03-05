@@ -20,12 +20,12 @@ GameState* GameStateMachine::getCurrentState() //if there is a state then return
 		return nullptr;
 	}
 }
-
-//Return second state
-GameState* GameStateMachine::getSecond() {
-	GameState* top = getCurrentState();
-	popState();
-	GameState* secondTop = getCurrentState();
-	pushState(top);
-	return secondTop;
-}
+//
+////Return second state
+//GameState* GameStateMachine::getSecond() {
+//	GameState* top = getCurrentState();
+//	popState();
+//	GameState* secondTop = getCurrentState();
+//	pushState(top);
+//	return secondTop;
+//}

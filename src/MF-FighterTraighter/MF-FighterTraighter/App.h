@@ -16,33 +16,27 @@ public:
 
 	void run();		//main
 
-	inline GameStateMachine* getStateMachine() const { return stateMachine_.get(); };
-	inline InputManager* getInputManager() const { return inputManager_.get(); };
-
 	void update();	//calls update of the current state
 	void render();	//calls render of the current state
 	void handleInput(); //calls handleInput of current state
 	inline void exitApp() { exit = true; };
 
+
 	void PlayArcade();
-	void Pause();
-	void Exit();
 	void PlayOnevsOne();
 	void ContinuePlaying();
 	void Options();
 	void Menu();
 	void Movements();
+	void Pause();
+	void Exit();
 
-
-
-	//LE BORRARXDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
-
+	//get elements of the app -> window, renderer
+	SDL_Window* getWindow() { return window; }
 	SDL_Renderer* getRenderer() { return renderer; };
 
-
-	//BOTTOM TEXTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
-	//TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
-
+	inline GameStateMachine* getStateMachine() const { return stateMachine_.get(); };
+	inline InputManager* getInputManager() const { return inputManager_.get(); };
 
 
 private:
@@ -52,7 +46,7 @@ private:
 	std::unique_ptr<GameStateMachine> stateMachine_;
 	std::unique_ptr<InputManager> inputManager_;
 
-	/*static*/ bool exit;
+	bool exit;
 	void init();	//open the window and creates everything
 	void clean();	//deletes everything on the app
 };

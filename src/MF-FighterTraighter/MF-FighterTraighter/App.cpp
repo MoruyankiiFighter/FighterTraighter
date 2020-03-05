@@ -2,6 +2,7 @@
 #include "consts.h"
 
 #include "PauseMenu.h"
+#include "Options.h"
 #include "Fight.h"
 
 
@@ -86,6 +87,10 @@ void App::clean()
 
 //init the main menu
 void App::Menu() {
+	while (!stateMachine_->empty()) {
+		stateMachine_->popState();
+	}
+
 	stateMachine_->pushState(new MainMenu(this));
 }
 
@@ -96,9 +101,8 @@ void App::PlayArcade() {
 
 //set up the options state
 void App::Options() {
-	//getStateMachine()->pushState(new Options(this));
+	//getStateMachine()->pushState();
 }
-
 
 //set up pvp state
 void App::PlayOnevsOne() {
