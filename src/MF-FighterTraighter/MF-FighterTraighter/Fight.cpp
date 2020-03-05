@@ -20,6 +20,7 @@ void Fight::init()
 	//---------------------------------------------------------------
 	string filePath = "../../../../assets/Assets/personaje.png";
 	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str() , 1, 1);
+
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
 	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 50, 50, 0,world);
@@ -29,31 +30,23 @@ void Fight::init()
 	scene.push_back(e);	
 
 	Entity* floor = new Entity();
-	floor->addComponent<PhysicsTransform>(Vector2D(0, 500), Vector2D(0,0), 100, 100, 0, world, false);
+	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 1000, 100, 0, world, false);
 	floor->addComponent<RenderImage>(tex);
 	scene.push_back(floor);
+	
 }
 
 void Fight::update()
 {
 	GameState::update();
-	//Vector2D v;v = scene.front()->getComponent<PhysicsTransform>(ecs::PhysicsTransform)->getPosition(); // Temporary testing
-	//std::cout << v.getX() << std::endl; // Temporary testing
+
 	world->Step(1.0/30,8,3);//update box2d
-	//scene.front()->getComponent<Transform>(ecs::Transform)->getPosition();
-	//
-	/*if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_W)) {
-		Vector2D v = pTR_->getPosition();
-		
-		std::cout << v.getX() << std::endl << v.getY() << std::endl;
-	}*/
-	//scene.front()->getComponent<Transform>(ecs::Transform)->setPosition(body_->GetPosition().x, body_->GetPosition().y);
+	
 }
 
 void Fight::render() {
 	SDL_RenderClear(app_->getRenderer());
 	GameState::render();
-	//scene.front()->getComponent<RenderImage>(ecs::RenderImage)->render();
 	world->DrawDebugData();
 	SDL_RenderPresent(app_->getRenderer());
 }
