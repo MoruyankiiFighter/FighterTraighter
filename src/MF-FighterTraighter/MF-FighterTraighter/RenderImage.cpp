@@ -2,17 +2,17 @@
 
 void RenderImage::render()
 {
-	texture_->render(getDestRect());
-}
+	//tex_->render(trans_->getPosition(), trans_->getWidth(), trans_->getHeight()); //Esto si la escala de transform es un multiplicador
 
-SDL_Rect RenderImage::getDestRect()
-{
-	SDL_Rect dest = SDL_Rect();
 	Vector2D pos = trans_->getPosition();
+	SDL_Rect dest = SDL_Rect();
 	dest.x = pos.getX();
 	dest.y = pos.getY();
 	dest.w = trans_->getWidth() * trans_->getWMult();
 	dest.h = trans_->getHeight() * trans_->getHMult();
-
-	return dest;
+	//dest.x = pos.getX() - dest.w / 2;
+	//dest.y = pos.getY() - dest.h / 2;
+	tex_->render(dest);
+	
+	//tex_->render(SDL_Rect(pos.getX(), (double)pos.getY(), trans_->getWidth() * trans_->getWMult(), trans_->getHeight() * trans_->getHMult())); //Esto si transform tiene la escala directamente
 }

@@ -5,6 +5,7 @@
 void Button::init()
 {
 	render_ = entity_->getComponent<RenderImage>(ecs::RenderImage);
+	trans_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 
 void ArcadeCallback(App* app) {
@@ -45,7 +46,10 @@ void Button::handleInput()
 		cout << "click";
 		SDL_Point p = { app_->getInputManager()->getMousePosX(),app_->getInputManager()->getMousePosY() };
 
-		if (SDL_PointInRect(&p, &render_->getDestRect())) {
+		Vector2D pos = trans_->getPosition();
+		SDL_Rect destRect = { pos.getX(), pos.getY(), trans_->getWidth() * trans_->getWMult(), trans_->getHeight() * trans_->getHMult() };
+
+		if (SDL_PointInRect(&p, &destRect)) {
 			cout << "arcade";
 			callbackbutton(app_);
 		}

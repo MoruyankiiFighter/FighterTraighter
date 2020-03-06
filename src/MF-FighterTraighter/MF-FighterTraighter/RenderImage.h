@@ -1,19 +1,22 @@
 #pragma once
 #include "Component.h"
 #include "Texture.h"
-#include "Transform.h"
+//#include "Transform.h"
+#include "PhysicsTransform.h"
+
 #include "Entity.h"
 
 class RenderImage: public Component
 {
 public:
-	RenderImage(Texture* texture) : Component(ecs::RenderImage), texture_(texture) { }//init(); };
-	void init() override { trans_ = entity_->getComponent<Transform>(ecs::Transform); };
+	RenderImage(Texture* tex) : Component(ecs::RenderImage), tex_(tex) { };
+	void init() override { 
+		trans_ = entity_->getComponent<PhysicsTransform>(ecs::Transform); 		
+	};
 	virtual void render() override;
 	~RenderImage() {};
-	SDL_Rect getDestRect();
 private:
-	Transform* trans_=nullptr;
-	Texture* texture_=nullptr;
+	Transform* trans_;
+	Texture* tex_;
 };
 

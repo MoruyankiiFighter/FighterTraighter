@@ -11,7 +11,7 @@ class MainMenu : public GameState
 {
 public:
 	MainMenu(App* app);
-	~MainMenu();
+	virtual ~MainMenu();
 	void init();
 	virtual void render() override;
 	virtual void update() override;
