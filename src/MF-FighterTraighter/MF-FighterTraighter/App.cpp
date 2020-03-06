@@ -90,7 +90,6 @@ void App::Menu() {
 	while (!stateMachine_->empty()) {
 		stateMachine_->popState();
 	}
-
 	stateMachine_->pushState(new MainMenu(this));
 }
 

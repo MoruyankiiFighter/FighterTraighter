@@ -11,7 +11,7 @@ public:
 	GameState* getCurrentState();
 	void pushState(GameState* state) { states.push(state); }
 	void popState() { states.pop(); }
-	bool empty() { states.top == nullptr; }
+	bool empty() { return getCurrentState() == nullptr; }
 
 private:
 	std::stack<GameState*> states; //it's the different scenes that we have
