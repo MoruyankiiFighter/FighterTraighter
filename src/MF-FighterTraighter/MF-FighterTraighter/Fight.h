@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "Box2D\Box2D.h"
 #include "PhysicsTransform.h"
+#include "SDLDebugDraw.h"
 
 class Fight: public GameState
 {
@@ -15,6 +16,7 @@ private:
 
 
 	b2World* world;
+	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	//Debugging physics transform
 	//Transform* pTR_ = nullptr;
 };
