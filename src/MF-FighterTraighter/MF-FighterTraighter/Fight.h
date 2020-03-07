@@ -9,6 +9,7 @@ class Fight: public GameState
 public:
 	Fight(App* app);
 	void init() override;
+	virtual void handleInput() override;
 	virtual void update() override;
 	virtual void render() override;
 	virtual ~Fight();
