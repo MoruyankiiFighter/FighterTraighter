@@ -12,6 +12,7 @@ namespace ecs {
 		Jump = 4,
 		PhysicsTransform = 5,
 		PlayerController = 6,
+		Attacks = 7,
 		/*
 		
 		*/

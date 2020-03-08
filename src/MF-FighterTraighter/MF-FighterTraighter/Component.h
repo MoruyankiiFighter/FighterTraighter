@@ -9,7 +9,7 @@ class Component
 
 public:
 	Component(ecs::CmpId id);
-	~Component();
+	virtual ~Component();
 
 	inline void setEntity(Entity* entity) { entity_ = entity; }
 	inline void setApp(App* app) { app_ = app; }

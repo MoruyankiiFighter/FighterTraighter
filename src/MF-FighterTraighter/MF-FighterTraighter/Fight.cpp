@@ -2,8 +2,6 @@
 #include "Entity.h"
 #include "PlayerController.h"
 #include "RenderImage.h"
-#include "Jump.h"
-
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -27,8 +25,13 @@ void Fight::init()
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(tex);
 	e->addComponent<Jump>(-1000);
-	scene.push_back(e);	
 
+	Attack* highFist = new Attack(0, 0, 0, 0, 0, 0, 10);//testing
+	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
+	e->addComponent<Attacks>(highFist,SDL_SCANCODE_Q);//los ataques por ahora no hacen nada
+
+	scene.push_back(e);	
+	
 	Entity* floor = new Entity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
 	floor->addComponent<RenderImage>(tex);

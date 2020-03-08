@@ -108,6 +108,12 @@
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Attacks.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -184,6 +190,12 @@
     </ClInclude>
     <ClInclude Include="Options.h">
       <Filter>Archivos de encabezado\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Attacks.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

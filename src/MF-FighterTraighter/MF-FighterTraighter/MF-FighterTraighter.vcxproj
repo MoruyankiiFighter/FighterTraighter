@@ -132,6 +132,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Attack.cpp" />
+    <ClCompile Include="Attacks.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelection.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -158,6 +160,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Attack.h" />
+    <ClInclude Include="Attacks.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />
     <ClInclude Include="Component.h" />

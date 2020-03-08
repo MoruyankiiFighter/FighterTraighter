@@ -22,7 +22,7 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 }
 
 PhysicsTransform::~PhysicsTransform() {
-	world_->DestroyBody(body_);
+	//world_->DestroyBody(body_);
 }
 
 void PhysicsTransform::setHeight(double height) {
