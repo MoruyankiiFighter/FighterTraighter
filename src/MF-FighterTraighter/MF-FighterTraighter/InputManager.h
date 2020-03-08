@@ -48,6 +48,14 @@ public:
 	};
 
 	// Controller
+	inline  const int getJoyX()
+	{
+		return xDir;
+	}
+	inline  const int getJoyY()
+	{
+		return yDir;
+	}
 
 	virtual ~InputManager();
 private:
@@ -56,6 +64,53 @@ private:
 	inline void onMouseMotion(SDL_Event& e) {
 		mousePos_.set(e.motion.x, e.motion.y);
 	};
+	inline void onJoyMotion(SDL_Event& e) {
+
+		if (e.jaxis.which == 0)
+		{
+			//X axis motion
+			if (e.jaxis.axis == 0)
+			{
+				//Left of dead zone
+				if (e.jaxis.value < -JOYSTICK_DEAD_ZONE)
+				{
+					xDir = -1;
+				}
+				//Right of dead zone
+				else if (e.jaxis.value > JOYSTICK_DEAD_ZONE)
+				{
+					xDir = 1;
+				}
+				else
+				{
+					xDir = 0;
+				}
+			}
+		}
+		//Y axis motion
+		 if (e.jaxis.axis == 1)
+		{
+			//Below of dead zone
+			if (e.jaxis.value < -JOYSTICK_DEAD_ZONE)
+			{
+				yDir = -1;
+			}
+			//Above of dead zone
+			else if (e.jaxis.value > JOYSTICK_DEAD_ZONE)
+			{
+				yDir = 1;
+
+			}
+			else
+			{
+				yDir = 0;
+			}
+		}
+	}
+
+				
+	
+
 	void onMouseChange(SDL_Event& e, bool state) {
 		if (e.button.button == SDL_BUTTON_LEFT) {
 			mouseState_[Left] = state;
@@ -71,5 +126,8 @@ private:
 	App* app_;
 	const Uint8* keyboardState_;
 	Vector2D mousePos_;
+	int xDir;
+	int yDir;
+    const int JOYSTICK_DEAD_ZONE = 8000;
 	std::array<bool, 3> mouseState_; // true = pressed
 };
