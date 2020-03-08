@@ -3,7 +3,7 @@
 #include "PlayerController.h"
 #include "RenderImage.h"
 #include "Jump.h"
-
+#include "PauseMenu.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -34,6 +34,14 @@ void Fight::init()
 	floor->addComponent<RenderImage>(tex);
 	scene.push_back(floor);
 	
+}
+
+void Fight::handleInput()
+{
+	if (app_->getInputManager()->isKeyDown(SDLK_p)) {
+		app_->getStateMachine()->pushState(new PauseMenu(app_));
+	}
+	GameState::handleInput();
 }
 
 void Fight::update()

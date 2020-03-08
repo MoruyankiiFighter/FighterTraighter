@@ -4,7 +4,7 @@
 #include "PauseMenu.h"
 #include "Options.h"
 #include "Fight.h"
-
+#include "OptionsMenu.h"
 
 App::App()
 {
@@ -76,7 +76,7 @@ void App::init()
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 
-	Menu();
+	stateMachine_->pushState(new MainMenu(this));
 }
 
 void App::clean()
@@ -86,11 +86,14 @@ void App::clean()
 
 
 //init the main menu
-void App::Menu() {
-	while (!stateMachine_->empty()) {
+void App::Menu() 
+{
+
+	GameState* currState = stateMachine_->getCurrentState();
+	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
 		stateMachine_->popState();
+		currState = stateMachine_->getCurrentState();
 	}
-	stateMachine_->pushState(new MainMenu(this));
 }
 
 //set up arcade state
@@ -100,7 +103,7 @@ void App::PlayArcade() {
 
 //set up the options state
 void App::Options() {
-	//getStateMachine()->pushState();
+	getStateMachine()->pushState(new OptionsMenu(this));
 }
 
 //set up pvp state
@@ -125,5 +128,6 @@ void App::Pause() {
 
 
 void App::Movements() {
+	std::cout << "Movements" << endl;
 	//getStateMachine()->pushState(new Movements());
 }

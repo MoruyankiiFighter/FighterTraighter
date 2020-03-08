@@ -7,6 +7,7 @@ void ArcadeCallback(App* app);
 void OneVsOneCallback(App* app);
 void OptionsCallback(App* app);
 void ExitCallback(App* app);
+
 class MainMenu : public GameState
 {
 public:
