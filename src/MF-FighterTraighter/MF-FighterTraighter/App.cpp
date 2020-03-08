@@ -3,7 +3,7 @@
 
 #include "PauseMenu.h"
 #include "Fight.h"
-
+#include "OptionsMenu.h"
 
 App::App()
 {
@@ -100,7 +100,7 @@ void App::PlayArcade() {
 
 //set up the options state
 void App::Options() {
-	//getStateMachine()->pushState(new Options(this));
+	getStateMachine()->pushState(new OptionsMenu(this));
 }
 
 

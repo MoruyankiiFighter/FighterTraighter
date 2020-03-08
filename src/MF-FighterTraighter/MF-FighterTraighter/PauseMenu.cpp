@@ -66,29 +66,7 @@ void PauseMenu::init()
 	t->setHeight(100);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(texture_); //añadir textura
-
-
-
-
-
-
-
-
-
-
-	//ent->addComponent<Button>(OptionsCallback);            //ME DA ERROR AL INTENTAR AÑADÍRSELO
-
-
-
-
-
-
-
-
-
-
-
-
+	ent->addComponent<Button>(OptionsCallback);
 	scene.push_back(ent);
 }
 

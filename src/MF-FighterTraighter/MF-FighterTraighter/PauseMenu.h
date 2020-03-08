@@ -7,7 +7,7 @@
 void ContinuePlayingCallback(App* app);
 void MovementsCallback(App* app);
 void MenuCallback(App* app);
-void OptionsCallback(App app);
+void OptionsCallback(App* app);
 
 class PauseMenu: public GameState
 {
