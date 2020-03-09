@@ -152,6 +152,7 @@
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="SDLDebugDraw.cpp" />
     <ClCompile Include="SkillSelection.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Training.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="SDLDebugDraw.h" />
     <ClInclude Include="SkillSelection.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Training.h" />
     <ClInclude Include="Transform.h" />
