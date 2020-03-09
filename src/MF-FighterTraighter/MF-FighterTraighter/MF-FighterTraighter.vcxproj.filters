@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Archivos de encabezado\GameState">
-      <UniqueIdentifier>{fab6bf26-e784-4081-b8be-c7e21703c5c0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de origen\GameState">
       <UniqueIdentifier>{e7bd4a14-c4e0-458a-8c44-221c1132ac84}</UniqueIdentifier>
     </Filter>
@@ -33,6 +30,9 @@
     </Filter>
     <Filter Include="Archivos de encabezado\Movement">
       <UniqueIdentifier>{6133e375-d35e-487c-b953-0efb74f0ab26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\GameState">
+      <UniqueIdentifier>{fab6bf26-e784-4081-b8be-c7e21703c5c0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +97,16 @@
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
+    <ClCompile Include="Options.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsTransform.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Jump.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -158,11 +168,25 @@
     <ClInclude Include="InputManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsTransform.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Jump.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
     <ClInclude Include="PlayerController.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLDebugDraw.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="consts.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="Options.h">
+      <Filter>Archivos de encabezado\GameState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include <iostream>
 #include "GameStateMachine.h"
 #include "InputManager.h"
+#include "MainMenu.h"
 
 class App
 {
@@ -23,8 +24,14 @@ public:
 	void handleInput(); //calls handleInput of current state
 	inline void exitApp() { exit = true; };
 
-
-
+	void PlayArcade();
+	void Pause();
+	void Exit();
+	void PlayOnevsOne();
+	void ContinuePlaying();
+	void Options();
+	void Menu();
+	void Movements();
 
 
 

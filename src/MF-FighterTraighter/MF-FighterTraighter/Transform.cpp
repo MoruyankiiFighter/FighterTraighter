@@ -6,6 +6,8 @@ Transform::Transform(Vector2D position, Vector2D speed, double width, double hei
 	std::cout << "Transform added" << std::endl;
 }
 
+//Pone el identificador de la componente,
+//Physics transform tb tiene el mismo identificador
 Transform::Transform():
 	Component(ecs::Transform),position_(),speed_(),width_(),height_(),rotation_()
 {
