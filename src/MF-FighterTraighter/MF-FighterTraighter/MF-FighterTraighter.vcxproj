@@ -141,6 +141,7 @@
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
+    <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="main.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Fight.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="Hitbox.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Jump.h" />
     <ClInclude Include="MainMenu.h" />
