@@ -24,8 +24,6 @@ OptionsMenu::~OptionsMenu()
 void OptionsMenu::init()
 {
 	cout << "init" << endl;
-	string filename_controls = "../../../../assets/Assets/images/UI/controller.png";
-	controls_ = new Texture(app_->getRenderer(), filename_controls.c_str(), 1, 1);
 
 	Entity* controller = new Entity();
 
@@ -33,7 +31,7 @@ void OptionsMenu::init()
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, 500);
 
-	RenderImage* img = controller->addComponent<RenderImage>(controls_);
+	RenderImage* img = controller->addComponent<RenderImage>(app_->getTextureManager()->getTexture(3));
 	scene.push_back(controller);
 }
 

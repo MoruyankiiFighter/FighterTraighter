@@ -26,7 +26,4 @@ private:
 	Entity* pvp;
 	Entity* options;
 	Entity* exit;
-
-	Texture* texture_=nullptr;
-	Texture* logo_=nullptr;
 };

@@ -11,8 +11,5 @@ public:
 	virtual void update() override;
 	virtual void render() override;
 	void handleInput();
-
-private:
-	Texture* controls_ = nullptr;
 };
 
