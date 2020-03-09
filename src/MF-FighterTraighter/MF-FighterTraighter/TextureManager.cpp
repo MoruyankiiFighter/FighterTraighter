@@ -17,6 +17,8 @@ void TextureManager::loadTextures()
 	
 	textures_.reserve(numTextures);
 	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/personaje.png", 1, 1));
+	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/buttons.png", 3, 1));
+	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/logo.png", 1, 1));
 	// textures_.emplace_back(new Texture(app_->getRenderer(), "Filepath", cols, fils));
 }
 

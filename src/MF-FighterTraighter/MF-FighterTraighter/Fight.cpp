@@ -18,8 +18,6 @@ void Fight::init()
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
 	//---------------------------------------------------------------
-	string filePath = "../../../../assets/Assets/personaje.png";
-	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str() , 1, 1);
 
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
@@ -31,7 +29,7 @@ void Fight::init()
 
 	Entity* floor = new Entity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
-	e->addComponent<RenderImage>(app_->getTextureManager()->getTexture(0));
+	floor->addComponent<RenderImage>(app_->getTextureManager()->getTexture(0));
 	scene.push_back(floor);
 	
 }

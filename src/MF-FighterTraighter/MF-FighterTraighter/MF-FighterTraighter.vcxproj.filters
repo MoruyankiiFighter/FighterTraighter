@@ -187,6 +187,7 @@
     </ClInclude>
     <ClInclude Include="Options.h">
       <Filter>Archivos de encabezado\GameState</Filter>
+    </ClInclude>
     <ClInclude Include="TextureManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
