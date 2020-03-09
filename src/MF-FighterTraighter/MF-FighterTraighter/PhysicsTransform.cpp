@@ -29,7 +29,7 @@ void PhysicsTransform::setHeight(double height) {
 	body_->DestroyFixture(body_->GetFixtureList());
 
 	b2PolygonShape shape;
-	shape.SetAsBox(width_ / 2, height / 2);
+	shape.SetAsBox(width_ * wMult_ / 2, height * hMult_ / 2);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0;
@@ -43,7 +43,7 @@ void PhysicsTransform::setWidth(double width) {
 	body_->DestroyFixture(body_->GetFixtureList());
 
 	b2PolygonShape shape;
-	shape.SetAsBox(width / 2, height_ / 2);
+	shape.SetAsBox(width * wMult_ / 2, height_ * hMult_ / 2);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0;
@@ -56,7 +56,7 @@ void PhysicsTransform::setWidthHeight(double width, double height) {
 	body_->DestroyFixture(body_->GetFixtureList());
 
 	b2PolygonShape shape;
-	shape.SetAsBox(width / 2, height / 2);
+	shape.SetAsBox(width * wMult_ / 2, height * hMult_ / 2);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0;

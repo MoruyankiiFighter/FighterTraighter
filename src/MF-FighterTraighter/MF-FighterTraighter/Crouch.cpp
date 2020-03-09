@@ -39,7 +39,7 @@ void Crouch::crouch()
 	cancrouched = false;
 	tr_->setPosition(tr_->getPosition() + Vector2D(0,  tr_->getHeight()));
 
-	tr_->setHeight(tr_->getHeight() / 2);
+	tr_->setHeight(tr_->getHeight()/2 );
 	//animaciones de agachar
 }void Crouch::uncrouch()
 {
