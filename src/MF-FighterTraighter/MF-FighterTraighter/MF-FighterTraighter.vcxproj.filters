@@ -105,6 +105,9 @@
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="OptionsMenu.cpp">
       <Filter>Archivos de origen\GameState</Filter>
     </ClCompile>
@@ -181,6 +184,13 @@
     </ClInclude>
     <ClInclude Include="consts.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+
+    <ClInclude Include="TextureManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="OptionsMenu.h">
       <Filter>Archivos de encabezado\GameState</Filter>

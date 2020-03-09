@@ -23,24 +23,18 @@ MainMenu::~MainMenu()
 
 }
 
-//void MainMenu::OnButtClick(string text) { std::cout << "Botón activado: "<< text << endl; };
-
 void MainMenu::init()
 {
 
 	cout << "init" << endl;
-	string filePath = "../../../../assets/Assets/images/UI/buttons.png";
-	string filename_logo = "../../../../assets/Assets/images/UI/logo.png";
-	texture_ = new Texture(app_->getRenderer(),filePath.c_str(), 1, 1);
-	logo_ = new Texture(app_->getRenderer(), filename_logo.c_str(), 1, 1);
 
 	Entity* logo = new Entity();
 	
 	Transform* transform=logo->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
-	
-	RenderImage* img = logo->addComponent<RenderImage>(logo_);
+	logo->setApp(app_);
+	RenderImage* img = logo->addComponent<RenderImage>(app_->getTextureManager()->getTexture(2));
 	scene.push_back(logo);
 
 	arcade = new Entity();
@@ -50,7 +44,7 @@ void MainMenu::init()
 	t->setWidth(WIDTH_BUTTON); 
 	t->setHeight(HEIGHT_BUTTON);
 	t->setRotation(0);
-	arcade->addComponent<RenderImage>(texture_); //añadir textura
+	arcade->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
 	arcade->addComponent<Button>(ArcadeCallback);
 	scene.push_back(arcade);
 
@@ -61,7 +55,7 @@ void MainMenu::init()
 	tr->setWidth(WIDTH_BUTTON);
 	tr->setHeight(HEIGHT_BUTTON);
 	tr->setRotation(0);
-	pvp->addComponent<RenderImage>(texture_); //añadir textura
+	pvp->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
 	pvp->addComponent<Button>(OneVsOneCallback);
 	scene.push_back(pvp);
 
@@ -72,7 +66,7 @@ void MainMenu::init()
 	tra->setWidth(WIDTH_BUTTON);
 	tra->setHeight(HEIGHT_BUTTON);
 	tra->setRotation(0);
-	options->addComponent<RenderImage>(texture_); //añadir textura
+	options->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
 	options->addComponent<Button>(OptionsCallback);
 	scene.push_back(options);
 
@@ -83,7 +77,7 @@ void MainMenu::init()
 	tran->setWidth(WIDTH_BUTTON);
 	tran->setHeight(HEIGHT_BUTTON);
 	tran->setRotation(0);
-	exit->addComponent<RenderImage>(texture_); //añadir textura
+	exit->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
 	exit->addComponent<Button>(ExitCallback);
 	scene.push_back(exit);
 }

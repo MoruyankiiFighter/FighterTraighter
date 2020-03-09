@@ -22,4 +22,3 @@ public:
 private:
 	Texture* controls_ = nullptr;
 };
-

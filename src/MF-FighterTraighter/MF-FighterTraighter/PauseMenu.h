@@ -23,8 +23,5 @@ public:
 	virtual void render() override;
 	virtual void update() override;
 	void handleInput();
-private:
-	Texture* texture_ = nullptr;
-	Texture* logo_ = nullptr;
 };
 

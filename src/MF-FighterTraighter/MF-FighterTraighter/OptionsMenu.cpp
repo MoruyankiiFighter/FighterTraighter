@@ -24,8 +24,7 @@ OptionsMenu::~OptionsMenu()
 void OptionsMenu::init()
 {
 	cout << "init" << endl;
-	string filename_controls = "../../../../assets/Assets/images/UI/controller.png";
-	controls_ = new Texture(app_->getRenderer(), filename_controls.c_str(), 1, 1);
+
 
 	Entity* controller = new Entity();
 
@@ -33,7 +32,8 @@ void OptionsMenu::init()
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, 500);
 
-	RenderImage* img = controller->addComponent<RenderImage>(controls_);
+	RenderImage* img = controller->addComponent<RenderImage>(app_->getTextureManager()->getTexture(3));
+
 	scene.push_back(controller);
 
 	Entity* fullscreen_button = new Entity();
@@ -42,7 +42,7 @@ void OptionsMenu::init()
 
 	transform_->setPosition(POS_X_FULLSCREEN, POS_Y_FULLSCREEN);
 	transform_->setWidthHeight(WIDTH_LITTLE_BUTTONS, HEIGHT_LITTLE_BUTTONS);
-	RenderImage* im = fullscreen_button->addComponent<RenderImage>(controls_);
+	RenderImage* im = fullscreen_button->addComponent<RenderImage>(app_->getTextureManager()->getTexture(3);
 	Button* fullscreen = fullscreen_button->addComponent<Button>(SetFullScreen);
 
 	scene.push_back(fullscreen_button);
