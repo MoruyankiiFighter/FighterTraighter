@@ -65,7 +65,7 @@ void App::init()
 	}
 	
 	window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		WINDOW_WIDTH_, WINDOW_HEIGHT_, SDL_WINDOW_SHOWN);
+		WINDOW_WIDTH_, WINDOW_HEIGHT_, SDL_WINDOW_FULLSCREEN);
 	
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
@@ -88,7 +88,6 @@ void App::clean()
 //init the main menu
 void App::Menu() 
 {
-
 	GameState* currState = stateMachine_->getCurrentState();
 	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
 		stateMachine_->popState();
@@ -119,6 +118,20 @@ void App::ContinuePlaying() {
 //quit game
 void App::Exit() {
 	SDL_Quit();
+}
+
+
+
+void App::setFullScreen()
+{
+	int flag = SDL_GetWindowFlags(getWindow());
+	if (SDL_WINDOW_FULLSCREEN) {
+		SDL_SetWindowFullscreen(getWindow(), 0);
+	}
+	else {
+		SDL_SetWindowFullscreen(getWindow(),
+			SDL_WINDOW_FULLSCREEN_DESKTOP);
+	}
 }
 
 //pause the game

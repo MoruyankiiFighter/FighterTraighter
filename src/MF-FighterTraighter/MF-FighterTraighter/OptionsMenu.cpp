@@ -35,6 +35,19 @@ void OptionsMenu::init()
 
 	RenderImage* img = controller->addComponent<RenderImage>(controls_);
 	scene.push_back(controller);
+
+	Entity* fullscreen_button = new Entity();
+
+	Transform* transform_ = fullscreen_button->addComponent<Transform>();
+
+	transform_->setPosition(POS_X_FULLSCREEN, POS_Y_FULLSCREEN);
+	transform_->setWidthHeight(WIDTH_LITTLE_BUTTONS, HEIGHT_LITTLE_BUTTONS);
+	RenderImage* im = fullscreen_button->addComponent<RenderImage>(controls_);
+	Button* fullscreen = fullscreen_button->addComponent<Button>(SetFullScreen);
+
+	scene.push_back(fullscreen_button);
+
+
 }
 
 void OptionsMenu::update()

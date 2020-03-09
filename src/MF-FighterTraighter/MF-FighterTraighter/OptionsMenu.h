@@ -1,6 +1,13 @@
 #pragma once
 #include "GameState.h"
 #include "Texture.h"
+
+class App;
+
+void SetFullScreen(App* app);
+
+
+
 class OptionsMenu:public GameState
 {
 public:

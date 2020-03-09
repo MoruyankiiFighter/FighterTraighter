@@ -42,6 +42,13 @@ void OptionsCallback(App* app)
 	app->Options();
 }
 
+void SetFullScreen(App* app)
+{
+	app->setFullScreen();
+
+}
+
+
 void Button::handleInput()
 {
 	if (app_->getInputManager()->isMouseButtonPressed(app_->getInputManager()->Left)) {

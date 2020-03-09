@@ -30,11 +30,15 @@ public:
 	void Movements();
 	void Pause();
 	void Exit();
+	
+	void setFullScreen();
 
+	
+	
 	//get elements of the app -> window, renderer
 	SDL_Window* getWindow() { return window; }
 	SDL_Renderer* getRenderer() { return renderer; };
-
+	
 	inline GameStateMachine* getStateMachine() const { return stateMachine_.get(); };
 	inline InputManager* getInputManager() const { return inputManager_.get(); };
 
@@ -46,7 +50,7 @@ private:
 	std::unique_ptr<GameStateMachine> stateMachine_;
 	std::unique_ptr<InputManager> inputManager_;
 
-	bool exit;
+	bool exit, fullscreen_;
 	void init();	//open the window and creates everything
 	void clean();	//deletes everything on the app
 };
