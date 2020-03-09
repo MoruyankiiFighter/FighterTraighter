@@ -3,6 +3,7 @@
 
 #include "PauseMenu.h"
 #include "Fight.h"
+#include "Training.h"
 
 
 App::App()
@@ -75,7 +76,7 @@ void App::init()
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 
-	Menu();
+	stateMachine_->pushState(new Training(this)); //PARA TESTEAR
 }
 
 void App::clean()
