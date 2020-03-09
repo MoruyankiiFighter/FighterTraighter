@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Attacks.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Move.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="PhysicsTransform.cpp" />
     <ClCompile Include="PlayerController.cpp" />
@@ -160,6 +162,7 @@
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="Attack.h" />
     <ClInclude Include="Attacks.h" />
@@ -177,6 +180,7 @@
     <ClInclude Include="Jump.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Options.h" />
+    <ClInclude Include="Move.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PhysicsTransform.h" />
     <ClInclude Include="PlayerController.h" />
