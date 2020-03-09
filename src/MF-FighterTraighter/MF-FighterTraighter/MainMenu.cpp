@@ -29,10 +29,6 @@ void MainMenu::init()
 {
 
 	cout << "init" << endl;
-	string filePath = "../../../../assets/Assets/images/UI/buttons.png";
-	string filename_logo = "../../../../assets/Assets/images/UI/logo.png";
-	texture_ = new Texture(app_->getRenderer(),filePath.c_str(), 1, 1);
-	logo_ = new Texture(app_->getRenderer(), filename_logo.c_str(), 1, 1);
 
 	Entity* logo = new Entity();
 	
@@ -40,7 +36,7 @@ void MainMenu::init()
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
 	
-	RenderImage* img = logo->addComponent<RenderImage>(logo_);
+	RenderImage* img = logo->addComponent<RenderImage>(app_->getTextureManager()->getTexture(2));
 	scene.push_back(logo);
 
 	arcade = new Entity();
@@ -50,7 +46,7 @@ void MainMenu::init()
 	t->setWidth(WIDTH_BUTTON); 
 	t->setHeight(HEIGHT_BUTTON);
 	t->setRotation(0);
-	arcade->addComponent<RenderImage>(texture_); //añadir textura
+	arcade->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); //añadir textura
 	arcade->addComponent<Button>(ArcadeCallback);
 	scene.push_back(arcade);
 

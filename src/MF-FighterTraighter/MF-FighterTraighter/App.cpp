@@ -74,6 +74,7 @@ void App::init()
 
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
+	textureManager_.reset(new TextureManager(this));
 
 	stateMachine_->pushState(new MainMenu(this));
 }

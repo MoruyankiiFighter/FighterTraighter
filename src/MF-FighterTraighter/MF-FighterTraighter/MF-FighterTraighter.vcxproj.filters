@@ -96,6 +96,9 @@
     <ClCompile Include="PlayerController.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Options.cpp">
+      <Filter>Archivos de origen\GameState</Filter>
+    </ClCompile>
     <ClCompile Include="PhysicsTransform.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
@@ -103,10 +106,10 @@
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
     <ClCompile Include="SDLDebugDraw.cpp">
-      <Filter>Archivos de origen</Filter>
+     <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsMenu.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,7 +174,7 @@
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="Jump.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="PlayerController.h">
       <Filter>Archivos de encabezado\Components</Filter>
@@ -182,8 +185,14 @@
     <ClInclude Include="consts.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="OptionsMenu.h">
+    <ClInclude Include="Options.h">
       <Filter>Archivos de encabezado\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
