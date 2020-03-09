@@ -23,10 +23,11 @@ using callBackOnEnd = void();
 
 class Move {
 public:
+	Move() : endingFrame_(15), animaSheet_(nullptr) {};
 	Move(/*string name, idMovimiento id, */int endingFrame, Texture* animSheet) : 
 	/*name_(name), id_(id), */endingFrame_(endingFrame), animaSheet_(animSheet) {};
 	~Move() {};
-
+	void resetIndex() { activeFrame_ = 0; }
 	bool update();
 	void render();
 private:

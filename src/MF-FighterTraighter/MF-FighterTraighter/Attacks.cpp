@@ -1,7 +1,7 @@
 #include "Attacks.h"
 
-Attacks::Attacks(Attack* highFist, SDL_Scancode key1, Attack* lowFist, SDL_Scancode key2,
-					Attack* highKick, SDL_Scancode key3, Attack* lowKick, SDL_Scancode key4/*,
+Attacks::Attacks(AnimationChain* highFist, SDL_Scancode key1, AnimationChain* lowFist, SDL_Scancode key2,
+	AnimationChain* highKick, SDL_Scancode key3, AnimationChain* lowKick, SDL_Scancode key4/*,
 			 Hability* highKick, SDL_Scancode key5, Hability* lowKick, SDL_Scancode key6*/) : Component(ecs::Attacks)
 {
 	attacksList.push_back(highFist);
@@ -33,25 +33,16 @@ Attacks::~Attacks() {
 	habilityList.clear();*/
 }
 void Attacks::handleInput() {
-	if (app_->getInputManager()->isKeyDown(highFistKey)) {
-		if (attacksList[0]->canAttack()) {
-			attacksList[0]->makeAttack();
-			cout << "PUÑO ALTO" << endl;
-		}
+	if (app_->getInputManager()->isKeyDown(highFistKey) && activeAttack_ == nullptr) {
+		activeAttack_ = attacksList[0];
 	}
 	else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
-		attacksList[1]->makeAttack();
-		std::cout << "PUÑO BAJO" << endl;
 
 	}
 	else if (app_->getInputManager()->isKeyDown(highKickKey)) {
-		attacksList[2]->makeAttack();
-		cout << "PATADA ALTA" << endl;
 
 	}
 	else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
-		attacksList[3]->makeAttack();
-		cout << "PATADA BAJA" << endl;
 
 	}
 	/*else if (app_->getInputManager()->isKeyDown(hability1Key)) {

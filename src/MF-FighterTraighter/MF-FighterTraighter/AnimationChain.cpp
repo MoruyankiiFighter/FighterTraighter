@@ -1,11 +1,19 @@
 #include "AnimationChain.h"
 
-void AnimationChain::update()
+bool AnimationChain::update()
 {
-	if (chain_[index_].update()) {
-		index_++;
+	if (index_ >= chain_.size()) {
+		for (auto mov : chain_) {
+			mov->resetIndex();
+		}
+		index_ = 0;
+		return true;
+	}else if (chain_[index_]->update()) {
+		++index_;
+		return false;
 	}
-	if (index_ > chain_.size()) {
-		//Move finished boi!!! I die boy shit boiii!!
+	else {
+		return false;
 	}
+
 }

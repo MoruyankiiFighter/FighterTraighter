@@ -34,6 +34,12 @@
     <Filter Include="Archivos de encabezado\GameState">
       <UniqueIdentifier>{fab6bf26-e784-4081-b8be-c7e21703c5c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Moves">
+      <UniqueIdentifier>{dccc5090-7290-4501-8257-49f11d549d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Moves">
+      <UniqueIdentifier>{9159f998-26d6-4073-8275-46c539805ab5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -108,20 +114,17 @@
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Attacks.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Attack.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Hitbox.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Move.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="Attacks.cpp">
+      <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
     <ClCompile Include="AnimationChain.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\Moves</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,20 +203,17 @@
     <ClInclude Include="Options.h">
       <Filter>Archivos de encabezado\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="Attacks.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Attack.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Hitbox.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Move.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationChain.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="Attacks.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

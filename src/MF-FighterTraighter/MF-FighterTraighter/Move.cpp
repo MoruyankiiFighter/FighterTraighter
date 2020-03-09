@@ -2,8 +2,9 @@
 
 bool Move::update()
 {
-	if (activeFrame_ = endingFrame_) {
-		generateHitbox();
+	if (activeFrame_ == endingFrame_) {
+		//generateHitbox();
+		std::cout << "Puum" << endl;
 		return true;
 	}
 	else {

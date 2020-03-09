@@ -3,11 +3,12 @@
 
 class AnimationChain
 {
-	AnimationChain(vector<Move> chain) : chain_(chain) {};
+public:
+	AnimationChain(vector<Move*> chain) : chain_(chain) {};
 	~AnimationChain() {};
-	void update();
+	bool update();
 private:
-	vector<Move> chain_;
+	vector<Move*> chain_;
 	int index_ = 0;
 };
 
