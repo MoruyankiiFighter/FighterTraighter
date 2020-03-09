@@ -105,6 +105,7 @@
     <ClCompile Include="Jump.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Crouch.cpp">
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -175,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="PlayerController.h">
       <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Crouch.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="SDLDebugDraw.h">
       <Filter>Archivos de encabezado</Filter>
