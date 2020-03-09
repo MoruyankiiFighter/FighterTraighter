@@ -10,6 +10,7 @@ Crouch::Crouch() : Component(ecs::PlayerController), tr_(nullptr)
 void Crouch::init()
 {
 	tr_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
+	initialHeight = tr_->getHeight();
 }
 
 void Crouch::handleInput()
@@ -37,16 +38,26 @@ void Crouch::update()
 void Crouch::crouch()
 {
 	cancrouched = false;
-	tr_->setPosition(tr_->getPosition() + Vector2D(0,  tr_->getHeight()));
+	pos = tr_->getPosition();
+	pos.setY(pos.getY() + tr_->getHeight()-10);
+	tr_->setHeight(tr_->getHeight()/2.0);
 
-	tr_->setHeight(tr_->getHeight()/2 );
+	tr_->setPosition(pos.getX(), pos.getY());
+	
+}
+
+	
 	//animaciones de agachar
-}void Crouch::uncrouch()
+void Crouch::uncrouch()
 {
 	cancrouched = true;
-	tr_->setHeight(tr_->getHeight() * 2);
+	tr_->setPosition(pos.getX(), pos.getY() - tr_->getHeight()/2.0);
 
-	tr_->setPosition(tr_->getPosition() + Vector2D(0, tr_->getHeight())*(-1));
+	tr_->setHeight(initialHeight);
+
+	
+
+	
 	//animaciones por defecto
 }
 

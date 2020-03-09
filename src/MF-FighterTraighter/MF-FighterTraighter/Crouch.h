@@ -20,5 +20,8 @@ private:
 	PhysicsTransform* tr_ = nullptr;
 
 	bool cancrouched=false;
+	double initialHeight;
+	Vector2D pos;
+	double initialY;
 };
 

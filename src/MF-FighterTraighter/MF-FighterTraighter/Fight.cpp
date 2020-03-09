@@ -24,7 +24,7 @@ void Fight::init()
 
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
-	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 50, 25, 0,world);
+	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 20, 205, 0,world);
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(tex);
 	e->addComponent<Jump>(-1000);
