@@ -30,7 +30,7 @@ void Training::init()
 	scene.push_back(e);
 
 	Entity* saco = new Entity();
-	saco->addComponent<PhysicsTransform>(Vector2D(250, 10), Vector2D(10, 10), 35, 100, 0, world);
+	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, false);
 	saco->addComponent<RenderImage>(tex);
 	saco->addComponent<SacoTimer>(5000);
 	scene.push_back(saco);
