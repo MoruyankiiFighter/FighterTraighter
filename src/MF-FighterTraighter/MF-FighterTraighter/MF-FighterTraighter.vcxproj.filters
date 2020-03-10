@@ -117,13 +117,13 @@
     <ClCompile Include="Hitbox.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Attacks.cpp">
-      <Filter>Archivos de origen\Moves</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationChain.cpp">
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
     <ClCompile Include="Move.cpp">
+      <Filter>Archivos de origen\Moves</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttacks.cpp">
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
   </ItemGroup>
@@ -209,10 +209,13 @@
     <ClInclude Include="AnimationChain.h">
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
-    <ClInclude Include="Attacks.h">
+    <ClInclude Include="Move.h">
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
-    <ClInclude Include="Move.h">
+    <ClInclude Include="PlayerAttacks.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="MkWh00pAttacks.h">
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
   </ItemGroup>

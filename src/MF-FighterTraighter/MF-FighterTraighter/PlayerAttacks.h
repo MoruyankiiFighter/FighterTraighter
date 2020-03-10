@@ -3,22 +3,24 @@
 #include "AnimationChain.h"
 #include <vector>
 //component that have all the attacks that you have
-class Attacks: public Component
+class PlayerAttacks : public Component
 {
 public:
 	//testing
-	Attacks(AnimationChain* highFist, SDL_Scancode key1) :Component(ecs::Attacks)
+	PlayerAttacks(AnimationChain* highFist, SDL_Scancode key1) :Component(ecs::PlayerAttacks)
 		
 	{
 		attacksList.push_back(highFist);
 		highFistKey = key1;
 	}
-	Attacks(AnimationChain* highFist, SDL_Scancode key1, AnimationChain* lowFist, SDL_Scancode key2, AnimationChain* highKick, SDL_Scancode key3,
+	PlayerAttacks(AnimationChain* highFist, SDL_Scancode key1, AnimationChain* lowFist, SDL_Scancode key2, AnimationChain* highKick, SDL_Scancode key3,
 		AnimationChain* lowKick, SDL_Scancode key4/*, Hability* hability1, SDL_Scancode key5, Hability* hability2, SDL_Scancode key6*/);
-	virtual ~Attacks();
+	virtual ~PlayerAttacks();
 	virtual void update() override { 
 		if (activeAttack_ != nullptr) { 
-			if(activeAttack_->update()) activeAttack_ = nullptr; 
+			if (activeAttack_->update()) {
+				activeAttack_ = nullptr;
+			}
 		}
 	};
 	//methods to change your habilities

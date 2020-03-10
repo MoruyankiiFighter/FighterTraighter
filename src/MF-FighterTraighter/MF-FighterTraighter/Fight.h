@@ -4,7 +4,7 @@
 #include "PhysicsTransform.h"
 #include "SDLDebugDraw.h"
 #include "Jump.h"
-#include "Attacks.h"
+#include "PlayerAttacks.h"
 
 class Fight: public GameState
 {

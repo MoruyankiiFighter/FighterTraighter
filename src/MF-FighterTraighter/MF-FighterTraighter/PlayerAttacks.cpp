@@ -1,8 +1,8 @@
-#include "Attacks.h"
+#include "PlayerAttacks.h"
 
-Attacks::Attacks(AnimationChain* highFist, SDL_Scancode key1, AnimationChain* lowFist, SDL_Scancode key2,
+PlayerAttacks::PlayerAttacks(AnimationChain* highFist, SDL_Scancode key1, AnimationChain* lowFist, SDL_Scancode key2,
 	AnimationChain* highKick, SDL_Scancode key3, AnimationChain* lowKick, SDL_Scancode key4/*,
-			 Hability* highKick, SDL_Scancode key5, Hability* lowKick, SDL_Scancode key6*/) : Component(ecs::Attacks)
+			 Hability* highKick, SDL_Scancode key5, Hability* lowKick, SDL_Scancode key6*/) : Component(ecs::PlayerAttacks)
 {
 	attacksList.push_back(highFist);
 	attacksList.push_back(lowFist);
@@ -17,7 +17,7 @@ Attacks::Attacks(AnimationChain* highFist, SDL_Scancode key1, AnimationChain* lo
 
 }
 
-Attacks::~Attacks() {
+PlayerAttacks::~PlayerAttacks() {
 	cout << "destruyendo ataques "<<endl;
 	for (int i = 0; i < attacksList.size(); i++) {
 		delete attacksList[i];
@@ -32,7 +32,7 @@ Attacks::~Attacks() {
 	}
 	habilityList.clear();*/
 }
-void Attacks::handleInput() {
+void PlayerAttacks::handleInput() {
 	if (app_->getInputManager()->isKeyDown(highFistKey) && activeAttack_ == nullptr) {
 		activeAttack_ = attacksList[0];
 	}
