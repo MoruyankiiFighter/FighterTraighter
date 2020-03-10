@@ -8,7 +8,7 @@ public:
 	Font();
 	Font(const Font&) = delete;
 	Font operator=(const Font&) = delete;
-	Font(std::string path, int file) { Loadfont(path, file); }
+	Font(std::string path, int size) { Loadfont(path, size); }
 
 	void setFontSize(int size);
 	void changeFont(std::string path);
