@@ -24,15 +24,25 @@ OptionsMenu::~OptionsMenu()
 void OptionsMenu::init()
 {
 	cout << "init" << endl;
+	Entity* BG = new Entity();
+	Transform* transform = BG->addComponent<Transform>();
+	transform->setWidthHeight(WINDOW_WIDTH_, WINDOW_HEIGHT_);
+	transform->setPosition(0, 0);
+	BG->addComponent<RenderImage>(app_->getTextureManager()->getTexture(4));
+	scene.push_back(BG);
+
 
 	Entity* controller = new Entity();
 
-	Transform* transform = controller->addComponent<Transform>();
+	transform = controller->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, 500);
 
-	RenderImage* img = controller->addComponent<RenderImage>(app_->getTextureManager()->getTexture(3));
+	controller->addComponent<RenderImage>(app_->getTextureManager()->getTexture(3));
 	scene.push_back(controller);
+
+
+
 }
 
 void OptionsMenu::update()
