@@ -13,6 +13,7 @@ public:
 	void setFontSize(int size);
 	void changeFont(std::string path);
 	void Loadfont(std::string path, int size);
+	inline TTF_Font* getFont() { return font; }
 
 	void ClearFont();
 	virtual ~Font();
