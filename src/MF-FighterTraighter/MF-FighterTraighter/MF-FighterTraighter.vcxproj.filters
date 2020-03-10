@@ -34,11 +34,11 @@
     <Filter Include="Archivos de encabezado\GameState">
       <UniqueIdentifier>{fab6bf26-e784-4081-b8be-c7e21703c5c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\managers">
+      <UniqueIdentifier>{0839e0be-c072-4994-9d93-f8910281f0d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -90,9 +90,6 @@
     <ClCompile Include="GameStateMachine.cpp">
       <Filter>Archivos de origen\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerController.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
@@ -105,11 +102,17 @@
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="OptionsMenu.cpp">
       <Filter>Archivos de origen\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Archivos de origen\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Archivos de origen\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Archivos de origen\managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

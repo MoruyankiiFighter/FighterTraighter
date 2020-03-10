@@ -16,6 +16,7 @@ public:
 
 	void run();		//main
 
+	inline SDL_Window* getWindow() const { return window; }
 	inline GameStateMachine* getStateMachine() const { return stateMachine_.get(); };
 	inline InputManager* getInputManager() const { return inputManager_.get(); };
 	inline SDL_Renderer* getRenderer() const { return renderer; };

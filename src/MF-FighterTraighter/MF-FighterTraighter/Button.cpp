@@ -42,6 +42,64 @@ void OptionsCallback(App* app)
 	app->Options();
 }
 
+//brightness
+void moreBright(App* app) {
+	float bright = SDL_GetWindowBrightness(app->getWindow());
+
+	if (bright >= 1)
+		bright = 1;
+	else
+		bright += 0.1;
+
+	SDL_SetWindowBrightness(app->getWindow(), bright);
+
+}
+void lessBright(App* app) {
+	float bright = SDL_GetWindowBrightness(app->getWindow());
+
+	if (bright <= 0)
+		bright = 0;
+	else
+		bright -= 0.1;
+
+	SDL_SetWindowBrightness(app->getWindow(), bright);
+}
+
+///NECESITO UN SOUND MANAGER 
+//volume music
+void moreVolume(App* app) {
+
+}
+void lessVolume(App app) {
+
+}
+
+//SFXVolume
+void moreSFXVolume(App* app) {
+
+}
+void lessSFXVolume(App* app) {
+
+}
+
+//-------------------------------
+
+//fullscreen
+void fullScreen(App* app) {
+	bool IsFullscreen = SDL_GetWindowFlags(app->getWindow()) & SDL_WINDOW_FULLSCREEN_DESKTOP;
+	if (IsFullscreen)
+	{
+		SDL_SetWindowFullscreen(app->getWindow(), 0);
+	}
+	else
+	{
+		SDL_SetWindowFullscreen(app->getWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
+	}
+}
+
+
+
+
 void Button::handleInput()
 {
 	if (app_->getInputManager()->isMouseButtonPressed(app_->getInputManager()->Left)) {
