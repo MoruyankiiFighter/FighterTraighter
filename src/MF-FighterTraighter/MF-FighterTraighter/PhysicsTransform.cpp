@@ -18,11 +18,15 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 
 	body_->CreateFixture(&fixturedef);
 	
-
 }
+
 
 PhysicsTransform::~PhysicsTransform() {
 	world_->DestroyBody(body_);
+}
+
+void PhysicsTransform::init() {
+	body_->SetUserData(this->entity_);	//tener acceso a la entidad para hacer cosas con las colisiones
 }
 
 void PhysicsTransform::setHeight(double height) {
