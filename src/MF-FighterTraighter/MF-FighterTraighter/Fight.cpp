@@ -31,7 +31,7 @@ void Fight::init()
 	vecMov[0] = new Move(100, nullptr);
 	AnimationChain* highFist = new AnimationChain(vecMov);*/
 	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
-	e->addComponent<PlayerAttacks>(Mk::normalPunch,SDL_SCANCODE_Q);//los ataques por ahora no hacen nada
+	e->addComponent<PlayerAttacks>(Mk::NormalPunch(),SDL_SCANCODE_Q);//los ataques por ahora no hacen nada
 
 	scene.push_back(e);	
 	
