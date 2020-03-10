@@ -65,13 +65,22 @@ void lessBright(App* app) {
 	SDL_SetWindowBrightness(app->getWindow(), bright);
 }
 
-///NECESITO UN SOUND MANAGER 
+///AÑADIR SOUND MANAGER 
 //volume music
 void moreVolume(App* app) {
+	float volume_ = 0; //app_->getAudioManager()->getGeneralVolume();
+
+	if (volume_ + 0.1 > 1) {
+		volume_ = 1;
+	}
+	else {
+		volume_ += 0.1;
+	}
 
 }
 void lessVolume(App app) {
 
+	float volume_ = 0;
 }
 
 //SFXVolume

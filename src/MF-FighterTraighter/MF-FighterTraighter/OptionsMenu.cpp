@@ -32,6 +32,42 @@ void OptionsMenu::init()
 	scene.push_back(BG);
 
 
+	Entity* fullscreen_button_ = new Entity();
+
+	transform = fullscreen_button_->addComponent<Transform>();
+	transform->setWidthHeight(50, 50);
+	transform->setPosition(WINDOW_WIDTH_-50, WINDOW_HEIGHT_-50);
+
+	fullscreen_button_->addComponent<RenderImage>(app_->getTextureManager()->getTexture(2));
+	fullscreen_button_->addComponent<Button>(fullScreen);
+
+	scene.push_back(fullscreen_button_);
+	
+
+	Entity* morebright_button = new Entity();
+
+	transform = morebright_button->addComponent<Transform>();
+	transform->setWidthHeight(50, 50);
+	transform->setPosition(WINDOW_WIDTH_/2+100, WINDOW_HEIGHT_/3);
+
+	morebright_button->addComponent<RenderImage>(app_->getTextureManager()->getTexture(2));
+	morebright_button->addComponent<Button>(moreBright);
+
+	scene.push_back(morebright_button);
+
+	Entity* lessbright_button = new Entity();
+
+	transform = lessbright_button->addComponent<Transform>();
+	transform->setWidthHeight(50, 50);
+	transform->setPosition(WINDOW_WIDTH_/2-100, WINDOW_HEIGHT_/3);
+
+	lessbright_button->addComponent<RenderImage>(app_->getTextureManager()->getTexture(2));
+	lessbright_button->addComponent<Button>(lessBright);
+
+	scene.push_back(lessbright_button);
+
+
+
 	Entity* controller = new Entity();
 
 	transform = controller->addComponent<Transform>();
