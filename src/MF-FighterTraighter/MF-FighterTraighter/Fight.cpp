@@ -29,13 +29,13 @@ void Fight::init()
 	e->addComponent<Jump>(-1000);
 	e->addComponent<Crouch>();
 
-	/*std::vector<Move*> vecMov = std::vector<Move*>(2);
+	 vecMov = std::vector<Move*>(2);
 	vecMov[0] = new Move(100, nullptr);
 	vecMov[1] = new Move(50, nullptr);
 	AnimationChain* testMove = new AnimationChain(vecMov);
 	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
 	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
-	*/
+	
 	scene.push_back(e);	
 	
 	Entity* floor = new Entity();
@@ -70,6 +70,10 @@ void Fight::render() {
 
 Fight::~Fight()
 {
+	for (auto vec : vecMov) {
+		delete vec;
+
+	}
 	delete world;
 	delete debugInstance;
 }

@@ -16,7 +16,7 @@ public:
 	virtual void render() override;
 	virtual ~Fight();
 private:
-
+	std::vector<Move*> vecMov;//until we have factories to create characters
 	b2World* world;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	//Debugging physics transform
