@@ -18,7 +18,7 @@ public:
 		}
 
 		//check if fixture B was was the punching bag
-		bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
+		bodyUserData = contact->GetFixtureB()->GetBody()->GetUserData();
 		pbCol = dynamic_cast<PunchingBagCollision*>(static_cast<Entity*>(bodyUserData)->getComponent<PunchingBagCollision>(ecs::PunchingBagCollision));
 		if (pbCol != nullptr) {
 			pbCol->OnCollision();
