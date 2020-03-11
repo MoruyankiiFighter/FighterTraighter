@@ -28,7 +28,6 @@ void Fight::init()
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(tex);
 	e->addComponent<Collider>();
-	scene.push_back(e);
 	e->addComponent<Jump>(-1000);
 	scene.push_back(e);	
 

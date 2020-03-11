@@ -51,7 +51,7 @@ private:
 
 	std::unique_ptr<GameStateMachine> stateMachine_;
 	std::unique_ptr<InputManager> inputManager_;
-
+	//std::unique_ptr<CollisionManager> collisionManager_;
 	/*static*/ bool exit;
 	void init();	//open the window and creates everything
 	void clean();	//deletes everything on the app
