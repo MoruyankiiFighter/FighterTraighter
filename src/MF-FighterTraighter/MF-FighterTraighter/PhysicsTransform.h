@@ -8,6 +8,8 @@ public:
 	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn = true);
 	//PhysicsTransform();
 	virtual ~PhysicsTransform();
+
+	virtual void init();
 	// get and set for position
 	virtual const Vector2D& getPosition() const {
 		Vector2D pos { body_->GetTransform().p.x - width_ * wMult_/2, body_->GetTransform().p.y  - height_ * hMult_/2};

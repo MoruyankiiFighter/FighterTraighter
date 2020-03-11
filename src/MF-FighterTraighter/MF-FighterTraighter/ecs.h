@@ -7,13 +7,15 @@ namespace ecs {
 
 	enum CmpId : CmpIdType {
 		Transform = 0,
-		PlayerController = 1,
+		PlayerController,
 		Health,
-		RenderImage = 2,
-		Button = 3,
-		Jump = 4,
-		PhysicsTransform = 5,
+		RenderImage,
+		Button,
+		Jump,
+		PhysicsTransform,
 		TextComponent,
+		SacoTimer,
+		PunchingBagCollision,
 		/*
 		
 		*/

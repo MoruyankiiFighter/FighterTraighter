@@ -4,6 +4,8 @@
 #include "PauseMenu.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
+#include "Training.h"
+
 
 App::App()
 {
