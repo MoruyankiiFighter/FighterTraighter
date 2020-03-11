@@ -4,7 +4,7 @@
 #include "RenderImage.h"
 #include "Collider.h"
 #include "Jump.h"
-
+#include "PauseMenu.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -19,24 +19,29 @@ void Fight::init()
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
 	//---------------------------------------------------------------
-	string filePath = "../../../../assets/Assets/personaje.png";
-	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str() , 1, 1);
 
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
 	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 50, 50, 0,world);
 	e->addComponent<PlayerController>();
-	e->addComponent<RenderImage>(tex);
+	e->addComponent<RenderImage>(app_->getTextureManager()->getTexture(0));
 	e->addComponent<Collider>();
-	scene.push_back(e);
 	e->addComponent<Jump>(-1000);
 	scene.push_back(e);	
 
 	Entity* floor = new Entity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
-	floor->addComponent<RenderImage>(tex);
+	floor->addComponent<RenderImage>(app_->getTextureManager()->getTexture(0));
 	scene.push_back(floor);
 	
+}
+
+void Fight::handleInput()
+{
+	if (app_->getInputManager()->isKeyDown(SDLK_p)) {
+		app_->getStateMachine()->pushState(new PauseMenu(app_));
+	}
+	GameState::handleInput();
 }
 
 void Fight::update()

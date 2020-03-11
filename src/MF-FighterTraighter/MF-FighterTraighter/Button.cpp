@@ -1,6 +1,7 @@
 #include "Button.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "PauseMenu.h"
 
 void Button::init()
 {
@@ -16,16 +17,12 @@ void OneVsOneCallback(App* app) {
 	app->PlayOnevsOne();
 }
 
-void PauseCallback(App* app) {
-	app->Pause();
-}
+//void PauseCallback(App* app) {
+//	app->Pause();
+//}
 
 void ExitCallback(App* app) {
 	app->Exit();
-}
-
-void OptionsCallback(App* app) {
-	app->Options();
 }
 
 void ContinuePlayingCallback(App* app) {
@@ -40,6 +37,11 @@ void MenuCallback(App* app) {
 	app->Menu();
 }
 
+void OptionsCallback(App* app)
+{
+	app->Options();
+}
+
 void Button::handleInput()
 {
 	if (app_->getInputManager()->isMouseButtonPressed(app_->getInputManager()->Left)) {
@@ -50,11 +52,9 @@ void Button::handleInput()
 		SDL_Rect destRect = { pos.getX(), pos.getY(), trans_->getWidth() * trans_->getWMult(), trans_->getHeight() * trans_->getHMult() };
 
 		if (SDL_PointInRect(&p, &destRect)) {
-			cout << "arcade";
+			//cout << "arcade";
 			callbackbutton(app_);
 		}
-
-		//app_->PlayArcade();
 	}
 
 }

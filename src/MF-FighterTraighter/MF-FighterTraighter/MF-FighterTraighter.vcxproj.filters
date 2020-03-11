@@ -109,6 +109,12 @@
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsMenu.cpp">
+      <Filter>Archivos de origen\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -172,7 +178,7 @@
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="Jump.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="PlayerController.h">
       <Filter>Archivos de encabezado\Components</Filter>
@@ -186,6 +192,13 @@
     <ClInclude Include="Collider.h">
       <Filter>Archivos de encabezado</Filter>
     <ClInclude Include="Options.h">
+    <ClInclude Include="TextureManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsMenu.h">
       <Filter>Archivos de encabezado\GameState</Filter>
     </ClInclude>
   </ItemGroup>
