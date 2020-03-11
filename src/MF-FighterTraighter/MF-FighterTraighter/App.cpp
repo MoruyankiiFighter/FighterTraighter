@@ -3,7 +3,7 @@
 
 #include "PauseMenu.h"
 #include "Fight.h"
-
+#include "OptionsMenu.h"
 
 App::App()
 {
@@ -74,8 +74,9 @@ void App::init()
 
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
+	textureManager_.reset(new TextureManager(this));
 
-	Menu();
+	stateMachine_->pushState(new MainMenu(this));
 }
 
 void App::clean()
@@ -86,7 +87,11 @@ void App::clean()
 
 //init the main menu
 void App::Menu() {
-	stateMachine_->pushState(new MainMenu(this));
+	GameState* currState = stateMachine_->getCurrentState();
+	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
+		stateMachine_->popState();
+		currState = stateMachine_->getCurrentState();
+	}
 }
 
 //set up arcade state
@@ -96,7 +101,7 @@ void App::PlayArcade() {
 
 //set up the options state
 void App::Options() {
-	//getStateMachine()->pushState(new Options(this));
+	getStateMachine()->pushState(new OptionsMenu(this));
 }
 
 
@@ -122,6 +127,6 @@ void App::Pause() {
 
 
 void App::Movements() {
+	std::cout << "Movements" << endl;
 	//getStateMachine()->pushState(new Movements());
 }
-

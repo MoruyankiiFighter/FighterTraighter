@@ -8,7 +8,7 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	bodydef.position.Set(position.getX(), position.getY());
 	//position_ = bodydef.position();
 	if (dyn)  bodydef.type = b2_dynamicBody;
-	body_ = world->CreateBody(&bodydef);
+	body_ = world_->CreateBody(&bodydef);
 	b2PolygonShape shape;
 	shape.SetAsBox(width * wMult_/2 , height * hMult_/2 );
 	//shape.s

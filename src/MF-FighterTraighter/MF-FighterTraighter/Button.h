@@ -3,12 +3,9 @@
 
 using CallBackOnClick = void(App* app);
 
-//callback para el juego
-void PauseCallback(App* app);
-//callbacks para el menu pausa
-void ContinuePlayingCallback(App* app);
-void MovementsCallback(App* app);
-void MenuCallback(App* app);
+////callback para el juego
+//void PauseCallback(App* app);
+
 
 class Button : public Component {
 
