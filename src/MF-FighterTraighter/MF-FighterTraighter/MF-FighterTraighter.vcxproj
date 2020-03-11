@@ -155,7 +155,7 @@
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="AssetsManager.cpp" />
     <ClCompile Include="Training.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector2D.cpp" />
@@ -186,7 +186,7 @@
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextComponent.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="AssetsManager.h" />
     <ClInclude Include="Training.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector2D.h" />

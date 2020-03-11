@@ -39,7 +39,7 @@ void MainMenu::init()
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(WINDOW_WIDTH_/2, POS_Y_LOGO);
 	
-	RenderImage* img = logo->addComponent<RenderImage>(app_->getTextureManager()->getTexture(2));
+	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 	scene.push_back(logo);
 
 	arcade = new Entity();
@@ -49,9 +49,8 @@ void MainMenu::init()
 	t->setWidth(WIDTH_BUTTON); 
 	t->setHeight(HEIGHT_BUTTON);
 	t->setRotation(0);
-	arcade->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1));
-	Font* font = new Font("../../../../assets/Assets/Fonts/Roboto-Black.ttf", 20);	// Until TextureManager (or AssetManager) has Fonts
-	arcade->addComponent<TextComponent>("ARCADE", font, 20);
+	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
 	arcade->addComponent<Button>(ArcadeCallback);
 	scene.push_back(arcade);
 }
