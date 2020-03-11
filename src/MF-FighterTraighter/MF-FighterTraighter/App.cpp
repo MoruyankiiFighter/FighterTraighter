@@ -58,6 +58,11 @@ void App::render()
 //creates the window and the renderer also set up the state machine and the input manager
 void App::init()	
 {
+	int ttf = TTF_Init();
+	if (ttf == -1) {
+		//throw an error
+	}
+
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
 		//throw an error
@@ -114,6 +119,7 @@ void App::ContinuePlaying() {
 //quit game
 void App::Exit() {
 	SDL_Quit();
+	TTF_Quit();
 }
 
 //pause the game

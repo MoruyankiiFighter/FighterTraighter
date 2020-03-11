@@ -25,9 +25,13 @@ void GameState::update()
 
 void GameState::render()
 {
+	SDL_RenderClear(app_->getRenderer());
+
 	for (auto it = scene.begin(); it != scene.end(); ++it) {
 		(*it)->render();
 	}
+
+	SDL_RenderPresent(app_->getRenderer());
 }
 
 void GameState::empty()
