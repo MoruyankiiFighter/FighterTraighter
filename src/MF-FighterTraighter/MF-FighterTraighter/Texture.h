@@ -7,7 +7,7 @@
 using namespace std;
 
 class Texture {
-private:
+protected:
 	SDL_Texture* texture = nullptr;
 	SDL_Renderer* renderer = nullptr;
 

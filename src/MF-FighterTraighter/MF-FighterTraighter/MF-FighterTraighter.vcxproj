@@ -137,6 +137,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Fight.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -151,8 +152,10 @@
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="SDLDebugDraw.cpp" />
     <ClCompile Include="SkillSelection.cpp" />
+    <ClCompile Include="Text.cpp" />
+    <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="AssetsManager.cpp" />
     <ClCompile Include="Training.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector2D.cpp" />
@@ -166,6 +169,7 @@
     <ClInclude Include="ecs.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Fight.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="InputManager.h" />
@@ -179,8 +183,10 @@
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="SDLDebugDraw.h" />
     <ClInclude Include="SkillSelection.h" />
+    <ClInclude Include="Text.h" />
+    <ClInclude Include="TextComponent.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="AssetsManager.h" />
     <ClInclude Include="Training.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector2D.h" />

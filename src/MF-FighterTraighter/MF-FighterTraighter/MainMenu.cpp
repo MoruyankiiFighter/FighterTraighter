@@ -7,6 +7,9 @@
 #include "RenderImage.h"
 #include "Transform.h"
 #include "Button.h"
+#include "TextComponent.h"
+
+#include "Font.h"
 
 #include "App.h"
 #include "consts.h"
@@ -22,6 +25,8 @@ MainMenu::~MainMenu()
 {
 
 }
+
+//void MainMenu::OnButtClick(string text) { std::cout << "Bot�n activado: "<< text << endl; };
 
 void MainMenu::init()
 {
@@ -44,7 +49,8 @@ void MainMenu::init()
 	t->setWidth(WIDTH_BUTTON); 
 	t->setHeight(HEIGHT_BUTTON);
 	t->setRotation(0);
-	arcade->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
+	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
 	arcade->addComponent<Button>(ArcadeCallback);
 	scene.push_back(arcade);
 
@@ -80,26 +86,4 @@ void MainMenu::init()
 	exit->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
 	exit->addComponent<Button>(ExitCallback);
 	scene.push_back(exit);
-}
-
-void MainMenu::render()
-{
-	SDL_RenderClear(app_->getRenderer());
-	
-	for (auto e : scene) {
-		e->getComponent<RenderImage>(ecs::RenderImage)->render();
-	}
-	
-	SDL_RenderPresent(app_->getRenderer());
-}
-
-void MainMenu::update()
-{
-}
-
-void MainMenu::handleInput()
-{
-	for (auto var : scene) {
-		var->handleInput();
-	}
 }
