@@ -1,13 +1,18 @@
 #include "TextComponent.h"
 #include "Entity.h"
 
-TextComponent::TextComponent(Text* text) : Component(ecs::TextComponent), text_(text), transform_(nullptr)
+TextComponent::TextComponent(std::string text, Font* font, int size) : Component(ecs::TextComponent), 
+																	text_(nullptr), transform_(nullptr), textString_(text), textSize_(size), font_(font)
 {
+	setText(text);
+	setSize(size);
+	setFont(font);
 }
 
 void TextComponent::init()
 {
 	transform_ = entity_->getComponent<Transform>(ecs::Transform);
+	text_ = new Text(app_->getRenderer(), textString_, font_);
 }
 
 void TextComponent::render()
@@ -22,14 +27,23 @@ void TextComponent::render()
 
 void TextComponent::setText(std::string text)
 {
+	if(text != textString_)
 	text_->setText(text);
+}
+
+void TextComponent::setSize(int size)
+{
+	if(size != textSize_)
+	text_->setSize(size);
 }
 
 void TextComponent::setFont(Font* font)
 {
+	if(font != font_)
 	text_->setFont(font);
 }
 
 TextComponent::~TextComponent()
 {
+	delete text_;
 }
