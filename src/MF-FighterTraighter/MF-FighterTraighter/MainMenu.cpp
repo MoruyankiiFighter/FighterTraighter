@@ -7,6 +7,9 @@
 #include "RenderImage.h"
 #include "Transform.h"
 #include "Button.h"
+#include "TextComponent.h"
+
+#include "Font.h"
 
 #include "App.h"
 #include "consts.h"
@@ -31,7 +34,7 @@ void MainMenu::init()
 	cout << "init" << endl;
 	string filePath = "../../../../assets/Assets/images/UI/buttons.png";
 	string filename_logo = "../../../../assets/Assets/images/UI/logo.png";
-	texture_ = new Texture(app_->getRenderer(),filePath.c_str(), 1, 1);
+	texture_ = new Texture(app_->getRenderer(),filePath.c_str(), 3, 1);
 	logo_ = new Texture(app_->getRenderer(), filename_logo.c_str(), 1, 1);
 
 	Entity* logo = new Entity();
@@ -51,28 +54,8 @@ void MainMenu::init()
 	t->setHeight(HEIGHT_BUTTON);
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(texture_); //añadir textura
+	Font* font = new Font("../../../../assets/Assets/Fonts/Roboto-Black.ttf", 20);	// Until TextureManager (or AssetManager) has Fonts
+	arcade->addComponent<TextComponent>("ARCADE", font, 20);
 	arcade->addComponent<Button>(ArcadeCallback);
 	scene.push_back(arcade);
-}
-
-void MainMenu::render()
-{
-	SDL_RenderClear(app_->getRenderer());
-	
-	for (auto e : scene) {
-		e->getComponent<RenderImage>(ecs::RenderImage)->render();
-	}
-	
-	SDL_RenderPresent(app_->getRenderer());
-}
-
-void MainMenu::update()
-{
-}
-
-void MainMenu::handleInput()
-{
-	for (auto var : scene) {
-		var->handleInput();
-	}
 }
