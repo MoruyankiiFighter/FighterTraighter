@@ -39,25 +39,26 @@ void Crouch::crouch()
 {
 	cancrouched = false;
 	pos = tr_->getPosition();
-	pos.setY(pos.getY() + tr_->getHeight()-10);
-	tr_->setHeight(tr_->getHeight()/2.0);
+	pos.setY(pos.getY() + tr_->getHeight() - 10);
+	tr_->setHeight(tr_->getHeight() / 2.0);
 
-	tr_->setPosition(pos.getX(), pos.getY());
-	
+	tr_->setPosition(pos.getX() + tr_->getWidth()/2, pos.getY());
+
 }
 
-	
-	//animaciones de agachar
+
+//animaciones de agachar
 void Crouch::uncrouch()
 {
 	cancrouched = true;
-	tr_->setPosition(pos.getX(), pos.getY() - tr_->getHeight()/2.0);
+
+	tr_->setPosition(pos.getX()+tr_->getWidth()/2, pos.getY() - tr_->getHeight() / 2.0);
 
 	tr_->setHeight(initialHeight);
 
-	
 
-	
+
+
 	//animaciones por defecto
 }
 
