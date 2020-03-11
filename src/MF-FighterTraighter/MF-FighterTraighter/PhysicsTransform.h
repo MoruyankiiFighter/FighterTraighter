@@ -32,7 +32,7 @@ public:
 	virtual void ApplyLinearImpulse(float32 xImp, float32 yImp) {
 		body_->ApplyLinearImpulse({xImp, yImp}, body_->GetWorldCenter(), true);
 	}
-
+	b2Body* getBody() { return body_; }
 	//void update() override { std::cout << body_->GetPosition().x << "/" <<body_->GetPosition().y << std::endl;} para testear
 
 private:
