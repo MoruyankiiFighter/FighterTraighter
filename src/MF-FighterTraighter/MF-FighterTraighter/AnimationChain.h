@@ -5,7 +5,10 @@ class AnimationChain
 {
 public:
 	AnimationChain(vector<Move*> chain) : chain_(chain) {};
-	~AnimationChain() {};
+	~AnimationChain() {
+		cout << "DESTRUYENDO ANIMATION CHAIN" << endl;
+		//delete chain_;
+	};
 	bool update();
 private:
 	vector<Move*> chain_;
