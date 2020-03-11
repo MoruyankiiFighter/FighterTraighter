@@ -37,13 +37,13 @@ void PlayerAttacks::handleInput() {
 		activeAttack_ = attacksList[0];
 	}
 	else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
-
+		activeAttack_ = attacksList[1];
 	}
 	else if (app_->getInputManager()->isKeyDown(highKickKey)) {
-
+		activeAttack_ = attacksList[2];
 	}
 	else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
-
+		activeAttack_ = attacksList[3];
 	}
 	/*else if (app_->getInputManager()->isKeyDown(hability1Key)) {
 		habilityList[0]->makeAttack();

@@ -27,11 +27,12 @@ void Fight::init()
 	e->addComponent<RenderImage>(tex);
 	e->addComponent<Jump>(-1000);
 
-	/*std::vector<Move*> vecMov = std::vector<Move*>(1);
+	std::vector<Move*> vecMov = std::vector<Move*>(2);
 	vecMov[0] = new Move(100, nullptr);
-	AnimationChain* highFist = new AnimationChain(vecMov);*/
+	vecMov[1] = new Move(50, nullptr);
+	AnimationChain* testMove = new AnimationChain(vecMov);
 	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
-	e->addComponent<PlayerAttacks>(Mk::NormalPunch(),SDL_SCANCODE_Q);//los ataques por ahora no hacen nada
+	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
 
 	scene.push_back(e);	
 	
