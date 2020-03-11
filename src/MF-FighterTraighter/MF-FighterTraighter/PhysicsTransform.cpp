@@ -14,7 +14,7 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	//shape.s
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 0;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
+	fixturedef.density = 0.05;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
 
 	body_->CreateFixture(&fixturedef);
 	
@@ -22,7 +22,7 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 
 
 PhysicsTransform::~PhysicsTransform() {
-	world_->DestroyBody(body_);
+	//world_->DestroyBody(body_);
 }
 
 void PhysicsTransform::init() {

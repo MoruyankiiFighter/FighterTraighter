@@ -17,6 +17,7 @@ namespace ecs {
 		SacoTimer,
 		PunchingBagCollision,
 		Crouch,
+		PlayerAttacks,
 		/*
 		
 		*/

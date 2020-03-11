@@ -15,9 +15,8 @@ void Jump::handleInput()
 {
 	if (onGround &&( app_->getInputManager()->isKeyDown(SDL_SCANCODE_W) || app_->getInputManager()->getJoyY()==-1)) {
 		//pTR_->setSpeed(0, 5);
-		Vector2D x = pTR_->getPosition();
-		std::cout<< x.getY();
-		pTR_->ApplyLinearImpulse(0, jumpImpulse);
+		//force and where you use the fore
+		pTR_->getBody()->ApplyLinearImpulse(b2Vec2(0,jumpImpulse),pTR_->getBody()->GetWorldCenter(),true);
 		std::cout << "salto" << std::endl;
 	}
 	

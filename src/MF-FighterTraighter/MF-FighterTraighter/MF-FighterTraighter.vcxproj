@@ -131,7 +131,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="PlayerAttacks.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelection.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -142,11 +144,13 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="Health.cpp" />
+    <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="OptionsMenu.cpp" />
+    <ClCompile Include="Move.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="PhysicsTransform.cpp" />
     <ClCompile Include="PlayerController.cpp" />
@@ -166,7 +170,10 @@
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="MkWh00pAttacks.h" />
+    <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />
     <ClInclude Include="Component.h" />
@@ -183,6 +190,7 @@
     <ClInclude Include="Jump.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="OptionsMenu.h" />
+    <ClInclude Include="Move.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PhysicsTransform.h" />
     <ClInclude Include="PlayerController.h" />
