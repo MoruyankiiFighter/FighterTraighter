@@ -31,7 +31,7 @@ void OptionsMenu::init()
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, 500);
 
-	RenderImage* img = controller->addComponent<RenderImage>(app_->getTextureManager()->getTexture(3));
+	RenderImage* img = controller->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(3));
 	scene.push_back(controller);
 }
 

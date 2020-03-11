@@ -18,7 +18,7 @@ void PauseMenu::init()
 	Transform* transform = logo->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(WINDOW_WIDTH_ / 2, POS_Y_LOGO);
-	RenderImage* img = logo->addComponent<RenderImage>(app_->getTextureManager()->getTexture(2));
+	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 	scene.push_back(logo);
 
 	Entity* ent = new Entity();
@@ -28,7 +28,7 @@ void PauseMenu::init()
 	t->setWidth(500);
 	t->setHeight(100);
 	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(ContinuePlayingCallback);
 	scene.push_back(ent);
 
@@ -39,7 +39,7 @@ void PauseMenu::init()
 	t->setWidth(500);
 	t->setHeight(100);
 	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(MenuCallback);
 	scene.push_back(ent);
 
@@ -50,7 +50,7 @@ void PauseMenu::init()
 	t->setWidth(500);
 	t->setHeight(100);
 	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(MovementsCallback);
 	scene.push_back(ent);
 
@@ -61,7 +61,7 @@ void PauseMenu::init()
 	t->setWidth(500);
 	t->setHeight(100);
 	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1));
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(OptionsCallback);
 	scene.push_back(ent);
 }

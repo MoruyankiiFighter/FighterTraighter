@@ -39,7 +39,7 @@ void MainMenu::init()
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
 	logo->setApp(app_);
-	RenderImage* img = logo->addComponent<RenderImage>(app_->getTextureManager()->getTexture(2));
+	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 	scene.push_back(logo);
 
 	arcade = new Entity();
@@ -61,7 +61,7 @@ void MainMenu::init()
 	tr->setWidth(WIDTH_BUTTON);
 	tr->setHeight(HEIGHT_BUTTON);
 	tr->setRotation(0);
-	pvp->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
+	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1)); 
 	pvp->addComponent<Button>(OneVsOneCallback);
 	scene.push_back(pvp);
 
@@ -72,7 +72,7 @@ void MainMenu::init()
 	tra->setWidth(WIDTH_BUTTON);
 	tra->setHeight(HEIGHT_BUTTON);
 	tra->setRotation(0);
-	options->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
+	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	options->addComponent<Button>(OptionsCallback);
 	scene.push_back(options);
 
@@ -83,7 +83,7 @@ void MainMenu::init()
 	tran->setWidth(WIDTH_BUTTON);
 	tran->setHeight(HEIGHT_BUTTON);
 	tran->setRotation(0);
-	exit->addComponent<RenderImage>(app_->getTextureManager()->getTexture(1)); 
+	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	exit->addComponent<Button>(ExitCallback);
 	scene.push_back(exit);
 }
