@@ -16,6 +16,7 @@ namespace ecs {
 		TextComponent,
 		SacoTimer,
 		PunchingBagCollision,
+		Crouch,
 		/*
 		
 		*/

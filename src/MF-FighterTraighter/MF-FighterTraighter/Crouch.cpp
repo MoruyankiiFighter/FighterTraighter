@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "Vector2D.h"
 
-Crouch::Crouch() : Component(ecs::PlayerController), tr_(nullptr)
+Crouch::Crouch() : Component(ecs::Crouch), tr_(nullptr)
 {
 	cancrouched = true;
 }
