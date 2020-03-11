@@ -10,7 +10,7 @@ public:
 	Font operator=(const Font&) = delete;
 	Font(std::string path, int size) { Loadfont(path, size); }
 
-	void setFontSize(int size);
+	bool setFontSize(int size);
 	void changeFont(std::string path);
 	void Loadfont(std::string path, int size);
 	inline TTF_Font* getFont() { return font; }

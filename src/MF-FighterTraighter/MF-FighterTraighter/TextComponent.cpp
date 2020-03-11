@@ -4,14 +4,12 @@
 TextComponent::TextComponent(std::string text, Font* font, int size) : Component(ecs::TextComponent), 
 																	text_(nullptr), transform_(nullptr), textString_(text), textSize_(size), font_(font)
 {
-	setText(text);
-	setSize(size);
-	setFont(font);
 }
 
 void TextComponent::init()
 {
 	transform_ = entity_->getComponent<Transform>(ecs::Transform);
+	font_->setFontSize(textSize_);
 	text_ = new Text(app_->getRenderer(), textString_, font_);
 }
 

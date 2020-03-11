@@ -4,12 +4,14 @@ Font::Font() : font(nullptr), fontSize_(), path_()
 {
 }
 
-void Font::setFontSize(int size)
+bool Font::setFontSize(int size)
 {
 	if (fontSize_ != size) {
 		ClearFont();
 		Loadfont(path_, size);
+		return true;
 	}
+	return false;
 }
 
 void Font::changeFont(std::string path)
@@ -32,6 +34,7 @@ void Font::Loadfont(std::string path, int size)
 void Font::ClearFont()
 {
 	TTF_CloseFont(font);
+	font = nullptr;
 }
 
 Font::~Font() 

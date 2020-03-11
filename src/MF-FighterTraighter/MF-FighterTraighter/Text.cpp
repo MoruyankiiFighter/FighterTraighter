@@ -40,7 +40,8 @@ void Text::setText(std::string text)
 
 void Text::setSize(int size)
 {
-	font_->setFontSize(size);
+	if (font_->setFontSize(size))
+		createText(font_, text_);
 }
 
 void Text::setFont(Font* font)
