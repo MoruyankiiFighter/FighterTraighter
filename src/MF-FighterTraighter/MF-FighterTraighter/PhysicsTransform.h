@@ -8,6 +8,8 @@ public:
 	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn = true);
 	//PhysicsTransform();
 	virtual ~PhysicsTransform();
+
+	virtual void init();
 	// get and set for position
 	virtual const Vector2D& getPosition() const {
 		Vector2D pos { body_->GetTransform().p.x - width_ * wMult_/2, body_->GetTransform().p.y  - height_ * hMult_/2};
@@ -29,9 +31,9 @@ public:
 	virtual void setWidthHeight(double width, double height);
 
 	//forces
-	virtual void ApplyLinearImpulse(float32 xImp, float32 yImp) {
+	/*virtual void ApplyLinearImpulse(float32 xImp, float32 yImp) {
 		body_->ApplyLinearImpulse({xImp, yImp}, body_->GetWorldCenter(), true);
-	}
+	}*/
 	b2Body* getBody() { return body_; }
 	//void update() override { std::cout << body_->GetPosition().x << "/" <<body_->GetPosition().y << std::endl;} para testear
 

@@ -14,9 +14,6 @@ public:
 	MainMenu(App* app);
 	virtual ~MainMenu();
 	void init();
-	virtual void render() override;
-	virtual void update() override;
-	void handleInput();
 
 	//Funciones botones
 	void OnButtClick(string text);

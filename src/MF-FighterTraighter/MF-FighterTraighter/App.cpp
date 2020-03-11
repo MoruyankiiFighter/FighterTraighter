@@ -4,6 +4,8 @@
 #include "PauseMenu.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
+#include "Training.h"
+
 
 App::App()
 {
@@ -58,11 +60,21 @@ void App::render()
 //creates the window and the renderer also set up the state machine and the input manager
 void App::init()	
 {
+	int ttf = TTF_Init();
+	if (ttf == -1) {
+		//throw an error
+	}
+
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
 		//throw an error
 	}
-	
+	SDL_Joystick* joystick = SDL_JoystickOpen(0);
+	if (joystick != nullptr) {
+		std::cout << "Controller Name:" << SDL_JoystickName(joystick) << std::endl;
+		std::cout << "Num Axes :" << SDL_JoystickNumAxes(joystick) << std::endl;
+		std::cout << "Num Buttons :" << SDL_JoystickNumButtons(joystick) << std::endl;
+	}
 	window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		WINDOW_WIDTH_, WINDOW_HEIGHT_, SDL_WINDOW_SHOWN);
 	
@@ -74,7 +86,7 @@ void App::init()
 
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
-	textureManager_.reset(new TextureManager(this));
+	assetsManager_.reset(new AssetsManager(this));
 
 	stateMachine_->pushState(new MainMenu(this));
 }
@@ -118,6 +130,7 @@ void App::ContinuePlaying() {
 //quit game
 void App::Exit() {
 	SDL_Quit();
+	TTF_Quit();
 }
 
 //pause the game

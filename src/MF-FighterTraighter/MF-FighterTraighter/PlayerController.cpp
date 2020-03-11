@@ -15,13 +15,12 @@ void PlayerController::handleInput()
 {
 	Vector2D speed;
 	speed = tr_->getSpeed();
-	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_A)) {
+	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_LEFT) || app_->getInputManager()->getJoyX() == -1) {
 		tr_->setSpeed(-10, speed.getY());
 	}
-	else if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_D)) {
-		tr_->setSpeed(10, speed.getY());
+	else if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_RIGHT) || app_->getInputManager()->getJoyX() == 1) {
+				tr_->setSpeed(10, speed.getY());
 	}
-	
 	else tr_->setSpeed(0, speed.getY());
 }
 
@@ -32,4 +31,5 @@ void PlayerController::update()
 
 PlayerController::~PlayerController()
 {
+	
 }
