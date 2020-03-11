@@ -4,6 +4,8 @@
 #include "RenderImage.h"
 #include "Jump.h"
 #include "PauseMenu.h"
+#include "Crouch.h"
+
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -25,6 +27,7 @@ void Fight::init()
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	e->addComponent<Jump>(-1000);
+	e->addComponent<Crouch>();
 	scene.push_back(e);	
 
 	Entity* floor = new Entity();

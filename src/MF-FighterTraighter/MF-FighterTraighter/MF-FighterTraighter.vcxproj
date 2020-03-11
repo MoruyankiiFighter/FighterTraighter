@@ -135,11 +135,13 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelection.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Crouch.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="main.cpp" />
@@ -165,6 +167,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Crouch.h" />
     <ClInclude Include="consts.h" />
     <ClInclude Include="ecs.h" />
     <ClInclude Include="Entity.h" />
@@ -172,6 +175,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Jump.h" />
     <ClInclude Include="MainMenu.h" />
