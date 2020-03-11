@@ -17,6 +17,14 @@ void Text::createText(Font* font, std::string text)
 	}
 	else {
 		cleanTexture();
+
+		nCols = 1;
+		nRows = 1;
+		width = surface->w;
+		height = surface->h;
+		fWidth = width;
+		fHeight = height;
+
 		texture = SDL_CreateTextureFromSurface(renderer, surface);
 		SDL_FreeSurface(surface);
 	}
@@ -28,6 +36,11 @@ void Text::setText(std::string text)
 		text_ = text;
 		createText(font_, text);
 	}
+}
+
+void Text::setSize(int size)
+{
+	font_->setFontSize(size);
 }
 
 void Text::setFont(Font* font)

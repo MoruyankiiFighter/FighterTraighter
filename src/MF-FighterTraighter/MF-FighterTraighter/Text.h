@@ -13,6 +13,7 @@ public:
 	Text operator=(const Text&) = delete;
 
 	void setText(std::string text);
+	void setSize(int size);
 	void setFont(Font* font);
 	void render(const SDL_Rect& dest) const;
 
