@@ -69,10 +69,12 @@ void App::init()
 	if (e > 0) {
 		//throw an error
 	}
-	SDL_Joystick* joystick = SDL_JoystickOpen(0);
+	int nJoysticks = SDL_NumJoysticks();
+    
+	/*SDL_Joystick* joystick = SDL_JoystickOpen(0);
 	std::cout << "Controller Name:" << SDL_JoystickName(joystick) << std::endl;
 	std::cout << "Num Axes :" << SDL_JoystickNumAxes(joystick) << std::endl;
-	std::cout << "Num Buttons :" << SDL_JoystickNumButtons(joystick) << std::endl;
+	std::cout << "Num Buttons :" << SDL_JoystickNumButtons(joystick) << std::endl;*/
 	
 	window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		WINDOW_WIDTH_, WINDOW_HEIGHT_, SDL_WINDOW_SHOWN);
