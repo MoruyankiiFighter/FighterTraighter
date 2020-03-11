@@ -17,6 +17,9 @@ void Training::init()
 	debugInstance = new SDLDebugDraw(app_->getRenderer());
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
+	//---------Add collision listeners
+	pbListener = new PunchingBagListener();
+	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
 	string filePath = "../../../../assets/Assets/personaje.png";
 	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str(), 1, 1);
@@ -32,7 +35,8 @@ void Training::init()
 	Entity* saco = new Entity();
 	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, false);
 	saco->addComponent<RenderImage>(tex);
-	saco->addComponent<SacoTimer>(5000);
+	//saco->addComponent<SacoTimer>(5000);
+	saco->addComponent<PunchingBagCollision>();
 	scene.push_back(saco);
 
 	Entity* floor = new Entity();
@@ -61,4 +65,5 @@ Training::~Training()
 {
 	delete world;
 	delete debugInstance;
+	delete pbListener;
 }

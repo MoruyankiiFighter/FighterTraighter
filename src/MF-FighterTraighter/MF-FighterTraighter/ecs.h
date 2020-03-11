@@ -13,6 +13,7 @@ namespace ecs {
 		PhysicsTransform = 5,
 		PlayerController = 6,
 		SacoTimer = 7,
+		PunchingBagCollision = 8,
 		/*
 		
 		*/

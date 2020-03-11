@@ -1,13 +1,13 @@
 #pragma once
-#include "Box2D/Box2D.h"
+#include "Component.h"
 #include <iostream>
-class PunchingBagCollision : b2ContactListener
+class PunchingBagCollision : public Component
 {
-	//similar a OnCollision
-	virtual void BeginContact(b2Contact* contact) {
-		void* bodyUserData = contact->GetFixtureA()->GetUserData();
+public:
+	PunchingBagCollision() : Component(ecs::PunchingBagCollision) {}
+	~PunchingBagCollision() {}
+	void OnCollision() {
+		std::cout << "soy un saco" << std::endl;
 	}
-	//Se llama al finalizar la colision
-	virtual void EndContact(b2Contact* contact);
 };
 
