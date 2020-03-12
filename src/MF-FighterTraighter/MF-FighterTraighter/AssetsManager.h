@@ -4,6 +4,7 @@
 #include <vector>
 #include "Texture.h"
 #include "Font.h"
+#include "jute.h"
 class App;
 
 class AssetsManager
@@ -19,10 +20,14 @@ public:
 	void loadFonts(); // Fonts are hardcoded for now
 	Font* getFont(size_t id);
 
+	void loadJsons(); // Fonts are hardcoded for now
+	jute::jValue getJson(size_t id);
+
 	virtual ~AssetsManager();
 private:
 	std::vector<Texture*> textures_;
 	std::vector<Font*> fonts_;
+	std::vector<jute::jValue> jsons_;
 	App* app_;
 };
 

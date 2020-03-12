@@ -5,6 +5,7 @@ AssetsManager::AssetsManager(App* app) : app_(app)
 {
 	loadTextures();
 	loadFonts();
+	loadJsons();
 }
 
 Texture* AssetsManager::getTexture(size_t id)
@@ -38,6 +39,21 @@ void AssetsManager::loadFonts()
 Font* AssetsManager::getFont(size_t id)
 {
 	return fonts_[id];
+}
+
+void AssetsManager::loadJsons()
+{
+	size_t numJsons = 1; // Must match the amount of loaded jsons, efficiency
+	jsons_.reserve(numJsons);
+
+
+	jsons_.emplace_back(jute::parser().parse_file("../../../../assets/Assets/Config/MovesMkWH00P.json"));
+	// jsons_.emplace_back(jute::parser().parse_file("filepath"));
+}
+
+jute::jValue AssetsManager::getJson(size_t id)
+{
+	return jsons_[id];
 }
 
 AssetsManager::~AssetsManager()
