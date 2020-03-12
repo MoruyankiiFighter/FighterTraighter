@@ -1,9 +1,9 @@
 #include "Move.h"
-
+#include "hitbox.h"
 bool Move::update()
 {
 	if (activeFrame_ == endingFrame_) {
-		//generateHitbox();
+		hitbox(10,1,entity_->getComponent<PhysicsTransform>(ecs::Transform)->getBody());
 		std::cout << "Puum" << endl;
 		return true;
 	}
