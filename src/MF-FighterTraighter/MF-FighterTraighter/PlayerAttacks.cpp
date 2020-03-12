@@ -1,7 +1,7 @@
 #include "PlayerAttacks.h"
 
-PlayerAttacks::PlayerAttacks(AnimationChain highFist, SDL_Scancode key1, AnimationChain lowFist, SDL_Scancode key2,
-	AnimationChain highKick, SDL_Scancode key3, AnimationChain lowKick, SDL_Scancode key4/*,
+PlayerAttacks::PlayerAttacks(AnimationChain* highFist, SDL_Scancode key1, AnimationChain* lowFist, SDL_Scancode key2,
+	AnimationChain* highKick, SDL_Scancode key3, AnimationChain* lowKick, SDL_Scancode key4/*,
 			 Hability* highKick, SDL_Scancode key5, Hability* lowKick, SDL_Scancode key6*/) : Component(ecs::PlayerAttacks)
 {
 	attacksList.push_back(highFist);
@@ -18,11 +18,11 @@ PlayerAttacks::PlayerAttacks(AnimationChain highFist, SDL_Scancode key1, Animati
 }
 
 PlayerAttacks::~PlayerAttacks() {
-	/*cout << "destruyendo ataques "<<endl;
+	cout << "destruyendo ataques "<<endl;
 	for (int i = 0; i < attacksList.size(); i++) {
 		delete attacksList[i];
 		attacksList[i] = nullptr;
-	}*/
+	}
 	attacksList.clear();
 
 	/*cout << "destruyendo habilidades "<<endl;
@@ -34,16 +34,16 @@ PlayerAttacks::~PlayerAttacks() {
 }
 void PlayerAttacks::handleInput() {
 	if (app_->getInputManager()->isKeyDown(highFistKey) && activeAttack_ == nullptr) {
-		activeAttack_ = &attacksList[0];
+		activeAttack_ = attacksList[0];
 	}
 	else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
-		activeAttack_ = &attacksList[1];
+		activeAttack_ = attacksList[1];
 	}
 	else if (app_->getInputManager()->isKeyDown(highKickKey)) {
-		activeAttack_ = &attacksList[2];
+		activeAttack_ = attacksList[2];
 	}
 	else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
-		activeAttack_ = &attacksList[3];
+		activeAttack_ = attacksList[3];
 	}
 	/*else if (app_->getInputManager()->isKeyDown(hability1Key)) {
 		habilityList[0]->makeAttack();

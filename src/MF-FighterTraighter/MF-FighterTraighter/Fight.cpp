@@ -34,9 +34,12 @@ void Fight::init()
 	std::vector<Move*> vecMov = std::vector<Move*>(2);
 	vecMov[0] = new Move(app_->getAssetsManager()->getJson(0)["NormalPunch"][0].as_int(), nullptr);
 	vecMov[1] = new Move(app_->getAssetsManager()->getJson(0)["NormalPunch"][1].as_int(), nullptr);
-	AnimationChain testMove = AnimationChain(vecMov);
+	AnimationChain* testNP = new AnimationChain(vecMov);
+	AnimationChain* testHP = new AnimationChain(vecMov);
+	AnimationChain* testNK = new AnimationChain(vecMov);
+	AnimationChain* testHK = new AnimationChain(vecMov);
 	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
-	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
+	e->addComponent<PlayerAttacks>(testNP, SDL_SCANCODE_Q, testHP, SDL_SCANCODE_E, testNK, SDL_SCANCODE_Z, testHK, SDL_SCANCODE_X);
 
 	scene.push_back(e);	
 	
