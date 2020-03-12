@@ -1,11 +1,19 @@
 #pragma once
-#include "Component.h"
-class Hitbox : public Component
+#include "Box2D/Box2D.h"
+
+class hitbox : public b2Fixture
 {
 public:
-	Hitbox(Vector2D pos, Vector2D vel, int width, int height, int numFrames);
-	~Hitbox() {}
+	hitbox(int damage,int time,b2Body* body):b2Fixture(),damage_(damage),time_(time),body_(body){
+		init();
+	}
+	~hitbox();
+	void init();
+	void update();
+
 private:
-	int pos_;
+	int damage_, time_;
+	b2Body* body_;
+
 };
 

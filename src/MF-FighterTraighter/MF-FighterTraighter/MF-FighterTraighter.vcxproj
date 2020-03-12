@@ -172,6 +172,7 @@
   <ItemGroup>
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="hitbox.h" />
     <ClInclude Include="MkWh00pAttacks.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
