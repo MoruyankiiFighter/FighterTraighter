@@ -4,6 +4,8 @@
 #include "RenderImage.h"
 #include "Jump.h"
 #include "PauseMenu.h"
+#include "Crouch.h"
+#include "MkWh00pAttacks.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -23,13 +25,22 @@ void Fight::init()
 	e->setApp(app_);
 	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 50, 50, 0,world);
 	e->addComponent<PlayerController>();
-	e->addComponent<RenderImage>(app_->getTextureManager()->getTexture(0));
+	e->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	e->addComponent<Jump>(-1000);
-	scene.push_back(e);	
+	e->addComponent<Crouch>();
 
+	 vecMov = std::vector<Move*>(2);
+	vecMov[0] = new Move(100, nullptr);
+	vecMov[1] = new Move(50, nullptr);
+	AnimationChain* testMove = new AnimationChain(vecMov);
+	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
+	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
+	
+	scene.push_back(e);	
+	
 	Entity* floor = new Entity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
-	floor->addComponent<RenderImage>(app_->getTextureManager()->getTexture(0));
+	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	scene.push_back(floor);
 	
 }
@@ -59,6 +70,10 @@ void Fight::render() {
 
 Fight::~Fight()
 {
+	for (auto vec : vecMov) {
+		delete vec;
+
+	}
 	delete world;
 	delete debugInstance;
 }

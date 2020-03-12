@@ -5,7 +5,6 @@
 
 void Button::init()
 {
-	render_ = entity_->getComponent<RenderImage>(ecs::RenderImage);
 	trans_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 

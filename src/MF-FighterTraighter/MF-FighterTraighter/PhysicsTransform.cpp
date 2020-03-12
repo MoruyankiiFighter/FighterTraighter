@@ -14,15 +14,19 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	//shape.s
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 0;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
+	fixturedef.density = 0.05;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
 
 	body_->CreateFixture(&fixturedef);
 	
-
 }
 
+
 PhysicsTransform::~PhysicsTransform() {
-	world_->DestroyBody(body_);
+	//world_->DestroyBody(body_);
+}
+
+void PhysicsTransform::init() {
+	body_->SetUserData(this->entity_);	//tener acceso a la entidad para hacer cosas con las colisiones
 }
 
 void PhysicsTransform::setHeight(double height) {

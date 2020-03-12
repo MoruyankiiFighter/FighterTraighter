@@ -30,7 +30,13 @@ void InputManager::update()
 			break;
 		case SDL_MOUSEMOTION:
 			onMouseMotion(e);
+			
 			break;
+		case SDL_JOYAXISMOTION:
+			onJoyMotion(e);
+			break;
+	
+
 		}
 	}
 }

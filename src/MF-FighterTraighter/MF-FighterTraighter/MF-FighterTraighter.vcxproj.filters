@@ -34,8 +34,11 @@
     <Filter Include="Archivos de encabezado\GameState">
       <UniqueIdentifier>{fab6bf26-e784-4081-b8be-c7e21703c5c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de origen\managers">
-      <UniqueIdentifier>{0839e0be-c072-4994-9d93-f8910281f0d0}</UniqueIdentifier>
+    <Filter Include="Archivos de origen\Moves">
+      <UniqueIdentifier>{dccc5090-7290-4501-8257-49f11d549d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Moves">
+      <UniqueIdentifier>{9159f998-26d6-4073-8275-46c539805ab5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +102,9 @@
     <ClCompile Include="Jump.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Crouch.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -113,6 +119,42 @@
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>Archivos de origen\managers</Filter>
+    <ClCompile Include="Font.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetsManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsMenu.cpp">
+      <Filter>Archivos de origen\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="SacoTimer.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PunchingBagListener.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="PunchingBagCollision.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Hitbox.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationChain.cpp">
+      <Filter>Archivos de origen\Moves</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Archivos de origen\Moves</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttacks.cpp">
+      <Filter>Archivos de origen\Moves</Filter>
+
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,8 +221,14 @@
     <ClInclude Include="Jump.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Health.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
     <ClInclude Include="PlayerController.h">
       <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Crouch.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="SDLDebugDraw.h">
       <Filter>Archivos de encabezado</Filter>
@@ -191,11 +239,47 @@
     <ClInclude Include="TextureManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerController.h">
+    <ClInclude Include="Options.h">
+      <Filter>Archivos de encabezado\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="OptionsMenu.h">
       <Filter>Archivos de encabezado\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetsManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="SacoTimer.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PunchingBagListener.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="PunchingBagCollision.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Hitbox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationChain.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttacks.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="MkWh00pAttacks.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

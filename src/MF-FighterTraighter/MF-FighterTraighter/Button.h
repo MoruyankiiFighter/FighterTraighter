@@ -21,6 +21,5 @@ public:
 
 private:
 	Transform* trans_ = nullptr;
-	RenderImage* render_ = nullptr;
 	CallBackOnClick* callbackbutton = nullptr;
 };
