@@ -42,6 +42,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -93,6 +96,9 @@
     <ClCompile Include="GameStateMachine.cpp">
       <Filter>Archivos de origen\GameState</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
     <ClCompile Include="PlayerController.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
@@ -108,17 +114,6 @@
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsMenu.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Archivos de origen\managers</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Archivos de origen\managers</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Archivos de origen\managers</Filter>
     <ClCompile Include="Font.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -154,7 +149,6 @@
     </ClCompile>
     <ClCompile Include="PlayerAttacks.cpp">
       <Filter>Archivos de origen\Moves</Filter>
-
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

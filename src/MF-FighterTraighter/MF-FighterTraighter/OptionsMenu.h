@@ -2,7 +2,7 @@
 #include "GameState.h"
 #include "Texture.h"
 
-class App;
+/// C A L L B A C K S ///
 
 //brightness
 void moreBright(App* app);
@@ -18,8 +18,6 @@ void lessSFXVolume(App* app);
 
 //fullscreen
 void fullScreen(App* app);
-
-
 
 
 class OptionsMenu:public GameState

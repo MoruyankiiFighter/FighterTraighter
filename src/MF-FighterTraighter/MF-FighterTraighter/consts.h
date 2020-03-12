@@ -11,7 +11,7 @@ const double WIDTH_LOGO=300;
 const double HEIGHT_LOGO=150;
 
 //buttons
-const double WIDTH_BUTTON=300;
+const double WIDTH_BUTTON=250;
 const double HEIGHT_BUTTON=150;
 const double POS_X_BUTTONS = WINDOW_WIDTH_ / 2 - 150;
 //arcade button

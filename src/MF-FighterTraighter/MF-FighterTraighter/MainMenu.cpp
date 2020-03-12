@@ -62,6 +62,7 @@ void MainMenu::init()
 	tr->setHeight(HEIGHT_BUTTON);
 	tr->setRotation(0);
 	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1)); 
+	pvp->addComponent<TextComponent>("PVP", app_->getAssetsManager()->getFont(0), 20);
 	pvp->addComponent<Button>(OneVsOneCallback);
 	scene.push_back(pvp);
 
@@ -73,6 +74,8 @@ void MainMenu::init()
 	tra->setHeight(HEIGHT_BUTTON);
 	tra->setRotation(0);
 	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+
+	options->addComponent<TextComponent>("OPTIONS", app_->getAssetsManager()->getFont(0), 30);
 	options->addComponent<Button>(OptionsCallback);
 	scene.push_back(options);
 
@@ -84,6 +87,8 @@ void MainMenu::init()
 	tran->setHeight(HEIGHT_BUTTON);
 	tran->setRotation(0);
 	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+
+	exit->addComponent<TextComponent>("QUIT", app_->getAssetsManager()->getFont(0), 20);
 	exit->addComponent<Button>(ExitCallback);
 	scene.push_back(exit);
 }

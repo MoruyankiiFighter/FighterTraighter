@@ -17,9 +17,10 @@ public:
 	void run();		//main
 
 	inline SDL_Window* getWindow() const { return window; }
+	inline SDL_Renderer* getRenderer() const { return renderer; };
+
 	inline GameStateMachine* getStateMachine() const { return stateMachine_.get(); };
 	inline InputManager* getInputManager() const { return inputManager_.get(); };
-	inline SDL_Renderer* getRenderer() const { return renderer; };
 	inline AssetsManager* getAssetsManager() const { return assetsManager_.get(); };
 
 	void update();	//calls update of the current state

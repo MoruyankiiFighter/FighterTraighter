@@ -135,7 +135,7 @@ void App::Exit() {
 
 //pause the game
 void App::Pause() {
-	//getStateMachine()->pushState(new PauseMenu(this));
+	getStateMachine()->pushState(new PauseMenu(this));
 }
 
 

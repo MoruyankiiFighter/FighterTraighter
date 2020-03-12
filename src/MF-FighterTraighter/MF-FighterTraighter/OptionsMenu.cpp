@@ -28,7 +28,7 @@ void OptionsMenu::init()
 	Transform* transform = BG->addComponent<Transform>();
 	transform->setWidthHeight(WINDOW_WIDTH_, WINDOW_HEIGHT_);
 	transform->setPosition(0, 0);
-	BG->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	BG->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
 	scene.push_back(BG);
 
 
@@ -36,19 +36,19 @@ void OptionsMenu::init()
 
 	transform = fullscreen_button_->addComponent<Transform>();
 	transform->setWidthHeight(50, 50);
-	transform->setPosition(WINDOW_WIDTH_-50, WINDOW_HEIGHT_-50);
+	transform->setPosition(WINDOW_WIDTH_ - 50, WINDOW_HEIGHT_ - 50);
 
 	fullscreen_button_->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	fullscreen_button_->addComponent<Button>(fullScreen);
 
 	scene.push_back(fullscreen_button_);
-	
+
 
 	Entity* morebright_button = new Entity();
 
 	transform = morebright_button->addComponent<Transform>();
 	transform->setWidthHeight(50, 50);
-	transform->setPosition(WINDOW_WIDTH_/2+100, WINDOW_HEIGHT_/3);
+	transform->setPosition(WINDOW_WIDTH_ / 2 + 100, WINDOW_HEIGHT_ / 3);
 
 	morebright_button->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	morebright_button->addComponent<Button>(moreBright);
@@ -59,7 +59,7 @@ void OptionsMenu::init()
 
 	transform = lessbright_button->addComponent<Transform>();
 	transform->setWidthHeight(50, 50);
-	transform->setPosition(WINDOW_WIDTH_/2-100, WINDOW_HEIGHT_/3);
+	transform->setPosition(WINDOW_WIDTH_ / 2 - 100, WINDOW_HEIGHT_ / 3);
 
 	lessbright_button->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	lessbright_button->addComponent<Button>(lessBright);
@@ -77,8 +77,6 @@ void OptionsMenu::init()
 	controller->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	scene.push_back(controller);
 
-
-
 }
 
 void OptionsMenu::update()
@@ -89,7 +87,9 @@ void OptionsMenu::update()
 void OptionsMenu::render()
 {
 	SDL_RenderClear(app_->getRenderer());
-
+	if (app_->getInputManager()->isKeyDown(SDLK_p)) {
+		app_->Menu();
+	}
 	for (auto e : scene) {
 		e->getComponent<RenderImage>(ecs::RenderImage)->render();
 	}
