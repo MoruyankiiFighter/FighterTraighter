@@ -17,5 +17,6 @@ private:
 	b2World* world;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	PunchingBagListener* pbListener = nullptr;
+
 };
 
