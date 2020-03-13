@@ -24,6 +24,11 @@ void ExitCallback(App* app) {
 	app->Exit();
 }
 
+void GoBackCallback(App* app) {
+	app->getStateMachine()->popState();
+}
+
+
 void ContinuePlayingCallback(App* app) {
 	app->ContinuePlaying();
 }

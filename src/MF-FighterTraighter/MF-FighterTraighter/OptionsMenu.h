@@ -4,6 +4,10 @@
 
 /// C A L L B A C K S ///
 
+void GoBackCallback(App* app);
+void MovementsCallback(App* app);
+void MenuCallback(App* app);
+void OptionsCallback(App* app);
 
 //brightness
 void moreBright(App* app);
