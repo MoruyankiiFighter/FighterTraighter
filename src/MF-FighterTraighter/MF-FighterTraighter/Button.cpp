@@ -4,6 +4,7 @@
 #include "PauseMenu.h"
 #include "OptionsMenu.h"
 #include "consts.h"
+
 void Button::init()
 {
 	trans_ = entity_->getComponent<Transform>(ecs::Transform);
