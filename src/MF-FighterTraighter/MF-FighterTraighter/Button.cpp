@@ -61,8 +61,8 @@ void moreBright(App* app) {
 void lessBright(App* app) {
 	float bright = SDL_GetWindowBrightness(app->getWindow());
 
-	if (bright <= 0)
-		bright = 0;
+	if (bright <= 0.4)
+		bright = 0.4;
 	else
 		bright -= 0.1;
 
