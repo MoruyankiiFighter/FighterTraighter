@@ -24,11 +24,10 @@ public:
 	void update();	//calls update of the current state
 	void render();	//calls render of the current state
 	void handleInput(); //calls handleInput of current state
-	inline void exitApp() { exit = true; };
 
 	void PlayArcade();
 	void Pause();
-	void Exit();
+	inline void Exit() { exit = true; } //quit game
 	void PlayOnevsOne();
 	void ContinuePlaying();
 	void Options();

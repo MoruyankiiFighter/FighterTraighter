@@ -14,10 +14,7 @@ App::App()
 
 App::~App()
 {
-	// Delete SDL's attributes
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+	clean();
 }
 
 //main loop
@@ -57,7 +54,7 @@ void App::render()
 	stateMachine_->getCurrentState()->render();
 }
 
-//creates the window and the renderer also set up the state machine and the input manager
+//creates the window and the renderer, and opens ttf also set up the state machine and the input manager
 void App::init()	
 {
 	int ttf = TTF_Init();
@@ -93,7 +90,17 @@ void App::init()
 
 void App::clean()
 {
+	// Reset pointers to prevent errors (especially assetsManager)
+	stateMachine_.reset();
+	inputManager_.reset();
+	// If we try to close fonts after TTF_Quit(), an error will occur
+	assetsManager_.reset();
 
+	// Delete SDL's attributes
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
+	TTF_Quit();
 }
 
 
@@ -125,12 +132,6 @@ void App::PlayOnevsOne() {
 //quit pause state to previous state
 void App::ContinuePlaying() {
 	getStateMachine()->popState();
-}
-
-//quit game
-void App::Exit() {
-	SDL_Quit();
-	TTF_Quit();
 }
 
 //pause the game
