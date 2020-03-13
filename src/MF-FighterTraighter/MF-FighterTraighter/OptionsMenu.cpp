@@ -44,12 +44,34 @@ void OptionsMenu::init()
 	ent = new Entity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>();
-	t->setPosition(100, 700);
+	t->setPosition(400, 500);
 	t->setWidth(500);
 	t->setHeight(100);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(fullScreen);
+	scene.push_back(ent);
+
+	ent = new Entity();
+	ent->setApp(app_);
+	t = ent->addComponent<Transform>();
+	t->setPosition(500, 200);
+	t->setWidth(50);
+	t->setHeight(50);
+	t->setRotation(0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	ent->addComponent<Button>(moreBright);
+	scene.push_back(ent);
+
+	ent = new Entity();
+	ent->setApp(app_);
+	t = ent->addComponent<Transform>();
+	t->setPosition(100, 200);
+	t->setWidth(50);
+	t->setHeight(50);
+	t->setRotation(0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	ent->addComponent<Button>(lessBright);
 	scene.push_back(ent);
 
 }
