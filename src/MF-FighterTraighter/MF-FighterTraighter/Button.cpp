@@ -38,8 +38,12 @@ void SetBright(App* app)
 	SDL_SetWindowBrightness(app->getWindow(), bright);
 }
 
-void SetVolume(App* app)
+void SetVolume(App* app) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
 {
+	float bright = SDL_GetWindowBrightness(app->getWindow());
+
+	bright = ((app->getInputManager()->getMousePosX() / 800));
+	SDL_SetWindowBrightness(app->getWindow(), bright);
 }
 
 
