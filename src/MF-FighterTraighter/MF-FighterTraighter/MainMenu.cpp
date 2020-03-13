@@ -36,7 +36,7 @@ void MainMenu::init()
 	Entity* logo = new Entity();
 	
 	Transform* transform=logo->addComponent<Transform>();
-	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
+	transform->setWidthHeight(2*WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
 	logo->setApp(app_);
 	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
