@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "PauseMenu.h"
+#include "OptionsMenu.h"
 
 void Button::init()
 {
@@ -26,6 +27,14 @@ void ExitCallback(App* app) {
 
 void GoBackCallback(App* app) {
 	app->getStateMachine()->popState();
+}
+
+void SetBright(App* app)
+{
+}
+
+void SetVolume(App* app)
+{
 }
 
 

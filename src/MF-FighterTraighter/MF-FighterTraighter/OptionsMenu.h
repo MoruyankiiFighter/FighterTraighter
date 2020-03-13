@@ -5,9 +5,10 @@
 /// C A L L B A C K S ///
 
 void GoBackCallback(App* app);
-void MovementsCallback(App* app);
-void MenuCallback(App* app);
-void OptionsCallback(App* app);
+
+void SetBright(App* app);
+void SetVolume(App* app);
+
 
 //brightness
 void moreBright(App* app);
@@ -37,7 +38,8 @@ public:
 private:
 	float current_volume = 0;
 	float current_bright = 0;
-
+	Entity* reg_bright;
+	Entity* reg_volume;
 
 };
 
