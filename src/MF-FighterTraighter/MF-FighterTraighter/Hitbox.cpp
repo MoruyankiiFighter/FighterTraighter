@@ -1,11 +1,15 @@
 #include "hitbox.h"
-
-void hitbox::update()
+#include <iostream>
+bool hitbox::update()
 {
+	std::cout << "UPDATE hitbox";
 	time_--;
 	if (time_ <= 0) {
-		body_->DestroyFixture(this);		
+		body_->DestroyFixture(this);
+		
+		return true;
 	}
+	return false;
 }
 
 hitbox::~hitbox()
@@ -15,7 +19,7 @@ hitbox::~hitbox()
 void hitbox::init()
 {
 	b2PolygonShape shape;
-	shape.SetAsBox(100 / 2, 100 / 2,b2Vec2(200,0),0);
+	shape.SetAsBox(100 / 2, 100 / 2,b2Vec2(0,200),0);
 	
 	//shape.s
 	b2FixtureDef fixturedef;

@@ -1,6 +1,5 @@
 #pragma once
 #include "Box2D/Box2D.h"
-
 class hitbox : public b2Fixture
 {
 public:
@@ -9,11 +8,10 @@ public:
 	}
 	~hitbox();
 	void init();
-	void update();
+	bool update();
 
 private:
 	int damage_, time_;
 	b2Body* body_;
-
 };
 

@@ -19,6 +19,8 @@ void Fight::init()
 	debugInstance = new SDLDebugDraw(app_->getRenderer());
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
+	pbListener = new PunchingBagListener();
+	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
 
 	Entity* e = new Entity(); // Until we have factories
@@ -29,7 +31,7 @@ void Fight::init()
 	e->addComponent<Jump>(-1000);
 	e->addComponent<Crouch>();
 
-	 vecMov = std::vector<Move*>(2);
+	vecMov = std::vector<Move*>(2);
 	vecMov[0] = new Move(100, nullptr,e);
 	vecMov[1] = new Move(50, nullptr,e);
 	AnimationChain* testMove = new AnimationChain(vecMov);
@@ -58,6 +60,9 @@ void Fight::update()
 	GameState::update();
 
 	world->Step(1.0/30,8,3);//update box2d
+	for (auto it : deleteB1Hitbox) {
+		scene.front()->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->DestroyFixture(it);
+	}
 	
 }
 
@@ -76,4 +81,8 @@ Fight::~Fight()
 	}
 	delete world;
 	delete debugInstance;
+}
+
+void Fight::destroyHitbox(b2Body* body,hitbox* fixture) {
+	deleteB1Hitbox.push_back(fixture);
 }

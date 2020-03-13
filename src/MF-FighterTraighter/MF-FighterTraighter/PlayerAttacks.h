@@ -3,7 +3,7 @@
 #include "AnimationChain.h"
 #include <vector>
 //component that have all the attacks that you have
-class PlayerAttacks : public Component
+class PlayerAttacks : public Component 
 {
 public:
 	//testing

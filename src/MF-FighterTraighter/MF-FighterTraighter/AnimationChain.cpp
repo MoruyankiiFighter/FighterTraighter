@@ -9,6 +9,7 @@ bool AnimationChain::update()
 		index_ = 0;
 		return true;
 	}else if (chain_[index_]->update()) {
+
 		++index_;
 		return false;
 	}
