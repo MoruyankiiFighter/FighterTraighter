@@ -9,6 +9,7 @@
 
 #include "App.h"
 #include "consts.h"
+#include "TextComponent.h"
 
 OptionsMenu::OptionsMenu(App* app) : GameState(app)
 {
@@ -33,29 +34,56 @@ void OptionsMenu::init()
 	Entity* ent = new Entity();
 	ent->setApp(app_);
 	Transform* t = ent->addComponent<Transform>();
-	t->setPosition(100, 100);
-	t->setWidth(500);
-	t->setHeight(100);
+	t->setPosition(10, 10);
+	t->setWidth(50);
+	t->setHeight(50);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	ent->addComponent<TextComponent>("<-" ,app_->getAssetsManager()->getFont(0), 30);
+
 	ent->addComponent<Button>(GoBackCallback);
 	scene.push_back(ent);
 
 	ent = new Entity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>();
-	t->setPosition(400, 500);
-	t->setWidth(500);
+	t->setPosition(WINDOW_WIDTH_-100, WINDOW_HEIGHT_-100);
+	t->setWidth(100);
 	t->setHeight(100);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(fullScreen);
 	scene.push_back(ent);
 
+	//slidebar
 	ent = new Entity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>();
-	t->setPosition(500, 200);
+	t->setPosition(WINDOW_WIDTH_ / 6, 230);
+	t->setWidth(600);
+	t->setHeight(10);
+	t->setRotation(0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	scene.push_back(ent);
+	
+	ent = new Entity();
+	ent->setApp(app_);
+	t = ent->addComponent<Transform>();
+	t->setPosition(WINDOW_WIDTH_ / 6, 430);
+	t->setWidth(600);
+	t->setHeight(10);
+	t->setRotation(0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	scene.push_back(ent);
+
+
+	//buttons
+	
+	//bright
+	ent = new Entity();
+	ent->setApp(app_);
+	t = ent->addComponent<Transform>();
+	t->setPosition(700, 200);
 	t->setWidth(50);
 	t->setHeight(50);
 	t->setRotation(0);
@@ -65,14 +93,48 @@ void OptionsMenu::init()
 
 	ent = new Entity();
 	ent->setApp(app_);
+	
 	t = ent->addComponent<Transform>();
 	t->setPosition(100, 200);
 	t->setWidth(50);
 	t->setHeight(50);
 	t->setRotation(0);
+	
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(lessBright);
 	scene.push_back(ent);
+
+
+	//volume
+	ent = new Entity();
+	ent->setApp(app_);
+	
+	t = ent->addComponent<Transform>();
+	t->setPosition(100, 400);
+	t->setWidth(50);
+	t->setHeight(50);
+	t->setRotation(0);
+	
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	ent->addComponent<Button>(lessSFXVolume);
+	scene.push_back(ent);
+
+	ent = new Entity();
+	ent->setApp(app_);
+	
+	t = ent->addComponent<Transform>();
+	t->setPosition(700, 400);
+	t->setWidth(50);
+	t->setHeight(50);
+	t->setRotation(0);
+	
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	ent->addComponent<Button>(moreSFXVolume);
+	scene.push_back(ent);
+
+
+	//regulators
+
 
 }
 

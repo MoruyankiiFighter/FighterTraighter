@@ -61,7 +61,7 @@ void moreBright(App* app) {
 void lessBright(App* app) {
 	float bright = SDL_GetWindowBrightness(app->getWindow());
 
-	if (bright <= 0.4)
+	if (bright < 0.4)
 		bright = 0.4;
 	else
 		bright -= 0.1;
@@ -71,6 +71,7 @@ void lessBright(App* app) {
 
 ///AÑADIR SOUND MANAGER 
 //volume music
+
 void moreVolume(App* app) {
 	float volume_ = 0; //app_->getAudioManager()->getGeneralVolume();
 
@@ -84,15 +85,37 @@ void moreVolume(App* app) {
 }
 void lessVolume(App app) {
 
-	float volume_ = 0;
+	float volume_ = 0; //app_->getAudioManager()->getGeneralVolume();
+
+	if (volume_ - 0.1 > 0) {
+		volume_ = 0;
+	}
+	else {
+		volume_ -= 0.1;
+	}
 }
 
 //SFXVolume
 void moreSFXVolume(App* app) {
+	float volume_ = 0; //app_->getAudioManager()->getGeneralVolume();
+
+	if (volume_ + 0.1 > 1) {
+		volume_ = 1;
+	}
+	else {
+		volume_ += 0.1;
+	}
 
 }
 void lessSFXVolume(App* app) {
+	float volume_ = 0; //app_->getAudioManager()->getGeneralVolume();
 
+	if (volume_ - 0.1 > 0) {
+		volume_ = 0;
+	}
+	else {
+		volume_ -= 0.1;
+	}
 }
 
 //-------------------------------

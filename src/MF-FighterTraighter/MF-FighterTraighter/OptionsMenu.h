@@ -13,10 +13,6 @@ void OptionsCallback(App* app);
 void moreBright(App* app);
 void lessBright(App* app);
 
-//volume music
-void moreVolume(App* app);
-void lessVolume(App app);
-
 //SFXVolume
 void moreSFXVolume(App* app);
 void lessSFXVolume(App* app);
@@ -37,5 +33,11 @@ public:
 	virtual void update() override;
 	virtual void render() override;
 	void handleInput();
+
+private:
+	float current_volume = 0;
+	float current_bright = 0;
+
+
 };
 
