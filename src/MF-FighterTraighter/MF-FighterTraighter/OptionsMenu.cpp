@@ -64,6 +64,7 @@ void OptionsMenu::init()
 	t->setHeight(10);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	ent->addComponent<Button>(SetBright);
 	scene.push_back(ent);
 	
 	ent = new Entity();
@@ -74,6 +75,7 @@ void OptionsMenu::init()
 	t->setHeight(10);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	ent->addComponent<Button>(SetVolume);
 	scene.push_back(ent);
 
 
@@ -146,7 +148,6 @@ void OptionsMenu::init()
 	t->setRotation(0);
 
 	reg_bright->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(5));
-	reg_bright->addComponent<Button>(SetBright);
 	scene.push_back(reg_bright);
 
 	reg_volume = new Entity();
@@ -160,7 +161,6 @@ void OptionsMenu::init()
 	t->setRotation(0);
 
 	reg_volume->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(5));
-	reg_volume->addComponent<Button>(SetVolume);
 	scene.push_back(reg_volume);
 }
 

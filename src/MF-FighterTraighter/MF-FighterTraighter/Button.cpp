@@ -3,7 +3,7 @@
 #include "Transform.h"
 #include "PauseMenu.h"
 #include "OptionsMenu.h"
-
+#include "consts.h"
 void Button::init()
 {
 	trans_ = entity_->getComponent<Transform>(ecs::Transform);
@@ -31,6 +31,10 @@ void GoBackCallback(App* app) {
 
 void SetBright(App* app)
 {
+	float bright = SDL_GetWindowBrightness(app->getWindow());
+
+	bright = ((app->getInputManager()->getMousePosX()/800));
+	SDL_SetWindowBrightness(app->getWindow(), bright);
 }
 
 void SetVolume(App* app)
