@@ -40,6 +40,9 @@
     <Filter Include="Archivos de encabezado\Moves">
       <UniqueIdentifier>{9159f998-26d6-4073-8275-46c539805ab5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Exceptions">
+      <UniqueIdentifier>{d53f952c-ce80-4696-b51b-4f1da289c7ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,6 +153,9 @@
     <ClCompile Include="PlayerAttacks.cpp">
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
+    <ClCompile Include="Health.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -230,12 +236,6 @@
     <ClInclude Include="consts.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Options.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -260,9 +260,6 @@
     <ClInclude Include="PunchingBagCollision.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Hitbox.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationChain.h">
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
@@ -274,6 +271,12 @@
     </ClInclude>
     <ClInclude Include="MkWh00pAttacks.h">
       <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetsExceptions.h">
+      <Filter>Archivos de encabezado\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLExceptions.h">
+      <Filter>Archivos de encabezado\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

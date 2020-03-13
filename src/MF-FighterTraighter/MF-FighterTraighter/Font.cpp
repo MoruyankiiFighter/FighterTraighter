@@ -1,4 +1,5 @@
 #include "Font.h"
+#include "AssetsExceptions.h"
 
 Font::Font() : font(nullptr), fontSize_(), path_()
 {
@@ -26,7 +27,7 @@ void Font::Loadfont(std::string path, int size)
 {
 	if (font != nullptr) ClearFont();
 	font = TTF_OpenFont(path.c_str(), size);
-	if (font == nullptr) throw "Error"; // CHANGE TO PROPER EXCEPTION
+	if (font == nullptr) throw AssetsExceptions::FontException("Unable to load font:", path);
 	path_ = path;
 	fontSize_ = size;
 }

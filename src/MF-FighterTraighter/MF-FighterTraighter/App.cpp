@@ -1,5 +1,6 @@
 #include "App.h"
 #include "consts.h"
+#include "SDLExceptions.h"
 
 #include "PauseMenu.h"
 #include "Fight.h"
@@ -59,12 +60,12 @@ void App::init()
 {
 	int ttf = TTF_Init();
 	if (ttf == -1) {
-		//throw an error
+		throw SDLExceptions::TTFException(TTF_GetError() + std::string("\nUnable to init TTF"));
 	}
 
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
-		//throw an error
+		throw SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
 	}
 	SDL_Joystick* joystick = SDL_JoystickOpen(0);
 	if (joystick != nullptr) {
@@ -78,7 +79,7 @@ void App::init()
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	if (!window || !renderer) {
-		//throw another Error
+		throw SDLExceptions::SDLException("Unable to create window or renderer");
 	}
 
 	stateMachine_.reset(new GameStateMachine());
