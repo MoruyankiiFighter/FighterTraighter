@@ -6,6 +6,7 @@
 #include "PunchingBagListener.h"
 #include "Jump.h"
 #include "PlayerAttacks.h"
+#include "creatorBody.h"
 
 class Training: public GameState
 {

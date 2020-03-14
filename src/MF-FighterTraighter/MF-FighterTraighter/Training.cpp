@@ -34,6 +34,8 @@ void Training::init()
 	e->addComponent<RenderImage>(tex);
 	e->addComponent<Jump>(-1000);
 	e->addComponent<Crouch>();
+	e->addComponent<creatorBody>(e->getComponent<Transform>(ecs::Transform), world);
+	
 
 	vecMov = std::vector<Move*>(2);
 	vecMov[0] = new Move(100, nullptr, e);
