@@ -6,6 +6,8 @@ AssetsManager::AssetsManager(App* app) : app_(app)
 	loadTextures();
 	loadFonts();
 	//loadJsons();
+
+	moveParser_ = new MoveParser();
 }
 
 Texture* AssetsManager::getTexture(size_t id)

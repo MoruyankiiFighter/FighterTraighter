@@ -5,6 +5,7 @@
 #include "Jump.h"
 #include "PauseMenu.h"
 #include "Crouch.h"
+#include "MoveParser.h"
 
 using callBackOnEnd = void();
 
@@ -30,16 +31,18 @@ void Fight::init()
 	e->addComponent<Jump>(-1000);
 	e->addComponent<Crouch>();
 
-	std::vector<Move*> vecMov = std::vector<Move*>(2);
-	vecMov[0] = new Move(100, nullptr, moveHurt/*[](){ std::cout << "Bam" << endl; }*/);
+	/*std::vector<Move*> vecMov = std::vector<Move*>(2);
+	vecMov[0] = new Move(100, nullptr, moveHurt/*[](){ std::cout << "Bam" << endl; }*//*);
 	vecMov[1] = new Move(50, nullptr, nullptr);
 	AnimationChain* testNP = new AnimationChain(vecMov);
 	AnimationChain* testHP = new AnimationChain(vecMov);
 	AnimationChain* testNK = new AnimationChain(vecMov);
-	AnimationChain* testHK = new AnimationChain(vecMov);
-	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
-	e->addComponent<PlayerAttacks>(testNP, SDL_SCANCODE_Q, testHP, SDL_SCANCODE_E, testNK, SDL_SCANCODE_Z, testHK, SDL_SCANCODE_X);
+	AnimationChain* testHK = new AnimationChain(vecMov);*/
+	std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
+	e->addComponent<PlayerAttacks>(chains[0], SDL_SCANCODE_Q, chains[1], SDL_SCANCODE_E, chains[2], SDL_SCANCODE_Z, chains[3], SDL_SCANCODE_X);
 	
+	scene.push_back(e);
+
 	Entity* floor = new Entity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));

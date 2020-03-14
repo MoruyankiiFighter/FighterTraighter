@@ -4,7 +4,7 @@ bool Move::update()
 {
 	if (activeFrame_ == endingFrame_) {
 		if(generateHitbox_ != nullptr) generateHitbox_();
-		//std::cout << "Puum" << endl;
+		else std::cout << "Puum" << endl;
 		return true;
 	}
 	else {

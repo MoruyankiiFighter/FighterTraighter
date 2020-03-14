@@ -5,6 +5,7 @@
 #include "Texture.h"
 #include "Font.h"
 #include "jute.h"
+#include "MoveParser.h"
 class App;
 
 class AssetsManager
@@ -23,12 +24,16 @@ public:
 	/*void loadJsons(); // Fonts are hardcoded for now
 	jute::jValue getJson(size_t id);*/
 
+	MoveParser* getMoveParser() { return moveParser_; };
+
 	virtual ~AssetsManager();
 	void UnloadAssets();
 private:
 	std::vector<Texture*> textures_;
 	std::vector<Font*> fonts_;
 	//std::vector<jute::jValue> jsons_;
+
+	MoveParser* moveParser_ = nullptr;
 	App* app_;
 };
 

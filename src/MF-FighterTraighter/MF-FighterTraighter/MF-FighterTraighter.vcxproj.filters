@@ -156,6 +156,9 @@
     <ClCompile Include="jute.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="MoveParser.cpp">
+      <Filter>Archivos de origen\Moves</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="jute.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveParser.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
