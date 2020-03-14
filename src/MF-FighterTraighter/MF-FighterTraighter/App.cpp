@@ -108,7 +108,7 @@ void App::Menu() {
 
 //set up arcade state
 void App::PlayArcade() {
-	getStateMachine()->pushState(new Fight(this));
+	getStateMachine()->pushState(new Training(this));
 }
 
 //set up the options state

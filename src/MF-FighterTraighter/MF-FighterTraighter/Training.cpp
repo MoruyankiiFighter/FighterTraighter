@@ -3,6 +3,9 @@
 #include "PlayerController.h"
 #include "RenderImage.h"
 #include "Jump.h"
+#include "PauseMenu.h"
+#include "Crouch.h"
+#include "MkWh00pAttacks.h"
 #include "SacoTimer.h"
 
 Training::Training(App* app) : GameState(app)
@@ -30,6 +33,16 @@ void Training::init()
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(tex);
 	e->addComponent<Jump>(-1000);
+	e->addComponent<Crouch>();
+
+	vecMov = std::vector<Move*>(2);
+	vecMov[0] = new Move(100, nullptr, e);
+	vecMov[1] = new Move(50, nullptr, e);
+	AnimationChain* testMove = new AnimationChain(vecMov);
+	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
+	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
+
+
 	scene.push_back(e);
 
 	Entity* saco = new Entity();
@@ -44,6 +57,14 @@ void Training::init()
 	floor->addComponent<RenderImage>(tex);
 	scene.push_back(floor);
 
+}
+
+void Training::handleInput()
+{
+	if (app_->getInputManager()->isKeyDown(SDLK_p)) {
+		app_->getStateMachine()->pushState(new PauseMenu(app_));
+	}
+	GameState::handleInput();
 }
 
 void Training::update()
@@ -63,6 +84,10 @@ void Training::render() {
 
 Training::~Training()
 {
+	for (auto vec : vecMov) {
+		delete vec;
+
+	}
 	delete world;
 	delete debugInstance;
 	delete pbListener;
