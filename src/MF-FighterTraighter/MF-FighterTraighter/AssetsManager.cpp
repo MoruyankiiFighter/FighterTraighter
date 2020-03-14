@@ -5,7 +5,7 @@ AssetsManager::AssetsManager(App* app) : app_(app)
 {
 	loadTextures();
 	loadFonts();
-	loadJsons();
+	//loadJsons();
 }
 
 Texture* AssetsManager::getTexture(size_t id)
@@ -41,7 +41,7 @@ Font* AssetsManager::getFont(size_t id)
 	return fonts_[id];
 }
 
-void AssetsManager::loadJsons()
+/*void AssetsManager::loadJsons()
 {
 	size_t numJsons = 1; // Must match the amount of loaded jsons, efficiency
 	jsons_.reserve(numJsons);
@@ -54,7 +54,7 @@ void AssetsManager::loadJsons()
 jute::jValue AssetsManager::getJson(size_t id)
 {
 	return jsons_[id];
-}
+}*/
 
 AssetsManager::~AssetsManager()
 {
