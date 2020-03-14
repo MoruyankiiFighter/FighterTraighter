@@ -19,12 +19,13 @@ PlayerAttacks::PlayerAttacks(AnimationChain* highFist, SDL_Scancode key1, Animat
 
 PlayerAttacks::~PlayerAttacks() {
 	cout << "destruyendo ataques "<<endl;
-	for (int i = 0; i < attacksList.size(); i++) {
-		delete attacksList[i];
-		attacksList[i] = nullptr;
-	}
+	//hay que descomentar cuando las animaciones sean diferentes
+	//for (int i = 0; i < attacksList.size(); i++) {
+		delete attacksList[1];
+		attacksList[1] = nullptr;
+	//}
 	attacksList.clear();
-
+	//delete activeAttack_;
 	/*cout << "destruyendo habilidades "<<endl;
 	for (int i = 0; i < habilityList.size(); i++) {
 		delete habilityList[i];

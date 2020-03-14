@@ -58,6 +58,11 @@ jute::jValue AssetsManager::getJson(size_t id)
 
 AssetsManager::~AssetsManager()
 {
+	UnloadAssets();
+}
+
+void AssetsManager::UnloadAssets()
+{
 	for (Texture* tex : textures_) {
 		delete tex;
 	}

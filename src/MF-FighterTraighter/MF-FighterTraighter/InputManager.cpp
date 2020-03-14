@@ -14,11 +14,11 @@ void InputManager::update()
 	while(SDL_PollEvent(&e)) {
 		switch (e.type) {
 		case SDL_QUIT:
-			app_->exitApp();
+			app_->Exit();
 			break;
 		case SDL_KEYDOWN:
 			if (e.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-				app_->exitApp();
+				app_->Exit();
 			break;
 		case SDL_KEYUP:
 			break;

@@ -29,7 +29,6 @@ void Fight::init()
 	e->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	e->addComponent<Jump>(-1000);
 	e->addComponent<Crouch>();
-	scene.push_back(e);	
 
 	std::vector<Move*> vecMov = std::vector<Move*>(2);
 	vecMov[0] = new Move(100, nullptr, moveHurt/*[](){ std::cout << "Bam" << endl; }*/);
@@ -73,6 +72,10 @@ void Fight::render() {
 
 Fight::~Fight()
 {
+	for (auto vec : vecMov) {
+		delete vec;
+
+	}
 	delete world;
 	delete debugInstance;
 }

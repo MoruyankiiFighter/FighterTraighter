@@ -24,6 +24,7 @@ public:
 	jute::jValue getJson(size_t id);*/
 
 	virtual ~AssetsManager();
+	void UnloadAssets();
 private:
 	std::vector<Texture*> textures_;
 	std::vector<Font*> fonts_;
