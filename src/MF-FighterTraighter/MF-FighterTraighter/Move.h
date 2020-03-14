@@ -4,6 +4,8 @@
 #include "Texture.h"
 #include "Entity.h"
 #include "PhysicsTransform.h"
+#include "hitbox.h"
+
 using namespace std;
 using callBackOnEnd = void();
 
@@ -37,6 +39,7 @@ private:
 	/*string name_;
 	dMovimiento id_;*/
 	Texture* animaSheet_;
-	callBackOnEnd generateHitbox; //crea hitboxes con daño, posición, escala, empuje y frames de vida
+	//callBackOnEnd generateHitbox; //crea hitboxes con daño, posición, escala, empuje y frames de vida
 	Entity* entity_;
+	hitbox* hitbox_ = nullptr;
 };
