@@ -5,9 +5,9 @@ bool Move::update()
 	
 	if (activeFrame_ == endingFrame_) {
 		hitbox_=new hitbox(10,1,entity_->getComponent<PhysicsTransform>(ecs::Transform)->getBody());
-		/*std::cout << "Puum" << endl;
-		hitbox_->update();*/
-		static_cast<Fight*>(entity_->getApp()->getStateMachine()->getCurrentState())->destroyHitbox(entity_->getComponent<PhysicsTransform>(ecs::Transform)->getBody(),hitbox_);
+		std::cout << "Puum" << endl;
+		//hitbox_->update();
+		//static_cast<Fight*>(entity_->getApp()->getStateMachine()->getCurrentState())->destroyHitbox(entity_->getComponent<PhysicsTransform>(ecs::Transform)->getBody(),hitbox_);
 		return true;
 	}
 	else {

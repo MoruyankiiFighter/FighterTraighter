@@ -1,6 +1,5 @@
 #include "App.h"
 #include "consts.h"
-
 #include "PauseMenu.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
