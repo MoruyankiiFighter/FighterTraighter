@@ -18,6 +18,7 @@ namespace ecs {
 		PunchingBagCollision,
 		Crouch,
 		PlayerAttacks,
+		CreatorBody,
 		/*
 		
 		*/
