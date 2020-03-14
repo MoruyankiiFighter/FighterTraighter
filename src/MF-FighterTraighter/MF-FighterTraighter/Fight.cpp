@@ -5,8 +5,8 @@
 #include "Jump.h"
 #include "PauseMenu.h"
 #include "Crouch.h"
-#include "MkWh00pAttacks.h"
-#include "jute.h"
+
+using callBackOnEnd = void();
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -32,16 +32,14 @@ void Fight::init()
 	scene.push_back(e);	
 
 	std::vector<Move*> vecMov = std::vector<Move*>(2);
-	vecMov[0] = new Move(100, nullptr);
-	vecMov[1] = new Move(50, nullptr);
+	vecMov[0] = new Move(100, nullptr, moveHurt/*[](){ std::cout << "Bam" << endl; }*/);
+	vecMov[1] = new Move(50, nullptr, nullptr);
 	AnimationChain* testNP = new AnimationChain(vecMov);
 	AnimationChain* testHP = new AnimationChain(vecMov);
 	AnimationChain* testNK = new AnimationChain(vecMov);
 	AnimationChain* testHK = new AnimationChain(vecMov);
 	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
 	e->addComponent<PlayerAttacks>(testNP, SDL_SCANCODE_Q, testHP, SDL_SCANCODE_E, testNK, SDL_SCANCODE_Z, testHK, SDL_SCANCODE_X);
-
-	scene.push_back(e);	
 	
 	Entity* floor = new Entity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
@@ -77,4 +75,9 @@ Fight::~Fight()
 {
 	delete world;
 	delete debugInstance;
+}
+
+void Fight::moveHurt()
+{
+	std::cout << "Golpe" << endl;
 }

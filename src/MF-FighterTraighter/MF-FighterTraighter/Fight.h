@@ -15,6 +15,12 @@ public:
 	virtual void update() override;
 	virtual void render() override;
 	virtual ~Fight();
+
+
+	//PARA TESTEAR CALLBACKS
+	void moveHurt();
+
+
 private:
 
 	b2World* world;
