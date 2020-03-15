@@ -16,7 +16,7 @@ public:
 	virtual void render() override;
 	~RenderImage() {};
 private:
-	Transform* trans_;
-	Texture* tex_;
+	Transform* trans_=nullptr;
+	Texture* tex_=nullptr;
 };
 

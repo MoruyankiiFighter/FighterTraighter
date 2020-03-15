@@ -169,6 +169,7 @@ void OptionsMenu::update()
 	Transform* t = reg_bright->getComponent<Transform>(ecs::Transform);
 
 	double d = 50 +650* (SDL_GetWindowBrightness(app_->getWindow()));
+	cout << SDL_GetWindowBrightness(app_->getWindow());
 
 	t->setPosition(d, t->getPosition().getY());
 	
