@@ -22,7 +22,7 @@ void Slider::handleInput()
 			if (!dragging_) {
 				dragging_ = true;
 				if (startDrag_) startDrag_(app_);
-				value_ = (app_->getInputManager()->getMousePosX() - tr_->getPosition().getX()) / tr_->getWidth() * (maxValue_ - minValue_);
+				setValueOnClick();
 			}
 		}
 	}
@@ -30,8 +30,11 @@ void Slider::handleInput()
 		if (endDrag_) endDrag_(app_);
 		dragging_ = false;
 	}
+}
 
-	// vertical and horizontal sliders? enum? bool? different component?
+void Slider::setValueOnClick()
+{
+	value_ = (app_->getInputManager()->getMousePosX() - tr_->getPosition().getX()) / tr_->getWidth() * (maxValue_ - minValue_);
 }
 
 void Slider::update()

@@ -41,6 +41,7 @@ protected:
 	CallbackOnEndDrag* endDrag_ = nullptr;
 	CallbackOnValueChanged* valueChanged_ = nullptr;
 
-	void dragValue();
+	virtual void dragValue();
 	bool isMouseOver();
+	virtual void setValueOnClick();
 };

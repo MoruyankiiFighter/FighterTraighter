@@ -11,6 +11,7 @@
 #include "App.h"
 #include "consts.h"
 #include "TextComponent.h"
+#include "VerticalSlider.h"
 
 OptionsMenu::OptionsMenu(App* app) : GameState(app)
 {

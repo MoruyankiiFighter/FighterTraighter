@@ -169,6 +169,7 @@
     <ClCompile Include="Training.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="VerticalSlider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationChain.h" />
@@ -210,6 +211,7 @@
     <ClInclude Include="Training.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="VerticalSlider.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

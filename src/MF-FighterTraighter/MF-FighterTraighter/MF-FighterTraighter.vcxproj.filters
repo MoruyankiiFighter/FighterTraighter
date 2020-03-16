@@ -156,6 +156,9 @@
     <ClCompile Include="Slider.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="VerticalSlider.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -273,6 +276,9 @@
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
     <ClInclude Include="Slider.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="VerticalSlider.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

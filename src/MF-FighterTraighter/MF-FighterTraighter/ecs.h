@@ -19,6 +19,7 @@ namespace ecs {
 		Crouch,
 		PlayerAttacks,
 		Slider,
+		VerticalSlider,
 		/*
 		
 		*/
