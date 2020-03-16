@@ -6,17 +6,9 @@
 
 void GoBackCallback(App* app);
 
-void SetBright(App* app);
-void SetVolume(App* app);
+void SetBright(App* app, double value);
+void SetVolume(App* app, double value);
 
-
-//brightness
-void moreBright(App* app);
-void lessBright(App* app);
-
-//SFXVolume
-void moreSFXVolume(App* app);
-void lessSFXVolume(App* app);
 
 //fullscreen
 void fullScreen(App* app);
@@ -31,11 +23,5 @@ public:
 	virtual ~OptionsMenu();
 
 	void init() override;
-	virtual void update() override;
-
-private:
-	Entity* reg_bright;
-	Entity* reg_volume;
-
 };
 

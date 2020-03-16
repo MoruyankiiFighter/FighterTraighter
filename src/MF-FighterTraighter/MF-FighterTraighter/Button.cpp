@@ -26,25 +26,7 @@ void ExitCallback(App* app) {
 	app->Exit();
 }
 
-void GoBackCallback(App* app) {
-	app->getStateMachine()->popState();
-}
 
-void SetBright(App* app)
-{
-	float bright = SDL_GetWindowBrightness(app->getWindow());
-
-	bright = ((app->getInputManager()->getMousePosX()/800));
-	SDL_SetWindowBrightness(app->getWindow(), bright);
-}
-
-void SetVolume(App* app) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
-{
-	float bright = SDL_GetWindowBrightness(app->getWindow());
-
-	bright = ((app->getInputManager()->getMousePosX() / 800));
-	SDL_SetWindowBrightness(app->getWindow(), bright);
-}
 
 
 void ContinuePlayingCallback(App* app) {
@@ -55,37 +37,12 @@ void MovementsCallback(App* app) {
 	app->Movements();
 }
 
-void MenuCallback(App* app) {
-	app->Menu();
-}
-
 void OptionsCallback(App* app)
 {
 	app->Options();
 }
 
-//brightness
-void moreBright(App* app) {
-	float bright = SDL_GetWindowBrightness(app->getWindow());
 
-	if (bright >= 1)
-		bright = 1;
-	else
-		bright += 0.1;
-
-	SDL_SetWindowBrightness(app->getWindow(), bright);
-
-}
-void lessBright(App* app) {
-	float bright = SDL_GetWindowBrightness(app->getWindow());
-
-	if (bright < 0.4)
-		bright = 0.4;
-	else
-		bright -= 0.1;
-
-	SDL_SetWindowBrightness(app->getWindow(), bright);
-}
 
 ///AÑADIR SOUND MANAGER 
 //volume music
@@ -113,45 +70,11 @@ void lessVolume(App app) {
 	}
 }
 
-//SFXVolume
-void moreSFXVolume(App* app) {
-	float volume_ = 0; //app_->getAudioManager()->getGeneralVolume();
 
-	if (volume_ + 0.1 > 1) {
-		volume_ = 1;
-	}
-	else {
-		volume_ += 0.1;
-	}
-
-}
-void lessSFXVolume(App* app) {
-	float volume_ = 0; //app_->getAudioManager()->getGeneralVolume();
-
-	if (volume_ - 0.1 > 0) {
-		volume_ = 0;
-	}
-	else {
-		volume_ -= 0.1;
-	}
-}
 
 //-------------------------------
 
-//fullscreen
-void fullScreen(App* app) {
-	bool IsFullscreen = SDL_GetWindowFlags(app->getWindow()) & SDL_WINDOW_FULLSCREEN_DESKTOP;
-	if (IsFullscreen)
-	{
-		SDL_SetWindowFullscreen(app->getWindow(), 0);
-	}
-	else
-	{
-		SDL_SetWindowFullscreen(app->getWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
-		SDL_RenderSetLogicalSize(app->getRenderer(), WINDOW_WIDTH_, WINDOW_HEIGHT_); //para que se redimensionen a su proporcion
 
-	}
-}
 
 
 

@@ -35,24 +35,15 @@ void OptionsMenu::init()
 
 	Entity* ent = new Entity();
 	ent->setApp(app_);
-	Transform* t = ent->addComponent<Transform>();
-	t->setPosition(10, 10);
-	t->setWidth(50);
-	t->setHeight(50);
-	t->setRotation(0);
+	Transform* t = ent->addComponent<Transform>(Vector2D(10, 10), Vector2D(), 50, 50, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<TextComponent>("<-" ,app_->getAssetsManager()->getFont(0), 30);
-
 	ent->addComponent<Button>(GoBackCallback);
 	scene.push_back(ent);
 
 	ent = new Entity();
 	ent->setApp(app_);
-	t = ent->addComponent<Transform>();
-	t->setPosition(WINDOW_WIDTH_-100, WINDOW_HEIGHT_-100);
-	t->setWidth(100);
-	t->setHeight(100);
-	t->setRotation(0);
+	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ - 100, WINDOW_HEIGHT_ - 100), Vector2D(), 100, 100, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(fullScreen);
 	scene.push_back(ent);
@@ -60,133 +51,52 @@ void OptionsMenu::init()
 	//slidebar
 	ent = new Entity();
 	ent->setApp(app_);
-	t = ent->addComponent<Transform>();
-	t->setPosition(WINDOW_WIDTH_ / 4, 230);
-	t->setWidth(500);
-	t->setHeight(10);
-	t->setRotation(0);
+	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Button>(SetBright);
+	ent->addComponent<Slider>(0.4, 1, SetBright); // min = 0.4 to be able to see
 	scene.push_back(ent);
-	
+	/*
 	ent = new Entity();
 	ent->setApp(app_);
-	t = ent->addComponent<Transform>();
-	t->setPosition(WINDOW_WIDTH_ /4 , 430);
-	t->setWidth(500);
-	t->setHeight(10);
-	t->setRotation(0);
+	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Button>(SetVolume);
+	ent->addComponent<Slider>(0, 1, SetVolume); // min = 0 (sound), although now it's set to change brightness
 	scene.push_back(ent);
-
+	*/
 
 	//buttons
-	
-	//bright
-	ent = new Entity();
-	ent->setApp(app_);
-	t = ent->addComponent<Transform>();
-	t->setPosition(700, 200);
-	t->setWidth(50);
-	t->setHeight(50);
-	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(moreBright);
-	scene.push_back(ent);
 
-	ent = new Entity();
-	ent->setApp(app_);
-	
-	t = ent->addComponent<Transform>();
-	t->setPosition(200, 200);
-	t->setWidth(50);
-	t->setHeight(50);
-	t->setRotation(0);
-	
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(lessBright);
-	scene.push_back(ent);
-
-
-	//volume
-	ent = new Entity();
-	ent->setApp(app_);
-	
-	t = ent->addComponent<Transform>();
-	t->setPosition(200, 400);
-	t->setWidth(50);
-	t->setHeight(50);
-	t->setRotation(0);
-	
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(lessSFXVolume);
-	scene.push_back(ent);
-
-	ent = new Entity();
-	ent->setApp(app_);
-	
-	t = ent->addComponent<Transform>();
-	t->setPosition(700, 400);
-	t->setWidth(50);
-	t->setHeight(50);
-	t->setRotation(0);
-	
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(moreSFXVolume);
-	scene.push_back(ent);
-
-
-	//regulators
-
-	reg_bright = new Entity();
-	
-	reg_bright->setApp(app_);
-
-	t = reg_bright->addComponent<Transform>();
-	t->setPosition(WINDOW_WIDTH_ / 2, 200);
-	t->setWidth(20);
-	t->setHeight(50);
-	t->setRotation(0);
-
-	reg_bright->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(5));
-	scene.push_back(reg_bright);
-
-	reg_volume = new Entity();
-	
-	reg_volume->setApp(app_);
-
-	t = reg_volume->addComponent<Transform>();
-	t->setPosition(WINDOW_WIDTH_ / 2, 400);
-	t->setWidth(20);
-	t->setHeight(50);
-	t->setRotation(0);
-
-	reg_volume->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(5));
-	scene.push_back(reg_volume);
-
-	Entity* slider = new Entity();
-	slider->setApp(app_);
-	slider->addComponent<Transform>(Vector2D(50, 600), Vector2D(), 200, 70, 0);
-	slider->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	slider->addComponent<Slider>(0, 100);
-	scene.push_back(slider);
 }
 
-void OptionsMenu::update()
+void GoBackCallback(App* app) {
+	app->getStateMachine()->popState();
+}
+
+void SetBright(App* app, double value)
 {
-	GameState::update();
-	Transform* t = reg_bright->getComponent<Transform>(ecs::Transform);
+	SDL_SetWindowBrightness(app->getWindow(), value);
+}
 
-	double d = 50 +650* (SDL_GetWindowBrightness(app_->getWindow()));
-	//cout << SDL_GetWindowBrightness(app_->getWindow()) << endl;
+void SetVolume(App* app, double value) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
+{
+	SDL_SetWindowBrightness(app->getWindow(), value);
+}
 
-	t->setPosition(d, t->getPosition().getY());
-	
-	t = reg_volume->getComponent<Transform>(ecs::Transform);
+//fullscreen
+void fullScreen(App* app) {
+	bool IsFullscreen = SDL_GetWindowFlags(app->getWindow()) & SDL_WINDOW_FULLSCREEN_DESKTOP;
+	if (IsFullscreen)
+	{
+		SDL_SetWindowFullscreen(app->getWindow(), 0);
+	}
+	else
+	{
+		SDL_SetWindowFullscreen(app->getWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
+		SDL_RenderSetLogicalSize(app->getRenderer(), WINDOW_WIDTH_, WINDOW_HEIGHT_); //para que se redimensionen a su proporcion
 
-	d = 50 +650* (SDL_GetWindowBrightness(app_->getWindow()));
+	}
+}
 
-	t->setPosition(d, t->getPosition().getY());
-
+void MenuCallback(App* app) {
+	app->Menu();
 }
