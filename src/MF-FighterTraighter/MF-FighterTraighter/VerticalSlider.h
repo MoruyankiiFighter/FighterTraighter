@@ -5,7 +5,7 @@ class VerticalSlider :
 {
 public:
 	VerticalSlider(double minValue, double maxValue);
-	VerticalSlider(double minValue, double maxValue, CallbackOnValueChanged* valueChanged, CallbackOnStartDrag* startDrag = nullptr, CallbackOnEndDrag endDrag = nullptr);
+	VerticalSlider(double minValue, double maxValue, int steps, CallbackOnValueChanged* valueChanged, CallbackOnDrag* startDrag = nullptr, CallbackOnDrag endDrag = nullptr);
 
 	virtual ~VerticalSlider();
 protected:

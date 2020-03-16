@@ -4,8 +4,8 @@ VerticalSlider::VerticalSlider(double minValue, double maxValue): Slider(minValu
 {
 }
 
-VerticalSlider::VerticalSlider(double minValue, double maxValue, CallbackOnValueChanged* valueChanged, CallbackOnStartDrag* startDrag, CallbackOnEndDrag endDrag)
-	: Slider(minValue, maxValue, valueChanged, startDrag, endDrag)
+VerticalSlider::VerticalSlider(double minValue, double maxValue, int steps, CallbackOnValueChanged* valueChanged, CallbackOnDrag* startDrag, CallbackOnDrag endDrag)
+	: Slider(minValue, maxValue, steps, valueChanged, startDrag, endDrag)
 {
 }
 
@@ -18,12 +18,13 @@ void VerticalSlider::dragValue()
 	InputManager* input = app_->getInputManager();
 	Vector2D mouseMovement = input->getMouseMovement();
 	Vector2D mousePos = input->getMousePos();
-	if (mouseMovement.getY() != 0 && mousePos.getY() >= tr_->getPosition().getY() && mousePos.getY() <= tr_->getPosition().getY() + tr_->getHeight()) {
-		setValue(value_ + mouseMovement.getY() / tr_->getHeight() * (maxValue_ - minValue_));
+	if (mouseMovement.getY() != 0 && mousePos.getY() >= tr_->getPosition().getY() && mousePos.getY() <= tr_->getPosition().getY() + tr_->getHeight() * tr_->getHMult()) {
+		setValueOnClick();
 	}
 }
 
 void VerticalSlider::setValueOnClick()
 {
-	value_ = (app_->getInputManager()->getMousePosY() - tr_->getPosition().getY()) / tr_->getHeight() * (maxValue_ - minValue_);
+	double a = (value_ + app_->getInputManager()->getMousePosY() - tr_->getPosition().getY()) / tr_->getHeight() * tr_->getHMult() * (maxValue_ - minValue_) + minValue_;
+	setValue(a);
 }

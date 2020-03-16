@@ -2,22 +2,20 @@
 #include "Component.h"
 #include "Transform.h"
 
-//using CallbackOnClick = void(App * app);
-using CallbackOnStartDrag = void(App * app);
-using CallbackOnEndDrag = void(App * app);
+using CallbackOnDrag = void(App * app);
 using CallbackOnValueChanged = void(App * app, double value);
 
 class Slider :
 	public Component
 {
 public:
-	Slider(double minValue, double maxValue);
-	Slider(double minValue, double maxValue, CallbackOnValueChanged* valueChanged, CallbackOnStartDrag* startDrag = nullptr, CallbackOnEndDrag endDrag = nullptr);
+	Slider(double minValue, double maxValue, int steps = 10);
+	Slider(double minValue, double maxValue, int steps, CallbackOnValueChanged* valueChanged, CallbackOnDrag* startDrag = nullptr, CallbackOnDrag endDrag = nullptr);
 
-	inline void setCallbackOnStartDrag(CallbackOnStartDrag* callback) {
+	inline void setCallbackOnStartDrag(CallbackOnDrag* callback) {
 		startDrag_ = callback;
 	}
-	inline void setCallbackOnEndDrag(CallbackOnEndDrag* callback) {
+	inline void setCallbackOnEndDrag(CallbackOnDrag* callback) {
 		endDrag_ = callback;
 	}
 	inline void setCallbackOnValueChanged(CallbackOnValueChanged* callback) {
@@ -37,8 +35,9 @@ protected:
 	bool dragging_ = false;
 	double value_ = 0;
 	double minValue_, maxValue_;
-	CallbackOnStartDrag* startDrag_ = nullptr;
-	CallbackOnEndDrag* endDrag_ = nullptr;
+	int steps_; // if steps < 1, continuous
+	CallbackOnDrag* startDrag_ = nullptr;
+	CallbackOnDrag* endDrag_ = nullptr;
 	CallbackOnValueChanged* valueChanged_ = nullptr;
 
 	virtual void dragValue();

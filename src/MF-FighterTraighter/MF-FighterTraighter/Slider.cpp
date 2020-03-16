@@ -1,17 +1,18 @@
 #include "Slider.h"
 #include "Entity.h"
 
-Slider::Slider(double minValue, double maxValue) : Component(ecs::Slider), tr_(nullptr), minValue_(minValue), maxValue_(maxValue)
+Slider::Slider(double minValue, double maxValue, int steps) : Component(ecs::Slider), tr_(nullptr), minValue_(minValue), maxValue_(maxValue), steps_(steps)
 {
 }
 
-Slider::Slider(double minValue, double maxValue, CallbackOnValueChanged* valueChanged, CallbackOnStartDrag* startDrag, CallbackOnEndDrag endDrag)
-	: Component(ecs::Slider), tr_(nullptr), valueChanged_(valueChanged), startDrag_(startDrag), endDrag_(endDrag), minValue_(minValue), maxValue_(maxValue)
+Slider::Slider(double minValue, double maxValue, int steps, CallbackOnValueChanged* valueChanged, CallbackOnDrag* startDrag, CallbackOnDrag endDrag)
+	: Component(ecs::Slider), tr_(nullptr), valueChanged_(valueChanged), startDrag_(startDrag), endDrag_(endDrag), minValue_(minValue), maxValue_(maxValue), steps_(steps)
 {
 }
 
 void Slider::init()
 {
+	value_ = minValue_;
 	tr_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 
@@ -34,7 +35,8 @@ void Slider::handleInput()
 
 void Slider::setValueOnClick()
 {
-	value_ = (app_->getInputManager()->getMousePosX() - tr_->getPosition().getX()) / tr_->getWidth() * (maxValue_ - minValue_) + minValue_;
+	double a = (value_ + app_->getInputManager()->getMousePosX() - tr_->getPosition().getX()) / tr_->getWidth() * tr_->getWMult() * (maxValue_ - minValue_) + minValue_;
+	setValue(a);
 }
 
 void Slider::update()
@@ -51,8 +53,8 @@ void Slider::dragValue()
 	InputManager* input = app_->getInputManager();
 	Vector2D mouseMovement = input->getMouseMovement();
 	Vector2D mousePos = input->getMousePos();
-	if (mouseMovement.getX() != 0 && mousePos.getX() >= tr_->getPosition().getX() && mousePos.getX() <= tr_->getPosition().getX() + tr_->getWidth()) {
-		setValue(value_ + mouseMovement.getX() / tr_->getWidth() * (maxValue_ - minValue_));
+	if (mouseMovement.getX() != 0 && mousePos.getX() >= tr_->getPosition().getX() && mousePos.getX() <= tr_->getPosition().getX() + tr_->getWidth() * tr_->getWMult()) {
+		setValueOnClick();
 	}
 }
 
@@ -64,6 +66,19 @@ void Slider::render()
 void Slider::setValue(double newValue)
 {
 	double oldValue = value_;
+	if (steps_ >= 1) { // if steps < 1, continuous
+		double distanceBetweenSteps = (maxValue_ - minValue_) / steps_;
+		int i = 0;
+		bool stop = false;
+		while (i <= steps_ && !stop) {
+			double currentValue = minValue_ + distanceBetweenSteps * i;
+			if (currentValue - distanceBetweenSteps / 2 <= newValue && currentValue + distanceBetweenSteps / 2 >= newValue) {
+				newValue = currentValue;
+				stop = true;
+			}
+			++i;
+		}
+	}
 	value_ = newValue;
 
 	if (value_ < minValue_)

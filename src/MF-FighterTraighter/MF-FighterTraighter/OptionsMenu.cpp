@@ -53,7 +53,7 @@ void OptionsMenu::init()
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Slider>(0.4, 1, SetBright); // min = 0.4 to be able to see
+	ent->addComponent<Slider>(0.4, 1, 6, SetBright); // min = 0.4 to be able to see
 	scene.push_back(ent);
 	/*
 	ent = new Entity();
@@ -74,7 +74,9 @@ void GoBackCallback(App* app) {
 
 void SetBright(App* app, double value)
 {
-	SDL_SetWindowBrightness(app->getWindow(), value);
+	SDL_SetWindowBrightness(app->getWindow(), value); // si a alguien se le queda la pantalla oscura, que ponga aquí un 1 y descomente lo de abajo
+	//int b = 0;
+	//int a = 1 / b;
 }
 
 void SetVolume(App* app, double value) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
