@@ -23,5 +23,6 @@ private:
 	Entity* options;
 	Entity* exit;
 
-	vector<Vector2D> posButtons;
+	vector<Entity*> buttons;
+	int buttonSel = 0;
 };
