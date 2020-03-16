@@ -157,7 +157,6 @@ void fullScreen(App* app) {
 void Button::handleInput()
 {
 	if (app_->getInputManager()->isMouseButtonPressed(app_->getInputManager()->Left)) {
-		cout << "click";
 		SDL_Point p = { app_->getInputManager()->getMousePosX(),app_->getInputManager()->getMousePosY() };
 
 		Vector2D pos = trans_->getPosition();

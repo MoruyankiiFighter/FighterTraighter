@@ -12,7 +12,7 @@ void InputManager::update()
 	// For later knowing if the mouse moved
 	Vector2D tempMousePos = mousePos_;
 
-	clearState();
+	//clearState();
 	SDL_Event e;
 	while(SDL_PollEvent(&e)) {
 		switch (e.type) {
