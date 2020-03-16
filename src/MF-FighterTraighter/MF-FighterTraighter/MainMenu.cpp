@@ -55,6 +55,7 @@ void MainMenu::init()
 	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
 	arcade->addComponent<Button>(GoArcade);
 	scene.push_back(arcade);
+	posButtons.push_back(t->getPosition());
 
 	pvp = new Entity();
 	pvp->setApp(app_);
@@ -66,6 +67,7 @@ void MainMenu::init()
 	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1)); 
 	pvp->addComponent<Button>(Go1v1);
 	scene.push_back(pvp);
+	posButtons.push_back(tr->getPosition());
 
 	options = new Entity();
 	options->setApp(app_);
@@ -77,6 +79,7 @@ void MainMenu::init()
 	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	options->addComponent<Button>(GoOptions);
 	scene.push_back(options);
+	posButtons.push_back(tra->getPosition());
 
 	exit = new Entity();
 	exit->setApp(app_);
@@ -88,6 +91,7 @@ void MainMenu::init()
 	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	exit->addComponent<Button>(Leave);
 	scene.push_back(exit);
+	posButtons.push_back(tran->getPosition());
 }
 
 void MainMenu::GoArcade(App* app)
@@ -108,4 +112,13 @@ void MainMenu::GoOptions(App* app)
 void MainMenu::Leave(App* app)
 {
 	app->Exit();
+}
+
+void MainMenu::update() {
+	/*for (int i = 0; i < posButtons.size(); i++) {
+		
+	}*/
+	if (app_->getInputManager()->getJoyY() == -1) {
+		
+	}
 }
