@@ -34,7 +34,7 @@ void Slider::handleInput()
 
 void Slider::setValueOnClick()
 {
-	value_ = (app_->getInputManager()->getMousePosX() - tr_->getPosition().getX()) / tr_->getWidth() * (maxValue_ - minValue_);
+	value_ = (app_->getInputManager()->getMousePosX() - tr_->getPosition().getX()) / tr_->getWidth() * (maxValue_ - minValue_) + minValue_;
 }
 
 void Slider::update()
@@ -50,7 +50,8 @@ void Slider::dragValue()
 {
 	InputManager* input = app_->getInputManager();
 	Vector2D mouseMovement = input->getMouseMovement();
-	if (mouseMovement.getX() != 0) {
+	Vector2D mousePos = input->getMousePos();
+	if (mouseMovement.getX() != 0 && mousePos.getX() >= tr_->getPosition().getX() && mousePos.getX() <= tr_->getPosition().getX() + tr_->getWidth()) {
 		setValue(value_ + mouseMovement.getX() / tr_->getWidth() * (maxValue_ - minValue_));
 	}
 }

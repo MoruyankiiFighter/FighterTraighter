@@ -17,7 +17,8 @@ void VerticalSlider::dragValue()
 {
 	InputManager* input = app_->getInputManager();
 	Vector2D mouseMovement = input->getMouseMovement();
-	if (mouseMovement.getY() != 0) {
+	Vector2D mousePos = input->getMousePos();
+	if (mouseMovement.getY() != 0 && mousePos.getY() >= tr_->getPosition().getY() && mousePos.getY() <= tr_->getPosition().getY() + tr_->getHeight()) {
 		setValue(value_ + mouseMovement.getY() / tr_->getHeight() * (maxValue_ - minValue_));
 	}
 }
