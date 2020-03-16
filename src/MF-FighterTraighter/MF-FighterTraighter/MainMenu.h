@@ -9,6 +9,7 @@ public:
 	MainMenu(App* app);
 	virtual ~MainMenu();
 	void init();
+	void update();
 
 	//Funciones botones
 	static void GoArcade(App* app);
@@ -21,4 +22,7 @@ private:
 	Entity* pvp;
 	Entity* options;
 	Entity* exit;
+
+	vector<Entity*> buttons;
+	int buttonSel = 0;
 };

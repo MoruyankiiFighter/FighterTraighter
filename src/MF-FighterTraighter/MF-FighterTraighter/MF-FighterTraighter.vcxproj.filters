@@ -150,6 +150,9 @@
     <ClCompile Include="PlayerAttacks.cpp">
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
+    <ClCompile Include="Health.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -230,12 +233,6 @@
     <ClInclude Include="consts.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Options.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -259,9 +256,6 @@
     </ClInclude>
     <ClInclude Include="PunchingBagCollision.h">
       <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Hitbox.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="AnimationChain.h">
       <Filter>Archivos de encabezado\Moves</Filter>

@@ -55,6 +55,7 @@ void MainMenu::init()
 	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
 	arcade->addComponent<Button>(GoArcade);
 	scene.push_back(arcade);
+	buttons.push_back(arcade);
 
 	pvp = new Entity();
 	pvp->setApp(app_);
@@ -66,6 +67,7 @@ void MainMenu::init()
 	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1)); 
 	pvp->addComponent<Button>(Go1v1);
 	scene.push_back(pvp);
+	buttons.push_back(pvp);
 
 	options = new Entity();
 	options->setApp(app_);
@@ -77,6 +79,7 @@ void MainMenu::init()
 	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	options->addComponent<Button>(GoOptions);
 	scene.push_back(options);
+	buttons.push_back(options);
 
 	exit = new Entity();
 	exit->setApp(app_);
@@ -88,6 +91,7 @@ void MainMenu::init()
 	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	exit->addComponent<Button>(Leave);
 	scene.push_back(exit);
+	buttons.push_back(exit);
 }
 
 void MainMenu::GoArcade(App* app)
@@ -108,4 +112,17 @@ void MainMenu::GoOptions(App* app)
 void MainMenu::Leave(App* app)
 {
 	app->Exit();
+}
+
+void MainMenu::update() {
+	
+	//subir al boton de arriba si existe
+	if (/*si existe &&*/app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9) {
+		buttonSel--;
+	}
+	//bajar al boton de abajo si existe
+	else if (/*si existe &&*/app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.9) {
+		buttonSel++;
+	}
+	//buttons.at(buttonSel)->estaSeleccionado
 }
