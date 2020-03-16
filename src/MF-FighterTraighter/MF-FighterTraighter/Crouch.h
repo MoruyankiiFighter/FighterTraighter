@@ -19,9 +19,9 @@ private:
 	//Transform* tr_;
 	PhysicsTransform* tr_ = nullptr;
 
-	bool canCrouch=false;
+	bool canCrouch = false;
 	Vector2D pos;
-	int initialHeight;
-	double crouchPercent;
+	double initialHeight;
+	double crouchPercent; //el número entre cuánto queremos que se divida el hitbox
 };
 
