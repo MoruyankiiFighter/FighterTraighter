@@ -80,7 +80,7 @@ void SetBright(App* app)
 	SDL_SetWindowBrightness(app->getWindow(), bright);
 }
 
-///AÑADIR SOUND MANAGER
+///Aï¿½ADIR SOUND MANAGER
 
 //changing volume music
 void moreVolume(App* app) {
@@ -160,7 +160,6 @@ void fullScreen(App* app) {
 void Button::handleInput()
 {
 	if (app_->getInputManager()->isMouseButtonPressed(app_->getInputManager()->Left)) {
-
 		SDL_Point p = { app_->getInputManager()->getMousePosX(),app_->getInputManager()->getMousePosY() };
 		Vector2D pos = trans_->getPosition();
 		SDL_Rect destRect = { pos.getX(), pos.getY(), trans_->getWidth() * trans_->getWMult(), trans_->getHeight() * trans_->getHMult() };

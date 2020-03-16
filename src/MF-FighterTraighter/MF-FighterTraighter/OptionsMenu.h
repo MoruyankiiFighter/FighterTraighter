@@ -32,8 +32,6 @@ public:
 
 	void init() override;
 	virtual void update() override;
-	virtual void render() override;
-	void handleInput();
 
 private:
 	Entity* reg_bright;
