@@ -4,11 +4,6 @@
 #include <string>
 
 //callbacks para el menu de pausa
-void ContinuePlayingCallback(App* app);
-void MovementsCallback(App* app);
-void MenuCallback(App* app);
-void OptionsCallback(App* app);
-
 class PauseMenu: public GameState
 {
 
@@ -23,5 +18,10 @@ public:
 	virtual void render() override;
 	virtual void update() override;
 	void handleInput();
+
+	static void Resume(App* app);
+	static void GoMainMenu(App* app);
+	static void ShowMeYourMoves(App* app);
+	static void GoOptions(App* app);
 };
 
