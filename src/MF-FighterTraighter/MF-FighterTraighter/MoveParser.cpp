@@ -14,7 +14,7 @@ std::vector<AnimationChain*> MoveParser::parseFile(string filePath)
 			
 			while (str != "0") {
 				mov.push_back(new Move(std::stoi(str), nullptr, nullptr));
-				getline(stream, str, '\n'); //habrá que ver cómo pasamos de string a callback
+				getline(stream, str, '\n'); //habrá que ver cómo pasamos de string a callback AAAAAAAAAAAAAA NO SÉ CÓMO
 				getline(stream, str, '\n');
 			}
 			chains.push_back(new AnimationChain(mov));

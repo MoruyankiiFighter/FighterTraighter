@@ -29,7 +29,7 @@ Entity* FactoryMk::addMkToGame(App* app, b2World* world)
 	return e;
 }
 
-
+//Esto es para geenrar hitboxes, habrá uno para cada hitbox generada
 void FactoryMk::moveHurt()
 {
 	std::cout << "Golpe" << endl;
