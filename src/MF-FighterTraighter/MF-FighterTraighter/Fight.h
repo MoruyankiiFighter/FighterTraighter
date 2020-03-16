@@ -15,17 +15,15 @@ public:
 	virtual void update() override;
 	virtual void render() override;
 	virtual ~Fight();
-
-
-	//PARA TESTEAR CALLBACKS
-	void moveHurt();
-
-
 private:
 	std::vector<Move*> vecMov;//until we have factories to create characters
 	b2World* world;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	//Debugging physics transform
 	//Transform* pTR_ = nullptr;
+
+
+	//PARA TESTEAR CALLBACKS
+	static void moveHurt();
 };
 
