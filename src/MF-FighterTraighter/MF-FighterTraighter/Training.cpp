@@ -77,11 +77,11 @@ void Training::update()
 		i++;
 	}
 	
-		world->Step(1.0 / 30, 8, 3);//update box2d+
-		for (auto e : fListRemove) {
-			scene.front()->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->DestroyFixture(e);
-		}
-		fListRemove.clear();
+	world->Step(1.0 / 30, 8, 3);//update box2d+
+	for (auto e : fListRemove) {
+		scene.front()->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->DestroyFixture(e);
+	}
+	fListRemove.clear();
 
 }
 

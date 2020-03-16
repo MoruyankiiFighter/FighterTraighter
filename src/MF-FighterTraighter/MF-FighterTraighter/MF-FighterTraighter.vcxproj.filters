@@ -156,6 +156,9 @@
     <ClCompile Include="creatorBody.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="HitboxMng.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -276,6 +279,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="creatorBody.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxMng.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

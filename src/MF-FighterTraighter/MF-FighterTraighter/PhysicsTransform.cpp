@@ -45,6 +45,7 @@ void PhysicsTransform::init() {
 }
 
 void PhysicsTransform::setHeight(double height) {
+	fList.clear();
 	body_->DestroyFixture(body_->GetFixtureList());
 
 	b2PolygonShape shape;
@@ -53,12 +54,14 @@ void PhysicsTransform::setHeight(double height) {
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0;
 
-	body_->CreateFixture(&fixturedef);
+	fList.push_back(body_->CreateFixture(&fixturedef));
 
 	height_ = height;
 }
 
 void PhysicsTransform::setWidth(double width) {
+	fList.clear();
+
 	body_->DestroyFixture(body_->GetFixtureList());
 
 	b2PolygonShape shape;
@@ -67,11 +70,13 @@ void PhysicsTransform::setWidth(double width) {
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0;
 
-	body_->CreateFixture(&fixturedef);
+	fList.push_back(body_->CreateFixture(&fixturedef));
 	width_ = width;
 }
 
 void PhysicsTransform::setWidthHeight(double width, double height) {
+	fList.clear();
+
 	body_->DestroyFixture(body_->GetFixtureList());
 
 	b2PolygonShape shape;
@@ -80,7 +85,7 @@ void PhysicsTransform::setWidthHeight(double width, double height) {
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0;
 
-	body_->CreateFixture(&fixturedef);
+	fList.push_back(body_->CreateFixture(&fixturedef));
 	width_ = width;
 	height_ = height;
 }
