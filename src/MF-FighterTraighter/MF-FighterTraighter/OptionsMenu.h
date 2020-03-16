@@ -8,8 +8,5 @@ public:
 	virtual ~OptionsMenu();
 
 	void init() override;
-	virtual void update() override;
-	virtual void render() override;
-	void handleInput();
 };
 

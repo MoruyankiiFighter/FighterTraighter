@@ -6,6 +6,7 @@
 #include "PauseMenu.h"
 #include "Crouch.h"
 #include "MoveParser.h"
+#include "FactoryMk.h"
 
 using callBackOnEnd = void();
 
@@ -22,31 +23,13 @@ void Fight::init()
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
 	//---------------------------------------------------------------
-
-	Entity* e = new Entity(); // Until we have factories
-	e->setApp(app_);
-	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 50, 50, 0,world);
-	e->addComponent<PlayerController>();
-	e->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
-	e->addComponent<Jump>(-1000);
-	e->addComponent<Crouch>();
-
-	std::vector<Move*> vecMov = std::vector<Move*>(2);
-	vecMov[0] = new Move(100, nullptr, moveHurt);
-	vecMov[1] = new Move(50, nullptr, nullptr);
-	AnimationChain* testNP = new AnimationChain(vecMov);
-	AnimationChain* testHP = new AnimationChain(vecMov);
-	AnimationChain* testNK = new AnimationChain(vecMov);
-	AnimationChain* testHK = new AnimationChain(vecMov);
-	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
-	e->addComponent<PlayerAttacks>(testNP, SDL_SCANCODE_Q, testHP, SDL_SCANCODE_E, testNK, SDL_SCANCODE_Z, testHK, SDL_SCANCODE_X);
 	
-	scene.push_back(e);
+	entManager_.getScene().push_back(FactoryMk::addMkToGame(app_, world));
 
 	Entity* floor = new Entity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
-	scene.push_back(floor);
+	entManager_.getScene().push_back(floor);
 	
 }
 
@@ -81,9 +64,4 @@ Fight::~Fight()
 	}
 	delete world;
 	delete debugInstance;
-}
-
-void Fight::moveHurt()
-{
-	std::cout << "Golpe" << endl;
 }

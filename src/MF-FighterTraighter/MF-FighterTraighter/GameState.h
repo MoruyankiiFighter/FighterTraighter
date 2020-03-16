@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
 #include "SDL.h"
-class Entity;
+#include "EntityManager.h"
 class App;
 
 class GameState
@@ -17,8 +17,9 @@ public:
 	virtual void empty();
 	virtual ~GameState();
 	App* giveMeApp() { return app_; };
+	EntityManager& getEntManager() { return entManager_; };
 protected:
-	std::list<Entity*> scene;
 	App* app_;
+	EntityManager entManager_;
 };
 

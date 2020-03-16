@@ -21,9 +21,5 @@ private:
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	//Debugging physics transform
 	//Transform* pTR_ = nullptr;
-
-
-	//PARA TESTEAR CALLBACKS
-	static void moveHurt();
 };
 

@@ -28,9 +28,6 @@
     <Filter Include="Archivos de encabezado\Components">
       <UniqueIdentifier>{f31faeee-01d9-4022-b058-d9447ce6a2c2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\Movement">
-      <UniqueIdentifier>{6133e375-d35e-487c-b953-0efb74f0ab26}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de encabezado\GameState">
       <UniqueIdentifier>{fab6bf26-e784-4081-b8be-c7e21703c5c0}</UniqueIdentifier>
     </Filter>
@@ -159,6 +156,12 @@
     <ClCompile Include="MoveParser.cpp">
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
+    <ClCompile Include="FactoryMk.cpp">
+      <Filter>Archivos de origen\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Archivos de origen\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -280,6 +283,12 @@
     </ClInclude>
     <ClInclude Include="MoveParser.h">
       <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryMk.h">
+      <Filter>Archivos de encabezado\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Archivos de encabezado\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
