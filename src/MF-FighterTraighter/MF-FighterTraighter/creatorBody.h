@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "Vector2D.h"
 #include "Hitbox.h"
+#include <vector>
 class creatorBody : public Component
 {
 public:
@@ -18,5 +19,6 @@ private:
 	b2Body* body_;
 	int time_ = 0;
 	b2Fixture* fixture_= nullptr;
+	vector<b2Fixture*> fList;
 };
 

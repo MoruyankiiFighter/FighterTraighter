@@ -72,10 +72,23 @@ void Training::handleInput()
 void Training::update()
 {
 	GameState::update();
-
-	world->Step(1.0 / 30, 8, 3);//update box2d
+	if (i == 0) {
+		scene.front()->getComponent<PhysicsTransform>(ecs::Transform)->destroy();
+		i++;
+	}
+	
+		world->Step(1.0 / 30, 8, 3);//update box2d+
+		for (auto e : fListRemove) {
+			scene.front()->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->DestroyFixture(e);
+		}
+		fListRemove.clear();
 
 }
+
+void Training::addToRemove(b2Fixture* fixture) {
+	fListRemove.push_back(fixture);
+}
+
 
 void Training::render() {
 	SDL_RenderClear(app_->getRenderer());

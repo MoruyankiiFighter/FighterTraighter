@@ -1,7 +1,7 @@
 #pragma once
 #include "Transform.h"
 #include "Box2D\Box2D.h"
-
+# include <vector>
 class PhysicsTransform : public Transform
 {
 public:
@@ -36,9 +36,11 @@ public:
 	}*/
 	b2Body* getBody() { return body_; }
 	//void update() override { std::cout << body_->GetPosition().x << "/" <<body_->GetPosition().y << std::endl;} para testear
-
+	void destroy();
 private:
 	b2World* world_;	//puntero al mundo para destruirse
 	b2Body* body_;
+	vector<b2Fixture*> fList;
+
 };
 

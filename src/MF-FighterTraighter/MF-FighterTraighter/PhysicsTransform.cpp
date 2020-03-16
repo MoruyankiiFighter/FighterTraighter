@@ -1,4 +1,5 @@
 #include "PhysicsTransform.h"
+#include "Training.h"
 PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn)
 	: Transform(position, speed, width, height, rotation)
 {
@@ -14,10 +15,23 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	//shape.s
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 0.05;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
+	fixturedef.density = 0.00001;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
+	//body_->CreateFixture(&fixturedef);
+	body_->SetFixedRotation(true);
+	fList.push_back(body_->CreateFixture(&fixturedef));
 
-	body_->CreateFixture(&fixturedef);
+	b2PolygonShape shape2;
+	shape2.SetAsBox(width * wMult_ / 2, height * hMult_ / 2,b2Vec2(100,0),0);
+	//shape.s
+	b2FixtureDef fixturedef2;
+	fixturedef2.shape = &shape2;
+	fixturedef2.density = 0.00001;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
+	//body_->SetFixedRotation(true);
+	//body_->CreateFixture(&fixturedef2);
+	fList.push_back(body_->CreateFixture(&fixturedef2));
+
 	
+
 }
 
 
@@ -27,6 +41,7 @@ PhysicsTransform::~PhysicsTransform() {
 
 void PhysicsTransform::init() {
 	body_->SetUserData(this->entity_);	//tener acceso a la entidad para hacer cosas con las colisiones
+
 }
 
 void PhysicsTransform::setHeight(double height) {
@@ -68,4 +83,10 @@ void PhysicsTransform::setWidthHeight(double width, double height) {
 	body_->CreateFixture(&fixturedef);
 	width_ = width;
 	height_ = height;
+}
+
+void PhysicsTransform::destroy()
+{
+	static_cast<Training*>(app_->getStateMachine()->getCurrentState())->addToRemove(fList.back());
+
 }
