@@ -148,6 +148,8 @@ void fullScreen(App* app) {
 	else
 	{
 		SDL_SetWindowFullscreen(app->getWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
+		SDL_RenderSetLogicalSize(app->getRenderer(), WINDOW_WIDTH_, WINDOW_HEIGHT_); //para que se redimensionen a su proporcion
+
 	}
 }
 
