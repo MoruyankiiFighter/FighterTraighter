@@ -79,7 +79,7 @@ void App::init()
 		WINDOW_WIDTH_, WINDOW_HEIGHT_, SDL_WINDOW_SHOWN);
 	
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
+	SDL_RenderSetLogicalSize(renderer, WINDOW_WIDTH_, WINDOW_HEIGHT_); //para que se redimensionen a su proporcion
 	if (!window || !renderer) {
 		//throw another Error
 	}

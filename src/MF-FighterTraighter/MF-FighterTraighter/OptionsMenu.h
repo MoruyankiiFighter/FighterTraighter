@@ -36,8 +36,6 @@ public:
 	void handleInput();
 
 private:
-	float current_volume = 0;
-	float current_bright = 0;
 	Entity* reg_bright;
 	Entity* reg_volume;
 
