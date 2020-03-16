@@ -25,16 +25,21 @@ public:
 	// get and set for width and height
 	virtual double getWidth() const { return width_; }
 	virtual double getHeight() const { return height_; }
-
-	virtual double getWMult() const { return wMult_; }
-	virtual double getHMult() const { return hMult_; }
-
-	virtual void setHMult(double i) { hMult_ = i; }
-	virtual void setWMult(double i) { wMult_ = i; }
-
+	
+	// get the scale from x and y
+	virtual double getScaleX() const { return scale_x; }
+	virtual double getScaleY() const { return scale_y; }
+	
+	//set the scale 
+	virtual void setScaleX(double i) { scale_x = i; }
+	virtual void setScaleY(double i) { scale_y = i; }
+	
+	//set width
 	virtual void setWidth(double width) { width_ = width; }
+	//set height
 	virtual void setHeight(double height) { height_ = height; }
 
+	//set width and height
 	virtual void setWidthHeight(double width, double height) {
 		setWidth(width);
 		setHeight(height); 
@@ -47,8 +52,9 @@ public:
 protected:
 	Vector2D position_;
 	Vector2D speed_;
+	
 	double width_=0, height_=0, rotation_=0;
-	double wMult_ = 1, hMult_ = 1;
+	double scale_x = 1, scale_y = 1;
 
 };
 

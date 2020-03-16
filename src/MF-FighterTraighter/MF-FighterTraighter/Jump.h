@@ -6,13 +6,20 @@
 class Jump : public Component
 {
 public:
+	//constructor
 	Jump(float jImpulse);
-	virtual ~Jump() {};
+	//destructor
+	virtual ~Jump();
+
+	//methods of overrided from component
+	
 	void init() override;
-	void handleInput() override; // separate into two?
+	void handleInput() override; 
 	void update() override;
+
 private:
-	PhysicsTransform* pTR_ = nullptr;
+
+	PhysicsTransform* physics_transform_ = nullptr;
 	float jumpImpulse = 0;
 	bool onGround = true;
 };

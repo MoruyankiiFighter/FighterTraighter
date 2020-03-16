@@ -68,27 +68,6 @@ void PauseMenu::init()
 	scene.push_back(ent);
 }
 
-void PauseMenu::render()
-{
-	SDL_RenderClear(app_->getRenderer());
-
-	for (auto e : scene) {
-		e->getComponent<RenderImage>(ecs::RenderImage)->render();
-	}
-
-	SDL_RenderPresent(app_->getRenderer());
-}
-
-void PauseMenu::update()
-{
-}
-
-void PauseMenu::handleInput()
-{
-	for (auto var : scene) {
-		var->handleInput();
-	}
-}
 
 void PauseMenu::Resume(App* app)
 {

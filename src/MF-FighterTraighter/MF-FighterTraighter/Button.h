@@ -3,10 +3,6 @@
 
 using CallBackOnClick = void(App* app);
 
-////callback para el juego
-//void PauseCallback(App* app);
-
-
 class Button : public Component {
 
 public:

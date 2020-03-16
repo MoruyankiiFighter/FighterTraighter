@@ -7,13 +7,15 @@ class PlayerController :
 {
 public:
 	PlayerController();
+	virtual ~PlayerController();
+
+	// methods overrided from component
 	void init() override;
 	void handleInput() override; // separate into two?
 	void update() override;
-	virtual ~PlayerController();
 private:
-	Transform* tr_;
+	Transform* transform_=nullptr;
 
-	Vector2D dir_;
+	Vector2D direction_ = {NULL,NULL};
 };
 

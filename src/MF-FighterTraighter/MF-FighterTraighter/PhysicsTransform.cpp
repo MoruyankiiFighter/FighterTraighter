@@ -29,6 +29,12 @@ void PhysicsTransform::init() {
 	body_->SetUserData(this->entity_);	//tener acceso a la entidad para hacer cosas con las colisiones
 }
 
+const Vector2D& PhysicsTransform::getPosition() const
+{
+	Vector2D pos{ body_->GetTransform().p.x - width_ * wMult_ / 2, body_->GetTransform().p.y - height_ * hMult_ / 2 };
+	return  pos;
+}
+
 void PhysicsTransform::setHeight(double height) {
 	body_->DestroyFixture(body_->GetFixtureList());
 
@@ -41,6 +47,12 @@ void PhysicsTransform::setHeight(double height) {
 	body_->CreateFixture(&fixturedef);
 
 	height_ = height;
+}
+
+const Vector2D& PhysicsTransform::getSpeed() const
+{
+	Vector2D pos{ body_->GetLinearVelocity().x,body_->GetLinearVelocity().y };
+	return pos;
 }
 
 void PhysicsTransform::setWidth(double width) {

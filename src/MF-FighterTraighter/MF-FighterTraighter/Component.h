@@ -8,12 +8,18 @@ class Component
 {
 
 public:
+
+	//constructor
 	Component(ecs::CmpId id);
+	//destructor
 	virtual ~Component();
 
+	//set the entity of the component
 	inline void setEntity(Entity* entity) { entity_ = entity; }
+	//set the app
 	inline void setApp(App* app) { app_ = app; }
 
+	//return the ID of the component
 	ecs::CmpId getID() { return id_; }
 
 	virtual void init() {} // get required pointers at runtime
@@ -23,8 +29,8 @@ public:
 
 
 protected:
-	Entity* entity_;
-	App* app_;
+	Entity* entity_=nullptr;
+	App* app_=nullptr;
 	ecs::CmpId id_;
 };
 

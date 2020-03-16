@@ -3,20 +3,24 @@
 #include "Vector2D.h"
 
 
-Jump::Jump(float jImpulse) : Component(ecs::Jump), jumpImpulse(jImpulse), pTR_(nullptr) {}
+Jump::Jump(float jImpulse) : Component(ecs::Jump), jumpImpulse(jImpulse){}
+
+Jump::~Jump()
+{
+	delete physics_transform_;
+	physics_transform_ = nullptr;
+}
 
 
 void Jump::init()
 {
-	pTR_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
+	physics_transform_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 }
 
 void Jump::handleInput()
 {
 	if (onGround &&( app_->getInputManager()->isKeyDown(SDL_SCANCODE_W) || app_->getInputManager()->getJoyY()==-1)) {
-		//pTR_->setSpeed(0, 5);
-		//force and where you use the fore
-		pTR_->getBody()->ApplyLinearImpulse(b2Vec2(0,jumpImpulse),pTR_->getBody()->GetWorldCenter(),true);
+		physics_transform_->getBody()->ApplyLinearImpulse(b2Vec2(0,jumpImpulse),physics_transform_->getBody()->GetWorldCenter(),true);
 		std::cout << "salto" << std::endl;
 	}
 	
@@ -24,6 +28,6 @@ void Jump::handleInput()
 
 void Jump::update()
 {
-	Vector2D velocity = pTR_->getSpeed();
-	onGround = abs(velocity.getY()) <= 2;		//puedes saltar justo cuando empiezas a caer
+	Vector2D speed = physics_transform_->getSpeed();
+	onGround = abs(speed.getY()) <= 2;		//puedes saltar justo cuando empiezas a caer
 }

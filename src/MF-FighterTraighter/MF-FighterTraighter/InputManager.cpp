@@ -51,3 +51,47 @@ void InputManager::clearState()
 		mouseState_[i] = false;
 	}
 }
+
+inline void InputManager::onJoyMotion(SDL_Event& e)
+{
+	if (e.jaxis.which == 0){
+			//X axis motion
+			if (e.jaxis.axis == 0)
+			{
+			//Left of dead zone
+			if (e.jaxis.value < -JOYSTICK_DEAD_ZONE)
+			{
+				xDir = -1;
+			}
+			//Right of dead zone
+			else if (e.jaxis.value > JOYSTICK_DEAD_ZONE)
+			{
+				xDir = 1;
+			}
+			else
+			{
+				xDir = 0;
+			}
+		}
+	}
+	//Y axis motion
+	if (e.jaxis.axis == 1)
+	{
+		//Below of dead zone
+		if (e.jaxis.value < -JOYSTICK_DEAD_ZONE)
+		{
+			yDir = -1;
+		}
+		
+		//Above of dead zone
+		else if (e.jaxis.value > JOYSTICK_DEAD_ZONE)
+		{
+			yDir = 1;
+		}
+		else
+		{
+			yDir = 0;
+		}
+	}
+}
+

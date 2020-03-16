@@ -8,13 +8,17 @@
 class Training: public GameState
 {
 public:
+	//constructor	
 	Training(App* app);
+	//destructor
+	virtual ~Training();
+
+	//methods overrided from GameState
 	void init() override;
 	virtual void update() override;
 	virtual void render() override;
-	virtual ~Training();
 private:
-	b2World* world;
+	b2World* world=nullptr;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	PunchingBagListener* pbListener = nullptr;
 };

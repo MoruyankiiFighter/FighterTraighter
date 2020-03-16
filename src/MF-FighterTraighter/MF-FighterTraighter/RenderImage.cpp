@@ -1,5 +1,10 @@
 #include "RenderImage.h"
 
+void RenderImage::init()
+{
+	trans_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
+}
+
 void RenderImage::render()
 {
 	//tex_->render(trans_->getPosition(), trans_->getWidth(), trans_->getHeight()); //Esto si la escala de transform es un multiplicador

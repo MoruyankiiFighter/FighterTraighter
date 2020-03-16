@@ -23,18 +23,22 @@ using callBackOnEnd = void();
 
 class Move {
 public:
+	// constructor
 	Move() : endingFrame_(15), animaSheet_(nullptr) {};
 	Move(/*string name, idMovimiento id, */int endingFrame, Texture* animSheet) : 
 	/*name_(name), id_(id), */endingFrame_(endingFrame), animaSheet_(animSheet) {};
+	
+	//destructor
 	~Move() {};
+	//set the activeFrame to 0
 	void resetIndex() { activeFrame_ = 0; }
+	
 	bool update();
+	
 	void render();
 private:
 	int activeFrame_ = 0;
-	int endingFrame_ = 15; 
-	/*string name_;
-	dMovimiento id_;*/
-	Texture* animaSheet_;
+	int endingFrame_ = 0; 
+	Texture* animaSheet_=nullptr;
 	callBackOnEnd generateHitbox; //crea hitboxes con daño, posición, escala, empuje y frames de vida
 };

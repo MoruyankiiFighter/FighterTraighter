@@ -6,9 +6,13 @@ class App;
 class MainMenu : public GameState
 {
 public:
+	//constructor
 	MainMenu(App* app);
+	//destructor
 	virtual ~MainMenu();
-	void init();
+	
+	//method overrided from GameState
+	void init() override;
 
 	//Funciones botones
 	static void GoArcade(App* app);
@@ -17,6 +21,7 @@ public:
 	static void Leave(App* app);
 
 private:
+	//Entitys of the buttons
 	Entity* arcade;
 	Entity* pvp;
 	Entity* options;

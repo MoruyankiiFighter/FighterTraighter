@@ -3,22 +3,29 @@
 class Health : public Component
 {
 private:
-	int health;
-	int maxHealth;
+	int health=0;
+	int maxHealth=0;
 public:
 
+	//constructor
 	Health(int health_) :Component(ecs::Health), maxHealth(health_)
 	{
 		health = maxHealth;
 	};
-	//virtual ~Health();
-	//si pierdes vida devuelve true si no es porque estas muerto y devuelve false
+
+	//destructor
+	virtual ~Health() {}
+	
+	//lose life, returns false if health<=0
 	bool LoseLife(unsigned int  damage);
-	//sumas una cantidad a la vida sin pasar los limites
+	
+	//gain life
 	void GainLife(unsigned int life);
-	//set la vida 
-	void setLife(int health);
-	//return la vida 
+	
+	//set life equal health (life = health)
+	void setLife(int newLife);
+
+	//return current life 
 	int getLife();
 
 };

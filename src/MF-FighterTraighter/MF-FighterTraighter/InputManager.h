@@ -8,15 +8,21 @@ class App;
 class InputManager
 {
 public:
+	//mouse buttons
 	enum MouseButton : Uint8 {
 		Left = 0,
 		Right = 1,
 		Middle = 2
 	};
+	//constructor
 	InputManager(App* app);
 	InputManager(InputManager&) = delete;
 	InputManager& operator= (InputManager&) = delete;
 
+	//destructor
+	virtual ~InputManager();
+	
+	// updates the input
 	void update();
 
 	// Keyboard
@@ -57,7 +63,6 @@ public:
 		return yDir;
 	}
 
-	virtual ~InputManager();
 private:
 	void clearState();
 

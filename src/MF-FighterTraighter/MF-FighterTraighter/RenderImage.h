@@ -1,22 +1,22 @@
 #pragma once
 #include "Component.h"
 #include "Texture.h"
-//#include "Transform.h"
 #include "PhysicsTransform.h"
-
 #include "Entity.h"
 
 class RenderImage: public Component
 {
 public:
-	RenderImage(Texture* tex) : Component(ecs::RenderImage), tex_(tex) { };
-	void init() override { 
-		trans_ = entity_->getComponent<PhysicsTransform>(ecs::Transform); 		
-	};
-	virtual void render() override;
+	//constructor
+	RenderImage(Texture* tex) : Component(ecs::RenderImage), texture_(tex) { };
+	//destructor
 	~RenderImage() {};
+
+	// methods overrided from component
+	void init() override ;
+	virtual void render() override;
 private:
-	Transform* trans_;
-	Texture* tex_;
+	Transform* transform_=nullptr;
+	Texture* texture_=nullptr;
 };
 

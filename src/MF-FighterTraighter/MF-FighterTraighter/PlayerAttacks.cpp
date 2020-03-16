@@ -33,6 +33,15 @@ PlayerAttacks::~PlayerAttacks() {
 	}
 	habilityList.clear();*/
 }
+void PlayerAttacks::update()
+{
+	if (activeAttack_ != nullptr) {
+		if (activeAttack_->update()) {
+			activeAttack_ = nullptr;
+		}
+	}
+}
+
 void PlayerAttacks::handleInput() {
 	if (app_->getInputManager()->isKeyDown(highFistKey) && activeAttack_ == nullptr) {
 		activeAttack_ = attacksList[0];

@@ -3,25 +3,30 @@
 #include "Texture.h"
 #include <string>
 
-//callbacks para el menu de pausa
 class PauseMenu: public GameState
 {
 
 public:
+
+	//constructor
 	PauseMenu(App* app) : GameState(app) {
 		std::cout << "Pausado" << endl;
 		init();
 	};
+	//destructor
 	~PauseMenu() {}
 
-	void init();
-	virtual void render() override;
-	virtual void update() override;
-	void handleInput();
-
+	//methods overrided from GameState
+	void init() override;
+	
+	//Callbacks of pause
+	//Resume the game
 	static void Resume(App* app);
+	//quit the game and goes to main menu
 	static void GoMainMenu(App* app);
+	//show the moves
 	static void ShowMeYourMoves(App* app);
+	//go to options
 	static void GoOptions(App* app);
 };
 
