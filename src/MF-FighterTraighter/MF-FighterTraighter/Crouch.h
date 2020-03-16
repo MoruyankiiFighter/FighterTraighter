@@ -19,8 +19,9 @@ private:
 	//Transform* tr_;
 	PhysicsTransform* tr_ = nullptr;
 
-	bool cancrouched=false;
+	bool canCrouch=false;
 	Vector2D pos;
 	int initialHeight;
+	double crouchPercent;
 };
 

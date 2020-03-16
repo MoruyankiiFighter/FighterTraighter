@@ -4,7 +4,8 @@
 
 Crouch::Crouch() : Component(ecs::PlayerController), tr_(nullptr)
 {
-	cancrouched = true;
+	canCrouch = true;
+	crouchPercent = 4;
 }
 
 void Crouch::init()
@@ -15,13 +16,13 @@ void Crouch::init()
 
 void Crouch::handleInput()
 {
-	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_S) && cancrouched) {
+	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_S) && canCrouch) {
 		crouch();
 	}
 	
 	if(app_->getInputManager()->isKeyUp(SDL_SCANCODE_S))
 	{
-		if (!cancrouched)
+		if (!canCrouch)
 		{
 			uncrouch();
 
@@ -33,28 +34,35 @@ void Crouch::handleInput()
 
 void Crouch::update()
 {
-	//tr_->setPosition(tr_->getPosition() + tr_->getSpeed());
+	pos.setX(tr_->getX());
+	pos.setY(tr_->getY());
 }
+
 void Crouch::crouch()
 {
-	cancrouched = false;
-	pos = tr_->getPosition();
-	pos.setY(pos.getY() + tr_->getHeight() - 10);
-	tr_->setHeight(tr_->getHeight() / 2.0);
+	canCrouch = false;
+	
+	tr_->setHeight(tr_->getHeight() / crouchPercent);
+	pos.setY(pos.getY() + (crouchPercent - 1) * tr_->getHeight());
 
-	tr_->setPosition(pos.getX() + tr_->getWidth()/2, pos.getY());
+	tr_->setPosition(pos.getX() , pos.getY());
 
+	//NECESARIO COOLDOWN
 }
 
 
 //animaciones de agachar
 void Crouch::uncrouch()
 {
-	cancrouched = true;
+	canCrouch = true;
 
-	tr_->setPosition(pos.getX()+tr_->getWidth()/2, pos.getY() - tr_->getHeight() / 2.0);
+	pos.setY(pos.getY() - crouchPercent  * tr_->getHeight());
 
+	tr_->setPosition(pos.getX(), pos.getY());
 	tr_->setHeight(initialHeight);
+
+
+	
 
 
 

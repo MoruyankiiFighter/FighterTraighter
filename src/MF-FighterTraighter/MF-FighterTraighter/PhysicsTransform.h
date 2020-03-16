@@ -15,7 +15,6 @@ public:
 	}
 	virtual void setPosition(const Vector2D& v) {/* body_->SetTransform(b2Vec2());*/ }
 	virtual void setPosition(double x, double y) { body_->SetTransform({ (float32)x,(float32)y }, body_->GetAngle()); }
-
 	//get and set for speed
 	virtual const Vector2D& getSpeed() const { /*return speed_;*/ Vector2D pos{ body_->GetLinearVelocity().x,body_->GetLinearVelocity().y };
 	return pos;
@@ -27,6 +26,14 @@ public:
 	virtual void setHeight(double height);
 
 	virtual void setWidthHeight(double width, double height);
+
+	virtual const  float32 getY() {
+		return  body_->GetPosition().y;
+	}
+	virtual const  float32 getX() {
+		return  body_->GetPosition().x;
+		
+	}
 
 	//forces
 	virtual void ApplyLinearImpulse(float32 xImp, float32 yImp) {
