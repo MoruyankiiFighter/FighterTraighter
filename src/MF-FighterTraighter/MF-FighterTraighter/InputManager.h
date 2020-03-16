@@ -46,6 +46,9 @@ public:
 	inline const Vector2D& getMousePos() {
 		return mousePos_;
 	};
+	inline const Vector2D& getMouseMovement() {
+		return mouseMovementInFrame_;
+	}
 
 	// Controller
 	inline  const int getJoyX()
@@ -130,4 +133,5 @@ private:
 	int yDir;
     const int JOYSTICK_DEAD_ZONE = 8000;
 	std::array<bool, 3> mouseState_; // true = pressed
+	Vector2D mouseMovementInFrame_;
 };

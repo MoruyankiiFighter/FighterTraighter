@@ -9,6 +9,9 @@ InputManager::InputManager(App* app) : app_(app)
 
 void InputManager::update()
 {
+	// For later knowing if the mouse moved
+	Vector2D tempMousePos = mousePos_;
+
 	clearState();
 	SDL_Event e;
 	while(SDL_PollEvent(&e)) {
@@ -39,6 +42,9 @@ void InputManager::update()
 
 		}
 	}
+
+	// After mouse has updated its position, update the mouse movement
+	mouseMovementInFrame_ = mousePos_ - tempMousePos;
 }
 
 InputManager::~InputManager()
