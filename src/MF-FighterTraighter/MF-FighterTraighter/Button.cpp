@@ -10,6 +10,7 @@ void Button::init()
 	trans_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 
+//Changing Gamestates
 void ArcadeCallback(App* app) {
 	app->PlayArcade();
 }
@@ -30,23 +31,6 @@ void GoBackCallback(App* app) {
 	app->getStateMachine()->popState();
 }
 
-void SetBright(App* app)
-{
-	float bright = SDL_GetWindowBrightness(app->getWindow());
-
-	bright = ((app->getInputManager()->getMousePosX()/800));
-	SDL_SetWindowBrightness(app->getWindow(), bright);
-}
-
-void SetVolume(App* app) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
-{
-	float bright = SDL_GetWindowBrightness(app->getWindow());
-
-	bright = ((app->getInputManager()->getMousePosX() / 800));
-	SDL_SetWindowBrightness(app->getWindow(), bright);
-}
-
-
 void ContinuePlayingCallback(App* app) {
 	app->ContinuePlaying();
 }
@@ -64,7 +48,8 @@ void OptionsCallback(App* app)
 	app->Options();
 }
 
-//brightness
+
+//changing brightness
 void moreBright(App* app) {
 	float bright = SDL_GetWindowBrightness(app->getWindow());
 
@@ -76,6 +61,7 @@ void moreBright(App* app) {
 	SDL_SetWindowBrightness(app->getWindow(), bright);
 
 }
+
 void lessBright(App* app) {
 	float bright = SDL_GetWindowBrightness(app->getWindow());
 
@@ -86,10 +72,17 @@ void lessBright(App* app) {
 
 	SDL_SetWindowBrightness(app->getWindow(), bright);
 }
+void SetBright(App* app)
+{
+	float bright = SDL_GetWindowBrightness(app->getWindow());
 
-///AÑADIR SOUND MANAGER 
-//volume music
+	bright = ((app->getInputManager()->getMousePosX() / 800));
+	SDL_SetWindowBrightness(app->getWindow(), bright);
+}
 
+///AÑADIR SOUND MANAGER
+
+//changing volume music
 void moreVolume(App* app) {
 	float volume_ = 0; //app_->getAudioManager()->getGeneralVolume();
 
@@ -113,6 +106,15 @@ void lessVolume(App app) {
 	}
 }
 
+void SetVolume(App* app) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
+{
+	float bright = SDL_GetWindowBrightness(app->getWindow());
+
+	bright = ((app->getInputManager()->getMousePosX() / 800));
+	SDL_SetWindowBrightness(app->getWindow(), bright);
+}
+
+
 //SFXVolume
 void moreSFXVolume(App* app) {
 	float volume_ = 0; //app_->getAudioManager()->getGeneralVolume();
@@ -125,6 +127,7 @@ void moreSFXVolume(App* app) {
 	}
 
 }
+
 void lessSFXVolume(App* app) {
 	float volume_ = 0; //app_->getAudioManager()->getGeneralVolume();
 
@@ -138,7 +141,7 @@ void lessSFXVolume(App* app) {
 
 //-------------------------------
 
-//fullscreen
+//set or quit fullscreen
 void fullScreen(App* app) {
 	bool IsFullscreen = SDL_GetWindowFlags(app->getWindow()) & SDL_WINDOW_FULLSCREEN_DESKTOP;
 	if (IsFullscreen)
@@ -154,19 +157,16 @@ void fullScreen(App* app) {
 }
 
 
-
-
 void Button::handleInput()
 {
 	if (app_->getInputManager()->isMouseButtonPressed(app_->getInputManager()->Left)) {
-		cout << "click";
-		SDL_Point p = { app_->getInputManager()->getMousePosX(),app_->getInputManager()->getMousePosY() };
 
+		SDL_Point p = { app_->getInputManager()->getMousePosX(),app_->getInputManager()->getMousePosY() };
 		Vector2D pos = trans_->getPosition();
 		SDL_Rect destRect = { pos.getX(), pos.getY(), trans_->getWidth() * trans_->getWMult(), trans_->getHeight() * trans_->getHMult() };
 
 		if (SDL_PointInRect(&p, &destRect)) {
-			//cout << "arcade";
+			
 			callbackbutton(app_);
 		}
 	}

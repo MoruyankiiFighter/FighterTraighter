@@ -24,14 +24,14 @@ OptionsMenu::~OptionsMenu()
 
 void OptionsMenu::init()
 {
-	Entity* logo = new Entity();
-	Transform* transform = logo->addComponent<Transform>();
-	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
-	transform->setPosition(WINDOW_WIDTH_ / 2, POS_Y_LOGO/2);
-	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
-	scene.push_back(logo);
-
 	Entity* ent = new Entity();
+	Transform* transform = ent->addComponent<Transform>();
+	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
+	transform->setPosition(WINDOW_WIDTH_ / 4, POS_Y_LOGO/2);
+	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
+	scene.push_back(ent);
+
+	ent = new Entity();
 	ent->setApp(app_);
 	Transform* t = ent->addComponent<Transform>();
 	t->setPosition(10, 10);
@@ -39,8 +39,7 @@ void OptionsMenu::init()
 	t->setHeight(50);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<TextComponent>("<-" ,app_->getAssetsManager()->getFont(0), 30);
-
+	
 	ent->addComponent<Button>(GoBackCallback);
 	scene.push_back(ent);
 
@@ -48,8 +47,8 @@ void OptionsMenu::init()
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>();
 	t->setPosition(WINDOW_WIDTH_-100, WINDOW_HEIGHT_-100);
-	t->setWidth(100);
-	t->setHeight(100);
+	t->setWidth(10);
+	t->setHeight(10);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(fullScreen);
@@ -85,7 +84,7 @@ void OptionsMenu::init()
 	ent = new Entity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>();
-	t->setPosition(700, 200);
+	t->setPosition(WINDOW_WIDTH_ / 4 +500, 200);
 	t->setWidth(50);
 	t->setHeight(50);
 	t->setRotation(0);
@@ -97,7 +96,7 @@ void OptionsMenu::init()
 	ent->setApp(app_);
 	
 	t = ent->addComponent<Transform>();
-	t->setPosition(200, 200);
+	t->setPosition(WINDOW_WIDTH_ / 4 , 200);
 	t->setWidth(50);
 	t->setHeight(50);
 	t->setRotation(0);
@@ -112,7 +111,7 @@ void OptionsMenu::init()
 	ent->setApp(app_);
 	
 	t = ent->addComponent<Transform>();
-	t->setPosition(200, 400);
+	t->setPosition(WINDOW_WIDTH_ / 4 , 400);
 	t->setWidth(50);
 	t->setHeight(50);
 	t->setRotation(0);
@@ -125,7 +124,7 @@ void OptionsMenu::init()
 	ent->setApp(app_);
 	
 	t = ent->addComponent<Transform>();
-	t->setPosition(700, 400);
+	t->setPosition(WINDOW_WIDTH_ / 4 + 500, 400);
 	t->setWidth(50);
 	t->setHeight(50);
 	t->setRotation(0);
@@ -142,7 +141,7 @@ void OptionsMenu::init()
 	reg_bright->setApp(app_);
 
 	t = reg_bright->addComponent<Transform>();
-	t->setPosition(WINDOW_WIDTH_ / 2, 200);
+	t->setPosition(WINDOW_WIDTH_ / 4 + 250, 200);
 	t->setWidth(20);
 	t->setHeight(50);
 	t->setRotation(0);
@@ -167,17 +166,13 @@ void OptionsMenu::init()
 void OptionsMenu::update()
 {
 	Transform* t = reg_bright->getComponent<Transform>(ecs::Transform);
+	//mover el regulador
 
-	double d = 50 +650* (SDL_GetWindowBrightness(app_->getWindow()));
+	if (t->getPosition().getX() > WINDOW_WIDTH_ / 4 && t->getPosition().getX() < WINDOW_WIDTH_ / 4 + 500) {
+		cout << "t" << endl;
+	}
+
 	cout << SDL_GetWindowBrightness(app_->getWindow());
-
-	t->setPosition(d, t->getPosition().getY());
-	
-	t = reg_volume->getComponent<Transform>(ecs::Transform);
-
-	d = 50 +650* (SDL_GetWindowBrightness(app_->getWindow()));
-
-	t->setPosition(d, t->getPosition().getY());
 
 }
 
@@ -194,9 +189,7 @@ void OptionsMenu::render()
 
 void OptionsMenu::handleInput()
 {
-	{
-		for (auto var : scene) {
-			var->handleInput();
-		}
+	for (auto var : scene) {
+		var->handleInput();
 	}
 }
