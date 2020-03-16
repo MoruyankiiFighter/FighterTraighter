@@ -161,6 +161,7 @@
     <ClCompile Include="SacoTimer.cpp" />
     <ClCompile Include="SDLDebugDraw.cpp" />
     <ClCompile Include="SkillSelection.cpp" />
+    <ClCompile Include="Slider.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="SacoTimer.h" />
     <ClInclude Include="SDLDebugDraw.h" />
     <ClInclude Include="SkillSelection.h" />
+    <ClInclude Include="Slider.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextComponent.h" />
     <ClInclude Include="Texture.h" />
