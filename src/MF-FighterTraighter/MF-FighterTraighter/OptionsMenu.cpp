@@ -26,14 +26,14 @@ OptionsMenu::~OptionsMenu()
 
 void OptionsMenu::init()
 {
-	Entity* logo = new Entity();
-	Transform* transform = logo->addComponent<Transform>();
-	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
-	transform->setPosition(WINDOW_WIDTH_ / 2, POS_Y_LOGO/2);
-	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
-	scene.push_back(logo);
-
 	Entity* ent = new Entity();
+	Transform* transform = ent->addComponent<Transform>();
+	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
+	transform->setPosition(WINDOW_WIDTH_ / 4, POS_Y_LOGO/2);
+	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
+	scene.push_back(ent);
+
+	ent = new Entity();
 	ent->setApp(app_);
 	Transform* t = ent->addComponent<Transform>(Vector2D(10, 10), Vector2D(), 50, 50, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
@@ -43,7 +43,7 @@ void OptionsMenu::init()
 
 	ent = new Entity();
 	ent->setApp(app_);
-	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ - 100, WINDOW_HEIGHT_ - 100), Vector2D(), 100, 100, 0);
+	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ - 100, WINDOW_HEIGHT_ - 100), Vector2D(), 10, 10, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(fullScreen);
 	scene.push_back(ent);
