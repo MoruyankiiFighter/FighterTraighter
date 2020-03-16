@@ -6,6 +6,7 @@
 #include "RenderImage.h"
 #include "Transform.h"
 #include "Button.h"
+#include "Slider.h"
 
 #include "App.h"
 #include "consts.h"
@@ -162,14 +163,22 @@ void OptionsMenu::init()
 
 	reg_volume->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(5));
 	scene.push_back(reg_volume);
+
+	Entity* slider = new Entity();
+	slider->setApp(app_);
+	slider->addComponent<Transform>(Vector2D(50, 600), Vector2D(), 200, 70, 0);
+	slider->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	slider->addComponent<Slider>(0, 100);
+	scene.push_back(slider);
 }
 
 void OptionsMenu::update()
 {
+	GameState::update();
 	Transform* t = reg_bright->getComponent<Transform>(ecs::Transform);
 
 	double d = 50 +650* (SDL_GetWindowBrightness(app_->getWindow()));
-	cout << SDL_GetWindowBrightness(app_->getWindow());
+	//cout << SDL_GetWindowBrightness(app_->getWindow()) << endl;
 
 	t->setPosition(d, t->getPosition().getY());
 	
@@ -179,24 +188,4 @@ void OptionsMenu::update()
 
 	t->setPosition(d, t->getPosition().getY());
 
-}
-
-void OptionsMenu::render()
-{
-	SDL_RenderClear(app_->getRenderer());
-	
-	for (auto e : scene) {
-		e->getComponent<RenderImage>(ecs::RenderImage)->render();
-	}
-
-	SDL_RenderPresent(app_->getRenderer());
-}
-
-void OptionsMenu::handleInput()
-{
-	{
-		for (auto var : scene) {
-			var->handleInput();
-		}
-	}
 }
