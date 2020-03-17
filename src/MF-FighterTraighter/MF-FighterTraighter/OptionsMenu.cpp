@@ -49,22 +49,40 @@ void OptionsMenu::init()
 	scene.push_back(ent);
 
 	//slidebar
-	ent = new Entity();
-	ent->setApp(app_);
-	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Slider>(0.4, 1, 6, SetBright); // min = 0.4 to be able to see
-	scene.push_back(ent);
-	/*
-	ent = new Entity();
-	ent->setApp(app_);
-	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Slider>(0, 1, SetVolume); // min = 0 (sound), although now it's set to change brightness
-	scene.push_back(ent);
-	*/
+	b_slider = new Entity();
+	b_slider->setApp(app_);
+	t= b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
+	b_slider->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	b_slider->addComponent<Slider>(0.4, 1, 6, SetBright); // min = 0.4 to be able to see
+	scene.push_back(b_slider);
+
+	//ent = new Entity();
+	//ent->setApp(app_);
+	//t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
+	//ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	//ent->addComponent<Slider>(0, 1, SetVolume); // min = 0 (sound), although now it's set to change brightness
+	//scene.push_back(ent);
+	
 
 	//buttons
+	
+	reg_bright = new Entity();
+	reg_bright->setApp(app_);
+	t= reg_bright->addComponent<Transform>();
+	t->setWidthHeight(32, 32);
+	t->setPosition(WINDOW_WIDTH_ / 4 + 250, 220);
+	reg_bright->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(5));
+	scene.push_back(reg_bright);
+
+
+}
+
+void OptionsMenu::update()
+{
+	Transform* t = reg_bright->getComponent<Transform>(ecs::Transform);
+	Transform* t2 = b_slider->getComponent<Transform>(ecs::Transform);
+
+	
 
 }
 
