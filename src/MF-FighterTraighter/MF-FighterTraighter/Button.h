@@ -18,8 +18,11 @@ public:
 	void init() override;
 	//handle the input of the mouse by the moment
 	void handleInput() override;
+	bool getSelect() { return select; };
+	void setSelect(bool sel) { select = sel; };
 
 private:
 	Transform* trans_ = nullptr;
 	CallBackOnClick* callbackbutton = nullptr;
+	bool select = false;
 };

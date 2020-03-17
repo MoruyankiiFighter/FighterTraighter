@@ -115,14 +115,17 @@ void MainMenu::Leave(App* app)
 }
 
 void MainMenu::update() {
-	
+
 	//subir al boton de arriba si existe
-	if (/*si existe &&*/app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9) {
+	if (buttonSel != 0 && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9) {
 		buttonSel--;
 	}
 	//bajar al boton de abajo si existe
-	else if (/*si existe &&*/app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.9) {
+	else if (buttonSel != buttons.size() - 1 && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.9) {
 		buttonSel++;
 	}
-	//buttons.at(buttonSel)->estaSeleccionado
+
+	buttons.at(buttonSel)->getComponent<Button>(ecs::Button)->setSelect(true);
+	cout << buttonSel;
+	//buttons.at(buttonSel)->estaSeleccionado  -----> esto seria para indicar que el boton este seleccionado ya sea con sombrado o como sea
 }

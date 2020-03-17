@@ -10,7 +10,7 @@ void Button::init()
 
 void Button::handleInput()
 {
-	if (app_->getInputManager()->isMouseButtonPressed(app_->getInputManager()->Left)) {
+	if (app_->getInputManager()->isMouseButtonPressed(app_->getInputManager()->Left) ) {
 		cout << "click";
 		SDL_Point p = { app_->getInputManager()->getMousePosX(),app_->getInputManager()->getMousePosY() };
 
@@ -21,6 +21,10 @@ void Button::handleInput()
 			//cout << "arcade";
 			callbackbutton(app_);
 		}
+	}
+	else if (select && app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A))
+	{
+		callbackbutton(app_);
 	}
 
 }
