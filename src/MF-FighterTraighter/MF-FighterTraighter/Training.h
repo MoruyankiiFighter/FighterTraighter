@@ -16,14 +16,10 @@ public:
 	virtual void update() override;
 	virtual void render() override;
 	virtual ~Training();
-	void addToRemove(b2Fixture* fixture);
 private:
-	int i = 0;
 	std::vector<Move*> vecMov;
 	b2World* world;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	PunchingBagListener* pbListener = nullptr;
-	vector<b2Fixture*> fListRemove;
-
 };
 

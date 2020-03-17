@@ -12,27 +12,12 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	body_ = world->CreateBody(&bodydef);
 	b2PolygonShape shape;
 	shape.SetAsBox(width * wMult_/2 , height * hMult_/2 );
-	//shape.s
+
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.00001;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
-	//body_->CreateFixture(&fixturedef);
+	body_->CreateFixture(&fixturedef);
 	body_->SetFixedRotation(true);
-	fList.push_back(body_->CreateFixture(&fixturedef));
-
-
-	b2PolygonShape shape2;
-	shape2.SetAsBox(width * wMult_ / 2, height * hMult_ / 2,b2Vec2(100,0),0);
-	//shape.s
-	b2FixtureDef fixturedef2;
-	fixturedef2.shape = &shape2;
-	fixturedef2.density = 0.00001;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
-	//body_->SetFixedRotation(true);
-	//body_->CreateFixture(&fixturedef2);
-	fList.push_back(body_->CreateFixture(&fixturedef2));
-
-	
-
 }
 
 
@@ -45,8 +30,8 @@ void PhysicsTransform::init() {
 
 }
 
+//al anadir mas hitbox puede dar fallo
 void PhysicsTransform::setHeight(double height) {
-	fList.clear();
 	body_->DestroyFixture(body_->GetFixtureList());
 
 	b2PolygonShape shape;
@@ -55,13 +40,13 @@ void PhysicsTransform::setHeight(double height) {
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0;
 
-	fList.push_back(body_->CreateFixture(&fixturedef));
+	body_->CreateFixture(&fixturedef);
 
 	height_ = height;
 }
 
+//al anadir mas hitbox puede dar fallo
 void PhysicsTransform::setWidth(double width) {
-	fList.clear();
 
 	body_->DestroyFixture(body_->GetFixtureList());
 
@@ -71,12 +56,12 @@ void PhysicsTransform::setWidth(double width) {
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0;
 
-	fList.push_back(body_->CreateFixture(&fixturedef));
+	body_->CreateFixture(&fixturedef);
 	width_ = width;
 }
 
+//al anadir mas hitbox puede dar fallo
 void PhysicsTransform::setWidthHeight(double width, double height) {
-	fList.clear();
 
 	body_->DestroyFixture(body_->GetFixtureList());
 
@@ -86,18 +71,7 @@ void PhysicsTransform::setWidthHeight(double width, double height) {
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0;
 
-	fList.push_back(body_->CreateFixture(&fixturedef));
+	body_->CreateFixture(&fixturedef);
 	width_ = width;
 	height_ = height;
 }
-
-void PhysicsTransform::destroy()
-{
-	static_cast<Training*>(app_->getStateMachine()->getCurrentState())->addToRemove(fList.back());
-
-}
-
-//void PhysicsTransform::createHitbox(Vector2D pos, int width, int height, int time, int damage, Vector2D dir)
-//{
-//	
-//}

@@ -4,7 +4,8 @@ struct hitbox
 {
 public:
 
-	int damage_, time_;
+	int damage_ = -1,
+		time_ = -1;
 	
 };
 

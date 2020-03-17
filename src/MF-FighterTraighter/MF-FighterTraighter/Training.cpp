@@ -73,23 +73,9 @@ void Training::handleInput()
 
 void Training::update()
 {
-	app_->getHitboxMng()->update();
+	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 	GameState::update();
-	if (i == 0) {
-		scene.front()->getComponent<PhysicsTransform>(ecs::Transform)->destroy();
-		i++;
-	}
-	
 	world->Step(1.0 / 30, 8, 3);//update box2d+
-	for (auto e : fListRemove) {
-		scene.front()->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->DestroyFixture(e);
-	}
-	fListRemove.clear();
-
-}
-
-void Training::addToRemove(b2Fixture* fixture) {
-	fListRemove.push_back(fixture);
 }
 
 

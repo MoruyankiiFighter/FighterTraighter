@@ -29,19 +29,10 @@ public:
 	virtual void setHeight(double height);
 
 	virtual void setWidthHeight(double width, double height);
-
-	//forces
-	/*virtual void ApplyLinearImpulse(float32 xImp, float32 yImp) {
-		body_->ApplyLinearImpulse({xImp, yImp}, body_->GetWorldCenter(), true);
-	}*/
 	b2Body* getBody() { return body_; }
-	//void update() override { std::cout << body_->GetPosition().x << "/" <<body_->GetPosition().y << std::endl;} para testear
-	void destroy();
-	//void createHitbox(Vector2D pos, int width, int height, int time, int damage, Vector2D dir);
+
 private:
 	b2World* world_;	//puntero al mundo para destruirse
 	b2Body* body_;
-	vector<b2Fixture*> fList;
-
 };
 
