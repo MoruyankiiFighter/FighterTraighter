@@ -153,9 +153,6 @@
     <ClCompile Include="Health.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="creatorBody.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="HitboxMng.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -276,9 +273,6 @@
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
     <ClInclude Include="hitbox.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="creatorBody.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="HitboxMng.h">

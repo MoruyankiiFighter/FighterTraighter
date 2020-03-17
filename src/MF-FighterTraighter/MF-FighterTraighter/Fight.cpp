@@ -83,6 +83,6 @@ Fight::~Fight()
 	delete debugInstance;
 }
 
-void Fight::destroyHitbox(b2Body* body,hitbox* fixture) {
+void Fight::destroyHitbox(b2Body* body, b2Fixture* fixture) {
 	deleteB1Hitbox.push_back(fixture);
 }

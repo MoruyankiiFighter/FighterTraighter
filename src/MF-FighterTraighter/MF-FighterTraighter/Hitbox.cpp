@@ -1,4 +1,4 @@
-#include "hitbox.h"
+/*#include "hitbox.h"
 #include <iostream>
 bool hitbox::update()
 {
@@ -31,3 +31,4 @@ void hitbox::init()
 }
 
 
+*/

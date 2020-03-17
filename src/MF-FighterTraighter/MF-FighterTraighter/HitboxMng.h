@@ -1,17 +1,26 @@
 #pragma once
-#include "Component.h"
-#include <list>
 #include "hitbox.h"
-class HitboxMng : public Component
+#include "Vector2D.h"
+#include <list>
+#include "Hitbox.h"
+#include "Box2D/Box2D.h"
+
+class App;
+
+class HitboxMng 
 {
 public:
-	HitboxMng();
-	~HitboxMng() {}
+	HitboxMng(App* app) :app_(app) {}
+	HitboxMng(HitboxMng&) = delete;
+	HitboxMng& operator= (HitboxMng&) = delete;
+
+	virtual ~HitboxMng() {}
 	void update();
-	void addHitbox(Vector2D pos, int width, int height, int time, int damage, Vector2D dir);
+	void addHitbox(Vector2D pos, int width, int height, int time, int damage, b2Body* body);
 private:
-	list<hitbox*> hitboxList_;
-	list<hitbox*> hitboxListToRemove_;
+	std::list<b2Fixture*> hitboxList_;
+	std::list<b2Fixture*> hitboxListToRemove_;
+	App* app_;
 
 };
 

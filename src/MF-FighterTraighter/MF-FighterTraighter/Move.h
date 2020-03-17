@@ -4,7 +4,8 @@
 #include "Texture.h"
 #include "Entity.h"
 #include "PhysicsTransform.h"
-#include "hitbox.h"
+#include "HitboxMng.h"
+
 
 using namespace std;
 using callBackOnEnd = void();
@@ -26,6 +27,7 @@ using callBackOnEnd = void();
 
 class Move {
 public:
+	//igual es mejor tener un puntero al body
 	Move() : endingFrame_(15), animaSheet_(nullptr) {};
 	Move(/*string name, idMovimiento id, */int endingFrame, Texture* animSheet,Entity* entity) : 
 	/*name_(name), id_(id), */endingFrame_(endingFrame), animaSheet_(animSheet),entity_(entity) {};

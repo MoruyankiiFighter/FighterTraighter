@@ -34,7 +34,7 @@ void Training::init()
 	e->addComponent<RenderImage>(tex);
 	e->addComponent<Jump>(-1000);
 	e->addComponent<Crouch>();
-	e->addComponent<creatorBody>(e->getComponent<Transform>(ecs::Transform), world);
+	//e->addComponent<creatorBody>(e->getComponent<Transform>(ecs::Transform), world);
 	
 
 	vecMov = std::vector<Move*>(2);
@@ -73,6 +73,7 @@ void Training::handleInput()
 
 void Training::update()
 {
+	app_->getHitboxMng()->update();
 	GameState::update();
 	if (i == 0) {
 		scene.front()->getComponent<PhysicsTransform>(ecs::Transform)->destroy();

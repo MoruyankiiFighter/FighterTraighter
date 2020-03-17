@@ -33,7 +33,7 @@ void App::run()
 		handleInput();
 
 		Uint32 frameTime = SDL_GetTicks() - startTime;
-		if (frameTime < 10)
+		if (frameTime < 10) 
 			SDL_Delay(10 - frameTime);
 	}
 }
@@ -86,6 +86,7 @@ void App::init()
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
+	hitboxManager_.reset(new HitboxMng(this));
 
 	stateMachine_->pushState(new MainMenu(this));
 }

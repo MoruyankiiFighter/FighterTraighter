@@ -16,13 +16,13 @@ public:
 	virtual void update() override;
 	virtual void render() override;
 	virtual ~Fight();
-	void destroyHitbox(b2Body* body,hitbox* fixture);
+	void destroyHitbox(b2Body* body,b2Fixture* fixture);
 private:
 	std::vector<Move*> vecMov;//until we have factories to create characters
 	b2World* world;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	PunchingBagListener* pbListener = nullptr;
-	std::vector<hitbox*> deleteB1Hitbox;
+	std::vector<b2Fixture*> deleteB1Hitbox;
 	//Debugging physics transform
 	//Transform* pTR_ = nullptr;
 };

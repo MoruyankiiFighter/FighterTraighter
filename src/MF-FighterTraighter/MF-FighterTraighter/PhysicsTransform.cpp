@@ -96,3 +96,8 @@ void PhysicsTransform::destroy()
 	static_cast<Training*>(app_->getStateMachine()->getCurrentState())->addToRemove(fList.back());
 
 }
+
+//void PhysicsTransform::createHitbox(Vector2D pos, int width, int height, int time, int damage, Vector2D dir)
+//{
+//	
+//}
