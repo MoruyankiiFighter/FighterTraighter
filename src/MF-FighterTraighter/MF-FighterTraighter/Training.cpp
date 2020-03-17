@@ -59,6 +59,8 @@ void Training::init()
 	floor->addComponent<RenderImage>(tex);
 	scene.push_back(floor);
 
+
+
 }
 
 void Training::handleInput()

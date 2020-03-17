@@ -20,6 +20,7 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	body_->SetFixedRotation(true);
 	fList.push_back(body_->CreateFixture(&fixturedef));
 
+
 	b2PolygonShape shape2;
 	shape2.SetAsBox(width * wMult_ / 2, height * hMult_ / 2,b2Vec2(100,0),0);
 	//shape.s

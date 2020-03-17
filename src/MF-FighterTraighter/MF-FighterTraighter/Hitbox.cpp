@@ -5,7 +5,7 @@ bool hitbox::update()
 	std::cout << "UPDATE hitbox";
 	time_--;
 	if (time_ <= 0) {
-		body_->DestroyFixture(this);
+		//body_->DestroyFixture(this);
 		
 		return true;
 	}
