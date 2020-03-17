@@ -29,7 +29,7 @@ void Fight::init()
 	e->addComponent<Jump>(-1000);
 	e->addComponent<Crouch>();
 
-	 vecMov = std::vector<Move*>(2);
+	vecMov = std::vector<Move*>(2);
 	vecMov[0] = new Move(100, nullptr);
 	vecMov[1] = new Move(50, nullptr);
 	AnimationChain* testMove = new AnimationChain(vecMov);

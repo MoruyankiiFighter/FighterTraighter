@@ -22,7 +22,7 @@ public:
 
 private:
 
-	//std::vector<Move*> vecMov; 
+	std::vector<Move*> vecMov; 
 	b2World* world=nullptr;
 	SDLDebugDraw* debugInstance = nullptr;
 };

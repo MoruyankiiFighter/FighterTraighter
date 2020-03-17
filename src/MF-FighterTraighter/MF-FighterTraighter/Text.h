@@ -32,7 +32,7 @@ public:
 
 	
 protected:
-	std::string text_ = "";
+	std::string text_ = ""; 
 	Font* font_ = nullptr;
 };
 

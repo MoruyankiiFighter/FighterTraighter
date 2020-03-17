@@ -19,17 +19,11 @@
     <Filter Include="Archivos de origen\Entity">
       <UniqueIdentifier>{9bcba38e-0da3-4d22-aea5-000e1d059855}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\Entity">
-      <UniqueIdentifier>{4fb66f98-cafb-4674-a03c-1a44813ebbbf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de origen\Components">
       <UniqueIdentifier>{bd342a9b-443e-420c-aa95-d78e72764c9a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Archivos de encabezado\Components">
       <UniqueIdentifier>{f31faeee-01d9-4022-b058-d9447ce6a2c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Movement">
-      <UniqueIdentifier>{6133e375-d35e-487c-b953-0efb74f0ab26}</UniqueIdentifier>
     </Filter>
     <Filter Include="Archivos de encabezado\GameState">
       <UniqueIdentifier>{fab6bf26-e784-4081-b8be-c7e21703c5c0}</UniqueIdentifier>
@@ -39,6 +33,15 @@
     </Filter>
     <Filter Include="Archivos de encabezado\Moves">
       <UniqueIdentifier>{9159f998-26d6-4073-8275-46c539805ab5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Components\Entity">
+      <UniqueIdentifier>{4fb66f98-cafb-4674-a03c-1a44813ebbbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\managers">
+      <UniqueIdentifier>{69ad30aa-9541-496d-ae75-6087d5d3d29c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\objects">
+      <UniqueIdentifier>{5b38ff25-0d85-4996-be52-cb0d78329172}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -150,19 +153,16 @@
     <ClCompile Include="PlayerAttacks.cpp">
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
+    <ClCompile Include="Health.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Texture.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>Archivos de encabezado\GameState</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Archivos de encabezado\Entity</Filter>
+      <Filter>Archivos de encabezado\Components\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>Archivos de encabezado\Components</Filter>
@@ -203,12 +203,6 @@
     <ClInclude Include="GameStateMachine.h">
       <Filter>Archivos de encabezado\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="ecs.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicsTransform.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
@@ -221,35 +215,11 @@
     <ClInclude Include="PlayerController.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Crouch.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLDebugDraw.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="consts.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Options.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="TextComponent.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="OptionsMenu.h">
       <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetsManager.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="SacoTimer.h">
       <Filter>Archivos de encabezado\Components</Filter>
@@ -260,20 +230,47 @@
     <ClInclude Include="PunchingBagCollision.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Hitbox.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationChain.h">
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
     <ClInclude Include="Move.h">
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerAttacks.h">
-      <Filter>Archivos de encabezado\Moves</Filter>
-    </ClInclude>
     <ClInclude Include="MkWh00pAttacks.h">
       <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetsManager.h">
+      <Filter>Archivos de encabezado\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Archivos de encabezado\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="consts.h">
+      <Filter>Archivos de encabezado\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ecs.h">
+      <Filter>Archivos de encabezado\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Archivos de encabezado\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Archivos de encabezado\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Archivos de encabezado\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Archivos de encabezado\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLDebugDraw.h">
+      <Filter>Archivos de encabezado\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Crouch.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttacks.h">
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -18,8 +18,8 @@ void TextComponent::render()
 	SDL_Rect dest = SDL_Rect();
 	dest.x = transform_->getPosition().getX();
 	dest.y = transform_->getPosition().getY();
-	dest.w = transform_->getWidth() * transform_->getWMult();
-	dest.h = transform_->getHeight() * transform_->getHMult();
+	dest.w = transform_->getWidth() * transform_->getScaleX();
+	dest.h = transform_->getHeight() * transform_->getScaleY();
 	text_->render(dest);
 }
 

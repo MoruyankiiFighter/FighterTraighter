@@ -4,6 +4,8 @@ class SacoTimer :
 	public Component
 {
 public:
+
+
 	SacoTimer(int timeLimit) : Component(ecs::SacoTimer), timeLimit_(timeLimit) {};
 	~SacoTimer() {};
 	virtual void init() override { startTime_ = SDL_GetTicks(); };

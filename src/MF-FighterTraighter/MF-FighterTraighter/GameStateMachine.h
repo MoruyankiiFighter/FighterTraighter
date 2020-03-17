@@ -10,12 +10,14 @@ public:
 	//destructor
 	~GameStateMachine();
 
-	//
+	//get the state that we're using now
 	GameState* getCurrentState();
-	void pushState(GameState* state) { states.push(state); }
+	//create a new state
+	void pushState(GameState* state) { states.push(state); };
+	//delete the current state
 	void popState() { states.pop(); }
 private:
-	std::stack<GameState*> states; //it's the different scenes that we have
+	std::stack<GameState*> states; //stack with the scenes that we will use in the game
 
 };
 

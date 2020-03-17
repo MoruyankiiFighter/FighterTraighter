@@ -14,7 +14,7 @@ public:
 
 	bool update();
 private:
-	vector<Move*> chain_;
+	vector<Move*> chain_; //
 	int index_ = 0;
 };
 

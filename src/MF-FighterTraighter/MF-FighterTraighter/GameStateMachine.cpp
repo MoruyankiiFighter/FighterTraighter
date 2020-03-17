@@ -1,8 +1,9 @@
 #include "GameStateMachine.h"
 
-
+//constructor
 GameStateMachine::GameStateMachine(){ }
 
+//destructor, deletes every state of the stack 
 GameStateMachine::~GameStateMachine()
 {
 	while (!states.empty()) {
@@ -11,7 +12,9 @@ GameStateMachine::~GameStateMachine()
 	}
 }
 
-GameState* GameStateMachine::getCurrentState() //if there is a state then returns the top of the stack
+//if there is a state then returns the top of the stack
+GameState* GameStateMachine::getCurrentState() 
+
 {
 	if (!states.empty()) { 
 		return states.top();
@@ -21,11 +24,11 @@ GameState* GameStateMachine::getCurrentState() //if there is a state then return
 	}
 }
 
-//Return second state
-GameState* GameStateMachine::getSecond() {
-	GameState* top = getCurrentState();
-	popState();
-	GameState* secondTop = getCurrentState();
-	pushState(top);
-	return secondTop;
-}
+////Return second state
+//GameState* GameStateMachine::getSecond() {
+//	GameState* top = getCurrentState();
+//	popState();
+//	GameState* secondTop = getCurrentState();
+//	pushState(top);
+//	return secondTop;
+//}

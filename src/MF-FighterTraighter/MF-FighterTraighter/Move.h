@@ -30,15 +30,18 @@ public:
 	
 	//destructor
 	~Move() {};
+	
 	//set the activeFrame to 0
 	void resetIndex() { activeFrame_ = 0; }
 	
+	//updates the active frame
 	bool update();
 	
+	//
 	void render();
 private:
 	int activeFrame_ = 0;
 	int endingFrame_ = 0; 
 	Texture* animaSheet_=nullptr;
-	callBackOnEnd generateHitbox; //crea hitboxes con daño, posición, escala, empuje y frames de vida
+	callBackOnEnd generateHitbox; 
 };

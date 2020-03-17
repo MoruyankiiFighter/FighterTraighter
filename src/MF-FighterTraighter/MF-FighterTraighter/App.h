@@ -35,8 +35,8 @@ public:
 	void Movements();
 
 private:
-	SDL_Window* window;
-	SDL_Renderer* renderer;
+	SDL_Window* window=nullptr;
+	SDL_Renderer* renderer=nullptr;
 
 	std::unique_ptr<GameStateMachine> stateMachine_;
 	std::unique_ptr<InputManager> inputManager_;

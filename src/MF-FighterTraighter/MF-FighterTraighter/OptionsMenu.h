@@ -4,7 +4,9 @@
 class OptionsMenu:public GameState
 {
 public:
+	//constructor
 	OptionsMenu(App* app);
+	//destructor	
 	virtual ~OptionsMenu();
 
 	void init() override;
