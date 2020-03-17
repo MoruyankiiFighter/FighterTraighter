@@ -3,6 +3,8 @@
 #include <array>
 #include "Vector2D.h"
 #include <memory>
+#include <vector>
+#include <SDL_gamecontroller.h>
 class App;
 
 class InputManager
@@ -12,6 +14,13 @@ public:
 		Left = 0,
 		Right = 1,
 		Middle = 2
+	};
+	enum Controllers {
+		PLAYER1, PLAYER2
+	};
+	struct  GamePad {
+		bool buttons[SDL_CONTROLLER_BUTTON_MAX];
+		int axis[SDL_CONTROLLER_AXIS_MAX];
 	};
 	InputManager(App* app);
 	InputManager(InputManager&) = delete;
@@ -51,67 +60,35 @@ public:
 	}
 
 	// Controller
-	inline  const int getJoyX()
+	
+	bool isControllerButtonPressed(Controllers controllerID, SDL_GameControllerButton button)
 	{
-		return xDir;
+		if (controllerID < 0 || controllerID > numGamepads) return false;
+
+		return controllerInputs[controllerID].buttons[button] && !lastControllerInputs[controllerID].buttons[button];
 	}
-	inline  const int getJoyY()
+	bool isControllerButtonHeld(Controllers controllerID, SDL_GameControllerButton button)
 	{
-		return yDir;
+		if (controllerID < 0 || controllerID > numGamepads) return false;
+
+		return controllerInputs[controllerID].buttons[button] && lastControllerInputs[controllerID].buttons[button];
 	}
+	float getControllerAxis(Controllers controllerID, SDL_GameControllerAxis axis)
+	{
+		if (controllerID < 0 || controllerID > numGamepads) return 0.0;
+		
+		return controllerInputs[controllerID].axis[axis] / 32768.0f;
+	}
+
 
 	virtual ~InputManager();
 private:
 	void clearState();
 
+	void initControllers();
 	inline void onMouseMotion(SDL_Event& e) {
 		mousePos_.set(e.motion.x, e.motion.y);
 	};
-	inline void onJoyMotion(SDL_Event& e) {
-
-		if (e.jaxis.which == 0)
-		{
-			//X axis motion
-			if (e.jaxis.axis == 0)
-			{
-				//Left of dead zone
-				if (e.jaxis.value < -JOYSTICK_DEAD_ZONE)
-				{
-					xDir = -1;
-				}
-				//Right of dead zone
-				else if (e.jaxis.value > JOYSTICK_DEAD_ZONE)
-				{
-					xDir = 1;
-				}
-				else
-				{
-					xDir = 0;
-				}
-			}
-		}
-		//Y axis motion
-		 if (e.jaxis.axis == 1)
-		{
-			//Below of dead zone
-			if (e.jaxis.value < -JOYSTICK_DEAD_ZONE)
-			{
-				yDir = -1;
-			}
-			//Above of dead zone
-			else if (e.jaxis.value > JOYSTICK_DEAD_ZONE)
-			{
-				yDir = 1;
-
-			}
-			else
-			{
-				yDir = 0;
-			}
-		}
-	}
-
-				
 	
 
 	void onMouseChange(SDL_Event& e, bool state) {
@@ -129,9 +106,13 @@ private:
 	App* app_;
 	const Uint8* keyboardState_;
 	Vector2D mousePos_;
-	int xDir;
-	int yDir;
-    const int JOYSTICK_DEAD_ZONE = 8000;
 	std::array<bool, 3> mouseState_; // true = pressed
 	Vector2D mouseMovementInFrame_;
+	std::vector<SDL_GameController*> connectedControllers;
+	
+	std::vector<GamePad> controllerInputs;
+	std::vector<GamePad> lastControllerInputs;
+	
+	int numGamepads; 
+	
 };

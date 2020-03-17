@@ -34,7 +34,6 @@ void Font::Loadfont(std::string path, int size)
 void Font::ClearFont()
 {
 	TTF_CloseFont(font);
-	font = nullptr;
 }
 
 Font::~Font() 
