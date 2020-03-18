@@ -1,5 +1,6 @@
 #include "App.h"
 #include "consts.h"
+#include "SDLExceptions.h"
 #include "PauseMenu.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
@@ -13,10 +14,7 @@ App::App()
 
 App::~App()
 {
-	// Delete SDL's attributes
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+	clean();
 }
 
 //main loop
@@ -56,31 +54,32 @@ void App::render()
 	stateMachine_->getCurrentState()->render();
 }
 
-//creates the window and the renderer also set up the state machine and the input manager
+//creates the window and the renderer, and opens ttf also set up the state machine and the input manager
 void App::init()	
 {
 	int ttf = TTF_Init();
 	if (ttf == -1) {
-		//throw an error
+		throw new SDLExceptions::TTFException(TTF_GetError() + std::string("\nUnable to init TTF"));
 	}
 
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
-		//throw an error
+		throw new SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
 	}
-	SDL_Joystick* joystick = SDL_JoystickOpen(0);
-	if (joystick != nullptr) {
-		std::cout << "Controller Name:" << SDL_JoystickName(joystick) << std::endl;
-		std::cout << "Num Axes :" << SDL_JoystickNumAxes(joystick) << std::endl;
-		std::cout << "Num Buttons :" << SDL_JoystickNumButtons(joystick) << std::endl;
-	}
+	int nJoysticks = SDL_NumJoysticks();
+    
+	/*SDL_Joystick* joystick = SDL_JoystickOpen(0);
+	std::cout << "Controller Name:" << SDL_JoystickName(joystick) << std::endl;
+	std::cout << "Num Axes :" << SDL_JoystickNumAxes(joystick) << std::endl;
+	std::cout << "Num Buttons :" << SDL_JoystickNumButtons(joystick) << std::endl;*/
+	
 	window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		WINDOW_WIDTH_, WINDOW_HEIGHT_, SDL_WINDOW_SHOWN);
 	
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	if (!window || !renderer) {
-		//throw another Error
+		throw new SDLExceptions::SDLException("Unable to create window or renderer");
 	}
 
 	stateMachine_.reset(new GameStateMachine());
@@ -93,7 +92,17 @@ void App::init()
 
 void App::clean()
 {
+	// Reset pointers to prevent errors (especially assetsManager)
+	stateMachine_.reset();
+	inputManager_.reset();
+	// If we try to close fonts after TTF_Quit(), an error will occur
+	assetsManager_.reset();
 
+	// Delete SDL's attributes
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
+	TTF_Quit();
 }
 
 
@@ -125,12 +134,6 @@ void App::PlayOnevsOne() {
 //quit pause state to previous state
 void App::ContinuePlaying() {
 	getStateMachine()->popState();
-}
-
-//quit game
-void App::Exit() {
-	SDL_Quit();
-	TTF_Quit();
 }
 
 //pause the game

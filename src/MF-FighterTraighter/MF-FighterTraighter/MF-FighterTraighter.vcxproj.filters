@@ -40,6 +40,9 @@
     <Filter Include="Archivos de encabezado\Moves">
       <UniqueIdentifier>{9159f998-26d6-4073-8275-46c539805ab5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Exceptions">
+      <UniqueIdentifier>{d53f952c-ce80-4696-b51b-4f1da289c7ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -277,6 +280,12 @@
     </ClInclude>
     <ClInclude Include="HitboxMng.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetsExceptions.h">
+      <Filter>Archivos de encabezado\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLExceptions.h">
+      <Filter>Archivos de encabezado\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

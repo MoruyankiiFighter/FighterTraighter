@@ -175,6 +175,7 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="hitbox.h" />
     <ClInclude Include="HitboxMng.h" />
+    <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="MkWh00pAttacks.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
@@ -203,6 +204,7 @@
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="SacoTimer.h" />
     <ClInclude Include="SDLDebugDraw.h" />
+    <ClInclude Include="SDLExceptions.h" />
     <ClInclude Include="SkillSelection.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextComponent.h" />
