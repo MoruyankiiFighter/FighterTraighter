@@ -12,17 +12,13 @@ public:
 	void init();
 	void update();
 
-	//Funciones botones
+	//Callbacks main menu
 	static void GoArcade(App* app);
 	static void Go1v1(App* app);
 	static void GoOptions(App* app);
 	static void Leave(App* app);
 
 private:
-	Entity* arcade;
-	Entity* pvp;
-	Entity* options;
-	Entity* exit;
 
 	//vector<Entity*> buttons;
 	int buttonSel = 0;

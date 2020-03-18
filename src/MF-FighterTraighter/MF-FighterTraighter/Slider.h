@@ -27,8 +27,13 @@ public:
 	void update() override;
 	void render() override;
 
-	void setValue(double newValue);
 	double getValue() { return value_; }
+	double getMinValue() { return minValue_; }
+	double getMaxValue() { return maxValue_; }
+	int getSteps() { return steps_; }
+	void setValue(double newValue);
+
+	
 	virtual ~Slider();
 protected:
 	Transform* tr_;

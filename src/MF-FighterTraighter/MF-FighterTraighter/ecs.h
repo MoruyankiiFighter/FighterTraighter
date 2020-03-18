@@ -20,6 +20,7 @@ namespace ecs {
 		PlayerAttacks,
 		Slider,
 		VerticalSlider,
+		IndexSlider,
 		/*
 		
 		*/

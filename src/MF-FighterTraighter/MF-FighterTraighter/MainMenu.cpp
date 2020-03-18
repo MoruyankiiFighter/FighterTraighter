@@ -35,65 +35,66 @@ void MainMenu::init()
 
 	cout << "init" << endl;
 
-	Entity* logo = new Entity();
+	Entity* ent = new Entity();
 	
-	Transform* transform=logo->addComponent<Transform>();
-	transform->setWidthHeight(2*WIDTH_LOGO, HEIGHT_LOGO);
-	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
-	logo->setApp(app_);
-	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
-	scene.push_back(logo);
+	Transform* t=ent ->addComponent<Transform>();
+	t->setWidthHeight(2*WIDTH_LOGO, HEIGHT_LOGO);
+	t->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
+	ent->setApp(app_);
+	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
+	scene.push_back(ent);
 
-	Entity* arcade = new Entity();
-	arcade->setApp(app_);
-	Transform* t=arcade->addComponent<Transform>();
+	ent = new Entity();
+	ent->setApp(app_);
+	t=ent->addComponent<Transform>();
 	t->setPosition(POS_X_BUTTONS, POS_Y_ARCADE);
 	t->setWidth(WIDTH_BUTTON); 
 	t->setHeight(HEIGHT_BUTTON);
 	t->setRotation(0);
-	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
-	arcade->addComponent<Button>(GoArcade);
-	scene.push_back(arcade);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	ent->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
+	ent->addComponent<Button>(GoArcade);
+	scene.push_back(ent);
 	//buttons.push_back(arcade);
 
-	pvp = new Entity();
-	pvp->setApp(app_);
-	Transform* tr = pvp->addComponent<Transform>();
-	tr->setPosition(POS_X_BUTTONS, POS_Y_PVP);
-	tr->setWidth(WIDTH_BUTTON);
-	tr->setHeight(HEIGHT_BUTTON);
-	tr->setRotation(0);
-	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1)); 
-	pvp->addComponent<TextComponent>("1vs1", app_->getAssetsManager()->getFont(0), 20);
-	pvp->addComponent<Button>(Go1v1);
-	scene.push_back(pvp);
-	//buttons.push_back(pvp);
+	ent = new Entity();
+	ent->setApp(app_);
+	t=ent->addComponent<Transform>();
+	t->setPosition(POS_X_BUTTONS, POS_Y_PVP);
+	t->setWidth(WIDTH_BUTTON); 
+	t->setHeight(HEIGHT_BUTTON);
+	t->setRotation(0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	ent->addComponent<TextComponent>("1vs1", app_->getAssetsManager()->getFont(0), 20);
+	ent->addComponent<Button>(Go1v1);
+	scene.push_back(ent);
+	//buttons.push_back(arcade);
 
-	options = new Entity();
-	options->setApp(app_);
-	Transform* tra = options->addComponent<Transform>();
-	tra->setPosition(POS_X_BUTTONS, POS_Y_OPTIONS);
-	tra->setWidth(WIDTH_BUTTON);
-	tra->setHeight(HEIGHT_BUTTON);
-	tra->setRotation(0);
-	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	options->addComponent<TextComponent>("OPTIONS", app_->getAssetsManager()->getFont(0), 20);
-	options->addComponent<Button>(GoOptions);
-	scene.push_back(options);
-//	buttons.push_back(options);
+	ent = new Entity();
+	ent->setApp(app_);
+	t=ent->addComponent<Transform>();
+	t->setPosition(POS_X_BUTTONS, POS_Y_OPTIONS);
+	t->setWidth(WIDTH_BUTTON); 
+	t->setHeight(HEIGHT_BUTTON);
+	t->setRotation(0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	ent->addComponent<TextComponent>("OPTIONS", app_->getAssetsManager()->getFont(0), 20);
+	ent->addComponent<Button>(GoOptions);
+	scene.push_back(ent);
+	//buttons.push_back(arcade);
 
-	exit = new Entity();
-	exit->setApp(app_);
-	Transform* tran = exit->addComponent<Transform>();
-	tran->setPosition(POS_X_BUTTONS, POS_Y_EXIT);
-	tran->setWidth(WIDTH_BUTTON);
-	tran->setHeight(HEIGHT_BUTTON);
-	tran->setRotation(0);
-	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	exit->addComponent<TextComponent>("QUIT", app_->getAssetsManager()->getFont(0), 20);
-	exit->addComponent<Button>(Leave);
-	scene.push_back(exit);
+
+	ent = new Entity();
+	ent->setApp(app_);
+	t = ent->addComponent<Transform>();
+	t->setPosition(POS_X_BUTTONS, POS_Y_EXIT);
+	t->setWidth(WIDTH_BUTTON);
+	t->setHeight(HEIGHT_BUTTON);
+	t->setRotation(0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
+	ent->addComponent<TextComponent>("QUIT", app_->getAssetsManager()->getFont(0), 20);
+	ent->addComponent<Button>(Leave);
+	scene.push_back(ent);
 	//buttons.push_back(exit);
 }
 

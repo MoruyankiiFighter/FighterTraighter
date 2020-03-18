@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="PlayerAttacks.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelection.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="AssetsExceptions.h" />
+    <ClInclude Include="IndexSlider.h" />
     <ClInclude Include="MkWh00pAttacks.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
