@@ -19,6 +19,8 @@ void Fight::init()
 	debugInstance = new SDLDebugDraw(app_->getRenderer());
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
+	pbListener = new PunchingBagListener();
+	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
 
 	Entity* e = new Entity(); // Until we have factories
@@ -29,9 +31,9 @@ void Fight::init()
 	e->addComponent<Jump>(-1000);
 	e->addComponent<Crouch>();
 
-	 vecMov = std::vector<Move*>(2);
-	vecMov[0] = new Move(100, nullptr);
-	vecMov[1] = new Move(50, nullptr);
+	vecMov = std::vector<Move*>(2);
+	vecMov[0] = new Move(100, nullptr,e);
+	vecMov[1] = new Move(50, nullptr,e);
 	AnimationChain* testMove = new AnimationChain(vecMov);
 	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
 	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
@@ -55,8 +57,8 @@ void Fight::handleInput()
 
 void Fight::update()
 {
+	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 	GameState::update();
-
 	world->Step(1.0/30,8,3);//update box2d
 	
 }
@@ -77,3 +79,4 @@ Fight::~Fight()
 	delete world;
 	delete debugInstance;
 }
+

@@ -5,6 +5,7 @@
 #include "InputManager.h"
 #include "MainMenu.h"
 #include "AssetsManager.h"
+#include "HitboxMng.h"
 
 class App
 {
@@ -22,6 +23,7 @@ public:
 	inline GameStateMachine* getStateMachine() const { return stateMachine_.get(); };
 	inline InputManager* getInputManager() const { return inputManager_.get(); };
 	inline AssetsManager* getAssetsManager() const { return assetsManager_.get(); };
+	inline HitboxMng* getHitboxMng() const { return hitboxManager_.get(); };
 
 	void update();	//calls update of the current state
 	void render();	//calls render of the current state
@@ -43,6 +45,7 @@ private:
 	std::unique_ptr<GameStateMachine> stateMachine_;
 	std::unique_ptr<InputManager> inputManager_;
 	std::unique_ptr<AssetsManager> assetsManager_;
+	std::unique_ptr<HitboxMng> hitboxManager_;
 
 	
 	/*static*/ bool exit;

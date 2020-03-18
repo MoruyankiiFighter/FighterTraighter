@@ -2,6 +2,10 @@
 #include <string>
 #include <vector>
 #include "Texture.h"
+#include "Entity.h"
+#include "PhysicsTransform.h"
+#include "HitboxMng.h"
+
 
 using namespace std;
 using callBackOnEnd = void();
@@ -23,9 +27,10 @@ using callBackOnEnd = void();
 
 class Move {
 public:
+	//igual es mejor tener un puntero al body
 	Move() : endingFrame_(15), animaSheet_(nullptr) {};
-	Move(/*string name, idMovimiento id, */int endingFrame, Texture* animSheet) : 
-	/*name_(name), id_(id), */endingFrame_(endingFrame), animaSheet_(animSheet) {};
+	Move(/*string name, idMovimiento id, */int endingFrame, Texture* animSheet,Entity* entity) : 
+	/*name_(name), id_(id), */endingFrame_(endingFrame), animaSheet_(animSheet),entity_(entity) {};
 	~Move() {};
 	void resetIndex() { activeFrame_ = 0; }
 	bool update();
@@ -36,5 +41,7 @@ private:
 	/*string name_;
 	dMovimiento id_;*/
 	Texture* animaSheet_;
-	callBackOnEnd generateHitbox; //crea hitboxes con daño, posición, escala, empuje y frames de vida
+	//callBackOnEnd generateHitbox; //crea hitboxes con daño, posición, escala, empuje y frames de vida
+	Entity* entity_;
+	hitbox* hitbox_ = nullptr;
 };

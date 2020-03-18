@@ -1,6 +1,7 @@
 #include "MainMenu.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
+#include "Training.h"
 
 #include "InputManager.h"
 
@@ -105,7 +106,8 @@ void MainMenu::GoArcade(App* app)
 
 void MainMenu::Go1v1(App* app)
 {
-	app->getStateMachine()->pushState(new Fight(app));
+	// TEMPORARY, TESTING
+	app->getStateMachine()->pushState(new Training(app));
 }
 
 void MainMenu::GoOptions(App* app)
@@ -119,6 +121,7 @@ void MainMenu::Leave(App* app)
 }
 
 void MainMenu::update() {
+
 	
 	////subir al boton de arriba si existe
 	//if (/*si existe &&*/app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9) {
@@ -129,4 +132,16 @@ void MainMenu::update() {
 	//	buttonSel++;
 	//}
 	////buttons.at(buttonSel)->estaSeleccionado
+
+	/* shouldn't be here
+	//subir al boton de arriba si existe
+	if (app_->getInputManager()->GamepadConnected() && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9) {
+		buttonSel--;
+	}
+	//bajar al boton de abajo si existe
+	else if (app_->getInputManager()->GamepadConnected() && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.9) {
+		buttonSel++;
+	}
+	//buttons.at(buttonSel)->estaSeleccionado
+	*/
 }

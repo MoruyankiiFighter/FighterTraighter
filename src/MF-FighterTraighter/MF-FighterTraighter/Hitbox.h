@@ -1,11 +1,11 @@
 #pragma once
-#include "Component.h"
-class Hitbox : public Component
+//#include "Box2D/Box2D.h" 
+struct hitbox 
 {
 public:
-	Hitbox(Vector2D pos, Vector2D vel, int width, int height, int numFrames);
-	~Hitbox() {}
-private:
-	int pos_;
+
+	int damage_ = -1,
+		time_ = -1;
+	
 };
 

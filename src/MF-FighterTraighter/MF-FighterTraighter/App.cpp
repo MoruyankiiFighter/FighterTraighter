@@ -1,7 +1,6 @@
 #include "App.h"
 #include "consts.h"
 #include "SDLExceptions.h"
-
 #include "PauseMenu.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
@@ -27,12 +26,12 @@ void App::run()
 		
 		Uint32 startTime = SDL_GetTicks();
 		
+		handleInput();
 		update();
 		render();
-		handleInput();
 
 		Uint32 frameTime = SDL_GetTicks() - startTime;
-		if (frameTime < 10)
+		if (frameTime < 10) 
 			SDL_Delay(10 - frameTime);
 	}
 }
@@ -67,7 +66,7 @@ void App::init()
 	if (e > 0) {
 		throw new SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
 	}
-	int nJoysticks = SDL_NumJoysticks();
+	//int nJoysticks = SDL_NumJoysticks();
     
 	/*SDL_Joystick* joystick = SDL_JoystickOpen(0);
 	std::cout << "Controller Name:" << SDL_JoystickName(joystick) << std::endl;
@@ -86,6 +85,7 @@ void App::init()
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
+	hitboxManager_.reset(new HitboxMng(this));
 
 	stateMachine_->pushState(new MainMenu(this));
 }
@@ -117,7 +117,7 @@ void App::Menu() {
 
 //set up arcade state
 void App::PlayArcade() {
-	getStateMachine()->pushState(new Fight(this));
+	getStateMachine()->pushState(new Training(this));
 }
 
 //set up the options state

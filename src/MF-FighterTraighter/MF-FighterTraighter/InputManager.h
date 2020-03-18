@@ -63,22 +63,25 @@ public:
 	
 	bool isControllerButtonPressed(Controllers controllerID, SDL_GameControllerButton button)
 	{
-		if (controllerID < 0 || controllerID > numGamepads) return false;
+		// SMELLS A LOT
+		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return false;
 
 		return controllerInputs[controllerID].buttons[button] && !lastControllerInputs[controllerID].buttons[button];
 	}
 	bool isControllerButtonHeld(Controllers controllerID, SDL_GameControllerButton button)
 	{
-		if (controllerID < 0 || controllerID > numGamepads) return false;
+		// SMELLS
+		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return false;
 
 		return controllerInputs[controllerID].buttons[button] && lastControllerInputs[controllerID].buttons[button];
 	}
 	float getControllerAxis(Controllers controllerID, SDL_GameControllerAxis axis)
 	{
-		if (controllerID < 0 || controllerID > numGamepads) return 0.0;
+		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return 0.0;
 		
 		return controllerInputs[controllerID].axis[axis] / 32768.0f;
 	}
+	inline bool GamepadConnected() { return numGamepads > 0; }
 
 
 	virtual ~InputManager();

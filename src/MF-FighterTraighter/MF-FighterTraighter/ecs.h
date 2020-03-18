@@ -21,6 +21,8 @@ namespace ecs {
 		Slider,
 		VerticalSlider,
 		IndexSlider,
+		CreatorBody,
+		HitboxMng,
 		/*
 		
 		*/
