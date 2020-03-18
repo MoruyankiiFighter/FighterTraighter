@@ -129,6 +129,6 @@ void fullScreen(App* app) {
 void setResolution(App* app, double resolution)
 {
 	if (resolution != 0) {
-		SDL_RenderSetLogicalSize(app->getRenderer(),WINDOW_WIDTH_ , WINDOW_HEIGHT_ / resolution); //para que se redimensionen a su proporcion
+		SDL_RenderSetLogicalSize(app->getRenderer(),WINDOW_WIDTH_*resolution , WINDOW_HEIGHT_ * resolution); //para que se redimensionen a su proporcion
 	}
 }
