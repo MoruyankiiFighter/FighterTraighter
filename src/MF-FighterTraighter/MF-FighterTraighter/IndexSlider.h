@@ -6,7 +6,7 @@ class IndexSlider :
 	public Component
 {
 public:
-	IndexSlider(Transform* transform, Slider* slider) : Component(ecs::IndexSlider){}
+	IndexSlider(Transform* transform, Slider* slider) : Component(ecs::IndexSlider),transform_slider(transform_) ,slider_(slider){}
 	void init() override;
 	void update() override;
 
