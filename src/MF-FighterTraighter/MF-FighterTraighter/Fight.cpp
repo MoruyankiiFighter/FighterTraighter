@@ -36,6 +36,7 @@ void Fight::init()
 	vecMov[1] = new Move(50, nullptr,e);
 	AnimationChain* testMove = new AnimationChain(vecMov);
 	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
+	//Este comentario es tan sólo para el commit xddddddddddddddddddddddddddddddddd
 	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
 	
 	entManager_.getScene().push_back(e);
