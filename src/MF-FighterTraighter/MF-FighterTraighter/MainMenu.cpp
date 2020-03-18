@@ -1,4 +1,6 @@
 #include "MainMenu.h"
+#include "Fight.h"
+#include "OptionsMenu.h"
 
 #include "InputManager.h"
 
@@ -42,7 +44,7 @@ void MainMenu::init()
 	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 	scene.push_back(logo);
 
-	arcade = new Entity();
+	Entity* arcade = new Entity();
 	arcade->setApp(app_);
 	Transform* t=arcade->addComponent<Transform>();
 	t->setPosition(POS_X_BUTTONS, POS_Y_ARCADE);
@@ -51,8 +53,9 @@ void MainMenu::init()
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
-	arcade->addComponent<Button>(ArcadeCallback);
+	arcade->addComponent<Button>(GoArcade);
 	scene.push_back(arcade);
+	buttons.push_back(arcade);
 
 	pvp = new Entity();
 	pvp->setApp(app_);
@@ -62,8 +65,9 @@ void MainMenu::init()
 	tr->setHeight(HEIGHT_BUTTON);
 	tr->setRotation(0);
 	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1)); 
-	pvp->addComponent<Button>(OneVsOneCallback);
+	pvp->addComponent<Button>(Go1v1);
 	scene.push_back(pvp);
+	buttons.push_back(pvp);
 
 	options = new Entity();
 	options->setApp(app_);
@@ -73,8 +77,9 @@ void MainMenu::init()
 	tra->setHeight(HEIGHT_BUTTON);
 	tra->setRotation(0);
 	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	options->addComponent<Button>(OptionsCallback);
+	options->addComponent<Button>(GoOptions);
 	scene.push_back(options);
+	buttons.push_back(options);
 
 	exit = new Entity();
 	exit->setApp(app_);
@@ -84,6 +89,40 @@ void MainMenu::init()
 	tran->setHeight(HEIGHT_BUTTON);
 	tran->setRotation(0);
 	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	exit->addComponent<Button>(ExitCallback);
+	exit->addComponent<Button>(Leave);
 	scene.push_back(exit);
+	buttons.push_back(exit);
+}
+
+void MainMenu::GoArcade(App* app)
+{
+	app->getStateMachine()->pushState(new Fight(app));
+}
+
+void MainMenu::Go1v1(App* app)
+{
+	app->getStateMachine()->pushState(new Fight(app));
+}
+
+void MainMenu::GoOptions(App* app)
+{
+	app->getStateMachine()->pushState(new OptionsMenu(app));
+}
+
+void MainMenu::Leave(App* app)
+{
+	app->Exit();
+}
+
+void MainMenu::update() {
+	
+	//subir al boton de arriba si existe
+	if (/*si existe &&*/app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9) {
+		buttonSel--;
+	}
+	//bajar al boton de abajo si existe
+	else if (/*si existe &&*/app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.9) {
+		buttonSel++;
+	}
+	//buttons.at(buttonSel)->estaSeleccionado
 }

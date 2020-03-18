@@ -1,5 +1,7 @@
 #include "PauseMenu.h"
 #include "InputManager.h"
+#include "MainMenu.h"
+#include "OptionsMenu.h"
 
 #include "Entity.h"
 
@@ -29,7 +31,7 @@ void PauseMenu::init()
 	t->setHeight(100);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(ContinuePlayingCallback);
+	ent->addComponent<Button>(Resume);
 	scene.push_back(ent);
 
 	ent = new Entity();
@@ -40,7 +42,7 @@ void PauseMenu::init()
 	t->setHeight(100);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(MenuCallback);
+	ent->addComponent<Button>(GoMainMenu);
 	scene.push_back(ent);
 
 	ent = new Entity();
@@ -51,7 +53,7 @@ void PauseMenu::init()
 	t->setHeight(100);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(MovementsCallback);
+	ent->addComponent<Button>(ShowMeYourMoves);
 	scene.push_back(ent);
 
 	ent = new Entity();
@@ -62,7 +64,7 @@ void PauseMenu::init()
 	t->setHeight(100);
 	t->setRotation(0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(OptionsCallback);
+	ent->addComponent<Button>(GoOptions);
 	scene.push_back(ent);
 }
 
@@ -86,4 +88,27 @@ void PauseMenu::handleInput()
 	for (auto var : scene) {
 		var->handleInput();
 	}
+}
+
+void PauseMenu::Resume(App* app)
+{
+	app->getStateMachine()->popState();
+}
+
+void PauseMenu::GoMainMenu(App* app)
+{
+	app->getStateMachine()->popState();
+	while (dynamic_cast<MainMenu*>(app->getStateMachine()->getCurrentState()) == nullptr) {
+		app->getStateMachine()->popState();
+	}
+}
+
+void PauseMenu::ShowMeYourMoves(App* app)
+{
+	std::cout << "No implementado de momento" << endl;
+}
+
+void PauseMenu::GoOptions(App* app)
+{
+	app->getStateMachine()->pushState(new OptionsMenu(app));
 }

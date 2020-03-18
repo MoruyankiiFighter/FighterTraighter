@@ -8,39 +8,6 @@ void Button::init()
 	trans_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 
-void ArcadeCallback(App* app) {
-	app->PlayArcade();
-}
-
-void OneVsOneCallback(App* app) {
-	app->PlayOnevsOne();
-}
-
-//void PauseCallback(App* app) {
-//	app->Pause();
-//}
-
-void ExitCallback(App* app) {
-	app->Exit();
-}
-
-void ContinuePlayingCallback(App* app) {
-	app->ContinuePlaying();
-}
-
-void MovementsCallback(App* app) {
-	app->Movements();
-}
-
-void MenuCallback(App* app) {
-	app->Menu();
-}
-
-void OptionsCallback(App* app)
-{
-	app->Options();
-}
-
 void Button::handleInput()
 {
 	if (app_->getInputManager()->isMouseButtonPressed(app_->getInputManager()->Left)) {
