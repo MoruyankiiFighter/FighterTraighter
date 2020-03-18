@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "Texture.h"
+#include <vector>
 class App;
 
 class MainMenu : public GameState
