@@ -43,7 +43,7 @@ void MainMenu::init()
 	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
 	logo->setApp(app_);
 	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
-	scene.push_back(logo);
+	entManager_.getScene().push_back(logo);
 
 	Entity* arcade = new Entity();
 	arcade->setApp(app_);
@@ -55,7 +55,7 @@ void MainMenu::init()
 	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
 	arcade->addComponent<Button>(GoArcade);
-	scene.push_back(arcade);
+	entManager_.getScene().push_back(arcade);
 	buttons.push_back(arcade);
 
 	pvp = new Entity();
@@ -67,7 +67,7 @@ void MainMenu::init()
 	tr->setRotation(0);
 	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1)); 
 	pvp->addComponent<Button>(Go1v1);
-	scene.push_back(pvp);
+	entManager_.getScene().push_back(pvp);
 	buttons.push_back(pvp);
 
 	options = new Entity();
@@ -79,7 +79,7 @@ void MainMenu::init()
 	tra->setRotation(0);
 	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	options->addComponent<Button>(GoOptions);
-	scene.push_back(options);
+	entManager_.getScene().push_back(options);
 	buttons.push_back(options);
 
 	exit = new Entity();
@@ -91,7 +91,7 @@ void MainMenu::init()
 	tran->setRotation(0);
 	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	exit->addComponent<Button>(Leave);
-	scene.push_back(exit);
+	entManager_.getScene().push_back(exit);
 	buttons.push_back(exit);
 }
 

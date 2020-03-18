@@ -32,7 +32,7 @@ void OptionsMenu::init()
 	transform->setPosition(POS_X_BUTTONS, 500);
 
 	RenderImage* img = controller->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(3));
-	scene.push_back(controller);
+	entManager_.getScene().push_back(controller);
 }
 
 void OptionsMenu::update()
@@ -44,7 +44,7 @@ void OptionsMenu::render()
 {
 	SDL_RenderClear(app_->getRenderer());
 
-	for (auto e : scene) {
+	for (auto e : entManager_.getScene()) {
 		e->getComponent<RenderImage>(ecs::RenderImage)->render();
 	}
 
@@ -53,7 +53,7 @@ void OptionsMenu::render()
 
 void OptionsMenu::handleInput()
 {
-	for (auto var : scene) {
+	for (auto var : entManager_.getScene()) {
 		var->handleInput();
 	}
 }
