@@ -135,6 +135,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="HitboxMng.cpp" />
+    <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="PlayerAttacks.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelection.cpp" />
@@ -178,7 +179,7 @@
     <ClInclude Include="hitbox.h" />
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
-    <ClInclude Include="MkWh00pAttacks.h" />
+    <ClInclude Include="MoveParser.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />

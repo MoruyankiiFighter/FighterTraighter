@@ -159,6 +159,9 @@
     <ClCompile Include="EntityManager.cpp">
       <Filter>Archivos de origen\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="MoveParser.cpp">
+      <Filter>Archivos de origen\Moves</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -272,9 +275,6 @@
     <ClInclude Include="PlayerAttacks.h">
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
-    <ClInclude Include="MkWh00pAttacks.h">
-      <Filter>Archivos de encabezado\Moves</Filter>
-    </ClInclude>
     <ClInclude Include="hitbox.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -289,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="EntityManager.h">
       <Filter>Archivos de encabezado\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveParser.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
