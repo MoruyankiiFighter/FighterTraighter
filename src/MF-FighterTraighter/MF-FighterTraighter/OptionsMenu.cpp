@@ -69,29 +69,29 @@ void OptionsMenu::init()
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 800), Vector2D(), 500, 10, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Slider>(1,1.5,5, setResolution); 
+	ent->addComponent<Slider>(1,1.2,5, setResolution); 
 	scene.push_back(ent);
 	
 
-	//buttons
-	
-	reg_bright = new Entity();
-	reg_bright->setApp(app_);
-	t= reg_bright->addComponent<Transform>();
-	t->setWidthHeight(32, 32);
-	t->setPosition(WINDOW_WIDTH_ / 4 + 250, 220);
-	reg_bright->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(5));
-	scene.push_back(reg_bright);
+	////buttons
+	//
+	//reg_bright = new Entity();
+	//reg_bright->setApp(app_);
+	//t= reg_bright->addComponent<Transform>();
+	//t->setWidthHeight(32, 32);
+	//t->setPosition(WINDOW_WIDTH_ / 4 + 250, 220);
+	//reg_bright->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(5));
+	//scene.push_back(reg_bright);
 
 
 }
 
 void OptionsMenu::update()
 {
-	Transform* t = reg_bright->getComponent<Transform>(ecs::Transform);
-	Transform* t2 = b_slider->getComponent<Transform>(ecs::Transform);
+	//Transform* t = reg_bright->getComponent<Transform>(ecs::Transform);
+	//Transform* t2 = b_slider->getComponent<Transform>(ecs::Transform);
 
-	t->setPosition(t2->getPosition().getX()+ t2->getWidth()*t2->getWMult()* b_slider->getComponent<Slider>(ecs::Slider)->getValue(), t->getPosition().getY()); //revisar regulador
+	//t->setPosition(t2->getPosition().getX()+ t2->getWidth()*t2->getWMult()* b_slider->getComponent<Slider>(ecs::Slider)->getValue(), t->getPosition().getY()); //revisar regulador
 
 }
 
