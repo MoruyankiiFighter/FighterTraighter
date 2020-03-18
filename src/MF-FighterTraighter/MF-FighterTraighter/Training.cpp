@@ -45,19 +45,19 @@ void Training::init()
 	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
 
 
-	scene.push_back(e);
+	entManager_.getScene().push_back(e);
 
 	Entity* saco = new Entity();
 	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, false);
 	saco->addComponent<RenderImage>(tex);
 	//saco->addComponent<SacoTimer>(5000);
 	saco->addComponent<PunchingBagCollision>();
-	scene.push_back(saco);
+	entManager_.getScene().push_back(saco);
 
 	Entity* floor = new Entity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, false);
 	floor->addComponent<RenderImage>(tex);
-	scene.push_back(floor);
+	entManager_.getScene().push_back(floor);
 
 
 

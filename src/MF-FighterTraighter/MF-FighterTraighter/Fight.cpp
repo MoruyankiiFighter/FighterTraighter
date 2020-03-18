@@ -38,12 +38,12 @@ void Fight::init()
 	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
 	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
 	
-	scene.push_back(e);	
+	entManager_.getScene().push_back(e);
 	
 	Entity* floor = new Entity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
-	scene.push_back(floor);
+	entManager_.getScene().push_back(floor);
 	
 }
 
@@ -61,7 +61,7 @@ void Fight::update()
 
 	world->Step(1.0/30,8,3);//update box2d
 	for (auto it : deleteB1Hitbox) {
-		scene.front()->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->DestroyFixture(it);
+		entManager_.getScene().front()->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->DestroyFixture(it);
 	}
 	
 }
