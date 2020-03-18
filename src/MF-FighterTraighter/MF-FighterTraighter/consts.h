@@ -1,7 +1,7 @@
 #pragma once
 
-const int WINDOW_WIDTH_ = 1200;
-const int WINDOW_HEIGHT_ = 1080;
+ const int WINDOW_WIDTH_ = 1900;
+ const int WINDOW_HEIGHT_ = 1200;
 
 // CONSTS FOR MAIN MENU
 

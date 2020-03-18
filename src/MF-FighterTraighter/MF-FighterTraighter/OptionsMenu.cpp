@@ -58,18 +58,18 @@ void OptionsMenu::init()
 
 
 
-	ent = new Entity();
-	ent->setApp(app_);
-	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Slider>(0, 1, SetVolume); // min = 0 (sound), although now it's set to change brightness
-	scene.push_back(ent);
+	//ent = new Entity();
+	//ent->setApp(app_);
+	//t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
+	//ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	//ent->addComponent<Slider>(0, 1, SetVolume); // min = 0 (sound), although now it's set to change brightness
+	//scene.push_back(ent);
 	
 	ent = new Entity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Slider>(0, 1, SetVolume); // min = 0 (sound), although now it's set to change brightness
+	ent->addComponent<Slider>(0.5, 2,10, setResolution); 
 	scene.push_back(ent);
 	
 
@@ -121,11 +121,14 @@ void fullScreen(App* app) {
 	else
 	{
 		SDL_SetWindowFullscreen(app->getWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
-		SDL_RenderSetLogicalSize(app->getRenderer(), WINDOW_WIDTH_, WINDOW_HEIGHT_);
+		SDL_RenderSetLogicalSize(app->getRenderer(), WINDOW_WIDTH_ , WINDOW_HEIGHT_); //para que se redimensionen a su proporcion
 
 	}
 }
 
 void setResolution(App* app, double resolution)
 {
+	if (resolution != 0) {
+		SDL_RenderSetLogicalSize(app->getRenderer(),WINDOW_WIDTH_ , WINDOW_HEIGHT_ / resolution); //para que se redimensionen a su proporcion
+	}
 }
