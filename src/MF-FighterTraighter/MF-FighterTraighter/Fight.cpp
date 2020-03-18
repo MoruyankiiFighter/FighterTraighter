@@ -57,12 +57,9 @@ void Fight::handleInput()
 
 void Fight::update()
 {
+	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 	GameState::update();
-
 	world->Step(1.0/30,8,3);//update box2d
-	for (auto it : deleteB1Hitbox) {
-		scene.front()->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->DestroyFixture(it);
-	}
 	
 }
 
@@ -83,6 +80,3 @@ Fight::~Fight()
 	delete debugInstance;
 }
 
-void Fight::destroyHitbox(b2Body* body, b2Fixture* fixture) {
-	deleteB1Hitbox.push_back(fixture);
-}
