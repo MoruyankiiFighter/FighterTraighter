@@ -1,4 +1,4 @@
-#include "OptionsMenu.h"
+﻿#include "OptionsMenu.h"
 #include "InputManager.h"
 
 #include "Entity.h"
@@ -35,15 +35,15 @@ void OptionsMenu::init()
 
 	ent = new Entity();
 	ent->setApp(app_);
-	Transform* t = ent->addComponent<Transform>(Vector2D(10, 10), Vector2D(), 50, 50, 0);
+	Transform* t = ent->addComponent<Transform>(Vector2D(10, 10), Vector2D(), 60, 60, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<TextComponent>("<-" ,app_->getAssetsManager()->getFont(0), 30);
+	ent->addComponent<TextComponent>("<" ,app_->getAssetsManager()->getFont(0), 20);
 	ent->addComponent<Button>(GoBackCallback);
 	scene.push_back(ent);
 
 	ent = new Entity();
 	ent->setApp(app_);
-	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ - 100, WINDOW_HEIGHT_ - 100), Vector2D(), 10, 10, 0);
+	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ - 100, WINDOW_HEIGHT_ - 100), Vector2D(), 50, 50, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(fullScreen);
 	scene.push_back(ent);
@@ -53,15 +53,24 @@ void OptionsMenu::init()
 	b_slider->setApp(app_);
 	t= b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
 	b_slider->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	b_slider->addComponent<Slider>(0.4, 1, 6, SetBright); // min = 0.4 to be able to see
+	b_slider->addComponent<Slider>(0.4, 1, 10, SetBright); // min = 0.4 to be able to see
 	scene.push_back(b_slider);
 
-	//ent = new Entity();
-	//ent->setApp(app_);
-	//t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
-	//ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	//ent->addComponent<Slider>(0, 1, SetVolume); // min = 0 (sound), although now it's set to change brightness
-	//scene.push_back(ent);
+
+
+	ent = new Entity();
+	ent->setApp(app_);
+	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	ent->addComponent<Slider>(0, 1, SetVolume); // min = 0 (sound), although now it's set to change brightness
+	scene.push_back(ent);
+	
+	ent = new Entity();
+	ent->setApp(app_);
+	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	ent->addComponent<Slider>(0, 1, SetVolume); // min = 0 (sound), although now it's set to change brightness
+	scene.push_back(ent);
 	
 
 	//buttons
@@ -82,7 +91,7 @@ void OptionsMenu::update()
 	Transform* t = reg_bright->getComponent<Transform>(ecs::Transform);
 	Transform* t2 = b_slider->getComponent<Transform>(ecs::Transform);
 
-	
+	t->setPosition(t2->getPosition().getX()+ t2->getWidth()*t2->getWMult()* b_slider->getComponent<Slider>(ecs::Slider)->getValue(), t->getPosition().getY()); //revisar regulador
 
 }
 
@@ -92,7 +101,7 @@ void GoBackCallback(App* app) {
 
 void SetBright(App* app, double value)
 {
-	SDL_SetWindowBrightness(app->getWindow(), value); // si a alguien se le queda la pantalla oscura, que ponga aqu� un 1 y descomente lo de abajo
+	SDL_SetWindowBrightness(app->getWindow(), value); // si a alguien se le queda la pantalla oscura, que ponga aquí un 1 y descomente lo de abajo
 	//int b = 0;
 	//int a = 1 / b;
 }
@@ -112,11 +121,11 @@ void fullScreen(App* app) {
 	else
 	{
 		SDL_SetWindowFullscreen(app->getWindow(), SDL_WINDOW_FULLSCREEN_DESKTOP);
-		SDL_RenderSetLogicalSize(app->getRenderer(), WINDOW_WIDTH_, WINDOW_HEIGHT_); //para que se redimensionen a su proporcion
+		SDL_RenderSetLogicalSize(app->getRenderer(), WINDOW_WIDTH_, WINDOW_HEIGHT_);
 
 	}
 }
 
-void MenuCallback(App* app) {
-	app->Menu();
+void setResolution(App* app, double resolution)
+{
 }

@@ -28,7 +28,7 @@ public:
 	void render() override;
 
 	void setValue(double newValue);
-
+	double getValue() { return value_; }
 	virtual ~Slider();
 protected:
 	Transform* tr_;

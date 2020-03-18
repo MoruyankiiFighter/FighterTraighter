@@ -9,12 +9,10 @@ void GoBackCallback(App* app);
 void SetBright(App* app, double value);
 void SetVolume(App* app, double value);
 
-
 //fullscreen
 void fullScreen(App* app);
 
-void MenuCallback(App* app);
-
+void setResolution(App* app, double resolution);
 
 class OptionsMenu:public GameState
 {
