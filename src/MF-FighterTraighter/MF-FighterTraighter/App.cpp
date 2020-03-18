@@ -60,12 +60,12 @@ void App::init()
 {
 	int ttf = TTF_Init();
 	if (ttf == -1) {
-		throw SDLExceptions::TTFException(TTF_GetError() + std::string("\nUnable to init TTF"));
+		throw new SDLExceptions::TTFException(TTF_GetError() + std::string("\nUnable to init TTF"));
 	}
 
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
-		throw SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
+		throw new SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
 	}
 	int nJoysticks = SDL_NumJoysticks();
     
@@ -80,7 +80,7 @@ void App::init()
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	if (!window || !renderer) {
-		throw SDLExceptions::SDLException("Unable to create window or renderer");
+		throw new SDLExceptions::SDLException("Unable to create window or renderer");
 	}
 
 	stateMachine_.reset(new GameStateMachine());
