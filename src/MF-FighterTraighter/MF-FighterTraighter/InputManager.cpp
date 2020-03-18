@@ -12,7 +12,6 @@ InputManager::InputManager(App* app) : app_(app)
 
 void InputManager::update()
 {
-	clearState();
 	SDL_Event e;
 	///Update control input
 	for (int i = 0; i < numGamepads; i++) {
