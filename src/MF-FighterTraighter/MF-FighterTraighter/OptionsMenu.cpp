@@ -43,7 +43,7 @@ void OptionsMenu::init()
 
 	ent = new Entity();
 	ent->setApp(app_);
-	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ - 100, WINDOW_HEIGHT_ - 100), Vector2D(), 50, 50, 0);
+	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_/4,600 ), Vector2D(), 150, 50, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(fullScreen);
 	scene.push_back(ent);
@@ -58,18 +58,18 @@ void OptionsMenu::init()
 
 
 
-	//ent = new Entity();
-	//ent->setApp(app_);
-	//t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
-	//ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	//ent->addComponent<Slider>(0, 1, SetVolume); // min = 0 (sound), although now it's set to change brightness
-	//scene.push_back(ent);
-	
 	ent = new Entity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Slider>(0.5, 2,10, setResolution); 
+	ent->addComponent<Slider>(0, 1,10, SetVolume); // min = 0 (sound), although now it's set to change brightness
+	scene.push_back(ent);
+	
+	ent = new Entity();
+	ent->setApp(app_);
+	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 800), Vector2D(), 500, 10, 0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	ent->addComponent<Slider>(1,1.5,5, setResolution); 
 	scene.push_back(ent);
 	
 
