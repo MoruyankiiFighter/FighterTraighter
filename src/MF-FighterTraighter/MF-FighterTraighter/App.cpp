@@ -26,9 +26,9 @@ void App::run()
 		
 		Uint32 startTime = SDL_GetTicks();
 		
+		handleInput();
 		update();
 		render();
-		handleInput();
 
 		Uint32 frameTime = SDL_GetTicks() - startTime;
 		if (frameTime < 10) 
@@ -66,7 +66,7 @@ void App::init()
 	if (e > 0) {
 		throw new SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
 	}
-	int nJoysticks = SDL_NumJoysticks();
+	//int nJoysticks = SDL_NumJoysticks();
     
 	/*SDL_Joystick* joystick = SDL_JoystickOpen(0);
 	std::cout << "Controller Name:" << SDL_JoystickName(joystick) << std::endl;

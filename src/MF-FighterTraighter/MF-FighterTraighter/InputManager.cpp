@@ -100,35 +100,38 @@ void InputManager::clearState()
 void InputManager::initControllers()
 {
 	int nJoysticks = SDL_NumJoysticks();
-	numGamepads = 0;
+	if (nJoysticks > 0) {
 
-	// Count how many controllers there are
-	for (int i = 0; i < nJoysticks; i++)
-		if (SDL_IsGameController(i))
-			numGamepads++;
-	if (numGamepads > 0)
-	{
-		for (int i = 0; i < numGamepads; i++)
+		numGamepads = 0;
+
+		// Count how many controllers there are
+		for (int i = 0; i < nJoysticks; i++)
+			if (SDL_IsGameController(i))
+				numGamepads++;
+		if (numGamepads > 0)
 		{
-			// Open the controller and add it to our list
-			SDL_GameController* pad = SDL_GameControllerOpen(i);
-			if (SDL_GameControllerGetAttached(pad) == 1)
-				connectedControllers.push_back(pad);
-			else
-				std::cout << "SDL_GetError() = " << SDL_GetError() << std::endl;
-		}
-		SDL_GameControllerEventState(SDL_ENABLE);
+			for (int i = 0; i < numGamepads; i++)
+			{
+				// Open the controller and add it to our list
+				SDL_GameController* pad = SDL_GameControllerOpen(i);
+				if (SDL_GameControllerGetAttached(pad) == 1)
+					connectedControllers.push_back(pad);
+				else
+					std::cout << "SDL_GetError() = " << SDL_GetError() << std::endl;
+			}
+			SDL_GameControllerEventState(SDL_ENABLE);
 
-	}	controllerInputs.resize(numGamepads);
-	lastControllerInputs.resize(numGamepads);
-	for (int i = 0; i < numGamepads; i++) {
-		for (int a = 0; a < SDL_CONTROLLER_AXIS_MAX; a++) {
-			controllerInputs[i].axis[a] = 0;
-			lastControllerInputs[i].axis[a] = 0;
-		}
-		for (int b = 0; b < SDL_CONTROLLER_BUTTON_MAX; b++) {
-			controllerInputs[i].buttons[b] = false;
-			lastControllerInputs[i].buttons[b] = false;
+		}	controllerInputs.resize(numGamepads);
+		lastControllerInputs.resize(numGamepads);
+		for (int i = 0; i < numGamepads; i++) {
+			for (int a = 0; a < SDL_CONTROLLER_AXIS_MAX; a++) {
+				controllerInputs[i].axis[a] = 0;
+				lastControllerInputs[i].axis[a] = 0;
+			}
+			for (int b = 0; b < SDL_CONTROLLER_BUTTON_MAX; b++) {
+				controllerInputs[i].buttons[b] = false;
+				lastControllerInputs[i].buttons[b] = false;
+			}
 		}
 	}
 	///
