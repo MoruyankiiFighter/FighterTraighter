@@ -4,9 +4,9 @@
 class MoveParser
 {
 public:
+	static std::vector<AnimationChain*> parseFile(string filePath);
+private:
 	MoveParser() {};
 	~MoveParser() {};
-
-	std::vector<AnimationChain*> parseFile(string filePath);
 };
 

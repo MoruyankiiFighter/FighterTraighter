@@ -5,7 +5,6 @@
 #include "Jump.h"
 #include "PauseMenu.h"
 #include "Crouch.h"
-#include "MkWh00pAttacks.h"
 #include "SacoTimer.h"
 
 Training::Training(App* app) : GameState(app)
