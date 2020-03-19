@@ -19,11 +19,5 @@ public:
 	static void Leave(App* app);
 
 private:
-	Entity* arcade;
-	Entity* pvp;
-	Entity* options;
-	Entity* exit;
-
-	vector<Entity*> buttons;
 	int buttonSel = 0;
 };

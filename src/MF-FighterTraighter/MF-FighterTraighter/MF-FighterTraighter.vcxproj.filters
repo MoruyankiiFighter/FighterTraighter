@@ -162,6 +162,9 @@
     <ClCompile Include="MoveParser.cpp">
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
+    <ClCompile Include="FactoryMk.cpp">
+      <Filter>Archivos de origen\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -292,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="MoveParser.h">
       <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryMk.h">
+      <Filter>Archivos de encabezado\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

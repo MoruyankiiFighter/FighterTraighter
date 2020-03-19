@@ -134,6 +134,7 @@
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="FactoryMk.cpp" />
     <ClCompile Include="HitboxMng.cpp" />
     <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="PlayerAttacks.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="hitbox.h" />
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
