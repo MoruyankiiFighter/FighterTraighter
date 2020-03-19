@@ -11,7 +11,7 @@
 #include "RenderImage.h"
 #include "App.h"
 
-std::tuple<Entity*, Entity*> UIFactory::createButton(App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position, double width, double height, double rotation, CallBackOnClick* clickCallback, CallBackOnClick* stopClickCallback, string text, int fontSize)
+std::tuple<Entity*, Entity*> UIFactory::createButton(App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position, double width, double height, double rotation, CallBackOnClick* clickCallback, CallBackOnClick* stopClickCallback, std::string text, int fontSize)
 {
 	Entity* button = state->giveMeManager().addEntity();
 	button->addComponent<Transform>(position, Vector2D(), width, height, rotation);

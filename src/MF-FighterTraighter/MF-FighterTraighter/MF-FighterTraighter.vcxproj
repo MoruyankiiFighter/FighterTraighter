@@ -173,6 +173,7 @@
     <ClCompile Include="AssetsManager.cpp" />
     <ClCompile Include="Training.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="UIFactory.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="VerticalSlider.cpp" />
   </ItemGroup>
@@ -223,6 +224,7 @@
     <ClInclude Include="AssetsManager.h" />
     <ClInclude Include="Training.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="UIFactory.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="VerticalSlider.h" />
   </ItemGroup>

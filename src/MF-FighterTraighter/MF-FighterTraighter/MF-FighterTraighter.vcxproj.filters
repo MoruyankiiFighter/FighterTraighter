@@ -42,7 +42,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-     <ClCompile Include="main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
@@ -166,6 +166,15 @@
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
     <ClCompile Include="FactoryMk.cpp">
+      <Filter>Archivos de origen\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexSlider.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="HitboxMng.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="UIFactory.cpp">
       <Filter>Archivos de origen\Entity</Filter>
     </ClCompile>
   </ItemGroup>
@@ -303,6 +312,18 @@
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
     <ClInclude Include="FactoryMk.h">
+      <Filter>Archivos de encabezado\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxMng.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexSlider.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MkWh00pAttacks.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="UIFactory.h">
       <Filter>Archivos de encabezado\Entity</Filter>
     </ClInclude>
   </ItemGroup>
