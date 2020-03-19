@@ -7,6 +7,8 @@ class IndexSlider :
 {
 public:
 	IndexSlider(Transform* transform, Slider* slider) : Component(ecs::IndexSlider),transform_slider(transform_) ,slider_(slider){}
+	virtual ~IndexSlider();
+	
 	void init() override;
 	void update() override;
 
