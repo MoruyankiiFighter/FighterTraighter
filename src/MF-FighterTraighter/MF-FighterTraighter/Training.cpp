@@ -23,14 +23,12 @@ void Training::init()
 	pbListener = new PunchingBagListener();
 	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
-	string filePath = "../../../../assets/Assets/personaje.png";
-	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str(), 1, 1);
 
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
 	e->addComponent<PhysicsTransform>(Vector2D(10, 10), Vector2D(10, 10), 50, 50, 0, world);
 	e->addComponent<PlayerController>();
-	e->addComponent<RenderImage>(tex);
+	e->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	e->addComponent<Jump>(-1000);
 	e->addComponent<Crouch>();
 	//e->addComponent<creatorBody>(e->getComponent<Transform>(ecs::Transform), world);
@@ -48,14 +46,14 @@ void Training::init()
 
 	Entity* saco = new Entity();
 	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, false);
-	saco->addComponent<RenderImage>(tex);
+	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	//saco->addComponent<SacoTimer>(5000);
 	saco->addComponent<PunchingBagCollision>();
 	entManager_.getScene().push_back(saco);
 
 	Entity* floor = new Entity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, false);
-	floor->addComponent<RenderImage>(tex);
+	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	entManager_.getScene().push_back(floor);
 
 
