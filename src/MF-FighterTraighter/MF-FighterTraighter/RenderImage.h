@@ -13,6 +13,7 @@ public:
 	void init() override { 
 		trans_ = entity_->getComponent<PhysicsTransform>(ecs::Transform); 		
 	};
+	inline void setTexture(Texture* tex) { tex_ = tex; }
 	virtual void render() override;
 	~RenderImage() {};
 private:

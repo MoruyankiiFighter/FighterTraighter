@@ -2,15 +2,15 @@
 #include "InputManager.h"
 
 #include "Entity.h"
+#include "UIFactory.h"
+#include <tuple>
 
 #include "RenderImage.h"
 #include "Transform.h"
-#include "Button.h"
 #include "Slider.h"
 
 #include "App.h"
 #include "consts.h"
-#include "TextComponent.h"
 #include "VerticalSlider.h"
 
 OptionsMenu::OptionsMenu(App* app) : GameState(app)
@@ -32,21 +32,13 @@ void OptionsMenu::init()
 	transform->setPosition(WINDOW_WIDTH_ / 4, POS_Y_LOGO/2);
 	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 	scene.push_back(ent);
+
+	tuple<Entity*, Entity*> backButton = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
+		Vector2D(10, 10), 60, 60, 0, GoBackCallback, nullptr, "<-", 20);
 	
-	ent = new Entity();
-	ent->setApp(app_);
-	ent->addComponent<Transform>(Vector2D(10, 10), Vector2D(), 60, 60, 0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<TextComponent>("<" ,app_->getAssetsManager()->getFont(0), 20);
-	ent->addComponent<Button>(GoBackCallback);
-	scene.push_back(ent);
-	
-	ent = new Entity();
-	ent->setApp(app_);
-	ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_/4,300 ), Vector2D(), 150, 50, 0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(nullptr, fullScreen); // now you can use callbacks when stop clicking
-	scene.push_back(ent);
+	tuple<Entity*, Entity*> fullScreenButton = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
+		Vector2D(WINDOW_WIDTH_ / 4, 300), 150, 50, 0, nullptr, fullScreen, "FULLSCREEN", 20);
+
 	
 	//slidebar
 	b_slider = new Entity();
