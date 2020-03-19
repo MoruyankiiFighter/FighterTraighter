@@ -12,6 +12,7 @@
 #include "App.h"
 #include "consts.h"
 #include "VerticalSlider.h"
+#include "IndexSlider.h"
 
 OptionsMenu::OptionsMenu(App* app) : GameState(app)
 {
@@ -43,10 +44,19 @@ void OptionsMenu::init()
 	//slidebar
 	b_slider = new Entity();
 	b_slider->setApp(app_);
+	Transform* tr= b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
 	b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
 	b_slider->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	b_slider->addComponent<Slider>(0.4, 1, 6, SetBright); // min = 0.4 to be able to see
+	Slider* b=b_slider->addComponent<Slider>(0.4, 1, 6, SetBright); // min = 0.4 to be able to see
 	scene.push_back(b_slider);
+
+	ent = new Entity();
+	ent->setApp(app_);
+	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 220), Vector2D(), 30, 50, 0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	ent->addComponent<IndexSlider>(tr, b);
+	scene.push_back(ent);
+
 
 	ent = new Entity();
 	ent->setApp(app_);
