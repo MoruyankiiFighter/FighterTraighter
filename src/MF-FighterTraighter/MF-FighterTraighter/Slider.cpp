@@ -19,18 +19,22 @@ void Slider::init()
 void Slider::handleInput()
 {
 	if (app_->getInputManager()->isMouseButtonPressed(InputManager::Left)) {
-		if (isMouseOver()) { // dragging
-			if (!dragging_) {
-				dragging_ = true;
-				if (startDrag_) startDrag_(app_);
-				setValueOnClick();
+		if (app_->getInputManager()->mouseEvent()) {
+			if (isMouseOver()) { // dragging
+				if (!dragging_) {
+					dragging_ = true;
+					if (startDrag_) startDrag_(app_);
+					setValueOnClick();
+				}
 			}
 		}
 	}
 	else if (dragging_) {
-		if (endDrag_) endDrag_(app_);
 		dragging_ = false;
+		if (endDrag_) endDrag_(app_);
 	}
+
+	//cout << dragging_ << endl;
 }
 
 void Slider::setValueOnClick()

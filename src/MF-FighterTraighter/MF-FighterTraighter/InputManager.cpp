@@ -3,6 +3,9 @@
 
 InputManager::InputManager(App* app) : app_(app)
 {
+	for (int i = 0; i < mouseState_.size(); ++i) {
+		mouseState_[i] = false;
+	}
 	clearState();
 	keyboardState_ = SDL_GetKeyboardState(NULL);
 	initControllers();
@@ -12,6 +15,7 @@ InputManager::InputManager(App* app) : app_(app)
 
 void InputManager::update()
 {
+	clearState();
 	// For later knowing if the mouse moved
 	Vector2D tempMousePos = mousePos_;
 
@@ -93,7 +97,6 @@ void InputManager::update()
 
 	// After mouse has updated its position, update the mouse movement
 	mouseMovementInFrame_ = mousePos_ - tempMousePos;
-
 }
 	
 
@@ -104,9 +107,6 @@ InputManager::~InputManager()
 
 void InputManager::clearState()
 {
-	for (int i = 0; i < mouseState_.size(); ++i) {
-		mouseState_[i] = false;
-	}
 	mouseEvent_ = false;
 	keyboardEvent_ = false;
 	controllerEvent_ = false;

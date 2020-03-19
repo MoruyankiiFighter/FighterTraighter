@@ -32,10 +32,10 @@ void OptionsMenu::init()
 	transform->setPosition(WINDOW_WIDTH_ / 4, POS_Y_LOGO/2);
 	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 	scene.push_back(ent);
-
+	
 	ent = new Entity();
 	ent->setApp(app_);
-	Transform* t = ent->addComponent<Transform>(Vector2D(10, 10), Vector2D(), 60, 60, 0);
+	ent->addComponent<Transform>(Vector2D(10, 10), Vector2D(), 60, 60, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<TextComponent>("<" ,app_->getAssetsManager()->getFont(0), 20);
 	ent->addComponent<Button>(GoBackCallback);
@@ -43,35 +43,32 @@ void OptionsMenu::init()
 	
 	ent = new Entity();
 	ent->setApp(app_);
-	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_/4,600 ), Vector2D(), 150, 50, 0);
+	ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_/4,300 ), Vector2D(), 150, 50, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(fullScreen);
+	ent->addComponent<Button>(nullptr, fullScreen); // now you can use callbacks when stop clicking
 	scene.push_back(ent);
 	
 	//slidebar
 	b_slider = new Entity();
 	b_slider->setApp(app_);
-	t= b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
+	b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
 	b_slider->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
 	b_slider->addComponent<Slider>(0.4, 1, 6, SetBright); // min = 0.4 to be able to see
 	scene.push_back(b_slider);
 
-
-	
 	ent = new Entity();
 	ent->setApp(app_);
-	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
+	ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
 	ent->addComponent<Slider>(0, 1,10, SetVolume); // min = 0 (sound), although now it's set to change brightness
 	scene.push_back(ent);
 	
 	ent = new Entity();
 	ent->setApp(app_);
-	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 800), Vector2D(), 500, 10, 0);
+	ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 800), Vector2D(), 500, 10, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
 	ent->addComponent<Slider>(1,1.2,5, setResolution); 
 	scene.push_back(ent);
-	
 
 	////buttons
 	//
