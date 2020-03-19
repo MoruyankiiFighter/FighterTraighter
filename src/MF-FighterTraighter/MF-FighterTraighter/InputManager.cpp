@@ -3,6 +3,9 @@
 
 InputManager::InputManager(App* app) : app_(app)
 {
+	for (int i = 0; i < mouseState_.size(); ++i) {
+		mouseState_[i] = false;
+	}
 	clearState();
 	keyboardState_ = SDL_GetKeyboardState(NULL);
 	initControllers();
@@ -12,10 +15,10 @@ InputManager::InputManager(App* app) : app_(app)
 
 void InputManager::update()
 {
+	clearState();
 	// For later knowing if the mouse moved
 	Vector2D tempMousePos = mousePos_;
 
-	//clearState();
 	SDL_Event e;
 	///Update control input
 	for (int i = 0; i < numGamepads; i++) {
@@ -35,15 +38,19 @@ void InputManager::update()
 			app_->Exit();
 			break;
 		case SDL_KEYDOWN:
+			keyboardEvent_ = true;
 			if (e.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
 				app_->Exit();
 			break;
 		case SDL_KEYUP:
+			keyboardEvent_ = true;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
+			mouseEvent_ = true;
 			onMouseChange(e, true);
 			break;
 		case SDL_MOUSEBUTTONUP:
+			mouseEvent_ = true;
 			onMouseChange(e, false);
 			break;
 		case SDL_MOUSEMOTION:
@@ -56,6 +63,7 @@ void InputManager::update()
 
 			// If a controller button is pressed
 		case SDL_CONTROLLERBUTTONDOWN:
+			controllerEvent_ = true;
 			// Cycle through the controllers
 			for (int i = 0; i < numGamepads; i++) {
 				// Looking for the button that was pressed
@@ -68,6 +76,7 @@ void InputManager::update()
 
 			// Do the same for releasing a button
 		case SDL_CONTROLLERBUTTONUP:
+			controllerEvent_ = true;
 			for (int i = 0; i < numGamepads; i++) {
 				if (e.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(connectedControllers[i]))) {
 					controllerInputs[i].buttons[e.cbutton.button] = false;
@@ -88,7 +97,6 @@ void InputManager::update()
 
 	// After mouse has updated its position, update the mouse movement
 	mouseMovementInFrame_ = mousePos_ - tempMousePos;
-
 }
 	
 
@@ -99,9 +107,9 @@ InputManager::~InputManager()
 
 void InputManager::clearState()
 {
-	for (int i = 0; i < mouseState_.size(); ++i) {
-		mouseState_[i] = false;
-	}
+	mouseEvent_ = false;
+	keyboardEvent_ = false;
+	controllerEvent_ = false;
 }
 void InputManager::initControllers()
 {
