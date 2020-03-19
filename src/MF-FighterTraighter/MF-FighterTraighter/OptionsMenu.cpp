@@ -40,14 +40,14 @@ void OptionsMenu::init()
 	ent->addComponent<TextComponent>("<" ,app_->getAssetsManager()->getFont(0), 20);
 	ent->addComponent<Button>(GoBackCallback);
 	scene.push_back(ent);
-
+	
 	ent = new Entity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_/4,600 ), Vector2D(), 150, 50, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(fullScreen);
 	scene.push_back(ent);
-
+	
 	//slidebar
 	b_slider = new Entity();
 	b_slider->setApp(app_);

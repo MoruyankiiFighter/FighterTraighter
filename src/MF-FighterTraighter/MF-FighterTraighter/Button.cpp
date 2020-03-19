@@ -17,10 +17,13 @@ void Button::handleInput()
 		Vector2D pos = trans_->getPosition();
 		SDL_Rect destRect = { pos.getX(), pos.getY(), trans_->getWidth() * trans_->getWMult(), trans_->getHeight() * trans_->getHMult() };
 
-		if (SDL_PointInRect(&p, &destRect)) {
-			
-			callbackbutton(app_);
+		if (!pressed_ && SDL_PointInRect(&p, &destRect)) {
+			pressed_ = true;
+			if (clickCallback_) clickCallback_(app_);
 		}
 	}
-
+	else {
+		if (stopClickCallback_ && pressed_) stopClickCallback_(app_);
+		pressed_ = false;
+	}
 }

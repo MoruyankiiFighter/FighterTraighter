@@ -11,7 +11,7 @@ class Button : public Component {
 
 public:
 	//constructor
-	Button(CallBackOnClick* call) : Component(ecs::Button) { callbackbutton = call; };
+	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr) : Component(ecs::Button), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
 	//destructor
 	virtual ~Button() {};
 
@@ -21,5 +21,7 @@ public:
 
 private:
 	Transform* trans_ = nullptr;
-	CallBackOnClick* callbackbutton = nullptr;
+	bool pressed_ = false;
+	CallBackOnClick* clickCallback_ = nullptr;
+	CallBackOnClick* stopClickCallback_ = nullptr;
 };
