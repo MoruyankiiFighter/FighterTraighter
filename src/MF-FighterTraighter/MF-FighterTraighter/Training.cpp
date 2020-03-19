@@ -5,8 +5,8 @@
 #include "Jump.h"
 #include "PauseMenu.h"
 #include "Crouch.h"
-#include "MkWh00pAttacks.h"
 #include "SacoTimer.h"
+#include "FactoryMk.h"
 
 Training::Training(App* app) : GameState(app)
 {
@@ -24,43 +24,18 @@ void Training::init()
 	pbListener = new PunchingBagListener();
 	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
-	string filePath = "../../../../assets/Assets/personaje.png";
-	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str(), 1, 1);
 
-	Entity* e = new Entity(); // Until we have factories
-	e->setApp(app_);
-	e->addComponent<PhysicsTransform>(Vector2D(10, 10), Vector2D(10, 10), 50, 50, 0, world);
-	e->addComponent<PlayerController>();
-	e->addComponent<RenderImage>(tex);
-	e->addComponent<Jump>(-1000);
-	e->addComponent<Crouch>();
-	//e->addComponent<creatorBody>(e->getComponent<Transform>(ecs::Transform), world);
-	
+	FactoryMk::addMkToGame(app_, this, world);
 
-	vecMov = std::vector<Move*>(2);
-	vecMov[0] = new Move(100, nullptr, e);
-	vecMov[1] = new Move(50, nullptr, e);
-	AnimationChain* testMove = new AnimationChain(vecMov);
-	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
-	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
-
-
-	scene.push_back(e);
-
-	Entity* saco = new Entity();
+	Entity* saco = giveMeManager().addEntity();
 	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, false);
-	saco->addComponent<RenderImage>(tex);
+	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	//saco->addComponent<SacoTimer>(5000);
 	saco->addComponent<PunchingBagCollision>();
-	scene.push_back(saco);
 
-	Entity* floor = new Entity();
+	Entity* floor = giveMeManager().addEntity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, false);
-	floor->addComponent<RenderImage>(tex);
-	scene.push_back(floor);
-
-
-
+	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 }
 
 void Training::handleInput()

@@ -82,7 +82,13 @@ void OptionsMenu::init()
 	//reg_bright->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(5));
 	//scene.push_back(reg_bright);
 
+	Entity* controller = giveMeManager().addEntity();
 
+	Transform* transform = controller->addComponent<Transform>();
+	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
+	transform->setPosition(POS_X_BUTTONS, 500);
+
+	RenderImage* img = controller->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(3));
 }
 
 void GoBackCallback(App* app) {

@@ -5,7 +5,7 @@
 #include "Jump.h"
 #include "PauseMenu.h"
 #include "Crouch.h"
-#include "MkWh00pAttacks.h"
+#include "FactoryMk.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -22,29 +22,12 @@ void Fight::init()
 	pbListener = new PunchingBagListener();
 	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
-
-	Entity* e = new Entity(); // Until we have factories
-	e->setApp(app_);
-	e->addComponent<PhysicsTransform>(Vector2D(10,10), Vector2D(10,10), 50, 50, 0,world);
-	e->addComponent<PlayerController>();
-	e->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
-	e->addComponent<Jump>(-1000);
-	e->addComponent<Crouch>();
-
-	vecMov = std::vector<Move*>(2);
-	vecMov[0] = new Move(100, nullptr,e);
-	vecMov[1] = new Move(50, nullptr,e);
-	AnimationChain* testMove = new AnimationChain(vecMov);
-	//solo creo un ataque, Attacks tiene otra constructora que le llegan 4 ataques y sus respectivas teclas
-	e->addComponent<PlayerAttacks>(testMove, SDL_SCANCODE_Q, testMove, SDL_SCANCODE_E, testMove, SDL_SCANCODE_Z, testMove, SDL_SCANCODE_X);
 	
-	scene.push_back(e);	
-	
-	Entity* floor = new Entity();
+	Entity* floor = giveMeManager().addEntity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
-	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
-	scene.push_back(floor);
-	
+	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));	
+
+	FactoryMk::addMkToGame(app_, this, world);
 }
 
 void Fight::handleInput()
@@ -57,8 +40,8 @@ void Fight::handleInput()
 
 void Fight::update()
 {
-	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 	GameState::update();
+	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 	world->Step(1.0/30,8,3);//update box2d
 	
 }

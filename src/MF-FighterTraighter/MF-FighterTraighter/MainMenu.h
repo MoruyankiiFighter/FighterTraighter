@@ -19,7 +19,5 @@ public:
 	static void Leave(App* app);
 
 private:
-
-	//vector<Entity*> buttons;
 	int buttonSel = 0;
 };
