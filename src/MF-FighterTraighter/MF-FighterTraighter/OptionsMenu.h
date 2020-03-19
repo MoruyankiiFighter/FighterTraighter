@@ -7,6 +7,9 @@
 void GoBackCallback(App* app);
 
 void SetBright(App* app, double value);
+void MoreBright(App* app);
+void LessBright(App* app);
+
 void SetVolume(App* app, double value);
 
 //fullscreen
