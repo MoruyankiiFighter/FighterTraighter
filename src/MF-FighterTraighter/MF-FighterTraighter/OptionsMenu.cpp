@@ -38,35 +38,36 @@ void OptionsMenu::init()
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
 		Vector2D(WINDOW_WIDTH_ / 4, 300), 150, 50, 0, nullptr, fullScreen, "FULLSCREEN", 20);
 	
-	
+	UIFactory::createSlider(app_, this, 0.4, 1, 10, app_->getAssetsManager()->getTexture(4), Vector2D(WINDOW_WIDTH_ / 4, 230), 500, 10, 0,SetBright, nullptr);
+
 	//slidebar
-	b_slider = entManager_.addEntity();
-	Transform* tr= b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
-	b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
-	b_slider->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	Slider* b=b_slider->addComponent<Slider>(0.4, 1, 6, SetBright); // min = 0.4 to be able to see
+	//b_slider = entManager_.addEntity();
+	//Transform* tr= b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
+	//b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
+	//b_slider->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	//Slider* b=b_slider->addComponent<Slider>(0.4, 1, 6, SetBright); // min = 0.4 to be able to see
 
-	ent = entManager_.addEntity();
-	ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 220), Vector2D(), 30, 50, 0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<IndexSlider>(tr, b);
+	//ent = entManager_.addEntity();
+	//ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 220), Vector2D(), 30, 50, 0);
+	//ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	//ent->addComponent<IndexSlider>(tr, b);
 
 
-	ent = entManager_.addEntity();
-	ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Slider>(0, 1,10, SetVolume); // min = 0 (sound), although now it's set to change brightness
-	
-	ent = entManager_.addEntity();
-	ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 800), Vector2D(), 500, 10, 0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	ent->addComponent<Slider>(1,1.2,5, setResolution); 
+	//ent = entManager_.addEntity();
+	//ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
+	//ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	//ent->addComponent<Slider>(0, 1,10, SetVolume); // min = 0 (sound), although now it's set to change brightness
+	//
+	//ent = entManager_.addEntity();
+	//ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 800), Vector2D(), 500, 10, 0);
+	//ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
+	//ent->addComponent<Slider>(1,1.2,5, setResolution); 
 
-	Entity* controller = giveMeManager().addEntity();
-	transform = controller->addComponent<Transform>();
-	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
-	transform->setPosition(POS_X_BUTTONS, 500);
-	controller->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(3));
+	//Entity* controller = giveMeManager().addEntity();
+	//transform = controller->addComponent<Transform>();
+	//transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
+	//transform->setPosition(POS_X_BUTTONS, 500);
+	//controller->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(3));
 }
 
 void GoBackCallback(App* app) {
