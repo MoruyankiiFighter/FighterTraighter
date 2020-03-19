@@ -38,18 +38,10 @@ void OptionsMenu::init()
 		Vector2D(10, 10), 60, 60, 0, GoBackCallback, nullptr, "<-", 20);
 	
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(WINDOW_WIDTH_ / 4, 300), 150, 50, 0, nullptr, fullScreen, "FULLSCREEN", 20);
+		Vector2D(WINDOW_WIDTH_ / 2-150, 300), 150, 50, 0, nullptr, fullScreen, "FULLSCREEN", 20);
 	
-	
-	UIFactory::createSlider(app_, this, 0.4, 1, 10, app_->getAssetsManager()->getTexture(4), Vector2D(WINDOW_WIDTH_ / 4, 230), 500, 10, 0,SetBright, nullptr);
-
-	
-	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(WINDOW_WIDTH_ / 4 + 450, 200), 50, 50, 0, nullptr, MoreBright, "+", 10);
-
-	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(WINDOW_WIDTH_ / 4 - 50, 200), 50, 50, 0, nullptr, LessBright, "-", 10);
-
+	UIFactory::createSlider(app_, this, 0.4, 1, 6, app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), nullptr,
+		Vector2D(WINDOW_WIDTH_ / 4, 200), 500, 10, 50, 50, SetBright, nullptr, LessBright, MoreBright, "", "");
 
 	//slidebar
 	//b_slider = entManager_.addEntity();
