@@ -53,11 +53,11 @@ void OptionsMenu::init()
 	b_slider->setApp(app_);
 	t= b_slider->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 230), Vector2D(), 500, 10, 0);
 	b_slider->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(4));
-	b_slider->addComponent<Slider>(0.4, 1, 10, SetBright); // min = 0.4 to be able to see
+	b_slider->addComponent<Slider>(0.4, 1, 6, SetBright); // min = 0.4 to be able to see
 	scene.push_back(b_slider);
 
 
-
+	
 	ent = new Entity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>(Vector2D(WINDOW_WIDTH_ / 4, 430), Vector2D(), 500, 10, 0);
@@ -83,15 +83,6 @@ void OptionsMenu::init()
 	//reg_bright->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(5));
 	//scene.push_back(reg_bright);
 
-
-}
-
-void OptionsMenu::update()
-{
-	//Transform* t = reg_bright->getComponent<Transform>(ecs::Transform);
-	//Transform* t2 = b_slider->getComponent<Transform>(ecs::Transform);
-
-	//t->setPosition(t2->getPosition().getX()+ t2->getWidth()*t2->getWMult()* b_slider->getComponent<Slider>(ecs::Slider)->getValue(), t->getPosition().getY()); //revisar regulador
 
 }
 

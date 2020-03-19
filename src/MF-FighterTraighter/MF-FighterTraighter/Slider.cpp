@@ -44,8 +44,6 @@ void Slider::update()
 	if (dragging_) {
 		dragValue();
 	}
-
-	cout << value_ << endl;
 }
 
 void Slider::dragValue()
@@ -68,16 +66,9 @@ void Slider::setValue(double newValue)
 	double oldValue = value_;
 	if (steps_ >= 1) { // if steps < 1, continuous
 		double distanceBetweenSteps = (maxValue_ - minValue_) / steps_;
-		int i = 0;
-		bool stop = false;
-		while (i <= steps_ && !stop) {
-			double currentValue = minValue_ + distanceBetweenSteps * i;
-			if (currentValue - distanceBetweenSteps / 2 <= newValue && currentValue + distanceBetweenSteps / 2 >= newValue) {
-				newValue = currentValue;
-				stop = true;
-			}
-			++i;
-		}
+
+		int j = ceil((-distanceBetweenSteps / 2 + newValue - minValue_) / distanceBetweenSteps);
+		newValue = minValue_ + distanceBetweenSteps * j;
 	}
 	value_ = newValue;
 

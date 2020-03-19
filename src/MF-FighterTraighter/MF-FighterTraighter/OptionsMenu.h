@@ -21,7 +21,6 @@ public:
 	virtual ~OptionsMenu();
 
 	void init() override;
-	void update() override;
 private:
 	Entity* reg_bright; //button for regulate the slider
 	Entity* b_slider;
