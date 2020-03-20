@@ -5,7 +5,7 @@
 class PhysicsTransform : public Transform
 {
 public:
-	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn = true);
+	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn = true, uint16 cBits = 0x0001, uint16 mBits = 0xFFFF);
 	//PhysicsTransform();
 	virtual ~PhysicsTransform();
 

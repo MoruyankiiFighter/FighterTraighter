@@ -1,6 +1,10 @@
 #include "PhysicsTransform.h"
 #include "Training.h"
-PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn)
+
+//	cBits are the category bits, the collision group this body is in
+//	cMask are the mask bits, the collision groups to check
+//	if not modified, the body will collide with everything
+PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn, uint16 cBits, uint16 mBits)
 	: Transform(position, speed, width, height, rotation)
 {
 	world_ = world;
@@ -16,6 +20,8 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.00001;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
+	fixturedef.filter.categoryBits = cBits;
+	fixturedef.filter.maskBits = mBits;
 	body_->CreateFixture(&fixturedef);
 	body_->SetFixedRotation(true);
 }
