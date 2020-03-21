@@ -87,10 +87,8 @@ void SetBright(App* app, double value)
 void MoreBright(App* app)
 {
 	double flag = SDL_GetWindowBrightness(app->getWindow());
-	if (flag < 1) {
-		flag += 0.1;
-	}
-	else {
+	flag += 0.1;
+	if (flag > 1) {
 		flag = 1;
 	}
 	SDL_SetWindowBrightness(app->getWindow(), flag);
@@ -100,10 +98,8 @@ void MoreBright(App* app)
 void LessBright(App* app)
 {
 	double flag = SDL_GetWindowBrightness(app->getWindow());
-	if (flag > 0.4) {
-		flag -= 0.05;
-	}
-	else {
+	flag -= 0.1;
+	if (flag < 0.4) {
 		flag = 0.4;
 	}
 	SDL_SetWindowBrightness(app->getWindow(), flag);
