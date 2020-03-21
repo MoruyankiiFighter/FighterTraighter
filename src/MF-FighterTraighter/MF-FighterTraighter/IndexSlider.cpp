@@ -2,24 +2,19 @@
 #include "Entity.h"
 IndexSlider::~IndexSlider()
 {
-	delete transform_;
-	 transform_=nullptr;
-
-	delete slider_;
-	slider_ = nullptr;
-	
-	delete transform_slider;
-	transform_slider = nullptr;
 }
 void IndexSlider::init()
 {
 	transform_ = entity_->getComponent<Transform>(ecs::Transform);
+	slider_ = sliderEnt_->getComponent<Slider>(ecs::Slider);
+	transform_slider = sliderEnt_->getComponent<Transform>(ecs::Transform);
 }
 
 void IndexSlider::update()
 {
-	if (slider_->getSteps() > 0) {
-
-	}
+	double sliderValue = slider_->getValue();
+	double sliderWidth = transform_slider->getWidth() * transform_slider->getWMult();
+	double sliderRange = slider_->getMaxValue() - slider_->getMinValue();
+	transform_->setPosition({ transform_slider->getPosition().getX() + ((sliderValue - slider_->getMinValue()) / sliderRange) * sliderWidth, transform_slider->getPosition().getY() - transform_->getHeight() * transform_->getHMult() / 2 });
 }
 

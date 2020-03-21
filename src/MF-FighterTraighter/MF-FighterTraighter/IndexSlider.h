@@ -6,16 +6,17 @@ class IndexSlider :
 	public Component
 {
 public:
-	IndexSlider(Transform* transform, Slider* slider) : Component(ecs::IndexSlider),transform_slider(transform_) ,slider_(slider){}
+	IndexSlider(Entity* slider) : Component(ecs::IndexSlider), sliderEnt_(slider) {}
 	virtual ~IndexSlider();
-	
+
 	void init() override;
 	void update() override;
 
 
 private:
-	Slider* slider_=nullptr;
+	Entity* sliderEnt_ = nullptr;
 	Transform* transform_ = nullptr;
 	Transform* transform_slider = nullptr;
+	Slider* slider_ = nullptr;
 };
 

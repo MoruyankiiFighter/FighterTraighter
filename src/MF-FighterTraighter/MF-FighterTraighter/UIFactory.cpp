@@ -11,6 +11,7 @@
 #include "RenderImage.h"
 #include "App.h"
 #include "Slider.h"
+#include "IndexSlider.h"
 
 std::tuple<Entity*, Entity*> UIFactory::createButton(App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position, double width, double height, double rotation, CallBackOnClick* clickCallback, CallBackOnClick* stopClickCallback, std::string text, int fontSize)
 {
@@ -49,9 +50,10 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	right_->addComponent<Button>(right, nullptr);
 
 	Entity* reg_ = state->giveMeManager().addEntity();
-
 	reg_->addComponent<Transform>(position, Vector2D(), sides_width / 2, sides_height, 0);
-	//reg_->addComponent<RenderImage>(sides_texture);
+	reg_->addComponent<RenderImage>(sides_texture);
+	reg_->addComponent<IndexSlider>(slider);
+
 
 	return std::make_tuple(slider, left_, right_, reg_);;
 }
