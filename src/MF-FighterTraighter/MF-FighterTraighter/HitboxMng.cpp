@@ -29,7 +29,7 @@ void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.00001;			//densidad casi 0, para que no cambie segun el ancho y el alto por ahora
 	fixturedef.isSensor=true;
-
+	//fixturedef.filter.categoryBits = 
 	hitbox* hitbox_ = new hitbox{ damage,time };//creamos los datos de la hitbox
 	hitboxList_.push_back(body->CreateFixture(&fixturedef));//creamos la fixture 
 	hitboxList_.back()->SetUserData(hitbox_);//guardamos los datos de la hitbox

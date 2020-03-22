@@ -7,10 +7,10 @@
 #include "Crouch.h"
 #include "PlayerAttacks.h"
 
-Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, uint16 cBits, uint16 mBits)
+Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, uint16 cBits, uint16 mBits, bool dyn)
 {
 	Entity* e = state->giveMeManager().addEntity();
-	e->addComponent<PhysicsTransform>(Vector2D(10, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits);
+	e->addComponent<PhysicsTransform>(Vector2D(10, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn);
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(0));
 	e->addComponent<Jump>(-1000);

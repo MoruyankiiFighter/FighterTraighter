@@ -24,10 +24,10 @@ void Fight::init()
 	//---------------------------------------------------------------
 	
 	Entity* floor = giveMeManager().addEntity();
-	floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, false, PLAYER_2, TERRAIN);
+	floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, BOUNDARY, EVERYTHING, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));	
 
-	FactoryMk::addMkToGame(app_, this, world, PLAYER_1, TERRAIN);
+	FactoryMk::addMkToGame(app_, this, world, PLAYER_1, PLAYER_2 | BOUNDARY);
 }
 
 void Fight::handleInput()
