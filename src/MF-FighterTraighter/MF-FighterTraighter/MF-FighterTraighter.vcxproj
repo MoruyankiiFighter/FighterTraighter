@@ -138,6 +138,7 @@
     <ClCompile Include="FactoryMk.cpp" />
     <ClCompile Include="HitboxMng.cpp" />
     <ClCompile Include="MoveParser.cpp" />
+    <ClCompile Include="OptionsLogic.cpp" />
     <ClCompile Include="PlayerAttacks.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelection.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="IndexSlider.h" />
     <ClInclude Include="MkWh00pAttacks.h" />
     <ClInclude Include="MoveParser.h" />
+    <ClInclude Include="OptionsLogic.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />

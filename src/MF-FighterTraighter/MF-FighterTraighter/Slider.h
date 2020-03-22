@@ -30,6 +30,7 @@ public:
 	inline void setMaxValue(int maxValue) {
 		maxValue_ = maxValue;
 	}
+	void setValue(double newValue);
 
 	void init() override;
 	void handleInput() override;
@@ -40,7 +41,6 @@ public:
 	double getMinValue() { return minValue_; }
 	double getMaxValue() { return maxValue_; }
 	int getSteps() { return steps_; }
-	void setValue(double newValue);
 
 	
 	virtual ~Slider();

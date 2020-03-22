@@ -168,9 +168,6 @@
     <ClCompile Include="FactoryMk.cpp">
       <Filter>Archivos de origen\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="IndexSlider.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="HitboxMng.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -179,6 +176,12 @@
     </ClCompile>
     <ClCompile Include="WindowManager.cpp">
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsLogic.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexSlider.cpp">
+      <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,9 +323,6 @@
     <ClInclude Include="HitboxMng.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="IndexSlider.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="MkWh00pAttacks.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -331,6 +331,12 @@
     </ClInclude>
     <ClInclude Include="WindowManager.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsLogic.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexSlider.h">
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

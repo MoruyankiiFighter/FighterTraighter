@@ -23,6 +23,7 @@ namespace ecs {
 		IndexSlider,
 		CreatorBody,
 		HitboxMng,
+		OptionsLogic,
 		/*
 		
 		*/
