@@ -21,6 +21,15 @@ public:
 	inline void setCallbackOnValueChanged(CallbackOnValueChanged* callback) {
 		valueChanged_ = callback;
 	}
+	inline void setSteps(int steps) {
+		steps_ = steps;
+	}
+	inline void setMinValue(int minValue) {
+		minValue_ = minValue;
+	}
+	inline void setMaxValue(int maxValue) {
+		maxValue_ = maxValue;
+	}
 
 	void init() override;
 	void handleInput() override;

@@ -86,6 +86,7 @@ void App::init()
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
 	hitboxManager_.reset(new HitboxMng(this));
+	windowManager_.reset(new WindowManager(this));
 
 	stateMachine_->pushState(new MainMenu(this));
 }

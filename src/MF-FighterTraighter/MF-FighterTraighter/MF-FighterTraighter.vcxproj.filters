@@ -177,6 +177,9 @@
     <ClCompile Include="UIFactory.cpp">
       <Filter>Archivos de origen\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Texture.h">
@@ -325,6 +328,9 @@
     </ClInclude>
     <ClInclude Include="UIFactory.h">
       <Filter>Archivos de encabezado\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowManager.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,7 +15,7 @@ void SetVolume(App* app, double value);
 //fullscreen
 void fullScreen(App* app);
 
-void setResolution(App* app, double resolution);
+void setResolution(App* app, double value);
 
 class OptionsMenu:public GameState
 {
