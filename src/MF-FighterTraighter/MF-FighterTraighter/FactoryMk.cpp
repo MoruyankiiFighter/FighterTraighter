@@ -30,9 +30,10 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, uint1
 }
 
 //Esto es para geenrar hitboxes, habrá uno para cada hitbox generada
-void FactoryMk::moveHurt(Entity* ent)
+void FactoryMk::moveHurt(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
 {
 	std::cout << "Golpe" << endl;
-	//ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
-	ent->getApp()->getHitboxMng()->addHitbox({ 200,0 }, 50, 50, 500, 50, ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody());
+	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
+	b2Filter filter = body->GetFixtureList()->GetFilterData();
+	ent->getApp()->getHitboxMng()->addHitbox({ 200,0 }, 50, 50, 500, 50, body, filter.categoryBits, filter.maskBits);
 }

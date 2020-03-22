@@ -25,16 +25,16 @@ void Training::init()
 	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
 
-	FactoryMk::addMkToGame(app_, this, world);
+	FactoryMk::addMkToGame(app_, this, world, PLAYER_1, BOUNDARY | P_BAG);
 
 	Entity* saco = giveMeManager().addEntity();
-	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, false);
+	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	//saco->addComponent<SacoTimer>(5000);
 	saco->addComponent<PunchingBagCollision>();
 
 	Entity* floor = giveMeManager().addEntity();
-	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, false);
+	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, BOUNDARY, EVERYTHING, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 }
 

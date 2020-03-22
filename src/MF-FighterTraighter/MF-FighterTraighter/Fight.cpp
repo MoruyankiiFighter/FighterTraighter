@@ -19,8 +19,6 @@ void Fight::init()
 	debugInstance = new SDLDebugDraw(app_->getRenderer());
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
-	pbListener = new PunchingBagListener();
-	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
 	
 	Entity* floor = giveMeManager().addEntity();
