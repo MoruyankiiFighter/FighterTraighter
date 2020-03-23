@@ -13,7 +13,7 @@ void Button::init()
 void Button::handleInput()
 {
 	InputManager* imngr = app_->getInputManager();
-	if (imngr->isMouseButtonPressed(imngr->Left)) {
+	if (imngr->isMouseButtonPressed(imngr->Left)  ) {
 		if (imngr->mouseEvent()) { // if left mouse has just been clicked
 			SDL_Point p = { imngr->getMousePosX(), imngr->getMousePosY() };
 			Vector2D pos = trans_->getPosition();
@@ -25,13 +25,14 @@ void Button::handleInput()
 			}
 		}
 	}
-	else if (select && app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A))
-	{
-		callbackbutton(app_);
-	}
-
 	else if (pressed_) {
 		pressed_ = false;
 		if (stopClickCallback_) stopClickCallback_(app_);
 	}
+
+	if (select && (app_->getInputManager()->isKeyDown(SDLK_SPACE)  ||app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A) ))
+	{
+		clickCallback_(app_);
+	}
+
 }

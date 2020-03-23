@@ -86,9 +86,18 @@ void InputManager::update()
 
 			// And something similar for axis motion
 		case SDL_CONTROLLERAXISMOTION:
+
 			for (int i = 0; i < numGamepads; i++) {
 				if (e.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(connectedControllers[i]))) {
+					//cout << e.caxis.value<<endl;
+					if (abs( controllerInputs[i].axis[e.caxis.axis]- e.caxis.value) >5000)
+					{
+						axisEvent_ = true;
+
+					}
+
 					controllerInputs[i].axis[e.caxis.axis] = e.caxis.value;
+					
 				}
 			}
 			break;
@@ -110,6 +119,7 @@ void InputManager::clearState()
 	mouseEvent_ = false;
 	keyboardEvent_ = false;
 	controllerEvent_ = false;
+	axisEvent_ = false;
 }
 void InputManager::initControllers()
 {

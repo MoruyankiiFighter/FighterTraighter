@@ -17,9 +17,9 @@
 #include "App.h"
 #include "consts.h"
 
-MainMenu::MainMenu(App* app): GameState(app)
+MainMenu::MainMenu(App* app) : GameState(app)
 {
-	
+
 	cout << "Menu principal" << endl;
 	init();
 }
@@ -37,15 +37,15 @@ void MainMenu::init()
 	cout << "init" << endl;
 
 	Entity* ent = entManager_.addEntity();
-	Transform* transform=ent->addComponent<Transform>();
+	Transform* transform = ent->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
 	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 
 	Entity* arcade = entManager_.addEntity();
-	Transform* t=arcade->addComponent<Transform>();
+	Transform* t = arcade->addComponent<Transform>();
 	t->setPosition(POS_X_BUTTONS, POS_Y_ARCADE);
-	t->setWidth(WIDTH_BUTTON); 
+	t->setWidth(WIDTH_BUTTON);
 	t->setHeight(HEIGHT_BUTTON);
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
@@ -59,7 +59,7 @@ void MainMenu::init()
 	tr->setWidth(WIDTH_BUTTON);
 	tr->setHeight(HEIGHT_BUTTON);
 	tr->setRotation(0);
-	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1)); 
+	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	pvp->addComponent<Button>(Go1v1);
 	buttons.push_back(pvp);
 
@@ -111,18 +111,24 @@ void MainMenu::Leave(App* app)
 void MainMenu::update() {
 
 	//subir al boton de arriba si existe
-	if (buttonSel != 0 && (app_->getInputManager()->isKeyDown(SDLK_UP)/* || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.8*/)) {
+	if (buttonSel != 0 && ((app_->getInputManager()->isKeyDown(SDLK_UP) && app_->getInputManager()->keyboardEvent())
+		|| (app_->getInputManager()->axisEvent() && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.8)
+		|| (app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_UP) && app_->getInputManager()->controllerEvent()))) {
+		buttons.at(buttonSel)->getComponent<Button>(ecs::Button)->setSelect(false);
 		buttonSel--;
 		cout << buttonSel;
-
+		buttons.at(buttonSel)->getComponent<Button>(ecs::Button)->setSelect(true);
 	}
 	//bajar al boton de abajo si existe
-	else if (buttonSel != buttons.size() - 1 && (app_->getInputManager()->isKeyDown(SDLK_DOWN) /*|| app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.8*/)) {
-		buttonSel++;
-			cout << buttonSel;
+	else if (buttonSel != buttons.size() - 1 && ((app_->getInputManager()->isKeyDown(SDLK_DOWN) && app_->getInputManager()->keyboardEvent())
+		|| (app_->getInputManager()->axisEvent() && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.8)
+		|| (app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_DOWN) && app_->getInputManager()->controllerEvent()))) {
+			{
+				buttons.at(buttonSel)->getComponent<Button>(ecs::Button)->setSelect(false);
+				buttonSel++;
+				cout << buttonSel;
+				buttons.at(buttonSel)->getComponent<Button>(ecs::Button)->setSelect(true);
 
+			}
 	}
-
-	buttons.at(buttonSel)->getComponent<Button>(ecs::Button)->setSelect(true);
-	//buttons.at(buttonSel)->estaSeleccionado  -----> esto seria para indicar que el boton este seleccionado ya sea con sombrado o como sea
 }

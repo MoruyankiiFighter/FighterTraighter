@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include <SDL_gamecontroller.h>
+#include <iostream>
 class App;
 
 class InputManager
@@ -86,7 +87,6 @@ public:
 	float getControllerAxis(Controllers controllerID, SDL_GameControllerAxis axis)
 	{
 		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return 0.0;
-		
 		return controllerInputs[controllerID].axis[axis] / 32768.0f;
 	}
 	inline bool GamepadConnected() { return numGamepads > 0; }
@@ -94,6 +94,10 @@ public:
 	inline bool controllerEvent() {
 		return controllerEvent_;
 	}
+	inline bool axisEvent() {
+		return axisEvent_;
+	}
+
 
 	virtual ~InputManager();
 private:
@@ -132,4 +136,5 @@ private:
 	bool mouseEvent_ = false; // click
 	bool keyboardEvent_ = false; // press
 	bool controllerEvent_ = false; // button
+	bool axisEvent_ = false;//axis
 };
