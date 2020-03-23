@@ -153,8 +153,11 @@
     <ClCompile Include="Health.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="HitboxMng.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="VerticalSlider.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Slider.cpp">
+      <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
     <ClCompile Include="EntityManager.cpp">
       <Filter>Archivos de origen\Entity</Filter>
@@ -164,6 +167,21 @@
     </ClCompile>
     <ClCompile Include="FactoryMk.cpp">
       <Filter>Archivos de origen\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="HitboxMng.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="UIFactory.cpp">
+      <Filter>Archivos de origen\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsLogic.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexSlider.cpp">
+      <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -278,11 +296,14 @@
     <ClInclude Include="PlayerAttacks.h">
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
+    <ClInclude Include="Slider.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
     <ClInclude Include="hitbox.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="HitboxMng.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="VerticalSlider.h">
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="AssetsExceptions.h">
       <Filter>Archivos de encabezado\Exceptions</Filter>
@@ -298,6 +319,24 @@
     </ClInclude>
     <ClInclude Include="FactoryMk.h">
       <Filter>Archivos de encabezado\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxMng.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MkWh00pAttacks.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="UIFactory.h">
+      <Filter>Archivos de encabezado\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsLogic.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexSlider.h">
+      <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

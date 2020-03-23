@@ -22,6 +22,14 @@ Vector2D Vector2D::operator+(const Vector2D& v) const
 	return w;
 }
 
+Vector2D Vector2D::operator-(const Vector2D& v) const
+{
+	Vector2D w;
+	w._x = this->_x - v._x;
+	w._y = this->_y - v._y;
+	return w;
+}
+
 //operator product when is number x vector
 Vector2D Vector2D::operator*(double d) const
 {

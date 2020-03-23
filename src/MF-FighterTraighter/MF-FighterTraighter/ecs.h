@@ -18,8 +18,12 @@ namespace ecs {
 		PunchingBagCollision,
 		Crouch,
 		PlayerAttacks,
+		Slider,
+		VerticalSlider,
+		IndexSlider,
 		CreatorBody,
 		HitboxMng,
+		OptionsLogic,
 		/*
 		
 		*/

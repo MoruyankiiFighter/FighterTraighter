@@ -11,22 +11,24 @@ Text::Text(SDL_Renderer* rend, std::string text, Font* font) : Texture(rend), te
 
 void Text::createText(Font* font, std::string text)
 {
-	SDL_Surface* surface = TTF_RenderText_Solid(font->getFont(), text.c_str(), { 255, 255, 255, 255 });
-	if (surface == nullptr) {
-		throw "Error"; // CHANGE TO PROPER EXCEPTION
-	}
-	else {
-		cleanTexture();
+	if (text != "") {
+		SDL_Surface* surface = TTF_RenderText_Solid(font->getFont(), text.c_str(), { 255, 255, 255, 255 });
+		if (surface == nullptr) {
+			throw "Error"; // CHANGE TO PROPER EXCEPTION
+		}
+		else {
+			cleanTexture();
 
-		nCols = 1;
-		nRows = 1;
-		width = surface->w;
-		height = surface->h;
-		fWidth = width;
-		fHeight = height;
+			nCols = 1;
+			nRows = 1;
+			width = surface->w;
+			height = surface->h;
+			fWidth = width;
+			fHeight = height;
 
-		texture = SDL_CreateTextureFromSurface(renderer, surface);
-		SDL_FreeSurface(surface);
+			texture = SDL_CreateTextureFromSurface(renderer, surface);
+			SDL_FreeSurface(surface);
+		}
 	}
 }
 
@@ -54,7 +56,8 @@ void Text::setFont(Font* font)
 
 void Text::render(const SDL_Rect& dest) const
 {
-	Texture::render(dest);
+	if (text_ != "")
+		Texture::render(dest);
 }
 
 Text::~Text()

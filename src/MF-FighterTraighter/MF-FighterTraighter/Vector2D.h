@@ -21,6 +21,7 @@ public:
 	};
 
 	Vector2D operator+(const Vector2D& v) const;
+	Vector2D operator-(const Vector2D& v) const;
 	Vector2D operator*(double d) const;
 	double operator*(const Vector2D& v);
 	Vector2D operator=(const Vector2D& v);

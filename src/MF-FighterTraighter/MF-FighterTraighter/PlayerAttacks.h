@@ -30,10 +30,9 @@ public:
 private:
 	std::vector<AnimationChain*> attacksList;//pointer to the attack that you can use
 	//std::list<Hability*> habilityList;//pointer to the habilities 
-	AnimationChain* activeAttack_;
+	AnimationChain* activeAttack_=nullptr;
 
 	//keys to use the attacks and habilities
-	SDL_Scancode highFistKey, lowFistKey, highKickKey,
-		 lowKickKey/*, hability1Key, hability2Key*/;
+	SDL_Scancode highFistKey, lowFistKey, highKickKey,lowKickKey;
 };
 

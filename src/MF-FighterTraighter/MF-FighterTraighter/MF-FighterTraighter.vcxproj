@@ -133,10 +133,12 @@
   <ItemGroup>
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
     <ClCompile Include="HitboxMng.cpp" />
     <ClCompile Include="MoveParser.cpp" />
+    <ClCompile Include="OptionsLogic.cpp" />
     <ClCompile Include="PlayerAttacks.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelection.cpp" />
@@ -162,16 +164,20 @@
     <ClCompile Include="PunchingBagListener.cpp" />
     <ClCompile Include="RenderAnimation.cpp" />
     <ClCompile Include="RenderImage.cpp" />
+    <ClCompile Include="WindowManager.cpp" />
     <ClCompile Include="SacoTimer.cpp" />
     <ClCompile Include="SDLDebugDraw.cpp" />
     <ClCompile Include="SkillSelection.cpp" />
+    <ClCompile Include="Slider.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="AssetsManager.cpp" />
     <ClCompile Include="Training.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="UIFactory.cpp" />
     <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="VerticalSlider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationChain.h" />
@@ -181,7 +187,10 @@
     <ClInclude Include="hitbox.h" />
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
+    <ClInclude Include="IndexSlider.h" />
+    <ClInclude Include="MkWh00pAttacks.h" />
     <ClInclude Include="MoveParser.h" />
+    <ClInclude Include="OptionsLogic.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />
@@ -207,17 +216,21 @@
     <ClInclude Include="PunchingBagListener.h" />
     <ClInclude Include="RenderAnimation.h" />
     <ClInclude Include="RenderImage.h" />
+    <ClInclude Include="WindowManager.h" />
     <ClInclude Include="SacoTimer.h" />
     <ClInclude Include="SDLDebugDraw.h" />
     <ClInclude Include="SDLExceptions.h" />
     <ClInclude Include="SkillSelection.h" />
+    <ClInclude Include="Slider.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextComponent.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="AssetsManager.h" />
     <ClInclude Include="Training.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="UIFactory.h" />
     <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="VerticalSlider.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
