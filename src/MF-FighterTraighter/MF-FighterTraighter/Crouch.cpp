@@ -40,16 +40,22 @@ void Crouch::update()
 void Crouch::crouch()
 {
 	cancrouched = false;
-	tr_->setPosition(tr_->getPosition() + Vector2D(0,  tr_->getHeight()));
-
+	
 	tr_->setHeight(tr_->getHeight() / 2);
+	double height = tr_->getHeight();
+	double width = tr_->getWidth();
+
+	tr_->setPosition(tr_->getPosition().getX()+width/2, tr_->getPosition().getY() + height);
+
 	//animaciones de agachar
 }void Crouch::uncrouch()
 {
 	cancrouched = true;
+	double width = tr_->getWidth();
+
+	tr_->setPosition(tr_->getPosition().getX() + width / 2, tr_->getPosition().getY() );
 	tr_->setHeight(tr_->getHeight() * 2);
 
-	tr_->setPosition(tr_->getPosition() + Vector2D(0, tr_->getHeight())*(-1));
 	//animaciones por defecto
 }
 

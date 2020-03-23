@@ -35,5 +35,5 @@ void FactoryMk::moveHurt(Entity* ent)//cBits and mBits are there to use the same
 	std::cout << "Golpe" << endl;
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
-	ent->getApp()->getHitboxMng()->addHitbox({ 200,0 }, 50, 50, 500, 50, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ 200,0 }, 50, 500, 500, 50, body, filter.categoryBits, filter.maskBits);
 }

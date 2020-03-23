@@ -8,7 +8,8 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	: Transform(position, speed, width, height, rotation)
 {
 	world_ = world;
-
+	cBits_ = cBits;
+	mBits_ = mBits;
 	b2BodyDef bodydef;
 	bodydef.position.Set(position.getX(), position.getY());
 	//position_ = bodydef.position();
@@ -22,7 +23,8 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	fixturedef.density = 0.00001;			
 	fixturedef.filter.categoryBits = cBits;
 	fixturedef.filter.maskBits = mBits;
-	body_->CreateFixture(&fixturedef);
+
+	mainFixture_=body_->CreateFixture(&fixturedef);
 	body_->SetFixedRotation(true);
 }
 
@@ -38,13 +40,21 @@ void PhysicsTransform::init() {
 
 //al anadir mas hitbox puede dar fallo
 void PhysicsTransform::setHeight(double height) {
-	body_->DestroyFixture(body_->GetFixtureList());
-
+	//app_->getHitboxMng()->addHitbox({ 200,0 }, 50, 50, 5000, 50, body_, cBits_, mBits_);
+	/*vector<b2Fixture*> fixtureAux;
+	fixtureAux.push_back(body_->GetFixtureList());
+	*/
+	body_->DestroyFixture(mainFixture_);
+	//body_->DestroyFixture(body_->GetFixtureList());
+	//b2Fixture* fix = body_->GetFixtureList();
+	//	cout << body_->GetFixtureList()->GetDensity() << endl;
+	
+	
 	b2PolygonShape shape;
 	shape.SetAsBox(width_ / 2, height / 2);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 0.0;
+	fixturedef.density = 0.00001;
 
 	body_->CreateFixture(&fixturedef);
 
@@ -54,30 +64,30 @@ void PhysicsTransform::setHeight(double height) {
 //al anadir mas hitbox puede dar fallo
 void PhysicsTransform::setWidth(double width) {
 
-	body_->DestroyFixture(body_->GetFixtureList());
+	body_->DestroyFixture(mainFixture_);
 
 	b2PolygonShape shape;
 	shape.SetAsBox(width / 2, height_ / 2);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 0.0;
+	fixturedef.density = 0.00001;
 
-	body_->CreateFixture(&fixturedef);
+	mainFixture_=body_->CreateFixture(&fixturedef);
 	width_ = width;
 }
 
 //al anadir mas hitbox puede dar fallo
 void PhysicsTransform::setWidthHeight(double width, double height) {
 
-	body_->DestroyFixture(body_->GetFixtureList());
+	body_->DestroyFixture(mainFixture_);
 
 	b2PolygonShape shape;
 	shape.SetAsBox(width / 2, height / 2);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 0.0;
+	fixturedef.density = 0.00001;
 
-	body_->CreateFixture(&fixturedef);
+	mainFixture_=body_->CreateFixture(&fixturedef);
 	width_ = width;
 	height_ = height;
 }
