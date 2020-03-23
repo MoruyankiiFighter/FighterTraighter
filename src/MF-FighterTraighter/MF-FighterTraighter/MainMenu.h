@@ -12,7 +12,7 @@ public:
 	void init();
 	void update();
 
-	//Funciones botones
+	//Callbacks main menu
 	static void GoArcade(App* app);
 	static void Go1v1(App* app);
 	static void GoOptions(App* app);

@@ -36,16 +36,13 @@ void MainMenu::init()
 
 	cout << "init" << endl;
 
-	Entity* logo = giveMeManager().addEntity();
-	
-	Transform* transform=logo->addComponent<Transform>();
+	Entity* ent = entManager_.addEntity();
+	Transform* transform=ent->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
-	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
-	entManager_.getScene().push_back(logo);
-	
+	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 
-	Entity* arcade = giveMeManager().addEntity();
+	Entity* arcade = entManager_.addEntity();
 	Transform* t=arcade->addComponent<Transform>();
 	t->setPosition(POS_X_BUTTONS, POS_Y_ARCADE);
 	t->setWidth(WIDTH_BUTTON); 
@@ -56,7 +53,7 @@ void MainMenu::init()
 	arcade->addComponent<Button>(GoArcade);
 	buttons.push_back(arcade);
 
-	Entity* pvp = giveMeManager().addEntity();
+	Entity* pvp = entManager_.addEntity();
 	Transform* tr = pvp->addComponent<Transform>();
 	tr->setPosition(POS_X_BUTTONS, POS_Y_PVP);
 	tr->setWidth(WIDTH_BUTTON);
@@ -67,7 +64,7 @@ void MainMenu::init()
 	buttons.push_back(pvp);
 
 
-	Entity* options = giveMeManager().addEntity();
+	Entity* options = entManager_.addEntity();
 	Transform* tra = options->addComponent<Transform>();
 	tra->setPosition(POS_X_BUTTONS, POS_Y_OPTIONS);
 	tra->setWidth(WIDTH_BUTTON);
@@ -78,7 +75,7 @@ void MainMenu::init()
 	buttons.push_back(options);
 
 
-	Entity* exit = giveMeManager().addEntity();
+	Entity* exit = entManager_.addEntity();
 	Transform* tran = exit->addComponent<Transform>();
 	tran->setPosition(POS_X_BUTTONS, POS_Y_EXIT);
 	tran->setWidth(WIDTH_BUTTON);
@@ -103,7 +100,7 @@ void MainMenu::Go1v1(App* app)
 
 void MainMenu::GoOptions(App* app)
 {
-	app->getStateMachine()->pushState(new OptionsMenu(app));
+	app->Options();
 }
 
 void MainMenu::Leave(App* app)
