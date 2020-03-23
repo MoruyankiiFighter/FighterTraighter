@@ -212,6 +212,7 @@
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PhysicsTransform.h" />
     <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PunchingBagCollision.h" />
     <ClInclude Include="PunchingBagListener.h" />
     <ClInclude Include="RenderAnimation.h" />
