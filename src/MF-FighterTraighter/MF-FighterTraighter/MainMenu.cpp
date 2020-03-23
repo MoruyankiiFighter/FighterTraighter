@@ -36,17 +36,16 @@ void MainMenu::init()
 
 	cout << "init" << endl;
 
-	Entity* logo = new Entity();
+	Entity* logo = giveMeManager().addEntity();
 	
 	Transform* transform=logo->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
-	logo->setApp(app_);
 	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 	entManager_.getScene().push_back(logo);
+	
 
 	Entity* arcade = giveMeManager().addEntity();
-	arcade->setApp(app_);
 	Transform* t=arcade->addComponent<Transform>();
 	t->setPosition(POS_X_BUTTONS, POS_Y_ARCADE);
 	t->setWidth(WIDTH_BUTTON); 
@@ -55,9 +54,9 @@ void MainMenu::init()
 	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
 	arcade->addComponent<Button>(GoArcade);
+	buttons.push_back(arcade);
 
 	Entity* pvp = giveMeManager().addEntity();
-	pvp->setApp(app_);
 	Transform* tr = pvp->addComponent<Transform>();
 	tr->setPosition(POS_X_BUTTONS, POS_Y_PVP);
 	tr->setWidth(WIDTH_BUTTON);
@@ -65,9 +64,10 @@ void MainMenu::init()
 	tr->setRotation(0);
 	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1)); 
 	pvp->addComponent<Button>(Go1v1);
+	buttons.push_back(pvp);
+
 
 	Entity* options = giveMeManager().addEntity();
-	options->setApp(app_);
 	Transform* tra = options->addComponent<Transform>();
 	tra->setPosition(POS_X_BUTTONS, POS_Y_OPTIONS);
 	tra->setWidth(WIDTH_BUTTON);
@@ -75,10 +75,10 @@ void MainMenu::init()
 	tra->setRotation(0);
 	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	options->addComponent<Button>(GoOptions);
+	buttons.push_back(options);
 
 
 	Entity* exit = giveMeManager().addEntity();
-	exit->setApp(app_);
 	Transform* tran = exit->addComponent<Transform>();
 	tran->setPosition(POS_X_BUTTONS, POS_Y_EXIT);
 	tran->setWidth(WIDTH_BUTTON);
@@ -86,6 +86,8 @@ void MainMenu::init()
 	tran->setRotation(0);
 	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	exit->addComponent<Button>(Leave);
+	buttons.push_back(exit);
+
 }
 
 void MainMenu::GoArcade(App* app)

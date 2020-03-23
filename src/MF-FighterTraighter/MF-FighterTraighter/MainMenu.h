@@ -20,4 +20,5 @@ public:
 
 private:
 	int buttonSel = 0;
+	vector<Entity*>buttons;
 };
