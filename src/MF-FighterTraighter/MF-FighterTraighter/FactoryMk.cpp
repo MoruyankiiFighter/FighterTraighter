@@ -52,7 +52,8 @@ void FactoryMk::NP1(Entity* ent)//cBits and mBits are there to use the same coll
 	std::cout << "Uppercut" << endl;
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
-	ent->getApp()->getHitboxMng()->addHitbox({ 20,-75 }, 35, 75, 20, 50, { 0,0 }, body, filter.categoryBits, filter.maskBits);
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+	ent->getApp()->getHitboxMng()->addHitbox({ orientation_ * 20,-75 }, 35, 75, 20, 50, { orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::HP1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -60,7 +61,8 @@ void FactoryMk::HP1(Entity* ent)//cBits and mBits are there to use the same coll
 	std::cout << "Hostia" << endl;
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
-	ent->getApp()->getHitboxMng()->addHitbox({ 20,-45 }, 60, 60, 17, 50000, { 0,0 }, body, filter.categoryBits, filter.maskBits);
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+	ent->getApp()->getHitboxMng()->addHitbox({ orientation_ * 20,-45 }, 60, 60, 17, 50000, { orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::NK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -68,7 +70,8 @@ void FactoryMk::NK1(Entity* ent)//cBits and mBits are there to use the same coll
 	std::cout << "Rodilla 1" << endl;
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
-	ent->getApp()->getHitboxMng()->addHitbox({ 25,-20 }, 45, 35, 13, 50, { 0,0 }, body, filter.categoryBits, filter.maskBits);
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+	ent->getApp()->getHitboxMng()->addHitbox({ orientation_ * 25,-20 }, 45, 35, 13, 50, { orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::NK2(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -76,7 +79,8 @@ void FactoryMk::NK2(Entity* ent)//cBits and mBits are there to use the same coll
 	std::cout << "Rodilla 2" << endl;
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
-	ent->getApp()->getHitboxMng()->addHitbox({ 20, -17 }, 45, 35, 17, 50, { 0,0 }, body, filter.categoryBits, filter.maskBits);
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+	ent->getApp()->getHitboxMng()->addHitbox({ orientation_ * 20, -17 }, 45, 35, 17, 50, { orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::HK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -84,7 +88,8 @@ void FactoryMk::HK1(Entity* ent)//cBits and mBits are there to use the same coll
 	std::cout << "Falcon stomp" << endl;
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
-	ent->getApp()->getHitboxMng()->addHitbox({ 20, -15 }, 35, 40, 17, 50, { 0,0 }, body, filter.categoryBits, filter.maskBits);
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+	ent->getApp()->getHitboxMng()->addHitbox({ orientation_ * 20, -15 }, 35, 40, 17, 50, { orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::HK2(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -92,5 +97,6 @@ void FactoryMk::HK2(Entity* ent)//cBits and mBits are there to use the same coll
 	std::cout << "Brrrrrjrnkrrbr" << endl;
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
-	ent->getApp()->getHitboxMng()->addHitbox({ 0, 15 }, 200, 30, 35, 1, { 0,0 }, body, filter.categoryBits, filter.maskBits);
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+	ent->getApp()->getHitboxMng()->addHitbox({ orientation_ * 0, 15 }, 200, 30, 35, 1, { orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
