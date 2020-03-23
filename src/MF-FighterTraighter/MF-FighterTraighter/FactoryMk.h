@@ -13,7 +13,7 @@ public:
 	static void NK1(Entity* ent);
 	static void NK2(Entity* ent);
 	static void HK1(Entity* ent);
-	static void HK2(Entity* ent);
+	//static void HK2(Entity* ent);
 private:
 	FactoryMk() = delete;
 	~FactoryMk() {};
