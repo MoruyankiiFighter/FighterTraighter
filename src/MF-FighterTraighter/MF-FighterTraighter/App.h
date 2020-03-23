@@ -18,7 +18,6 @@ public:
 
 	void run();		//main
 
-	inline SDL_Window* getWindow() const { return window; }
 	inline SDL_Renderer* getRenderer() const { return renderer; };
 
 	inline GameStateMachine* getStateMachine() const { return stateMachine_.get(); };
@@ -41,7 +40,6 @@ public:
 	void Movements();
 
 private:
-	SDL_Window* window;
 	SDL_Renderer* renderer;
 
 	std::unique_ptr<GameStateMachine> stateMachine_;

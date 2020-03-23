@@ -14,18 +14,20 @@ public:
 	void setResolution(int resIndex);
 	void setBrightness(float brightness);
 
-	const SDL_DisplayMode& getCurResolution() { return supportedResolutions_[currentResolution_]; }
-	int getCurResolutionIndex() { return currentResolution_; }
-	int getAvailableResolutions() { return supportedResolutions_.size(); }
-	bool getFullscreen() { return fullscreen_; }
-	float getCurBrightness() { return currentBrightness_; }
+	inline SDL_Window* getWindow() const { return window; }
+	inline const SDL_DisplayMode& getCurResolution() { return supportedResolutions_[currentResolution_]; }
+	inline int getCurResolutionIndex() { return currentResolution_; }
+	inline int getAvailableResolutions() { return supportedResolutions_.size(); }
+	inline bool getFullscreen() { return fullscreen_; }
+	inline float getCurBrightness() { return currentBrightness_; }
 
-	virtual ~WindowManager() {}
+	virtual ~WindowManager() { SDL_DestroyWindow(window); }
 protected:
 	App* app_;
 	std::vector<SDL_DisplayMode> supportedResolutions_;
 	int currentResolution_ = 0;
 	float currentBrightness_ = 1;
 	bool fullscreen_ = true;
+	SDL_Window* window;
 };
 

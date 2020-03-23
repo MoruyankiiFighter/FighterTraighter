@@ -31,7 +31,7 @@ void OptionsMenu::init()
 	Entity* ent = entManager_.addEntity();
 	Transform* transform = ent->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
-	transform->setPosition(WINDOW_WIDTH_ / 4, POS_Y_LOGO / 2);
+	transform->setPosition(app_->getWindowManager()->getCurResolution().w / 4, POS_Y_LOGO / 2);
 	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 	
 	Entity* resolutionText = entManager_.addEntity();
@@ -46,13 +46,13 @@ void OptionsMenu::init()
 		Vector2D(10, 10), 60, 60, 0, GoBackCallback, nullptr, "<-", 20);
 
 	 UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(WINDOW_WIDTH_ / 2 - 150, 300), 150, 50, 0, nullptr, fullScreen, "FULLSCREEN", 20);
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 2 - 150, 300), 150, 50, 0, nullptr, fullScreen, "FULLSCREEN", 20);
 
 	tuple<Entity*, Entity*, Entity*, Entity*> brightSlider = UIFactory::createSlider(app_, this, 0.4, 1, 6, app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), nullptr,
-		Vector2D(WINDOW_WIDTH_ / 4, 200), 500, 10, 50, 50, SetBright, nullptr, LessBright, MoreBright, "", "");
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 200), 500, 10, 50, 50, SetBright, nullptr, LessBright, MoreBright, "", "");
 
 	tuple<Entity*, Entity*, Entity*, Entity*> resolutionSlider = UIFactory::createSlider(app_, this, 0, 10, 10, app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), nullptr,
-		Vector2D(WINDOW_WIDTH_ / 4, 100), 500, 10, 50, 50, setResolution, nullptr, nullptr, nullptr, "", "");
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 100), 500, 10, 50, 50, setResolution, nullptr, nullptr, nullptr, "", "");
 
 	Entity* logic = entManager_.addEntity();
 	logic->addComponent<OptionsLogic>(std::get<0>(resolutionSlider)->getComponent<Slider>(ecs::Slider),
@@ -93,12 +93,12 @@ void LessBright(App* app)
 
 void SetVolume(App* app, double value) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
 {
-	SDL_SetWindowBrightness(app->getWindow(), value);
+	SDL_SetWindowBrightness(app->getWindowManager()->getWindow(), value);
 }
 
 //fullscreen
 void fullScreen(App* app) {
-	bool IsFullscreen = SDL_GetWindowFlags(app->getWindow()) & SDL_WINDOW_FULLSCREEN_DESKTOP;
+	bool IsFullscreen = SDL_GetWindowFlags(app->getWindowManager()->getWindow()) & SDL_WINDOW_FULLSCREEN_DESKTOP;
 	app->getWindowManager()->setFullscreen(!IsFullscreen);
 }
 
