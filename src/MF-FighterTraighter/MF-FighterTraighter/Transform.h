@@ -44,11 +44,14 @@ public:
 	virtual double getRotation() { return rotation_; }
 	virtual void setRotation(double rotation) { rotation_ = rotation; }
 
+	virtual int getOrientation() { return orientation_; };
+	virtual void setOrientation(int orient) { orientation_ = orient; };
+
 protected:
 	Vector2D position_;
 	Vector2D speed_;
 	double width_=0, height_=0, rotation_=0;
 	double wMult_ = 1, hMult_ = 1;
-
+	int orientation_ = 1; //1 for right, -1 for left
 };
 
