@@ -41,6 +41,10 @@ public:
 	inline bool isKeyDown(SDL_Keycode code) {
 		return isKeyDown(SDL_GetScancodeFromKey(code));
 	};
+	// if pressed or released a key this frame
+	inline bool keyboardEvent() {
+		return keyboardEvent_;
+	}
 
 	// Mouse
 	inline bool isMouseButtonPressed(MouseButton button) {
@@ -55,6 +59,13 @@ public:
 	inline const Vector2D& getMousePos() {
 		return mousePos_;
 	};
+	inline const Vector2D& getMouseMovement() {
+		return mouseMovementInFrame_;
+	}
+	// if pressed or released a mouse button this frame
+	inline bool mouseEvent() {
+		return mouseEvent_;
+	}
 
 	// Controller
 	
@@ -79,7 +90,10 @@ public:
 		return controllerInputs[controllerID].axis[axis] / 32768.0f;
 	}
 	inline bool GamepadConnected() { return numGamepads > 0; }
-
+	// if pressed or released a controller button this frame
+	inline bool controllerEvent() {
+		return controllerEvent_;
+	}
 
 	virtual ~InputManager();
 private:
@@ -107,11 +121,15 @@ private:
 	const Uint8* keyboardState_;
 	Vector2D mousePos_;
 	std::array<bool, 3> mouseState_; // true = pressed
+	Vector2D mouseMovementInFrame_;
 	std::vector<SDL_GameController*> connectedControllers;
 	
 	std::vector<GamePad> controllerInputs;
 	std::vector<GamePad> lastControllerInputs;
-	
 	int numGamepads; 
-	
+
+	// if in this frame there has been an event
+	bool mouseEvent_ = false; // click
+	bool keyboardEvent_ = false; // press
+	bool controllerEvent_ = false; // button
 };

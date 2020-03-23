@@ -19,7 +19,7 @@ void PauseMenu::init()
 	Entity* logo = giveMeManager().addEntity();
 	Transform* transform = logo->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
-	transform->setPosition(WINDOW_WIDTH_ / 2, POS_Y_LOGO);
+	transform->setPosition(app_->getWindowManager()->getCurResolution().w / 2, POS_Y_LOGO);
 	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 
 	Entity* ent = new Entity();

@@ -73,13 +73,14 @@ void App::init()
 	std::cout << "Num Axes :" << SDL_JoystickNumAxes(joystick) << std::endl;
 	std::cout << "Num Buttons :" << SDL_JoystickNumButtons(joystick) << std::endl;*/
 	
-	window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		WINDOW_WIDTH_, WINDOW_HEIGHT_, SDL_WINDOW_SHOWN);
-	
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	windowManager_.reset(new WindowManager(this));
 
-	if (!window || !renderer) {
-		throw new SDLExceptions::SDLException("Unable to create window or renderer");
+
+	
+	renderer = SDL_CreateRenderer(windowManager_->getWindow(), -1, SDL_RENDERER_ACCELERATED);
+	SDL_RenderSetLogicalSize(renderer, windowManager_->getCurResolution().w, windowManager_->getCurResolution().h); //para que se redimensionen a su proporcion
+	if (!renderer) {
+		throw new SDLExceptions::SDLException("Unable to create renderer");
 	}
 
 	stateMachine_.reset(new GameStateMachine());
@@ -100,7 +101,6 @@ void App::clean()
 
 	// Delete SDL's attributes
 	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
 	SDL_Quit();
 	TTF_Quit();
 }
@@ -138,7 +138,7 @@ void App::ContinuePlaying() {
 
 //pause the game
 void App::Pause() {
-	//getStateMachine()->pushState(new PauseMenu(this));
+	getStateMachine()->pushState(new PauseMenu(this));
 }
 
 
