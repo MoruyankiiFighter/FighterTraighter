@@ -3,7 +3,10 @@
 #include "PlayerController.h"
 #include "RenderImage.h"
 #include "Jump.h"
+#include "PauseMenu.h"
+#include "Crouch.h"
 #include "SacoTimer.h"
+#include "FactoryMk.h"
 
 Training::Training(App* app) : GameState(app)
 {
@@ -21,38 +24,35 @@ void Training::init()
 	pbListener = new PunchingBagListener();
 	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
-	string filePath = "../../../../assets/Assets/personaje.png";
-	Texture* tex = new Texture(app_->getRenderer(), filePath.c_str(), 1, 1);
 
-	Entity* e = new Entity(); // Until we have factories
-	e->setApp(app_);
-	e->addComponent<PhysicsTransform>(Vector2D(10, 10), Vector2D(10, 10), 50, 50, 0, world);
-	e->addComponent<PlayerController>();
-	e->addComponent<RenderImage>(tex);
-	e->addComponent<Jump>(-1000);
-	scene.push_back(e);
+	FactoryMk::addMkToGame(app_, this, world);
 
-	Entity* saco = new Entity();
+	Entity* saco = giveMeManager().addEntity();
 	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, false);
-	saco->addComponent<RenderImage>(tex);
+	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	//saco->addComponent<SacoTimer>(5000);
 	saco->addComponent<PunchingBagCollision>();
-	scene.push_back(saco);
 
-	Entity* floor = new Entity();
+	Entity* floor = giveMeManager().addEntity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, false);
-	floor->addComponent<RenderImage>(tex);
-	scene.push_back(floor);
+	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
+}
 
+void Training::handleInput()
+{
+	if (app_->getInputManager()->isKeyDown(SDLK_p)) {
+		app_->getStateMachine()->pushState(new PauseMenu(app_));
+	}
+	GameState::handleInput();
 }
 
 void Training::update()
 {
+	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 	GameState::update();
-
-	world->Step(1.0 / 30, 8, 3);//update box2d
-
+	world->Step(1.0 / 30, 8, 3);//update box2d+
 }
+
 
 void Training::render() {
 	SDL_RenderClear(app_->getRenderer());
@@ -63,6 +63,10 @@ void Training::render() {
 
 Training::~Training()
 {
+	for (auto vec : vecMov) {
+		delete vec;
+
+	}
 	delete world;
 	delete debugInstance;
 	delete pbListener;

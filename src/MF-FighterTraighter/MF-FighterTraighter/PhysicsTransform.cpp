@@ -1,4 +1,5 @@
 #include "PhysicsTransform.h"
+#include "Training.h"
 PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn)
 	: Transform(position, speed, width, height, rotation)
 {
@@ -11,13 +12,12 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	body_ = world->CreateBody(&bodydef);
 	b2PolygonShape shape;
 	shape.SetAsBox(width * wMult_/2 , height * hMult_/2 );
-	//shape.s
+
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 0.05;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
-
+	fixturedef.density = 0.00001;			//densidad 0, para que no cambie segun el ancho y el alto por ahora
 	body_->CreateFixture(&fixturedef);
-	
+	body_->SetFixedRotation(true);
 }
 
 
@@ -27,8 +27,10 @@ PhysicsTransform::~PhysicsTransform() {
 
 void PhysicsTransform::init() {
 	body_->SetUserData(this->entity_);	//tener acceso a la entidad para hacer cosas con las colisiones
+
 }
 
+//al anadir mas hitbox puede dar fallo
 void PhysicsTransform::setHeight(double height) {
 	body_->DestroyFixture(body_->GetFixtureList());
 
@@ -43,7 +45,9 @@ void PhysicsTransform::setHeight(double height) {
 	height_ = height;
 }
 
+//al anadir mas hitbox puede dar fallo
 void PhysicsTransform::setWidth(double width) {
+
 	body_->DestroyFixture(body_->GetFixtureList());
 
 	b2PolygonShape shape;
@@ -56,7 +60,9 @@ void PhysicsTransform::setWidth(double width) {
 	width_ = width;
 }
 
+//al anadir mas hitbox puede dar fallo
 void PhysicsTransform::setWidthHeight(double width, double height) {
+
 	body_->DestroyFixture(body_->GetFixtureList());
 
 	b2PolygonShape shape;

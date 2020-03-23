@@ -1,6 +1,6 @@
 #include "App.h"
 #include "consts.h"
-
+#include "SDLExceptions.h"
 #include "PauseMenu.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
@@ -26,12 +26,12 @@ void App::run()
 		
 		Uint32 startTime = SDL_GetTicks();
 		
+		handleInput();
 		update();
 		render();
-		handleInput();
 
 		Uint32 frameTime = SDL_GetTicks() - startTime;
-		if (frameTime < 10)
+		if (frameTime < 10) 
 			SDL_Delay(10 - frameTime);
 	}
 }
@@ -59,14 +59,14 @@ void App::init()
 {
 	int ttf = TTF_Init();
 	if (ttf == -1) {
-		//throw an error
+		throw new SDLExceptions::TTFException(TTF_GetError() + std::string("\nUnable to init TTF"));
 	}
 
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
-		//throw an error
+		throw new SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
 	}
-	int nJoysticks = SDL_NumJoysticks();
+	//int nJoysticks = SDL_NumJoysticks();
     
 	/*SDL_Joystick* joystick = SDL_JoystickOpen(0);
 	std::cout << "Controller Name:" << SDL_JoystickName(joystick) << std::endl;
@@ -79,12 +79,13 @@ void App::init()
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	if (!window || !renderer) {
-		//throw another Error
+		throw new SDLExceptions::SDLException("Unable to create window or renderer");
 	}
 
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
+	hitboxManager_.reset(new HitboxMng(this));
 
 	stateMachine_->pushState(new MainMenu(this));
 }
@@ -116,7 +117,7 @@ void App::Menu() {
 
 //set up arcade state
 void App::PlayArcade() {
-	getStateMachine()->pushState(new Fight(this));
+	getStateMachine()->pushState(new Training(this));
 }
 
 //set up the options state

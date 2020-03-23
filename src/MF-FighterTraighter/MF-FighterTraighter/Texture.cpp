@@ -1,6 +1,6 @@
 #include "Texture.h"
-#include <exception>
 #include <assert.h>
+#include "AssetsExceptions.h"
 
 void Texture::cleanTexture() {
 	if (texture != nullptr) {
@@ -15,7 +15,7 @@ void Texture::load(string filename, int cols, int rows) {
 	SDL_Surface* tempSurface;
 	tempSurface = IMG_Load(filename.c_str());
 	if (tempSurface == nullptr)
-		std::cout << ("Me cago en Dios") << endl; // TODO: change to proper exception
+		throw new AssetsExceptions::TextureException("Unable to load texture: ", filename);
 	else {
 		cleanTexture();
 		texture = SDL_CreateTextureFromSurface(renderer, tempSurface);

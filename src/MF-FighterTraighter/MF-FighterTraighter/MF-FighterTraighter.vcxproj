@@ -133,6 +133,10 @@
   <ItemGroup>
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="FactoryMk.cpp" />
+    <ClCompile Include="HitboxMng.cpp" />
+    <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="PlayerAttacks.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelection.cpp" />
@@ -172,7 +176,12 @@
   <ItemGroup>
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
-    <ClInclude Include="MkWh00pAttacks.h" />
+    <ClInclude Include="EntityManager.h" />
+    <ClInclude Include="FactoryMk.h" />
+    <ClInclude Include="hitbox.h" />
+    <ClInclude Include="HitboxMng.h" />
+    <ClInclude Include="AssetsExceptions.h" />
+    <ClInclude Include="MoveParser.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />
@@ -200,6 +209,7 @@
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="SacoTimer.h" />
     <ClInclude Include="SDLDebugDraw.h" />
+    <ClInclude Include="SDLExceptions.h" />
     <ClInclude Include="SkillSelection.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextComponent.h" />
