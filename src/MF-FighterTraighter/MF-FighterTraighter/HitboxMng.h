@@ -16,7 +16,7 @@ public:
 
 	virtual ~HitboxMng() {}
 	void update();
-	void addHitbox(Vector2D pos, int width, int height, int time, int damage, b2Body* body);
+	void addHitbox(Vector2D pos, int width, int height, int time, int damage, b2Body* body, uint16 cBits = 0x0001, uint16 mBits = 0xFFFF);
 private:
 	std::list<b2Fixture*> hitboxList_;
 	std::list<b2Fixture*> hitboxListToRemove_;

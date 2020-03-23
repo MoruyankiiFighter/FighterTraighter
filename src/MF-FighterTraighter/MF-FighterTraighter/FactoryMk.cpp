@@ -7,10 +7,10 @@
 #include "Crouch.h"
 #include "PlayerAttacks.h"
 
-Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world)
+Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, uint16 cBits, uint16 mBits, bool dyn)
 {
 	Entity* e = state->giveMeManager().addEntity();
-	e->addComponent<PhysicsTransform>(Vector2D(10, 10), Vector2D(10, 10), 50, 50, 0, world);
+	e->addComponent<PhysicsTransform>(Vector2D(10, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn);
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(0));
 	e->addComponent<Jump>(-1000);
@@ -30,9 +30,10 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world)
 }
 
 //Esto es para geenrar hitboxes, habrá uno para cada hitbox generada
-void FactoryMk::moveHurt(Entity* ent)
+void FactoryMk::moveHurt(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
 {
 	std::cout << "Golpe" << endl;
-	ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
-	ent->getApp()->getHitboxMng()->addHitbox({ 200,0 }, 50, 50, 500, 50, ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody());
+	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
+	b2Filter filter = body->GetFixtureList()->GetFilterData();
+	ent->getApp()->getHitboxMng()->addHitbox({ 200,0 }, 50, 50, 500, 50, body, filter.categoryBits, filter.maskBits);
 }
