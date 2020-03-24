@@ -9,7 +9,7 @@
 
 Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world)
 {
-	Entity* e = state->giveMeManager().addEntity();
+	Entity* e = state->getEntityManager().addEntity();
 	e->addComponent<PhysicsTransform>(Vector2D(10, 10), Vector2D(10, 10), 50, 50, 0, world);
 	e->addComponent<PlayerController>();
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(0));

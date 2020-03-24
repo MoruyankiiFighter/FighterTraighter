@@ -5,15 +5,21 @@
 class GameStateMachine
 {
 public:
+	//constructor
 	GameStateMachine();
+	//destructor
 	~GameStateMachine();
 
+	//return the current state
 	GameState* getCurrentState();
+
+	//push a new current state
 	void pushState(GameState* state) { states.push(state); }
+	//deletes the current state
 	void popState() { states.pop(); }
-	GameState* getSecond();//it could be usefull
+
 private:
-	std::stack<GameState*> states; //it's the different scenes that we have
+	std::stack<GameState*> states; //stack with the different scenes
 
 };
 

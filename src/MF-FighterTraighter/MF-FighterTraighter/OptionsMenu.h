@@ -2,21 +2,6 @@
 #include "GameState.h"
 #include "Texture.h"
 
-/// C A L L B A C K S ///
-
-void GoBackCallback(App* app);
-
-void SetBright(App* app, double value);
-void MoreBright(App* app);
-void LessBright(App* app);
-
-void SetVolume(App* app, double value);
-
-//fullscreen
-void fullScreen(App* app);
-
-void setResolution(App* app, double value);
-
 class OptionsMenu:public GameState
 {
 public:
@@ -24,6 +9,22 @@ public:
 	virtual ~OptionsMenu();
 
 	void init() override;
+
+
+
+	static void GoBackCallback(App* app);
+
+	static void SetBright(App* app, double value);
+	static void MoreBright(App* app);
+	static void LessBright(App* app);
+
+	static void SetVolume(App* app, double value);
+
+	//fullscreen
+	static void fullScreen(App* app);
+
+	static void setResolution(App* app, double value);
+
 private:
 	Entity* reg_bright; //button for regulate the slider
 	Entity* b_slider;

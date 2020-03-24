@@ -40,6 +40,12 @@
     <Filter Include="Archivos de encabezado\Exceptions">
       <UniqueIdentifier>{d53f952c-ce80-4696-b51b-4f1da289c7ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Manager">
+      <UniqueIdentifier>{40fcc0d7-d273-4371-bf87-ee257201885d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Listener">
+      <UniqueIdentifier>{a640ce60-6bdf-499c-b92b-a6e67b558f0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -254,9 +260,6 @@
     <ClInclude Include="PlayerController.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Crouch.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="SDLDebugDraw.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -275,14 +278,8 @@
     <ClInclude Include="OptionsMenu.h">
       <Filter>Archivos de encabezado\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="AssetsManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="SacoTimer.h">
       <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PunchingBagListener.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="PunchingBagCollision.h">
       <Filter>Archivos de encabezado\Components</Filter>
@@ -320,22 +317,31 @@
     <ClInclude Include="FactoryMk.h">
       <Filter>Archivos de encabezado\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="HitboxMng.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="MkWh00pAttacks.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="UIFactory.h">
       <Filter>Archivos de encabezado\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="WindowManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="OptionsLogic.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="IndexSlider.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PunchingBagListener.h">
+      <Filter>Archivos de encabezado\Listener</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxMng.h">
+      <Filter>Archivos de encabezado\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowManager.h">
+      <Filter>Archivos de encabezado\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetsManager.h">
+      <Filter>Archivos de encabezado\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Crouch.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
   </ItemGroup>

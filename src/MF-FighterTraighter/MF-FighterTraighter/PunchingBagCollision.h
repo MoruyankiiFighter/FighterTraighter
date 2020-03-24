@@ -4,10 +4,12 @@
 class PunchingBagCollision : public Component
 {
 public:
+	//constructor
 	PunchingBagCollision() : Component(ecs::PunchingBagCollision) {}
+	//destructor
 	~PunchingBagCollision() {}
-	void OnCollision() {
-		std::cout << "soy un saco" << std::endl;
-	}
+
+	//on collision
+	void OnCollision() {std::cout << "soy un saco" << std::endl;}
 };
 

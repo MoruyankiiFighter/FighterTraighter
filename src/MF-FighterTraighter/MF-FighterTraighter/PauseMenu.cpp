@@ -16,7 +16,7 @@ void PauseMenu::init()
 {
 	cout << "initPausa" << endl;
 
-	Entity* logo = giveMeManager().addEntity();
+	Entity* logo = getEntityManager().addEntity();
 	Transform* transform = logo->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(app_->getWindowManager()->getCurResolution().w / 2, POS_Y_LOGO);
@@ -32,7 +32,7 @@ void PauseMenu::init()
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(Resume);
 
-	ent = giveMeManager().addEntity();
+	ent = getEntityManager().addEntity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>();
 	t->setPosition(100, 300);
@@ -42,7 +42,7 @@ void PauseMenu::init()
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(GoMainMenu);
 
-	ent = giveMeManager().addEntity();
+	ent = getEntityManager().addEntity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>();
 	t->setPosition(100, 500);
@@ -52,7 +52,7 @@ void PauseMenu::init()
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	ent->addComponent<Button>(ShowMeYourMoves);
 
-	ent = giveMeManager().addEntity();
+	ent = getEntityManager().addEntity();
 	ent->setApp(app_);
 	t = ent->addComponent<Transform>();
 	t->setPosition(100, 700);

@@ -23,7 +23,7 @@ void Fight::init()
 	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
 	
-	Entity* floor = giveMeManager().addEntity();
+	Entity* floor = getEntityManager().addEntity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));	
 

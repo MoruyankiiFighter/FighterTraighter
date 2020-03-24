@@ -6,11 +6,15 @@ class PlayerController :
 	public Component
 {
 public:
+	//constructor
 	PlayerController();
+	//destructor
+	virtual ~PlayerController();
+	
+	//methods overrided from Component
 	void init() override;
 	void handleInput() override; // separate into two?
 	void update() override;
-	virtual ~PlayerController();
 private:
 	Transform* tr_;
 

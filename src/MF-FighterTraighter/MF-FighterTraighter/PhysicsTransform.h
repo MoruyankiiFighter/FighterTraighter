@@ -9,7 +9,9 @@ public:
 	//PhysicsTransform();
 	virtual ~PhysicsTransform();
 
-	virtual void init();
+	//method overrided from transform 
+	virtual void init() override;
+	
 	// get and set for position
 	virtual const Vector2D& getPosition() const {
 		Vector2D pos { body_->GetTransform().p.x - width_ * wMult_/2, body_->GetTransform().p.y  - height_ * hMult_/2};

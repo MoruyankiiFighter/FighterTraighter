@@ -27,13 +27,13 @@ void Training::init()
 
 	FactoryMk::addMkToGame(app_, this, world);
 
-	Entity* saco = giveMeManager().addEntity();
+	Entity* saco = getEntityManager().addEntity();
 	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, false);
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	//saco->addComponent<SacoTimer>(5000);
 	saco->addComponent<PunchingBagCollision>();
 
-	Entity* floor = giveMeManager().addEntity();
+	Entity* floor = getEntityManager().addEntity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 }

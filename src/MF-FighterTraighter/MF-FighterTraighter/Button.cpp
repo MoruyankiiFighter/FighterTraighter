@@ -7,7 +7,7 @@
 
 void Button::init()
 {
-	trans_ = entity_->getComponent<Transform>(ecs::Transform);
+	transform_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 
 void Button::handleInput()
@@ -16,8 +16,8 @@ void Button::handleInput()
 	if (imngr->isMouseButtonPressed(imngr->Left)) {
 		if (imngr->mouseEvent()) { // if left mouse has just been clicked
 			SDL_Point p = { imngr->getMousePosX(), imngr->getMousePosY() };
-			Vector2D pos = trans_->getPosition();
-			SDL_Rect destRect = { pos.getX(), pos.getY(), trans_->getWidth() * trans_->getWMult(), trans_->getHeight() * trans_->getHMult() };
+			Vector2D pos = transform_->getPosition();
+			SDL_Rect destRect = { pos.getX(), pos.getY(), transform_->getWidth() * transform_->getWMult(), transform_->getHeight() * transform_->getHMult() };
 
 			if (!pressed_ && SDL_PointInRect(&p, &destRect)) {
 				pressed_ = true;
