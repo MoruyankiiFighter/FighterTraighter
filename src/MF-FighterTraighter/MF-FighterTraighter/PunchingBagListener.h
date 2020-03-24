@@ -6,12 +6,18 @@
 class PunchingBagListener : public b2ContactListener
 {
 public:
+	//constructor
 	PunchingBagListener() : b2ContactListener() {}
+	
+	//destructor
 	~PunchingBagListener() {}
+	
 	//similar to OnCollision
 	void BeginContact(b2Contact* contact);
+	
 	//called at the end of a collision
 	void EndContact(b2Contact* contact) {}
+	
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {}
 	void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse) {}
 };

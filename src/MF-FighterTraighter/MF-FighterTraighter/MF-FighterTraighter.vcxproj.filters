@@ -46,15 +46,21 @@
     <Filter Include="Archivos de encabezado\Listener">
       <UniqueIdentifier>{a640ce60-6bdf-499c-b92b-a6e67b558f0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Assets">
+      <UniqueIdentifier>{69bdd420-e0d1-44b8-a97a-924d317f3e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Assets">
+      <UniqueIdentifier>{a0ab74b3-4521-4351-bbb5-3d5b92635951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Managers">
+      <UniqueIdentifier>{0ba22680-e17f-4fab-b120-fa23d72c3bb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\listener">
+      <UniqueIdentifier>{bc2edf93-a83d-4cee-a4c1-5be75f8fe45b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp">
@@ -102,9 +108,6 @@
     <ClCompile Include="GameStateMachine.cpp">
       <Filter>Archivos de origen\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerController.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
@@ -117,20 +120,8 @@
     <ClCompile Include="Crouch.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="SDLDebugDraw.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="TextComponent.cpp">
       <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetsManager.cpp">
-      <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="OptionsMenu.cpp">
       <Filter>Archivos de origen\GameState</Filter>
@@ -138,14 +129,8 @@
     <ClCompile Include="SacoTimer.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="PunchingBagListener.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="PunchingBagCollision.cpp">
       <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Hitbox.cpp">
-      <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="AnimationChain.cpp">
       <Filter>Archivos de origen\Moves</Filter>
@@ -155,9 +140,6 @@
     </ClCompile>
     <ClCompile Include="PlayerAttacks.cpp">
       <Filter>Archivos de origen\Moves</Filter>
-    </ClCompile>
-    <ClCompile Include="Health.cpp">
-      <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="VerticalSlider.cpp">
       <Filter>Archivos de origen\Components</Filter>
@@ -174,29 +156,53 @@
     <ClCompile Include="FactoryMk.cpp">
       <Filter>Archivos de origen\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="HitboxMng.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="UIFactory.cpp">
       <Filter>Archivos de origen\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="OptionsLogic.cpp">
-      <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="IndexSlider.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Archivos de origen\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Archivos de origen\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsLogic.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="HitboxMng.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Hitbox.cpp">
+      <Filter>Archivos de origen\Moves</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Archivos de origen\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Archivos de origen\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetsManager.cpp">
+      <Filter>Archivos de origen\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Health.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLDebugDraw.cpp">
+      <Filter>Archivos de origen\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="PunchingBagListener.cpp">
+      <Filter>Archivos de origen\listener</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Texture.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>Archivos de encabezado\GameState</Filter>
     </ClInclude>
@@ -245,9 +251,6 @@
     <ClInclude Include="ecs.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicsTransform.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
@@ -260,16 +263,7 @@
     <ClInclude Include="PlayerController.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="SDLDebugDraw.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="consts.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="TextComponent.h">
@@ -296,9 +290,6 @@
     <ClInclude Include="Slider.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="hitbox.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="VerticalSlider.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
@@ -317,14 +308,8 @@
     <ClInclude Include="FactoryMk.h">
       <Filter>Archivos de encabezado\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="MkWh00pAttacks.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="UIFactory.h">
       <Filter>Archivos de encabezado\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="OptionsLogic.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="IndexSlider.h">
       <Filter>Archivos de encabezado\Components</Filter>
@@ -343,6 +328,33 @@
     </ClInclude>
     <ClInclude Include="Crouch.h">
       <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Archivos de encabezado\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Archivos de encabezado\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Archivos de encabezado\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Archivos de encabezado\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsLogic.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Archivos de encabezado\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MkWh00pAttacks.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="hitbox.h">
+      <Filter>Archivos de encabezado\Moves</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLDebugDraw.h">
+      <Filter>Archivos de encabezado\Assets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

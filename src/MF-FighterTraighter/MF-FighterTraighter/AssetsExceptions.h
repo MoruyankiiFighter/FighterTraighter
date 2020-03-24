@@ -3,6 +3,7 @@
 
 namespace AssetsExceptions
 {
+	//image excepcion class
 	class TextureException : public std::runtime_error 
 	{
 	public:
@@ -11,7 +12,8 @@ namespace AssetsExceptions
 		TextureException(const TextureException&) = delete;
 		TextureException operator=(const TextureException&) = delete;
 	};
-
+	
+	//font excepcion class
 	class FontException : public std::runtime_error 
 	{
 	public:
@@ -19,6 +21,16 @@ namespace AssetsExceptions
 		FontException(const char* what, const char* fontFile) : runtime_error("Font error: " + std::string(what) + std::string(fontFile)) {}
 		FontException(const FontException&) = delete;
 		FontException operator=(const FontException&) = delete;
+	};
+
+	//sound exception class
+	class SoundException : public std::runtime_error
+	{
+		SoundException(const std::string& what, const std::string& soundfile) : runtime_error("sound error: " + what + soundfile) {}
+		SoundException(const char* what, const char* soundFile) : runtime_error("Sound error: " + std::string(what) + std::string(soundFile)) {}
+		SoundException(const SoundException&) = delete;
+		SoundException operator=(const SoundException&) = delete;
+
 	};
 };
 

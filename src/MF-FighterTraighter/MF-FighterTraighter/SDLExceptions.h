@@ -3,6 +3,7 @@
 
 namespace SDLExceptions 
 {
+	//SDL exceptions
 	class SDLException : public std::logic_error 
 	{
 	public:
@@ -12,6 +13,7 @@ namespace SDLExceptions
 		SDLException operator=(const SDLException&) = delete;
 	};
 
+	//TTF exceptions
 	class TTFException : public std::logic_error
 	{
 	public:

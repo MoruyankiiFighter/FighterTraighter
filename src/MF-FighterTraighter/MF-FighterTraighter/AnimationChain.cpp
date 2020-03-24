@@ -1,5 +1,12 @@
 #include "AnimationChain.h"
 
+AnimationChain::~AnimationChain()
+{
+	cout << "DESTRUYENDO ANIMATION CHAIN" << endl;
+	//delete chain_;
+	
+}
+
 bool AnimationChain::update()
 {
 	if (index_ >= chain_.size()) {

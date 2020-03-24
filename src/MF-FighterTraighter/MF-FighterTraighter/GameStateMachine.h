@@ -7,6 +7,7 @@ class GameStateMachine
 public:
 	//constructor
 	GameStateMachine();
+	
 	//destructor
 	~GameStateMachine();
 
@@ -15,6 +16,7 @@ public:
 
 	//push a new current state
 	void pushState(GameState* state) { states.push(state); }
+	
 	//deletes the current state
 	void popState() { states.pop(); }
 

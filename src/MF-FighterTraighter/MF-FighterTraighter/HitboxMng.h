@@ -10,16 +10,19 @@ class App;
 class HitboxMng 
 {
 public:
+	//constructor
 	HitboxMng(App* app) :app_(app) {}
 	HitboxMng(HitboxMng&) = delete;
 	HitboxMng& operator= (HitboxMng&) = delete;
-
+	//destructor
 	virtual ~HitboxMng() {}
+	
 	void update();
+	//create a hitbox with parameters
 	void addHitbox(Vector2D pos, int width, int height, int time, int damage, b2Body* body);
 private:
-	std::list<b2Fixture*> hitboxList_;
-	std::list<b2Fixture*> hitboxListToRemove_;
+	std::list<b2Fixture*> hitboxList_; //current active hitbxes
+	std::list<b2Fixture*> hitboxListToRemove_;//hitboxes that will be deleted
 	App* app_;
 
 };

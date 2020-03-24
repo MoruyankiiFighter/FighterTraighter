@@ -10,7 +10,9 @@
 class Training: public GameState
 {
 public:
+	//constructor
 	Training(App* app);
+	
 	void init() override;
 	virtual void handleInput() override;
 	virtual void update() override;

@@ -7,11 +7,26 @@
 #include "Crouch.h"
 #include "FactoryMk.h"
 
+//constructor
 Fight::Fight(App* app) : GameState(app)
 {
 	init();
 }
 
+//destructor
+Fight::~Fight(){
+	
+	for (auto vec : vecMov) {
+		delete vec;
+		vec = nullptr;
+	}
+	delete world;
+	world = nullptr;
+	delete debugInstance;
+	debugInstance = nullptr;
+}
+
+//create th world and the entitys
 void Fight::init()
 {
 	world = new b2World(b2Vec2(0.0, 9.81));//inicializamos el mundo para las f�sicas de b2D
@@ -30,6 +45,7 @@ void Fight::init()
 	FactoryMk::addMkToGame(app_, this, world);
 }
 
+//handle input
 void Fight::handleInput()
 {
 	if (app_->getInputManager()->isKeyDown(SDLK_p)) {
@@ -38,6 +54,7 @@ void Fight::handleInput()
 	GameState::handleInput();
 }
 
+//update the hitboox manager and the entitys
 void Fight::update()
 {
 	GameState::update();
@@ -46,20 +63,11 @@ void Fight::update()
 	
 }
 
+//render the entitys and their debug
 void Fight::render() {
 	SDL_RenderClear(app_->getRenderer());
 	GameState::render();
 	world->DrawDebugData();
 	SDL_RenderPresent(app_->getRenderer());
-}
-
-Fight::~Fight()
-{
-	for (auto vec : vecMov) {
-		delete vec;
-
-	}
-	delete world;
-	delete debugInstance;
 }
 
