@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "AnimationChain.h"
 #include <vector>
+#include "PlayerState.h"
 //component that have all the attacks that you have
 class PlayerAttacks : public Component 
 {
@@ -20,6 +21,7 @@ public:
 		if (activeAttack_ != nullptr) { 
 			if (activeAttack_->update()) {
 				activeAttack_ = nullptr;
+				entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
 			}
 		}
 	};
