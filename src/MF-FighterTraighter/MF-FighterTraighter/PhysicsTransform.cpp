@@ -21,8 +21,8 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.00001;			
-	fixturedef.filter.categoryBits = cBits;
-	fixturedef.filter.maskBits = mBits;
+	fixturedef.filter.categoryBits = cBits_;
+	fixturedef.filter.maskBits = mBits_;
 
 	mainFixture_=body_->CreateFixture(&fixturedef);
 	body_->SetFixedRotation(true);
@@ -55,8 +55,10 @@ void PhysicsTransform::setHeight(double height) {
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.00001;
+	fixturedef.filter.categoryBits = cBits_;
+	fixturedef.filter.maskBits = mBits_;
 
-	body_->CreateFixture(&fixturedef);
+	mainFixture_ = body_->CreateFixture(&fixturedef);
 
 	height_ = height;
 }
@@ -71,6 +73,8 @@ void PhysicsTransform::setWidth(double width) {
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.00001;
+	fixturedef.filter.categoryBits = cBits_;
+	fixturedef.filter.maskBits = mBits_;
 
 	mainFixture_=body_->CreateFixture(&fixturedef);
 	width_ = width;
@@ -86,6 +90,8 @@ void PhysicsTransform::setWidthHeight(double width, double height) {
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.00001;
+	fixturedef.filter.categoryBits = cBits_;
+	fixturedef.filter.maskBits = mBits_;
 
 	mainFixture_=body_->CreateFixture(&fixturedef);
 	width_ = width;

@@ -9,7 +9,6 @@
 #include "Hitbox.h"
 
 
-
 class Fight: public GameState
 {
 	//	Collision filters for the b2d collision

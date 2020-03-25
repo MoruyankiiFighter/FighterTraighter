@@ -28,7 +28,8 @@ void Training::init()
 	FactoryMk::addMkToGame(app_, this, world, PLAYER_1, BOUNDARY | P_BAG);
 
 	Entity* saco = giveMeManager().addEntity();
-	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
+	PhysicsTransform* pT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
+	app_->getHitboxMng()->addMainHitbox(pT->getMainFixture());
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	//saco->addComponent<SacoTimer>(5000);
 	saco->addComponent<PunchingBagCollision>();

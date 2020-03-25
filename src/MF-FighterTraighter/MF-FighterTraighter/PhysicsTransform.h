@@ -30,6 +30,7 @@ public:
 
 	virtual void setWidthHeight(double width, double height);
 	b2Body* getBody() { return body_; }
+	b2Fixture* getMainFixture() { return mainFixture_; }
 
 private:
 	b2World* world_;	//puntero al mundo para destruirse

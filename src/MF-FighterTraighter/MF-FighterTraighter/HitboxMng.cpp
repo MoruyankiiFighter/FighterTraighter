@@ -4,13 +4,22 @@
 void HitboxMng::update()
 {
 	for (auto it = hitboxList_.begin(); it != hitboxList_.end();++it) {
-		if ((static_cast<hitbox*>((*it)->GetUserData())->time_--) <= 0) {//time habra que modificar a frames
+		hitbox* hB = static_cast<hitbox*>((*it)->GetUserData());
+		if (hB->time_-- <= 0) {//time habra que modificar a frames
 			std::cout << "Borro " << static_cast<hitbox*>((*it)->GetUserData())->damage_ << std::endl;
 			delete static_cast<hitbox*>((*it)->GetUserData());
 			(*it)->GetBody()->DestroyFixture((*it));
 			hitboxListToRemove_.push_back(*it);
 			//hitboxList_.erase(it);
-			
+		}
+		else {	// if the hitbox doesnt "die", it checks 
+			for (b2Fixture* b : mainHitboxes) {
+
+				if (b->GetBody() != (*it)->GetBody() && checkOverlap((*it), b)) {
+					std::cout << "ovelapeo con algo que no soy yo" << std::endl;	//eliminar? las hitbox
+				}
+
+			}			
 		}
 	}
 
