@@ -6,7 +6,7 @@ class Crouch :
 	public Component
 {
 public:
-	Crouch();
+	Crouch(SDL_Scancode crouchk);
 	void init() override;
 	void handleInput() override; // separate into two?
 	void update() override;
@@ -18,7 +18,7 @@ public:
 private:
 	//Transform* tr_;
 	PhysicsTransform* tr_ = nullptr;
-
+	SDL_Scancode crouchKey_;
 	bool cancrouched=false;
 };
 

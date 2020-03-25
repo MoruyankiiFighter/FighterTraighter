@@ -25,7 +25,8 @@ void Training::init()
 	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
 
-	FactoryMk::addMkToGame(app_, this, world, PLAYER_1, BOUNDARY | P_BAG);
+	FactoryMk::addMkToGame(app_, this, world, 1, {SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X },
+		PLAYER_1, BOUNDARY | P_BAG);
 
 	Entity* saco = giveMeManager().addEntity();
 	saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);

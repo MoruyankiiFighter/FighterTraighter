@@ -2,7 +2,8 @@
 #include "Entity.h"
 #include "Vector2D.h"
 
-PlayerController::PlayerController() : Component(ecs::PlayerController), tr_(nullptr)
+PlayerController::PlayerController(SDL_Scancode left, SDL_Scancode right) : Component(ecs::PlayerController), 
+	tr_(nullptr), left_(left), right_(right)
 {
 }
 
@@ -15,10 +16,10 @@ void PlayerController::handleInput()
 {
 	Vector2D speed;
 	speed = tr_->getSpeed();
-	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_LEFT)|| app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX)<0) {
+	if (app_->getInputManager()->isKeyDown(left_)|| app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX)<0) {
 		tr_->setSpeed(-10, speed.getY());
 	}
-	else if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_RIGHT) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) >0.09 )
+	else if (app_->getInputManager()->isKeyDown(right_) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) >0.09 )
 	{
 				tr_->setSpeed(10, speed.getY());
 	}

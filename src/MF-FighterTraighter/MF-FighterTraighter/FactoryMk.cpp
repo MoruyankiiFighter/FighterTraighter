@@ -6,15 +6,17 @@
 #include "Jump.h"
 #include "Crouch.h"
 #include "PlayerAttacks.h"
+#include "PlayerState.h"
 
-Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, uint16 cBits, uint16 mBits, bool dyn)
+Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, uint16 cBits, uint16 mBits, bool dyn)
 {
 	Entity* e = state->giveMeManager().addEntity();
-	e->addComponent<PhysicsTransform>(Vector2D(10, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn);
-	e->addComponent<PlayerController>();
+	e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 200, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn)->setOrientation(orientation);
+	e->addComponent<PlayerController>(keys[0], keys[1]);
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(0));
-	e->addComponent<Jump>(-1000);
-	e->addComponent<Crouch>();
+	e->addComponent<Jump>(-1000, keys[2]);
+	e->addComponent<Crouch>(keys[3]);
+	e->addComponent<PlayerState>();
 
 	std::vector<Move*> vecMov;
 
@@ -41,7 +43,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, uint1
 	vecMov.clear();
 
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
-	e->addComponent<PlayerAttacks>(testNP, SDL_SCANCODE_Q, testHP, SDL_SCANCODE_E, testNK, SDL_SCANCODE_Z, testHK, SDL_SCANCODE_X);
+	e->addComponent<PlayerAttacks>(testNP, keys[4], testHP, keys[5], testNK, keys[6], testHK, keys[7]);
 
 	return e;
 }
@@ -53,7 +55,16 @@ void FactoryMk::NP1(Entity* ent)//cBits and mBits are there to use the same coll
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * 20,-75 }, 35, 75, 20, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+
+
+	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	int width = 35;
+	int hitboxX = 20;
+	if (orientation_ == -1) hitboxX += width;
+
+
+
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::HP1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -62,7 +73,16 @@ void FactoryMk::HP1(Entity* ent)//cBits and mBits are there to use the same coll
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * 20,-45 }, 60, 60, 17, 50000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+
+	
+	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	int width = 60;
+	int hitboxX = 20;
+	if (orientation_ == -1) hitboxX += width;
+
+
+
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-45 }, width, 60, 17, 50000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::NK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -71,7 +91,16 @@ void FactoryMk::NK1(Entity* ent)//cBits and mBits are there to use the same coll
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * 25,-20 }, 45, 35, 13, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+
+
+	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	int width = 45;
+	int hitboxX = 25;
+	if (orientation_ == -1) hitboxX += width;
+
+
+
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-20 }, width, 35, 13, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::NK2(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -80,7 +109,16 @@ void FactoryMk::NK2(Entity* ent)//cBits and mBits are there to use the same coll
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * 20, -17 }, 45, 35, 17, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+
+
+	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	int width = 45;
+	int hitboxX = 20;
+	if (orientation_ == -1) hitboxX += width;
+
+
+
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -17 }, width, 35, 17, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::HK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -89,9 +127,21 @@ void FactoryMk::HK1(Entity* ent)//cBits and mBits are there to use the same coll
 	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * 20, -15 }, 35, 40, 17, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+
+
+	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	int width1 = 35;
+	int hitboxX1 = 20;
+	if (orientation_ == -1) hitboxX1 += width1;
+	int width2 = 200;
+	int hitboxX2 = 0;
+	if (orientation_ == -1) hitboxX2 += width2;
+
+
+
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX1, -15 }, width1, 40, 17, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 	std::cout << "Brrrrrjrnkrrbr" << endl;
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * 0, 15 }, 200, 30, 35, 1, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX2, 15 }, width2, 30, 35, 1, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 /*void FactoryMk::HK2(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
