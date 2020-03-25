@@ -138,6 +138,7 @@
     <ClCompile Include="FactoryMk.cpp" />
     <ClCompile Include="HitboxMng.cpp" />
     <ClCompile Include="MoveParser.cpp" />
+    <ClCompile Include="NavigationController.cpp" />
     <ClCompile Include="OptionsLogic.cpp" />
     <ClCompile Include="PlayerAttacks.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="PunchingBagListener.cpp" />
     <ClCompile Include="RenderAnimation.cpp" />
     <ClCompile Include="RenderImage.cpp" />
+    <ClCompile Include="LinkedGrid.cpp" />
     <ClCompile Include="WindowManager.cpp" />
     <ClCompile Include="SacoTimer.cpp" />
     <ClCompile Include="SDLDebugDraw.cpp" />
@@ -190,6 +192,7 @@
     <ClInclude Include="IndexSlider.h" />
     <ClInclude Include="MkWh00pAttacks.h" />
     <ClInclude Include="MoveParser.h" />
+    <ClInclude Include="NavigationController.h" />
     <ClInclude Include="OptionsLogic.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
@@ -216,6 +219,7 @@
     <ClInclude Include="PunchingBagListener.h" />
     <ClInclude Include="RenderAnimation.h" />
     <ClInclude Include="RenderImage.h" />
+    <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="WindowManager.h" />
     <ClInclude Include="SacoTimer.h" />
     <ClInclude Include="SDLDebugDraw.h" />
