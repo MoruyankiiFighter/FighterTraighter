@@ -13,7 +13,7 @@ void Jump::init()
 
 void Jump::handleInput()
 {
-	if (onGround &&( app_->getInputManager()->isKeyDown(SDL_SCANCODE_W)|| app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9 )) {
+	if (onGround &&( app_->getInputManager()->isKeyDown(SDL_SCANCODE_UP)|| app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9 )) {
 		//pTR_->setSpeed(0, 5);
 		//force and where you use the fore
 		physics_transform->getBody()->ApplyLinearImpulse(b2Vec2(0,jumpImpulse),physics_transform->getBody()->GetWorldCenter(),true);

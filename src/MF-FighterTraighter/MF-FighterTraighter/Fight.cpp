@@ -34,15 +34,13 @@ void Fight::init()
 	debugInstance = new SDLDebugDraw(app_->getRenderer());
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
-	pbListener = new PunchingBagListener();
-	world->SetContactListener(pbListener);
 	//---------------------------------------------------------------
 	
 	Entity* floor = getEntityManager().addEntity();
-	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0,0), 100, 100, 0, world, false);
+	floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, BOUNDARY, EVERYTHING, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));	
 
-	FactoryMk::addMkToGame(app_, this, world);
+	FactoryMk::addMkToGame(app_, this, world, PLAYER_1, PLAYER_2 | BOUNDARY);
 }
 
 //handle input

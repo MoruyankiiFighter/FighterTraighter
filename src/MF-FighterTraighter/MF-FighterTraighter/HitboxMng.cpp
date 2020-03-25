@@ -21,7 +21,7 @@ void HitboxMng::update()
 }
 
 
-void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int damage, b2Body* body)
+void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int damage, Vector2D knockBack, b2Body* body, uint16 cBits, uint16 mBits)
 {
 	b2PolygonShape shape;
 	shape.SetAsBox(width / 2, height / 2, { float32(pos.getX() + width / 2),float32(pos.getY() + height / 2) }, 0);
@@ -29,8 +29,9 @@ void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.00001;			//densidad casi 0, para que no cambie segun el ancho y el alto por ahora
 	fixturedef.isSensor=true;
-
-	hitbox* hitbox_ = new hitbox{ damage,time };//creamos los datos de la hitbox
+	fixturedef.filter.categoryBits = cBits;
+	fixturedef.filter.maskBits = mBits;
+	hitbox* hitbox_ = new hitbox{ damage,time, knockBack };//creamos los datos de la hitbox
 	hitboxList_.push_back(body->CreateFixture(&fixturedef));//creamos la fixture 
 	hitboxList_.back()->SetUserData(hitbox_);//guardamos los datos de la hitbox
 }

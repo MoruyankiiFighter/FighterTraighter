@@ -7,8 +7,18 @@
 #include "PlayerAttacks.h"
 #include "PunchingBagListener.h"
 #include "Hitbox.h"
+
+
+
 class Fight: public GameState
 {
+	//	Collision filters for the b2d collision
+	enum CollisionFilters : uint16 {
+		BOUNDARY = 0x0001,
+		PLAYER_1 = 0x0002,
+		PLAYER_2 = 0x0004,
+		EVERYTHING = 0XFFFF
+	};
 public:
 	//constructor
 	Fight(App* app);
@@ -29,4 +39,3 @@ private:
 	PunchingBagListener* pbListener = nullptr;
 	
 };
-

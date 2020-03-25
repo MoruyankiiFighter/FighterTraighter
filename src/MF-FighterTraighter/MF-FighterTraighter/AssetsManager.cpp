@@ -27,6 +27,7 @@ void AssetsManager::loadTextures()
 	
 	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/slidebar.png", 1, 1));
 	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/regulador.png", 1, 1));
+	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/personajeActing.png", 1, 1));
 	// textures_.emplace_back(new Texture(app_->getRenderer(), "Filepath", cols, fils));
 }
 

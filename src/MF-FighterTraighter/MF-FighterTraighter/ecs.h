@@ -24,6 +24,7 @@ namespace ecs {
 		CreatorBody,
 		HitboxMng,
 		OptionsLogic,
+		PlayerState,
 		/*
 		
 		*/

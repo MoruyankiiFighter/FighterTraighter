@@ -14,7 +14,7 @@ public:
 	
 	//similar to OnCollision
 	void BeginContact(b2Contact* contact);
-	
+		
 	//called at the end of a collision
 	void EndContact(b2Contact* contact) {}
 	
