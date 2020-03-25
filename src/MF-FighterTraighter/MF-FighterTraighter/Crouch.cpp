@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "Vector2D.h"
 
-Crouch::Crouch() : Component(ecs::Crouch), tr_(nullptr)
+Crouch::Crouch(SDL_Scancode crouchk) : Component(ecs::Crouch), tr_(nullptr), crouchKey_(crouchk)
 {
 	cancrouched = true;
 }
@@ -14,12 +14,12 @@ void Crouch::init()
 
 void Crouch::handleInput()
 {
-	if ((app_->getInputManager()->isKeyDown(SDL_SCANCODE_DOWN)|| app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.1) && cancrouched) {
+	if ((app_->getInputManager()->isKeyDown(crouchKey_)|| app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.1) && cancrouched) {
 		cout << "crouch"<< endl;
 		crouch();
 	}
 	
-	if(app_->getInputManager()->isKeyUp(SDL_SCANCODE_DOWN) && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < 0.09)
+	if(app_->getInputManager()->isKeyUp(crouchKey_) && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < 0.09)
 	{
 		if (!cancrouched)
 		{
