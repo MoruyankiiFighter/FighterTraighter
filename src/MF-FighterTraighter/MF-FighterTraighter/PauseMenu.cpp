@@ -27,7 +27,7 @@ void PauseMenu::init()
 	std::tuple<Entity*, Entity*> continue_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 100), 500, 100, 0, nullptr, Resume, "Continue", 20);
 	std::tuple<Entity*, Entity*> menu_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 300), 500, 100, 0, nullptr, GoMainMenu, "Go to menu", 20);
 	std::tuple<Entity*, Entity*> controls_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 500), 500, 100, 0, nullptr, ShowMeYourMoves, "Controls", 20);
-	std::tuple<Entity*, Entity*> controls_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 700), 500, 100, 0, nullptr, GoOptions, "Options", 20);
+	std::tuple<Entity*, Entity*> options_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 700), 500, 100, 0, nullptr, GoOptions, "Options", 20);
 
 }
 

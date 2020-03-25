@@ -2,32 +2,32 @@
 #include "Entity.h"
 #include "Vector2D.h"
 
-PlayerController::PlayerController() : Component(ecs::PlayerController), tr_(nullptr)
+PlayerController::PlayerController() : Component(ecs::PlayerController), physics_transform(nullptr)
 {
 }
 
 void PlayerController::init()
 {
-	tr_ = entity_->getComponent<Transform>(ecs::Transform);
+	physics_transform = entity_->getComponent<Transform>(ecs::Transform);
 }
 
 void PlayerController::handleInput()
 {
 	Vector2D speed;
-	speed = tr_->getSpeed();
+	speed = physics_transform->getSpeed();
 	if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_LEFT)|| app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX)<0) {
-		tr_->setSpeed(-10, speed.getY());
+		physics_transform->setSpeed(-10, speed.getY());
 	}
 	else if (app_->getInputManager()->isKeyDown(SDL_SCANCODE_RIGHT) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) >0.09 )
 	{
-				tr_->setSpeed(10, speed.getY());
+				physics_transform->setSpeed(10, speed.getY());
 	}
-	else tr_->setSpeed(0, speed.getY());
+	else physics_transform->setSpeed(0, speed.getY());
 }
 
 void PlayerController::update()
 {
-	tr_->setPosition(tr_->getPosition() + tr_->getSpeed());
+	physics_transform->setPosition(physics_transform->getPosition() + physics_transform->getSpeed());
 }
 
 PlayerController::~PlayerController()

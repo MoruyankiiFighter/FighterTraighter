@@ -14,8 +14,7 @@ public:
 	//methods overrided from component
 	void init() override;
 	void handleInput() override; // separate into two?
-	void update() override;
-	
+
 	//methods for crouching and uncrouching
 	void crouch();
 	void uncrouch();

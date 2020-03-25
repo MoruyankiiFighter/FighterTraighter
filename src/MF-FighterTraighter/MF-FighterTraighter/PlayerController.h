@@ -16,7 +16,7 @@ public:
 	void handleInput() override; // separate into two?
 	void update() override;
 private:
-	Transform* tr_;
+	Transform* physics_transform;
 
 	Vector2D dir_;
 };
