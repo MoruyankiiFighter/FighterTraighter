@@ -14,19 +14,18 @@ public:
 	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr) : Component(ecs::Button), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
 	inline void setClickCallback(CallBackOnClick* callback) { clickCallback_ = callback; }
 	inline void setStopClickCallback(CallBackOnClick* callback) { stopClickCallback_ = callback; }
+	inline void setSelected(bool sel) { selected_ = sel; }
 	//destructor
 	virtual ~Button() {};
 
 	void init() override;
 	//handle the input of the mouse by the moment
 	void handleInput() override;
-	bool getSelect() { return select; };
-	void setSelect(bool sel) { select = sel; };
 
 private:
 	Transform* trans_ = nullptr;
-	bool select = false;
 	bool pressed_ = false;
+	bool selected_ = false;
 	CallBackOnClick* clickCallback_ = nullptr;
 	CallBackOnClick* stopClickCallback_ = nullptr;
 };

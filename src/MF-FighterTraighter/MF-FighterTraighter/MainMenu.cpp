@@ -11,6 +11,7 @@
 #include "Transform.h"
 #include "Button.h"
 #include "TextComponent.h"
+#include "NavigationController.h"
 
 #include "Font.h"
 
@@ -51,7 +52,6 @@ void MainMenu::init()
 	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
 	arcade->addComponent<Button>(GoArcade);
-	buttons.push_back(arcade);
 
 	Entity* pvp = entManager_.addEntity();
 	Transform* tr = pvp->addComponent<Transform>();
@@ -61,8 +61,6 @@ void MainMenu::init()
 	tr->setRotation(0);
 	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	pvp->addComponent<Button>(Go1v1);
-	buttons.push_back(pvp);
-
 
 	Entity* options = entManager_.addEntity();
 	Transform* tra = options->addComponent<Transform>();
@@ -72,7 +70,6 @@ void MainMenu::init()
 	tra->setRotation(0);
 	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	options->addComponent<Button>(GoOptions);
-	buttons.push_back(options);
 
 
 	Entity* exit = entManager_.addEntity();
@@ -83,8 +80,13 @@ void MainMenu::init()
 	tran->setRotation(0);
 	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	exit->addComponent<Button>(Leave);
-	buttons.push_back(exit);
 
+	Entity* nav = entManager_.addEntity();
+	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 4);
+	ctrl->SetElementInPos(arcade, 0, 0);
+	ctrl->SetElementInPos(pvp, 0, 1);
+	ctrl->SetElementInPos(options, 0, 2);
+	ctrl->SetElementInPos(exit, 0, 3);
 }
 
 void MainMenu::GoArcade(App* app)
@@ -106,29 +108,4 @@ void MainMenu::GoOptions(App* app)
 void MainMenu::Leave(App* app)
 {
 	app->Exit();
-}
-
-void MainMenu::update() {
-
-	//subir al boton de arriba si existe
-	if (buttonSel != 0 && ((app_->getInputManager()->isKeyDown(SDLK_UP) && app_->getInputManager()->keyboardEvent())
-		|| (app_->getInputManager()->axisEvent() && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.8)
-		|| (app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_UP) && app_->getInputManager()->controllerEvent()))) {
-		buttons.at(buttonSel)->getComponent<Button>(ecs::Button)->setSelect(false);
-		buttonSel--;
-		cout << buttonSel;
-		buttons.at(buttonSel)->getComponent<Button>(ecs::Button)->setSelect(true);
-	}
-	//bajar al boton de abajo si existe
-	else if (buttonSel != buttons.size() - 1 && ((app_->getInputManager()->isKeyDown(SDLK_DOWN) && app_->getInputManager()->keyboardEvent())
-		|| (app_->getInputManager()->axisEvent() && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.8)
-		|| (app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_DOWN) && app_->getInputManager()->controllerEvent()))) {
-			{
-				buttons.at(buttonSel)->getComponent<Button>(ecs::Button)->setSelect(false);
-				buttonSel++;
-				cout << buttonSel;
-				buttons.at(buttonSel)->getComponent<Button>(ecs::Button)->setSelect(true);
-
-			}
-	}
 }
