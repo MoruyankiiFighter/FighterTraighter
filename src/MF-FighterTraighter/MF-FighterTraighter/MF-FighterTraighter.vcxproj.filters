@@ -201,6 +201,9 @@
     <ClCompile Include="PunchingBagListener.cpp">
       <Filter>Archivos de origen\listener</Filter>
     </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Archivos de origen\Assets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h">
@@ -354,6 +357,9 @@
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
     <ClInclude Include="SDLDebugDraw.h">
+      <Filter>Archivos de encabezado\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
       <Filter>Archivos de encabezado\Assets</Filter>
     </ClInclude>
   </ItemGroup>
