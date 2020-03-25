@@ -34,22 +34,28 @@ PlayerAttacks::~PlayerAttacks() {
 	habilityList.clear();*/
 }
 void PlayerAttacks::handleInput() {
-	if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isAbleToAttack()) {
-		if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
-			activeAttack_ = attacksList[0];
-			entity_->getComponent<PlayerState>(ecs::PlayerState)->goAttack();
+	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
+	if (currState->isAbleToAttack()) {
+		if (currState->isGrounded()) {
+			if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
+				activeAttack_ = attacksList[0];
+				currState->goAttack();
+			}
+			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
+				activeAttack_ = attacksList[1];
+				currState->goAttack();
+			}
+			else if (app_->getInputManager()->isKeyDown(highKickKey)) {
+				activeAttack_ = attacksList[2];
+				currState->goAttack();
+			}
+			else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
+				activeAttack_ = attacksList[3];
+				currState->goAttack();
+			}
 		}
-		else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
-			activeAttack_ = attacksList[1];
-			entity_->getComponent<PlayerState>(ecs::PlayerState)->goAttack();
-		}
-		else if (app_->getInputManager()->isKeyDown(highKickKey)) {
-			activeAttack_ = attacksList[2];
-			entity_->getComponent<PlayerState>(ecs::PlayerState)->goAttack();
-		}
-		else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
-			activeAttack_ = attacksList[3];
-			entity_->getComponent<PlayerState>(ecs::PlayerState)->goAttack();
+		else {
+			//Ataques aéreos
 		}
 		/*else if (app_->getInputManager()->isKeyDown(hability1Key)) {
 			habilityList[0]->makeAttack();

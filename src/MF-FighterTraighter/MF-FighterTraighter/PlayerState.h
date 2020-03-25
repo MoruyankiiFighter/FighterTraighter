@@ -3,6 +3,7 @@
 
 enum Status {
 	Idle,
+	Moving,
 	Jumping,
 	Crouching,
 	Attacking,
@@ -22,18 +23,23 @@ enum Status {
 class  PlayerState : public Component
 {
 public:
-	PlayerState() : Component(ecs::PlayerState), playerStatus_(Status::Idle) {};
+	PlayerState() : Component(ecs::PlayerState), playerStatus_(Idle) {};
 	~PlayerState() {};
 
-	void goIdle() { playerStatus_ = Status::Idle; };
-	bool isIdle() { return playerStatus_ == Status::Idle; };
+	void goIdle() { playerStatus_ = Idle; };
+	bool isIdle() { return playerStatus_ == Idle; };
 
-	bool isAbleToAttack() { return (playerStatus_ == Status::Idle) || (playerStatus_ == Status::Jumping) || (playerStatus_ == Status::Crouching); };
+	bool isAbletoMove() { return playerStatus_ == Idle || playerStatus_ == Moving || playerStatus_ == Jumping; };
+	void goMoving() { playerStatus_ = Moving; };
+
+	bool isAbleToAttack() { return (playerStatus_ == Idle) || (playerStatus_ == Jumping) || (playerStatus_ == Crouching); }; //Y si te estás moviendo? Debería pararte...
 	void goAttack(){
 		if (playerStatus_ == Jumping)  playerStatus_ = AttackingAir;
 		else if (playerStatus_ == Crouching) playerStatus_ = AttackingCrouch;
 		else playerStatus_ = Attacking;
 	}
+
+	bool isGrounded() { return playerStatus_ != Jumping && playerStatus_ != AttackingAir && playerStatus_ != HitAirborne; };
 
 private:
 	Status playerStatus_;
