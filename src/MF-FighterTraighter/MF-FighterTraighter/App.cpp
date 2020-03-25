@@ -7,6 +7,8 @@
 #include "Training.h"
 
 
+#include <SDL_mixer.h>
+
 App::App()
 {
 	init();
@@ -60,6 +62,10 @@ void App::init()
 	int ttf = TTF_Init();
 	if (ttf == -1) {
 		throw new SDLExceptions::TTFException(TTF_GetError() + std::string("\nUnable to init TTF"));
+	}
+
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048)<0) {
+		throw new SDLExceptions::SDLException("\nUnable to load audio");
 	}
 
 	int e = SDL_Init(SDL_INIT_EVERYTHING);

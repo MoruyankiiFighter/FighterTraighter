@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
-    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
@@ -53,7 +52,6 @@
   <ItemGroup>
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
-    <ClInclude Include="Audio.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="hitbox.h" />

@@ -19,7 +19,6 @@ void Crouch::init()
 void Crouch::handleInput()
 {
 	if ((app_->getInputManager()->isKeyDown(SDL_SCANCODE_DOWN) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.1) && crouched) {
-		cout << "crouch" << endl;
 		crouch();
 	}
 
@@ -28,9 +27,6 @@ void Crouch::handleInput()
 		if (!crouched)
 		{
 			uncrouch();
-			cout << "uncrouch" << endl;
-
-
 		}
 	}
 }

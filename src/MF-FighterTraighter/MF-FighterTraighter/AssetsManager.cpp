@@ -48,6 +48,7 @@ void AssetsManager::loadFonts()
 
 void AssetsManager::loadMusic()
 {
+
 }
 
 void AssetsManager::playMusic(const string& name, int channel)

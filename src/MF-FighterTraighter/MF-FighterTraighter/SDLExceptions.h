@@ -22,4 +22,6 @@ namespace SDLExceptions
 		TTFException(const TTFException&) = delete;
 		TTFException operator=(const TTFException&) = delete;
 	};
+	
+
 }

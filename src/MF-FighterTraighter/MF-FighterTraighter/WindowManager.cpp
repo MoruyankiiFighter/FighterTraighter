@@ -13,7 +13,7 @@ WindowManager::WindowManager(App* app) : app_(app) {
 		supportedResolutions_.emplace_back(mode);
 		if (&mode == &curr) currentResolution_ = i;
 	}
-	window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+	window = SDL_CreateWindow("Fighter Traighter ver 1.1", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		supportedResolutions_[currentResolution_].w, supportedResolutions_[currentResolution_].h, SDL_WINDOW_SHOWN);
 	if (!window) throw new SDLExceptions::SDLException("Unable to create window");
 	SDL_GetCurrentDisplayMode(0, &curr);
@@ -41,7 +41,6 @@ void WindowManager::setResolution(int resIndex)
 {
 	if (fullscreen_) {
 		SDL_RenderSetLogicalSize(app_->getRenderer(), supportedResolutions_[resIndex].w, supportedResolutions_[resIndex].h); //para que se redimensionen a su proporcion
-		cout << "setResolution" << endl;
 		currentResolution_ = resIndex;
 	}
 }
