@@ -23,7 +23,17 @@ public:
 	SetValueOnClick* clickCallback, SetValueOnClick* stopClickCallback, CallBackOnClick* left, CallBackOnClick* right, 
 	std::string text_left = "", std::string text_right = "", int fontSize = 20);
 
-	
+	static std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*>createWinHabMenu
+	//////////////////FondoP1//Hab fija//HabWin1//HabWin2//Extra
+	(GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, Texture* holeTexture3_, double x, double y, Entity* player);
+
+	static std::tuple<Entity*, Entity*, Entity*, Entity*>createLoseHabMenu
+	//////////////////FondoP1//Hab fija//HabWin1//Extra
+	(GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, double x, double y, Entity* player);
+
+	static std::tuple<Entity*,std::list<Entity*>>createSelectionHabMenu
+	(GameState* state, double width, double height, Texture* wallTexture_, double x, double y, Entity* player);
+
 protected:
 	UIFactory() = delete;
 	~UIFactory() {};
