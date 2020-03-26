@@ -15,15 +15,19 @@ void Crouch::init()
 
 void Crouch::handleInput()
 {
+	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
+	Transform* tr = entity_->getComponent<Transform>(ecs::Transform);
+
 	if ((app_->getInputManager()->isKeyDown(crouchKey_)|| app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.1) && 
-		entity_->getComponent<PlayerState>(ecs::PlayerState)->canCrouch()) {
+		currState->canCrouch()) {
 		cout << "crouch"<< endl;
+		if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 		crouch();
 	}
 	
 	if(app_->getInputManager()->isKeyUp(crouchKey_) && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < 0.09)
 	{
-		if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isCrouch())
+		if (currState->isCrouch())
 		{
 			uncrouch();
 			cout << "uncrouch" << endl;

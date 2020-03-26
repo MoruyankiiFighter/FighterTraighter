@@ -22,18 +22,18 @@ void PlayerController::handleInput()
 		if (app_->getInputManager()->isKeyDown(left_) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0) {
 			tr_->setSpeed(-10, speed.getY());
 			if (currState->isGrounded()) currState->goMoving();
-			else { /*go jumping*/ };
+			else { currState->goJumping(); };
 		}
 		else if (app_->getInputManager()->isKeyDown(right_) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.09)
 		{
 			tr_->setSpeed(10, speed.getY());
 			if (currState->isGrounded()) currState->goMoving();
-			else {/*go jumping*/ };
+			else { currState->goJumping(); };
 		}
-		else { 
-			tr_->setSpeed(0, speed.getY()); 
+		else {
+			tr_->setSpeed(0, speed.getY());
 			if (currState->isGrounded()) currState->goIdle();
-			else { /*habrá que ver is ha ha landeado en algún lugar xdddddd*/ };
+			else { currState->goJumping(); };
 		}
 	}
 }
