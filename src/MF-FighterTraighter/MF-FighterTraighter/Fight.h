@@ -5,7 +5,6 @@
 #include "SDLDebugDraw.h"
 #include "Jump.h"
 #include "PlayerAttacks.h"
-#include "PunchingBagListener.h"
 
 
 class Fight: public GameState

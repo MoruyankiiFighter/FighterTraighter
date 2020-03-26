@@ -50,7 +50,7 @@ void Training::update()
 {
 	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 	GameState::update();
-	world->Step(1.0 / 30, 8, 3);//update box2d+
+	world->Step(1.0 / 30, 8, 3);//update box2d
 }
 
 
@@ -69,5 +69,4 @@ Training::~Training()
 	}
 	delete world;
 	delete debugInstance;
-	delete pbListener;
 }
