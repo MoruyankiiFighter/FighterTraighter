@@ -19,9 +19,9 @@ void HitboxMng::update()
 
 				if (mainHB->GetBody() != (*it)->GetBody() && checkOverlap((*it), mainHB)) {
 					//gets the OnHitComponent if the mainObject has it, if it doesnt, it
-					Entity* e = static_cast<Entity*>(mainHB->GetUserData());		//el problema esq no pillo la entidad bien
 					OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
-					objOnHit->onHit();
+					if(objOnHit != nullptr)
+						objOnHit->onHit();
 				}
 
 			}			

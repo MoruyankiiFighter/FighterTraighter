@@ -37,5 +37,7 @@ private:
 	b2Body* body_;
 	uint16 cBits_, mBits_;
 	b2Fixture* mainFixture_;
+
+	void resetMainFixture(const b2PolygonShape& shape);
 };
 

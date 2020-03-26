@@ -21,10 +21,7 @@ void Training::init()
 	debugInstance = new SDLDebugDraw(app_->getRenderer());
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
-	//---------Add collision listeners
-	pbListener = new PunchingBagListener();
-	world->SetContactListener(pbListener);
-	//---------------------------------------------------------------
+
 
 	FactoryMk::addMkToGame(app_, this, world, 1, {SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X },
 		PLAYER_1, BOUNDARY | P_BAG);
@@ -33,9 +30,8 @@ void Training::init()
 	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
 	app_->getHitboxMng()->addMainHitbox(pBpT->getMainFixture());
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
-	saco->addComponent<PunchingBagOnHit>();
+	//saco->addComponent<PunchingBagOnHit>();
 	//saco->addComponent<SacoTimer>(5000);
-	//saco->addComponent<PunchingBagCollision>();
 
 	Entity* floor = giveMeManager().addEntity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, BOUNDARY, EVERYTHING, false);
