@@ -138,9 +138,6 @@
     <ClCompile Include="PunchingBagCollision.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Hitbox.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationChain.cpp">
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
@@ -302,9 +299,6 @@
     <ClInclude Include="Slider.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="hitbox.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="VerticalSlider.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
@@ -351,6 +345,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="PunchingBagOnHit.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxData.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

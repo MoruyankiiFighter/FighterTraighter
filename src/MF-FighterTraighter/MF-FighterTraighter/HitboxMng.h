@@ -1,9 +1,9 @@
 #pragma once
-#include "hitbox.h"
+
 #include "Vector2D.h"
 #include <list>
 #include <vector>
-#include "Hitbox.h"
+#include "HitboxData.h"
 #include "Box2D/Box2D.h"
 
 class App;

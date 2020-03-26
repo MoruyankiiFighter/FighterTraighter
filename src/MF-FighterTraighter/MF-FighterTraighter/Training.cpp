@@ -30,7 +30,7 @@ void Training::init()
 	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
 	app_->getHitboxMng()->addMainHitbox(pBpT->getMainFixture());
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
-	//saco->addComponent<PunchingBagOnHit>();
+	saco->addComponent<PunchingBagOnHit>();
 	//saco->addComponent<SacoTimer>(5000);
 
 	Entity* floor = giveMeManager().addEntity();

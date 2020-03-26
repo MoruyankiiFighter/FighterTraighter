@@ -151,7 +151,6 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="Health.cpp" />
-    <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="main.cpp" />
@@ -186,7 +185,7 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />
-    <ClInclude Include="hitbox.h" />
+    <ClInclude Include="HitboxData.h" />
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IndexSlider.h" />

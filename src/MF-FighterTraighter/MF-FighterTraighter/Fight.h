@@ -6,7 +6,6 @@
 #include "Jump.h"
 #include "PlayerAttacks.h"
 #include "PunchingBagListener.h"
-#include "Hitbox.h"
 
 
 class Fight: public GameState

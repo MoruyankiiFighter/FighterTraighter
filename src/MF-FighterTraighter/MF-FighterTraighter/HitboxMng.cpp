@@ -6,29 +6,28 @@
 void HitboxMng::update()
 {
 	for (auto it = hitboxList_.begin(); it != hitboxList_.end();++it) {
-		hitbox* hB = static_cast<hitbox*>((*it)->GetUserData());
-		if (hB->time_-- <= 0) {//time habra que modificar a frames
-			std::cout << "Borro " << static_cast<hitbox*>((*it)->GetUserData())->damage_ << std::endl;
-			delete static_cast<hitbox*>((*it)->GetUserData());
-			(*it)->GetBody()->DestroyFixture((*it));
+		HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
+		if (hB->time_-- <= 0) {//time habra que modificar a frames			checks if the hitbox "dies"
 			hitboxListToRemove_.push_back(*it);
-			//hitboxList_.erase(it);
 		}
-		else {	// if the hitbox doesnt "die", it checks 
+		else {	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
 			for (b2Fixture* mainHB : mainHitboxes) {
-
 				if (mainHB->GetBody() != (*it)->GetBody() && checkOverlap((*it), mainHB)) {
-					//gets the OnHitComponent if the mainObject has it, if it doesnt, it
+					//gets the OnHitComponent if the mainObject has it, if it doesnt, it does nothing
 					OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
-					if(objOnHit != nullptr)
+					if (objOnHit != nullptr) {
 						objOnHit->onHit();
+						hitboxListToRemove_.push_back(*it);
+					}
 				}
-
 			}			
 		}
 	}
 
-	for (auto h : hitboxListToRemove_) {	
+	for (auto h : hitboxListToRemove_) {
+		std::cout << "Borro " << static_cast<HitboxData*>(h->GetUserData())->damage_ << std::endl;
+		delete static_cast<HitboxData*>(h->GetUserData());
+		h->GetBody()->DestroyFixture(h);
 		hitboxList_.remove(h);
 	}
 	hitboxListToRemove_.clear();
@@ -45,7 +44,7 @@ void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.isSensor=true;
 	fixturedef.filter.categoryBits = cBits;
 	fixturedef.filter.maskBits = mBits;
-	hitbox* hitbox_ = new hitbox{ damage,time, knockBack };//creamos los datos de la hitbox
+	HitboxData* hitbox_ = new HitboxData{ damage,time, knockBack };//creamos los datos de la hitbox
 	hitboxList_.push_back(body->CreateFixture(&fixturedef));//creamos la fixture 
 	hitboxList_.back()->SetUserData(hitbox_);//guardamos los datos de la hitbox
 }
