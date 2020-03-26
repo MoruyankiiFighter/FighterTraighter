@@ -19,6 +19,5 @@ private:
 	//Transform* tr_;
 	PhysicsTransform* tr_ = nullptr;
 	SDL_Scancode crouchKey_;
-	bool cancrouched=false;
 };
 
