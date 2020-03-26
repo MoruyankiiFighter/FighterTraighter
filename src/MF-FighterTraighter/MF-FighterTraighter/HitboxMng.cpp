@@ -1,5 +1,7 @@
 #include "HitboxMng.h"
 #include <iostream>
+#include "OnHit.h"
+#include "Entity.h"
 
 void HitboxMng::update()
 {
@@ -13,10 +15,13 @@ void HitboxMng::update()
 			//hitboxList_.erase(it);
 		}
 		else {	// if the hitbox doesnt "die", it checks 
-			for (b2Fixture* b : mainHitboxes) {
+			for (b2Fixture* mainHB : mainHitboxes) {
 
-				if (b->GetBody() != (*it)->GetBody() && checkOverlap((*it), b)) {
-					std::cout << "ovelapeo con algo que no soy yo" << std::endl;	//eliminar? las hitbox
+				if (mainHB->GetBody() != (*it)->GetBody() && checkOverlap((*it), mainHB)) {
+					//gets the OnHitComponent if the mainObject has it, if it doesnt, it
+					Entity* e = static_cast<Entity*>(mainHB->GetUserData());		//el problema esq no pillo la entidad bien
+					OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
+					objOnHit->onHit();
 				}
 
 			}			

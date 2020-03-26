@@ -35,7 +35,6 @@ PhysicsTransform::~PhysicsTransform() {
 
 void PhysicsTransform::init() {
 	body_->SetUserData(this->entity_);	//tener acceso a la entidad para hacer cosas con las colisiones
-
 }
 
 //al anadir mas hitbox puede dar fallo
@@ -97,3 +96,5 @@ void PhysicsTransform::setWidthHeight(double width, double height) {
 	width_ = width;
 	height_ = height;
 }
+
+void PhysicsTransform::

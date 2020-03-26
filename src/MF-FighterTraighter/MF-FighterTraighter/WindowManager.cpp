@@ -14,10 +14,10 @@ WindowManager::WindowManager(App* app) : app_(app) {
 		if (&mode == &curr) currentResolution_ = i;
 	}
 	window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		supportedResolutions_[currentResolution_].w, supportedResolutions_[currentResolution_].h, SDL_WINDOW_SHOWN);
+		800, 800, SDL_WINDOW_SHOWN);
 	if (!window) throw new SDLExceptions::SDLException("Unable to create window");
 	SDL_GetCurrentDisplayMode(0, &curr);
-	setFullscreen(true);
+	//setFullscreen(true);
 	setResolution(currentResolution_);
 }
 

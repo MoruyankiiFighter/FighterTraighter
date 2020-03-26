@@ -7,6 +7,7 @@
 #include "Crouch.h"
 #include "SacoTimer.h"
 #include "FactoryMk.h"
+#include "PunchingBagOnHit.h"
 
 Training::Training(App* app) : GameState(app)
 {
@@ -29,11 +30,12 @@ void Training::init()
 		PLAYER_1, BOUNDARY | P_BAG);
 
 	Entity* saco = giveMeManager().addEntity();
-	PhysicsTransform* pT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
-	app_->getHitboxMng()->addMainHitbox(pT->getMainFixture());
+	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
+	app_->getHitboxMng()->addMainHitbox(pBpT->getMainFixture());
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
+	saco->addComponent<PunchingBagOnHit>();
 	//saco->addComponent<SacoTimer>(5000);
-	saco->addComponent<PunchingBagCollision>();
+	//saco->addComponent<PunchingBagCollision>();
 
 	Entity* floor = giveMeManager().addEntity();
 	floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, BOUNDARY, EVERYTHING, false);
