@@ -49,6 +49,11 @@ public:
 	void goJumping() { playerStatus_ = Jumping; };
 	bool canJump() { return playerStatus_ == Idle || playerStatus_ == Crouching || playerStatus_ == Moving; }
 
+	void goLanding() {
+		playerStatus_ = Landing;
+		holdingFrames_ = 60;
+	}
+
 	virtual void update() override {
 		if (holdingFrames_ > 0) {
 			holdingFrames_--;
