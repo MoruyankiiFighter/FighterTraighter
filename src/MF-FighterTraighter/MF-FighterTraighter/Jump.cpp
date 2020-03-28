@@ -24,15 +24,16 @@ void Jump::handleInput()
 		if (currState->isCrouch()) entity_->getComponent<Crouch>(ecs::Crouch)->uncrouch();
 		currState->goJumping();
 		std::cout << "salto" << std::endl;
+		onGround = false;
 	}
 	
 }
 
 void Jump::update()
 {
-	Vector2D velocity = pTR_->getSpeed();
-	bool oldOnGround = onGround;
-	onGround = abs(velocity.getY()) <= 2;		//puedes saltar justo cuando empiezas a caer
-	if (oldOnGround != onGround && !oldOnGround) entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle(); //De momento idle, ya veremos como hacemos landing
-	else if (!onGround && oldOnGround) entity_->getComponent<PlayerState>(ecs::PlayerState)->goJumping();
+	//Vector2D velocity = pTR_->getSpeed();
+	//bool oldOnGround = onGround;
+	//onGround = abs(velocity.getY()) <= 2;		//puedes saltar justo cuando empiezas a caer
+	if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isJumping() && onGround) entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle(); //De momento idle, ya veremos como hacemos landing
+	//else if (onGround) entity_->getComponent<PlayerState>(ecs::PlayerState)->goJumping();
 }

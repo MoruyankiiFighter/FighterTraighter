@@ -47,6 +47,8 @@ public:
 
 	bool isGrounded() { return playerStatus_ != Jumping && playerStatus_ != AttackingAir && playerStatus_ != HitAirborne; };
 	void goJumping() { playerStatus_ = Jumping; };
+	bool isJumping() { return playerStatus_ == Jumping; };
+
 	bool canJump() { return playerStatus_ == Idle || playerStatus_ == Crouching || playerStatus_ == Moving; }
 
 	virtual void update() override {

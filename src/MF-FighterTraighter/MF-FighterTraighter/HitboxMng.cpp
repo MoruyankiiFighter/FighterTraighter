@@ -2,6 +2,8 @@
 #include <iostream>
 #include "OnHit.h"
 #include "Entity.h"
+#include "Jump.h"
+
 //removes the hitboxes that their time is 0 or overlap
 //with a object with OnHit component(players and punching bag)
 void HitboxMng::update()
@@ -32,6 +34,21 @@ void HitboxMng::update()
 		hitboxList_.remove(h);
 	}
 	hitboxListToRemove_.clear();
+
+	for (int i = 0; i < mainHitboxes.size(); i++) {
+		Jump* jump=static_cast<Entity*>(mainHitboxes[i]->GetUserData())->getComponent<Jump>(ecs::Jump);
+		
+		if (jump!=nullptr && !(jump->getOnGround()) && checkOverlap(mainHitboxes[i], floorFixture_)) {
+			OnHit* objOnHit2 = static_cast<Entity*>(floorFixture_->GetUserData())->getComponent<OnHit>(ecs::OnHit);
+			if (objOnHit2 != nullptr) {
+				objOnHit2->onHit();
+				jump->setOnGround(true);
+				//hitboxListToRemove_.push_back(*it);
+			}
+		}
+		
+
+	}
 }
 
 //create a hitbox (fixture) in a specific body with the data that we want

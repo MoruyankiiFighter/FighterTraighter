@@ -1,5 +1,5 @@
 #include "Fight.h"
-
+#include "FloorOnHit.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -16,8 +16,12 @@ void Fight::init()
 	//---------------------------------------------------------------
 	
 	Entity* floor = giveMeManager().addEntity();
-	floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, BOUNDARY, EVERYTHING, false);
+	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, BOUNDARY, EVERYTHING, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));	
+	floor->addComponent<FloorOnHit>();
+	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
+
+	//floor->addComponent<FloorOnHit>();
 
 	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X },
 		PLAYER_1, PLAYER_2 | BOUNDARY);
