@@ -7,7 +7,10 @@ public:
 	AnimationChain(vector<Move*> chain) : chain_(chain) {};
 	~AnimationChain() {
 		cout << "DESTRUYENDO ANIMATION CHAIN" << endl;
-		//delete chain_;
+		for (int i = 0; i < chain_.size(); i++) {
+			delete chain_[i];
+			chain_[i] = nullptr;
+		}
 	};
 	bool update();
 private:

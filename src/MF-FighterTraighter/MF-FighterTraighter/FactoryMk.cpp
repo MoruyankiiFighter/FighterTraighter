@@ -7,16 +7,20 @@
 #include "Crouch.h"
 #include "PlayerAttacks.h"
 #include "PlayerState.h"
-
+#include "Health.h"
 Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, uint16 cBits, uint16 mBits, bool dyn)
 {
 	Entity* e = state->giveMeManager().addEntity();
-	e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 200, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn)->setOrientation(orientation);
+	PhysicsTransform* pT =  e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 200, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn);
+	pT->setOrientation(orientation);
+	app->getHitboxMng()->addMainHitbox(pT->getMainFixture());
+
 	e->addComponent<PlayerController>(keys[0], keys[1]);
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(0));
 	e->addComponent<Jump>(-1000, keys[2]);
 	e->addComponent<Crouch>(keys[3]);
 	e->addComponent<PlayerState>();
+	e->addComponent<Health>(100);
 
 	std::vector<Move*> vecMov;
 

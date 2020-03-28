@@ -3,7 +3,6 @@
 #include "Box2D\Box2D.h"
 #include "PhysicsTransform.h"
 #include "SDLDebugDraw.h"
-#include "PunchingBagListener.h"
 #include "Jump.h"
 #include "PlayerAttacks.h"
 #include <vector>
@@ -30,6 +29,5 @@ private:
 	std::vector<Move*> vecMov;
 	b2World* world;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
-	PunchingBagListener* pbListener = nullptr;
 };
 

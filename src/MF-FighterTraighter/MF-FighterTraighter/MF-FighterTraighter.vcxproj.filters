@@ -132,15 +132,6 @@
     <ClCompile Include="SacoTimer.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="PunchingBagListener.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="PunchingBagCollision.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Hitbox.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationChain.cpp">
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
@@ -149,9 +140,6 @@
     </ClCompile>
     <ClCompile Include="PlayerAttacks.cpp">
       <Filter>Archivos de origen\Moves</Filter>
-    </ClCompile>
-    <ClCompile Include="Health.cpp">
-      <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="VerticalSlider.cpp">
       <Filter>Archivos de origen\Components</Filter>
@@ -181,6 +169,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="IndexSlider.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Health.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -278,12 +269,6 @@
     <ClInclude Include="SacoTimer.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
-    <ClInclude Include="PunchingBagListener.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="PunchingBagCollision.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationChain.h">
       <Filter>Archivos de encabezado\Moves</Filter>
     </ClInclude>
@@ -295,9 +280,6 @@
     </ClInclude>
     <ClInclude Include="Slider.h">
       <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="hitbox.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="VerticalSlider.h">
       <Filter>Archivos de encabezado\Components</Filter>
@@ -339,6 +321,15 @@
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
     <ClInclude Include="Crouch.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxData.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="OnHit.h">
+      <Filter>Archivos de encabezado\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PunchingBagOnHit.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
   </ItemGroup>
