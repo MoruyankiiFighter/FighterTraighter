@@ -49,6 +49,17 @@ public:
 	void goJumping() { playerStatus_ = Jumping; };
 	bool canJump() { return playerStatus_ == Idle || playerStatus_ == Crouching || playerStatus_ == Moving; }
 
+	virtual void update() override {
+		if (holdingFrames_ > 0) {
+			holdingFrames_--;
+		}else if (holdingFrames_ == 0) {
+			holdingFrames_ = -1;
+			if (isGrounded()) goIdle();
+			else goJumping();
+		}
+	};
+
 private:
 	Status playerStatus_;
+	int holdingFrames_ = -1;
 };
