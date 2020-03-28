@@ -51,7 +51,7 @@ void MainMenu::init()
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
 	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
-	arcade->addComponent<Button>(GoArcade);
+	arcade->addComponent<Button>(nullptr, GoArcade);
 
 	Entity* pvp = entManager_.addEntity();
 	Transform* tr = pvp->addComponent<Transform>();
@@ -60,7 +60,7 @@ void MainMenu::init()
 	tr->setHeight(HEIGHT_BUTTON);
 	tr->setRotation(0);
 	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	pvp->addComponent<Button>(Go1v1);
+	pvp->addComponent<Button>(nullptr, Go1v1);
 
 	Entity* options = entManager_.addEntity();
 	Transform* tra = options->addComponent<Transform>();
@@ -69,7 +69,7 @@ void MainMenu::init()
 	tra->setHeight(HEIGHT_BUTTON);
 	tra->setRotation(0);
 	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	options->addComponent<Button>(GoOptions);
+	options->addComponent<Button>(nullptr, GoOptions);
 
 
 	Entity* exit = entManager_.addEntity();
@@ -79,7 +79,7 @@ void MainMenu::init()
 	tran->setHeight(HEIGHT_BUTTON);
 	tran->setRotation(0);
 	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	exit->addComponent<Button>(Leave);
+	exit->addComponent<Button>(nullptr, Leave);
 
 	Entity* nav = entManager_.addEntity();
 	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 4);
