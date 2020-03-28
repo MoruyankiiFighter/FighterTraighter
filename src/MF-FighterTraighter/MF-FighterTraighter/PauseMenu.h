@@ -15,9 +15,6 @@ public:
 	~PauseMenu() {}
 
 	void init();
-	virtual void render() override;
-	virtual void update() override;
-	void handleInput();
 
 	static void Resume(App* app);
 	static void GoMainMenu(App* app);
