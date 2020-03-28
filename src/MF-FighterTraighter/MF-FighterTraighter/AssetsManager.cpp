@@ -34,7 +34,7 @@ void AssetsManager::loadFonts()
 	fonts_.reserve(numFonts);
 
 
-	fonts_.emplace_back(new Font("../../../../assets/Assets/Fonts/Roboto-Black.ttf", 20));
+	fonts_.emplace_back(new Font("../../../../assets/Assets/Fonts/Roboto-Black.ttf", 20, 45));
 	// fonts_.emplace_back(new Font("Filepath", size));
 }
 
