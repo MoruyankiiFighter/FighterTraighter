@@ -4,6 +4,7 @@
 enum Status {
 	Idle,
 	Moving,
+	JumpingTransition,
 	Jumping,
 	Crouching,
 	Attacking,
@@ -45,8 +46,10 @@ public:
 		else playerStatus_ = Attacking;
 	}
 
-	bool isGrounded() { return playerStatus_ != Jumping && playerStatus_ != AttackingAir && playerStatus_ != HitAirborne; };
+	bool isGrounded() { return playerStatus_ != Jumping && playerStatus_ != AttackingAir && playerStatus_ != HitAirborne && playerStatus_ != JumpingTransition; };
 	void goJumping() { playerStatus_ = Jumping; };
+	void goJumpingTrans() { playerStatus_ = JumpingTransition; holdingFrames_ = 25; };
+	bool isJumpingTrans() { return playerStatus_ == JumpingTransition; }
 	bool isJumping() { return playerStatus_ == Jumping; };
 
 	bool canJump() { return playerStatus_ == Idle || playerStatus_ == Crouching || playerStatus_ == Moving; }
@@ -62,8 +65,10 @@ public:
 		}else if (holdingFrames_ == 0) {
 			holdingFrames_ = -1;
 			if (isGrounded()) goIdle();
+			else if (isJumpingTrans()) goJumping();
 			else goJumping();
 		}
+		cout << playerStatus_ << endl;
 	};
 
 private:
