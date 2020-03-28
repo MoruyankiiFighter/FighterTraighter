@@ -16,5 +16,8 @@ public:
 protected:
 	LinkedGrid<Entity*> grid_;
 	int cursorPositionX_, cursorPositionY_;
+
+	int findInRowFrom(int y);
+	int findInColFrom(int x);
 };
 
