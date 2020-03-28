@@ -9,52 +9,48 @@ class Slider :
 	public Component
 {
 public:
+	//constructor
 	Slider(double minValue, double maxValue, int steps = 10);
 	Slider(double minValue, double maxValue, int steps, CallbackOnValueChanged* valueChanged, CallbackOnDrag* startDrag = nullptr, CallbackOnDrag endDrag = nullptr);
+	
+	//destructor
+	virtual ~Slider();
 
-	inline void setCallbackOnStartDrag(CallbackOnDrag* callback) {
-		startDrag_ = callback;
-	}
-	inline void setCallbackOnEndDrag(CallbackOnDrag* callback) {
-		endDrag_ = callback;
-	}
-	inline void setCallbackOnValueChanged(CallbackOnValueChanged* callback) {
-		valueChanged_ = callback;
-	}
-	inline void setSteps(int steps) {
-		steps_ = steps;
-	}
-	inline void setMinValue(int minValue) {
-		minValue_ = minValue;
-	}
-	inline void setMaxValue(int maxValue) {
-		maxValue_ = maxValue;
-	}
+	//set different parameters
+	inline void setCallbackOnStartDrag(CallbackOnDrag* callback) {startDrag_ = callback;}
+	inline void setCallbackOnEndDrag(CallbackOnDrag* callback) { endDrag_ = callback;}
+	inline void setCallbackOnValueChanged(CallbackOnValueChanged* callback) { valueChanged_ = callback;}
+	inline void setSteps(int steps) { steps_ = steps;}
+	inline void setMinValue(int minValue) { minValue_ = minValue;}
+	inline void setMaxValue(int maxValue) { maxValue_ = maxValue;}
 	void setValue(double newValue);
 
+	//methods overrided from Component
 	void init() override;
 	void handleInput() override;
 	void update() override;
 	void render() override;
 
+	//different get 
 	double getValue() { return value_; }
 	double getMinValue() { return minValue_; }
 	double getMaxValue() { return maxValue_; }
 	int getSteps() { return steps_; }
 
 	
-	virtual ~Slider();
 protected:
-	Transform* tr_;
-	bool dragging_ = false;
-	double value_ = 0;
-	double minValue_, maxValue_;
-	int steps_; // if steps < 1, continuous
+	Transform* transform_=nullptr;
+
 	CallbackOnDrag* startDrag_ = nullptr;
 	CallbackOnDrag* endDrag_ = nullptr;
 	CallbackOnValueChanged* valueChanged_ = nullptr;
 
-	virtual void dragValue();
+	bool dragging_ = false;
+	double minValue_, maxValue_, value_ = 0;
+	int steps_=0; // if steps < 1, continuous
+	
 	bool isMouseOver();
+
+	virtual void dragValue();
 	virtual void setValueOnClick();
 };

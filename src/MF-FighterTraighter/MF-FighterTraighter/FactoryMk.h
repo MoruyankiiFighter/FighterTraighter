@@ -18,4 +18,3 @@ private:
 	FactoryMk() = delete;
 	~FactoryMk() {};
 };
-

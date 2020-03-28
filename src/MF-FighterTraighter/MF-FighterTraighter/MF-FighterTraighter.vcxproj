@@ -185,7 +185,6 @@
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IndexSlider.h" />
-    <ClInclude Include="MkWh00pAttacks.h" />
     <ClInclude Include="MoveParser.h" />
     <ClInclude Include="OnHit.h" />
     <ClInclude Include="OptionsLogic.h" />

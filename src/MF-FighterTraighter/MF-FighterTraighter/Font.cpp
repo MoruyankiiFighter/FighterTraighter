@@ -1,10 +1,18 @@
 #include "Font.h"
 #include "AssetsExceptions.h"
 
+//constructor
 Font::Font() : font(nullptr), fontSize_(), path_()
 {
 }
 
+//destructor
+Font::~Font()
+{
+	ClearFont();
+}
+
+//change font size, returns false if the fontsize is equals to the size that we want to change
 bool Font::setFontSize(int size)
 {
 	if (fontSize_ != size) {
@@ -15,6 +23,7 @@ bool Font::setFontSize(int size)
 	return false;
 }
 
+//changes the font
 void Font::changeFont(std::string path)
 {
 	if (path_ != path) {
@@ -23,6 +32,7 @@ void Font::changeFont(std::string path)
 	}
 }
 
+//load a font with the string path and applies the size
 void Font::Loadfont(std::string path, int size)
 {
 	if (font != nullptr) ClearFont();
@@ -32,12 +42,8 @@ void Font::Loadfont(std::string path, int size)
 	fontSize_ = size;
 }
 
+//deletes the font
 void Font::ClearFont()
 {
 	//TTF_CloseFont(font);
-}
-
-Font::~Font() 
-{
-	ClearFont();
 }

@@ -1,18 +1,29 @@
 #include "RenderImage.h"
 
+RenderImage::~RenderImage()
+{
+	delete transform_;
+	transform_ = nullptr;
+	delete texture_;
+	texture_ = nullptr;
+}
+
+//set the transform to the entity transform
+void RenderImage::init()
+{
+	transform_ = entity_->getComponent<Transform>(ecs::Transform);
+}
+
+//render the image
 void RenderImage::render()
 {
-	//tex_->render(trans_->getPosition(), trans_->getWidth(), trans_->getHeight()); //Esto si la escala de transform es un multiplicador
-
-	Vector2D pos = trans_->getPosition();
+	Vector2D pos = transform_->getPosition();
 	SDL_Rect dest = SDL_Rect();
 	dest.x = pos.getX();
 	dest.y = pos.getY();
-	dest.w = trans_->getWidth() * trans_->getWMult();
-	dest.h = trans_->getHeight() * trans_->getHMult();
-	//dest.x = pos.getX() - dest.w / 2;
-	//dest.y = pos.getY() - dest.h / 2;
-	tex_->render(dest);
+	dest.w = transform_->getWidth() * transform_->getWMult();
+	dest.h = transform_->getHeight() * transform_->getHMult();
 	
-	//tex_->render(SDL_Rect(pos.getX(), (double)pos.getY(), trans_->getWidth() * trans_->getWMult(), trans_->getHeight() * trans_->getHMult())); //Esto si transform tiene la escala directamente
+	texture_->render(dest);
+	
 }

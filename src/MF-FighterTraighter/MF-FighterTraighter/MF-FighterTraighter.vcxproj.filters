@@ -1,327 +1,304 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Archivos de origen">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Archivos de encabezado">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Archivos de recursos">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Archivos de origen\GameState">
-      <UniqueIdentifier>{e7bd4a14-c4e0-458a-8c44-221c1132ac84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de origen\Entity">
-      <UniqueIdentifier>{9bcba38e-0da3-4d22-aea5-000e1d059855}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Entity">
-      <UniqueIdentifier>{4fb66f98-cafb-4674-a03c-1a44813ebbbf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de origen\Components">
-      <UniqueIdentifier>{bd342a9b-443e-420c-aa95-d78e72764c9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Components">
-      <UniqueIdentifier>{f31faeee-01d9-4022-b058-d9447ce6a2c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\GameState">
-      <UniqueIdentifier>{fab6bf26-e784-4081-b8be-c7e21703c5c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de origen\Moves">
-      <UniqueIdentifier>{dccc5090-7290-4501-8257-49f11d549d5f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Moves">
-      <UniqueIdentifier>{9159f998-26d6-4073-8275-46c539805ab5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Exceptions">
-      <UniqueIdentifier>{d53f952c-ce80-4696-b51b-4f1da289c7ba}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Archivos de origen\Entity</Filter>
-    </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Archivos de origen\Components</Filter>
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderAnimation.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderImage.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Fight.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="PauseMenu.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillSelection.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="Training.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="CharacterSelection.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="App.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStateMachine.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerController.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsTransform.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Jump.cpp">
-      <Filter>Archivos de origen\Components</Filter>
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="Crouch.cpp">
-      <Filter>Archivos de origen\Components</Filter>
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PunchingBagCollision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PunchingBagListener.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SDLDebugDraw.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="TextComponent.cpp">
-      <Filter>Archivos de origen\Components</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AssetsManager.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Source Files\Manager and factorys</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsMenu.cpp">
-      <Filter>Archivos de origen\GameState</Filter>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Entitys</Filter>
     </ClCompile>
-    <ClCompile Include="SacoTimer.cpp">
-      <Filter>Archivos de origen\Components</Filter>
+    <ClCompile Include="CharacterSelection.cpp">
+      <Filter>Source Files\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationChain.cpp">
-      <Filter>Archivos de origen\Moves</Filter>
-    </ClCompile>
-    <ClCompile Include="Move.cpp">
-      <Filter>Archivos de origen\Moves</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerAttacks.cpp">
-      <Filter>Archivos de origen\Moves</Filter>
-    </ClCompile>
-    <ClCompile Include="VerticalSlider.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Slider.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityManager.cpp">
-      <Filter>Archivos de origen\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveParser.cpp">
-      <Filter>Archivos de origen\Moves</Filter>
+    <ClCompile Include="Fight.cpp">
+      <Filter>Source Files\GameState</Filter>
     </ClCompile>
     <ClCompile Include="FactoryMk.cpp">
-      <Filter>Archivos de origen\Entity</Filter>
+      <Filter>Source Files\Manager and factorys</Filter>
     </ClCompile>
-    <ClCompile Include="HitboxMng.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="UIFactory.cpp">
-      <Filter>Archivos de origen\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="OptionsLogic.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="Health.cpp">
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="IndexSlider.cpp">
-      <Filter>Archivos de origen\Components</Filter>
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsLogic.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderAnimation.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsMenu.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsTransform.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Slider.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="VerticalSlider.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillSelection.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Manager and factorys</Filter>
+    </ClCompile>
+    <ClCompile Include="Training.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="HitboxMng.cpp">
+      <Filter>Source Files\Manager and factorys</Filter>
+    </ClCompile>
+    <ClCompile Include="UIFactory.cpp">
+      <Filter>Source Files\Manager and factorys</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderImage.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Source Files\Manager and factorys</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="Jump.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationChain.cpp">
+      <Filter>Source Files\type</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source Files\type</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Source Files\type</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveParser.cpp">
+      <Filter>Source Files\type</Filter>
+    </ClCompile>
+    <ClCompile Include="SacoTimer.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\type</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\type</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Source Files\type</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>Source Files\Manager and factorys</Filter>
+    </ClCompile>
+    <ClCompile Include="Hitbox.cpp">
+      <Filter>Source Files\type</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateMachine.cpp">
+      <Filter>Source Files\Manager and factorys</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttacks.cpp">
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="Health.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Texture.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Archivos de encabezado\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderImage.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderAnimation.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterSelection.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="Training.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillSelection.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="Fight.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="PauseMenu.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
-    </ClInclude>
     <ClInclude Include="App.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStateMachine.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
+      <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="ecs.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsTransform.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Jump.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Health.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerController.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLDebugDraw.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="consts.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="TextComponent.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="OptionsMenu.h">
-      <Filter>Archivos de encabezado\GameState</Filter>
+      <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="AssetsManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="SacoTimer.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationChain.h">
-      <Filter>Archivos de encabezado\Moves</Filter>
-    </ClInclude>
-    <ClInclude Include="Move.h">
-      <Filter>Archivos de encabezado\Moves</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerAttacks.h">
-      <Filter>Archivos de encabezado\Moves</Filter>
-    </ClInclude>
-    <ClInclude Include="Slider.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="VerticalSlider.h">
-      <Filter>Archivos de encabezado\Components</Filter>
+      <Filter>Header files\Managers and factorys</Filter>
     </ClInclude>
     <ClInclude Include="AssetsExceptions.h">
-      <Filter>Archivos de encabezado\Exceptions</Filter>
+      <Filter>Header files\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="SDLExceptions.h">
-      <Filter>Archivos de encabezado\Exceptions</Filter>
+    <ClInclude Include="Component.h">
+      <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="EntityManager.h">
-      <Filter>Archivos de encabezado\Entity</Filter>
+    <ClInclude Include="Button.h">
+      <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="MoveParser.h">
-      <Filter>Archivos de encabezado\Moves</Filter>
-    </ClInclude>
-    <ClInclude Include="FactoryMk.h">
-      <Filter>Archivos de encabezado\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="HitboxMng.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="MkWh00pAttacks.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="UIFactory.h">
-      <Filter>Archivos de encabezado\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="OptionsLogic.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="IndexSlider.h">
-      <Filter>Archivos de encabezado\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>Archivos de encabezado\Components</Filter>
+    <ClInclude Include="GameState.h">
+      <Filter>Header files\GameState</Filter>
     </ClInclude>
     <ClInclude Include="Crouch.h">
-      <Filter>Archivos de encabezado\Components</Filter>
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header files\Entitys</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryMk.h">
+      <Filter>Header files\Managers and factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSelection.h">
+      <Filter>Header files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Fight.h">
+      <Filter>Header files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxMng.h">
+      <Filter>Header files\Managers and factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsLogic.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Health.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateMachine.h">
+      <Filter>Header files\Managers and factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header files\Managers and factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsMenu.h">
+      <Filter>Header files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Header files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexSlider.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Slider.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsTransform.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="VerticalSlider.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Training.h">
+      <Filter>Header files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLExceptions.h">
+      <Filter>Header files\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header files\items</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header files\items</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Header files\items</Filter>
+    </ClInclude>
+    <ClInclude Include="Jump.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PunchingBagListener.h">
+      <Filter>Header files\listeners</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="UIFactory.h">
+      <Filter>Header files\Managers and factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowManager.h">
+      <Filter>Header files\Managers and factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillSelection.h">
+      <Filter>Header files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderAnimation.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderImage.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Header files\items</Filter>
+    </ClInclude>
+    <ClInclude Include="PunchingBagCollision.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SacoTimer.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLDebugDraw.h">
+      <Filter>Header files\items</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttacks.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveParser.h">
+      <Filter>Header files\items</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Header files\items</Filter>
+    </ClInclude>
+    <ClInclude Include="hitbox.h">
+      <Filter>Header files\items</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationChain.h">
+      <Filter>Header files\items</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Header files\Managers and factorys</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="HitboxData.h">
       <Filter>Archivos de encabezado</Filter>
@@ -332,5 +309,49 @@
     <ClInclude Include="PunchingBagOnHit.h">
       <Filter>Archivos de encabezado\Components</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{c65c8628-8e81-4a25-b64c-a5687d5fa14e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{a2c4f23b-2e16-47e9-8dd4-2c950f01ed59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Component">
+      <UniqueIdentifier>{79c884df-4b31-4994-8771-e51a38021fcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Components">
+      <UniqueIdentifier>{a7c099b8-457b-4813-9ddb-02fdcb35ce41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Entitys">
+      <UniqueIdentifier>{d89f4c83-4f66-4aee-8646-fb36c35d4673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Exceptions">
+      <UniqueIdentifier>{7f74ece4-a03f-467c-8f8f-f555dcfb0e00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\GameState">
+      <UniqueIdentifier>{9f6b30f0-fd8c-41b3-8f56-06d41e32abb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\listeners">
+      <UniqueIdentifier>{18d04ed8-c573-40a6-a897-ab56628383d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\items">
+      <UniqueIdentifier>{579bef71-c772-4b10-a52a-a5d13521f943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Manager and factorys">
+      <UniqueIdentifier>{93ba5123-48ec-49d2-ae69-9ddb772cc77b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Managers and factorys">
+      <UniqueIdentifier>{5e0e2b7a-0be3-4397-b253-d5783acd59a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entitys">
+      <UniqueIdentifier>{3456c557-1dda-469e-9cc1-327593c35442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameState">
+      <UniqueIdentifier>{1f78502d-43de-41cd-b393-e300d52effed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\type">
+      <UniqueIdentifier>{41e6a81d-749c-4cd6-946f-63ac0b631e5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

@@ -10,8 +10,8 @@
 #include "Health.h"
 Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, uint16 cBits, uint16 mBits, bool dyn)
 {
-	Entity* e = state->giveMeManager().addEntity();
-	PhysicsTransform* pT =  e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 200, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn);
+	Entity* e = state->getEntityManager().addEntity();
+	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 200, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn);
 	pT->setOrientation(orientation);
 	app->getHitboxMng()->addMainHitbox(pT->getMainFixture());
 
@@ -78,7 +78,7 @@ void FactoryMk::HP1(Entity* ent)//cBits and mBits are there to use the same coll
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
 
-	
+
 	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
 	int width = 60;
 	int hitboxX = 20;
@@ -132,8 +132,6 @@ void FactoryMk::HK1(Entity* ent)//cBits and mBits are there to use the same coll
 	b2Filter filter = body->GetFixtureList()->GetFilterData();
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
 
-
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
 	int width1 = 35;
 	int hitboxX1 = 20;
 	if (orientation_ == -1) hitboxX1 += width1;
@@ -147,12 +145,3 @@ void FactoryMk::HK1(Entity* ent)//cBits and mBits are there to use the same coll
 	std::cout << "Brrrrrjrnkrrbr" << endl;
 	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX2, 15 }, width2, 30, 35, 1, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
-
-/*void FactoryMk::HK2(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
-{
-	std::cout << "Brrrrrjrnkrrbr" << endl;
-	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
-	b2Filter filter = body->GetFixtureList()->GetFilterData();
-	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
-	ent->getApp()->getHitboxMng()->addHitbox({ orientation_ * 0, 15 }, 200, 30, 35, 1, { orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
-}*/
