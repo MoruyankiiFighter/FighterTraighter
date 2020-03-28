@@ -7,7 +7,7 @@
 #include "Crouch.h"
 #include "PlayerAttacks.h"
 #include "PlayerState.h"
-
+#include "Health.h"
 Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, uint16 cBits, uint16 mBits, bool dyn)
 {
 	Entity* e = state->giveMeManager().addEntity();
@@ -20,6 +20,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 	e->addComponent<Jump>(-1000, keys[2]);
 	e->addComponent<Crouch>(keys[3]);
 	e->addComponent<PlayerState>();
+	e->addComponent<Health>(100);
 
 	std::vector<Move*> vecMov;
 

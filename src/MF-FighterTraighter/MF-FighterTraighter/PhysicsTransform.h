@@ -33,7 +33,6 @@ public:
 	b2Fixture* getMainFixture() { return mainFixture_; }
 
 private:
-	b2World* world_;	//puntero al mundo para destruirse
 	b2Body* body_;
 	uint16 cBits_, mBits_;
 	b2Fixture* mainFixture_;

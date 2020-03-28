@@ -2,7 +2,8 @@
 #include <iostream>
 #include "OnHit.h"
 #include "Entity.h"
-
+//removes the hitboxes that their time is 0 or overlap
+//with a object with OnHit component(players and punching bag)
 void HitboxMng::update()
 {
 	for (auto it = hitboxList_.begin(); it != hitboxList_.end();++it) {
@@ -23,7 +24,7 @@ void HitboxMng::update()
 			}			
 		}
 	}
-
+	//destroy the hitbox and pop it from the hitbox list
 	for (auto h : hitboxListToRemove_) {
 		std::cout << "Borro " << static_cast<HitboxData*>(h->GetUserData())->damage_ << std::endl;
 		delete static_cast<HitboxData*>(h->GetUserData());
@@ -33,7 +34,7 @@ void HitboxMng::update()
 	hitboxListToRemove_.clear();
 }
 
-
+//create a hitbox (fixture) in a specific body with the data that we want
 void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int damage, Vector2D knockBack, b2Body* body, uint16 cBits, uint16 mBits)
 {
 	b2PolygonShape shape;
@@ -43,9 +44,9 @@ void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.density = 0.00001;			//densidad casi 0, para que no cambie segun el ancho y el alto por ahora
 	fixturedef.isSensor=true;
 	fixturedef.filter.categoryBits = cBits;
-	fixturedef.filter.maskBits = mBits;
-	HitboxData* hitbox_ = new HitboxData{ damage,time, knockBack };//creamos los datos de la hitbox
-	hitboxList_.push_back(body->CreateFixture(&fixturedef));//creamos la fixture 
-	hitboxList_.back()->SetUserData(hitbox_);//guardamos los datos de la hitbox
+	fixturedef.filter.maskBits = mBits;//colission mask
+	HitboxData* hitbox_ = new HitboxData{ damage,time, knockBack };//create the hitbox's data
+	hitboxList_.push_back(body->CreateFixture(&fixturedef));//create fixture and saving it in the list
+	hitboxList_.back()->SetUserData(hitbox_);//saving hitbox's data
 }
 

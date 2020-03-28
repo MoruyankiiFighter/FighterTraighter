@@ -1,5 +1,4 @@
 #include "PhysicsTransform.h"
-#include "Training.h"
 
 //	cBits are the category bits, the collision group this body is in
 //	cMask are the mask bits, the collision groups to check
@@ -7,7 +6,6 @@
 PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, uint16 cBits, uint16 mBits, bool dyn)
 	: Transform(position, speed, width, height, rotation)
 {
-	world_ = world;
 	cBits_ = cBits;
 	mBits_ = mBits;
 	b2BodyDef bodydef;

@@ -141,9 +141,6 @@
     <ClCompile Include="PlayerAttacks.cpp">
       <Filter>Archivos de origen\Moves</Filter>
     </ClCompile>
-    <ClCompile Include="Health.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="VerticalSlider.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
@@ -172,6 +169,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="IndexSlider.cpp">
+      <Filter>Archivos de origen\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Health.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
   </ItemGroup>
