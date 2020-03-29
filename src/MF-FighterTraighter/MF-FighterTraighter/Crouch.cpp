@@ -53,10 +53,6 @@ void Crouch::crouch()
 {
 	entity_->getComponent<PlayerState>(ecs::PlayerState)->goCrouch();
 	
-	tr_->setHeight(tr_->getHeight() / 2);
-	double height = tr_->getHeight();
-	double width = tr_->getWidth();
-
 	physics_transform_->setHeight(physics_transform_->getHeight() / 2);
 	double height = physics_transform_->getHeight();
 	double width = physics_transform_->getWidth();
@@ -71,7 +67,7 @@ void Crouch::uncrouch()
 {
 	entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
 
-	double width = tr_->getWidth();
+	double width = physics_transform_->getWidth();
 
 	physics_transform_->setPosition(physics_transform_->getPosition().getX() + width / 2, physics_transform_->getPosition().getY());
 	physics_transform_->setHeight(physics_transform_->getHeight() * 2);

@@ -15,7 +15,7 @@ void Fight::init()
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
 	//---------------------------------------------------------------
 	
-	Entity* floor = giveMeManager().addEntity();
+	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, BOUNDARY, EVERYTHING, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));	
 	floor->addComponent<FloorOnHit>();

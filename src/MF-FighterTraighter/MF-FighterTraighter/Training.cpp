@@ -28,14 +28,14 @@ void Training::init()
 	//FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M },
 		//PLAYER_2, PLAYER_1 | BOUNDARY);
 
-	Entity* saco = getEntityManager().addEntity();
+	Entity* saco = entManager_.addEntity();
 	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
 	app_->getHitboxMng()->addMainHitbox(pBpT->getMainFixture());
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	saco->addComponent<PunchingBagOnHit>();
 	//saco->addComponent<SacoTimer>(5000);
 
-	Entity* floor = giveMeManager().addEntity();
+	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, BOUNDARY, EVERYTHING, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	floor->addComponent<FloorOnHit>();

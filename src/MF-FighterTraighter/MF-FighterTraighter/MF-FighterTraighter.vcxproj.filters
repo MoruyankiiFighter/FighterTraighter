@@ -16,12 +16,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PunchingBagCollision.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PunchingBagListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -133,9 +127,6 @@
     <ClCompile Include="WindowManager.cpp">
       <Filter>Source Files\Manager and factorys</Filter>
     </ClCompile>
-    <ClCompile Include="Hitbox.cpp">
-      <Filter>Source Files\type</Filter>
-    </ClCompile>
     <ClCompile Include="GameStateMachine.cpp">
       <Filter>Source Files\Manager and factorys</Filter>
     </ClCompile>
@@ -146,7 +137,7 @@
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
     <ClCompile Include="FloorOnHit.cpp">
-      <Filter>Archivos de origen\Components</Filter>
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -249,9 +240,6 @@
     <ClInclude Include="Jump.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="PunchingBagListener.h">
-      <Filter>Header files\listeners</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Header files\GameState</Filter>
     </ClInclude>
@@ -273,9 +261,6 @@
     <ClInclude Include="Font.h">
       <Filter>Header files\items</Filter>
     </ClInclude>
-    <ClInclude Include="PunchingBagCollision.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="SacoTimer.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
@@ -291,9 +276,6 @@
     <ClInclude Include="Move.h">
       <Filter>Header files\items</Filter>
     </ClInclude>
-    <ClInclude Include="hitbox.h">
-      <Filter>Header files\items</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationChain.h">
       <Filter>Header files\items</Filter>
     </ClInclude>
@@ -303,17 +285,17 @@
     <ClInclude Include="PlayerController.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="HitboxData.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="OnHit.h">
-      <Filter>Archivos de encabezado\Components</Filter>
+      <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="PunchingBagOnHit.h">
-      <Filter>Archivos de encabezado\Components</Filter>
+      <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="FloorOnHit.h">
-      <Filter>Archivos de encabezado\Components</Filter>
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxData.h">
+      <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
