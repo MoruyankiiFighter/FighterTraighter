@@ -36,6 +36,12 @@ void MainMenu::init()
 
 	cout << "init" << endl;
 
+	Entity* bg = entManager_.addEntity();
+	Transform* t = bg->addComponent<Transform>();
+	t->setPosition(0, 0);
+	t->setWidthHeight(800, 600);
+	RenderImage* img = bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(7));
+
 	Entity* ent = entManager_.addEntity();
 	Transform* transform = ent->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
