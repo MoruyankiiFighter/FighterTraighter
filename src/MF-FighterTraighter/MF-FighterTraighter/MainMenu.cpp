@@ -30,8 +30,6 @@ MainMenu::~MainMenu()
 
 }
 
-//void MainMenu::OnButtClick(string text) { std::cout << "Bot�n activado: "<< text << endl; };
-
 void MainMenu::init()
 {
 
@@ -50,7 +48,7 @@ void MainMenu::init()
 	t->setHeight(HEIGHT_BUTTON);
 	t->setRotation(0);
 	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
+	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 150);
 	arcade->addComponent<Button>(nullptr, GoArcade);
 
 	Entity* pvp = entManager_.addEntity();
