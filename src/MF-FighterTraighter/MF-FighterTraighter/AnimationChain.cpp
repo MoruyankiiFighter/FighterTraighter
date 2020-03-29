@@ -1,5 +1,7 @@
 #include "AnimationChain.h"
 
+AnimationChain::~AnimationChain() {}
+
 bool AnimationChain::update()
 {
 	if (index_ >= chain_.size()) {

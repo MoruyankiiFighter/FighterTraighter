@@ -5,12 +5,12 @@
 #include "Crouch.h"
 
 
-Jump::Jump(float jImpulse, SDL_Scancode jumpkey) : Component(ecs::Jump), jumpImpulse(jImpulse), pTR_(nullptr), jumpKey_(jumpkey) {}
+Jump::Jump(float jImpulse, SDL_Scancode jumpkey) : Component(ecs::Jump), jumpImpulse(jImpulse), physics_transform_(nullptr), jumpKey_(jumpkey) {}
 
 
 void Jump::init()
 {
-	pTR_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
+	physics_transform_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 }
 
 void Jump::handleInput()

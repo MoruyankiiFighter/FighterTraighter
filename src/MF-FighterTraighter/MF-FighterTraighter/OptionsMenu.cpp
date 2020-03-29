@@ -61,16 +61,17 @@ void OptionsMenu::init()
 		brightnessText->getComponent<TextComponent>(ecs::TextComponent));
 }
 
-void GoBackCallback(App* app) {
+
+void OptionsMenu::GoBackCallback(App* app) {
 	app->getStateMachine()->popState();
 }
 
-void SetBright(App* app, double value)
+void OptionsMenu::SetBright(App* app, double value)
 {
 	app->getWindowManager()->setBrightness(value);
 }
 
-void MoreBright(App* app)
+void OptionsMenu::MoreBright(App* app)
 {
 	double flag = app->getWindowManager()->getCurBrightness();
 	flag += 0.1;
@@ -80,7 +81,7 @@ void MoreBright(App* app)
 	app->getWindowManager()->setBrightness(flag);
 }
 
-void LessBright(App* app)
+void OptionsMenu::LessBright(App* app)
 {
 	double flag = app->getWindowManager()->getCurBrightness();
 	flag -= 0.1;
@@ -91,18 +92,18 @@ void LessBright(App* app)
 
 }
 
-void SetVolume(App* app, double value) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
+void OptionsMenu::SetVolume(App* app, double value) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
 {
 	SDL_SetWindowBrightness(app->getWindowManager()->getWindow(), value);
 }
 
 //fullscreen
-void fullScreen(App* app) {
+void OptionsMenu::fullScreen(App* app) {
 	bool IsFullscreen = SDL_GetWindowFlags(app->getWindowManager()->getWindow()) & SDL_WINDOW_FULLSCREEN_DESKTOP;
 	app->getWindowManager()->setFullscreen(!IsFullscreen);
 }
 
-void setResolution(App* app, double value)
+void OptionsMenu::setResolution(App* app, double value)
 {
 	app->getWindowManager()->setResolution(lround(value));
 }

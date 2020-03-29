@@ -34,6 +34,15 @@ PlayerAttacks::~PlayerAttacks() {
 	}
 	habilityList.clear();*/
 }
+
+void PlayerAttacks::update(){
+	if (activeAttack_ != nullptr) {
+		if (activeAttack_->update()) {
+			activeAttack_ = nullptr;
+		}
+	}
+}
+
 void PlayerAttacks::handleInput() {
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	Transform* tr = entity_->getComponent<Transform>(ecs::Transform);

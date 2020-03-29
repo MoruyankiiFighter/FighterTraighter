@@ -13,7 +13,7 @@
 #include "Crouch.h"
 #include "FactoryMk.h"
 
-class Fight: public GameState
+class Fight : public GameState
 {
 	//	Collision filters for the b2d collision
 	enum CollisionFilters : uint16 {
@@ -30,9 +30,8 @@ public:
 	virtual void render() override;
 	virtual ~Fight();
 private:
-	//std::vector<Move*> vecMov;//until we have factories to create characters
+	std::vector<Move*> vecMov;//until we have factories to create characters
 	b2World* world;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
-	
-};
 
+};

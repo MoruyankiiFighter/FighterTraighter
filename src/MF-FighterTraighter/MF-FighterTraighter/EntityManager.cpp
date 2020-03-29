@@ -10,24 +10,24 @@ Entity* EntityManager::addEntity()
 {
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
-	scene_.push_back(e);
+	list_.push_back(e);
 	return e;
 }
 
 void EntityManager::removeEntity(Entity* e)
 {
-	scene_.remove(e);
+	list_.remove(e);
 	delete e;
 }
 
 std::list<Entity*>& EntityManager::getScene()
 {
-	return scene_;
+	return list_;
 }
 
 void EntityManager::empty() {
-	for (auto it = scene_.begin(); it != scene_.end(); ++it) {
+	for (auto it = list_.begin(); it != list_.end(); ++it) {
 		delete* it;
 	}
-	scene_.clear();
+	list_.clear();
 }

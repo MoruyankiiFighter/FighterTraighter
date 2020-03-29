@@ -23,12 +23,12 @@ void Training::init()
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
 
 
-	FactoryMk::addMkToGame(app_, this, world, 1, {SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X },
+	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X },
 		PLAYER_1, BOUNDARY | P_BAG);
 	//FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M },
 		//PLAYER_2, PLAYER_1 | BOUNDARY);
 
-	Entity* saco = giveMeManager().addEntity();
+	Entity* saco = getEntityManager().addEntity();
 	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
 	app_->getHitboxMng()->addMainHitbox(pBpT->getMainFixture());
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));

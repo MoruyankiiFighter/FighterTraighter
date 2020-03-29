@@ -12,6 +12,8 @@
 #include "App.h"
 #include "consts.h"
 
+#include "UIFactory.h"
+
 void PauseMenu::init()
 {
 	cout << "initPausa" << endl;
@@ -22,41 +24,11 @@ void PauseMenu::init()
 	transform->setPosition(app_->getWindowManager()->getCurResolution().w / 2, POS_Y_LOGO);
 	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 
-	Entity* ent = entManager_.addEntity();
-	Transform* t = ent->addComponent<Transform>();
-	t->setPosition(100, 100);
-	t->setWidth(500);
-	t->setHeight(100);
-	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(Resume);
+	std::tuple<Entity*, Entity*> continue_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 100), 500, 100, 0, nullptr, Resume, "Continue", 20);
+	std::tuple<Entity*, Entity*> menu_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 300), 500, 100, 0, nullptr, GoMainMenu, "Go to menu", 20);
+	std::tuple<Entity*, Entity*> controls_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 500), 500, 100, 0, nullptr, ShowMeYourMoves, "Controls", 20);
+	std::tuple<Entity*, Entity*> options_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 700), 500, 100, 0, nullptr, GoOptions, "Options", 20);
 
-	ent = entManager_.addEntity();
-	t = ent->addComponent<Transform>();
-	t->setPosition(100, 300);
-	t->setWidth(500);
-	t->setHeight(100);
-	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(GoMainMenu);
-
-	ent = entManager_.addEntity();
-	t = ent->addComponent<Transform>();
-	t->setPosition(100, 500);
-	t->setWidth(500);
-	t->setHeight(100);
-	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(ShowMeYourMoves);
-
-	ent = entManager_.addEntity();
-	t = ent->addComponent<Transform>();
-	t->setPosition(100, 700);
-	t->setWidth(500);
-	t->setHeight(100);
-	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(GoOptions);
 }
 
 void PauseMenu::Resume(App* app)

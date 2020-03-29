@@ -19,15 +19,23 @@ class Training: public GameState
 		EVERYTHING = 0XFFFF
 	};
 public:
+	//constructor
 	Training(App* app);
-	void init() override;
-	virtual void handleInput() override;
-	virtual void update() override;
-	virtual void render() override;
+	//destructor
 	virtual ~Training();
+	//methods overrided from Gamestate
+	//init the components and create the entitys
+	void init() override;
+	//handle the input of gamestate and if p is pressed set the pause state
+	virtual void handleInput() override;
+	//update the hitbox manager
+	virtual void update() override;
+	//render the gamestate entitys if needed and the hitboxes for debuging
+	virtual void render() override;
+	
 private:
 	std::vector<Move*> vecMov;
-	b2World* world;
+	b2World* world= nullptr;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 };
 

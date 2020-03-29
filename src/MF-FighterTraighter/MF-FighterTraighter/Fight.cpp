@@ -41,8 +41,8 @@ void Fight::update()
 {
 	GameState::update();
 	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
-	world->Step(1.0/30,8,3);//update box2d
-	
+	world->Step(1.0 / 30, 8, 3);//update box2d
+
 }
 
 void Fight::render() {
@@ -56,9 +56,7 @@ Fight::~Fight()
 {
 	/*for (auto vec : vecMov) {
 		delete vec;
-
 	}*/
 	delete world;
 	delete debugInstance;
 }
-
