@@ -25,6 +25,8 @@ namespace ecs {
 		HitboxMng,
 		OptionsLogic,
 		NavigationController,
+		PlayerState,
+		OnHit,
 		/*
 		
 		*/

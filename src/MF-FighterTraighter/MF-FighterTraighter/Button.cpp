@@ -7,7 +7,7 @@
 
 void Button::init()
 {
-	trans_ = entity_->getComponent<Transform>(ecs::Transform);
+	transform_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 
 void Button::handleInput()

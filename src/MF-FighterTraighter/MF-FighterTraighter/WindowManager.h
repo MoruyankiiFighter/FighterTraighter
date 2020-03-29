@@ -6,28 +6,50 @@ class App;
 class WindowManager
 {
 public:
+	//constructor
 	WindowManager(App* app);
 	WindowManager(WindowManager&) = delete;
 	WindowManager& operator= (WindowManager&) = delete;
 
+	//destructor
+	virtual ~WindowManager() { SDL_DestroyWindow(window); }
+
+	//set fullscreen or window
 	void setFullscreen(bool fullscreen);
+
+	//change the resolution between the possible ones
 	void setResolution(int resIndex);
+
+	//change the brightness
 	void setBrightness(float brightness);
 
+	//return the window
 	inline SDL_Window* getWindow() const { return window; }
-	inline const SDL_DisplayMode& getCurResolution() { return supportedResolutions_[currentResolution_]; }
-	inline int getCurResolutionIndex() { return currentResolution_; }
-	inline int getAvailableResolutions() { return supportedResolutions_.size(); }
-	inline bool getFullscreen() { return fullscreen_; }
-	inline float getCurBrightness() { return currentBrightness_; }
 
-	virtual ~WindowManager() { SDL_DestroyWindow(window); }
+	//get the current resolution
+	inline const SDL_DisplayMode& getCurResolution() { return supportedResolutions_[currentResolution_]; }
+
+	//get the position in the supported resolution vector
+	inline int getCurResolutionIndex() { return currentResolution_; }
+
+	//get the number of resolutions that are supported in the computer 
+	inline int getAvailableResolutions() { return supportedResolutions_.size(); }
+
+	//returns true if it's the fullscreen on
+	inline bool getFullscreen() { return fullscreen_; }
+
+	//returns the current brightness
+	inline float getCurBrightness() { return currentBrightness_; }
+	
 protected:
 	App* app_;
+	SDL_Window* window;
+
 	std::vector<SDL_DisplayMode> supportedResolutions_;
+
 	int currentResolution_ = 0;
 	float currentBrightness_ = 1;
+
 	bool fullscreen_ = true;
-	SDL_Window* window;
 };
 

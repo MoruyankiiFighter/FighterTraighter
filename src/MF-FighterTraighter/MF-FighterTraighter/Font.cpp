@@ -5,6 +5,13 @@ Font::Font() : font(nullptr), fontSize_(), path_(), symbolWidth_()
 {
 }
 
+//destructor
+Font::~Font()
+{
+	ClearFont();
+}
+
+//change font size, returns false if the fontsize is equals to the size that we want to change
 bool Font::setFontSize(int size)
 {
 	if (fontSize_ != size) {
@@ -14,6 +21,7 @@ bool Font::setFontSize(int size)
 	return false;
 }
 
+//changes the font
 void Font::changeFont(std::string path)
 {
 	if (path_ != path) {
@@ -36,12 +44,8 @@ void Font::Loadfont(std::string path, int size, int symbolWidth)
 	symbolWidth_ = symbolWidth;
 }
 
+//deletes the font
 void Font::ClearFont()
 {
 	TTF_CloseFont(font);
-}
-
-Font::~Font() 
-{
-	ClearFont();
 }

@@ -2,30 +2,39 @@
 #include "GameState.h"
 #include "Texture.h"
 
-/// C A L L B A C K S ///
-
-void GoBackCallback(App* app);
-
-void SetBright(App* app, double value);
-void MoreBright(App* app);
-void LessBright(App* app);
-
-void SetVolume(App* app, double value);
-
-//fullscreen
-void fullScreen(App* app);
-
-void setResolution(App* app, double value);
-
 class OptionsMenu:public GameState
 {
 public:
+	//constructor
 	OptionsMenu(App* app);
+	//destructor
 	virtual ~OptionsMenu();
 
+	//method overrided from GameState where the objects are created from the different factories
 	void init() override;
-private:
-	Entity* reg_bright; //button for regulate the slider
-	Entity* b_slider;
+
+
+	//callbacks of the Entitys
+	
+	//go to the state that was before
+	static void GoBackCallback(App* app);
+	
+	//change the brightness
+	static void SetBright(App* app, double value);
+	
+	//add brightness if it's possible
+	static void MoreBright(App* app);
+	
+	//substract brightness if it's posible
+	static void LessBright(App* app);
+	
+	//changes the volume
+	static void SetVolume(App* app, double value);
+
+	//fullscreen
+	static void fullScreen(App* app);
+	
+	//changes the resolution
+	static void setResolution(App* app, double value);	
 };
 

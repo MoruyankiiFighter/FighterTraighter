@@ -13,23 +13,25 @@
 #include "Slider.h"
 #include "IndexSlider.h"
 
+//create a button with their callbacks
 std::tuple<Entity*, Entity*> UIFactory::createButton
 	(App* app, GameState* state, Texture* buttonTex, 
 	Font* font, Vector2D position, double width, double height, double rotation, 
 	CallBackOnClick* clickCallback, CallBackOnClick* stopClickCallback, std::string text, int fontSize)
 {
-	Entity* button = state->giveMeManager().addEntity();
+	Entity* button = state->getEntityManager().addEntity();
 	button->addComponent<Transform>(position, Vector2D(), width, height, rotation);
 	button->addComponent<RenderImage>(buttonTex);
 	button->addComponent<Button>(clickCallback, stopClickCallback);
 
-	Entity* textEnt = state->giveMeManager().addEntity();
+	Entity* textEnt = state->getEntityManager().addEntity();
 	textEnt->addComponent<Transform>(position, Vector2D(), width, height, rotation);
 	textEnt->addComponent<TextComponent>(text, font, fontSize);
 
 	return std::make_tuple(button, textEnt);
 }
 
+// create the structure of  slider (bar, buttons and the index)
 std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	(App* app, GameState* state, double min, double max, int steps, 
 	Texture* texture_, Texture* reg_texture, Font* font,
@@ -38,7 +40,7 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	std::string text, int fontSize,
 	std::string valueText, int valueFontSize)
 {
-	Entity* slider = state->giveMeManager().addEntity();
+	Entity* slider = state->getEntityManager().addEntity();
 	slider->addComponent<Transform>(position, Vector2D(), width, height, 0);
 	slider->addComponent<RenderImage>(texture_);
 	slider->addComponent<Slider>(min, max, steps, valueOnClickCallback);

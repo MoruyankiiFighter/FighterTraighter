@@ -3,10 +3,6 @@
 
 using CallBackOnClick = void(App* app);
 
-////callback para el juego
-//void PauseCallback(App* app);
-
-
 class Button : public Component {
 
 public:
@@ -22,13 +18,18 @@ public:
 	}
 	//destructor
 	virtual ~Button() {};
+	
+	//callbacks
+	inline void setClickCallback(CallBackOnClick* callback) { clickCallback_ = callback; }
+	inline void setStopClickCallback(CallBackOnClick* callback) { stopClickCallback_ = callback; }
 
+	//methods overrided of Component
 	void init() override;
 	//handle the input of the mouse by the moment
 	void handleInput() override;
 
 private:
-	Transform* trans_ = nullptr;
+	Transform* transform_ = nullptr;
 	bool pressed_ = false;
 	bool selected_ = false;
 	CallBackOnClick* clickCallback_ = nullptr;

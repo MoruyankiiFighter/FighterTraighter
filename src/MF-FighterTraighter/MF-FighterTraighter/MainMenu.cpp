@@ -17,6 +17,7 @@
 
 #include "App.h"
 #include "consts.h"
+#include "UIFactory.h"
 
 MainMenu::MainMenu(App* app) : GameState(app)
 {
@@ -41,50 +42,13 @@ void MainMenu::init()
 	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
 	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 
-	Entity* arcade = entManager_.addEntity();
-	Transform* t = arcade->addComponent<Transform>();
-	t->setPosition(POS_X_BUTTONS, POS_Y_ARCADE);
-	t->setWidth(WIDTH_BUTTON);
-	t->setHeight(HEIGHT_BUTTON);
-	t->setRotation(0);
-	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 150);
-	arcade->addComponent<Button>(nullptr, GoArcade);
 
-	Entity* pvp = entManager_.addEntity();
-	Transform* tr = pvp->addComponent<Transform>();
-	tr->setPosition(POS_X_BUTTONS, POS_Y_PVP);
-	tr->setWidth(WIDTH_BUTTON);
-	tr->setHeight(HEIGHT_BUTTON);
-	tr->setRotation(0);
-	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	pvp->addComponent<Button>(nullptr, Go1v1);
+	tuple < Entity*, Entity *> arcade=	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(POS_X_BUTTONS, POS_Y_ARCADE), WIDTH_BUTTON, HEIGHT_BUTTON,0, nullptr,GoArcade,"Arcade",20);
+	tuple < Entity*, Entity *> pvp=	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(POS_X_BUTTONS, POS_Y_PVP), WIDTH_BUTTON, HEIGHT_BUTTON,0, nullptr,Go1v1,"1vs1",20);
 
-	Entity* options = entManager_.addEntity();
-	Transform* tra = options->addComponent<Transform>();
-	tra->setPosition(POS_X_BUTTONS, POS_Y_OPTIONS);
-	tra->setWidth(WIDTH_BUTTON);
-	tra->setHeight(HEIGHT_BUTTON);
-	tra->setRotation(0);
-	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	options->addComponent<Button>(nullptr, GoOptions);
+	tuple < Entity*, Entity *> options = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(POS_X_BUTTONS, POS_Y_OPTIONS), WIDTH_BUTTON, HEIGHT_BUTTON,0, nullptr,GoOptions,"Options",20);
+	tuple < Entity*, Entity *> exit = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(POS_X_BUTTONS, POS_Y_EXIT), WIDTH_BUTTON, HEIGHT_BUTTON,0, nullptr,Leave,"quit",20);
 
-
-	Entity* exit = entManager_.addEntity();
-	Transform* tran = exit->addComponent<Transform>();
-	tran->setPosition(POS_X_BUTTONS, POS_Y_EXIT);
-	tran->setWidth(WIDTH_BUTTON);
-	tran->setHeight(HEIGHT_BUTTON);
-	tran->setRotation(0);
-	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	exit->addComponent<Button>(nullptr, Leave);
-
-	Entity* nav = entManager_.addEntity();
-	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 4);
-	ctrl->SetElementInPos(arcade, 0, 0);
-	ctrl->SetElementInPos(pvp, 0, 1);
-	ctrl->SetElementInPos(options, 0, 2);
-	ctrl->SetElementInPos(exit, 0, 3);
 }
 
 void MainMenu::GoArcade(App* app)

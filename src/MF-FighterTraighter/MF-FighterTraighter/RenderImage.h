@@ -9,17 +9,20 @@
 class RenderImage : public Component
 {
 public:
-	RenderImage(Texture* tex) : Component(ecs::RenderImage), tex_(tex) { };
-	void init() override {
-		trans_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
-	};
+	//constructor
+	RenderImage(Texture* tex) : Component(ecs::RenderImage), texture_(tex) { };
 	inline void setTexture(Texture* tex) { tex_ = tex; }
 	inline void setFrame(size_t x, size_t y) { curX = x; curY = y; }
+	//destructor
+	~RenderImage();
+	
+	inline void setTexture(Texture* tex) { texture_ = tex; }
+	void init();
+	//method overrided from Component
 	virtual void render() override;
-	~RenderImage() {};
 private:
-	Transform* trans_ = nullptr;
-	Texture* tex_ = nullptr;
 	int curX = 0, curY = 0;
+	Transform* transform_=nullptr;
+	Texture* texture_=nullptr;
 };
 
