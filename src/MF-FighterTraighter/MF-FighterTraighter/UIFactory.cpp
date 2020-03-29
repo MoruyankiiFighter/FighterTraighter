@@ -45,16 +45,16 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	slider->addComponent<RenderImage>(texture_);
 	slider->addComponent<Slider>(min, max, steps, valueOnClickCallback);
 
-	Entity* reg_ = state->giveMeManager().addEntity();
+	Entity* reg_ = state->getEntityManager().addEntity();
 	reg_->addComponent<Transform>(position, Vector2D(), 25, height * 5, 0);
 	reg_->addComponent<RenderImage>(reg_texture);
 	reg_->addComponent<IndexSlider>(slider);
 	
-	Entity* text_ = state->giveMeManager().addEntity();
+	Entity* text_ = state->getEntityManager().addEntity();
 	text_->addComponent<Transform>(Vector2D(position.getX(), position.getY() - fontSize - 20), Vector2D(), width, fontSize, 0);
 	text_->addComponent<TextComponent>(text, font, fontSize);
 	
-	Entity* ValueText_ = state->giveMeManager().addEntity();
+	Entity* ValueText_ = state->getEntityManager().addEntity();
 	ValueText_->addComponent<Transform>(Vector2D(position.getX() + width + 10, position.getY() - fontSize / 2), Vector2D(), width, fontSize, 0);
 	ValueText_->addComponent<TextComponent>(valueText, font, valueFontSize);
 

@@ -11,7 +11,6 @@ class RenderImage : public Component
 public:
 	//constructor
 	RenderImage(Texture* tex) : Component(ecs::RenderImage), texture_(tex) { };
-	inline void setTexture(Texture* tex) { tex_ = tex; }
 	inline void setFrame(size_t x, size_t y) { curX = x; curY = y; }
 	//destructor
 	~RenderImage();

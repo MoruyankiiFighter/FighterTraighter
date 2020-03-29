@@ -29,11 +29,13 @@ void Font::changeFont(std::string path)
 	}
 }
 
+// Width of every character
 void Font::setSymbolWidth(int symbolWidth)
 {
 	symbolWidth_ = symbolWidth;
 }
 
+// Loads a font using these args
 void Font::Loadfont(std::string path, int size, int symbolWidth)
 {
 	if (font != nullptr) ClearFont();

@@ -19,10 +19,10 @@ void RenderImage::render()
 	SDL_Rect dest = SDL_Rect();
 	dest.x = pos.getX();
 	dest.y = pos.getY();
-	dest.w = trans_->getWidth() * trans_->getWMult();
-	dest.h = trans_->getHeight() * trans_->getHMult();
+	dest.w = transform_->getWidth() * transform_->getWMult();
+	dest.h = transform_->getHeight() * transform_->getHMult();
 	//dest.x = pos.getX() - dest.w / 2;
 	//dest.y = pos.getY() - dest.h / 2;
-	tex_->render(dest, curY, curX);
+	texture_->render(dest, curY, curX);
 	
 }

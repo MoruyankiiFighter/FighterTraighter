@@ -17,6 +17,7 @@ public:
 	//creates a button with functionality
 	static std::tuple<Entity*, Entity*> createButton(App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position = Vector2D(), double width = 0, double height = 0, double rotation = 0, CallBackOnClick* clickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr, std::string text = "", int fontSize = 20);
 
+	// Creates a slider with two texts
 	static std::tuple<Entity*, Entity*, Entity*, Entity*> createSlider
 	(App* app, GameState* state, double min, double max, int steps,
 		Texture* texture_, Texture* reg_texture, Font* font,

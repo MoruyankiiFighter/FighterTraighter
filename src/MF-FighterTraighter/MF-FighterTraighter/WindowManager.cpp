@@ -15,7 +15,7 @@ WindowManager::WindowManager(App* app) : app_(app) {
 	}
 	//window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		//supportedResolutions_[currentResolution_].w, supportedResolutions_[currentResolution_].h, SDL_WINDOW_SHOWN)
-	window = SDL_CreateWindow("Fighter Traighter ver 1.1", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+	window = SDL_CreateWindow("Fighter Traighter ver 0.2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		800, 600, SDL_WINDOW_SHOWN);
 	if (!window) throw new SDLExceptions::SDLException("Unable to create window");
 	SDL_GetCurrentDisplayMode(0, &curr);
@@ -23,6 +23,7 @@ WindowManager::WindowManager(App* app) : app_(app) {
 	//setResolution(currentResolution_);
 }
 
+// Sets the window in fullscreen
 void WindowManager::setFullscreen(bool fullscreen)
 {
 	bool isFullscreen = SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN_DESKTOP;
@@ -39,6 +40,7 @@ void WindowManager::setFullscreen(bool fullscreen)
 	}
 }
 
+// Sets the current window resolution, if on fullscreen
 void WindowManager::setResolution(int resIndex)
 {
 	if (fullscreen_) {
@@ -47,6 +49,7 @@ void WindowManager::setResolution(int resIndex)
 	}
 }
 
+// Changes the brightness of the window (and whole screeen)
 void WindowManager::setBrightness(float brightness)
 {
 	SDL_SetWindowBrightness(window, brightness); // si a alguien se le queda la pantalla oscura, que ponga aqu� un 1 y descomente lo de abajo
