@@ -19,7 +19,7 @@ void TextComponent::render()
 	dest.x = transform_->getPosition().getX();
 	dest.y = transform_->getPosition().getY();
 	dest.w = textString_.length() * font_->getSymbolWidth() * transform_->getWMult();
-	dest.h = transform_->getHeight() * transform_->getHMult();
+	dest.h = textSize_ * transform_->getHMult();
 	text_->render(dest);
 }
 

@@ -8,7 +8,6 @@ Font::Font() : font(nullptr), fontSize_(), path_(), symbolWidth_()
 bool Font::setFontSize(int size)
 {
 	if (fontSize_ != size) {
-		ClearFont();
 		Loadfont(path_, size, symbolWidth_);
 		return true;
 	}
@@ -18,7 +17,6 @@ bool Font::setFontSize(int size)
 void Font::changeFont(std::string path)
 {
 	if (path_ != path) {
-		ClearFont();
 		Loadfont(path, fontSize_, symbolWidth_);
 	}
 }
