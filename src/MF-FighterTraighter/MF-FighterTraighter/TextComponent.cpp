@@ -1,8 +1,8 @@
 #include "TextComponent.h"
 #include "Entity.h"
 
-TextComponent::TextComponent(std::string text, Font* font, int size) : Component(ecs::TextComponent), 
-																	text_(nullptr), transform_(nullptr), textString_(text), textSize_(size), font_(font)
+TextComponent::TextComponent(std::string text, Font* font, int size) : Component(ecs::TextComponent),
+text_(nullptr), transform_(nullptr), textString_(text), textSize_(size), font_(font)
 {
 }
 
@@ -25,20 +25,26 @@ void TextComponent::render()
 
 void TextComponent::setText(std::string text)
 {
-	if(text != textString_)
-	text_->setText(text);
+	if (text != textString_) {
+		text_->setText(text);
+		textString_ = text;
+	}
 }
 
 void TextComponent::setSize(int size)
 {
-	if(size != textSize_)
-	text_->setSize(size);
+	if (size != textSize_) {
+		text_->setSize(size);
+		textSize_ = size;
+	}
 }
 
 void TextComponent::setFont(Font* font)
 {
-	if(font != font_)
-	text_->setFont(font);
+	if (font != font_) {
+		text_->setFont(font);
+		font_ = font;
+	}
 }
 
 TextComponent::~TextComponent()

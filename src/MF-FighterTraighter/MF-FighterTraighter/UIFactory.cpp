@@ -53,7 +53,7 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	text_->addComponent<TextComponent>(text, font, fontSize);
 	
 	Entity* ValueText_ = state->giveMeManager().addEntity();
-	ValueText_->addComponent<Transform>(Vector2D(position.getX() + width + 10, position.getY()), Vector2D(), 50, 50, 0);
+	ValueText_->addComponent<Transform>(Vector2D(position.getX() + width + 10, position.getY() - fontSize * 3 / 2), Vector2D(), width, fontSize * 3, 0);
 	ValueText_->addComponent<TextComponent>(valueText, font, valueFontSize);
 
 	return std::make_tuple(slider, reg_, text_, ValueText_);
