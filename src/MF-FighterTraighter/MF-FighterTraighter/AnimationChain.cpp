@@ -1,6 +1,5 @@
 #include "AnimationChain.h"
 
-AnimationChain::~AnimationChain() {}
 
 bool AnimationChain::update()
 {
