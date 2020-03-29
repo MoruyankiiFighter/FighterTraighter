@@ -44,7 +44,7 @@ void HitboxMng::update()
 			OnHit* objOnHit2 = static_cast<Entity*>(floorFixture_->GetUserData())->getComponent<OnHit>(ecs::OnHit);
 			if (objOnHit2 != nullptr && 
 				player->getComponent<PlayerState>(ecs::PlayerState)->isJumping()) {
-				player->getComponent<PlayerState>(ecs::PlayerState)->goLanding();
+				player->getComponent<PlayerState>(ecs::PlayerState)->goLanding(25);
 				objOnHit2->onHit();
 				//hitboxListToRemove_.push_back(*it);
 			}

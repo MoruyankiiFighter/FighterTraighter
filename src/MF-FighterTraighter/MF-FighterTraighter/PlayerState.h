@@ -48,15 +48,15 @@ public:
 
 	bool isGrounded() { return playerStatus_ != Jumping && playerStatus_ != AttackingAir && playerStatus_ != HitAirborne && playerStatus_ != JumpingTransition; };
 	void goJumping() { playerStatus_ = Jumping; };
-	void goJumpingTrans() { playerStatus_ = JumpingTransition; holdingFrames_ = 25; };
+	void goJumpingTrans( int frames ) { playerStatus_ = JumpingTransition; holdingFrames_ = frames; };
 	bool isJumpingTrans() { return playerStatus_ == JumpingTransition; }
 	bool isJumping() { return playerStatus_ == Jumping; };
 
 	bool canJump() { return playerStatus_ == Idle || playerStatus_ == Crouching || playerStatus_ == Moving; }
 
-	void goLanding() {
+	void goLanding(int frames) {
 		playerStatus_ = Landing;
-		holdingFrames_ = 60;
+		holdingFrames_ = frames;
 	}
 
 	virtual void update() override {

@@ -2,9 +2,7 @@
 
 RenderImage::~RenderImage()
 {
-	delete transform_;
 	transform_ = nullptr;
-	delete texture_;
 	texture_ = nullptr;
 }
 

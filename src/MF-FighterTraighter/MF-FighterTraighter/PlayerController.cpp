@@ -36,12 +36,14 @@ void PlayerController::handleInput()
 	if (currState->isAbletoMove()) {
 		if (app_->getInputManager()->isKeyDown(left_) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0) {
 			transform_->setSpeed(-10, speed.getY());
+			transform_->setOrientation(-1);
 			if (currState->isGrounded()) currState->goMoving();
 			else { currState->goJumping(); };
 		}
 		else if (app_->getInputManager()->isKeyDown(right_) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.09)
 		{
 			transform_->setSpeed(10, speed.getY());
+			transform_->setOrientation(1);
 			if (currState->isGrounded()) currState->goMoving();
 			else { currState->goJumping(); };
 		}

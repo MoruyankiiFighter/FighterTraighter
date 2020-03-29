@@ -22,7 +22,7 @@ void Jump::handleInput()
 		//force and where you use the fore
 		physics_transform_->getBody()->ApplyLinearImpulse(b2Vec2(0,jumpImpulse), physics_transform_->getBody()->GetWorldCenter(),true);
 		if (currState->isCrouch()) entity_->getComponent<Crouch>(ecs::Crouch)->uncrouch();
-		currState->goJumpingTrans();
+		currState->goJumpingTrans(10);
 		std::cout << "salto" << std::endl;
 	}
 	
