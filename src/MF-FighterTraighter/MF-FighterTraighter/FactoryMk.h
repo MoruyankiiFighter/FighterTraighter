@@ -13,6 +13,13 @@ public:
 	static void NK1(Entity* ent);
 	static void NK2(Entity* ent);
 	static void HK1(Entity* ent);
+	static void ANP1(Entity* ent);
+	static void ANP2(Entity* ent);
+	static void AHP1(Entity* ent);
+	static void ANK1(Entity* ent);
+	static void ANK2(Entity* ent);
+	static void AHK1(Entity* ent);
+	static void GB(Entity* ent);
 	//static void HK2(Entity* ent);
 private:
 	FactoryMk() = delete;
