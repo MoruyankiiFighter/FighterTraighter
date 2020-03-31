@@ -21,7 +21,7 @@ void HitboxMng::update()
 					//gets the OnHitComponent if the mainObject has it, if it doesnt, it does nothing
 					OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
 					if (objOnHit != nullptr) {
-						objOnHit->onHit();
+						objOnHit->onHit(*it,mainHB);
 						hitboxListToRemove_.push_back(*it);
 					}
 				}
@@ -29,7 +29,7 @@ void HitboxMng::update()
 		}
 	}
 	//destroy the hitbox and pop it from the hitbox list
-	for (auto h : hitboxListToRemove_) {
+	for (b2Fixture* h : hitboxListToRemove_) {
 		std::cout << "Borro " << static_cast<HitboxData*>(h->GetUserData())->damage_ << std::endl;
 		delete static_cast<HitboxData*>(h->GetUserData());
 		h->GetBody()->DestroyFixture(h);
@@ -37,18 +37,18 @@ void HitboxMng::update()
 	}
 	hitboxListToRemove_.clear();
 
-	for (int i = 0; i < mainHitboxes.size(); i++) {
-		Entity* player = static_cast<Entity*>(mainHitboxes[i]->GetUserData());
+	//to check if you are on the floor
+	for (b2Fixture* mainHB : mainHitboxes) {
+		Entity* player = static_cast<Entity*>(mainHB->GetUserData());
 		Jump* jump = player->getComponent<Jump>(ecs::Jump);
 		
-		if (jump!=nullptr && checkOverlap(mainHitboxes[i], floorFixture_)) {
+		if (jump!=nullptr && checkOverlap(mainHB, floorFixture_)) {
 			PlayerState* currState = player->getComponent<PlayerState>(ecs::PlayerState);
 			OnHit* objOnHit2 = static_cast<Entity*>(floorFixture_->GetUserData())->getComponent<OnHit>(ecs::OnHit);
 			if (objOnHit2 != nullptr && currState->isJumping()) {
 				if (currState->isAttacking()) player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 				currState->goLanding(25);
-				objOnHit2->onHit();
-				//hitboxListToRemove_.push_back(*it);
+				objOnHit2->onHit(mainHB, mainHB);
 			}
 		}
 		

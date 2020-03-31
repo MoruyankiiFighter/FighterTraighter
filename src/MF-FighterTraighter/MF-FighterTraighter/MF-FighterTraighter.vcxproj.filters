@@ -143,6 +143,9 @@
     <ClCompile Include="NavigationController.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerOnHit.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -303,6 +306,9 @@
     </ClInclude>
     <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="NavigationController.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerOnHit.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,10 +1,14 @@
 #pragma once
 #include "Component.h"
+#include "Entity.h"
+
 class OnHit : public Component
 {
 public:
 	OnHit() : Component(ecs::OnHit) {}
 	~OnHit() {}
-	virtual void onHit() {}	//redefine in every entity that use this component
+	//the first is the hitbox which do damage and the second is the player who receive damage
+	virtual void onHit(b2Fixture* fixture, b2Fixture* mainfixture) {}		//redefine in every entity that use this component
+
 };
 
