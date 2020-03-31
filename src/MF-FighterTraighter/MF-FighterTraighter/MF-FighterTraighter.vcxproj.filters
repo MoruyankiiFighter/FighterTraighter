@@ -16,9 +16,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SDLDebugDraw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AssetsManager.cpp">
       <Filter>Source Files\Manager and factorys</Filter>
     </ClCompile>
@@ -136,13 +133,14 @@
     <ClCompile Include="Health.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="LinkedGrid.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="FloorOnHit.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedGrid.cpp" />
+    <ClCompile Include="SDLDebugDraw.cpp">
+      <Filter>Source Files\type</Filter>
     </ClCompile>
     <ClCompile Include="NavigationController.cpp">
-      <Filter>Archivos de origen\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="FloorOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
@@ -235,13 +233,13 @@
       <Filter>Header files\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Text.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="Jump.h">
       <Filter>Header files\Components</Filter>
@@ -265,25 +263,25 @@
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="SacoTimer.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="SDLDebugDraw.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="PlayerAttacks.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="MoveParser.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="Move.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="AnimationChain.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="EntityManager.h">
       <Filter>Header files\Managers and factorys</Filter>
@@ -303,11 +301,9 @@
     <ClInclude Include="HitboxData.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="LinkedGrid.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
+    <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="NavigationController.h">
-      <Filter>Archivos de encabezado\Components</Filter>
+      <Filter>Header files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -335,9 +331,6 @@
     <Filter Include="Header files\listeners">
       <UniqueIdentifier>{18d04ed8-c573-40a6-a897-ab56628383d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header files\items">
-      <UniqueIdentifier>{579bef71-c772-4b10-a52a-a5d13521f943}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Manager and factorys">
       <UniqueIdentifier>{93ba5123-48ec-49d2-ae69-9ddb772cc77b}</UniqueIdentifier>
     </Filter>
@@ -352,6 +345,9 @@
     </Filter>
     <Filter Include="Source Files\type">
       <UniqueIdentifier>{41e6a81d-749c-4cd6-946f-63ac0b631e5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\types">
+      <UniqueIdentifier>{579bef71-c772-4b10-a52a-a5d13521f943}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
