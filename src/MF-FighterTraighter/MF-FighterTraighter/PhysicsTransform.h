@@ -28,7 +28,9 @@ public:
 	virtual void setSpeed(double x, double y) { body_->SetLinearVelocity({ (float32)x,(float32)y }); }
 
 	virtual void setWidth(double width);
+	virtual void setColliderWidth(double width);
 	virtual void setHeight(double height);
+	virtual void setColliderHeight(double height);
 
 	virtual void setWidthHeight(double width, double height);
 	b2Body* getBody() { return body_; }

@@ -52,9 +52,12 @@ void Crouch::update()
 void Crouch::crouch()
 {
 	entity_->getComponent<PlayerState>(ecs::PlayerState)->goCrouch();
-	
+
 	physics_transform_->setHeight(physics_transform_->getHeight() / 2);
+
 	double height = physics_transform_->getHeight();
+	physics_transform_->setColliderHeight(height);
+
 	double width = physics_transform_->getWidth();
 
 	physics_transform_->setPosition(physics_transform_->getPosition().getX() + width / 2, physics_transform_->getPosition().getY() + height);
@@ -71,6 +74,7 @@ void Crouch::uncrouch()
 
 	physics_transform_->setPosition(physics_transform_->getPosition().getX() + width / 2, physics_transform_->getPosition().getY());
 	physics_transform_->setHeight(physics_transform_->getHeight() * 2);
+	physics_transform_->setColliderHeight(physics_transform_->getHeight());
 
 	//animaciones por defecto
 }
