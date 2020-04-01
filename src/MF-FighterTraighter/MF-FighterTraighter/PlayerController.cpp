@@ -50,7 +50,7 @@ void PlayerController::handleInput()
 		transform_->setSpeed(0, speed.getY());
 	}
 	else {
-		if (currState->isMoving()) {
+		if (currState->isMoving() || currState->isJumping()) {
 			transform_->setSpeed(0, speed.getY());
 			if (currState->isGrounded()) currState->goIdle();
 			else { currState->goJumping(); };
