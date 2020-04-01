@@ -27,6 +27,7 @@ namespace ecs {
 		NavigationController,
 		PlayerState,
 		OnHit,
+		Collider,
 		/*
 		
 		*/

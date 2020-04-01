@@ -13,9 +13,11 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	if (dyn)  
 		bodydef.type = b2_dynamicBody;	//makes the dynamic body if it is dynamic
 	body_ = world->CreateBody(&bodydef);
+	//----------
 	b2PolygonShape shape;
 	shape.SetAsBox(width * wMult_/2 , height * hMult_/2 );
 	resetMainFixture(shape);
+	//----------
 	body_->SetFixedRotation(true);
 }
 
@@ -57,13 +59,6 @@ void PhysicsTransform::setColliderWidth(double width) {
 }
 
 void PhysicsTransform::setWidthHeight(double width, double height) {
-
-	body_->DestroyFixture(mainFixture_);
-
-	b2PolygonShape shape;
-	shape.SetAsBox(width / 2, height / 2);
-	resetMainFixture(shape);
-	mainFixture_->SetUserData(this->entity_);
 	width_ = width;
 	height_ = height;
 }

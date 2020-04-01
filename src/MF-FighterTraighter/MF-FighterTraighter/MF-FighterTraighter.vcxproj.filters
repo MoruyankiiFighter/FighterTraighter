@@ -143,6 +143,9 @@
     <ClCompile Include="NavigationController.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -305,6 +308,7 @@
     <ClInclude Include="NavigationController.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
