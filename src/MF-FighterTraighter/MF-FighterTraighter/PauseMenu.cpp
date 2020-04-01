@@ -8,81 +8,34 @@
 #include "RenderImage.h"
 #include "Transform.h"
 #include "Button.h"
+#include "NavigationController.h"
 
 #include "App.h"
 #include "consts.h"
+
+#include "UIFactory.h"
 
 void PauseMenu::init()
 {
 	cout << "initPausa" << endl;
 
-	Entity* logo = giveMeManager().addEntity();
+	Entity* logo = entManager_.addEntity();
 	Transform* transform = logo->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(app_->getWindowManager()->getCurResolution().w / 2, POS_Y_LOGO);
 	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 
-	Entity* ent = new Entity();
-	ent->setApp(app_);
-	Transform* t = ent->addComponent<Transform>();
-	t->setPosition(100, 100);
-	t->setWidth(500);
-	t->setHeight(100);
-	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(Resume);
+	std::tuple<Entity*, Entity*> continue_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 100), 400, 100, 0, nullptr, Resume, "Continue", 100);
+	std::tuple<Entity*, Entity*> menu_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 300), 500, 100, 0, nullptr, GoMainMenu, "Go to menu", 100);
+	std::tuple<Entity*, Entity*> controls_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 500), 400, 100, 0, nullptr, ShowMeYourMoves, "Controls", 100);
+	std::tuple<Entity*, Entity*> options_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(100, 700), 350, 100, 0, nullptr, GoOptions, "Options", 100);
 
-	ent = giveMeManager().addEntity();
-	ent->setApp(app_);
-	t = ent->addComponent<Transform>();
-	t->setPosition(100, 300);
-	t->setWidth(500);
-	t->setHeight(100);
-	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(GoMainMenu);
-
-	ent = giveMeManager().addEntity();
-	ent->setApp(app_);
-	t = ent->addComponent<Transform>();
-	t->setPosition(100, 500);
-	t->setWidth(500);
-	t->setHeight(100);
-	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(ShowMeYourMoves);
-
-	ent = giveMeManager().addEntity();
-	ent->setApp(app_);
-	t = ent->addComponent<Transform>();
-	t->setPosition(100, 700);
-	t->setWidth(500);
-	t->setHeight(100);
-	t->setRotation(0);
-	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	ent->addComponent<Button>(GoOptions);
-}
-
-void PauseMenu::render()
-{
-	/*SDL_RenderClear(app_->getRenderer());
-
-	for (auto e : entManager_.getScene()) {
-		e->getComponent<RenderImage>(ecs::RenderImage)->render();
-	}
-
-	SDL_RenderPresent(app_->getRenderer());*/
-}
-
-void PauseMenu::update()
-{
-}
-
-void PauseMenu::handleInput()
-{
-	/*for (auto var : entManager_.getScene()) {
-		var->handleInput();
-	}*/
+	Entity* navEnt = entManager_.addEntity();
+	NavigationController* nav = navEnt->addComponent<NavigationController>(1, 4);
+	nav->SetElementInPos(std::get<0>(continue_button), 0, 0);
+	nav->SetElementInPos(std::get<0>(menu_button), 0, 1);
+	nav->SetElementInPos(std::get<0>(controls_button), 0, 2);
+	nav->SetElementInPos(std::get<0>(options_button), 0, 3);
 }
 
 void PauseMenu::Resume(App* app)

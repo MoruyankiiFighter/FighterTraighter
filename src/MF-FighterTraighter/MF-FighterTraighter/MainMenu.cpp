@@ -11,15 +11,17 @@
 #include "Transform.h"
 #include "Button.h"
 #include "TextComponent.h"
+#include "NavigationController.h"
 
 #include "Font.h"
 
 #include "App.h"
 #include "consts.h"
+#include "UIFactory.h"
 
-MainMenu::MainMenu(App* app): GameState(app)
+MainMenu::MainMenu(App* app) : GameState(app)
 {
-	
+
 	cout << "Menu principal" << endl;
 	init();
 }
@@ -29,56 +31,37 @@ MainMenu::~MainMenu()
 
 }
 
-//void MainMenu::OnButtClick(string text) { std::cout << "Bot�n activado: "<< text << endl; };
-
 void MainMenu::init()
 {
 
 	cout << "init" << endl;
 
+	/*Entity* bg = entManager_.addEntity();
+	Transform* t = bg->addComponent<Transform>();
+	t->setPosition(0, 0);
+	t->setWidthHeight(800, 600);
+	RenderImage* img = bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(7));*/
+
 	Entity* ent = entManager_.addEntity();
-	Transform* transform=ent->addComponent<Transform>();
+	Transform* transform = ent->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
 	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 
-	Entity* arcade = entManager_.addEntity();
-	Transform* t=arcade->addComponent<Transform>();
-	t->setPosition(POS_X_BUTTONS, POS_Y_ARCADE);
-	t->setWidth(WIDTH_BUTTON); 
-	t->setHeight(HEIGHT_BUTTON);
-	t->setRotation(0);
-	arcade->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	arcade->addComponent<TextComponent>("ARCADE", app_->getAssetsManager()->getFont(0), 20);
-	arcade->addComponent<Button>(GoArcade);
 
-	Entity* pvp = entManager_.addEntity();
-	Transform* tr = pvp->addComponent<Transform>();
-	tr->setPosition(POS_X_BUTTONS, POS_Y_PVP);
-	tr->setWidth(WIDTH_BUTTON);
-	tr->setHeight(HEIGHT_BUTTON);
-	tr->setRotation(0);
-	pvp->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1)); 
-	pvp->addComponent<Button>(Go1v1);
+	tuple < Entity*, Entity *> arcade=	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(POS_X_BUTTONS, POS_Y_ARCADE), WIDTH_BUTTON + 40, HEIGHT_BUTTON,0, nullptr,GoArcade,"Arcade",150);
+	tuple < Entity*, Entity *> pvp=	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(POS_X_BUTTONS, POS_Y_PVP), WIDTH_BUTTON - 60, HEIGHT_BUTTON,0, nullptr,Go1v1,"1vs1",150);
 
-	Entity* options = entManager_.addEntity();
-	Transform* tra = options->addComponent<Transform>();
-	tra->setPosition(POS_X_BUTTONS, POS_Y_OPTIONS);
-	tra->setWidth(WIDTH_BUTTON);
-	tra->setHeight(HEIGHT_BUTTON);
-	tra->setRotation(0);
-	options->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	options->addComponent<Button>(GoOptions);
+	tuple < Entity*, Entity *> options = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(POS_X_BUTTONS, POS_Y_OPTIONS), WIDTH_BUTTON + 90, HEIGHT_BUTTON,0, nullptr,GoOptions,"Options",150);
+	tuple < Entity*, Entity *> exit = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0), Vector2D(POS_X_BUTTONS, POS_Y_EXIT), WIDTH_BUTTON - 40, HEIGHT_BUTTON,0, nullptr,Leave,"Quit",150);
 
-
-	Entity* exit = entManager_.addEntity();
-	Transform* tran = exit->addComponent<Transform>();
-	tran->setPosition(POS_X_BUTTONS, POS_Y_EXIT);
-	tran->setWidth(WIDTH_BUTTON);
-	tran->setHeight(HEIGHT_BUTTON);
-	tran->setRotation(0);
-	exit->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(1));
-	exit->addComponent<Button>(Leave);
+	Entity* navEnt = entManager_.addEntity();
+	NavigationController* nav = navEnt->addComponent<NavigationController>(1, 4);
+	nav->SetElementInPos(std::get<0>(arcade), 0, 0);
+	nav->SetElementInPos(std::get<0>(pvp), 0, 1);
+	nav->SetElementInPos(std::get<0>(options), 0, 2);
+	nav->SetElementInPos(std::get<0>(exit), 0, 3);
+	
 }
 
 void MainMenu::GoArcade(App* app)
@@ -100,30 +83,4 @@ void MainMenu::GoOptions(App* app)
 void MainMenu::Leave(App* app)
 {
 	app->Exit();
-}
-
-void MainMenu::update() {
-
-	
-	////subir al boton de arriba si existe
-	//if (/*si existe &&*/app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9) {
-	//	buttonSel--;
-	//}
-	////bajar al boton de abajo si existe
-	//else if (/*si existe &&*/app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.9) {
-	//	buttonSel++;
-	//}
-	////buttons.at(buttonSel)->estaSeleccionado
-
-	/* shouldn't be here
-	//subir al boton de arriba si existe
-	if (app_->getInputManager()->GamepadConnected() && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9) {
-		buttonSel--;
-	}
-	//bajar al boton de abajo si existe
-	else if (app_->getInputManager()->GamepadConnected() && app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.9) {
-		buttonSel++;
-	}
-	//buttons.at(buttonSel)->estaSeleccionado
-	*/
 }

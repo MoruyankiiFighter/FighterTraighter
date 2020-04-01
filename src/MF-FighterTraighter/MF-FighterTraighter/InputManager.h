@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include <SDL_gamecontroller.h>
+#include <iostream>
 class App;
 
 class InputManager
@@ -68,7 +69,7 @@ public:
 	}
 
 	// Controller
-	
+
 	bool isControllerButtonPressed(Controllers controllerID, SDL_GameControllerButton button)
 	{
 		// SMELLS A LOT
@@ -86,13 +87,80 @@ public:
 	float getControllerAxis(Controllers controllerID, SDL_GameControllerAxis axis)
 	{
 		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return 0.0;
-		
 		return controllerInputs[controllerID].axis[axis] / 32768.0f;
 	}
 	inline bool GamepadConnected() { return numGamepads > 0; }
 	// if pressed or released a controller button this frame
 	inline bool controllerEvent() {
 		return controllerEvent_;
+	}
+	inline bool axisEvent() {
+		return axisEvent_;
+	}
+
+	inline bool pressedUp() {
+		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_UP)) // keyboard
+			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.8f) // controller joystick
+			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_UP))) { // controller dpad
+			upEvent_ = true;
+		}
+		else {
+			upEvent_ = false;
+		}
+		return upEvent_;
+	}
+	inline bool pressedLeft() {
+		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_LEFT)) // keyboard
+			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < -0.8f) // controller joystick
+			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_LEFT))) { // controller dpad
+			leftEvent_ = true;
+		}
+		else {
+			leftEvent_ = false;
+		}
+		return leftEvent_;
+	}
+	inline bool pressedDown() {
+		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_DOWN)) // keyboard
+			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.8f) // controller joystick
+			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_DOWN))) { // controller dpad
+			downEvent_ = true;
+		}
+		else {
+			downEvent_ = false;
+		}
+		return downEvent_;
+	}
+	inline bool pressedRight() {
+		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_RIGHT)) // keyboard
+			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.8f) // controller joystick
+			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_RIGHT))) { // controller dpad
+			rightEvent_ = true;
+		}
+		else {
+			rightEvent_ = false;
+		}
+		return rightEvent_;
+	}
+	inline bool pressedAccept() {
+		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_Z)) // keyboard
+			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A))) { // controller
+			acceptEvent_ = true;
+		}
+		else {
+			acceptEvent_ = false;
+		}
+		return acceptEvent_;
+	}
+	inline bool pressedCancel() {
+		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_X)) // keyboard
+			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_B))) { // controller
+			cancelEvent_ = true;
+		}
+		else {
+			cancelEvent_ = false;
+		}
+		return cancelEvent_;
 	}
 
 	virtual ~InputManager();
@@ -103,7 +171,7 @@ private:
 	inline void onMouseMotion(SDL_Event& e) {
 		mousePos_.set(e.motion.x, e.motion.y);
 	};
-	
+
 
 	void onMouseChange(SDL_Event& e, bool state) {
 		if (e.button.button == SDL_BUTTON_LEFT) {
@@ -123,13 +191,20 @@ private:
 	std::array<bool, 3> mouseState_; // true = pressed
 	Vector2D mouseMovementInFrame_;
 	std::vector<SDL_GameController*> connectedControllers;
-	
+
 	std::vector<GamePad> controllerInputs;
 	std::vector<GamePad> lastControllerInputs;
-	int numGamepads; 
+	int numGamepads;
 
 	// if in this frame there has been an event
 	bool mouseEvent_ = false; // click
 	bool keyboardEvent_ = false; // press
 	bool controllerEvent_ = false; // button
+	bool axisEvent_ = false; //axis
+	bool upEvent_ = false;
+	bool leftEvent_ = false;
+	bool downEvent_ = false;
+	bool rightEvent_ = false;
+	bool acceptEvent_ = false;
+	bool cancelEvent_ = false;
 };

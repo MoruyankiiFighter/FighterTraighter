@@ -6,17 +6,25 @@ class Entity;
 class EntityManager
 {
 public:
+	//constructor
 	EntityManager(App* app) : app_(app) { };
+	//destructor
 	virtual ~EntityManager();
 
+	//add entity to the entity list
 	Entity* addEntity();
+	
+	//remove the entity e from the list
 	void removeEntity(Entity* e);
+
+	//deletes all the entities of the list
 	void empty();
+
+	//return the list
 	std::list<Entity*>& getScene();
 private:
-	App* app_;
-	std::list<Entity*> scene_ = std::list<Entity*>();
-	//EntityManager(EntityManager&) {};
-	//EntityManager& operator= (EntityManager&) { return EntityManager(nullptr); };
+
+	App* app_=nullptr;
+	std::list<Entity*> list_ = std::list<Entity*>(); //list of the entities
 };
 

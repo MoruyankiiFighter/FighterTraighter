@@ -2,15 +2,15 @@
 
 
 bool Health::LoseLife(unsigned int  damage) {
-	health -= damage;
-	std::cout << health;
+	health_ -= damage;
+	std::cout << health_;
 
-	if (health > 0) {		
+	if (health_ > 0) {		
 		return true;
 	}
 	else
 	{
-		health = 0;
+		health_ = 0;
 		std::cout << "memori";
 		return false;
 	}
@@ -19,21 +19,21 @@ bool Health::LoseLife(unsigned int  damage) {
 
 int Health::getLife()
 {
-	return health;
+	return health_;
 }
 void  Health::setLife(int health_)
 {
-	health = health_;
+	health_ = health_;
 }
 void  Health::GainLife(unsigned int life)
 {
-	health += life;
+	health_ += life;
 
-	if (health>maxHealth)
+	if (health_>maxHealth_)
 	{
-		health = maxHealth;
+		health_ = maxHealth_;
 	}
-	std::cout << health;
+	std::cout << health_;
 
 }
 

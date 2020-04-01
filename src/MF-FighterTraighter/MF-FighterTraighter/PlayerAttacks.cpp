@@ -1,13 +1,18 @@
 #include "PlayerAttacks.h"
+#include "Crouch.h"
 
-PlayerAttacks::PlayerAttacks(AnimationChain* highFist, SDL_Scancode key1, AnimationChain* lowFist, SDL_Scancode key2,
-	AnimationChain* highKick, SDL_Scancode key3, AnimationChain* lowKick, SDL_Scancode key4/*,
-			 Hability* highKick, SDL_Scancode key5, Hability* lowKick, SDL_Scancode key6*/) : Component(ecs::PlayerAttacks)
+PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, SDL_Scancode key1, AnimationChain* lowFist, AnimationChain* airLowFist,
+	SDL_Scancode key2, AnimationChain* highKick, AnimationChain* airHighKick, SDL_Scancode key3, AnimationChain* lowKick, AnimationChain* airLowKick,
+	SDL_Scancode key4/*, Hability* hability1, SDL_Scancode key5, Hability* hability2, SDL_Scancode key6*/) : Component(ecs::PlayerAttacks)
 {
 	attacksList.push_back(highFist);
 	attacksList.push_back(lowFist);
 	attacksList.push_back(highKick);
 	attacksList.push_back(lowKick);
+	attacksList.push_back(airHighFist);
+	attacksList.push_back(airLowFist);
+	attacksList.push_back(airHighKick);
+	attacksList.push_back(airLowKick);
 	highFistKey = key1;
 	lowFistKey = key2;
 	highKickKey = key3;
@@ -20,10 +25,10 @@ PlayerAttacks::PlayerAttacks(AnimationChain* highFist, SDL_Scancode key1, Animat
 PlayerAttacks::~PlayerAttacks() {
 	cout << "destruyendo ataques "<<endl;
 	//hay que descomentar cuando las animaciones sean diferentes
-	//for (int i = 0; i < attacksList.size(); i++) {
-		delete attacksList[1];
-		attacksList[1] = nullptr;
-	//}
+	for (int i = 0; i < attacksList.size(); i++) {
+		delete attacksList[i];
+		attacksList[i] = nullptr;
+	}
 	attacksList.clear();
 	//delete activeAttack_;
 	/*cout << "destruyendo habilidades "<<endl;
@@ -33,26 +38,72 @@ PlayerAttacks::~PlayerAttacks() {
 	}
 	habilityList.clear();*/
 }
+
 void PlayerAttacks::handleInput() {
-	if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A
-		) && activeAttack_ == nullptr) {
-		activeAttack_ = attacksList[0];
+	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
+	Transform* tr = entity_->getComponent<Transform>(ecs::Transform);
+	Crouch* cr = entity_->getComponent<Crouch>(ecs::Crouch);
+	if (currState->isAbleToAttack()) {
+		if (currState->isGrounded()) {
+			if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
+				activeAttack_ = attacksList[0];
+				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
+				else if (currState->isCrouch()) cr->uncrouch();
+				currState->goAttack();
+			}
+			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
+				activeAttack_ = attacksList[1];
+				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
+				else if (currState->isCrouch()) cr->uncrouch();
+				currState->goAttack();
+			}
+			else if (app_->getInputManager()->isKeyDown(highKickKey)) {
+				activeAttack_ = attacksList[2];
+				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
+				else if (currState->isCrouch()) cr->uncrouch();
+				currState->goAttack();
+			}
+			else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
+				activeAttack_ = attacksList[3];
+				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
+				else if (currState->isCrouch()) cr->uncrouch();
+				currState->goAttack();
+			}
+		}
+		else {
+			if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
+				activeAttack_ = attacksList[4];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
+			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
+				activeAttack_ = attacksList[5];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
+			else if (app_->getInputManager()->isKeyDown(highKickKey)) {
+				activeAttack_ = attacksList[6];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
+			else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
+				activeAttack_ = attacksList[7];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
+		}
+		/*else if (app_->getInputManager()->isKeyDown(hability1Key)) {
+			habilityList[0]->makeAttack();
+		}
+		else if (app_->getInputManager()->isKeyDown(hability2Key)) {
+			habilityList[1]->makeAttack();
+		}*/
 	}
-	else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
-		activeAttack_ = attacksList[1];
-	}
-	else if (app_->getInputManager()->isKeyDown(highKickKey)) {
-		activeAttack_ = attacksList[2];
-	}
-	else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
-		activeAttack_ = attacksList[3];
-	}
-	/*else if (app_->getInputManager()->isKeyDown(hability1Key)) {
-		habilityList[0]->makeAttack();
-	}
-	else if (app_->getInputManager()->isKeyDown(hability2Key)) {
-		habilityList[1]->makeAttack();
-	}*/
+}
+
+void PlayerAttacks::interruptAttack()
+{
+	activeAttack_ = nullptr;
 }
 
 /*

@@ -10,7 +10,7 @@ InputManager::InputManager(App* app) : app_(app)
 	keyboardState_ = SDL_GetKeyboardState(NULL);
 	initControllers();
 	///
-	
+
 }
 
 void InputManager::update()
@@ -30,7 +30,7 @@ void InputManager::update()
 		}
 	}
 	///
-	
+
 
 	while (SDL_PollEvent(&e)) {
 		switch (e.type) {
@@ -86,8 +86,14 @@ void InputManager::update()
 
 			// And something similar for axis motion
 		case SDL_CONTROLLERAXISMOTION:
+
 			for (int i = 0; i < numGamepads; i++) {
 				if (e.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(connectedControllers[i]))) {
+					if (abs(controllerInputs[i].axis[e.caxis.axis] - e.caxis.value) > 15000)
+					{
+						axisEvent_ = true;
+					}
+
 					controllerInputs[i].axis[e.caxis.axis] = e.caxis.value;
 				}
 			}
@@ -98,7 +104,7 @@ void InputManager::update()
 	// After mouse has updated its position, update the mouse movement
 	mouseMovementInFrame_ = mousePos_ - tempMousePos;
 }
-	
+
 
 
 InputManager::~InputManager()
@@ -110,6 +116,7 @@ void InputManager::clearState()
 	mouseEvent_ = false;
 	keyboardEvent_ = false;
 	controllerEvent_ = false;
+	axisEvent_ = false;
 }
 void InputManager::initControllers()
 {

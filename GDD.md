@@ -195,14 +195,14 @@ Después de un accidente apocalíptico, la mayoría del mundo está desierta y e
 ## 4.5.  Personajes
 ### Mk WH00P
 Tiene un playstyle lento pero poderoso, con golpes contundentes y de alto empuje. Tiene una vida alta.
-* Puñetazo normal: Inclina su cuerpo y, utilizando ambos brazos, golpea a aquello que está delante con un daño bajo y empuje medio-alto. (animación como la fusión de Dragon Ball).
-* Puñetazo fuerte: Después de una preparación, gira sus brazos para golpear tres veces con daño medio. Si el tercer golpe impacta, el oponente recibe un empuje medio.
-* Patada normal: Da una voltereta en el aire golpeando una vez con la pierna al empezar el giro con daño medio y empuje alto.
+* Puñetazo normal: Se agacha ligeramente y tras un corto tiempo da un gancho hacia arriba. Daño y empujes medio, con tiempo de recuperación medio.
+* Puñetazo fuerte: Junta ambas manos en un puño, que alza y golpea en horizontal. Daño alto, empuje alto hacia delante y ligeramente hacia el suelo pero con recuperación alta.
+* Patada normal: Da dos rodillazos enfrente suya. Ambos golpes tienen daño medio, y el último lanza una distancia media-corta. Velocidad media y periodo de recuperación medio-bajo.
 * Patada fuerte: Pisa el suelo con una fuerza descomunal, alcanzando incluso a los que están un poco alejados de él. Daño bestial, pero lento y con poco rango; sin embargo, si alguien está en el suelo a cierta distancia, recibirá un poquito de daño y empuje cuando se realice el pisotón. Si impacta a alguien directamente, le tumba contra el suelo en vez de empujarlo.
-* (Aire) Puñetazo normal: Mk junta ambas manos en un puño y golpea hacia abajo. Velocidad media, con empuje hacia abajo en diagonal y daño medio.
-* (Aire) Puñetazo fuerte: Mk alza ambos brazos en cruz y da un giro, haciendo daño medio con empuje grande y velocidad lenta. Este movimiento golpea dos veces, una por cada puño al girar (pero no hace combo, ya que un golpe empuja fuera del rango del otro)..
+* (Aire) Puñetazo normal: Mk hace girar su torso, golpeando dos veces (una por cada brazo). Ambos golpes tienen daño medio-bajo y velocidad media, teniendo el último empuje medio-bajo. Dura más de lo habitual.
+* (Aire) Puñetazo fuerte: Mk junta ambas manos en un puño y golpea hacia abajo. Velocidad baja, con empuje hacia abajo en diagonal enorme y daño alto. Alto período de recuperación.
 * (Aire) Patada normal: Mk da dos patadas hacia abajo en diagonal, con empuje medio-bajo, daño medio-bajo y velocidad media-baja.
-* (Aire) Patada fuerte: Mk pone las piernas delante suya, teniendo empuje y alcance medios, daño alto y velocidad media-baja. Dura más de lo habitual.
+* (Aire) Patada fuerte: Mk pone las piernas delante suya, teniendo empuje y alcance medios, daño medio-alto y velocidad media-baja. Dura más de lo habitual (dropkick).
 * Rompeguardia: Mk alza ambos brazos en ángulo recto, y tras un delay, los cruza, aplastando la guardia del oponente.
 
 ### Aisha
