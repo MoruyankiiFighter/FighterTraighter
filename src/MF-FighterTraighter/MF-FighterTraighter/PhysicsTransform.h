@@ -5,12 +5,11 @@
 class PhysicsTransform : public Transform
 {
 public:
-	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, bool dyn = true);
+	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, bool dyn = true);
 	//PhysicsTransform();
 	virtual ~PhysicsTransform();
 
-	//method overrided from transform 
-	virtual void init() override;
+
 	
 	// get and set for position
 	virtual const Vector2D& getPosition() const {
@@ -28,9 +27,7 @@ public:
 	virtual void setSpeed(double x, double y) { body_->SetLinearVelocity({ (float32)x,(float32)y }); }
 
 	virtual void setWidth(double width);
-	virtual void setColliderWidth(double width);
 	virtual void setHeight(double height);
-	virtual void setColliderHeight(double height);
 
 	virtual void setWidthHeight(double width, double height);
 	b2Body* getBody() { return body_; }
@@ -41,6 +38,5 @@ private:
 	uint16 cBits_, mBits_;
 	b2Fixture* mainFixture_;
 
-	void resetMainFixture(const b2PolygonShape& shape);
 };
 
