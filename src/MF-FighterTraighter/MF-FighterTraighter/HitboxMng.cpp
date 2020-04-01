@@ -21,7 +21,7 @@ void HitboxMng::update()
 					//gets the OnHitComponent if the mainObject has it, if it doesnt, it does nothing
 					OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
 					if (objOnHit != nullptr) {
-						objOnHit->onHit(*it,mainHB);
+						objOnHit->onHit(*it);
 						hitboxListToRemove_.push_back(*it);
 					}
 				}
@@ -48,7 +48,7 @@ void HitboxMng::update()
 			if (objOnHit2 != nullptr && currState->isJumping()) {
 				if (currState->isAttacking()) player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 				currState->goLanding(25);
-				objOnHit2->onHit(mainHB, mainHB);
+				objOnHit2->onHit(mainHB);
 			}
 		}
 		
