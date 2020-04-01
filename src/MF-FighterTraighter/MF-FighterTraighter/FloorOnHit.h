@@ -7,7 +7,7 @@ class FloorOnHit : public OnHit
 public:
 	FloorOnHit() : OnHit() {}
 	~FloorOnHit() {}
-	void onHit(b2Fixture* fixture, b2Fixture* mainfixture) override {
+	void onHit(b2Fixture* fixture) override {
 		std::cout << "Soy suelo" << std::endl;
 	}
 };
