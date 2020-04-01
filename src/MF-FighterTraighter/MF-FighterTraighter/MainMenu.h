@@ -14,6 +14,7 @@ public:
 
 	//methods overrided from GameState where we create the entitys
 	void init() override;
+	void handleInput() override;
 
 	//Callbacks for the buttons
 	//1 player mode vs AI

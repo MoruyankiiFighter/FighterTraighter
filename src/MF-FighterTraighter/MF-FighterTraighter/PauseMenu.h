@@ -15,6 +15,7 @@ public:
 
 	//method overrided from GameState where we create the objects that we use
 	void init() override;
+	void handleInput() override;
 	
 	//callbacks for the buttons
 	//continue playing
