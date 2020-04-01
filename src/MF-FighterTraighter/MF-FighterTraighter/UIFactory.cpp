@@ -111,8 +111,14 @@ UIFactory::createSelectionHabMenu(GameState* state, double width, double height,
 	wall_->addComponent<RenderImage>(wallTexture_);
 
 	std::list<Entity*>hab;
+	//hab = player->getHabilitiesList();
+	//pedir al player su lista de habilidades
 
-	
+	for (int i = 0; i < hab.size(); i++) {
+		Entity* num_ = state->giveMeManager().addEntity();
+		num_->addComponent<Transform>(Vector2D(x, y), Vector2D(), width, height, 0);
+		num_->addComponent<RenderImage>(/*hab[i].getRender()*/);
+	}
 
 
 	return std::make_tuple(wall_, hab);
