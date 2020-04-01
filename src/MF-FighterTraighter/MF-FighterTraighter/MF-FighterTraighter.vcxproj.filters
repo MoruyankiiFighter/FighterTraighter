@@ -136,7 +136,6 @@
     <ClCompile Include="FloorOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="LinkedGrid.cpp" />
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Source Files\type</Filter>
     </ClCompile>
@@ -145,6 +144,9 @@
     </ClCompile>
     <ClCompile Include="PlayerOnHit.cpp">
       <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedGrid.cpp">
+      <Filter>Source Files\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -304,12 +306,14 @@
     <ClInclude Include="HitboxData.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="NavigationController.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="PlayerOnHit.h">
       <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedGrid.h">
+      <Filter>Header files\types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

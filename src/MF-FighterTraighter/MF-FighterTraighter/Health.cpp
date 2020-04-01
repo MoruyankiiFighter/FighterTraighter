@@ -1,18 +1,21 @@
 #include "Health.h"
+#include "PlayerState.h"
+#include "Entity.h"
 
+bool Health::LoseLife(unsigned int damage) {
+	if (!entity_->getComponent<PlayerState>(ecs::PlayerState)->isGuarding()) {
+		health_ -= damage;
+		std::cout << health_;
 
-bool Health::LoseLife(unsigned int  damage) {
-	health_ -= damage;
-	std::cout << health_;
-
-	if (health_ > 0) {		
-		return true;
-	}
-	else
-	{
-		health_ = 0;
-		std::cout << "memori";
-		return false;
+		if (health_ > 0) {
+			return true;
+		}
+		else
+		{
+			health_ = 0;
+			std::cout << "memori";
+			return false;
+		}
 	}
 }
 

@@ -6,7 +6,7 @@ class PlayerController :
 	public Component
 {
 public:
-	PlayerController(SDL_Scancode left, SDL_Scancode right);
+	PlayerController(SDL_Scancode left, SDL_Scancode right, SDL_Scancode block);
 	virtual ~PlayerController();
 
 	//methods overrided from Component
@@ -15,6 +15,6 @@ public:
 	void update() override;
 private:
 	Transform* transform_=nullptr;
-	SDL_Scancode left_, right_;
+	SDL_Scancode left_, right_, block_;
 	Vector2D dir_;
 };
