@@ -64,6 +64,14 @@ void MainMenu::init()
 	
 }
 
+void MainMenu::handleInput()
+{
+	if (app_->getInputManager()->pressedStart()) {
+		app_->Exit();
+	}
+	GameState::handleInput();
+}
+
 void MainMenu::GoArcade(App* app)
 {
 	app->getStateMachine()->pushState(new Fight(app));
