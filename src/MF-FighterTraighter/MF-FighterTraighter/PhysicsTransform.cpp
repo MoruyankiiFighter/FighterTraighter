@@ -32,4 +32,3 @@ void PhysicsTransform::setWidthHeight(double width, double height) {
 	width_ = width;
 	height_ = height;
 }
-

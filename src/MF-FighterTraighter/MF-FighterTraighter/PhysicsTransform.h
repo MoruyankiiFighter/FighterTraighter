@@ -31,12 +31,9 @@ public:
 
 	virtual void setWidthHeight(double width, double height);
 	b2Body* getBody() { return body_; }
-	b2Fixture* getMainFixture() { return mainFixture_; }
 
 private:
 	b2Body* body_;
 	uint16 cBits_, mBits_;
-	b2Fixture* mainFixture_;
-
 };
 

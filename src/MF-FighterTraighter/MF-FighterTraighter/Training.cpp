@@ -9,6 +9,8 @@
 #include "FactoryMk.h"
 #include "PunchingBagOnHit.h"
 #include "FloorOnHit.h"
+#include "Collider.h"
+
 Training::Training(App* app) : GameState(app)
 {
 	init();
@@ -29,8 +31,9 @@ void Training::init()
 		//PLAYER_2, PLAYER_1 | BOUNDARY);
 
 	Entity* saco = entManager_.addEntity();
-	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
-	app_->getHitboxMng()->addMainHitbox(pBpT->getMainFixture());
+	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, false);
+	Collider* c = saco->addComponent<Collider>();
+	app_->getHitboxMng()->addMainHitbox(c->getCollider());
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
 	saco->addComponent<PunchingBagOnHit>();
 	//saco->addComponent<SacoTimer>(5000);

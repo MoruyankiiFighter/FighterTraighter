@@ -4,12 +4,14 @@
 
 class Collider : public Component
 {
+public:
 	Collider(double width, double height);
 	virtual ~Collider() {}
 	void init() override;
 	void setWidth(double width);
 	void setHeight(double width);
 	void setWidthHeight(double width, double height);
+	b2Fixture* getCollider() { return collider_; }
 
 private:
 	b2Body* body_;
@@ -19,4 +21,3 @@ private:
 			height_ = 0;
 	void reset(const b2PolygonShape& shape);
 };
-

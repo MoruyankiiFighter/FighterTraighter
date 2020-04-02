@@ -12,6 +12,7 @@
 #include "PauseMenu.h"
 #include "Crouch.h"
 #include "FactoryMk.h"
+#include "Collider.h"
 
 class Fight : public GameState
 {

@@ -16,10 +16,11 @@ void Fight::init()
 	//---------------------------------------------------------------
 	
 	Entity* floor = entManager_.addEntity();
-	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, BOUNDARY, EVERYTHING, false);
+	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));	
 	floor->addComponent<FloorOnHit>();
-	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
+	Collider* c = floor->addComponent<Collider>();
+	app_->getHitboxMng()->addFloorHitbox(c->getCollider());
 
 	//floor->addComponent<FloorOnHit>();
 
