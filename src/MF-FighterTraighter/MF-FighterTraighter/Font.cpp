@@ -30,9 +30,9 @@ void Font::changeFont(std::string path)
 }
 
 // Width of every character
-void Font::setSymbolWidth(int symbolWidth)
+void Font::setSymbolWidth(int symbolW)
 {
-	symbolWidth_ = symbolWidth;
+	symbolWidth_ = symbolW;
 }
 
 // Loads a font using these args

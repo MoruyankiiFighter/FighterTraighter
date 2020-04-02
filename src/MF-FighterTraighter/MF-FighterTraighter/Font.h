@@ -20,7 +20,7 @@ public:
 	//change the current font to the path one
 	void changeFont(std::string path);
 	// Width of every character
-	void setSymbolWidth(int symbolWidth);
+	void setSymbolWidth(int symbolW);
 	// Loads a font using these args
 	void Loadfont(std::string path, int size, int symbolWidth);
 	inline TTF_Font* getFont() const { return font; }

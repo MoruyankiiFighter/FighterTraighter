@@ -27,6 +27,9 @@ public:
 		std::string valueText = "", int valueFontSize = 20);
 
 
+	static Entity* createPanel(App* app, GameState* state, Texture* texture_, Vector2D position = Vector2D(), double width = 0, double height = 0, double rotation = 0);
+
+
 	static std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*>createWinHabMenu
 	//////////////////FondoP1//Hab fija//HabWin1//HabWin2//Extra
 	(GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, Texture* holeTexture3_, double x, double y, Entity* player);
