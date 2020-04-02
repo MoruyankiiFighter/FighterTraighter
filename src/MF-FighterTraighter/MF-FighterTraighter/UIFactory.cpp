@@ -71,8 +71,6 @@ Entity* UIFactory::createPanel(App* app, GameState* state, Texture* texture_, Ve
 	return panel;
 }
 
-
-
 std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> 
 UIFactory::createWinHabMenu(App* app, GameState* state, double width, double height, 
 	Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, Texture* holeTexture3_, double x, double y, Entity* player1)
@@ -111,25 +109,25 @@ UIFactory::createLoseHabMenu(GameState* state, double width, double height, Text
 	
 }
 
-std::tuple<Entity*,std::list<Entity*>> 
-UIFactory::createSelectionHabMenu(GameState* state, double width, double height, Texture* wallTexture_, double x, double y, Entity* player)
-{
-	Entity* wall_ = state->giveMeManager().addEntity();
-	wall_->addComponent<Transform>(Vector2D(x, y), Vector2D(), width, height, 0);
-	wall_->addComponent<RenderImage>(wallTexture_);
-
-	std::list<Entity*>hab;
-	//hab = player->getHabilitiesList();
-	//pedir al player su lista de habilidades
-
-	for (int i = 0; i < hab.size(); i++) {
-		Entity* num_ = state->giveMeManager().addEntity();
-		num_->addComponent<Transform>(Vector2D(x, y), Vector2D(), width, height, 0);
-		num_->addComponent<RenderImage>(/*hab[i].getRender()*/);
-	}
-
-
-	return std::make_tuple(wall_, hab);
-}
-
-
+//std::tuple<Entity*,std::list<Entity*>> 
+//UIFactory::createSelectionHabMenu(GameState* state, double width, double height, Texture* wallTexture_, double x, double y, Entity* player)
+//{
+//	Entity* wall_ = state->getEntityManager().addEntity();
+//	wall_->addComponent<Transform>(Vector2D(x, y), Vector2D(), width, height, 0);
+//	wall_->addComponent<RenderImage>(wallTexture_);
+//
+//	std::list<Entity*>hab;
+//	//hab = player->getHabilitiesList();
+//	//pedir al player su lista de habilidades
+//
+//	for (int i = 0; i < hab.size(); i++) {
+//		Entity* num_ = state->getEntityManager().addEntity();
+//		num_->addComponent<Transform>(Vector2D(x, y), Vector2D(), width, height, 0);
+//		num_->addComponent<RenderImage>(/*hab[i].getRender()*/);
+//	}
+//
+//
+//	return std::make_tuple(wall_, hab);
+//}
+//
+//

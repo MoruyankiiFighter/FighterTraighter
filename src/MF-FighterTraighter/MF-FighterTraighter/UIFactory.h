@@ -30,16 +30,17 @@ public:
 	static Entity* createPanel(App* app, GameState* state, Texture* texture_, Vector2D position = Vector2D(), double width = 0, double height = 0, double rotation = 0);
 
 
+
 	static std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*>createWinHabMenu
 	//////////////////FondoP1//Hab fija//HabWin1//HabWin2//Extra
-	(GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, Texture* holeTexture3_, double x, double y, Entity* player);
+	(App* app, GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, Texture* holeTexture3_, double x, double y, Entity* player);
 
 	static std::tuple<Entity*, Entity*, Entity*, Entity*>createLoseHabMenu
 	//////////////////FondoP1//Hab fija//HabWin1//Extra
 	(GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, double x, double y, Entity* player);
 
-	static std::tuple<Entity*,std::list<Entity*>>createSelectionHabMenu
-	(GameState* state, double width, double height, Texture* wallTexture_, double x, double y, Entity* player);
+	//static std::tuple<Entity*,std::list<Entity*>>createSelectionHabMenu
+	//(GameState* state, double width, double height, Texture* wallTexture_, double x, double y, Entity* player);
 
 protected:
 	UIFactory() = delete;
