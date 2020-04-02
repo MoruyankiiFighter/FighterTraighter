@@ -33,7 +33,12 @@ void PlayerController::handleInput()
 	Vector2D speed;
 	speed = transform_->getSpeed();
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
-	if (currState->isAbletoMove() && (app_->getInputManager()->isKeyDown(left_) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0)) {
+	if (app_->getInputManager()->isKeyDown(block_) && currState->canGuard())
+	{
+		if (!currState->isGuarding()) currState->goGuardingTransition(10);
+		transform_->setSpeed(0, speed.getY());
+	}
+	else if (currState->isAbletoMove() && (app_->getInputManager()->isKeyDown(left_) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0)) {
 		transform_->setSpeed(-10, speed.getY());
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
@@ -43,11 +48,6 @@ void PlayerController::handleInput()
 		transform_->setSpeed(10, speed.getY());
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
-	}
-	else if (app_->getInputManager()->isKeyDown(block_) && currState->canGuard())
-	{
- 		if (!currState->isGuarding()) currState->goGuardingTransition(10);
-		transform_->setSpeed(0, speed.getY());
 	}
 	else {
 		if (currState->isMoving() || currState->isJumping()) {
