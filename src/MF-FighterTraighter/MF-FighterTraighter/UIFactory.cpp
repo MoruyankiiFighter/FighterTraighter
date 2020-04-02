@@ -74,24 +74,19 @@ Entity* UIFactory::createPanel(App* app, GameState* state, Texture* texture_, Ve
 
 
 std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> 
-UIFactory::createWinHabMenu(GameState* state, double width, double height, 
+UIFactory::createWinHabMenu(App* app, GameState* state, double width, double height, 
 	Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, Texture* holeTexture3_, double x, double y, Entity* player1)
 {
-	Entity* wall = createPanel(nullptr, state, wallTexture_, Vector2D(x, y), width, height);
-
-	Entity* hole1 = state->getEntityManager().addEntity(); 
-	hole1->addComponent<Transform>(Vector2D(x + 300, y + 300), Vector2D(), width, height, 0);
-	hole1->addComponent<RenderImage>(holeTexture1_);//pedir al saco la textura de la habilidad opcional 1
-	Entity* hole2 = state->getEntityManager().addEntity();
-	hole2->addComponent<Transform>(Vector2D(x + 300, y + 500), Vector2D(), width, height, 0);
-	hole2->addComponent<RenderImage>(holeTexture2_);//pedir al saco la textura de la habilidad opcional 2
-	Entity* hole3 = state->getEntityManager().addEntity();
-	hole3->addComponent<Transform>(Vector2D(x + 500, y + 400), Vector2D(), width, height, 0);
-	hole3->addComponent<RenderImage>(holeTexture3_);//pedir al saco la textura de la habilidad fija
-	Entity* extra = state->getEntityManager().addEntity();
 	
+	Entity* wall_ = createPanel(app, state, wallTexture_, Vector2D(x, y), width, height);
+	//habilitys are like buttons, in input manager we have to change the events (for now are just buttons)
 
-	return std::make_tuple(wall_, hole1, hole2, hole3, extra);
+	Entity* hab1;
+	Entity* hab2;
+	Entity* hab3;
+
+	Entity* extra;
+	return std::make_tuple(wall_, hab1,hab2,hab3,extra);
 }
 
 std::tuple<Entity*, Entity*, Entity*, Entity*>
