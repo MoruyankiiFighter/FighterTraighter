@@ -71,43 +71,72 @@ Entity* UIFactory::createPanel(App* app, GameState* state, Texture* texture_, Ve
 	return panel;
 }
 
-std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> 
-UIFactory::createWinHabMenu(App* app, GameState* state, double width, double height, 
-	Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, Texture* holeTexture3_, double x, double y, Entity* player1)
+ vector<Entity*> UIFactory::createHabSubMenu(App* app, GameState* state, Vector2D position, double width, double height, Texture* wallTexture_, vector<Entity*> habilidades) //este vector tiene 3 habilidades
 {
-	
-	Entity* wall_ = createPanel(app, state, wallTexture_, Vector2D(x, y), width, height);
-	//habilitys are like buttons, in input manager we have to change the events (for now are just buttons)
+	vector<Entity*> aux;
+	Entity* panel = createPanel(app, state, wallTexture_, position, width, height);
+	aux.push_back(panel);
+	for (int i = 0; i < habilidades.size(); i++) {
 
-	Entity* hab1;
-	Entity* hab2;
-	Entity* hab3;
+		Entity* e = state->getEntityManager().addEntity();
 
-	Entity* extra;
-	return std::make_tuple(wall_, hab1,hab2,hab3,extra);
+		Transform* t = e->addComponent<Transform>(Vector2D(position.getX() + 60 * i, 300),
+			Vector2D(),habilidades[i]->getComponent<Transform>(ecs::Transform)->getWidth(),
+			habilidades[i]->getComponent<Transform>(ecs::Transform)->getHeight());
+		
+		//RenderImage* im = habilidades[i]->getComponent<RenderImage>(ecs::RenderImage);
+		RenderImage* im = e->addComponent<RenderImage>(wallTexture_); //esto es auxiliar
+
+		aux.push_back(e);
+	}
+
+	Entity* button = state->getEntityManager().addEntity();
+	aux.push_back(button);
+
+	return aux;
 }
 
-std::tuple<Entity*, Entity*, Entity*>
-UIFactory::createLoseHabMenu(GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, double x, double y, Entity* player2)
-{
-	Entity* wall_ = state->getEntityManager().addEntity();
-	wall_->addComponent<Transform>(Vector2D(100, 100), Vector2D(), width, height, 0);//ojo a la posicion fija CAMBIAR EN TODOS
-	wall_->addComponent<RenderImage>(wallTexture_);
+ vector<Entity*> UIFactory::createSelectionHabSubMenu(App* app, GameState* state, Vector2D position, double width, double height, Texture* wallTexture_, vector<Entity*> habilidades)
+ {
+	 vector<Entity*> menu;
+	 Entity* panel = createPanel(app, state, wallTexture_, position, width, height);
+	 menu.push_back(panel);
 
-	Entity* hole1 = state->getEntityManager().addEntity();
-	hole1->addComponent<Transform>(Vector2D(300, 300), Vector2D(), width, height, 0);
-	hole1->addComponent<RenderImage>(holeTexture1_);//pedir al saco la textura de la habilidad opcional 1
-	
-	Entity* hole3 = state->getEntityManager().addEntity();
-	hole3->addComponent<Transform>(Vector2D(500, 400), Vector2D(), width, height, 0);
-	hole3->addComponent<RenderImage>(holeTexture3_);//pedir al saco la textura de la habilidad fija
+	 Entity* lButton=state->getEntityManager().addEntity();
+	 lButton->addComponent<Transform>(Vector2D(position.getX() + (width / 2) - 100, position.getY()), Vector2D(), 50, 50, 0);
+	 lButton->addComponent<RenderImage>(wallTexture_);
+	 menu.push_back(lButton);
 
-	Entity* extra = state->getEntityManager().addEntity();
+	 Entity* rButton=state->getEntityManager().addEntity();
+	 rButton->addComponent<Transform>(Vector2D(position.getX() + (width / 2) + 100, position.getY()), Vector2D(), 50, 50, 0);
+	 rButton->addComponent<RenderImage>(wallTexture_);
+	 menu.push_back(rButton);
 
+	 for (int i = 0; i < habilidades.size(); i++) {
+		
+		 Entity* e = state->getEntityManager().addEntity();
 
-	return std::make_tuple(wall_, hole1, extra);
-	
-}
+		 if (i <= 4) {
+			 Transform* t = e->addComponent<Transform>(Vector2D(position.getX() + 60 * i, 300),
+				 Vector2D(), habilidades[i]->getComponent<Transform>(ecs::Transform)->getWidth(),
+				 habilidades[i]->getComponent<Transform>(ecs::Transform)->getHeight());
+		 }
+		 //ESTO LUEGO SE CAMBIA
+		 else if(i<=9) {
+			 Transform* t = e->addComponent<Transform>(Vector2D(position.getX() + 60 * i, 600),
+				 Vector2D(), habilidades[i]->getComponent<Transform>(ecs::Transform)->getWidth(),
+				 habilidades[i]->getComponent<Transform>(ecs::Transform)->getHeight());
+
+		 }
+		 //RenderImage* im = habilidades[i]->getComponent<RenderImage>(ecs::RenderImage);
+		 RenderImage* im = e->addComponent<RenderImage>(wallTexture_); //esto es auxiliar
+
+		 menu.push_back(e);
+	 }
+	 
+	 return menu;
+ }
+
 
 //std::tuple<Entity*,std::list<Entity*>> 
 //UIFactory::createSelectionHabMenu(GameState* state, double width, double height, Texture* wallTexture_, double x, double y, Entity* player)

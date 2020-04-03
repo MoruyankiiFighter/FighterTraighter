@@ -31,16 +31,8 @@ public:
 
 
 
-	static std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*>createWinHabMenu
-	//////////////////FondoP1//Hab fija//HabWin1//HabWin2//Extra
-	(App* app, GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, Texture* holeTexture3_, double x, double y, Entity* player);
-
-	static std::tuple<Entity*, Entity*, Entity*>createLoseHabMenu
-	//////////////////FondoP1//Hab fija//HabWin1//Extra
-	(GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, double x, double y, Entity* player);
-
-	//static std::tuple<Entity*,std::list<Entity*>>createSelectionHabMenu
-	//(GameState* state, double width, double height, Texture* wallTexture_, double x, double y, Entity* player);
+	static vector<Entity*>createHabSubMenu(App* app, GameState* state, Vector2D position,
+		double width, double height, Texture* wallTexture_, vector<Entity*> habilidades); //este vector tiene 3 habilidades, Texture* wallTexture_, vector<Entity*> habilidades);
 
 protected:
 	UIFactory() = delete;
