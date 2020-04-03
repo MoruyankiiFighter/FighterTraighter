@@ -70,7 +70,7 @@ public:
 
 	//GUARDING
 	bool canGuard() {
-		return playerStatus_ == Idle || Moving || Crouching;
+		return playerStatus_ == Idle || playerStatus_ == Moving || playerStatus_ == Crouching;
 	}
 	void goGuarding() {
 		playerStatus_ = Guarding;

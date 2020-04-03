@@ -16,10 +16,10 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 	pT->setOrientation(orientation);
 	app->getHitboxMng()->addMainHitbox(pT->getMainFixture());
 
-	e->addComponent<PlayerController>(keys[0], keys[1], keys[8]);
+	e->addComponent<PlayerController>(keys[0], keys[1], keys[8], -1000, keys[2], keys[3]);
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(0));
-	e->addComponent<Jump>(-1000, keys[2]);
-	e->addComponent<Crouch>(keys[3]);
+	//e->addComponent<Jump>(-1000, keys[2]);
+	//e->addComponent<Crouch>(keys[3]);
 	e->addComponent<PlayerState>();
 	e->addComponent<Health>(100);
 	e->addComponent<PlayerOnHit>();

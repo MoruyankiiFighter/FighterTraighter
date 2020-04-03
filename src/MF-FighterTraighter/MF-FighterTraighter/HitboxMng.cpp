@@ -2,9 +2,9 @@
 #include <iostream>
 #include "OnHit.h"
 #include "Entity.h"
-#include "Jump.h"
 #include "PlayerState.h"
 #include "PlayerAttacks.h"
+#include "PlayerController.h"
 
 //removes the hitboxes that their time is 0 or overlap
 //with a object with OnHit component(players and punching bag)
@@ -40,9 +40,9 @@ void HitboxMng::update()
 	//to check if you are on the floor
 	for (b2Fixture* mainHB : mainHitboxes) {
 		Entity* player = static_cast<Entity*>(mainHB->GetUserData());
-		Jump* jump = player->getComponent<Jump>(ecs::Jump);
+		PlayerController* control = player->getComponent<PlayerController>(ecs::PlayerController);
 		
-		if (jump!=nullptr && checkOverlap(mainHB, floorFixture_)) {
+		if (control !=nullptr && checkOverlap(mainHB, floorFixture_)) {
 			PlayerState* currState = player->getComponent<PlayerState>(ecs::PlayerState);
 			OnHit* objOnHit2 = static_cast<Entity*>(floorFixture_->GetUserData())->getComponent<OnHit>(ecs::OnHit);
 			if (objOnHit2 != nullptr && currState->isJumping()) {

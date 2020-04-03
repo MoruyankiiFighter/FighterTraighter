@@ -1,5 +1,5 @@
 #include "PlayerAttacks.h"
-#include "Crouch.h"
+#include "PlayerController.h"
 
 PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, SDL_Scancode key1, AnimationChain* lowFist, AnimationChain* airLowFist,
 	SDL_Scancode key2, AnimationChain* highKick, AnimationChain* airHighKick, SDL_Scancode key3, AnimationChain* lowKick, AnimationChain* airLowKick,
@@ -42,31 +42,31 @@ PlayerAttacks::~PlayerAttacks() {
 void PlayerAttacks::handleInput() {
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	Transform* tr = entity_->getComponent<Transform>(ecs::Transform);
-	Crouch* cr = entity_->getComponent<Crouch>(ecs::Crouch);
+	PlayerController* ctrl = entity_->getComponent<PlayerController>(ecs::PlayerController);
 	if (currState->isAbleToAttack()) {
 		if (currState->isGrounded()) {
 			if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
 				activeAttack_ = attacksList[0];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) cr->uncrouch();
+				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
 			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
 				activeAttack_ = attacksList[1];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) cr->uncrouch();
+				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
 			else if (app_->getInputManager()->isKeyDown(highKickKey)) {
 				activeAttack_ = attacksList[2];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) cr->uncrouch();
+				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
 			else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
 				activeAttack_ = attacksList[3];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) cr->uncrouch();
+				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
 		}
