@@ -9,6 +9,7 @@
 #include "FactoryMk.h"
 #include "PunchingBagOnHit.h"
 #include "FloorOnHit.h"
+#include "UIFactory.h"
 Training::Training(App* app) : GameState(app)
 {
 	init();
@@ -41,6 +42,7 @@ void Training::init()
 	floor->addComponent<FloorOnHit>();
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 
+	//	UIFactory::createHabSubMenu(app_, this, Vector2D(0, 0), 500, 500, app_->getAssetsManager()->getTexture(7),);
 }
 
 void Training::handleInput()
