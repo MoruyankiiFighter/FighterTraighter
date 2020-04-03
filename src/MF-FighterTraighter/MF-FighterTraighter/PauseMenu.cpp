@@ -38,6 +38,14 @@ void PauseMenu::init()
 	nav->SetElementInPos(std::get<0>(options_button), 0, 3);
 }
 
+void PauseMenu::handleInput()
+{
+	if (app_->getInputManager()->pressedStart()) {
+		Resume(app_);
+	}
+	GameState::handleInput();
+}
+
 void PauseMenu::Resume(App* app)
 {
 	app->getStateMachine()->popState();
