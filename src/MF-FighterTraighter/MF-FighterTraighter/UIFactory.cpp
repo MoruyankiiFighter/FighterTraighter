@@ -61,55 +61,51 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	return std::make_tuple(slider, reg_, text_, ValueText_);
 }
 
-std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> 
+std::tuple<Entity*, Entity*, Entity*, Entity*> 
 UIFactory::createWinHabMenu(GameState* state, double width, double height, 
 	Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture2_, Texture* holeTexture3_, double x, double y, Entity* player1)
 {
-	Entity* wall_ = state->giveMeManager().addEntity();
+	Entity* wall_ = state->getEntityManager().addEntity();
 	wall_->addComponent<Transform>(Vector2D(x,y), Vector2D(), width, height, 0);//ojo a la posicion fija CAMBIAR EN TODOS
 	wall_->addComponent<RenderImage>(wallTexture_);
 
-	Entity* hole1 = state->giveMeManager().addEntity();
+	Entity* hole1 = state->getEntityManager().addEntity();
 	hole1->addComponent<Transform>(Vector2D(x + 300, y + 300), Vector2D(), width, height, 0);
 	hole1->addComponent<RenderImage>(holeTexture1_);//pedir al saco la textura de la habilidad opcional 1
-	Entity* hole2 = state->giveMeManager().addEntity();
+	Entity* hole2 = state->getEntityManager().addEntity();
 	hole2->addComponent<Transform>(Vector2D(x + 300, y + 500), Vector2D(), width, height, 0);
 	hole2->addComponent<RenderImage>(holeTexture2_);//pedir al saco la textura de la habilidad opcional 2
-	Entity* hole3 = state->giveMeManager().addEntity();
-	hole3->addComponent<Transform>(Vector2D(x + 500, y + 400), Vector2D(), width, height, 0);
-	hole3->addComponent<RenderImage>(holeTexture3_);//pedir al saco la textura de la habilidad fija
-	Entity* extra = state->giveMeManager().addEntity();
+	
+	Entity* extra = state->getEntityManager().addEntity();
 	
 
-	return std::make_tuple(wall_, hole1, hole2, hole3, extra);
+	return std::make_tuple(wall_, hole1, hole2, extra);
 }
 
-std::tuple<Entity*, Entity*, Entity*, Entity*>
-UIFactory::createLoseHabMenu(GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, Texture* holeTexture3_, double x, double y, Entity* player2)
+std::tuple<Entity*, Entity*, Entity*>
+UIFactory::createLoseHabMenu(GameState* state, double width, double height, Texture* wallTexture_, Texture* holeTexture1_, double x, double y, Entity* player2)
 {
-	Entity* wall_ = state->giveMeManager().addEntity();
+	Entity* wall_ = state->getEntityManager().addEntity();
 	wall_->addComponent<Transform>(Vector2D(100, 100), Vector2D(), width, height, 0);//ojo a la posicion fija CAMBIAR EN TODOS
 	wall_->addComponent<RenderImage>(wallTexture_);
 
-	Entity* hole1 = state->giveMeManager().addEntity();
+	Entity* hole1 = state->getEntityManager().addEntity();
 	hole1->addComponent<Transform>(Vector2D(300, 300), Vector2D(), width, height, 0);
 	hole1->addComponent<RenderImage>(holeTexture1_);//pedir al saco la textura de la habilidad opcional 1
 	
-	Entity* hole3 = state->giveMeManager().addEntity();
-	hole3->addComponent<Transform>(Vector2D(500, 400), Vector2D(), width, height, 0);
-	hole3->addComponent<RenderImage>(holeTexture3_);//pedir al saco la textura de la habilidad fija
+	
 
-	Entity* extra = state->giveMeManager().addEntity();
+	Entity* extra = state->getEntityManager().addEntity();
 
 
-	return std::make_tuple(wall_, hole1, hole3, extra);
+	return std::make_tuple(wall_, hole1, extra);
 	
 }
 
-std::tuple<Entity*,std::list<Entity*>> 
+std::tuple<Entity*,std::list<Entity*>>
 UIFactory::createSelectionHabMenu(GameState* state, double width, double height, Texture* wallTexture_, double x, double y, Entity* player)
 {
-	Entity* wall_ = state->giveMeManager().addEntity();
+	Entity* wall_ = state->getEntityManager().addEntity();
 	wall_->addComponent<Transform>(Vector2D(x, y), Vector2D(), width, height, 0);
 	wall_->addComponent<RenderImage>(wallTexture_);
 
@@ -118,7 +114,7 @@ UIFactory::createSelectionHabMenu(GameState* state, double width, double height,
 	//pedir al player su lista de habilidades
 
 	for (int i = 0; i < hab.size(); i++) {
-		Entity* num_ = state->giveMeManager().addEntity();
+		Entity* num_ = state->getEntityManager().addEntity();
 		num_->addComponent<Transform>(Vector2D(x, y), Vector2D(), width, height, 0);
 		num_->addComponent<RenderImage>(/*hab[i].getRender()*/);
 	}
