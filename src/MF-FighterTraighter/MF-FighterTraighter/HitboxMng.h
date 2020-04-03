@@ -26,6 +26,7 @@ public:
 	bool checkOverlap(b2Fixture* a, b2Fixture* other) {
 		return b2TestOverlap(a->GetAABB(0), other->GetAABB(0));
 	}
+	void reset();
 private:
 	std::vector<b2Fixture*> mainHitboxes;	//to get the main fixtures of the players and the punching bag to check overlaps
 	std::list<b2Fixture*> hitboxList_;

@@ -74,4 +74,5 @@ Training::~Training()
 	}
 	delete world;
 	delete debugInstance;
+	app_->getHitboxMng()->reset();
 }

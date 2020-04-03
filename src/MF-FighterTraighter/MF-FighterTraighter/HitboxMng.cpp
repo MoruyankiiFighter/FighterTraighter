@@ -72,3 +72,11 @@ void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	hitboxList_.back()->SetUserData(hitbox_);//saving hitbox's data
 }
 
+void HitboxMng::reset()
+{
+	mainHitboxes.clear();	//to get the main fixtures of the players and the punching bag to check overlaps
+	hitboxList_.clear();
+	hitboxListToRemove_.clear();
+	floorFixture_ = nullptr;
+}
+

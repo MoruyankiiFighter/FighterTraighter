@@ -59,4 +59,5 @@ Fight::~Fight()
 	}*/
 	delete world;
 	delete debugInstance;
+	app_->getHitboxMng()->reset();
 }
