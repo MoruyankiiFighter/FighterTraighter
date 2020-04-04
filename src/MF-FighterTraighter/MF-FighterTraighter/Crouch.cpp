@@ -17,6 +17,8 @@ Crouch::~Crouch()
 void Crouch::init()
 {
 	physics_transform_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
+	col_ = entity_->getComponent<Collider>(ecs::Collider);
+
 }
 
 //handle input
@@ -53,7 +55,7 @@ void Crouch::crouch()
 {
 	entity_->getComponent<PlayerState>(ecs::PlayerState)->goCrouch();
 
-	physics_transform_->setHeight(physics_transform_->getHeight() / 2);
+	col_->setHeight(physics_transform_->getHeight() / 2);
 
 	double height = physics_transform_->getHeight();
 	//physics_transform_->setColliderHeight(height);

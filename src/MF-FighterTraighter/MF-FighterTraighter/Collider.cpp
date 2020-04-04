@@ -50,6 +50,5 @@ void Collider::reset(const b2PolygonShape& shape) {
 	fixturedef.density = 0.00001;
 	fixturedef.filter.categoryBits = cBits_;
 	fixturedef.filter.maskBits = mBits_;
-
 	collider_ = body_->CreateFixture(&fixturedef);
 }
