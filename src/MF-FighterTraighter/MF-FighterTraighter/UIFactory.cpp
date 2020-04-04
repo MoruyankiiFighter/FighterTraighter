@@ -12,6 +12,7 @@
 #include "App.h"
 #include "Slider.h"
 #include "IndexSlider.h"
+#include "UITransform.h"
 
 //create a button with their callbacks
 std::tuple<Entity*, Entity*> UIFactory::createButton
@@ -20,12 +21,12 @@ std::tuple<Entity*, Entity*> UIFactory::createButton
 	CallBackOnClick* clickCallback, CallBackOnClick* stopClickCallback, std::string text, int fontSize)
 {
 	Entity* button = state->getEntityManager().addEntity();
-	button->addComponent<Transform>(position, Vector2D(), width, height, rotation);
+	button->addComponent<UITransform>(position, Vector2D(), Vector2D(width, height));
 	button->addComponent<RenderImage>(buttonTex);
 	button->addComponent<Button>(clickCallback, stopClickCallback);
 
 	Entity* textEnt = state->getEntityManager().addEntity();
-	textEnt->addComponent<Transform>(position, Vector2D(), width, height, rotation);
+	textEnt->addComponent<UITransform>(position, Vector2D(), Vector2D(width, height));
 	textEnt->addComponent<TextComponent>(text, font, fontSize);
 
 	return std::make_tuple(button, textEnt);
@@ -41,21 +42,21 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	std::string valueText, int valueFontSize)
 {
 	Entity* slider = state->getEntityManager().addEntity();
-	slider->addComponent<Transform>(position, Vector2D(), width, height, 0);
+	slider->addComponent<UITransform>(position, Vector2D(), Vector2D(width, height));
 	slider->addComponent<RenderImage>(texture_);
 	slider->addComponent<Slider>(min, max, steps, valueOnClickCallback);
 
 	Entity* reg_ = state->getEntityManager().addEntity();
-	reg_->addComponent<Transform>(position, Vector2D(), 25, height * 5, 0);
+	reg_->addComponent<UITransform>(position, Vector2D(), Vector2D(25, height * 5));
 	reg_->addComponent<RenderImage>(reg_texture);
 	reg_->addComponent<IndexSlider>(slider);
 	
 	Entity* text_ = state->getEntityManager().addEntity();
-	text_->addComponent<Transform>(Vector2D(position.getX(), position.getY() - fontSize - 20), Vector2D(), width, fontSize, 0);
+	text_->addComponent<UITransform>(Vector2D(position.getX(), position.getY() - fontSize - 20), Vector2D(), Vector2D(width, fontSize));
 	text_->addComponent<TextComponent>(text, font, fontSize);
 	
 	Entity* ValueText_ = state->getEntityManager().addEntity();
-	ValueText_->addComponent<Transform>(Vector2D(position.getX() + width + 10, position.getY() - fontSize / 2), Vector2D(), width, fontSize, 0);
+	ValueText_->addComponent<UITransform>(Vector2D(position.getX() + width + 10, position.getY() - fontSize / 2), Vector2D(), Vector2D(width, fontSize));
 	ValueText_->addComponent<TextComponent>(valueText, font, valueFontSize);
 
 	return std::make_tuple(slider, reg_, text_, ValueText_);

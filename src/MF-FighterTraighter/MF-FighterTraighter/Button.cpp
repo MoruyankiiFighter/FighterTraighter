@@ -7,24 +7,24 @@
 
 void Button::init()
 {
-	transform_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 
 void Button::handleInput()
 {
-	if (selected_) {
+	if (state_ == Selected) {
 		InputManager* imngr = app_->getInputManager();
 		if (imngr->pressedAccept()) {
-			if (!pressed_) {
-				pressed_ = true;
-				entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(2, 0);
-				if (clickCallback_) clickCallback_(app_);
-			}
-		}
-		else if (pressed_) {
-			pressed_ = false;
-			entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(0, 0);
-			if (stopClickCallback_) stopClickCallback_(app_);
+			Press();
 		}
 	}
+	else if (state_ == Pressed) {
+		state_ = Selected;
+		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
+		if (stopClickCallback_) stopClickCallback_(app_);
+	}
+}
+
+void Button::render()
+{
+
 }

@@ -33,9 +33,6 @@ MainMenu::~MainMenu()
 
 void MainMenu::init()
 {
-
-	cout << "init" << endl;
-
 	/*Entity* bg = entManager_.addEntity();
 	Transform* t = bg->addComponent<Transform>();
 	t->setPosition(0, 0);
@@ -57,10 +54,10 @@ void MainMenu::init()
 
 	Entity* navEnt = entManager_.addEntity();
 	NavigationController* nav = navEnt->addComponent<NavigationController>(1, 4);
-	nav->SetElementInPos(std::get<0>(arcade), 0, 0);
-	nav->SetElementInPos(std::get<0>(pvp), 0, 1);
-	nav->SetElementInPos(std::get<0>(options), 0, 2);
-	nav->SetElementInPos(std::get<0>(exit), 0, 3);
+	nav->SetElementInPos(std::get<0>(arcade)->getComponent<UIElement>(ecs::UIElement), 0, 0);
+	nav->SetElementInPos(std::get<0>(pvp)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	nav->SetElementInPos(std::get<0>(options)->getComponent<UIElement>(ecs::UIElement), 0, 2);
+	nav->SetElementInPos(std::get<0>(exit)->getComponent<UIElement>(ecs::UIElement), 0, 3);
 	
 }
 

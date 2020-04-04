@@ -127,15 +127,8 @@ public:
 		return KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_B);
 	}
 	inline bool pressedStart() {
-		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_ESCAPE)) // keyboard
-			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START)) // player 1
-			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER2, SDL_CONTROLLER_BUTTON_START))) { // player 2
-			startEvent_ = true;
-		}
-		else {
-			startEvent_ = false;
-		}
-		return startEvent_;
+		return KeyPressed(SDL_SCANCODE_ESCAPE) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START) 
+			|| isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START);
 	}
 
 	virtual ~InputManager();
@@ -178,11 +171,4 @@ private:
 	bool keyboardEvent_ = false; // press
 	bool controllerEvent_ = false; // button
 	bool axisEvent_ = false; //axis
-	bool upEvent_ = false;
-	bool leftEvent_ = false;
-	bool downEvent_ = false;
-	bool rightEvent_ = false;
-	bool acceptEvent_ = false;
-	bool cancelEvent_ = false;
-	bool startEvent_ = false;
 };

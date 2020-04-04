@@ -32,10 +32,10 @@ void PauseMenu::init()
 
 	Entity* navEnt = entManager_.addEntity();
 	NavigationController* nav = navEnt->addComponent<NavigationController>(1, 4);
-	nav->SetElementInPos(std::get<0>(continue_button), 0, 0);
-	nav->SetElementInPos(std::get<0>(menu_button), 0, 1);
-	nav->SetElementInPos(std::get<0>(controls_button), 0, 2);
-	nav->SetElementInPos(std::get<0>(options_button), 0, 3);
+	nav->SetElementInPos(std::get<0>(continue_button)->getComponent<UIElement>(ecs::UIElement), 0, 0);
+	nav->SetElementInPos(std::get<0>(menu_button)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	nav->SetElementInPos(std::get<0>(controls_button)->getComponent<UIElement>(ecs::UIElement), 0, 2);
+	nav->SetElementInPos(std::get<0>(options_button)->getComponent<UIElement>(ecs::UIElement), 0, 3);
 }
 
 void PauseMenu::handleInput()

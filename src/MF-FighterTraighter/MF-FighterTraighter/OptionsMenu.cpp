@@ -56,17 +56,17 @@ void OptionsMenu::init()
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 350), 500, 10, setResolution, "RESOLUTION", 60, "", 60);
 
 	Entity* logic = entManager_.addEntity();
-	logic->addComponent<OptionsLogic>(std::get<0>(resolutionSlider)->getComponent<Slider>(ecs::Slider),
+	logic->addComponent<OptionsLogic>(std::get<0>(resolutionSlider)->getComponent<Slider>(ecs::UIElement),
 		std::get<3>(resolutionSlider)->getComponent<TextComponent>(ecs::TextComponent),
-		std::get<0>(brightSlider)->getComponent<Slider>(ecs::Slider),
+		std::get<0>(brightSlider)->getComponent<Slider>(ecs::UIElement),
 		std::get<3>(brightSlider)->getComponent<TextComponent>(ecs::TextComponent));
 
 	Entity* nav = entManager_.addEntity();
-	NavigationController* ctrl = nav->addComponent<NavigationController>(2, 1);
-	ctrl->SetElementInPos(std::get<0>(back), 0, 0);
-	ctrl->SetElementInPos(std::get<0>(fullscreen), 1, 0);
-	//ctrl->SetElementInPos(options, 0, 2);
-	//ctrl->SetElementInPos(exit, 0, 3);
+	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 4);
+	ctrl->SetElementInPos(std::get<0>(back)->getComponent<UIElement>(ecs::UIElement), 0, 0);
+	ctrl->SetElementInPos(std::get<0>(fullscreen)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	ctrl->SetElementInPos(std::get<0>(resolutionSlider)->getComponent<UIElement>(ecs::UIElement), 0, 2);
+	ctrl->SetElementInPos(std::get<0>(brightSlider)->getComponent<UIElement>(ecs::UIElement), 0, 3);
 }
 
 void OptionsMenu::handleInput()

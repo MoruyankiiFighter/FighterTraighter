@@ -30,23 +30,24 @@ void NavigationController::handleInput()
 
 	if (cursorPositionX_ != oldX || cursorPositionY_ != oldY) // If the cursor moved
 	{
-		Entity* ent = grid_.GetItem(oldX, oldY);
-		ent->getComponent<Button>(ecs::Button)->setSelected(false);
+		UIElement* ent = grid_.GetItem(oldX, oldY);
+		ent->Deselect();
+		ent = grid_.GetItem(cursorPositionX_, cursorPositionY_);
+		ent->Select();
 	}
-	Entity* ent = grid_.GetItem(cursorPositionX_, cursorPositionY_);
-	ent->getComponent<Button>(ecs::Button)->setSelected(true);
 }
 
-void NavigationController::SetElementInPos(Entity* ent, size_t x, size_t y)
+void NavigationController::SetElementInPos(UIElement* ent, size_t x, size_t y)
 {
 	grid_.SetItemInPos(ent, x, y);
 }
 
-Entity* NavigationController::GetElementInPos(size_t x, size_t y)
+UIElement* NavigationController::GetElementInPos(size_t x, size_t y)
 {
 	return grid_.GetItem(x, y);
 }
 
+// Does not work properly
 int NavigationController::findInRowFrom(int y)
 {
 	int i = y;
@@ -63,6 +64,7 @@ int NavigationController::findInRowFrom(int y)
 	return i;
 }
 
+// Does not work properly
 int NavigationController::findInColFrom(int x)
 {
 	int i = x;

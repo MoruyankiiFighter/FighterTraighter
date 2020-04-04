@@ -10,7 +10,6 @@ namespace ecs {
 		PlayerController,
 		Health,
 		RenderImage,
-		Button,
 		Jump,
 		PhysicsTransform,
 		TextComponent,
@@ -18,7 +17,6 @@ namespace ecs {
 		PunchingBagCollision,
 		Crouch,
 		PlayerAttacks,
-		Slider,
 		VerticalSlider,
 		IndexSlider,
 		CreatorBody,
@@ -27,6 +25,7 @@ namespace ecs {
 		NavigationController,
 		PlayerState,
 		OnHit,
+		UIElement,
 		/*
 		
 		*/
