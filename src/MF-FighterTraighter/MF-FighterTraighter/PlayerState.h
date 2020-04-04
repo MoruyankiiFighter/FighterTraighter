@@ -93,6 +93,26 @@ public:
 		return playerStatus_ == GuardingLeaving;
 	}
 
+	//HITSTUN
+	bool isHitstun() { playerStatus_ == Hit || playerStatus_ == HitAirborne; }
+	void goHitsun(int frames) {
+		if (isGrounded()) {
+			playerStatus_ == Hit;
+		}
+		else {
+			playerStatus_ == HitAirborne;
+		}
+		holdingFrames_ = frames;
+	}
+	void releaseHitstun() {
+		if (playerStatus_ == Hit) {
+			playerStatus_ == Idle;
+		}
+		else {
+			playerStatus_ == Jumping;
+		}
+	}
+
 	//Update
 	virtual void update() override {
 		if (holdingFrames_ > 0) {
@@ -102,6 +122,7 @@ public:
 			if (isGuardingTransition()) goGuarding();
 			else if (isGrounded() || isGuardingLeaving()) goIdle();
 			else if (isJumpingTrans()) goJumping();
+			else if (isHitstun()) releaseHitstun();
 			else goJumping();
 		}
 	};
