@@ -20,11 +20,11 @@ public:
 		_y = v._y; 
 	};
 
-	Vector2D operator+(const Vector2D& v) const;
-	Vector2D operator-(const Vector2D& v) const;
-	Vector2D operator*(double d) const;
+	Vector2D& operator+(const Vector2D& v) const;
+	Vector2D& operator-(const Vector2D& v) const;
+	Vector2D& operator*(double d) const;
 	double operator*(const Vector2D& v);
-	Vector2D operator=(const Vector2D& v);
+	Vector2D& operator=(const Vector2D& v);
 private:
 	double _x = 0, _y = 0;
 };

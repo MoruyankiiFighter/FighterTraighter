@@ -5,16 +5,12 @@ Vector2D::Vector2D(): _x(0),_y(0)	{}
 //constructor with parameters
 Vector2D::Vector2D(double x, double y) : _x(x), _y(y)	{}
 
-Vector2D::Vector2D(const Vector2D& v)
+Vector2D::Vector2D(const Vector2D& v) : _x(v._x), _y(v._y)
 {
-	//No funciona bien llamandolo desde el constructor por copia, es lo mismo pero ahora si va 
-	//set(v);
-	_x = v._x;
-	_y = v._y;
 }
 
 //operator +
-Vector2D Vector2D::operator+(const Vector2D& v) const
+Vector2D& Vector2D::operator+(const Vector2D& v) const
 {
 	Vector2D w;
 	w._x = this->_x + v._x;
@@ -22,7 +18,7 @@ Vector2D Vector2D::operator+(const Vector2D& v) const
 	return w;
 }
 
-Vector2D Vector2D::operator-(const Vector2D& v) const
+Vector2D& Vector2D::operator-(const Vector2D& v) const
 {
 	Vector2D w;
 	w._x = this->_x - v._x;
@@ -31,7 +27,7 @@ Vector2D Vector2D::operator-(const Vector2D& v) const
 }
 
 //operator product when is number x vector
-Vector2D Vector2D::operator*(double d) const
+Vector2D& Vector2D::operator*(double d) const
 {
 
 	Vector2D w;
@@ -50,7 +46,7 @@ double Vector2D::operator*(const Vector2D& v)
 	return w._x+w._y;
 }
 
-Vector2D Vector2D::operator=(const Vector2D& v)
+Vector2D& Vector2D::operator=(const Vector2D& v)
 {
 	//set(v); Lo mismo que antes
 	_x = v._x;
