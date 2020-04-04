@@ -40,19 +40,14 @@ void HitboxMng::update()
 	//to check if you are on the floor
 	for (b2Fixture* mainHB : mainHitboxes) {
 		Entity* player = static_cast<Entity*>(mainHB->GetUserData());
-		PlayerController* control = player->getComponent<PlayerController>(ecs::PlayerController);
 		
-		if (control !=nullptr && checkOverlap(mainHB, floorFixture_)) {
-			PlayerState* currState = player->getComponent<PlayerState>(ecs::PlayerState);
+		if (checkOverlap(mainHB, floorFixture_)) {
 			OnHit* objOnHit2 = static_cast<Entity*>(floorFixture_->GetUserData())->getComponent<OnHit>(ecs::OnHit);
-			if (objOnHit2 != nullptr && currState->isJumping()) {
-				if (currState->isAttacking()) player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
-				currState->goLanding(25);
+			if (objOnHit2 != nullptr) {
+				
 				objOnHit2->onHit(mainHB);
 			}
-		}
-		
-
+		}		
 	}
 }
 

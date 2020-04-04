@@ -94,7 +94,7 @@ public:
 	}
 
 	//HITSTUN
-	bool isHitstun() { playerStatus_ == Hit || playerStatus_ == HitAirborne; }
+	bool isHitstun() { return playerStatus_ == Hit || playerStatus_ == HitAirborne; }
 	void goHitsun(int frames) {
 		if (isGrounded()) {
 			playerStatus_ == Hit;
