@@ -7,8 +7,6 @@ bool Health::LoseLife(unsigned int damage, int hitstun) {
 		entity_->getComponent<PlayerState>(ecs::PlayerState)->goHitsun(hitstun);
 		health_ -= damage;
 
-		std::cout << health_;
-
 		if (health_ > 0) {
 			return true;
 		}
@@ -18,6 +16,8 @@ bool Health::LoseLife(unsigned int damage, int hitstun) {
 			std::cout << "memori" << endl;
 			return false;
 		}
+
+		std::cout << health_;
 	}
 }
 
