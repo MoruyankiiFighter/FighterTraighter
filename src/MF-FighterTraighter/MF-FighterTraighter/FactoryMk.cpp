@@ -91,7 +91,7 @@ void FactoryMk::NP1(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 50, 1000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::HP1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -109,7 +109,7 @@ void FactoryMk::HP1(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-45 }, width, 60, 17, 50000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-45 }, width, 60, 17, 50000, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::NK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -127,7 +127,7 @@ void FactoryMk::NK1(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-20 }, width, 35, 13, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-20 }, width, 35, 13, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::NK2(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -145,7 +145,7 @@ void FactoryMk::NK2(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -17 }, width, 35, 17, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -17 }, width, 35, 17, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::HK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -164,9 +164,9 @@ void FactoryMk::HK1(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX1, -15 }, width1, 40, 17, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX1, -15 }, width1, 40, 17, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 	std::cout << "Brrrrrjrnkrrbr" << endl;
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX2, 15 }, width2, 30, 35, 1, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX2, 15 }, width2, 30, 35, 1, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANP1(Entity* ent)
@@ -180,7 +180,7 @@ void FactoryMk::ANP1(Entity* ent)
 	int hitboxX = -42;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -15 }, width, 35, 35, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -15 }, width, 35, 35, 50, 1000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANP2(Entity* ent)
@@ -194,7 +194,7 @@ void FactoryMk::ANP2(Entity* ent)
 	int hitboxX = -42;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -20 }, width, 35, 35, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -20 }, width, 35, 35, 50, 1000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::AHP1(Entity* ent)
@@ -208,7 +208,7 @@ void FactoryMk::AHP1(Entity* ent)
 	int hitboxX = 25;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -25 }, width, 70, 25, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -25 }, width, 70, 25, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANK1(Entity* ent)
@@ -222,7 +222,7 @@ void FactoryMk::ANK1(Entity* ent)
 	int hitboxX = 15;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 0 }, width, 45, 17, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 0 }, width, 45, 17, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANK2(Entity* ent)
@@ -236,7 +236,7 @@ void FactoryMk::ANK2(Entity* ent)
 	int hitboxX = 17;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 2 }, width, 49, 17, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 2 }, width, 49, 17, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::AHK1(Entity* ent)
@@ -250,7 +250,7 @@ void FactoryMk::AHK1(Entity* ent)
 	int hitboxX = 5;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -20 }, width, 40, 45, 50, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -20 }, width, 40, 45, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::GB(Entity* ent)

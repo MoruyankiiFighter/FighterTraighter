@@ -31,6 +31,7 @@ public:
 
 	//POSITION CHECK
 	bool isGrounded() { return playerStatus_ != Jumping && playerStatus_ != AttackingAir && playerStatus_ != HitAirborne && playerStatus_ != JumpingTransition; };
+	bool isAirborne() { return playerStatus_ == Jumping || playerStatus_ == HitAirborne || playerStatus_ == AttackingAir; };
 
 	//IDLE
 	void goIdle() { playerStatus_ = Idle; };
@@ -94,22 +95,22 @@ public:
 	}
 
 	//HITSTUN
-	bool isHitstun() { playerStatus_ == Hit || playerStatus_ == HitAirborne; }
+	bool isHitstun() { return playerStatus_ == Hit || playerStatus_ == HitAirborne; }
 	void goHitsun(int frames) {
 		if (isGrounded()) {
-			playerStatus_ == Hit;
+			playerStatus_ = Hit;
 		}
 		else {
-			playerStatus_ == HitAirborne;
+			playerStatus_ = HitAirborne;
 		}
 		holdingFrames_ = frames;
 	}
 	void releaseHitstun() {
 		if (playerStatus_ == Hit) {
-			playerStatus_ == Idle;
+			playerStatus_ = Idle;
 		}
 		else {
-			playerStatus_ == Jumping;
+			playerStatus_ = Jumping;
 		}
 	}
 
@@ -125,6 +126,7 @@ public:
 			else if (isHitstun()) releaseHitstun();
 			else goJumping();
 		}
+		if (playerStatus_ == HitAirborne) std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
 	};
 
 private:

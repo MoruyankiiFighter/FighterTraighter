@@ -2,9 +2,11 @@
 #include "PlayerState.h"
 #include "Entity.h"
 
-bool Health::LoseLife(unsigned int damage) {
+bool Health::LoseLife(unsigned int damage, int hitstun) {
 	if (!entity_->getComponent<PlayerState>(ecs::PlayerState)->isGuarding()) {
+		entity_->getComponent<PlayerState>(ecs::PlayerState)->goHitsun(hitstun);
 		health_ -= damage;
+
 		std::cout << health_;
 
 		if (health_ > 0) {
@@ -13,7 +15,7 @@ bool Health::LoseLife(unsigned int damage) {
 		else
 		{
 			health_ = 0;
-			std::cout << "memori";
+			std::cout << "memori" << endl;
 			return false;
 		}
 	}
