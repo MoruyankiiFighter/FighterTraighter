@@ -33,6 +33,9 @@ public:
 
 	static vector<Entity*>createHabSubMenu(App* app, GameState* state, Vector2D position,
 		double width, double height, Texture* wallTexture_, vector<Entity*> habilidades); //este vector tiene 3 habilidades, Texture* wallTexture_, vector<Entity*> habilidades);
+	
+	static vector<Entity*>createSelectionHabSubMenu(App* app, GameState* state, Vector2D position,
+		double width, double height, Texture* wallTexture_, vector<Entity*> habilidades); //este vector tiene 3 habilidades, Texture* wallTexture_, vector<Entity*> habilidades);
 
 protected:
 	UIFactory() = delete;

@@ -31,6 +31,9 @@ void AssetsManager::loadTextures()
 	
 	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/backgroundtemp.png", 1, 1));
 	
+	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuFondo.jpg", 1, 1));
+	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuwin.jpg", 1, 1));
+	
 	
 	// textures_.emplace_back(new Texture(app_->getRenderer(), "Filepath", cols, fils));
 }

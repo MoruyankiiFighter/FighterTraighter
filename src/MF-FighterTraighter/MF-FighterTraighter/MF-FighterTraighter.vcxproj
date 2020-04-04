@@ -134,6 +134,7 @@
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="FloorOnHit.cpp" />
+    <ClCompile Include="Hability.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FloorOnHit.h" />
+    <ClInclude Include="Hability.h" />
     <ClInclude Include="HitboxData.h" />
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
