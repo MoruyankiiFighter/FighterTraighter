@@ -39,6 +39,7 @@ public:
 	bool canCrouch() { return playerStatus_ == Idle || playerStatus_ == Moving; };
 	bool isCrouch() { return playerStatus_ == Crouching; };
 
+	bool isAttacking() { return playerStatus_ == Attacking || playerStatus_ == AttackingAir || playerStatus_ == AttackingCrouch; };
 	bool isAbleToAttack() { return (playerStatus_ == Idle) || (playerStatus_ == Jumping) || (playerStatus_ == Crouching) || (playerStatus_ == Moving); }; //Y si te estás moviendo? Debería pararte...
 	void goAttack(){
 		if (playerStatus_ == Jumping)  playerStatus_ = AttackingAir;
@@ -50,7 +51,7 @@ public:
 	void goJumping() { playerStatus_ = Jumping; };
 	void goJumpingTrans( int frames ) { playerStatus_ = JumpingTransition; holdingFrames_ = frames; };
 	bool isJumpingTrans() { return playerStatus_ == JumpingTransition; }
-	bool isJumping() { return playerStatus_ == Jumping; };
+	bool isJumping() { return playerStatus_ == Jumping || playerStatus_ == AttackingAir; };
 
 	bool canJump() { return playerStatus_ == Idle || playerStatus_ == Crouching || playerStatus_ == Moving; }
 
@@ -68,7 +69,6 @@ public:
 			else if (isJumpingTrans()) goJumping();
 			else goJumping();
 		}
-		cout << playerStatus_ << endl;
 	};
 
 private:

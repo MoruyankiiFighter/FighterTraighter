@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "Jump.h"
 #include "PlayerState.h"
+#include "PlayerAttacks.h"
 
 //removes the hitboxes that their time is 0 or overlap
 //with a object with OnHit component(players and punching bag)
@@ -41,10 +42,11 @@ void HitboxMng::update()
 		Jump* jump = player->getComponent<Jump>(ecs::Jump);
 		
 		if (jump!=nullptr && checkOverlap(mainHitboxes[i], floorFixture_)) {
+			PlayerState* currState = player->getComponent<PlayerState>(ecs::PlayerState);
 			OnHit* objOnHit2 = static_cast<Entity*>(floorFixture_->GetUserData())->getComponent<OnHit>(ecs::OnHit);
-			if (objOnHit2 != nullptr && 
-				player->getComponent<PlayerState>(ecs::PlayerState)->isJumping()) {
-				player->getComponent<PlayerState>(ecs::PlayerState)->goLanding(25);
+			if (objOnHit2 != nullptr && currState->isJumping()) {
+				if (currState->isAttacking()) player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
+				currState->goLanding(25);
 				objOnHit2->onHit();
 				//hitboxListToRemove_.push_back(*it);
 			}

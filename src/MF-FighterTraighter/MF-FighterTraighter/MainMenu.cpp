@@ -36,6 +36,12 @@ void MainMenu::init()
 
 	cout << "init" << endl;
 
+	/*Entity* bg = entManager_.addEntity();
+	Transform* t = bg->addComponent<Transform>();
+	t->setPosition(0, 0);
+	t->setWidthHeight(800, 600);
+	RenderImage* img = bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(7));*/
+
 	Entity* ent = entManager_.addEntity();
 	Transform* transform = ent->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
@@ -56,6 +62,14 @@ void MainMenu::init()
 	nav->SetElementInPos(std::get<0>(options), 0, 2);
 	nav->SetElementInPos(std::get<0>(exit), 0, 3);
 	
+}
+
+void MainMenu::handleInput()
+{
+	if (app_->getInputManager()->pressedStart()) {
+		app_->Exit();
+	}
+	GameState::handleInput();
 }
 
 void MainMenu::GoArcade(App* app)

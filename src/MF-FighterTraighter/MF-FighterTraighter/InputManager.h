@@ -126,6 +126,17 @@ public:
 	inline bool pressedCancel() {
 		return KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_B);
 	}
+	inline bool pressedStart() {
+		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_ESCAPE)) // keyboard
+			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START)) // player 1
+			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER2, SDL_CONTROLLER_BUTTON_START))) { // player 2
+			startEvent_ = true;
+		}
+		else {
+			startEvent_ = false;
+		}
+		return startEvent_;
+	}
 
 	virtual ~InputManager();
 private:
@@ -173,4 +184,5 @@ private:
 	bool rightEvent_ = false;
 	bool acceptEvent_ = false;
 	bool cancelEvent_ = false;
+	bool startEvent_ = false;
 };
