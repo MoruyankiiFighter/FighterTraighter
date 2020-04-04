@@ -22,7 +22,7 @@ void Fight::init()
 	Collider* c = floor->addComponent<Collider>(floorWidth_, floorHeight_, FpT->getBody());
 	app_->getHitboxMng()->addFloorHitbox(c->getCollider());
 
-	//floor->addComponent<FloorOnHit>();
+	floor->addComponent<FloorOnHit>();
 
 	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X });
 	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M });
