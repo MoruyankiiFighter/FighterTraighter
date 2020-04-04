@@ -7,7 +7,8 @@ InputManager::InputManager(App* app) : app_(app)
 		mouseState_[i] = false;
 	}
 	clearState();
-	keyboardState_ = SDL_GetKeyboardState(NULL);
+	keyboardState_ = SDL_GetKeyboardState(&numKeys_);
+	lastKeyboardState_ = new Uint8[numKeys_];
 	initControllers();
 	///
 
@@ -30,7 +31,9 @@ void InputManager::update()
 		}
 	}
 	///
-
+	for (int i = 0; i < numKeys_; ++i) {
+		lastKeyboardState_[i] = keyboardState_[i];
+	}
 
 	while (SDL_PollEvent(&e)) {
 		switch (e.type) {
@@ -109,6 +112,7 @@ void InputManager::update()
 
 InputManager::~InputManager()
 {
+	delete[] lastKeyboardState_;
 }
 
 void InputManager::clearState()
