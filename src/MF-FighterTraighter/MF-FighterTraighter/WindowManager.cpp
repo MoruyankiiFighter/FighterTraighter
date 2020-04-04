@@ -19,7 +19,7 @@ WindowManager::WindowManager(App* app) : app_(app) {
 		800, 600, SDL_WINDOW_SHOWN);
 	if (!window) throw new SDLExceptions::SDLException("Unable to create window");
 	SDL_GetCurrentDisplayMode(0, &curr);
-	setFullscreen(true);
+	//setFullscreen(true);
 	//setResolution(currentResolution_);
 }
 

@@ -11,7 +11,7 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	if (dyn)  
 		bodydef.type = b2_dynamicBody;	//makes the dynamic body if it is dynamic
 	body_ = world->CreateBody(&bodydef);
-	body_->SetFixedRotation(true);
+	body_->SetFixedRotation(true);	//esto deberia ser solo para los personajes
 }
 
 

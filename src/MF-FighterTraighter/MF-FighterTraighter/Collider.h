@@ -15,7 +15,8 @@ public:
 
 private:
 	b2Body* body_;
-	uint16 cBits_, mBits_;	//por ahora, no se usa
+	uint16 cBits_ = 0x0001,
+		   mBits_ = 0xFFFF;	//por ahora, no se usa cambiar
 	b2Fixture* collider_;
 	double width_ = 0,
 			height_ = 0;

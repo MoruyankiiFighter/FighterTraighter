@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "Collider.h"
 #include "PhysicsTransform.h"
 
 class Crouch :
@@ -19,6 +20,7 @@ public:
 private:
 	//Transform* tr_;
 	PhysicsTransform* physics_transform_ = nullptr;
+	Collider* col_ = nullptr;
 	SDL_Scancode crouchKey_;
 };
 
