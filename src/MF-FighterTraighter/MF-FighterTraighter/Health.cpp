@@ -3,22 +3,24 @@
 #include "Entity.h"
 
 bool Health::LoseLife(unsigned int damage, int hitstun) {
+	bool toReturn = false;
 	if (!entity_->getComponent<PlayerState>(ecs::PlayerState)->isGuarding()) {
 		entity_->getComponent<PlayerState>(ecs::PlayerState)->goHitsun(hitstun);
 		health_ -= damage;
 
 		if (health_ > 0) {
-			return true;
+			toReturn = true;
 		}
 		else
 		{
 			health_ = 0;
 			std::cout << "memori" << endl;
-			return false;
+			toReturn = false;
 		}
-
-		std::cout << health_;
 	}
+
+	std::cout << health_ << endl;
+	return toReturn;
 }
 
 
