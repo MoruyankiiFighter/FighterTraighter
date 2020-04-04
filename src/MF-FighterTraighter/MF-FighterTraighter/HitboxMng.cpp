@@ -5,6 +5,7 @@
 #include "PlayerState.h"
 #include "PlayerAttacks.h"
 #include "PlayerController.h"
+#include "PlayerOnHit.h"
 
 //removes the hitboxes that their time is 0 or overlap
 //with a object with OnHit component(players and punching bag)
@@ -52,7 +53,7 @@ void HitboxMng::update()
 }
 
 //create a hitbox (fixture) in a specific body with the data that we want
-void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int damage, Vector2D knockBack, b2Body* body, uint16 cBits, uint16 mBits)
+void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int damage, int hitstun, Vector2D knockBack, b2Body* body, uint16 cBits, uint16 mBits)
 {
 	b2PolygonShape shape;
 	shape.SetAsBox(width / 2, height / 2, { float32(pos.getX() + width / 2),float32(pos.getY() + height / 2) }, 0);
@@ -62,7 +63,7 @@ void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.isSensor=true;
 	fixturedef.filter.categoryBits = cBits;
 	fixturedef.filter.maskBits = mBits;//colission mask
-	HitboxData* hitbox_ = new HitboxData{ damage,time, knockBack };//create the hitbox's data
+	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack };//create the hitbox's data
 	hitboxList_.push_back(body->CreateFixture(&fixturedef));//create fixture and saving it in the list
 	hitboxList_.back()->SetUserData(hitbox_);//saving hitbox's data
 }

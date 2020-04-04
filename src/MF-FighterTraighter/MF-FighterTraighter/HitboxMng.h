@@ -19,7 +19,7 @@ public:
 	virtual ~HitboxMng() {}
 	
 	void update();
-	void addHitbox(Vector2D pos, int width, int height, int time, int damage, Vector2D knockBack, b2Body* body, uint16 cBits = 0x0001, uint16 mBits = 0xFFFF);
+	void addHitbox(Vector2D pos, int width, int height, int time, int damage, int hitstun, Vector2D knockBack, b2Body* body, uint16 cBits = 0x0001, uint16 mBits = 0xFFFF);
 	void addMainHitbox(b2Fixture* fixt) { mainHitboxes.push_back(fixt); }
 	void addFloorHitbox(b2Fixture* fixt) { floorFixture_ =fixt; }
 
