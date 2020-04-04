@@ -14,20 +14,18 @@ void Fight::init()
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
 	//---------------------------------------------------------------
-	
+	double floorWidth_ = 800, floorHeight_ = 100;
 	Entity* floor = entManager_.addEntity();
-	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, false);
+	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), floorWidth_, floorHeight_, 0, world, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));	
 	floor->addComponent<FloorOnHit>();
-	Collider* c = floor->addComponent<Collider>();
+	Collider* c = floor->addComponent<Collider>(floorWidth_, floorHeight_, FpT->getBody());
 	app_->getHitboxMng()->addFloorHitbox(c->getCollider());
 
 	//floor->addComponent<FloorOnHit>();
 
-	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X },
-		PLAYER_1, PLAYER_2 | BOUNDARY);
-	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M },
-		PLAYER_2, PLAYER_1 | BOUNDARY);
+	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X });
+	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M });
 }
 
 void Fight::handleInput()

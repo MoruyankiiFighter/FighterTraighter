@@ -34,6 +34,5 @@ public:
 
 private:
 	b2Body* body_;
-	uint16 cBits_, mBits_;
 };
 

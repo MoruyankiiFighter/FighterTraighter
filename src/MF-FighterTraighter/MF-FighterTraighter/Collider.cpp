@@ -1,6 +1,7 @@
 #include "Collider.h"
 
-Collider::Collider(double width, double height) : Component(ecs::Collider) {
+Collider::Collider(double width, double height, b2Body* body) : Component(ecs::Collider), body_(body) {
+
 	b2PolygonShape shape;
 	shape.SetAsBox(width / 2, height / 2);
 	reset(shape);

@@ -1,6 +1,7 @@
 #include "FactoryMk.h"
 #include "App.h"
 #include "PhysicsTransform.h"
+#include "Collider.h"
 #include "PlayerController.h"
 #include "RenderImage.h"
 #include "Jump.h"
@@ -8,12 +9,14 @@
 #include "PlayerAttacks.h"
 #include "PlayerState.h"
 #include "Health.h"
-Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, uint16 cBits, uint16 mBits, bool dyn)
+Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, bool dyn)
 {
 	Entity* e = state->getEntityManager().addEntity();
-	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 200, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn);
+	double width_ = 50, height_ = 50;	//para inicializar el phy.Transform y el Collider con el mismo ancho y alto
+	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 200, 10), Vector2D(10, 10), width_, height_, 0, world, dyn);
+	Collider* c = e->addComponent<Collider>(width_, height_, pT->getBody());
 	pT->setOrientation(orientation);
-	app->getHitboxMng()->addMainHitbox(pT->getMainFixture());
+	app->getHitboxMng()->addMainHitbox(c->getCollider());
 
 	e->addComponent<PlayerController>(keys[0], keys[1]);
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(0));

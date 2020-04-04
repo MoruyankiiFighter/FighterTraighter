@@ -7,7 +7,7 @@ class App;
 class FactoryMk
 {
 public:
-	static Entity* addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, bool dyn = true);
+	static Entity* addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, bool dyn = true);
 	static void NP1(Entity* ent);
 	static void HP1(Entity* ent);
 	static void NK1(Entity* ent);

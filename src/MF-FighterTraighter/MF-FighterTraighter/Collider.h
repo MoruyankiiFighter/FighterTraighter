@@ -5,7 +5,7 @@
 class Collider : public Component
 {
 public:
-	Collider(double width, double height);
+	Collider(double width, double height, b2Body* body);
 	virtual ~Collider() {}
 	void init() override;
 	void setWidth(double width);
@@ -15,7 +15,7 @@ public:
 
 private:
 	b2Body* body_;
-	uint16 cBits_, mBits_;
+	uint16 cBits_, mBits_;	//por ahora, no se usa
 	b2Fixture* collider_;
 	double width_ = 0,
 			height_ = 0;

@@ -25,24 +25,27 @@ void Training::init()
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
 
 
-	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X },
-		PLAYER_1, BOUNDARY | P_BAG);
+	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X });
 	//FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M },
 		//PLAYER_2, PLAYER_1 | BOUNDARY);
 
-	Entity* saco = entManager_.addEntity();
-	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, false);
-	Collider* c = saco->addComponent<Collider>();
-	app_->getHitboxMng()->addMainHitbox(c->getCollider());
-	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
-	saco->addComponent<PunchingBagOnHit>();
+	double floorWidth_ = 800, floorHeight_ = 100,
+			pbWidth_ = 35, pbHeight_ = 100;
+
+	Entity* punchingBag = entManager_.addEntity();
+	PhysicsTransform* pBpT = punchingBag->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), pbWidth_, pbHeight_, 0, world, false);
+	Collider* pbC = punchingBag->addComponent<Collider>(pbWidth_, pbHeight_, pBpT->getBody());
+	app_->getHitboxMng()->addMainHitbox(pbC->getCollider());
+	punchingBag->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
+	punchingBag->addComponent<PunchingBagOnHit>();
 	//saco->addComponent<SacoTimer>(5000);
 
 	Entity* floor = entManager_.addEntity();
-	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, BOUNDARY, EVERYTHING, false);
-	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
+	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), floorWidth_, floorHeight_, 0, world, false);
+	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));	
+	Collider* fC = floor->addComponent<Collider>(floorWidth_, floorHeight_, FpT->getBody());
+	app_->getHitboxMng()->addFloorHitbox(fC->getCollider());
 	floor->addComponent<FloorOnHit>();
-	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 
 }
 
