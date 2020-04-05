@@ -3,11 +3,12 @@
 void UITransform::init()
 {
 	windowMngr_ = app_->getWindowManager();
+	windowSize_ = Vector2D(windowMngr_->getCurResolution().w, windowMngr_->getCurResolution().h);
 }
 
 void UITransform::update()
 {
-	
+
 	SDL_DisplayMode w = windowMngr_->getCurResolution();
 	if (windowSize_.getX() != w.w || windowSize_.getY() != w.h) {
 		WindowResized(w.w, w.h);
@@ -53,6 +54,9 @@ void UITransform::setAnchorPreset(AnchorPreset preset)
 
 void UITransform::WindowResized(double newW, double newH)
 {
-	anchor_ = Vector2D(anchor_.getX() * (newW - windowSize_.getX()), anchor_.getY() * (newW - windowSize_.getX()));
-	windowSize_ = Vector2D(newW, newH);
+	anchor_ = Vector2D(anchor_.getX() * (newW / windowSize_.getX()), anchor_.getY() * (newW / windowSize_.getX()));
+	wMult_ *= (newW / windowSize_.getX());
+	hMult_ *= (newH / windowSize_.getY());
+	windowSize_.setX(newW);
+	windowSize_.setY(newH);
 }

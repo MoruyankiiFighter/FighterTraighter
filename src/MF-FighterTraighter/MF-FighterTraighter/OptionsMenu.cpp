@@ -42,18 +42,24 @@ void OptionsMenu::init()
 	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
 
 	tuple<Entity*, Entity*> back = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(20, 20), 60, 60, 0, GoBackCallback, nullptr, "<-", 60);
+		Vector2D(0, 20), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), 200, 60, 0, GoBackCallback, nullptr, "<-", 60);
 
 	tuple<Entity*, Entity*> fullscreen = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 200), 400, 50, 0, nullptr, fullScreen, "FULLSCREEN", 60);
+		Vector2D(0, -200),
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 400, 50, 0, 
+		nullptr, fullScreen, "FULLSCREEN", 60);
 
 	tuple<Entity*, Entity*, Entity*, Entity*> brightSlider = UIFactory::createSlider(app_, this, 0.4, 1, 6,
 		app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 500), 500, 10, SetBright, "BRIGHTNESS", 60, "", 60);
+		Vector2D(0, 350),
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 500, 10, 
+		SetBright, "BRIGHTNESS", 60, "", 60);
 
 	tuple<Entity*, Entity*, Entity*, Entity*> resolutionSlider = UIFactory::createSlider(app_, this, 0, 10, 10,
 		app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 350), 500, 10, setResolution, "RESOLUTION", 60, "", 60);
+		Vector2D(0, 0),
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 500, 10, 
+		setResolution, "RESOLUTION", 60, "", 60);
 
 	Entity* logic = entManager_.addEntity();
 	logic->addComponent<OptionsLogic>(std::get<0>(resolutionSlider)->getComponent<Slider>(ecs::UIElement),
