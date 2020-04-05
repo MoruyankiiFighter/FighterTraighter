@@ -91,7 +91,7 @@ void FactoryMk::NP1(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 50, 1000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 50, 1000, { (double)orientation_ * 100, -300 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::HP1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes

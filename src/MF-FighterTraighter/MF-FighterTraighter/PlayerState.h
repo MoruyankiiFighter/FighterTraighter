@@ -105,6 +105,10 @@ public:
 		}
 		holdingFrames_ = frames;
 	}
+	void goHitstunAirborne(int frames) {
+		playerStatus_ = HitAirborne;
+		holdingFrames_ = frames;
+	}
 	void releaseHitstun() {
 		if (playerStatus_ == Hit) {
 			playerStatus_ = Idle;
