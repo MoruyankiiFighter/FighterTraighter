@@ -133,9 +133,6 @@
     <ClCompile Include="Health.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="FloorOnHit.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="SDLDebugDraw.cpp">
       <Filter>Source Files\type</Filter>
     </ClCompile>
@@ -314,6 +311,9 @@
     </ClInclude>
     <ClInclude Include="LinkedGrid.h">
       <Filter>Header files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetJumpListener.h">
+      <Filter>Header files\listeners</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

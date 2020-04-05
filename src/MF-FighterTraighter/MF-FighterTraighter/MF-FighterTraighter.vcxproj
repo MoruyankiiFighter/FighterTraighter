@@ -133,7 +133,6 @@
   <ItemGroup>
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
-    <ClCompile Include="FloorOnHit.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
@@ -221,6 +220,7 @@
     <ClInclude Include="RenderAnimation.h" />
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
+    <ClInclude Include="ResetJumpListener.h" />
     <ClInclude Include="WindowManager.h" />
     <ClInclude Include="SacoTimer.h" />
     <ClInclude Include="SDLDebugDraw.h" />

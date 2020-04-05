@@ -14,6 +14,8 @@ void Fight::init()
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
 	//---------------------------------------------------------------
+	//resJumpListener = new ResetJumpListener();
+	//world->SetContactListener(resJumpListener);
 	
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, BOUNDARY, EVERYTHING, false);
@@ -21,7 +23,7 @@ void Fight::init()
 	floor->addComponent<FloorOnHit>();
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 
-	//floor->addComponent<FloorOnHit>();
+	floor->addComponent<FloorOnHit>();
 
 	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
 		SDL_SCANCODE_SPACE }, PLAYER_1, PLAYER_2 | BOUNDARY);
@@ -59,5 +61,6 @@ Fight::~Fight()
 	}*/
 	delete world;
 	delete debugInstance;
+	//delete resJumpListener;
 	app_->getHitboxMng()->reset();
 }
