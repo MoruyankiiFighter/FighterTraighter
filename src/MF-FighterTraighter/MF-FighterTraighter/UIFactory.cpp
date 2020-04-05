@@ -47,7 +47,7 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	slider->addComponent<Slider>(min, max, steps, valueOnClickCallback);
 
 	Entity* reg_ = state->getEntityManager().addEntity();
-	reg_->addComponent<UITransform>(position, anchor, Vector2D(25, height * 5));
+	reg_->addComponent<UITransform>(position, Vector2D(), Vector2D(25, height * 5));
 	reg_->addComponent<RenderImage>(reg_texture);
 	reg_->addComponent<IndexSlider>(slider);
 	

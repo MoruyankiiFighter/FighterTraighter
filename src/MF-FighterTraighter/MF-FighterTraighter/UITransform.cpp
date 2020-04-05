@@ -57,6 +57,9 @@ void UITransform::WindowResized(double newW, double newH)
 	anchor_ = Vector2D(anchor_.getX() * (newW / windowSize_.getX()), anchor_.getY() * (newW / windowSize_.getX()));
 	wMult_ *= (newW / windowSize_.getX());
 	hMult_ *= (newH / windowSize_.getY());
+	double newPosX = position_.getX() * (newW / windowSize_.getX());
+	double newPosY = position_.getY() * (newH / windowSize_.getY());
+	position_.set({ newPosX, newPosY });
 	windowSize_.setX(newW);
 	windowSize_.setY(newH);
 }
