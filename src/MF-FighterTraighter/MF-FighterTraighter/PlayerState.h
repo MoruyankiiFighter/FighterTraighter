@@ -1,5 +1,7 @@
 #pragma once
 #include "Component.h"
+#include "PhysicsTransform.h"
+#include "Entity.h"
 
 enum Status {
 	Idle,
@@ -67,6 +69,7 @@ public:
 	void goLanding(int frames) {
 		playerStatus_ = Landing;
 		holdingFrames_ = frames;
+		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
 	}
 
 	//GUARDING

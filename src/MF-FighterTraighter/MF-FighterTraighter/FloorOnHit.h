@@ -12,10 +12,9 @@ public:
 		Entity* player = static_cast<Entity*>(fixture->GetUserData());
 		PlayerState* currState = player->getComponent<PlayerState>(ecs::PlayerState);
 
-		if ( currState->isJumping()) {
+		if ( currState->isAirborne() && fixture->GetBody()->GetLinearVelocity().y >= 0) {
 			if (currState->isAttacking()) player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 			currState->goLanding(25);
-			
 		}
 	}
 };

@@ -2,21 +2,19 @@
 #include "PlayerState.h"
 #include "Entity.h"
 
-bool Health::LoseLife(unsigned int damage, int hitstun) {
+bool Health::LoseLife(unsigned int damage) {
 	bool toReturn = false;
-	if (!entity_->getComponent<PlayerState>(ecs::PlayerState)->isGuarding()) {
-		entity_->getComponent<PlayerState>(ecs::PlayerState)->goHitsun(hitstun);
-		health_ -= damage;
 
-		if (health_ > 0) {
-			toReturn = true;
-		}
-		else
-		{
-			health_ = 0;
-			std::cout << "memori" << endl;
-			toReturn = false;
-		}
+	health_ -= damage;
+
+	if (health_ > 0) {
+		toReturn = true;
+	}
+	else
+	{
+		health_ = 0;
+		std::cout << "memori" << endl;
+		toReturn = false;
 	}
 
 	std::cout << health_ << endl;

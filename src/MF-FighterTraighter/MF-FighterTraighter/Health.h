@@ -9,7 +9,7 @@ public:
 	virtual ~Health() {}
 	
 	// lose damage life (life-=damage) and check if life<0 to be dead
-	bool LoseLife(unsigned int  damage, int hitstun);
+	bool LoseLife(unsigned int  damage);
 
 	// add cuantity
 	void GainLife(unsigned int cuantity);
