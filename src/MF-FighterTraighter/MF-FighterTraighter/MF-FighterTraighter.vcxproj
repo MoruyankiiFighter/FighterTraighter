@@ -138,6 +138,7 @@
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
     <ClCompile Include="HitboxMng.cpp" />
+    <ClCompile Include="MovementsMenu.cpp" />
     <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="NavigationController.cpp" />
     <ClCompile Include="OptionsLogic.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IndexSlider.h" />
+    <ClInclude Include="MovementsMenu.h" />
     <ClInclude Include="MoveParser.h" />
     <ClInclude Include="NavigationController.h" />
     <ClInclude Include="OnHit.h" />
