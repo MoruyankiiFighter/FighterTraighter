@@ -3,6 +3,7 @@
 #include "PhysicsTransform.h"
 #include "PlayerState.h"
 #include "HitboxData.h"
+#include "PlayerAttacks.h"
 
 void PlayerOnHit::onHit(b2Fixture* fixture)
 {
@@ -12,6 +13,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 	PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	if (!currState->isGuarding()) {
+		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		entity_->getComponent<Health>(ecs::Health)->LoseLife(hBox_data->damage_);
 		if (hBox_data->knockBack_.getY() > 0)	//vertical knockback, goes to airborne hitstun
 			entity_->getComponent<PlayerState>(ecs::PlayerState)->goHitsun(hBox_data->hitstun_);

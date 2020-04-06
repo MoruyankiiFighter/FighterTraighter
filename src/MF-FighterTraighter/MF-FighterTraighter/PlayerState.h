@@ -67,7 +67,6 @@ public:
 
 	//LANDING
 	void goLanding(int frames) {
-		if(isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		playerStatus_ = Landing;
 		holdingFrames_ = frames;
 		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
@@ -101,7 +100,6 @@ public:
 	//HITSTUN
 	bool isHitstun() { return playerStatus_ == Hit || playerStatus_ == HitAirborne; }
 	void goHitsun(int frames) {
-		if (isAttacking())entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		if (isGrounded()) {
 			playerStatus_ = Hit;
 		}
@@ -111,7 +109,6 @@ public:
 		holdingFrames_ = frames;
 	}
 	void goHitstunAirborne(int frames) {
-		if (isAttacking())entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		playerStatus_ = HitAirborne;
 		holdingFrames_ = frames;
 	}
