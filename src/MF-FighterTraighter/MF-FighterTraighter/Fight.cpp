@@ -47,7 +47,9 @@ void Fight::update()
 
 void Fight::render() {
 	SDL_RenderClear(app_->getRenderer());
-	GameState::render();
+	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
+		(*it)->render();
+	}
 	world->DrawDebugData();
 	SDL_RenderPresent(app_->getRenderer());
 }
