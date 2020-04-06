@@ -49,6 +49,7 @@ protected:
 
 	int currentResolution_ = 0;
 	float currentBrightness_ = 1;
+	SDL_DisplayMode initialDisplayMode_;
 
 	bool fullscreen_ = true;
 };
