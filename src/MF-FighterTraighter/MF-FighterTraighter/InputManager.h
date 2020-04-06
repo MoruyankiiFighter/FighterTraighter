@@ -143,7 +143,7 @@ public:
 		return rightEvent_;
 	}
 	inline bool pressedAccept() {
-		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_Z)) // keyboard
+		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_RETURN)) // keyboard
 			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A))) { // controller
 			acceptEvent_ = true;
 		}
