@@ -12,6 +12,11 @@ public:
 		chain_.clear();
 	};
 	bool update();
+	void reset() {
+		for (int i = 0; i < chain_.size(); i++) {
+			chain_[i]->reset();
+		}
+	}
 private:
 	vector<Move*> chain_;
 	int index_ = 0;

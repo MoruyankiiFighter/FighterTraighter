@@ -33,6 +33,7 @@ public:
 	void resetIndex() { activeFrame_ = 0; }
 	bool update();
 	void render();
+	void reset() { activeFrame_ = 0; };
 private:
 	int activeFrame_ = 0;
 	int endingFrame_ = 15; 

@@ -132,7 +132,6 @@ public:
 	virtual void update() override {
 		if (holdingFrames_ > 0) {
 			holdingFrames_--;
-			cout << holdingFrames_ << endl;
 		}else if (holdingFrames_ == 0) {
 			holdingFrames_ = -1;
 			if (isGuardingTransition()) goGuarding();
@@ -141,7 +140,8 @@ public:
 			else if (isHitstun()) releaseHitstun();
 			else goJumping();
 		}
-		//if (playerStatus_ == HitAirborne) std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
+		//if (playerStatus_ == AttackingAir) std::cout << "AA" << endl;
+		//else if (playerStatus_ == Jumping) std::cout << "OO" << endl;
 	};
 
 private:

@@ -103,6 +103,7 @@ void PlayerAttacks::handleInput() {
 
 void PlayerAttacks::interruptAttack()
 {
+	activeAttack_->reset();
 	activeAttack_ = nullptr;
 }
 
