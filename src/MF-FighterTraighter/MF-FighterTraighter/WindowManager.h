@@ -33,7 +33,7 @@ public:
 	inline int getCurResolutionIndex() { return currentResolution_; }
 
 	//get the number of resolutions that are supported in the computer 
-	inline int getAvailableResolutions() { return supportedResolutions_.size(); }
+	inline size_t getAvailableResolutions() { return supportedResolutions_.size(); }
 
 	//returns true if it's the fullscreen on
 	inline bool getFullscreen() { return fullscreen_; }
