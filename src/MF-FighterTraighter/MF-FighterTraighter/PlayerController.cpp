@@ -40,7 +40,7 @@ void PlayerController::handleInput()
 	{
 		if (currState->isCrouch()) uncrouch();
 		else if (currState->isMoving())transform_->setSpeed(0, speed.getY());
-		if (!currState->isGuarding()) currState->goGuardingTransition(10);
+		if (!currState->isGuarding()) currState->goGuardingTransition(6);
 	}
 	else if ((input->isKeyDown(jumpKey_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9)
 		&& currState->canJump()) 
@@ -49,7 +49,7 @@ void PlayerController::handleInput()
 		//force and where you use the fore
 		transform_->getBody()->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), transform_->getBody()->GetWorldCenter(), true);
 		if (currState->isCrouch()) uncrouch();
-		currState->goJumpingTrans(10);
+		currState->goJumpingTrans(7);
 		std::cout << "salto" << std::endl;
 	}
 	else if ((input->isKeyDown(crouchKey_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.1)
@@ -84,7 +84,7 @@ void PlayerController::handleInput()
 	if (input->isKeyUp(block_)) {
 		if (currState->isGuarding())
 		{
-			currState->goGuardingLeaving(15);
+			currState->goGuardingLeaving(14);
 		}
 	}
 	if (input->isKeyUp(crouchKey_)) {

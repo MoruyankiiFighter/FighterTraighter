@@ -16,56 +16,56 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 	pT->setOrientation(orientation);
 	app->getHitboxMng()->addMainHitbox(pT->getMainFixture());
 
-	e->addComponent<PlayerController>(keys[0], keys[1], keys[8], -1000, keys[2], keys[3]);
+	e->addComponent<PlayerController>(keys[0], keys[1], keys[8], -1500, keys[2], keys[3]);
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(0));
 	//e->addComponent<Jump>(-1000, keys[2]);
 	//e->addComponent<Crouch>(keys[3]);
 	e->addComponent<PlayerState>();
-	e->addComponent<Health>(100);
+	e->addComponent<Health>(110);
 	e->addComponent<PlayerOnHit>();
 	std::vector<Move*> vecMov;
 
-	vecMov.push_back(new Move(85, nullptr, NP1, e));
-	vecMov.push_back(new Move(42, nullptr, nullptr, e));
+	vecMov.push_back(new Move(27, nullptr, NP1, e));
+	vecMov.push_back(new Move(32, nullptr, nullptr, e));
 	AnimationChain* testNP = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(75, nullptr, HP1, e));
-	vecMov.push_back(new Move(60, nullptr, nullptr, e));
+	vecMov.push_back(new Move(29, nullptr, HP1, e));
+	vecMov.push_back(new Move(40, nullptr, nullptr, e));
 	AnimationChain* testHP = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(65, nullptr, NK1, e));
-	vecMov.push_back(new Move(45, nullptr, NK2, e));
-	vecMov.push_back(new Move(60, nullptr, nullptr, e));
+	vecMov.push_back(new Move(25, nullptr, NK1, e));
+	vecMov.push_back(new Move(20, nullptr, NK2, e));
+	vecMov.push_back(new Move(25, nullptr, nullptr, e));
 	AnimationChain* testNK = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(95, nullptr, HK1, e));
+	vecMov.push_back(new Move(35, nullptr, HK1, e));
 	//vecMov.push_back(new Move(0, nullptr, HK2, e));
 	vecMov.push_back(new Move(65, nullptr, nullptr, e));
 	AnimationChain* testHK = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(85, nullptr, ANP1, e));
-	vecMov.push_back(new Move(60, nullptr, ANP2, e));
-	vecMov.push_back(new Move(55, nullptr, nullptr, e));
+	vecMov.push_back(new Move(40, nullptr, ANP1, e));
+	vecMov.push_back(new Move(25, nullptr, ANP2, e));
+	vecMov.push_back(new Move(25, nullptr, nullptr, e));
 	AnimationChain* testANP = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(90, nullptr, AHP1, e));
-	vecMov.push_back(new Move(65, nullptr, nullptr, e));
+	vecMov.push_back(new Move(49, nullptr, AHP1, e));
+	vecMov.push_back(new Move(45, nullptr, nullptr, e));
 	AnimationChain* testAHP = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(55, nullptr, ANK1, e));
-	vecMov.push_back(new Move(45, nullptr, ANK2, e));
-	vecMov.push_back(new Move(55, nullptr, nullptr, e));
+	vecMov.push_back(new Move(34, nullptr, ANK1, e));
+	vecMov.push_back(new Move(17, nullptr, ANK2, e));
+	vecMov.push_back(new Move(22, nullptr, nullptr, e));
 	AnimationChain* testANK = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(65, nullptr, AHK1, e));
-	vecMov.push_back(new Move(95, nullptr, nullptr, e));
+	vecMov.push_back(new Move(32, nullptr, AHK1, e));
+	vecMov.push_back(new Move(65, nullptr, nullptr, e));
 	AnimationChain* testAHK = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -91,7 +91,7 @@ void FactoryMk::NP1(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 50, 1000, { (double)orientation_ * 100, -300 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 9, 42, { (double)orientation_ * 10, -50 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::HP1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -109,7 +109,7 @@ void FactoryMk::HP1(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-45 }, width, 60, 17, 50000, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-45 }, width, 60, 17, 15, 55, { (double)orientation_ * 4, 25 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::NK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -127,7 +127,7 @@ void FactoryMk::NK1(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-20 }, width, 35, 13, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-20 }, width, 35, 13, 6, 16, { (double)orientation_ * 0.25, -0.25 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::NK2(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -145,7 +145,7 @@ void FactoryMk::NK2(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -17 }, width, 35, 17, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -17 }, width, 35, 17, 6, 35, { (double)orientation_ * 0.55, -0.75 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::HK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -164,9 +164,9 @@ void FactoryMk::HK1(Entity* ent)//cBits and mBits are there to use the same coll
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX1, -15 }, width1, 40, 17, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX1, -15 }, width1, 40, 17, 17, 50, { (double)orientation_ * 0.05, 5 }, body, filter.categoryBits, filter.maskBits);
 	std::cout << "Brrrrrjrnkrrbr" << endl;
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX2, 15 }, width2, 30, 35, 1, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX2, 15 }, width2, 30, 20, 5, 40, { (double)orientation_ * 3, -3 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANP1(Entity* ent)
@@ -180,7 +180,7 @@ void FactoryMk::ANP1(Entity* ent)
 	int hitboxX = -42;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -15 }, width, 35, 3500, 50, 1000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -15 }, width, 35, 35, 5, 16, { (double)orientation_ * 0.1, -0.1 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANP2(Entity* ent)
@@ -194,7 +194,7 @@ void FactoryMk::ANP2(Entity* ent)
 	int hitboxX = -42;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -20 }, width, 35, 35, 50, 1000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -20 }, width, 35, 35, 8, 30, { (double)orientation_ * 1.1, -0.25 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::AHP1(Entity* ent)
@@ -208,7 +208,7 @@ void FactoryMk::AHP1(Entity* ent)
 	int hitboxX = 25;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -25 }, width, 70, 25, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -25 }, width, 70, 25, 22, 65, { (double)orientation_ * 0.2, 1000000 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANK1(Entity* ent)
@@ -222,7 +222,7 @@ void FactoryMk::ANK1(Entity* ent)
 	int hitboxX = 15;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 0 }, width, 45, 17, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -10 }, width, 45, 17, 4, 15, { (double)orientation_ * 0.05, -0.05 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANK2(Entity* ent)
@@ -236,7 +236,7 @@ void FactoryMk::ANK2(Entity* ent)
 	int hitboxX = 17;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 2 }, width, 49, 17, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -12 }, width, 49, 17, 10, 28, { (double)orientation_ * 0.5, 1 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::AHK1(Entity* ent)
@@ -250,7 +250,7 @@ void FactoryMk::AHK1(Entity* ent)
 	int hitboxX = 5;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -20 }, width, 40, 45, 50, 10, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -20 }, width, 40, 50, 18, 55, { (double)orientation_ * 7, -1 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::GB(Entity* ent)

@@ -20,7 +20,7 @@ public:
 	//method overrided from Component
 	virtual void render() override;
 private:
-	int curX = 0, curY = 0;
+	size_t curX = 0, curY = 0;
 	Transform* transform_=nullptr;
 	Texture* texture_=nullptr;
 };

@@ -51,7 +51,7 @@ public:
 
 	//ATTACKING
 	bool isAttacking() { return playerStatus_ == Attacking || playerStatus_ == AttackingAir || playerStatus_ == AttackingCrouch; };
-	bool isAbleToAttack() { return (playerStatus_ == Idle) || (playerStatus_ == Jumping) || (playerStatus_ == Crouching) || (playerStatus_ == Moving); }; //Y si te estás moviendo? Debería pararte...
+	bool isAbleToAttack() { return (playerStatus_ == Idle) || (playerStatus_ == Jumping) || (playerStatus_ == Crouching) || (playerStatus_ == Moving); }; //Y si te estï¿½s moviendo? Deberï¿½a pararte...
 	void goAttack(){
 		if (playerStatus_ == Jumping)  playerStatus_ = AttackingAir;
 		else if (playerStatus_ == Crouching) playerStatus_ = AttackingCrouch;
@@ -100,6 +100,7 @@ public:
 	//HITSTUN
 	bool isHitstun() { return playerStatus_ == Hit || playerStatus_ == HitAirborne; }
 	void goHitsun(int frames) {
+		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
 		if (isGrounded()) {
 			playerStatus_ = Hit;
 		}
@@ -109,6 +110,7 @@ public:
 		holdingFrames_ = frames;
 	}
 	void goHitstunAirborne(int frames) {
+		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
 		playerStatus_ = HitAirborne;
 		holdingFrames_ = frames;
 	}
@@ -121,10 +123,16 @@ public:
 		}
 	}
 
+	//Holding frames
+	int getHoldingFrames() {
+		return holdingFrames_;
+	}
+
 	//Update
 	virtual void update() override {
 		if (holdingFrames_ > 0) {
 			holdingFrames_--;
+			cout << holdingFrames_ << endl;
 		}else if (holdingFrames_ == 0) {
 			holdingFrames_ = -1;
 			if (isGuardingTransition()) goGuarding();
@@ -133,8 +141,7 @@ public:
 			else if (isHitstun()) releaseHitstun();
 			else goJumping();
 		}
-		if (playerStatus_ == HitAirborne) std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
-		if (playerStatus_ == AttackingAir) std::cout << "HOLA";
+		//if (playerStatus_ == HitAirborne) std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
 	};
 
 private:
