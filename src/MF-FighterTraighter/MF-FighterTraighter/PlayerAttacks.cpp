@@ -104,7 +104,7 @@ void PlayerAttacks::handleInput() {
 void PlayerAttacks::interruptAttack()
 {
 	activeAttack_ = nullptr;
-	app_->getHitboxMng()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
+	//app_->getHitboxMng()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
 	
 }
 
