@@ -21,7 +21,8 @@ void Training::init()
 	debugInstance = new SDLDebugDraw(app_->getRenderer());
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
-
+	resJumpListener = new ResetJumpListener();
+	world->SetContactListener(resJumpListener);
 
 	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X,
 		SDL_SCANCODE_SPACE }, PLAYER_1, PLAYER_2 | BOUNDARY);
@@ -72,7 +73,9 @@ Training::~Training()
 		delete vec;
 
 	}
+	app_->getHitboxMng()->clear();
+
 	delete world;
 	delete debugInstance;
-	app_->getHitboxMng()->reset();
+	delete resJumpListener;
 }

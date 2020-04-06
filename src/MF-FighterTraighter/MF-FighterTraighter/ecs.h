@@ -12,7 +12,6 @@ namespace ecs {
 		RenderImage,
 		Button,
 		Jump,
-		PhysicsTransform,
 		TextComponent,
 		SacoTimer,
 		PunchingBagCollision,

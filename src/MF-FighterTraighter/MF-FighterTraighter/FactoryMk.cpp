@@ -180,7 +180,7 @@ void FactoryMk::ANP1(Entity* ent)
 	int hitboxX = -42;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -15 }, width, 35, 35, 50, 1000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -15 }, width, 35, 3500, 50, 1000, { (double)orientation_ * 0,0 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANP2(Entity* ent)

@@ -11,6 +11,15 @@
 //with a object with OnHit component(players and punching bag)
 void HitboxMng::update()
 {
+
+	//destroy the hitbox and pop it from the hitbox list
+	for (auto hb_it = hitboxRemove_pair_.begin(); hb_it != hitboxRemove_pair_.end(); ++hb_it) {
+		delete static_cast<HitboxData*>((*(*hb_it).first)->GetUserData());
+		(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
+		hitboxGroups_[(*hb_it).second].erase((*hb_it).first);
+	}
+	hitboxRemove_pair_.clear();
+
 	for (uint i = 0; i < 2; i++) {
 		for (auto it = hitboxGroups_[i].begin(); it != hitboxGroups_[i].end(); ++it) {
 			HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
@@ -24,7 +33,7 @@ void HitboxMng::update()
 						OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
 						if (objOnHit != nullptr) {
 							objOnHit->onHit(*it);
-							hitboxListToRemove_.push_back(*it);
+							hitboxRemove_pair_.push_back(pair<list<b2Fixture*>::iterator, uint>(it, i));
 						}
 					}
 				}
@@ -32,55 +41,6 @@ void HitboxMng::update()
 		}
 	}
 
-	//destroy the hitbox and pop it from the hitbox list
-	for (auto hb_it = hitboxRemove_pair_.begin(); hb_it != hitboxRemove_pair_.end(); ++hb_it) {
-		std::cout << "Borro " << (static_cast<HitboxData*>((*(*hb_it).first)->GetUserData()))->damage_ << std::endl;
-		delete static_cast<HitboxData*>((*(*hb_it).first)->GetUserData());
-		(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
-		hitboxGroups_[(*hb_it).second].erase((*hb_it).first);
-	}
-	hitboxRemove_pair_.clear();
-
-	//for (auto it = hitboxList_.begin(); it != hitboxList_.end();++it) {
-	//	HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
-	//	if (hB->time_-- <= 0) {//time habra que modificar a frames			checks if the hitbox "dies"
-	//		hitboxListToRemove_.push_back(*it);
-	//	}
-	//	else {	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
-	//		for (b2Fixture* mainHB : mainHurtboxes) {
-	//			if (mainHB->GetBody() != (*it)->GetBody() && checkOverlap((*it), mainHB)) {
-	//				//gets the OnHitComponent if the mainObject has it, if it doesnt, it does nothing
-	//				OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
-	//				if (objOnHit != nullptr) {
-	//					objOnHit->onHit(*it);
-	//					hitboxListToRemove_.push_back(*it);
-	//				}
-	//			}
-	//		}			
-	//	}
-	//}
-	//
-	////destroy the hitbox and pop it from the hitbox list
-	//for (b2Fixture* h : hitboxListToRemove_) {
-	//	std::cout << "Borro " << static_cast<HitboxData*>(h->GetUserData())->damage_ << std::endl;
-	//	delete static_cast<HitboxData*>(h->GetUserData());
-	//	h->GetBody()->DestroyFixture(h);
-	//	hitboxList_.remove(h);
-	//}
-	//hitboxListToRemove_.clear();
-
-	//to check if you are on the floor
-	for (b2Fixture* mainHB : mainHurtboxes) {
-		Entity* player = static_cast<Entity*>(mainHB->GetUserData());
-		
-		if (checkOverlap(mainHB, floorFixture_)) {
-			OnHit* objOnHit2 = static_cast<Entity*>(floorFixture_->GetUserData())->getComponent<OnHit>(ecs::OnHit);
-			if (objOnHit2 != nullptr) {
-				
-				objOnHit2->onHit(mainHB);
-			}
-		}		
-	}
 }
 
 //create a hitbox (fixture) in a specific body with the data that we want
@@ -97,32 +57,27 @@ void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack };//create the hitbox's data
 	//for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
 	hitboxGroups_[cBits >> 2].push_back(body->CreateFixture(&fixturedef));
-	//hitboxList_.push_back(body->CreateFixture(&fixturedef));//create fixture and saving it in the list
 	hitboxGroups_[cBits >> 2].back()->SetUserData(hitbox_);//saving hitbox's data
 }
 
-void HitboxMng::reset()
-{
-	mainHurtboxes.clear();	
-	hitboxList_.clear();
-	hitboxListToRemove_.clear();
-	floorFixture_ = nullptr;
-}
 
+//deleting all 
 void HitboxMng::clear() {
 	mainHurtboxes.clear();
-	hitboxList_.clear();
-	hitboxListToRemove_.clear();
+	hitboxRemove_pair_.clear();
 	for (int i = 0; i < 2; i++) {
-		resetGroup(i);
+		for (auto it = hitboxGroups_[i].begin(); it != hitboxGroups_[i].end(); ++it) {
+			delete static_cast<HitboxData*>((*it)->GetUserData());
+			(*it)->GetBody()->DestroyFixture(*it);
+		}
+		hitboxGroups_[i].clear();
 	}
+	
 }
 
 //hacer un refresh para destruir las hitboxes
 void HitboxMng::resetGroup(int group) {
 	for (auto it = hitboxGroups_[group].begin(); it != hitboxGroups_[group].end(); ++it) {
-		delete static_cast<HitboxData*>((*it)->GetUserData());
-		(*it)->GetBody()->DestroyFixture((*it));
-		hitboxGroups_[group].erase(it);
+		hitboxRemove_pair_.push_back(pair<list<b2Fixture*>::iterator, uint>(it, group));
 	}
 }

@@ -14,8 +14,8 @@ void Fight::init()
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
 	//---------------------------------------------------------------
-	//resJumpListener = new ResetJumpListener();
-	//world->SetContactListener(resJumpListener);
+	resJumpListener = new ResetJumpListener();
+	world->SetContactListener(resJumpListener);
 	
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, BOUNDARY, EVERYTHING, false);
@@ -59,8 +59,9 @@ Fight::~Fight()
 	/*for (auto vec : vecMov) {
 		delete vec;
 	}*/
+	app_->getHitboxMng()->clear();
+
 	delete world;
 	delete debugInstance;
-	//delete resJumpListener;
-	app_->getHitboxMng()->reset();
+	delete resJumpListener;
 }

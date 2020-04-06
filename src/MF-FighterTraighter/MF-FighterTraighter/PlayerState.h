@@ -134,6 +134,7 @@ public:
 			else goJumping();
 		}
 		if (playerStatus_ == HitAirborne) std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
+		if (playerStatus_ == AttackingAir) std::cout << "HOLA";
 	};
 
 private:

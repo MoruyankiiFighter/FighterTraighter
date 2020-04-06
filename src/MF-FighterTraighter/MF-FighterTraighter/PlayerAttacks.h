@@ -29,6 +29,7 @@ public:
 					entity_->getComponent<PlayerState>(ecs::PlayerState)->goJumping();
 				}
 			}
+			
 		}
 	};
 	//methods to change your habilities

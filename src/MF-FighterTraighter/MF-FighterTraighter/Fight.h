@@ -12,7 +12,7 @@
 #include "PauseMenu.h"
 #include "Crouch.h"
 #include "FactoryMk.h"
-//#include "ResetJumpListener.h"
+#include "ResetJumpListener.h"
 
 class Fight : public GameState
 {
@@ -34,5 +34,5 @@ private:
 	std::vector<Move*> vecMov;//until we have factories to create characters
 	b2World* world;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
-	//ResetJumpListener* resJumpListener = nullptr;
+	ResetJumpListener* resJumpListener = nullptr;
 };

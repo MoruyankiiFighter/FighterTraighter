@@ -14,7 +14,7 @@ public:
 			&& contact->GetFixtureB()->GetFilterData().categoryBits	== 1	//if it collides with boundary (floor)
 			&& currState->isAirborne() 
 			&& contact->GetFixtureA()->GetBody()->GetLinearVelocity().y >= 0) {
-				if (currState->isAttacking()) player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
+				player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 				currState->goLanding(25);
 		}
 
@@ -24,9 +24,11 @@ public:
 			&& contact->GetFixtureA()->GetFilterData().categoryBits	== 1	//if it collides with boundary (floor)
 			&& currState->isAirborne()
 			&& contact->GetFixtureB()->GetBody()->GetLinearVelocity().y >= 0) {
-				if (currState->isAttacking()) player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 				currState->goLanding(25);
+				player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
+
 		}
+
 	}
 };
 

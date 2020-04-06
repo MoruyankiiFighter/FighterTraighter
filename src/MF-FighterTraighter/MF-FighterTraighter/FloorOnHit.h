@@ -13,8 +13,14 @@ public:
 		PlayerState* currState = player->getComponent<PlayerState>(ecs::PlayerState);
 
 		if ( currState->isAirborne() && fixture->GetBody()->GetLinearVelocity().y >= 0) {
-			if (currState->isAttacking()) player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
+			if (currState->isAttacking()) {
+				player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
+			}
 			currState->goLanding(25);
+			player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		}
+		
+		
+
 	}
 };

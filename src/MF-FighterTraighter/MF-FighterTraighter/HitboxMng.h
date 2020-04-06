@@ -28,14 +28,11 @@ public:
 	bool checkOverlap(b2Fixture* a, b2Fixture* other) {
 		return b2TestOverlap(a->GetAABB(0), other->GetAABB(0));
 	}
-	void reset();
 	void resetGroup(int group);
 	void clear();
 private:
 	vector<b2Fixture*> mainHurtboxes;	//to get the main fixtures of the players and the punching bag to check overlaps
 	array<list<b2Fixture*>, 2> hitboxGroups_;	// hitboxes groups that players use (max 2 players)
-	list<b2Fixture*> hitboxList_;
-	list<b2Fixture*> hitboxListToRemove_;
 	list<pair<list<b2Fixture*>::iterator, uint>> hitboxRemove_pair_;
 	b2Fixture* floorFixture_ = nullptr;
 	App* app_;
