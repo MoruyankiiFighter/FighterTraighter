@@ -19,6 +19,9 @@ public:
 	//go to the state that was before
 	static void GoBackCallback(App* app);
 	
+	//go to movements/controls menu
+	static void GoMovementsCallback(App* app);
+
 	//change the brightness
 	static void SetBright(App* app, double value);
 	

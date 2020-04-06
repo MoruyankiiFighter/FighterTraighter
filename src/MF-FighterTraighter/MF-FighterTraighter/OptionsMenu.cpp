@@ -11,7 +11,7 @@
 #include "IndexSlider.h"
 #include "OptionsLogic.h"
 #include "NavigationController.h"
-
+#include "MovementsMenu.h"
 #include "App.h"
 #include "consts.h"
 #include <cmath>
@@ -44,6 +44,9 @@ void OptionsMenu::init()
 	tuple<Entity*, Entity*> back = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
 		Vector2D(20, 20), 60, 60, 0, GoBackCallback, nullptr, "<-", 60);
 
+	tuple<Entity*, Entity*> movements = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
+		Vector2D(400, 400), 100, 80, 0, GoMovementsCallback, nullptr, "Controls", 60);
+
 	tuple<Entity*, Entity*> fullscreen = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 200), 400, 50, 0, nullptr, fullScreen, "FULLSCREEN", 60);
 
@@ -72,6 +75,10 @@ void OptionsMenu::init()
 
 void OptionsMenu::GoBackCallback(App* app) {
 	app->getStateMachine()->popState();
+}
+
+void OptionsMenu::GoMovementsCallback(App* app) {
+	app->getStateMachine()->pushState(new MovementsMenu(app));
 }
 
 void OptionsMenu::SetBright(App* app, double value)
