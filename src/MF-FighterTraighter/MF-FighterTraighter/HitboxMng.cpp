@@ -109,7 +109,20 @@ void HitboxMng::reset()
 	floorFixture_ = nullptr;
 }
 
+void HitboxMng::clear() {
+	mainHurtboxes.clear();
+	hitboxList_.clear();
+	hitboxListToRemove_.clear();
+	for (int i = 0; i < 2; i++) {
+		resetGroup(i);
+	}
+}
+
 //hacer un refresh para destruir las hitboxes
-//void HitboxMng::resetGroup(int index) {
-//	for(hitboxGroups_[index]
-//}
+void HitboxMng::resetGroup(int group) {
+	for (auto it = hitboxGroups_[group].begin(); it != hitboxGroups_[group].end(); ++it) {
+		delete static_cast<HitboxData*>((*it)->GetUserData());
+		(*it)->GetBody()->DestroyFixture((*it));
+		hitboxGroups_[group].erase(it);
+	}
+}
