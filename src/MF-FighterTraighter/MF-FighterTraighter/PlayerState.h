@@ -100,6 +100,7 @@ public:
 	//HITSTUN
 	bool isHitstun() { return playerStatus_ == Hit || playerStatus_ == HitAirborne; }
 	void goHitsun(int frames) {
+		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
 		if (isGrounded()) {
 			playerStatus_ = Hit;
 		}
@@ -109,6 +110,7 @@ public:
 		holdingFrames_ = frames;
 	}
 	void goHitstunAirborne(int frames) {
+		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
 		playerStatus_ = HitAirborne;
 		holdingFrames_ = frames;
 	}
@@ -121,10 +123,16 @@ public:
 		}
 	}
 
+	//Holding frames
+	int getHoldingFrames() {
+		return holdingFrames_;
+	}
+
 	//Update
 	virtual void update() override {
 		if (holdingFrames_ > 0) {
 			holdingFrames_--;
+			cout << holdingFrames_ << endl;
 		}else if (holdingFrames_ == 0) {
 			holdingFrames_ = -1;
 			if (isGuardingTransition()) goGuarding();
