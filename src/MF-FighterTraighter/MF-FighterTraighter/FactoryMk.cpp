@@ -194,7 +194,7 @@ void FactoryMk::ANP2(Entity* ent)
 	int hitboxX = -42;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -20 }, width, 35, 35, 8, 30, { (double)orientation_ * 0.25, 3 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -20 }, width, 35, 35, 8, 30, { (double)orientation_ * 1.1, -0.25 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::AHP1(Entity* ent)
@@ -208,7 +208,7 @@ void FactoryMk::AHP1(Entity* ent)
 	int hitboxX = 25;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -25 }, width, 70, 25, 22, 65, { (double)orientation_ * 0.2, 100 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -25 }, width, 70, 25, 22, 65, { (double)orientation_ * 0.2, 1000000 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANK1(Entity* ent)
@@ -222,7 +222,7 @@ void FactoryMk::ANK1(Entity* ent)
 	int hitboxX = 15;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 0 }, width, 45, 17, 4, 15, { (double)orientation_ * 0.05, -0.05 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -10 }, width, 45, 17, 4, 15, { (double)orientation_ * 0.05, -0.05 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::ANK2(Entity* ent)
@@ -236,7 +236,7 @@ void FactoryMk::ANK2(Entity* ent)
 	int hitboxX = 17;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 2 }, width, 49, 17, 10, 28, { (double)orientation_ * 0.2, 0.2 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -12 }, width, 49, 17, 10, 28, { (double)orientation_ * 0.5, 1 }, body, filter.categoryBits, filter.maskBits);
 }
 
 void FactoryMk::AHK1(Entity* ent)
