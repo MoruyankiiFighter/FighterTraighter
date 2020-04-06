@@ -141,7 +141,7 @@ public:
 			else if (isHitstun()) releaseHitstun();
 			else goJumping();
 		}
-		//if (playerStatus_ == HitAirborne) std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
+		if (playerStatus_ == Jumping) std::cout << "AA";
 	};
 
 private:
