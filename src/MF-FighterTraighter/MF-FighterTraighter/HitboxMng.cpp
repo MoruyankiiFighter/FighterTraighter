@@ -39,7 +39,7 @@ void HitboxMng::update()
 		(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
 		hitboxGroups_[(*hb_it).second].erase((*hb_it).first);
 	}
-	hitboxListToRemove_.clear();
+	hitboxRemove_pair_.clear();
 
 	//for (auto it = hitboxList_.begin(); it != hitboxList_.end();++it) {
 	//	HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
@@ -95,15 +95,21 @@ void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.filter.categoryBits = cBits;
 	fixturedef.filter.maskBits = mBits;//colission mask
 	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack };//create the hitbox's data
-	hitboxList_.push_back(body->CreateFixture(&fixturedef));//create fixture and saving it in the list
-	hitboxList_.back()->SetUserData(hitbox_);//saving hitbox's data
+	//for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
+	hitboxGroups_[cBits >> 2].push_back(body->CreateFixture(&fixturedef));
+	//hitboxList_.push_back(body->CreateFixture(&fixturedef));//create fixture and saving it in the list
+	hitboxGroups_[cBits >> 2].back()->SetUserData(hitbox_);//saving hitbox's data
 }
 
 void HitboxMng::reset()
 {
-	mainHurtboxes.clear();	//to get the main fixtures of the players and the punching bag to check overlaps
+	mainHurtboxes.clear();	
 	hitboxList_.clear();
 	hitboxListToRemove_.clear();
 	floorFixture_ = nullptr;
 }
 
+//hacer un refresh para destruir las hitboxes
+//void HitboxMng::resetGroup(int index) {
+//	for(hitboxGroups_[index]
+//}

@@ -29,6 +29,7 @@ public:
 		return b2TestOverlap(a->GetAABB(0), other->GetAABB(0));
 	}
 	void reset();
+	void resetGroup();
 private:
 	vector<b2Fixture*> mainHurtboxes;	//to get the main fixtures of the players and the punching bag to check overlaps
 	array<std::list<b2Fixture*>, 2> hitboxGroups_;	// hitboxes groups that players use (max 2 players)
