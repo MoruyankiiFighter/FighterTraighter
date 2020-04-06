@@ -42,8 +42,9 @@ void Fight::handleInput()
 void Fight::update()
 {
 	GameState::update();
-	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 	world->Step(1.0 / 30, 8, 3);//update box2d
+
+	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 
 }
 

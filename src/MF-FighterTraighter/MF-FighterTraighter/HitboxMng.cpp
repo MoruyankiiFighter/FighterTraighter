@@ -53,7 +53,9 @@ void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.density = 0.00001f;			//densidad casi 0, para que no cambie segun el ancho y el alto por ahora
 	fixturedef.isSensor=true;
 	fixturedef.filter.categoryBits = cBits;
-	fixturedef.filter.maskBits = mBits;//colission mask
+	if (0x0002 == cBits >> 2) fixturedef.filter.maskBits = 0x0004;
+	else  fixturedef.filter.maskBits = 0x0002;
+	//fixturedef.filter.maskBits = mBits;//colission mask
 	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack };//create the hitbox's data
 	//for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
 	hitboxGroups_[cBits >> 2].push_back(body->CreateFixture(&fixturedef));

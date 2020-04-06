@@ -89,7 +89,7 @@ void FactoryMk::NP1(Entity* ent)//cBits and mBits are there to use the same coll
 	int hitboxX = 20;
 	if (orientation_ == -1) hitboxX += width;
 
-
+	
 
 	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 9, 42, { (double)orientation_ * 10, -50 }, body, filter.categoryBits, filter.maskBits);
 }
