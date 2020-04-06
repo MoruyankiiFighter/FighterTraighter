@@ -15,7 +15,7 @@ public:
 			&& currState->isAirborne() 
 			&& contact->GetFixtureA()->GetBody()->GetLinearVelocity().y >= 0) {
 				player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
-				currState->goLanding(25);
+				currState->goLanding(11 + (currState->getHoldingFrames()) * 0.8);
 		}
 
 		player = static_cast<Entity*>(contact->GetFixtureB()->GetUserData());
@@ -24,9 +24,8 @@ public:
 			&& contact->GetFixtureA()->GetFilterData().categoryBits	== 1	//if it collides with boundary (floor)
 			&& currState->isAirborne()
 			&& contact->GetFixtureB()->GetBody()->GetLinearVelocity().y >= 0) {
-				currState->goLanding(25);
-				player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
-
+			player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
+			currState->goLanding(11 + (currState->getHoldingFrames()) * 0.8);
 		}
 
 	}
