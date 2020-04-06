@@ -37,5 +37,9 @@ public:
 	
 	//changes the resolution
 	static void setResolution(App* app, double value);	
+	
+	//saves the settings, and applies the resolution
+	static void applySettings(App* app);
+protected:
+	static double curResolution_;
 };
-

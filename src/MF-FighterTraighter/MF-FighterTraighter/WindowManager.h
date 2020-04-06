@@ -40,6 +40,8 @@ public:
 
 	//returns the current brightness
 	inline float getCurBrightness() { return currentBrightness_; }
+
+	inline const std::vector<SDL_DisplayMode>& getSupportedResolutions() { return supportedResolutions_; }
 	
 protected:
 	App* app_;

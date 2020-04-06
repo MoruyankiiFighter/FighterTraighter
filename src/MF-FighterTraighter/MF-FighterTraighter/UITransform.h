@@ -33,5 +33,6 @@ public:
 protected:
 	WindowManager* windowMngr_ = nullptr;
 	Vector2D anchor_; // from where in the window the position is calculated
+	Vector2D windowSize_;
 };
 
