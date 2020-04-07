@@ -6,7 +6,7 @@ IndexSlider::~IndexSlider()
 void IndexSlider::init()
 {
 	transform_ = entity_->getComponent<Transform>(ecs::Transform);
-	slider_ = sliderEnt_->getComponent<Slider>(ecs::Slider);
+	slider_ = sliderEnt_->getComponent<Slider>(ecs::UIElement);
 	transform_slider = sliderEnt_->getComponent<Transform>(ecs::Transform);
 }
 

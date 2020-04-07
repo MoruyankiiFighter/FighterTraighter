@@ -15,7 +15,7 @@ void RenderImage::init()
 //render the image
 void RenderImage::render()
 {
-	Vector2D pos = transform_->getPosition();
+	Vector2D pos(transform_->getPosition());
 	SDL_Rect dest = SDL_Rect();
 	dest.x = pos.getX();
 	dest.y = pos.getY();
