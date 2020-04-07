@@ -20,6 +20,9 @@ public:
 	//go to the state that was before
 	static void GoBackCallback(App* app);
 	
+	//go to the controls menu
+	static void GoControlsCallback(App* app);
+
 	//change the brightness
 	static void SetBright(App* app, double value);
 	

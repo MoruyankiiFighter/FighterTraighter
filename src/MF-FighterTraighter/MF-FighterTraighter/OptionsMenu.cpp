@@ -11,7 +11,7 @@
 #include "IndexSlider.h"
 #include "OptionsLogic.h"
 #include "NavigationController.h"
-
+#include "ControlsMenu.h"
 #include "App.h"
 #include "consts.h"
 #include <cmath>
@@ -49,6 +49,9 @@ void OptionsMenu::init()
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 400, 50, 0, 
 		nullptr, fullScreen, "FULLSCREEN", 60);
 
+	tuple<Entity*, Entity*> controls = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
+		Vector2D(0, -300), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 400, 50, 0, GoControlsCallback, nullptr, "Controls", 60);
+
 	tuple<Entity*, Entity*, Entity*, Entity*> resolutionSlider = UIFactory::createSlider(app_, this, 0, 10, 10,
 		app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
 		Vector2D(0, 0),
@@ -73,12 +76,13 @@ void OptionsMenu::init()
 		std::get<3>(brightSlider)->getComponent<TextComponent>(ecs::TextComponent));
 
 	Entity* nav = entManager_.addEntity();
-	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 5);
+	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 6);
 	ctrl->SetElementInPos(std::get<0>(back)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-	ctrl->SetElementInPos(std::get<0>(fullscreen)->getComponent<UIElement>(ecs::UIElement), 0, 1);
-	ctrl->SetElementInPos(std::get<0>(resolutionSlider)->getComponent<UIElement>(ecs::UIElement), 0, 2);
-	ctrl->SetElementInPos(std::get<0>(brightSlider)->getComponent<UIElement>(ecs::UIElement), 0, 3);
-	ctrl->SetElementInPos(std::get<0>(applyButton)->getComponent<UIElement>(ecs::UIElement), 0, 4);
+	ctrl->SetElementInPos(std::get<0>(controls)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	ctrl->SetElementInPos(std::get<0>(fullscreen)->getComponent<UIElement>(ecs::UIElement), 0, 2);	
+	ctrl->SetElementInPos(std::get<0>(resolutionSlider)->getComponent<UIElement>(ecs::UIElement), 0, 3);
+	ctrl->SetElementInPos(std::get<0>(brightSlider)->getComponent<UIElement>(ecs::UIElement), 0, 4);
+	ctrl->SetElementInPos(std::get<0>(applyButton)->getComponent<UIElement>(ecs::UIElement), 0, 5);
 }
 
 void OptionsMenu::handleInput()
@@ -92,6 +96,9 @@ void OptionsMenu::handleInput()
 
 void OptionsMenu::GoBackCallback(App* app) {
 	app->getStateMachine()->popState();
+}
+void OptionsMenu::GoControlsCallback(App* app) {
+	app->getStateMachine()->pushState(new ControlsMenu(app));
 }
 
 void OptionsMenu::SetBright(App* app, double value)
