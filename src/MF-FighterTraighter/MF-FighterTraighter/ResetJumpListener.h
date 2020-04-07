@@ -27,7 +27,6 @@ public:
 			player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 			currState->goLanding(11 + (currState->getHoldingFrames()) * 0.8);
 		}
-
 	}
 };
 

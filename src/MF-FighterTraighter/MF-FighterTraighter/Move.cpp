@@ -4,7 +4,9 @@ bool Move::update()
 	
 	if (activeFrame_ == endingFrame_) {
 		
-		if (generateHitbox_ != nullptr && entity_ != nullptr) generateHitbox_(entity_);
+		if (generateHitbox_ != nullptr && entity_ != nullptr) {
+			generateHitbox_(entity_);
+		}
 		return true;
 	}
 	else {

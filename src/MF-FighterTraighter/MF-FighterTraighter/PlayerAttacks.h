@@ -16,15 +16,16 @@ public:
 		if (activeAttack_ != nullptr) { 
 			
 			if (activeAttack_->update()) {
-					activeAttack_ = nullptr;
-					if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isGrounded()) {
-						entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
-					}
-					else {
-						entity_->getComponent<PlayerState>(ecs::PlayerState)->goJumping();
-					}
+				activeAttack_->reset();
+				activeAttack_ = nullptr;
+				if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isGrounded()) {
+					entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
+				}
+				else {
+					entity_->getComponent<PlayerState>(ecs::PlayerState)->goJumping();
+				}
 			}
-			else if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isHitstun()) interruptAttack();
+			//else if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isHitstun()) interruptAttack(); <-- Esto es inútil (nunca va a estar atacando y ser hitstun)
 		}
 	};
 	//methods to change your habilities
