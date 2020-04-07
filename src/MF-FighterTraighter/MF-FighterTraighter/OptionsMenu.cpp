@@ -72,6 +72,14 @@ void OptionsMenu::init()
 	//ctrl->SetElementInPos(exit, 0, 3);
 }
 
+void OptionsMenu::handleInput()
+{
+	if (app_->getInputManager()->pressedStart()) {
+		app_->getStateMachine()->popState();
+	}
+	GameState::handleInput();
+}
+
 
 void OptionsMenu::GoBackCallback(App* app) {
 	app->getStateMachine()->popState();

@@ -39,8 +39,6 @@ void InputManager::update()
 			break;
 		case SDL_KEYDOWN:
 			keyboardEvent_ = true;
-			if (e.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-				app_->Exit();
 			break;
 		case SDL_KEYUP:
 			keyboardEvent_ = true;
