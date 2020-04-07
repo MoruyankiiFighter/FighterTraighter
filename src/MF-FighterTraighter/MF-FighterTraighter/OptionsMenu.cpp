@@ -45,7 +45,7 @@ void OptionsMenu::init()
 		Vector2D(20, 20), 60, 60, 0, GoBackCallback, nullptr, "<-", 60);
 
 	tuple<Entity*, Entity*> movements = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(400, 400), 100, 80, 0, GoMovementsCallback, nullptr, "Controls", 60);
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 4 + 500, 200), 400, 50, 0, GoMovementsCallback, nullptr, "Controls", 60);
 
 	tuple<Entity*, Entity*> fullscreen = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 200), 400, 50, 0, nullptr, fullScreen, "FULLSCREEN", 60);
