@@ -20,6 +20,7 @@ enum Status {
 	Stunned,
 	GuardingTransition,
 	Guarding,
+	GuardingStun,
 	GuardingLeaving,
 	Guardbreaking,
 	Dead,
@@ -76,7 +77,7 @@ public:
 	bool canGuard() {
 		return playerStatus_ == Idle || playerStatus_ == Moving || playerStatus_ == Crouching;
 	}
-	void goGuarding() {
+  	void goGuarding() {
 		playerStatus_ = Guarding;
 	}
 	void goGuardingTransition(int frames) {
@@ -87,6 +88,10 @@ public:
 		playerStatus_ = GuardingLeaving;
 		holdingFrames_ = frames;
 	}
+	void goGuardingStun(int frames) {
+		playerStatus_ = GuardingStun;
+		holdingFrames_ = frames;
+	}
 	bool isGuarding() {
 		return playerStatus_ == Guarding;
 	}
@@ -95,6 +100,12 @@ public:
 	}
 	bool isGuardingLeaving() {
 		return playerStatus_ == GuardingLeaving;
+	}
+	bool isGuardingStun() {
+		return playerStatus_ == GuardingStun;
+	}
+	bool isProtected() {
+		return playerStatus_ == Guarding || playerStatus_ == GuardingStun;
 	}
 
 	//HITSTUN
@@ -136,12 +147,14 @@ public:
 		}else if (holdingFrames_ == 0) {
 			holdingFrames_ = -1;
 			if (isGuardingTransition()) goGuarding();
+			else if (isGuardingStun()) goGuarding();
 			else if (isGrounded() || isGuardingLeaving()) goIdle();
 			else if (isJumpingTrans()) goJumping();
 			else if (isHitstun()) releaseHitstun();
 			else goJumping();
 		}
 		//if (playerStatus_ == Jumping) std::cout << "AA";
+		if (playerStatus_ == Guarding) std::cout << "GGG" << endl;
 	};
 
 private:
