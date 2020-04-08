@@ -29,6 +29,10 @@ void PhysicsTransform::init() {
 }
 
 void PhysicsTransform::setHeight(double height) {
+	height_ = height;
+}
+
+void PhysicsTransform::setColliderHeight(double height) {
 
 	body_->DestroyFixture(mainFixture_);
 
@@ -36,10 +40,13 @@ void PhysicsTransform::setHeight(double height) {
 	shape.SetAsBox(width_ / 2, height / 2);
 	resetMainFixture(shape);
 	mainFixture_->SetUserData(this->entity_);
-	height_ = height;
 }
 
 void PhysicsTransform::setWidth(double width) {
+	width_ = width;
+}
+
+void PhysicsTransform::setColliderWidth(double width) {
 
 	body_->DestroyFixture(mainFixture_);
 
@@ -47,7 +54,6 @@ void PhysicsTransform::setWidth(double width) {
 	shape.SetAsBox(width / 2, height_ / 2);
 	resetMainFixture(shape);
 	mainFixture_->SetUserData(this->entity_);
-	width_ = width;
 }
 
 void PhysicsTransform::setWidthHeight(double width, double height) {

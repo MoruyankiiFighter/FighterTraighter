@@ -27,7 +27,7 @@ public:
 	//methods overrided from Gamestate
 	//init the components and create the entitys
 	void init() override;
-	//handle the input of gamestate and if p is pressed set the pause state
+	//handle the input of gamestate and if ESC is pressed set the pause state
 	virtual void handleInput() override;
 	//update the hitbox manager
 	virtual void update() override;

@@ -33,7 +33,7 @@ void Fight::init()
 
 void Fight::handleInput()
 {
-	if (app_->getInputManager()->isKeyDown(SDLK_p)) {
+	if (app_->getInputManager()->pressedStart()) {
 		app_->getStateMachine()->pushState(new PauseMenu(app_));
 	}
 	GameState::handleInput();
