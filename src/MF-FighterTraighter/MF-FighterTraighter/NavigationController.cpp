@@ -40,6 +40,12 @@ void NavigationController::handleInput()
 void NavigationController::SetElementInPos(UIElement* ent, size_t x, size_t y)
 {
 	grid_.SetItemInPos(ent, x, y);
+	if (!selectedFirst_) {
+		cursorPositionX_ = x;
+		cursorPositionY_ = y;
+		ent->Select();
+		selectedFirst_ = true;
+	}
 }
 
 UIElement* NavigationController::GetElementInPos(size_t x, size_t y)
