@@ -101,6 +101,7 @@ void PlayerController::crouch()
 	entity_->getComponent<PlayerState>(ecs::PlayerState)->goCrouch();
 
 	transform_->setHeight(transform_->getHeight() / 2);
+	transform_->setColliderHeight(transform_->getHeight());
 	double height = transform_->getHeight();
 	double width = transform_->getWidth();
 
@@ -118,6 +119,7 @@ void PlayerController::uncrouch()
 
 	transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY());
 	transform_->setHeight(transform_->getHeight() * 2);
+	transform_->setColliderHeight(transform_->getHeight());
 
 	//animaciones por defecto
 }
