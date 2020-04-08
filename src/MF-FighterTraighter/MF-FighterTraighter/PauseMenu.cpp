@@ -58,7 +58,8 @@ void PauseMenu::handleInput()
 	if (app_->getInputManager()->pressedStart()) {
 		Resume(app_);
 	}
-	GameState::handleInput();
+	else 
+		GameState::handleInput();
 }
 
 void PauseMenu::Resume(App* app)

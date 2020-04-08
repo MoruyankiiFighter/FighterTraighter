@@ -76,7 +76,8 @@ void MainMenu::handleInput()
 	if (app_->getInputManager()->pressedStart()) {
 		app_->Exit();
 	}
-	GameState::handleInput();
+	else
+		GameState::handleInput();
 }
 
 void MainMenu::GoArcade(App* app)

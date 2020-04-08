@@ -36,7 +36,8 @@ void Fight::handleInput()
 	if (app_->getInputManager()->pressedStart()) {
 		app_->getStateMachine()->pushState(new PauseMenu(app_));
 	}
-	GameState::handleInput();
+	else
+		GameState::handleInput();
 }
 
 void Fight::update()
