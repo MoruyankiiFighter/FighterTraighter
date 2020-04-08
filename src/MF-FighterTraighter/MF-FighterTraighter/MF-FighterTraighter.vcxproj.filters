@@ -143,11 +143,20 @@
     <ClCompile Include="UIElement.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="SDLDebugDraw.cpp">
+      <Filter>Source Files\type</Filter>
+    </ClCompile>
     <ClCompile Include="NavigationController.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="UITransform.cpp">
       <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerOnHit.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedGrid.cpp">
+      <Filter>Source Files\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +325,18 @@
     </ClInclude>
     <ClInclude Include="UITransform.h">
       <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="NavigationController.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerOnHit.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedGrid.h">
+      <Filter>Header files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetJumpListener.h">
+      <Filter>Header files\listeners</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

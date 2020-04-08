@@ -5,8 +5,10 @@
 #include "PhysicsTransform.h"
 
 //constructor
-PlayerController::PlayerController(SDL_Scancode left, SDL_Scancode right) : Component(ecs::PlayerController),
-transform_(nullptr), left_(left), right_(right)
+PlayerController::PlayerController(SDL_Scancode left, SDL_Scancode right, SDL_Scancode block,
+	float jImpulse, SDL_Scancode jumpkey,
+	SDL_Scancode crouchk) : Component(ecs::PlayerController),
+transform_(nullptr), left_(left), right_(right), block_(block), jumpKey_(jumpkey), jumpImpulse(jImpulse), crouchKey_(crouchk)
 {
 }
 
@@ -33,22 +35,91 @@ void PlayerController::handleInput()
 	Vector2D speed;
 	speed = transform_->getSpeed();
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
-	if (currState->isAbletoMove()) {
-		if (app_->getInputManager()->isKeyDown(left_) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0) {
-			transform_->setSpeed(-10, speed.getY());
-			if (currState->isGrounded()) currState->goMoving();
-			else { currState->goJumping(); };
-		}
-		else if (app_->getInputManager()->isKeyDown(right_) || app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.09)
+	InputManager* input = app_->getInputManager();
+	if (input->isKeyDown(block_) && currState->canGuard())
+	{
+		if (currState->isCrouch()) uncrouch();
+		else if (currState->isMoving())transform_->setSpeed(0, speed.getY());
+		if (!currState->isGuarding()) currState->goGuardingTransition(6);
+	}
+	else if ((input->isKeyDown(jumpKey_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9)
+		&& currState->canJump()) 
+	{
+		//pTR_->setSpeed(0, 5);
+		//force and where you use the fore
+		transform_->getBody()->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), transform_->getBody()->GetWorldCenter(), true);
+		if (currState->isCrouch()) uncrouch();
+		currState->goJumpingTrans(7);
+		std::cout << "salto" << std::endl;
+	}
+	else if ((input->isKeyDown(crouchKey_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.1)
+		&& currState->canCrouch())
+	{
+		cout << "crouch" << endl;
+		if (currState->isMoving()) transform_->setSpeed(0, transform_->getSpeed().getY());
+		crouch();
+	}
+	else if (currState->isAbletoMove() && (input->isKeyDown(left_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0))
+	{
+		transform_->setSpeed(-10, speed.getY());
+		if (currState->isGrounded()) currState->goMoving();
+		else { currState->goJumping(); };
+	}
+	else if (currState->isAbletoMove() && (input->isKeyDown(right_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.09))
+	{
+		transform_->setSpeed(10, speed.getY());
+		if (currState->isGrounded()) currState->goMoving();
+		else { currState->goJumping(); };
+	}
+
+	//Si eésa tecla no está activa
+	if(input->isKeyUp(left_) && input->isKeyUp(right_) && input->isKeyUp(jumpKey_)){	
+		if (currState->isMoving() || currState->isJumping()) 
 		{
-			transform_->setSpeed(10, speed.getY());
-			if (currState->isGrounded()) currState->goMoving();
-			else { currState->goJumping(); };
-		}
-		else {
 			transform_->setSpeed(0, speed.getY());
 			if (currState->isGrounded()) currState->goIdle();
 			else { currState->goJumping(); };
+		}	
+	}
+	if (input->isKeyUp(block_)) {
+		if (currState->isGuarding())
+		{
+			currState->goGuardingLeaving(14);
 		}
 	}
+	if (input->isKeyUp(crouchKey_)) {
+		if (currState->isCrouch())
+		{
+			uncrouch();
+		}
+	}
+}
+
+//crouch
+void PlayerController::crouch()
+{
+	entity_->getComponent<PlayerState>(ecs::PlayerState)->goCrouch();
+
+	transform_->setHeight(transform_->getHeight() / 2);
+	transform_->setColliderHeight(transform_->getHeight());
+	double height = transform_->getHeight();
+	double width = transform_->getWidth();
+
+	transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY() + height);
+
+	//animaciones de agachar
+}
+
+//uncrouch
+void PlayerController::uncrouch()
+{
+	entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
+
+	double width = transform_->getWidth();
+
+	transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY());
+	transform_->setHeight(transform_->getHeight() * 2);
+	transform_->setColliderHeight(transform_->getHeight());
+
+	//animaciones por defecto
 }

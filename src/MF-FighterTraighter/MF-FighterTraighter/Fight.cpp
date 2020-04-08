@@ -8,12 +8,14 @@ Fight::Fight(App* app) : GameState(app)
 
 void Fight::init()
 {
-	world = new b2World(b2Vec2(0.0, 9.81));//inicializamos el mundo para las fisicas de b2D
+	world = new b2World(b2Vec2(0.0f, 25.0f));//inicializamos el mundo para las fisicas de b2D
 	//---------Debuggear hitbox-------------------------------------------
 	debugInstance = new SDLDebugDraw(app_->getRenderer());
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_aabbBit);
 	//---------------------------------------------------------------
+	resJumpListener = new ResetJumpListener();
+	world->SetContactListener(resJumpListener);
 	
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(400, 600), Vector2D(0,0), 800, 100, 0, world, BOUNDARY, EVERYTHING, false);
@@ -21,12 +23,12 @@ void Fight::init()
 	floor->addComponent<FloorOnHit>();
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 
-	//floor->addComponent<FloorOnHit>();
+	floor->addComponent<FloorOnHit>();
 
-	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X },
-		PLAYER_1, PLAYER_2 | BOUNDARY);
-	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M },
-		PLAYER_2, PLAYER_1 | BOUNDARY);
+	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
+		SDL_SCANCODE_SPACE }, PLAYER_1, PLAYER_2 | BOUNDARY);
+	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
+		SDL_SCANCODE_0 }, PLAYER_2, PLAYER_1 | BOUNDARY);
 }
 
 void Fight::handleInput()
@@ -40,8 +42,9 @@ void Fight::handleInput()
 void Fight::update()
 {
 	GameState::update();
-	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 	world->Step(1.0 / 30, 8, 3);//update box2d
+
+	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 
 }
 
@@ -59,6 +62,9 @@ Fight::~Fight()
 	/*for (auto vec : vecMov) {
 		delete vec;
 	}*/
+	app_->getHitboxMng()->clear();
+
 	delete world;
 	delete debugInstance;
+	delete resJumpListener;
 }
