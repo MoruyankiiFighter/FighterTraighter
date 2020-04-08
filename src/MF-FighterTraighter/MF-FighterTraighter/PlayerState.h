@@ -153,8 +153,8 @@ public:
 			else if (isHitstun()) releaseHitstun();
 			else goJumping();
 		}
-		//if (playerStatus_ == Jumping) std::cout << "AA";
-		if (playerStatus_ == Guarding) std::cout << "GGG" << endl;
+		if (playerStatus_ == Jumping) std::cout << "AA";
+		//if (playerStatus_ == Guarding) std::cout << "GGG" << endl;
 	};
 
 private:

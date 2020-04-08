@@ -32,8 +32,7 @@ void PlayerController::update()
 //handle input
 void PlayerController::handleInput()
 {
-	Vector2D speed;
-	speed = transform_->getSpeed();
+	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	InputManager* input = app_->getInputManager();
 	if (input->isKeyDown(block_) && currState->canGuard())
@@ -56,7 +55,7 @@ void PlayerController::handleInput()
 		&& currState->canCrouch())
 	{
 		cout << "crouch" << endl;
-		if (currState->isMoving()) transform_->setSpeed(0, transform_->getSpeed().getY());
+		if (currState->isMoving()) transform_->setSpeed(0, speed.getY());
 		crouch();
 	}
 	else if (currState->isAbletoMove() && (input->isKeyDown(left_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0))
