@@ -3,27 +3,19 @@
 #include "Vector2D.h"
 #include "AnimationChain.h"
 #include "Ability.h"
+#include "PhysicsTransform.h"
 //Podemos tener todos los datos en un .json o un .txt
 //Tener un método para parsear y rellenar el attackData
 
-struct AttackCallbackData {
-	Vector2D pos_,
-			 knockback;
-	int width_,
-		height,
-		lifeTime_,
-		damage_,
-		hitstunTime_;
-};
 class PlayerData : public Component {
 
 	//hacer luego getters y setters
 public:
-	PlayerData() : Component(ecs::PlayerData) {}
+	//PlayerData() : Component(ecs::PlayerData) {}
 	PlayerData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense);
 
 	virtual ~PlayerData() {}
-
+	
 protected:
 	//Control Keys
 	SDL_Scancode leftKey_, righKey_, jumpKey_, crouchKey_, guardKey_,
@@ -63,4 +55,8 @@ protected:
 	//Abilities
 	Ability* ability_1;
 	Ability* ability_2;
+
+	//To generate hitboxes easily
+	PhysicsTransform* pT;
+	b2Filter mask;
 };
