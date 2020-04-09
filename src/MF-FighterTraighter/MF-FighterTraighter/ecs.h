@@ -25,6 +25,7 @@ namespace ecs {
 		PlayerState,
 		OnHit,
 		UIElement,
+		UITimer,
 		/*
 		
 		*/
