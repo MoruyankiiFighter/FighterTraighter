@@ -32,13 +32,13 @@ void Training::init()
 	Entity* saco = entManager_.addEntity();
 	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(250, 500), Vector2D(10, 10), 35, 100, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
 	app_->getHitboxMng()->addMainHitbox(pBpT->getMainFixture());
-	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
+	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	saco->addComponent<PunchingBagOnHit>();
 	//saco->addComponent<SacoTimer>(5000);
 
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(100, 600), Vector2D(0, 0), 1000, 100, 0, world, BOUNDARY, EVERYTHING, false);
-	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));
+	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	floor->addComponent<FloorOnHit>();
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 
