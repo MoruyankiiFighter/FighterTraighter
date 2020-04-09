@@ -10,8 +10,17 @@
 class App;
 using uint = unsigned int;
 using namespace std;
+
 class HitboxMng 
 {
+	//	Collision filters for the b2d collision
+	enum CollisionFilters : uint16 {
+		BOUNDARY = 0x0001,
+		PLAYER_1 = 0x0002,
+		PLAYER_2 = 0x0004,
+		P_BAG = 0X008,
+		EVERYTHING = 0XFFFF
+	};
 public:
 	//constructor
 	HitboxMng(App* app) :app_(app) {}
@@ -36,8 +45,7 @@ private:
 	list<pair<list<b2Fixture*>::iterator, uint>> hitboxRemove_pair_;
 	b2Fixture* floorFixture_ = nullptr;
 	App* app_;
-	void remove();
-	bool toRemove=false;
-
+	
+	
 };
 
