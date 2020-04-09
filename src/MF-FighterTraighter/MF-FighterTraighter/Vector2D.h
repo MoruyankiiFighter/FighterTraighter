@@ -21,13 +21,13 @@ public:
 	};
 
 	inline Vector2D operator+(const Vector2D& v) const {
-		return Vector2D(this->_x + v._x, this->_x + v._y);
+		return Vector2D(this->_x + v._x, this->_y + v._y);
 	}
 	inline Vector2D operator-(const Vector2D& v) const {
-		return Vector2D(this->_x - v._x, this->_x - v._y);
+		return Vector2D(this->_x - v._x, this->_y - v._y);
 	}
 	inline Vector2D operator*(double d) const {
-		return Vector2D(this->_x * d, this->_x * d);
+		return Vector2D(this->_x * d, this->_y * d);
 	}
 	inline double operator*(const Vector2D& v) const {
 		return this->_x * v._x + this->_y * v._y;
