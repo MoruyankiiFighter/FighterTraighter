@@ -72,7 +72,7 @@ void PhysicsTransform::resetMainFixture(const b2PolygonShape& shape) {
 
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 0.00001f;
+	fixturedef.density = 0.0f;
 	fixturedef.filter.categoryBits = cBits_;
 	fixturedef.filter.maskBits = mBits_;
 

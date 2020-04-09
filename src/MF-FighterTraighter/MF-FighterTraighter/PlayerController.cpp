@@ -101,6 +101,7 @@ void PlayerController::crouch()
 
 	transform_->setHeight(transform_->getHeight() / 2);
 	transform_->setColliderHeight(transform_->getHeight());
+	transform_->setColliderWidth(transform_->getWidth() / 2);
 	double height = transform_->getHeight();
 	double width = transform_->getWidth();
 
@@ -119,6 +120,7 @@ void PlayerController::uncrouch()
 	transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY());
 	transform_->setHeight(transform_->getHeight() * 2);
 	transform_->setColliderHeight(transform_->getHeight());
+	transform_->setColliderWidth(transform_->getWidth() / 2);
 
 	//animaciones por defecto
 }
