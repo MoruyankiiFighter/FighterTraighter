@@ -28,25 +28,25 @@ void PauseMenu::init()
 	std::tuple<Entity*, Entity*> continue_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1),
 		app_->getAssetsManager()->getFont(0), Vector2D(100, -150),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(200, 50),
+		Vector2D(0, 50),
 		400, 100, 0, nullptr, Resume, "Continue", 100);
 
 	std::tuple<Entity*, Entity*> menu_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1),
 		app_->getAssetsManager()->getFont(0), Vector2D(100, -50),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(250, 50),
+		Vector2D(0, 50),
 		500, 100, 0, nullptr, GoMainMenu, "Go to menu", 100);
 
 	std::tuple<Entity*, Entity*> controls_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1),
 		app_->getAssetsManager()->getFont(0), Vector2D(100, 50),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(200, 50),
+		Vector2D(0, 50),
 		400, 100, 0, nullptr, ShowMeYourMoves, "Controls", 100);
 
 	std::tuple<Entity*, Entity*> options_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1),
 		app_->getAssetsManager()->getFont(0), Vector2D(100, 150),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(175, 50),
+		Vector2D(0, 50),
 		350, 100, 0, nullptr, GoOptions, "Options", 100);
 
 	Entity* navEnt = entManager_.addEntity();
