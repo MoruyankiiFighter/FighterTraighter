@@ -36,5 +36,8 @@ private:
 	list<pair<list<b2Fixture*>::iterator, uint>> hitboxRemove_pair_;
 	b2Fixture* floorFixture_ = nullptr;
 	App* app_;
+	void remove();
+	bool toRemove=false;
+
 };
 
