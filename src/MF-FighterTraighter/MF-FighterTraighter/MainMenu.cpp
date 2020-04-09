@@ -47,20 +47,24 @@ void MainMenu::init()
 
 
 	tuple < Entity*, Entity*> arcade = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(0, -200), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		WIDTH_BUTTON + 40, HEIGHT_BUTTON, 0, nullptr, GoArcade, "Arcade", 150);
+		Vector2D(0, -200), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
+		Vector2D(150, 75), 
+		300, 150, 0, nullptr, GoArcade, "Arcade", 150);
 
 	tuple < Entity*, Entity*> pvp = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
 		Vector2D(0, -50), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		WIDTH_BUTTON - 60, HEIGHT_BUTTON, 0, nullptr, Go1v1, "1vs1", 150);
+		Vector2D(150, 75),
+		300, 150, 0, nullptr, Go1v1, "1vs1", 150);
 
 	tuple < Entity*, Entity*> options = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
 		Vector2D(0, 100), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		WIDTH_BUTTON + 90, HEIGHT_BUTTON, 0, nullptr, GoOptions, "Options", 150);
+		Vector2D(150, 75),
+		300, 150, 0, nullptr, GoOptions, "Options", 150);
 
 	tuple < Entity*, Entity*> exit = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
 		Vector2D(0, 250), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		WIDTH_BUTTON - 40, HEIGHT_BUTTON, 0, nullptr, Leave, "Quit", 150);
+		Vector2D(150, 75),
+		300, 150, 0, nullptr, Leave, "Quit", 150);
 
 	Entity* navEnt = entManager_.addEntity();
 	NavigationController* nav = navEnt->addComponent<NavigationController>(1, 4);

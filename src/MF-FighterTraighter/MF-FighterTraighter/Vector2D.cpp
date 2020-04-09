@@ -10,7 +10,7 @@ Vector2D::Vector2D(const Vector2D& v) : _x(v._x), _y(v._y)
 }
 
 //operator +
-Vector2D& Vector2D::operator+(const Vector2D& v) const
+Vector2D Vector2D::operator+(const Vector2D& v) const
 {
 	Vector2D w;
 	w._x = this->_x + v._x;
@@ -18,7 +18,7 @@ Vector2D& Vector2D::operator+(const Vector2D& v) const
 	return w;
 }
 
-Vector2D& Vector2D::operator-(const Vector2D& v) const
+Vector2D Vector2D::operator-(const Vector2D& v) const
 {
 	Vector2D w;
 	w._x = this->_x - v._x;
@@ -27,9 +27,8 @@ Vector2D& Vector2D::operator-(const Vector2D& v) const
 }
 
 //operator product when is number x vector
-Vector2D& Vector2D::operator*(double d) const
+Vector2D Vector2D::operator*(double d) const
 {
-
 	Vector2D w;
 	w._x = this->_x * d;
 	w._y = this->_y * d;
