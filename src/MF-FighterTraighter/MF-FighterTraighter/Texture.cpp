@@ -32,6 +32,12 @@ void Texture::load(string filename, int cols, int rows) {
 	}
 }
 
+void Texture::setColor(SDL_Color col)
+{
+	SDL_SetTextureColorMod(texture, col.r, col.g, col.b);
+	SDL_SetTextureAlphaMod(texture, col.a);
+}
+
 // Render whole image, or first frame
 void Texture::render(const SDL_Rect& destRect, SDL_RendererFlip flip) const{
 	render(destRect, 0, 0, 0, flip);

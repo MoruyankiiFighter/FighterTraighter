@@ -30,6 +30,7 @@ public:
 	~Texture() { cleanTexture(); };
 
 	void load(string filename, int cols, int fils);
+	void setColor(SDL_Color col);
 	void cleanTexture();
 	void render(const SDL_Rect& rect, SDL_RendererFlip flip = SDL_FLIP_NONE) const; 
 	void render(Vector2D pos, int widthMul, int heightMult, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
