@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "Vector2D.h"
 #include "AnimationChain.h"
+#include "Ability.h"
 //Podemos tener todos los datos en un .json o un .txt
 //Tener un método para parsear y rellenar el attackData
 
@@ -16,10 +17,17 @@ struct AttackCallbackData {
 };
 class PlayerData : public Component {
 
+	//hacer luego getters y setters
 public:
+	PlayerData() : Component(ecs::PlayerData) {}
+	PlayerData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense);
+
+	virtual ~PlayerData() {}
+
+protected:
 	//Control Keys
 	SDL_Scancode leftKey_, righKey_, jumpKey_, crouchKey_, guardKey_,
-				 highFistKey_, lowFistKey_, highKickKey_, lowKickKey_, ability1Key_, ability2Key_;
+				 normalPunchKey_, hardPunchKey_, normalKickKey_, hardKickKey_, ability1Key_, ability2Key_;
 	//Player Features
 	double  width_,
 			height_,
@@ -34,8 +42,7 @@ public:
 
 	//Attacks
 	//Normal Punch 
-	int nMoves;
-	vector<AttackCallbackData> atck_Data;
+	AnimationChain* normal_punch_;
 	//Hard Punch
 	AnimationChain* hard_punch_;
 	//Normal Kick
@@ -52,5 +59,8 @@ public:
 	AnimationChain* air_hard_kick_;
 	//Guard Breaker
 	AnimationChain* guard_breaker;
-	//
+
+	//Abilities
+	Ability* ability_1;
+	Ability* ability_2;
 };

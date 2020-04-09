@@ -160,6 +160,7 @@
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="PhysicsTransform.cpp" />
     <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="PlayerOnHit.cpp" />
     <ClCompile Include="RenderAnimation.cpp" />
     <ClCompile Include="RenderImage.cpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="VerticalSlider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ability.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="EntityManager.h" />
@@ -216,6 +218,7 @@
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PhysicsTransform.h" />
     <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PlayerOnHit.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PunchingBagOnHit.h" />
