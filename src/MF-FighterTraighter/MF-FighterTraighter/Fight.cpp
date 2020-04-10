@@ -34,7 +34,7 @@ void Fight::init()
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 100), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
 	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 100);
-	timer->addComponent<UITimer>(UITimer::Clock, true, 3600000);
+	timer->addComponent<UITimer>(UITimer::Minutes);
 }
 
 void Fight::handleInput()
