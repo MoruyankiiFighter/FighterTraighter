@@ -52,7 +52,7 @@ void AssetsManager::loadFonts()
 
 void AssetsManager::loadMusic()
 {
-
+	music_.emplace_back(new Mix_Music("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
 }
 
 void AssetsManager::playMusic(const string& name, int channel)

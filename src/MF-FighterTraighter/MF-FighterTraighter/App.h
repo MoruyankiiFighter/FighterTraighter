@@ -7,6 +7,7 @@
 #include "AssetsManager.h"
 #include "HitboxMng.h"
 #include "WindowManager.h"
+#include "AudioManager.h"
 
 class App
 {
@@ -40,6 +41,8 @@ public:
 	//returns the window manager
 	inline WindowManager* getWindowManager() const { return windowManager_.get(); };
 
+	//returns the audio manager
+	inline AudioManager* getAudioManager() const { return audioManager_.get(); };
 	
 	//calls update of the current state
 	void update();	
@@ -75,7 +78,7 @@ private:
 	std::unique_ptr<AssetsManager> assetsManager_;//assets manager
 	std::unique_ptr<HitboxMng> hitboxManager_;//hitbox manager
 	std::unique_ptr<WindowManager> windowManager_;//window manager
-
+	std::unique_ptr<AudioManager> audioManager_;//audio manager
 	
 	/*static*/ bool exit;
 };
