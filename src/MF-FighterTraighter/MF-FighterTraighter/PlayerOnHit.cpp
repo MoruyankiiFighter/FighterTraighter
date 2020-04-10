@@ -19,7 +19,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
 			currState->goHitsun(hBox_data->hitstun_);
 		else
-			currState->goHitstunAirborne(hBox_data->hitstun_);
+			currState->goHitstunAirborne();
 		
 		pT->getBody()->ApplyLinearImpulse(b2Vec2(hBox_data->knockBack_.getX(), hBox_data->knockBack_.getY()), pT->getBody()->GetWorldCenter(), true);
 		cout << "Hago X:" << hBox_data->knockBack_.getX() << " Y: " << hBox_data->knockBack_.getY() << endl;
