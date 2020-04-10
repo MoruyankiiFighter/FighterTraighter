@@ -1,4 +1,5 @@
 #include "AudioManager.h"
+#include <SDL_mixer.h>
 
 AudioManager::AudioManager(): AudioManager(8){	}
 
@@ -47,23 +48,29 @@ bool AudioManager::loadMusic(int tag, const std::string& fileName)
 	return false;
 }
 
-void AudioManager::playMusic(int tag, int loops)
+void AudioManager::playMusic(Mix_Music* music, int loops)
 {
+	if (music != nullptr) {
+		Mix_PlayMusic(music, loops);
+	}
 }
 
 int AudioManager::setMusicVolume(int volume)
 {
-	return 0;
+	return Mix_VolumeMusic(volume);
 }
 
 void AudioManager::haltMusic()
 {
+	Mix_HaltMusic();
 }
 
 void AudioManager::pauseMusic()
 {
+	Mix_PauseMusic();
 }
 
 void AudioManager::resumeMusic()
 {
+	Mix_ResumeMusic();
 }

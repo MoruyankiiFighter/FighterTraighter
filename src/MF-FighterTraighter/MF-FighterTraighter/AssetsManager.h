@@ -4,6 +4,7 @@
 #include <vector>
 #include "Texture.h"
 #include "Font.h"
+#include <SDL_mixer.h>
 class App;
 
 class AssetsManager
@@ -33,7 +34,8 @@ public:
 	//return the audio with the position id
 	//Audio* getAudio(size_t id);
 	void loadMusic();
-
+	void loadSFX();
+	
 	void playMusic(const string& name, int channel);
 	void resumeAll();
 	void resumeMusic();
@@ -50,11 +52,10 @@ public:
 
 
 private:
-	std::vector<Texture*> textures_;
-	std::vector<Font*> fonts_;
-	//std::vector<Audio*> music_;
-	//std::vector<Audio*> sfx_;
-
+	std::vector<Texture*> textures_;	//images/Textures
+	std::vector<Font*> fonts_;			//fonts
+	std::vector <Mix_Chunk*> sfx_;		//sound effects
+	std::vector <Mix_Music*> music_;	//music
 	App* app_;
 };
 

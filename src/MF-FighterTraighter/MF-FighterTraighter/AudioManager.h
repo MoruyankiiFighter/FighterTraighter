@@ -2,6 +2,7 @@
 #include <iostream>
 #include <assert.h>
 #include <string>
+#include <vector>
 
 class AudioManager
 {
@@ -23,13 +24,13 @@ public:
 
 	// music
 	virtual bool loadMusic(int tag, const std::string& fileName);
-	virtual void playMusic(int tag, int loops = -1);
+	virtual void playMusic(Mix_Music* music, int loops=-1);
 	virtual int setMusicVolume(int volume);
 	virtual void haltMusic();
 	virtual void pauseMusic();
 	virtual void resumeMusic();
 private:
+	bool initialized_ = false;
 	int channels_=-1;
-
 };
 
