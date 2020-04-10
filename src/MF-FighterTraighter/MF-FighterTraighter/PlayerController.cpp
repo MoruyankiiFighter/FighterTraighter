@@ -60,13 +60,15 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && (input->isKeyDown(left_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0))
 	{
-		transform_->setSpeed(-10, speed.getY());
+		speed = { -45, speed.getY() };
+		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}
 	else if (currState->isAbletoMove() && (input->isKeyDown(right_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.09))
 	{
-		transform_->setSpeed(10, speed.getY());
+		speed = { 45, speed.getY() };
+		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}

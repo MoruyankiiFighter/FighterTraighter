@@ -16,7 +16,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 	if (!currState->isProtected()) {
 		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		helth->LoseLife(hBox_data->damage_);
-		if (hBox_data->knockBack_.getY() > 0)	//vertical knockback, goes to airborne hitstun
+		if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
 			currState->goHitsun(hBox_data->hitstun_);
 		else
 			currState->goHitstunAirborne(hBox_data->hitstun_);
