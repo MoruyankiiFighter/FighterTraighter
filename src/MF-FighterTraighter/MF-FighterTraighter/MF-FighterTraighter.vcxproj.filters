@@ -143,6 +143,9 @@
     <ClCompile Include="NavigationController.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Source Files\Manager and factorys</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -304,6 +307,9 @@
     <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="NavigationController.h">
       <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Header files\Managers and factorys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
