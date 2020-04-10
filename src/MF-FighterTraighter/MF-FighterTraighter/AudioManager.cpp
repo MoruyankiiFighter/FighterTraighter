@@ -1,18 +1,25 @@
 #include "AudioManager.h"
 #include <SDL_mixer.h>
+#include <SDL.h>
 
-AudioManager::AudioManager(): AudioManager(8){	}
+AudioManager::AudioManager(){
 
-AudioManager::AudioManager(int channels)
-{
+	if (SDL_Init(SDL_INIT_AUDIO) == 0)
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) != 0)
+			std::cout << "Audio Manager not loaded" << Mix_GetError() << std::endl;
 }
+
 
 AudioManager::~AudioManager()
 {
+
+
+	Mix_CloseAudio();
 }
 
-bool AudioManager::loadSound(int tag, const std::string& fileName)
+Mix_Chunk* AudioManager::loadSound(const std::string& fileName)
 {
+
 	return false;
 }
 
@@ -43,15 +50,19 @@ int AudioManager::channels()
 	return 0;
 }
 
-bool AudioManager::loadMusic(int tag, const std::string& fileName)
+Mix_Music* AudioManager::loadMusic(const std::string & fileName)
 {
-	return false;
+	Mix_Music* m = Mix_LoadMUS(fileName.c_str());
+	return m;
 }
 
-void AudioManager::playMusic(Mix_Music* music, int loops)
+void AudioManager::playMusic(Mix_Music* music, bool loops)
 {
 	if (music != nullptr) {
-		Mix_PlayMusic(music, loops);
+		Mix_PlayMusic(music,loops ?- 1:0); //si loop= true se loopea(-1), en caso contrario 1 vez
+	}
+	else {
+		//lanzar excepciones
 	}
 }
 

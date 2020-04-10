@@ -52,11 +52,15 @@ void AssetsManager::loadFonts()
 
 void AssetsManager::loadMusic()
 {
-	music_.emplace_back(new Mix_Music("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
+	music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
+	
+	//music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/nombre de la cancion. formato"));
+
 }
 
-void AssetsManager::playMusic(const string& name, int channel)
+void AssetsManager::playMusic(int index)
 {
+	app_->getAudioManager()->playMusic(music_[index], true);
 }
 
 void AssetsManager::resumeAll()

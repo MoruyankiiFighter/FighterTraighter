@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <string>
 #include <vector>
-
+#include <SDL_mixer.h>
 class AudioManager
 {
 public:
@@ -14,7 +14,8 @@ public:
 
 	virtual bool init() = 0;
 
-    virtual bool loadSound(int tag, const std::string& fileName);
+
+	Mix_Chunk* loadSound(const std::string& fileName);
 	virtual int playChannel(int tag, int loops, int channel = -1);
 	virtual void pauseChannel(int channel = -1);
 	virtual void resumeChannel(int channel = -1);
@@ -22,9 +23,10 @@ public:
 	virtual int setChannelVolume(int volume, int channel = -1);
 	virtual int channels();
 
+
 	// music
-	virtual bool loadMusic(int tag, const std::string& fileName);
-	virtual void playMusic(Mix_Music* music, int loops=-1);
+	Mix_Music* loadMusic(const std::string& fileName);
+	void playMusic(Mix_Music* music, bool loops);
 	virtual int setMusicVolume(int volume);
 	virtual void haltMusic();
 	virtual void pauseMusic();

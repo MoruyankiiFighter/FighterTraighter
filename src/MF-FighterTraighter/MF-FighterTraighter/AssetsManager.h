@@ -36,7 +36,7 @@ public:
 	void loadMusic();
 	void loadSFX();
 	
-	void playMusic(const string& name, int channel);
+	void playMusic(int index);
 	void resumeAll();
 	void resumeMusic();
 	void pauseMusic();
