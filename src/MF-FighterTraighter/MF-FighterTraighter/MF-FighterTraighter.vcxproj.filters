@@ -152,10 +152,11 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="LinkedGrid.cpp">
-      <Filter>Source Files\type</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkedGrid.cpp">
       <Filter>Source Files\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedGrid.cpp" />
+    <ClCompile Include="AbilityFactory.cpp">
+      <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -338,6 +339,9 @@
     </ClInclude>
     <ClInclude Include="LinkedGrid.h">
       <Filter>Header files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="AbilityFactory.h">
+      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
