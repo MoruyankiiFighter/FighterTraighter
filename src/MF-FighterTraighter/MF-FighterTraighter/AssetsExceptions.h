@@ -26,7 +26,7 @@ namespace AssetsExceptions
 	//sound exception class
 	class SoundException : public std::runtime_error
 	{
-		SoundException(const std::string& what, const std::string& soundfile) : runtime_error("sound error: " + what + soundfile) {}
+		SoundException(const std::string& what, const std::string& soundfile) : runtime_error("Sound error: " + what + soundfile) {}
 		SoundException(const char* what, const char* soundFile) : runtime_error("Sound error: " + std::string(what) + std::string(soundFile)) {}
 		SoundException(const SoundException&) = delete;
 		SoundException operator=(const SoundException&) = delete;
@@ -36,7 +36,7 @@ namespace AssetsExceptions
 	//sound effects exception class
 	class SoundEffectsException : public std::runtime_error
 	{
-		SoundEffectsException(const std::string& what, const std::string& soundfile) : runtime_error("sfx error: " + what + soundfile) {}
+		SoundEffectsException(const std::string& what, const std::string& soundfile) : runtime_error("SFX error: " + what + soundfile) {}
 		SoundEffectsException(const char* what, const char* soundFile) : runtime_error("SFX error: " + std::string(what) + std::string(soundFile)) {}
 		SoundEffectsException(const SoundEffectsException&) = delete;
 		SoundEffectsException operator=(const SoundEffectsException&) = delete;
