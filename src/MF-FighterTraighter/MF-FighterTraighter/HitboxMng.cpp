@@ -52,7 +52,7 @@ void HitboxMng::update()
 }
 
 //create a hitbox (fixture) in a specific body with the data that we want
-void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int damage, int hitstun, Vector2D knockBack, b2Body* body, uint16 cBits, uint16 mBits)
+void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int damage, int hitstun, Vector2D knockBack, b2Body* body, uint16 cBits, uint16 mBits, bool guardBreaker)
 {
 	b2PolygonShape shape;
 	shape.SetAsBox(width / 2, height / 2, { float32(pos.getX() + width / 2),float32(pos.getY() + height / 2) }, 0);
@@ -63,7 +63,7 @@ void HitboxMng::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.filter.categoryBits = cBits;
 	if (PLAYER_1 == cBits >> 2) fixturedef.filter.maskBits = PLAYER_2;
 	else  fixturedef.filter.maskBits = PLAYER_1;
-	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack };//create the hitbox's data
+	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack,guardBreaker };//create the hitbox's data
 	//for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
 	hitboxGroups_[cBits >> 2].push_back(body->CreateFixture(&fixturedef));
 	hitboxGroups_[cBits >> 2].back()->SetUserData(hitbox_);//saving hitbox's data

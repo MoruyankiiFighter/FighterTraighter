@@ -70,8 +70,12 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 	AnimationChain* testAHK = new AnimationChain(vecMov);
 	vecMov.clear();
 
+	vecMov.push_back(new Move(32, nullptr, GB, e));
+	vecMov.push_back(new Move(65, nullptr, nullptr, e));
+	AnimationChain* testGB = new AnimationChain(vecMov);
+	vecMov.clear();
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
-	e->addComponent<PlayerAttacks>(testNP, testANP, keys[4], testHP, testAHP, keys[5], testNK, testANK, keys[6], testHK, testAHK, keys[7]);
+	e->addComponent<PlayerAttacks>(testNP, testANP, keys[4], testHP, testAHP, keys[5], testNK, testANK, keys[6], testHK, testAHK, keys[7],testGB, keys[9]);
 
 	return e;
 }
@@ -256,4 +260,15 @@ void FactoryMk::AHK1(Entity* ent)
 
 void FactoryMk::GB(Entity* ent)
 {
+	std::cout << "BreakerGuard" << endl;
+	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
+	b2Filter filter = body->GetFixtureList()->GetFilterData();
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+
+	int width = 250;
+	int hitboxX = 50;
+	if (orientation_ == -1) hitboxX += width;
+
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -75 }, width, 200, 50, 0, 2000, { (double)orientation_ * 4000, 0 }, body, filter.categoryBits, filter.maskBits,true);
+
 }

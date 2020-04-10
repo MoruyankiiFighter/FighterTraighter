@@ -3,7 +3,7 @@
 
 PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, SDL_Scancode key1, AnimationChain* lowFist, AnimationChain* airLowFist,
 	SDL_Scancode key2, AnimationChain* highKick, AnimationChain* airHighKick, SDL_Scancode key3, AnimationChain* lowKick, AnimationChain* airLowKick,
-	SDL_Scancode key4/*, Hability* hability1, SDL_Scancode key5, Hability* hability2, SDL_Scancode key6*/) : Component(ecs::PlayerAttacks)
+	SDL_Scancode key4, AnimationChain* testGB, SDL_Scancode key5/*, Hability* hability1, SDL_Scancode key5, Hability* hability2, SDL_Scancode key6*/) : Component(ecs::PlayerAttacks)
 {
 	attacksList.push_back(highFist);
 	attacksList.push_back(lowFist);
@@ -13,10 +13,13 @@ PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFi
 	attacksList.push_back(airLowFist);
 	attacksList.push_back(airHighKick);
 	attacksList.push_back(airLowKick);
-	highFistKey = key1;
-	lowFistKey = key2;
-	highKickKey = key3;
-	lowKickKey = key4;
+	attacksList.push_back(testGB);
+
+	highFistKey_ = key1;
+	lowFistKey_ = key2;
+	highKickKey_ = key3;
+	lowKickKey_ = key4;
+	guardBreaker_ = key5;
 	/*hability1Key = key5;
 	hability2Key = key6;*/
 
@@ -45,48 +48,54 @@ void PlayerAttacks::handleInput() {
 	PlayerController* ctrl = entity_->getComponent<PlayerController>(ecs::PlayerController);
 	if (currState->isAbleToAttack()) {
 		if (currState->isGrounded()) {
-			if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
+			if (app_->getInputManager()->isKeyDown(highFistKey_) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
 				activeAttack_ = attacksList[0];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
+			else if (app_->getInputManager()->isKeyDown(lowFistKey_)) {
 				activeAttack_ = attacksList[1];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(highKickKey)) {
+			else if (app_->getInputManager()->isKeyDown(highKickKey_)) {
 				activeAttack_ = attacksList[2];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
+			else if (app_->getInputManager()->isKeyDown(lowKickKey_)) {
 				activeAttack_ = attacksList[3];
+				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
+				else if (currState->isCrouch()) ctrl->uncrouch();
+				currState->goAttack();
+			}
+			else if (app_->getInputManager()->isKeyDown(guardBreaker_)) {
+				activeAttack_ = attacksList[8];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
 		}
 		else {
-			if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
+			if (app_->getInputManager()->isKeyDown(highFistKey_) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
 				activeAttack_ = attacksList[4];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
+			else if (app_->getInputManager()->isKeyDown(lowFistKey_)) {
 				activeAttack_ = attacksList[5];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(highKickKey)) {
+			else if (app_->getInputManager()->isKeyDown(highKickKey_)) {
 				activeAttack_ = attacksList[6];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
+			else if (app_->getInputManager()->isKeyDown(lowKickKey_)) {
 				activeAttack_ = attacksList[7];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
