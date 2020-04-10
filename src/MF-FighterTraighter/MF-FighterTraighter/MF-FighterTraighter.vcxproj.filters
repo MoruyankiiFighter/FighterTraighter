@@ -20,7 +20,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AssetsManager.cpp">
-      <Filter>Source Files\Manager and factorys</Filter>
+      <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Entitys</Filter>
@@ -32,7 +32,7 @@
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
     <ClCompile Include="FactoryMk.cpp">
-      <Filter>Source Files\Manager and factorys</Filter>
+      <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
     <ClCompile Include="Health.cpp">
       <Filter>Source Files\Component</Filter>
@@ -74,22 +74,22 @@
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\Manager and factorys</Filter>
+      <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
     <ClCompile Include="Training.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
     <ClCompile Include="HitboxMng.cpp">
-      <Filter>Source Files\Manager and factorys</Filter>
+      <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
     <ClCompile Include="UIFactory.cpp">
-      <Filter>Source Files\Manager and factorys</Filter>
+      <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
     <ClCompile Include="RenderImage.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="EntityManager.cpp">
-      <Filter>Source Files\Manager and factorys</Filter>
+      <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp">
       <Filter>Source Files\GameState</Filter>
@@ -101,34 +101,34 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="AnimationChain.cpp">
-      <Filter>Source Files\type</Filter>
+      <Filter>Source Files\Types</Filter>
     </ClCompile>
     <ClCompile Include="Font.cpp">
-      <Filter>Source Files\type</Filter>
+      <Filter>Source Files\Types</Filter>
     </ClCompile>
     <ClCompile Include="Move.cpp">
-      <Filter>Source Files\type</Filter>
+      <Filter>Source Files\Types</Filter>
     </ClCompile>
     <ClCompile Include="MoveParser.cpp">
-      <Filter>Source Files\type</Filter>
+      <Filter>Source Files\Types</Filter>
     </ClCompile>
     <ClCompile Include="SacoTimer.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="Text.cpp">
-      <Filter>Source Files\type</Filter>
+      <Filter>Source Files\Types</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\type</Filter>
+      <Filter>Source Files\Types</Filter>
     </ClCompile>
     <ClCompile Include="Vector2D.cpp">
-      <Filter>Source Files\type</Filter>
+      <Filter>Source Files\Types</Filter>
     </ClCompile>
     <ClCompile Include="WindowManager.cpp">
-      <Filter>Source Files\Manager and factorys</Filter>
+      <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
     <ClCompile Include="GameStateMachine.cpp">
-      <Filter>Source Files\Manager and factorys</Filter>
+      <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
     <ClCompile Include="PlayerAttacks.cpp">
       <Filter>Source Files\Component</Filter>
@@ -136,10 +136,6 @@
     <ClCompile Include="Health.cpp">
       <Filter>Archivos de origen\Components</Filter>
     </ClCompile>
-    <ClCompile Include="FloorOnHit.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkedGrid.cpp" />
     <ClCompile Include="UIElement.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -158,6 +154,9 @@
     <ClCompile Include="LinkedGrid.cpp">
       <Filter>Source Files\type</Filter>
     </ClCompile>
+    <ClCompile Include="LinkedGrid.cpp">
+      <Filter>Source Files\Types</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -170,7 +169,7 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="AssetsManager.h">
-      <Filter>Header files\Managers and factorys</Filter>
+      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="AssetsExceptions.h">
       <Filter>Header files\Exceptions</Filter>
@@ -188,10 +187,10 @@
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Header files\Entitys</Filter>
+      <Filter>Header files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="FactoryMk.h">
-      <Filter>Header files\Managers and factorys</Filter>
+      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="CharacterSelection.h">
       <Filter>Header files\GameState</Filter>
@@ -200,7 +199,7 @@
       <Filter>Header files\GameState</Filter>
     </ClInclude>
     <ClInclude Include="HitboxMng.h">
-      <Filter>Header files\Managers and factorys</Filter>
+      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="OptionsLogic.h">
       <Filter>Header files\Components</Filter>
@@ -209,10 +208,10 @@
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="GameStateMachine.h">
-      <Filter>Header files\Managers and factorys</Filter>
+      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
-      <Filter>Header files\Managers and factorys</Filter>
+      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="OptionsMenu.h">
       <Filter>Header files\GameState</Filter>
@@ -248,13 +247,13 @@
       <Filter>Header files\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="Text.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="Jump.h">
       <Filter>Header files\Components</Filter>
@@ -263,10 +262,10 @@
       <Filter>Header files\GameState</Filter>
     </ClInclude>
     <ClInclude Include="UIFactory.h">
-      <Filter>Header files\Managers and factorys</Filter>
+      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="WindowManager.h">
-      <Filter>Header files\Managers and factorys</Filter>
+      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="SkillSelection.h">
       <Filter>Header files\GameState</Filter>
@@ -278,28 +277,28 @@
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="SacoTimer.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="SDLDebugDraw.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="PlayerAttacks.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="MoveParser.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="Move.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="AnimationChain.h">
-      <Filter>Header files\items</Filter>
+      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="EntityManager.h">
-      <Filter>Header files\Managers and factorys</Filter>
+      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="PlayerController.h">
       <Filter>Header files\Components</Filter>
@@ -313,10 +312,6 @@
     <ClInclude Include="FloorOnHit.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="HitboxData.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="UIElement.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
@@ -336,7 +331,13 @@
       <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="ResetJumpListener.h">
-      <Filter>Header files\listeners</Filter>
+      <Filter>Header files\Listeners</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxData.h">
+      <Filter>Header files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedGrid.h">
+      <Filter>Header files\Types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -352,26 +353,11 @@
     <Filter Include="Header files\Components">
       <UniqueIdentifier>{a7c099b8-457b-4813-9ddb-02fdcb35ce41}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header files\Entitys">
-      <UniqueIdentifier>{d89f4c83-4f66-4aee-8646-fb36c35d4673}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header files\Exceptions">
       <UniqueIdentifier>{7f74ece4-a03f-467c-8f8f-f555dcfb0e00}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header files\GameState">
       <UniqueIdentifier>{9f6b30f0-fd8c-41b3-8f56-06d41e32abb0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header files\listeners">
-      <UniqueIdentifier>{18d04ed8-c573-40a6-a897-ab56628383d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header files\items">
-      <UniqueIdentifier>{579bef71-c772-4b10-a52a-a5d13521f943}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Manager and factorys">
-      <UniqueIdentifier>{93ba5123-48ec-49d2-ae69-9ddb772cc77b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header files\Managers and factorys">
-      <UniqueIdentifier>{5e0e2b7a-0be3-4397-b253-d5783acd59a8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Entitys">
       <UniqueIdentifier>{3456c557-1dda-469e-9cc1-327593c35442}</UniqueIdentifier>
@@ -379,7 +365,22 @@
     <Filter Include="Source Files\GameState">
       <UniqueIdentifier>{1f78502d-43de-41cd-b393-e300d52effed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\type">
+    <Filter Include="Header files\Entities">
+      <UniqueIdentifier>{d89f4c83-4f66-4aee-8646-fb36c35d4673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Types">
+      <UniqueIdentifier>{579bef71-c772-4b10-a52a-a5d13521f943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Listeners">
+      <UniqueIdentifier>{18d04ed8-c573-40a6-a897-ab56628383d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Managers and factories">
+      <UniqueIdentifier>{5e0e2b7a-0be3-4397-b253-d5783acd59a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Manager and factories">
+      <UniqueIdentifier>{93ba5123-48ec-49d2-ae69-9ddb772cc77b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Types">
       <UniqueIdentifier>{41e6a81d-749c-4cd6-946f-63ac0b631e5a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
