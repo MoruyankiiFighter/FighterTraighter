@@ -16,24 +16,23 @@ void TextComponent::init()
 void TextComponent::render()
 {
 	SDL_Rect dest;
+	int destWidth = textString_.length() * transform_->getWMult() * textSize_ * font_->getWidthRatio();
 	switch (alignment_)
 	{
 	case TextComponent::Left:
 		dest.x = transform_->getPosition().getX();
 		break;
 	case TextComponent::Center:
-		dest.x = transform_->getPosition().getX() -
-			(textString_.length() * font_->getSymbolWidth() * transform_->getWMult() - transform_->getWidth() * transform_->getWMult()) / 2;
+		dest.x = transform_->getPosition().getX() + (transform_->getWidth() * transform_->getWMult() - destWidth) / 2;
 		break;
 	case TextComponent::Right:
-		dest.x = transform_->getPosition().getX() +
-			textString_.length() * font_->getSymbolWidth() * transform_->getWMult();
+		dest.x = transform_->getPosition().getX() + (transform_->getWidth() * transform_->getWMult() - destWidth);
 		break;
 	default:
 		break;
 	}
 	dest.y = transform_->getPosition().getY();
-	dest.w = textString_.length() * font_->getSymbolWidth() * transform_->getWMult();
+	dest.w = destWidth;
 	dest.h = textSize_ * transform_->getHMult();
 	text_->render(dest);
 }

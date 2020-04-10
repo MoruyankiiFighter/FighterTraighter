@@ -48,23 +48,23 @@ void MainMenu::init()
 
 	tuple < Entity*, Entity*> arcade = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, -200), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
-		Vector2D(150, 75), 
-		300, 150, 0, nullptr, GoArcade, "Arcade", 150);
+		Vector2D(250, 75),
+		500, 150, 0, nullptr, GoArcade, "Arcade", 150, TextComponent::TextAlignment::Center);
 
 	tuple < Entity*, Entity*> pvp = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, -50), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(150, 75),
-		300, 150, 0, nullptr, Go1v1, "1vs1", 150);
+		Vector2D(250, 75),
+		500, 150, 0, nullptr, Go1v1, "1vs1", 150, TextComponent::TextAlignment::Center);
 
 	tuple < Entity*, Entity*> options = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 100), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(150, 75),
-		300, 150, 0, nullptr, GoOptions, "Options", 150);
+		Vector2D(250, 75),
+		500, 150, 0, nullptr, GoOptions, "Options", 150, TextComponent::TextAlignment::Center);
 
 	tuple < Entity*, Entity*> exit = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 250), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(150, 75),
-		300, 150, 0, nullptr, Leave, "Quit", 150);
+		Vector2D(250, 75),
+		500, 150, 0, nullptr, Leave, "Quit", 150, TextComponent::TextAlignment::Center);
 
 	Entity* navEnt = entManager_.addEntity();
 	NavigationController* nav = navEnt->addComponent<NavigationController>(1, 4);
