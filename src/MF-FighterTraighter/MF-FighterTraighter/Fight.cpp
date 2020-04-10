@@ -38,13 +38,19 @@ void Fight::init()
 	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
 	timer->addComponent<UITimer>(UITimer::Minutes);
 
+	Entity* healthbarBack1 = entManager_.addEntity();
+	healthbarBack1->addComponent<UITransform>(Vector2D(470, 50), Vector2D(0, 0), Vector2D(345, 25), Vector2D(690, 50));
+	healthbarBack1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::HealthbarBack));
 	Entity* healthbar1 = entManager_.addEntity();
-	healthbar1->addComponent<UITransform>(Vector2D(475, 75), Vector2D(0, 0), Vector2D(400, 50), Vector2D(800, 100));
+	healthbar1->addComponent<UITransform>(Vector2D(470, 50), Vector2D(0, 0), Vector2D(345, 25), Vector2D(690, 50));
 	healthbar1->addComponent<UIHealthbar>(player1->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar), true);
 
+	Entity* healthbarBack2 = entManager_.addEntity();
+	healthbarBack2->addComponent<UITransform>(Vector2D(-470, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(345, 25), Vector2D(690, 50));
+	healthbarBack2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::HealthbarBack));
 	Entity* healthbar2 = entManager_.addEntity();
-	healthbar1->addComponent<UITransform>(Vector2D(-475, 75), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(400, 50), Vector2D(800, 100));
-	healthbar1->addComponent<UIHealthbar>(player2->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar));
+	healthbar2->addComponent<UITransform>(Vector2D(-470, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(345, 25), Vector2D(690, 50));
+	healthbar2->addComponent<UIHealthbar>(player2->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar));
 }
 
 void Fight::handleInput()
