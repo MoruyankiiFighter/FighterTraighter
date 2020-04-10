@@ -2,6 +2,8 @@
 #include "FloorOnHit.h"
 #include "UITimer.h"
 #include "UITransform.h"
+#include "Health.h"
+#include "UIHealthbar.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -26,15 +28,23 @@ void Fight::init()
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 	floor->addComponent<FloorOnHit>();
 
-	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
+	Entity* player1 = FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
 		SDL_SCANCODE_SPACE }, PLAYER_1, PLAYER_2 | BOUNDARY);
-	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
+	Entity* player2 = FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
 		SDL_SCANCODE_0 }, PLAYER_2, PLAYER_1 | BOUNDARY);
 
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 75), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
 	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
 	timer->addComponent<UITimer>(UITimer::Minutes);
+
+	Entity* healthbar1 = entManager_.addEntity();
+	healthbar1->addComponent<UITransform>(Vector2D(475, 75), Vector2D(0, 0), Vector2D(400, 50), Vector2D(800, 100));
+	healthbar1->addComponent<UIHealthbar>(player1->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar), true);
+
+	Entity* healthbar2 = entManager_.addEntity();
+	healthbar1->addComponent<UITransform>(Vector2D(-475, 75), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(400, 50), Vector2D(800, 100));
+	healthbar1->addComponent<UIHealthbar>(player2->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar));
 }
 
 void Fight::handleInput()

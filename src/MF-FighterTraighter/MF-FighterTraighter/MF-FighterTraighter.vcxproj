@@ -165,6 +165,7 @@
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="LinkedGrid.cpp" />
     <ClCompile Include="UIElement.cpp" />
+    <ClCompile Include="UIHealthbar.cpp" />
     <ClCompile Include="UITimer.cpp" />
     <ClCompile Include="UITransform.cpp" />
     <ClCompile Include="WindowManager.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="UIElement.h" />
+    <ClInclude Include="UIHealthbar.h" />
     <ClInclude Include="UITimer.h" />
     <ClInclude Include="UITransform.h" />
     <ClInclude Include="ResetJumpListener.h" />

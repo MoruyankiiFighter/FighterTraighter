@@ -19,6 +19,7 @@ public:
 	
 	//return the current health(health_)
 	int getLife();
+	inline int getMaxHealth() { return maxHealth_; }
 
 private:
 	int health_; //current health

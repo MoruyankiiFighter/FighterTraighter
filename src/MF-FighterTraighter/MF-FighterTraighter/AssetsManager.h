@@ -17,7 +17,8 @@ public:
 		Slidebar,
 		SliderRegulator,
 		PlayerActing,
-		Background
+		Background,
+		Healthbar
 	};
 
 	enum FontNames {

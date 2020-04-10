@@ -54,5 +54,11 @@ void Texture::render(const SDL_Rect& destRect, int row, int col, int angle, SDL_
 	SDL_Rect srcRect;
 	srcRect.x = fWidth * col; srcRect.y = fHeight * row;
 	srcRect.w = fWidth; srcRect.h = fHeight;
+	render(srcRect, destRect, angle, flip);
+}
+
+// Render whatever rectangle of the texture
+void Texture::render(const SDL_Rect& srcRect, const SDL_Rect& destRect, int angle, SDL_RendererFlip flip) const
+{
 	SDL_RenderCopyEx(renderer, texture, &srcRect, &destRect, angle, 0, flip);
 }

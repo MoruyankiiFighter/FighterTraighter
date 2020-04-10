@@ -26,6 +26,7 @@ namespace ecs {
 		OnHit,
 		UIElement,
 		UITimer,
+		UIHealthbar,
 		/*
 		
 		*/
