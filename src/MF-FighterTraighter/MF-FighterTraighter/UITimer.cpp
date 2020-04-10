@@ -4,7 +4,7 @@
 void UITimer::init()
 {
 	text_ = entity_->getComponent<TextComponent>(ecs::TextComponent);
-	timerStart_ = SDL_GetTicks();
+	resetTimer();
 }
 
 void UITimer::update()
@@ -46,6 +46,7 @@ void UITimer::resumeTimer()
 
 void UITimer::setText()
 {
+	string text;
 	switch (format_)
 	{
 	case UITimer::Miliseconds:
@@ -55,10 +56,24 @@ void UITimer::setText()
 		text_->setText(to_string((timerNow_ - timerStart_) / 1000));
 		break;
 	case UITimer::Minutes:
-		text_->setText(to_string((timerNow_ - timerStart_) / 60000) + ":" + to_string(((timerNow_ - timerStart_) / 1000) % 60));
+		text = to_string((timerNow_ - timerStart_) / 60000) + ":";
+		if ((((timerNow_ - timerStart_) / 1000) % 60) < 10) {
+			text += "0";
+		}
+		text += to_string(((timerNow_ - timerStart_) / 1000) % 60);
+		text_->setText(text);
 		break;
 	case UITimer::Clock:
-		text_->setText(to_string((timerNow_ - timerStart_) / 3600000) + ":" + to_string(((timerNow_ - timerStart_) / 60000) % 60) + ":" + to_string(((timerNow_ - timerStart_) / 1000) % 60));
+		text = to_string((timerNow_ - timerStart_) / 3600000) + ":";
+		if ((((timerNow_ - timerStart_) / 60000) % 60) < 10) {
+			text += "0";
+		}
+		text += to_string(((timerNow_ - timerStart_) / 60000) % 60) + ":";
+		if ((((timerNow_ - timerStart_) / 1000) % 60) < 10) {
+			text += "0";
+		}
+		text += to_string(((timerNow_ - timerStart_) / 1000) % 60);
+		text_->setText(text);
 		break;
 	default:
 		break;

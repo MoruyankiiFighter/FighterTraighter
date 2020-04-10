@@ -5,11 +5,12 @@
 class UITimer :
 	public Component
 {
+public:
 	enum Format {
-		Miliseconds, // 0000 (miliseconds)
-		Seconds, // 00 (seconds)
-		Minutes, // 00:00
-		Clock // 00:00:00
+		Miliseconds, // miliseconds
+		Seconds, // seconds
+		Minutes, // minutes:seconds
+		Clock // hours:minutes:seconds
 	};
 public:
 	// Note: this timer is frame independent

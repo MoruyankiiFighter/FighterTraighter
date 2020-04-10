@@ -155,7 +155,9 @@
     <ClCompile Include="LinkedGrid.cpp">
       <Filter>Source Files\type</Filter>
     </ClCompile>
-    <ClCompile Include="UITimer.cpp" />
+    <ClCompile Include="UITimer.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -336,7 +338,9 @@
     <ClInclude Include="ResetJumpListener.h">
       <Filter>Header files\listeners</Filter>
     </ClInclude>
-    <ClInclude Include="UITimer.h" />
+    <ClInclude Include="UITimer.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
