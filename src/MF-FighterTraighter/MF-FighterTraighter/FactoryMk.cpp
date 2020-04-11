@@ -269,6 +269,6 @@ void FactoryMk::GB(Entity* ent)
 	int hitboxX = 50;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -75 }, width, 200, 50, 0, 2000, { (double)orientation_ * 4000, 0 }, body, filter.categoryBits, filter.maskBits,true);
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -75 }, width, 200, 50, 0, 2000, { (double)orientation_ * 200, -50 }, body, filter.categoryBits, filter.maskBits,true);
 
 }
