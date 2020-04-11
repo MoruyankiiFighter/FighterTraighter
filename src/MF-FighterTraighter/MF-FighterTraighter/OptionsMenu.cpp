@@ -50,6 +50,10 @@ void OptionsMenu::init()
 	tuple<Entity*, Entity*, Entity*, Entity*> brightSlider = UIFactory::createSlider(app_, this, 0.4, 1, 6,
 		app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 500), 500, 10, SetBright, "BRIGHTNESS", 60, "", 60);
+	
+	tuple<Entity*, Entity*, Entity*, Entity*> musicSlider = UIFactory::createSlider(app_, this, 0, 1, 10,
+		app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 700), 500, 10, SetVolume, "AUDIO", 60, "", 60);
 
 	tuple<Entity*, Entity*, Entity*, Entity*> resolutionSlider = UIFactory::createSlider(app_, this, 0, 10, 10,
 		app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
@@ -62,7 +66,7 @@ void OptionsMenu::init()
 		std::get<3>(brightSlider)->getComponent<TextComponent>(ecs::TextComponent));
 
 	Entity* nav = entManager_.addEntity();
-	NavigationController* ctrl = nav->addComponent<NavigationController>(2, 1);
+	NavigationController* ctrl = nav->addComponent<NavigationController>(3, 1);
 	ctrl->SetElementInPos(std::get<0>(back), 0, 0);
 	ctrl->SetElementInPos(std::get<0>(fullscreen), 1, 0);
 	//ctrl->SetElementInPos(options, 0, 2);
@@ -111,7 +115,7 @@ void OptionsMenu::LessBright(App* app)
 
 void OptionsMenu::SetVolume(App* app, double value) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
 {
-	SDL_SetWindowBrightness(app->getWindowManager()->getWindow(), value);
+	app->getAudioManager()->setGeneralVolume(1, value);
 }
 
 //fullscreen
