@@ -95,6 +95,5 @@ void MainMenu::GoOptions(App* app)
 
 void MainMenu::Leave(App* app)
 {
-	app->getAudioManager()->stopMusic();
 	app->Exit();
 }

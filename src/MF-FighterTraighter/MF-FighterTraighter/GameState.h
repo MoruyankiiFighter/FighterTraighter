@@ -17,10 +17,15 @@ public:
 	virtual ~GameState();
 
 	//basic methods that other states will have with the basic functionality
+	
+	//method where we create the entitys and add functionality
 	virtual void init();
-	virtual void handleInput();
+	//updates the different components
 	virtual void update();
+	//render the component if it's needed
 	virtual void render();
+	//handle the input
+	virtual void handleInput();
 	
 	// deletes the entitys of the list
 	virtual void empty();

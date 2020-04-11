@@ -23,12 +23,18 @@ class Fight : public GameState
 		EVERYTHING = 0XFFFF
 	};
 public:
+	
+	//constructor
 	Fight(App* app);
+
+	//destructor
+	virtual ~Fight();
+	
+	//methods overrided from GameState
 	void init() override;
 	virtual void handleInput() override;
 	virtual void update() override;
 	virtual void render() override;
-	virtual ~Fight();
 private:
 	std::vector<Move*> vecMov;//until we have factories to create characters
 	b2World* world;
