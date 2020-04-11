@@ -9,8 +9,6 @@ namespace AssetsExceptions
 	public:
 		TextureException(const std::string& what, const std::string& textureFile) : runtime_error("Texture error: " + what + textureFile) {}
 		TextureException(const char* what, const char* textureFile) : runtime_error("Texture error: " + std::string(what) + textureFile) {}
-		TextureException(const TextureException&) = delete;
-		TextureException operator=(const TextureException&) = delete;
 	};
 	
 	//font excepcion class
@@ -19,8 +17,6 @@ namespace AssetsExceptions
 	public:
 		FontException(const std::string& what, const std::string& fontFile) : runtime_error("Font error: " + what + fontFile) {}
 		FontException(const char* what, const char* fontFile) : runtime_error("Font error: " + std::string(what) + std::string(fontFile)) {}
-		FontException(const FontException&) = delete;
-		FontException operator=(const FontException&) = delete;
 	};
 
 	//sound exception class
@@ -28,9 +24,6 @@ namespace AssetsExceptions
 	{
 		SoundException(const std::string& what, const std::string& soundfile) : runtime_error("Sound error: " + what + soundfile) {}
 		SoundException(const char* what, const char* soundFile) : runtime_error("Sound error: " + std::string(what) + std::string(soundFile)) {}
-		SoundException(const SoundException&) = delete;
-		SoundException operator=(const SoundException&) = delete;
-
 	};
 
 	//sound effects exception class
@@ -38,9 +31,6 @@ namespace AssetsExceptions
 	{
 		SoundEffectsException(const std::string& what, const std::string& soundfile) : runtime_error("SFX error: " + what + soundfile) {}
 		SoundEffectsException(const char* what, const char* soundFile) : runtime_error("SFX error: " + std::string(what) + std::string(soundFile)) {}
-		SoundEffectsException(const SoundEffectsException&) = delete;
-		SoundEffectsException operator=(const SoundEffectsException&) = delete;
-
 	};
 };
 

@@ -159,6 +159,7 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="UIHealthbar.cpp" />
+    <ClCompile Include="UIRoundRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -343,6 +344,7 @@
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="UIHealthbar.h" />
+    <ClInclude Include="UIRoundRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

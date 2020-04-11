@@ -27,6 +27,7 @@ namespace ecs {
 		UIElement,
 		UITimer,
 		UIHealthbar,
+		UIRoundRenderer,
 		/*
 		
 		*/

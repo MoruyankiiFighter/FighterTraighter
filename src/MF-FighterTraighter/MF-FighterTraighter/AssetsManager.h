@@ -19,7 +19,8 @@ public:
 		PlayerActing,
 		Background,
 		Healthbar,
-		HealthbarBack
+		HealthbarBack,
+		RoundCounter
 	};
 
 	enum FontNames {

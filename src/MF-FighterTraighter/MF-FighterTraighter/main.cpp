@@ -6,10 +6,7 @@ int main(int argi, char* argc[]) {
 	App app;
 	app.run();
 	}
-	catch (runtime_error e) {
-		std::cout << e.what() << std::endl;
-	}
-	catch (logic_error e) {
+	catch (exception e) {
 		std::cout << e.what() << std::endl;
 	}
 	catch(...){

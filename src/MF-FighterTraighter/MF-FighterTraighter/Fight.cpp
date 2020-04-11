@@ -4,6 +4,7 @@
 #include "UITransform.h"
 #include "Health.h"
 #include "UIHealthbar.h"
+#include "UIRoundRenderer.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -39,18 +40,36 @@ void Fight::init()
 	timer->addComponent<UITimer>(UITimer::Minutes);
 
 	Entity* healthbarBack1 = entManager_.addEntity();
-	healthbarBack1->addComponent<UITransform>(Vector2D(470, 50), Vector2D(0, 0), Vector2D(345, 25), Vector2D(690, 50));
+	healthbarBack1->addComponent<UITransform>(Vector2D(470, 50), Vector2D(0, 0), Vector2D(345, 20), Vector2D(690, 40));
 	healthbarBack1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::HealthbarBack));
 	Entity* healthbar1 = entManager_.addEntity();
-	healthbar1->addComponent<UITransform>(Vector2D(470, 50), Vector2D(0, 0), Vector2D(345, 25), Vector2D(690, 50));
+	healthbar1->addComponent<UITransform>(Vector2D(470, 50), Vector2D(0, 0), Vector2D(345, 20), Vector2D(690, 40));
 	healthbar1->addComponent<UIHealthbar>(player1->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar), true);
 
 	Entity* healthbarBack2 = entManager_.addEntity();
-	healthbarBack2->addComponent<UITransform>(Vector2D(-470, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(345, 25), Vector2D(690, 50));
+	healthbarBack2->addComponent<UITransform>(Vector2D(-470, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(345, 20), Vector2D(690, 40));
 	healthbarBack2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::HealthbarBack));
 	Entity* healthbar2 = entManager_.addEntity();
-	healthbar2->addComponent<UITransform>(Vector2D(-470, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(345, 25), Vector2D(690, 50));
+	healthbar2->addComponent<UITransform>(Vector2D(-470, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(345, 20), Vector2D(690, 40));
 	healthbar2->addComponent<UIHealthbar>(player2->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar));
+
+	std::vector<Entity*> leftCounter;
+	std::vector<Entity*> rightCounter;
+	// Make a factory or something
+	for (int i = 0; i < 3; ++i) {
+		Entity* roundCounter1 = entManager_.addEntity();
+		roundCounter1->addComponent<UITransform>(Vector2D(-173 - i * 40, 93), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(18, 18), Vector2D(36, 36));
+		roundCounter1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RoundCounter));
+		leftCounter.push_back(roundCounter1);
+		Entity* roundCounter2 = entManager_.addEntity();
+		roundCounter2->addComponent<UITransform>(Vector2D(173 + i * 40, 93), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(18, 18), Vector2D(36, 36));
+		roundCounter2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RoundCounter));
+		rightCounter.push_back(roundCounter2);
+	}
+	// Should be like a manager, or something
+	Entity* gameController = entManager_.addEntity();
+	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(3);
+	gameController->addComponent<UIRoundRenderer>(rightCounter);
 }
 
 void Fight::handleInput()

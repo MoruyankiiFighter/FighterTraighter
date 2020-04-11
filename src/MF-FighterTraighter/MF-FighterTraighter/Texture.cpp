@@ -15,7 +15,7 @@ void Texture::load(string filename, int cols, int rows) {
 	SDL_Surface* tempSurface;
 	tempSurface = IMG_Load(filename.c_str());
 	if (tempSurface == nullptr)
-		throw new AssetsExceptions::TextureException("Unable to load texture: ", filename);
+		throw AssetsExceptions::TextureException("Unable to load texture: ", filename);
 	else {
 		cleanTexture();
 		texture = SDL_CreateTextureFromSurface(renderer, tempSurface);

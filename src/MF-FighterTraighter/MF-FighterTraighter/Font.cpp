@@ -40,7 +40,7 @@ void Font::Loadfont(std::string path, int size, double widthRatio)
 {
 	if (font != nullptr) ClearFont();
 	font = TTF_OpenFont(path.c_str(), size);
-	if (font == nullptr) throw new AssetsExceptions::FontException("Unable to load font: ", path);
+	if (font == nullptr) throw AssetsExceptions::FontException("Unable to load font: ", path);
 	path_ = path;
 	fontSize_ = size;
 	widthRatio_ = widthRatio;
