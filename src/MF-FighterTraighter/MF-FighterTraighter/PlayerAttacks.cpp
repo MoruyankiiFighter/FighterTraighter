@@ -30,6 +30,12 @@ PlayerAttacks::~PlayerAttacks() {
 		attacksList[i] = nullptr;
 	}
 	attacksList.clear();
+
+	for (int i = 0; i < abilityList.size(); i++) {
+		delete abilityList[i];
+		abilityList[i] = nullptr;
+	}
+	abilityList.clear();
 	//delete activeAttack_;
 	/*cout << "destruyendo habilidades "<<endl;
 	for (int i = 0; i < habilityList.size(); i++) {
