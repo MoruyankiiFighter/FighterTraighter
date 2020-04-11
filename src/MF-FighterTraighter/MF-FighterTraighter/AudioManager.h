@@ -15,14 +15,9 @@ public:
 	virtual bool init() = 0;
 
 
-	Mix_Chunk* loadSound(const std::string& fileName);
-	virtual int playChannel(int tag, int loops, int channel = -1);
-	virtual void pauseChannel(int channel = -1);
-	virtual void resumeChannel(int channel = -1);
-	virtual void haltChannel(int channel = -1);
-	virtual int setChannelVolume(int volume, int channel = -1);
-	virtual int channels();
-
+	//SFX
+	Mix_Chunk* loadSFX(const std::string& fileName);
+	virtual int playSFX(Mix_Chunk* sound, int loops, int channel = -1);
 
 	// music
 	Mix_Music* loadMusic(const std::string& fileName);
@@ -39,7 +34,7 @@ public:
 	int getGeneralVolume() const;
 	int getMusicVolume() const;
 	int getChannelVolume(int channel) const;
-	void setGeneralVolume(float volume_ratio);
+	void setGeneralVolume(float MaxVolume, float volume_ratio);
 	void setChannelvolume(int channel, float volume_ratio);
 	void setMusicVolume(float volume_ratio);
 	void setSFXVolume(const std::string& name, float volume_ratio);

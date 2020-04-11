@@ -17,34 +17,12 @@ AudioManager::~AudioManager()
 	Mix_CloseAudio();
 }
 
-Mix_Chunk* AudioManager::loadSound(const std::string& fileName)
+Mix_Chunk* AudioManager::loadSFX(const std::string& fileName)
 {
 	return false;
 }
 
-int AudioManager::playChannel(int tag, int loops, int channel)
-{
-	return 0;
-}
-
-void AudioManager::pauseChannel(int channel)
-{
-}
-
-void AudioManager::resumeChannel(int channel)
-{
-}
-
-void AudioManager::haltChannel(int channel)
-{
-}
-
 int AudioManager::setChannelVolume(int volume, int channel)
-{
-	return 0;
-}
-
-int AudioManager::channels()
 {
 	return 0;
 }
@@ -87,39 +65,32 @@ void AudioManager::resumeMusic()
 
 void AudioManager::resumeAll()
 {
+	Mix_Resume(-1);
 }
 
 void AudioManager::stopMusic()
 {
+	Mix_HaltMusic();
+}
+
+void AudioManager::setGeneralVolume(float MaxVolume,float volume_ratio)
+{
+	Mix_Volume(-1, MaxVolume * volume_ratio);
 }
 
 int AudioManager::getGeneralVolume() const
 {
-	return 0;
+	return Mix_Volume(-1, 1);
 }
 
 int AudioManager::getMusicVolume() const
 {
-	return 0;
+	return Mix_VolumeMusic(-1);
 }
 
 int AudioManager::getChannelVolume(int channel) const
 {
-	return 0;
+	return Mix_Volume(channel, -1);
 }
 
-void AudioManager::setGeneralVolume(float volume_ratio)
-{
-}
 
-void AudioManager::setChannelvolume(int channel, float volume_ratio)
-{
-}
-
-void AudioManager::setMusicVolume(float volume_ratio)
-{
-}
-
-void AudioManager::setSFXVolume(const std::string& name, float volume_ratio)
-{
-}
