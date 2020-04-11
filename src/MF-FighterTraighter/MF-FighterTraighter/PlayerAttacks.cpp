@@ -3,7 +3,7 @@
 
 PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, SDL_Scancode key1, AnimationChain* lowFist, AnimationChain* airLowFist,
 	SDL_Scancode key2, AnimationChain* highKick, AnimationChain* airHighKick, SDL_Scancode key3, AnimationChain* lowKick, AnimationChain* airLowKick,
-	SDL_Scancode key4/*, Hability* hability1, SDL_Scancode key5, Hability* hability2, SDL_Scancode key6*/) : Component(ecs::PlayerAttacks)
+	SDL_Scancode key4, SDL_Scancode key5, SDL_Scancode key6) : Component(ecs::PlayerAttacks)
 {
 	attacksList.push_back(highFist);
 	attacksList.push_back(lowFist);
@@ -17,8 +17,8 @@ PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFi
 	lowFistKey = key2;
 	highKickKey = key3;
 	lowKickKey = key4;
-	/*hability1Key = key5;
-	hability2Key = key6;*/
+	abilityKey1 = key5;
+	abilityKey2 = key6;
 
 }
 
@@ -92,13 +92,27 @@ void PlayerAttacks::handleInput() {
 				currState->goAttack();
 			}
 		}
-		/*else if (app_->getInputManager()->isKeyDown(hability1Key)) {
-			habilityList[0]->makeAttack();
+		if (app_->getInputManager()->isKeyDown(abilityKey1)) {
+			if (abilityList[0] != nullptr) {
+				activeAttack_ = abilityList[0];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
 		}
-		else if (app_->getInputManager()->isKeyDown(hability2Key)) {
-			habilityList[1]->makeAttack();
-		}*/
+		else if (app_->getInputManager()->isKeyDown(abilityKey2)) {
+			if (abilityList[1] != nullptr) {
+				activeAttack_ = abilityList[1];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
+		}
 	}
+}
+
+void PlayerAttacks::setAbility(AnimationChain* newAbility, int index)
+{
+	if (abilityList[index] != nullptr)delete abilityList[index]; //¿Necesario? no sé
+	abilityList[index] = newAbility;
 }
 
 void PlayerAttacks::interruptAttack()
@@ -108,17 +122,3 @@ void PlayerAttacks::interruptAttack()
 	app_->getHitboxMng()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
 	
 }
-
-/*
-void Attacks::addFirstHability(Hability* hab) {
-	if(!habilityList.empty())
-		habilityList.pop_front();
-	habilityList.push_front(hab);
-}
-
-void Attacks::addFirstHability(Hability* hab) {
-	if (!habilityList.size==2)
-		habilityList.pop_back(hab);
-	habilityList.push_back(hab);
-}
-*/

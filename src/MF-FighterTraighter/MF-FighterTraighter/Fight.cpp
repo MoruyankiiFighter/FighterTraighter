@@ -1,5 +1,6 @@
 #include "Fight.h"
 #include "FloorOnHit.h"
+#include "AbilityFactory.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -24,10 +25,11 @@ void Fight::init()
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 	floor->addComponent<FloorOnHit>();
 
-	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
-		SDL_SCANCODE_SPACE }, PLAYER_1, PLAYER_2 | BOUNDARY);
+	Entity* e = FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
+		SDL_SCANCODE_SPACE, SDL_SCANCODE_1, SDL_SCANCODE_2 }, PLAYER_1, PLAYER_2 | BOUNDARY);
+	e->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(e), 0);
 	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
-		SDL_SCANCODE_0 }, PLAYER_2, PLAYER_1 | BOUNDARY);
+		SDL_SCANCODE_0, SDL_SCANCODE_8, SDL_SCANCODE_9 }, PLAYER_2, PLAYER_1 | BOUNDARY);
 }
 
 void Fight::handleInput()

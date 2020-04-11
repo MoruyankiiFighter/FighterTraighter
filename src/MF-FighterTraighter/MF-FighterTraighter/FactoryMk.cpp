@@ -71,7 +71,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 	vecMov.clear();
 
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
-	e->addComponent<PlayerAttacks>(testNP, testANP, keys[4], testHP, testAHP, keys[5], testNK, testANK, keys[6], testHK, testAHK, keys[7]);
+	e->addComponent<PlayerAttacks>(testNP, testANP, keys[4], testHP, testAHP, keys[5], testNK, testANK, keys[6], testHK, testAHK, keys[7], keys[9], keys[10]);
 
 	return e;
 }
