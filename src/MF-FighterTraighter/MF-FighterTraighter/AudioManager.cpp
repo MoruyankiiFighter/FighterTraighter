@@ -12,19 +12,18 @@ AudioManager::AudioManager(){
 
 AudioManager::~AudioManager()
 {
-
-
 	Mix_CloseAudio();
 }
 
 Mix_Chunk* AudioManager::loadSFX(const std::string& fileName)
 {
-	return false;
+	/*Mix_Chunk* sfx = Mix_LoadWAV(fileName.c_str());
+	return sfx;*/
+	return nullptr;
 }
 
-int AudioManager::setChannelVolume(int volume, int channel)
+void AudioManager::playSFX(Mix_Chunk* sound, int loops, int channel)
 {
-	return 0;
 }
 
 Mix_Music* AudioManager::loadMusic(const std::string & fileName)

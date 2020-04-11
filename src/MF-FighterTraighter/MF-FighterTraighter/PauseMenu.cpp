@@ -57,6 +57,7 @@ void PauseMenu::GoMainMenu(App* app)
 	while (dynamic_cast<MainMenu*>(app->getStateMachine()->getCurrentState()) == nullptr) {
 		app->getStateMachine()->popState();
 	}
+	app->getAudioManager()->playMusic(app->getAssetsManager()->getMusic(0), true);
 }
 
 void PauseMenu::ShowMeYourMoves(App* app)

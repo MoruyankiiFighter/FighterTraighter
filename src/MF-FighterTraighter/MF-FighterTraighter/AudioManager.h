@@ -17,7 +17,7 @@ public:
 
 	//SFX
 	Mix_Chunk* loadSFX(const std::string& fileName);
-	virtual int playSFX(Mix_Chunk* sound, int loops, int channel = -1);
+	virtual void playSFX(Mix_Chunk* sound, int loops, int channel = -1);
 
 	// music
 	Mix_Music* loadMusic(const std::string& fileName);

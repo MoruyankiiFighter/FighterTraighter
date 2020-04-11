@@ -80,6 +80,7 @@ void OptionsMenu::handleInput()
 
 void OptionsMenu::GoBackCallback(App* app) {
 	app->getStateMachine()->popState();
+	app->getAudioManager()->playMusic(app->getAssetsManager()->getMusic(0), true);
 }
 
 void OptionsMenu::SetBright(App* app, double value)
