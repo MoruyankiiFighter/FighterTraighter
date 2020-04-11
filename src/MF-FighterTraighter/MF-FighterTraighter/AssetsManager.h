@@ -29,26 +29,13 @@ public:
 	Font* getFont(size_t id);
 	void loadFonts(); // Fonts are hardcoded for now
 
-	//audio methods
-
-	//return the audio with the position id
-	//Audio* getAudio(size_t id);
+	//music methods
+	Mix_Music* getMusic(size_t id);
 	void loadMusic();
-	void loadSFX();
 	
-	void playMusic(int index);
-	void resumeAll();
-	void resumeMusic();
-	void pauseMusic();
-	void stopMusic();
-
-	int getGeneralVolume() const;
-	int getMusicVolume() const;
-	int getChannelVolume(int channel) const;
-	void setGeneralVolume(float volume_ratio);
-	void setChannelvolume(int channel, float volume_ratio);
-	void setMusicVolume(float volume_ratio);
-	void setSFXVolume(const string& name, float volume_ratio);
+	//sfx methods
+	Mix_Chunk* getSFX(size_t id);
+	void loadSFX();
 
 
 private:

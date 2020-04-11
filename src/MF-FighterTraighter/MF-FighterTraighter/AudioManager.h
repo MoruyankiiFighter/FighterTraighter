@@ -31,6 +31,19 @@ public:
 	virtual void haltMusic();
 	virtual void pauseMusic();
 	virtual void resumeMusic();
+	void resumeAll();
+	void stopMusic();
+
+
+	//for settings
+	int getGeneralVolume() const;
+	int getMusicVolume() const;
+	int getChannelVolume(int channel) const;
+	void setGeneralVolume(float volume_ratio);
+	void setChannelvolume(int channel, float volume_ratio);
+	void setMusicVolume(float volume_ratio);
+	void setSFXVolume(const std::string& name, float volume_ratio);
+
 private:
 	bool initialized_ = false;
 	int channels_=-1;

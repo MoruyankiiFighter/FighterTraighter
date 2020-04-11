@@ -19,7 +19,6 @@ AudioManager::~AudioManager()
 
 Mix_Chunk* AudioManager::loadSound(const std::string& fileName)
 {
-
 	return false;
 }
 
@@ -84,4 +83,43 @@ void AudioManager::pauseMusic()
 void AudioManager::resumeMusic()
 {
 	Mix_ResumeMusic();
+}
+
+void AudioManager::resumeAll()
+{
+}
+
+void AudioManager::stopMusic()
+{
+}
+
+int AudioManager::getGeneralVolume() const
+{
+	return 0;
+}
+
+int AudioManager::getMusicVolume() const
+{
+	return 0;
+}
+
+int AudioManager::getChannelVolume(int channel) const
+{
+	return 0;
+}
+
+void AudioManager::setGeneralVolume(float volume_ratio)
+{
+}
+
+void AudioManager::setChannelvolume(int channel, float volume_ratio)
+{
+}
+
+void AudioManager::setMusicVolume(float volume_ratio)
+{
+}
+
+void AudioManager::setSFXVolume(const std::string& name, float volume_ratio)
+{
 }
