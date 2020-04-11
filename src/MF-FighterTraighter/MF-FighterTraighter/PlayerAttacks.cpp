@@ -36,13 +36,6 @@ PlayerAttacks::~PlayerAttacks() {
 		abilityList[i] = nullptr;
 	}
 	abilityList.clear();
-	//delete activeAttack_;
-	/*cout << "destruyendo habilidades "<<endl;
-	for (int i = 0; i < habilityList.size(); i++) {
-		delete habilityList[i];
-		habilityList[i] = nullptr;
-	}
-	habilityList.clear();*/
 }
 
 void PlayerAttacks::handleInput() {

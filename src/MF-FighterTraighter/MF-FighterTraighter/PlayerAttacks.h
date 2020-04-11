@@ -32,11 +32,11 @@ public:
 	void setAbility(AnimationChain* newAbility, int index);
 	void interruptAttack();
 private:
-	std::vector<AnimationChain*> attacksList;//pointer to the attack that you can use
-	std::vector<AnimationChain*> abilityList = std::vector<AnimationChain*>(2);//pointer to the habilities 
+	std::vector<AnimationChain*> attacksList;	//pointer to the attack that you can use
+	std::vector<AnimationChain*> abilityList = std::vector<AnimationChain*>(2);	//pointer to the abilities 
 	AnimationChain* activeAttack_=nullptr;
 
-	//keys to use the attacks and habilities
+	//keys to use the attacks and abilities
 	SDL_Scancode highFistKey, lowFistKey, highKickKey, lowKickKey;
 	SDL_Scancode abilityKey1, abilityKey2;
 };
