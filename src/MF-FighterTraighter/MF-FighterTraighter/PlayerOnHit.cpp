@@ -4,6 +4,7 @@
 #include "PlayerState.h"
 #include "HitboxData.h"
 #include "PlayerAttacks.h"
+#include "PlayerController.h"
 
 void PlayerOnHit::onHit(b2Fixture* fixture)
 {
@@ -15,6 +16,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 	Health* helth = entity_->getComponent<Health>(ecs::Health);
 	if (!currState->isProtected()) {
 		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
+		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
 		helth->LoseLife(hBox_data->damage_);
 		if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
 			currState->goHitsun(hBox_data->hitstun_);

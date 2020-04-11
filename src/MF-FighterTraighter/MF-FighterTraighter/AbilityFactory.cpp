@@ -12,6 +12,7 @@ AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 	vecMov.push_back(new Move(35, nullptr, MG2, e));
 	vecMov.push_back(new Move(125, nullptr, nullptr, e));
 	AnimationChain* MegatonGrip = new AnimationChain(vecMov);
+	return MegatonGrip;
 }
 
 void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
