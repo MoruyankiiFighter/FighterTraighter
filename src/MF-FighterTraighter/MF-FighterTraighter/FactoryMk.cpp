@@ -9,10 +9,12 @@
 #include "PlayerState.h"
 #include "Health.h"
 #include "PlayerOnHit.h"
+#include "MkWH00PData.h"
 Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, uint16 cBits, uint16 mBits, bool dyn)
 {
 	Entity* e = state->getEntityManager().addEntity();
 	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 200, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn);
+	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth() );
 	pT->setOrientation(orientation);
 	app->getHitboxMng()->addMainHitbox(pT->getMainFixture());
 
