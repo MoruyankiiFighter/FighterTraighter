@@ -10,7 +10,7 @@ public:
 	
 	PlayerAttacks(AnimationChain* highFist , AnimationChain* airHighFist, SDL_Scancode key1, AnimationChain* lowFist, AnimationChain* airLowFist, 
 		SDL_Scancode key2, AnimationChain* highKick, AnimationChain* airHighKick, SDL_Scancode key3, AnimationChain* lowKick, AnimationChain* airLowKick, 
-		SDL_Scancode key4/*, Hability* hability1, SDL_Scancode key5, Hability* hability2, SDL_Scancode key6*/);
+		SDL_Scancode key4, AnimationChain* testGB,SDL_Scancode key5/*, Hability* hability1, SDL_Scancode key5, Hability* hability2, SDL_Scancode key6*/);
 	virtual ~PlayerAttacks();
 	virtual void update() override { 
 		if (activeAttack_ != nullptr) { 
@@ -40,6 +40,6 @@ private:
 	AnimationChain* activeAttack_=nullptr;
 
 	//keys to use the attacks and habilities
-	SDL_Scancode highFistKey, lowFistKey, highKickKey, lowKickKey;
+	SDL_Scancode highFistKey_, lowFistKey_, highKickKey_, lowKickKey_, guardBreaker_;
 };
 

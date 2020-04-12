@@ -19,15 +19,15 @@ void Fight::init()
 	
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0,0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, false);
-	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(0));	
+	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	floor->addComponent<FloorOnHit>();
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 	floor->addComponent<FloorOnHit>();
 
 	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
-		SDL_SCANCODE_SPACE }, PLAYER_1, PLAYER_2 | BOUNDARY);
+		SDL_SCANCODE_SPACE, SDL_SCANCODE_R }, PLAYER_1, PLAYER_2 | BOUNDARY);
 	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
-		SDL_SCANCODE_0 }, PLAYER_2, PLAYER_1 | BOUNDARY);
+		SDL_SCANCODE_0, SDL_SCANCODE_H }, PLAYER_2, PLAYER_1 | BOUNDARY);
 }
 
 void Fight::handleInput()
@@ -42,9 +42,10 @@ void Fight::handleInput()
 void Fight::update()
 {
 	GameState::update();
+	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
+
 	world->Step(1.0 / 30, 8, 3);//update box2d
 
-	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 
 }
 

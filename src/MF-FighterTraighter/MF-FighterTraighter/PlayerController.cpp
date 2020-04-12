@@ -60,13 +60,15 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && (input->isKeyDown(left_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0))
 	{
-		transform_->setSpeed(-10, speed.getY());
+		speed = { -45, speed.getY() };
+		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}
 	else if (currState->isAbletoMove() && (input->isKeyDown(right_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.09))
 	{
-		transform_->setSpeed(10, speed.getY());
+		speed = { 45, speed.getY() };
+		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}
@@ -101,6 +103,7 @@ void PlayerController::crouch()
 
 	transform_->setHeight(transform_->getHeight() / 2);
 	transform_->setColliderHeight(transform_->getHeight());
+	transform_->setColliderWidth(transform_->getWidth() / 2);
 	double height = transform_->getHeight();
 	double width = transform_->getWidth();
 
@@ -119,6 +122,7 @@ void PlayerController::uncrouch()
 	transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY());
 	transform_->setHeight(transform_->getHeight() * 2);
 	transform_->setColliderHeight(transform_->getHeight());
+	transform_->setColliderWidth(transform_->getWidth() / 2);
 
 	//animaciones por defecto
 }

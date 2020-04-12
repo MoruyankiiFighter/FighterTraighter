@@ -13,12 +13,13 @@
 Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, uint16 cBits, uint16 mBits, bool dyn)
 {
 	Entity* e = state->getEntityManager().addEntity();
-	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 200, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn);
+	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 50), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, dyn);
 	pT->setOrientation(orientation);
+	pT->setColliderWidth(pT->getWidth() / 2);
 	app->getHitboxMng()->addMainHitbox(pT->getMainFixture());
 
-	PlayerController* pC = e->addComponent<PlayerController>(keys[0], keys[1], keys[8], -1500, keys[2], keys[3]);
-	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(0));
+	PlayerController* pC =e->addComponent<PlayerController>(keys[0], keys[1], keys[8], -1500, keys[2], keys[3]);
+	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
 	//e->addComponent<Jump>(-1000, keys[2]);
 	//e->addComponent<Crouch>(keys[3]);
 	e->addComponent<PlayerState>();
@@ -26,8 +27,12 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 	e->addComponent<PlayerOnHit>();
 	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pT->getSpeed(), h->getHealth(), 50, 50);
 
+	vecMov.push_back(new Move(32, nullptr, GB, e));
+	vecMov.push_back(new Move(65, nullptr, nullptr, e));
+	AnimationChain* testGB = new AnimationChain(vecMov);
+	vecMov.clear();
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
-	e->addComponent<PlayerAttacks>(p_data_->getNormal_punch(), p_data_->air_normal_punch(), keys[4], p_data_->getHard_punch(), p_data_->air_hard_punch(), keys[5], p_data_->getNormal_kick(), p_data_->air_normal_kick(), keys[6], p_data_->getHard_kick(), p_data_->air_hard_kick(), keys[7]);
+	e->addComponent<PlayerAttacks>(p_data_->getNormal_punch(), p_data_->air_normal_punch(), keys[4], p_data_->getHard_punch(), p_data_->air_hard_punch(), keys[5], p_data_->getNormal_kick(), p_data_->air_normal_kick(), keys[6], p_data_->getHard_kick(), p_data_->air_hard_kick(), keys[7],testGB, keys[9]);
 
 	return e;
 }
