@@ -27,12 +27,9 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 	e->addComponent<PlayerOnHit>();
 	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pT->getSpeed(), h->getHealth(), 50, 50);
 
-	vecMov.push_back(new Move(32, nullptr, GB, e));
-	vecMov.push_back(new Move(65, nullptr, nullptr, e));
-	AnimationChain* testGB = new AnimationChain(vecMov);
-	vecMov.clear();
+	
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
-	e->addComponent<PlayerAttacks>(p_data_->getNormal_punch(), p_data_->air_normal_punch(), keys[4], p_data_->getHard_punch(), p_data_->air_hard_punch(), keys[5], p_data_->getNormal_kick(), p_data_->air_normal_kick(), keys[6], p_data_->getHard_kick(), p_data_->air_hard_kick(), keys[7],testGB, keys[9]);
+	e->addComponent<PlayerAttacks>(p_data_->getNormal_punch(), p_data_->air_normal_punch(), keys[4], p_data_->getHard_punch(), p_data_->air_hard_punch(), keys[5], p_data_->getNormal_kick(), p_data_->air_normal_kick(), keys[6], p_data_->getHard_kick(), p_data_->air_hard_kick(), keys[7],p_data_->guard_breaker(), keys[9]);
 
 	return e;
 }
