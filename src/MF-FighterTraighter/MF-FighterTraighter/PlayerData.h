@@ -21,15 +21,15 @@ protected:
 	SDL_Scancode leftKey_, righKey_, jumpKey_, crouchKey_, guardKey_,
 				 normalPunchKey_, hardPunchKey_, normalKickKey_, hardKickKey_, ability1Key_, ability2Key_;
 	//Player Features
-	double  width_,
+	double* width_,
 			height_,
 			rotation_,
-			jump_impulse_;
+			jump_impulse_,
+			health_;
 	//Player Stats
 	Vector2D initial_position_,
 			 speed_;
-	double  initial_health_,
-			attack_,
+	double 	attack_,
 			defense_;
 
 	//Attacks
