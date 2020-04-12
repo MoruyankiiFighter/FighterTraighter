@@ -5,15 +5,50 @@
 #include "Ability.h"
 #include "PhysicsTransform.h"
 //Podemos tener todos los datos en un .json o un .txt
-//Tener un método para parsear y rellenar el attackData
+//Tener un mï¿½todo para parsear y rellenar el attackData
 
 class PlayerData : public Component {
 
 	//hacer luego getters y setters
 public:
 	//PlayerData() : Component(ecs::PlayerData) {}
-	PlayerData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense);
-
+	PlayerData(std::vector<SDL_Scancode> keys, double* width, double* height, double* rotation, double* jump_impulse, Vector2D ini_pos, Vector2D* speed, double* ini_health, double attack, double defense);
+	virtual double* getWidth() {
+		return width_;
+	}
+	virtual double* getWidth() {
+		return width_;
+	}
+	virtual double* getHeight() {
+		return height_;
+	}
+	virtual double* getHeight() {
+		return height_;
+	}
+	virtual double* getRotation() {
+		return rotation_;
+	}
+	virtual double* getRotation() {
+		return rotation_;
+	}
+	virtual double* getJumpImpulse() {
+		return jump_impulse_;
+	}
+	virtual double* getJumpImpulse() {
+		return jump_impulse_;
+	}
+	virtual double* geHealth() {
+		return health_;
+	}
+	virtual double* geHealth() {
+		return health_;
+	}
+	virtual Vector2D* getSpeed() {
+		return speed_;
+	}
+	virtual Vector2D* getSpeed() {
+		return speed_;
+	}
 	virtual ~PlayerData() {}
 	
 protected:
