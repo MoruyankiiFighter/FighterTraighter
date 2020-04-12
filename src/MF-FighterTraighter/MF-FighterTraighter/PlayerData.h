@@ -12,7 +12,7 @@ class PlayerData : public Component {
 	//hacer luego getters y setters
 public:
 	//PlayerData() : Component(ecs::PlayerData) {}
-	PlayerData(std::vector<SDL_Scancode> keys, double* width, double* height, double* rotation, double* jump_impulse, Vector2D ini_pos, Vector2D* speed, double* ini_health, double attack, double defense);
+	PlayerData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D* speed, double ini_health, double attack, double defense);
 	virtual double* getWidth() {
 		return width_;
 	}
@@ -22,8 +22,8 @@ public:
 	virtual double* getHeight() {
 		return height_;
 	}
-	virtual double* getHeight() {
-		return height_;
+	virtual void setHeight(double* height) {
+		 height_= height;
 	}
 	virtual double* getRotation() {
 		return rotation_;
@@ -37,11 +37,11 @@ public:
 	virtual double* getJumpImpulse() {
 		return jump_impulse_;
 	}
-	virtual double* geHealth() {
+	virtual double* getHealth() {
 		return health_;
 	}
-	virtual double* geHealth() {
-		return health_;
+	virtual void setHealth(double* health) {
+		 health_= health;
 	}
 	virtual Vector2D* getSpeed() {
 		return speed_;
