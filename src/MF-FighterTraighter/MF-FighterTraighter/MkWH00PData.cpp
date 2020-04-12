@@ -1,6 +1,55 @@
 #include "MkWH00PData.h"
 
+MkWH00PData::MkWH00PData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense) :
+	PlayerData(keys, width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense) {
+}
 
+void MkWH00PData::init() {
+	std::vector<Move*> vecMov;
+
+	vecMov.push_back(new Move(27, nullptr, NP1, entity_));
+	vecMov.push_back(new Move(32, nullptr, nullptr, entity_));
+	normal_punch_ = new AnimationChain(vecMov);
+	vecMov.clear();
+
+	vecMov.push_back(new Move(29, nullptr, HP1, entity_));
+	vecMov.push_back(new Move(40, nullptr, nullptr, entity_));
+	hard_punch_ = new AnimationChain(vecMov);
+	vecMov.clear();
+
+	vecMov.push_back(new Move(25, nullptr, NK1, entity_));
+	vecMov.push_back(new Move(20, nullptr, NK2, entity_));
+	vecMov.push_back(new Move(25, nullptr, nullptr, entity_));
+	normal_kick_ = new AnimationChain(vecMov);
+	vecMov.clear();
+
+	vecMov.push_back(new Move(35, nullptr, HK1, entity_));
+	vecMov.push_back(new Move(65, nullptr, nullptr, entity_));
+	hard_kick_ = new AnimationChain(vecMov);
+	vecMov.clear();
+
+	vecMov.push_back(new Move(40, nullptr, ANP1, entity_));
+	vecMov.push_back(new Move(25, nullptr, ANP2, entity_));
+	vecMov.push_back(new Move(25, nullptr, nullptr, entity_));
+	air_normal_punch_ = new AnimationChain(vecMov);
+	vecMov.clear();
+
+	vecMov.push_back(new Move(49, nullptr, AHP1, entity_));
+	vecMov.push_back(new Move(45, nullptr, nullptr, entity_));
+	air_hard_punch_ = new AnimationChain(vecMov);
+	vecMov.clear();
+
+	vecMov.push_back(new Move(34, nullptr, ANK1, entity_));
+	vecMov.push_back(new Move(17, nullptr, ANK2, entity_));
+	vecMov.push_back(new Move(22, nullptr, nullptr, entity_));
+	air_normal_kick_ = new AnimationChain(vecMov);
+	vecMov.clear();
+
+	vecMov.push_back(new Move(32, nullptr, AHK1, entity_));
+	vecMov.push_back(new Move(65, nullptr, nullptr, entity_));
+	air_hard_kick_ = new AnimationChain(vecMov);
+	vecMov.clear();
+}
 //Esto es para geenrar hitboxes, habr? uno para cada hitbox generada
 void MkWH00PData::NP1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
 {

@@ -150,12 +150,27 @@ public:
 	virtual Ability* ability_2() {
 		return ability_2_;
 	}
-	virtual void setAbility1(Ability* ability_2) {
+	virtual void setAbility2(Ability* ability_2) {
 		ability_2_ = ability_2;
 	}
 	virtual ~PlayerData() {}
 	
 protected:
+
+	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	/*int width = 35;
+	int hitboxX = 20;
+	if (orientation_ == -1) hitboxX += width;
+
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 9, 42, { (double)orientation_ * 10, -50 }, pT->getBody(), pT->getCategory(), pT->getMask());*/
+	struct CallbackData {
+		Vector2D position;
+		int width;
+		int height;
+		int time;
+		int damage;
+		int hitstun;
+	};
 	//Control Keys
 	SDL_Scancode leftKey_, righKey_, jumpKey_, crouchKey_, guardKey_,
 				 normalPunchKey_, hardPunchKey_, normalKickKey_, hardKickKey_, ability1Key_, ability2Key_;
