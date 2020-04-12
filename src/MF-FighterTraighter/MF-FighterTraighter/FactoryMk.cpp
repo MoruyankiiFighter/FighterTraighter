@@ -14,17 +14,18 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 {
 	Entity* e = state->getEntityManager().addEntity();
 	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 200, 10), Vector2D(10, 10), 50, 50, 0, world, cBits, mBits, dyn);
-	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth() );
 	pT->setOrientation(orientation);
 	app->getHitboxMng()->addMainHitbox(pT->getMainFixture());
 
-	e->addComponent<PlayerController>(keys[0], keys[1], keys[8], -1500, keys[2], keys[3]);
+	PlayerController* pC = e->addComponent<PlayerController>(keys[0], keys[1], keys[8], -1500, keys[2], keys[3]);
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(0));
 	//e->addComponent<Jump>(-1000, keys[2]);
 	//e->addComponent<Crouch>(keys[3]);
 	e->addComponent<PlayerState>();
-	e->addComponent<Health>(110);
+	Health* h = e->addComponent<Health>(110);
 	e->addComponent<PlayerOnHit>();
+	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pT->getSpeed(), h->getHealth(), 50, 50);
+
 	std::vector<Move*> vecMov;
 
 	vecMov.push_back(new Move(27, nullptr, NP1, e));

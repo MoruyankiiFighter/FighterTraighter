@@ -17,6 +17,7 @@ public:
 	void update() override;
 	void crouch();
 	void uncrouch();
+	float getJumpImpulse() { return jumpImpulse; }
 private:
 	PhysicsTransform* transform_ = nullptr;
 	SDL_Scancode left_, right_, block_;

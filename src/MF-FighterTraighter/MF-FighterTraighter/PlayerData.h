@@ -12,7 +12,7 @@ class PlayerData : public Component {
 	//hacer luego getters y setters
 public:
 	//PlayerData() : Component(ecs::PlayerData) {}
-	PlayerData(std::vector<SDL_Scancode> keys, double* width, double* height, double* rotation, double* jump_impulse, Vector2D ini_pos, Vector2D* speed, double* ini_health, double attack, double defense);
+	PlayerData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense);
 	virtual double* getWidth() {
 		return width_;
 	}

@@ -20,6 +20,8 @@ public:
 	//return the current health(health_)
 	int getLife();
 
+	int getHealth() { return health_; }
+
 private:
 	int health_; //current health
 	int maxHealth_; //max health
