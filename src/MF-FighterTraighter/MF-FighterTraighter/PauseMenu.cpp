@@ -36,6 +36,7 @@ void PauseMenu::init()
 	nav->SetElementInPos(std::get<0>(menu_button), 0, 1);
 	nav->SetElementInPos(std::get<0>(controls_button), 0, 2);
 	nav->SetElementInPos(std::get<0>(options_button), 0, 3);
+	app_->getAudioManager()->pauseMusic();
 }
 
 void PauseMenu::handleInput()
@@ -48,6 +49,7 @@ void PauseMenu::handleInput()
 
 void PauseMenu::Resume(App* app)
 {
+	app->getAudioManager()->resumeMusic();
 	app->getStateMachine()->popState();
 }
 

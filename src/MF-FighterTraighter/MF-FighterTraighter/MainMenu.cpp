@@ -62,6 +62,7 @@ void MainMenu::init()
 	nav->SetElementInPos(std::get<0>(options), 0, 2);
 	nav->SetElementInPos(std::get<0>(exit), 0, 3);
 
+
 	app_->getAudioManager()->playMusic(app_->getAssetsManager()->getMusic(0),true);
 	
 }
