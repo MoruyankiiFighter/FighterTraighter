@@ -27,6 +27,9 @@ void Fight::init()
 		PLAYER_1, PLAYER_2 | BOUNDARY);
 	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M },
 		PLAYER_2, PLAYER_1 | BOUNDARY);
+
+	app_->getAudioManager()->playMusic(app_->getAssetsManager()->getMusic(1),true);
+
 }
 
 void Fight::handleInput()
