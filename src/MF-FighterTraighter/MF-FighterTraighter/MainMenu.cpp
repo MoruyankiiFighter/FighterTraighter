@@ -62,7 +62,8 @@ void MainMenu::init()
 	nav->SetElementInPos(std::get<0>(options), 0, 2);
 	nav->SetElementInPos(std::get<0>(exit), 0, 3);
 
-	app_->getAssetsManager()->playMusic(0);
+
+	app_->getAudioManager()->playMusic(app_->getAssetsManager()->getMusic(0),true);
 	
 }
 
@@ -76,17 +77,20 @@ void MainMenu::handleInput()
 
 void MainMenu::GoArcade(App* app)
 {
+	app->getAudioManager()->stopMusic();
 	app->getStateMachine()->pushState(new Fight(app));
 }
 
 void MainMenu::Go1v1(App* app)
 {
+	app->getAudioManager()->stopMusic();
 	// TEMPORARY, TESTING
 	app->getStateMachine()->pushState(new Training(app));
 }
 
 void MainMenu::GoOptions(App* app)
 {
+	app->getAudioManager()->stopMusic();
 	app->Options();
 }
 

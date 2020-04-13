@@ -54,13 +54,29 @@ public:
 	void handleInput(); 
 
 	//methods that changes the current state
+
+	//play versus a IA
 	void PlayArcade();
+
+	//pause the game
 	void Pause();
-	inline void Exit() { exit = true; } //quit game
+	
+	//quit the game
+	inline void Exit() { exit = true; }
+	
+	//play 1vs1 local
 	void PlayOnevsOne();
+	
+	//resume game
 	void ContinuePlaying();
+	
+	//go to options menu
 	void Options();
+	
+	//go to main menu
 	void Menu();
+	
+	//show the controls
 	void Movements();
 
 private:

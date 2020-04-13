@@ -2,52 +2,33 @@
 #include <SDL_mixer.h>
 #include <SDL.h>
 
-AudioManager::AudioManager(){
+AudioManager::AudioManager(): AudioManager(8) { }
 
+AudioManager::AudioManager(int channels): channels_(channels)
+{
 	if (SDL_Init(SDL_INIT_AUDIO) == 0)
 		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) != 0)
 			std::cout << "Audio Manager not loaded" << Mix_GetError() << std::endl;
-}
 
+	initialized_ = true;
+}
 
 AudioManager::~AudioManager()
 {
-
-
 	Mix_CloseAudio();
 }
 
-Mix_Chunk* AudioManager::loadSound(const std::string& fileName)
+Mix_Chunk* AudioManager::loadSFX(const std::string& fileName)
 {
-
-	return nullptr;
+	Mix_Chunk* sfx;
+	sfx= Mix_LoadWAV(fileName.c_str());
+	return sfx;
 }
 
-int AudioManager::playChannel(int tag, int loops, int channel)
+void AudioManager::playSFX(Mix_Chunk* sound, int loops, int channel)
 {
-	return 0;
-}
-
-void AudioManager::pauseChannel(int channel)
-{
-}
-
-void AudioManager::resumeChannel(int channel)
-{
-}
-
-void AudioManager::haltChannel(int channel)
-{
-}
-
-int AudioManager::setChannelVolume(int volume, int channel)
-{
-	return 0;
-}
-
-int AudioManager::channels()
-{
-	return 0;
+	if(sound!=nullptr && loops!=-1)
+	Mix_PlayChannel(channel, sound, loops);
 }
 
 Mix_Music* AudioManager::loadMusic(const std::string & fileName)
@@ -59,7 +40,7 @@ Mix_Music* AudioManager::loadMusic(const std::string & fileName)
 void AudioManager::playMusic(Mix_Music* music, bool loops)
 {
 	if (music != nullptr) {
-		Mix_PlayMusic(music,loops ?- 1:0); //si loop= true se loopea(-1), en caso contrario 1 vez
+		Mix_PlayMusic(music,loops ? -1:0); //si loop= true se loopea(-1), en caso contrario 1 vez
 	}
 	else {
 		//lanzar excepciones
@@ -71,11 +52,6 @@ int AudioManager::setMusicVolume(int volume)
 	return Mix_VolumeMusic(volume);
 }
 
-void AudioManager::haltMusic()
-{
-	Mix_HaltMusic();
-}
-
 void AudioManager::pauseMusic()
 {
 	Mix_PauseMusic();
@@ -84,4 +60,34 @@ void AudioManager::pauseMusic()
 void AudioManager::resumeMusic()
 {
 	Mix_ResumeMusic();
+}
+
+void AudioManager::resumeAll()
+{
+	Mix_Resume(-1);
+}
+
+void AudioManager::stopMusic()
+{
+	Mix_HaltMusic();
+}
+
+void AudioManager::setGeneralVolume(float MaxVolume,float volume_ratio)
+{
+	Mix_Volume(-1, MaxVolume * volume_ratio);
+}
+
+int AudioManager::getGeneralVolume() const
+{
+	return Mix_Volume(-1, 1);
+}
+
+int AudioManager::getMusicVolume() const
+{
+	return Mix_VolumeMusic(-1);
+}
+
+int AudioManager::getChannelVolume(int channel) const
+{
+	return Mix_Volume(channel, -1);
 }

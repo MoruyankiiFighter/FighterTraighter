@@ -50,64 +50,32 @@ void AssetsManager::loadFonts()
 	// fonts_.emplace_back(new Font("Filepath", size));
 }
 
+Mix_Music* AssetsManager::getMusic(size_t id)
+{
+	return music_[id];
+}
+
 void AssetsManager::loadMusic()
 {
+	size_t id = 2;
+	music_.reserve(id);
+	music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/New Hope menu.ogg"));
 	music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
 	
 	//music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/nombre de la cancion. formato"));
 
 }
 
-void AssetsManager::playMusic(int index)
+Mix_Chunk* AssetsManager::getSFX(size_t id)
 {
-	app_->getAudioManager()->playMusic(music_[index], true);
+	return sfx_[id];
 }
 
-void AssetsManager::resumeAll()
+void AssetsManager::loadSFX()
 {
-}
+	size_t id = 1;
+	sfx_.reserve(id);
 
-void AssetsManager::resumeMusic()
-{
-}
-
-void AssetsManager::pauseMusic()
-{
-}
-
-void AssetsManager::stopMusic()
-{
-}
-
-int AssetsManager::getGeneralVolume() const
-{
-	return 0;
-}
-
-int AssetsManager::getMusicVolume() const
-{
-	return 0;
-}
-
-int AssetsManager::getChannelVolume(int channel) const
-{
-	return 0;
-}
-
-void AssetsManager::setGeneralVolume(float volume_ratio)
-{
-}
-
-void AssetsManager::setChannelvolume(int channel, float volume_ratio)
-{
-}
-
-void AssetsManager::setMusicVolume(float volume_ratio)
-{
-}
-
-void AssetsManager::setSFXVolume(const string& name, float volume_ratio)
-{
 }
 
 AssetsManager::~AssetsManager()
@@ -123,4 +91,9 @@ void AssetsManager::UnloadAssets()
 	for (Font* font : fonts_) {
 		delete font;
 	}
+
+	for (Mix_Music* m : music_) {
+		delete m;
+	}
+
 }
