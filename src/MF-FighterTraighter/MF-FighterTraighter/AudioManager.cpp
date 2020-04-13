@@ -40,7 +40,7 @@ Mix_Music* AudioManager::loadMusic(const std::string & fileName)
 void AudioManager::playMusic(Mix_Music* music, bool loops)
 {
 	if (music != nullptr) {
-		Mix_PlayMusic(music,loops ?- 1:0); //si loop= true se loopea(-1), en caso contrario 1 vez
+		Mix_PlayMusic(music,loops ? -1:0); //si loop= true se loopea(-1), en caso contrario 1 vez
 	}
 	else {
 		//lanzar excepciones
