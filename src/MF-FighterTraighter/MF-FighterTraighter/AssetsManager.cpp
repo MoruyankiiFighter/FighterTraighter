@@ -96,7 +96,7 @@ void AssetsManager::UnloadAssets()
 		delete m;
 	}
 
-	for (Mix_Chunk* sfx : sfx_) {
-		delete sfx;
-	}
+	//for (Mix_Chunk* sfx : sfx_) {
+	//	delete sfx;
+	//}
 }
