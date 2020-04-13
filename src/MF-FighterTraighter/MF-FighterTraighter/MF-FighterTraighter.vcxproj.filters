@@ -1,4 +1,4 @@
-﻿﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Component.cpp">
@@ -164,7 +164,7 @@
     <ClCompile Include="MkWH00PData.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-        <ClCompile Include="ControlsMenu.cpp">
+    <ClCompile Include="ControlsMenu.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
   </ItemGroup>
@@ -355,9 +355,6 @@
     <ClInclude Include="PlayerData.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Ability.h">
-      <Filter>Header files\items</Filter>
-    </ClInclude>
     <ClInclude Include="HitboxData.h">
       <Filter>Header files\items</Filter>
     </ClInclude>
@@ -366,6 +363,9 @@
     </ClInclude>
     <ClInclude Include="ControlsMenu.h">
       <Filter>Header files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Ability.h">
+      <Filter>Header files\Types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
