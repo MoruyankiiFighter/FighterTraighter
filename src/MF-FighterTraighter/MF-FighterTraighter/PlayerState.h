@@ -15,7 +15,7 @@ enum Status {
 	Hit,
 	HitAirborne,
 	Landing,
-	//HitLading,
+	HitLading,
 	//KnockedTheFuckDown,
 	Stunned,
 	GuardingTransition,
@@ -73,6 +73,12 @@ public:
 		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
 	}
 
+	void goHitLanding(int frames) {
+		playerStatus_ = HitLading;
+		holdingFrames_ = frames;
+		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
+	}
+
 	//GUARDING
 	bool canGuard() {
 		return playerStatus_ == Idle || playerStatus_ == Moving || playerStatus_ == Crouching;
@@ -120,10 +126,10 @@ public:
 		}
 		holdingFrames_ = frames;
 	}
-	void goHitstunAirborne(int frames) {
+	void goHitstunAirborne() {
 		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
 		playerStatus_ = HitAirborne;
-		holdingFrames_ = frames;
+		holdingFrames_ = -1;
 	}
 	void releaseHitstun() {
 		if (playerStatus_ == Hit) {

@@ -25,7 +25,10 @@ public:
 			&& currState->isAirborne()
 			&& contact->GetFixtureB()->GetBody()->GetLinearVelocity().y >= 0) {
 			player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
-			currState->goLanding(11 + (currState->getHoldingFrames()) * 0.8);
+			if (currState->isHitstun()) {
+				currState->goHitLanding(16);
+			}
+			else currState->goLanding(10);
 		}
 	}
 };

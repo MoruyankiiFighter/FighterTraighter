@@ -10,7 +10,7 @@ public:
 	
 	PlayerAttacks(AnimationChain* highFist , AnimationChain* airHighFist, SDL_Scancode key1, AnimationChain* lowFist, AnimationChain* airLowFist, 
 		SDL_Scancode key2, AnimationChain* highKick, AnimationChain* airHighKick, SDL_Scancode key3, AnimationChain* lowKick, AnimationChain* airLowKick, 
-		SDL_Scancode key4, AnimationChain* testGB,SDL_Scancode key5/*, Hability* hability1, SDL_Scancode key5, Hability* hability2, SDL_Scancode key6*/);
+		SDL_Scancode key4, AnimationChain* testGB,SDL_Scancode key5, SDL_Scancode key6, SDL_Scancode key7);
 	virtual ~PlayerAttacks();
 	virtual void update() override { 
 		if (activeAttack_ != nullptr) { 
@@ -25,21 +25,19 @@ public:
 					entity_->getComponent<PlayerState>(ecs::PlayerState)->goJumping();
 				}
 			}
-			//else if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isHitstun()) interruptAttack(); <-- Esto es inútil (nunca va a estar atacando y ser hitstun)
+			//else if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isHitstun()) interruptAttack(); <-- Esto es inï¿½til (nunca va a estar atacando y ser hitstun)
 		}
 	};
-	//methods to change your habilities
-	/*void addFirstHability(Hability* hab);//add first hability
-	void addSecondHability(Hability* hab);*///add second hability
 	void handleInput() override;
-
+	void setAbility(AnimationChain* newAbility, int index);
 	void interruptAttack();
 private:
-	std::vector<AnimationChain*> attacksList;//pointer to the attack that you can use
-	//std::list<Hability*> habilityList;//pointer to the habilities 
+	std::vector<AnimationChain*> attacksList;	//pointer to the attack that you can use
+	std::vector<AnimationChain*> abilityList = std::vector<AnimationChain*>(2);	//pointer to the abilities 
 	AnimationChain* activeAttack_=nullptr;
 
-	//keys to use the attacks and habilities
-	SDL_Scancode highFistKey_, lowFistKey_, highKickKey_, lowKickKey_, guardBreaker_;
+	//keys to use the attacks and abilities
+	SDL_Scancode highFistKey, lowFistKey, highKickKey, lowKickKey, guardBreaker_;
+	SDL_Scancode abilityKey1, abilityKey2;
 };
 

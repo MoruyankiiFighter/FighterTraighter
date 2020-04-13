@@ -1,5 +1,6 @@
 #include "Fight.h"
 #include "FloorOnHit.h"
+#include "AbilityFactory.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -8,7 +9,7 @@ Fight::Fight(App* app) : GameState(app)
 
 void Fight::init()
 {
-	world = new b2World(b2Vec2(0.0f, 25.0f));//inicializamos el mundo para las fisicas de b2D
+	world = new b2World(b2Vec2(0.0f, 18.0f));//inicializamos el mundo para las fisicas de b2D
 	//---------Debuggear hitbox-------------------------------------------
 	debugInstance = new SDLDebugDraw(app_->getRenderer());
 	world->SetDebugDraw(debugInstance);
@@ -17,17 +18,30 @@ void Fight::init()
 	resJumpListener = new ResetJumpListener();
 	world->SetContactListener(resJumpListener);
 	
+	//Floor
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0,0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, false);
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	floor->addComponent<FloorOnHit>();
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
-	floor->addComponent<FloorOnHit>();
 
-	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
-		SDL_SCANCODE_SPACE, SDL_SCANCODE_R }, PLAYER_1, PLAYER_2 | BOUNDARY);
+	//Walls
+	Entity* wall1 = entManager_.addEntity();
+	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, BOUNDARY, EVERYTHING, false);
+	app_->getHitboxMng()->addFloorHitbox(W1pT->getMainFixture());
+
+	Entity* wall2 = entManager_.addEntity();
+	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, BOUNDARY, EVERYTHING, false);
+	app_->getHitboxMng()->addFloorHitbox(W2pT->getMainFixture());
+
+	//Player 1
+	Entity* e = FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
+		SDL_SCANCODE_SPACE, SDL_SCANCODE_R, SDL_SCANCODE_1, SDL_SCANCODE_2, }, PLAYER_1, PLAYER_2 | BOUNDARY);
+	e->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(e), 0);
+
+	//Player 2
 	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
-		SDL_SCANCODE_0, SDL_SCANCODE_H }, PLAYER_2, PLAYER_1 | BOUNDARY);
+		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, PLAYER_2, PLAYER_1 | BOUNDARY);
 }
 
 void Fight::handleInput()

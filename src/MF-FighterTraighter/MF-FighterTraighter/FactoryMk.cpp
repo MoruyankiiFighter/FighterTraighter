@@ -29,7 +29,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 
 	
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
-	e->addComponent<PlayerAttacks>(p_data_->getNormal_punch(), p_data_->air_normal_punch(), keys[4], p_data_->getHard_punch(), p_data_->air_hard_punch(), keys[5], p_data_->getNormal_kick(), p_data_->air_normal_kick(), keys[6], p_data_->getHard_kick(), p_data_->air_hard_kick(), keys[7],p_data_->guard_breaker(), keys[9]);
+	e->addComponent<PlayerAttacks>(p_data_->getNormal_punch(), p_data_->air_normal_punch(), keys[4], p_data_->getHard_punch(), p_data_->air_hard_punch(), keys[5], p_data_->getNormal_kick(), p_data_->air_normal_kick(), keys[6], p_data_->getHard_kick(), p_data_->air_hard_kick(), keys[7],p_data_->guard_breaker(), keys[9], keys[10], keys[11]);
 
 	return e;
 }
