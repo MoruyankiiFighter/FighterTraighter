@@ -62,7 +62,7 @@ void AssetsManager::loadMusic()
 	music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/New Hope menu.ogg"));
 	music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
 	
-	//music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/nombre de la cancion. formato"));
+	//music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/songname.format"));
 
 }
 
