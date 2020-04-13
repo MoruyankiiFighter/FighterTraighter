@@ -2,13 +2,16 @@
 #include <SDL_mixer.h>
 #include <SDL.h>
 
-AudioManager::AudioManager(){
+AudioManager::AudioManager(): AudioManager(8) { }
 
+AudioManager::AudioManager(int channels): channels_(channels)
+{
 	if (SDL_Init(SDL_INIT_AUDIO) == 0)
 		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) != 0)
 			std::cout << "Audio Manager not loaded" << Mix_GetError() << std::endl;
-}
 
+	initialized_ = true;
+}
 
 AudioManager::~AudioManager()
 {
@@ -17,13 +20,15 @@ AudioManager::~AudioManager()
 
 Mix_Chunk* AudioManager::loadSFX(const std::string& fileName)
 {
-	/*Mix_Chunk* sfx = Mix_LoadWAV(fileName.c_str());
-	return sfx;*/
-	return nullptr;
+	Mix_Chunk* sfx;
+	sfx= Mix_LoadWAV(fileName.c_str());
+	return sfx;
 }
 
 void AudioManager::playSFX(Mix_Chunk* sound, int loops, int channel)
 {
+	if(sound!=nullptr && loops!=-1)
+	Mix_PlayChannel(channel, sound, loops);
 }
 
 Mix_Music* AudioManager::loadMusic(const std::string & fileName)
@@ -45,11 +50,6 @@ void AudioManager::playMusic(Mix_Music* music, bool loops)
 int AudioManager::setMusicVolume(int volume)
 {
 	return Mix_VolumeMusic(volume);
-}
-
-void AudioManager::haltMusic()
-{
-	Mix_HaltMusic();
 }
 
 void AudioManager::pauseMusic()
@@ -91,5 +91,3 @@ int AudioManager::getChannelVolume(int channel) const
 {
 	return Mix_Volume(channel, -1);
 }
-
-
