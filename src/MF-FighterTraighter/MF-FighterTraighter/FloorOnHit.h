@@ -14,10 +14,10 @@ public:
 
 		if ( currState->isAirborne() && fixture->GetBody()->GetLinearVelocity().y >= 0) {
 			if (currState->isAttacking()) player->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
-			currState->goLanding(11 + (currState->getHoldingFrames()) * 0.8);
+			
 		}
 		
-		
+		//YA NO SE USA ESTO
 
 	}
 };

@@ -28,6 +28,7 @@ namespace ecs {
 		UITimer,
 		UIHealthbar,
 		UIRoundRenderer,
+		PlayerData,
 		/*
 		
 		*/

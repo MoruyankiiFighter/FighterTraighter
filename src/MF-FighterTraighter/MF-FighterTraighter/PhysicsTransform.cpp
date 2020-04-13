@@ -17,6 +17,7 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	shape.SetAsBox(width * wMult_/2 , height * hMult_/2 );
 	resetMainFixture(shape);
 	body_->SetFixedRotation(true);
+	
 }
 
 
@@ -75,6 +76,6 @@ void PhysicsTransform::resetMainFixture(const b2PolygonShape& shape) {
 	fixturedef.density = 0.0f;
 	fixturedef.filter.categoryBits = cBits_;
 	fixturedef.filter.maskBits = mBits_;
-
+	fixturedef.friction = 1;
 	mainFixture_ = body_->CreateFixture(&fixturedef);
 }

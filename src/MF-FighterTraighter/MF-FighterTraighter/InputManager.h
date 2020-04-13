@@ -121,7 +121,7 @@ public:
 			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.8f);
 	}
 	inline bool pressedAccept() {
-		return KeyPressed(SDL_SCANCODE_Z) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A);
+		return KeyPressed(SDL_SCANCODE_RETURN) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A);
 	}
 	inline bool pressedCancel() {
 		return KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_B);

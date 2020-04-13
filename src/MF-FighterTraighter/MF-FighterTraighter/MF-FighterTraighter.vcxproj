@@ -131,12 +131,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
     <ClCompile Include="HitboxMng.cpp" />
+    <ClCompile Include="MkWH00PData.cpp" />
     <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="NavigationController.cpp" />
     <ClCompile Include="OptionsLogic.cpp" />
@@ -160,6 +162,7 @@
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="PhysicsTransform.cpp" />
     <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="PlayerOnHit.cpp" />
     <ClCompile Include="RenderAnimation.cpp" />
     <ClCompile Include="RenderImage.cpp" />
@@ -183,8 +186,11 @@
     <ClCompile Include="UIFactory.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="VerticalSlider.cpp" />
+    <ClCompile Include="ControlsMenu.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ability.h" />
+    <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="EntityManager.h" />
@@ -194,6 +200,7 @@
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IndexSlider.h" />
+    <ClInclude Include="MkWH00PData.h" />
     <ClInclude Include="MoveParser.h" />
     <ClInclude Include="NavigationController.h" />
     <ClInclude Include="OnHit.h" />
@@ -219,6 +226,7 @@
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PhysicsTransform.h" />
     <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PlayerOnHit.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PunchingBagOnHit.h" />
@@ -246,6 +254,7 @@
     <ClInclude Include="UIFactory.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="VerticalSlider.h" />
+    <ClInclude Include="ControlsMenu.h"/>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
