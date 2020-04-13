@@ -15,7 +15,7 @@ void UITransform::update()
 	}
 }
 
-void UITransform::setAnchorPreset(AnchorPreset preset)
+void UITransform::setAnchorPreset(PositionPreset preset)
 {
 	SDL_DisplayMode w = windowMngr_->getCurResolution();
 	switch (preset)
@@ -46,6 +46,42 @@ void UITransform::setAnchorPreset(AnchorPreset preset)
 		break;
 	case UITransform::bottomRight:
 		anchor_ = Vector2D(w.w, w.h);
+		break;
+	default:
+		break;
+	}
+}
+
+void UITransform::setPivotPreset(PositionPreset preset)
+{
+	switch (preset)
+	{
+	case UITransform::TopLeft:
+		anchor_ = Vector2D(0, 0);
+		break;
+	case UITransform::Top:
+		anchor_ = Vector2D(width_ / 2, 0);
+		break;
+	case UITransform::TopRight:
+		anchor_ = Vector2D(width_, 0);
+		break;
+	case UITransform::CenterLeft:
+		anchor_ = Vector2D(0, height_ / 2);
+		break;
+	case UITransform::Center:
+		anchor_ = Vector2D(width_ / 2, height_ / 2);
+		break;
+	case UITransform::CenterRight:
+		anchor_ = Vector2D(width_, height_ / 2);
+		break;
+	case UITransform::BottomLeft:
+		anchor_ = Vector2D(0, height_);
+		break;
+	case UITransform::Bottom:
+		anchor_ = Vector2D(width_ / 2, height_);
+		break;
+	case UITransform::bottomRight:
+		anchor_ = Vector2D(width_, height_);
 		break;
 	default:
 		break;

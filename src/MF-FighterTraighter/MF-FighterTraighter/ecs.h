@@ -11,7 +11,6 @@ namespace ecs {
 		Health,
 		RenderImage,
 		Jump,
-		PhysicsTransform,
 		TextComponent,
 		SacoTimer,
 		PunchingBagCollision,
@@ -26,6 +25,7 @@ namespace ecs {
 		PlayerState,
 		OnHit,
 		UIElement,
+		PlayerData,
 		/*
 		
 		*/

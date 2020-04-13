@@ -23,5 +23,7 @@ protected:
 
 	int findInRowFrom(int y);
 	int findInColFrom(int x);
+
+	bool selectedFirst_ = false;
 };
 

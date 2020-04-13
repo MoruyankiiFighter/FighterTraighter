@@ -18,7 +18,10 @@ public:
 	void pushState(GameState* state) { states.push(state); }
 	
 	//deletes the current state
-	void popState() { states.pop(); }
+	void popState() { 
+		delete states.top();
+		states.pop();
+	}
 
 private:
 	std::stack<GameState*> states; //stack with the different scenes

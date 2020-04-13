@@ -39,35 +39,38 @@ void OptionsMenu::init()
 	Transform* transform = ent->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	transform->setPosition(app_->getWindowManager()->getCurResolution().w / 4, POS_Y_LOGO / 2);
-	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(2));
+	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Logo));
 
-	tuple<Entity*, Entity*> back = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(0, 20), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), 200, 60, 0, GoBackCallback, nullptr, "<-", 60);
+	tuple<Entity*, Entity*> back = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D(0, 20), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0),
+		Vector2D(100, 30),
+		200, 60, 0, GoBackCallback, nullptr, "<-", 60);
 
-	tuple<Entity*, Entity*> fullscreen = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(0, -200),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 400, 50, 0, 
+	tuple<Entity*, Entity*> fullscreen = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D(0, -200), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(200, 25),
+		400, 50, 0,
 		nullptr, fullScreen, "FULLSCREEN", 60);
 
 	tuple<Entity*, Entity*> controls = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
 		Vector2D(0, -300), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 400, 50, 0, GoControlsCallback, nullptr, "Controls", 60);
 
 	tuple<Entity*, Entity*, Entity*, Entity*> resolutionSlider = UIFactory::createSlider(app_, this, 0, 10, 10,
-		app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(0, 0),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 500, 10,
-		setResolution, "RESOLUTION", 60, "", 60);
+		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D(0, 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(250, 5),
+		500, 10, setResolution, "RESOLUTION", 60, "", 60);
 
 	tuple<Entity*, Entity*, Entity*, Entity*> brightSlider = UIFactory::createSlider(app_, this, 0.4, 1, 6,
-		app_->getAssetsManager()->getTexture(4), app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(0, 350),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 500, 10, 
-		SetBright, "BRIGHTNESS", 60, "", 60);
+		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D(0, 350), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(250, 5),
+		500, 10, SetBright, "BRIGHTNESS", 60, "", 60);
 
-	tuple<Entity*, Entity*> applyButton = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(1), app_->getAssetsManager()->getFont(0),
-		Vector2D(0, 450),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 200, 60, 0,
-		nullptr, applySettings, "APPLY", 60);
+	tuple<Entity*, Entity*> applyButton = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D(0, 450), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
+		Vector2D(100, 30), 
+		200, 60, 0,	nullptr, applySettings, "APPLY", 60);
 
 	Entity* logic = entManager_.addEntity();
 	logic->addComponent<OptionsLogic>(std::get<0>(resolutionSlider)->getComponent<Slider>(ecs::UIElement),
@@ -90,7 +93,8 @@ void OptionsMenu::handleInput()
 	if (app_->getInputManager()->pressedStart()) {
 		app_->getStateMachine()->popState();
 	}
-	GameState::handleInput();
+	else
+		GameState::handleInput();
 }
 
 

@@ -13,7 +13,7 @@ public:
 	virtual void init() override;
 	
 	// get and set for position
-	virtual const Vector2D& getPosition() const {
+	virtual Vector2D getPosition() const {
 		Vector2D pos { body_->GetTransform().p.x - width_ * wMult_/2, body_->GetTransform().p.y  - height_ * hMult_/2};
 		return  pos;
 	}
@@ -24,7 +24,7 @@ public:
 	virtual const Vector2D& getSpeed() const { /*return speed_;*/ Vector2D pos{ body_->GetLinearVelocity().x,body_->GetLinearVelocity().y };
 	return pos;
 	}
-	virtual void setSpeed(const Vector2D& v) { /*speed_ = v;*/ }
+	virtual void setSpeed(const Vector2D& v) { body_->SetLinearVelocity({ (float32)v.getX(), (float32)v.getY() }); }
 	virtual void setSpeed(double x, double y) { body_->SetLinearVelocity({ (float32)x,(float32)y }); }
 
 	virtual void setWidth(double width);
@@ -35,6 +35,8 @@ public:
 	virtual void setWidthHeight(double width, double height);
 	b2Body* getBody() { return body_; }
 	b2Fixture* getMainFixture() { return mainFixture_; }
+	uint16 getCategory() { return cBits_; }
+	uint16 getMask() { return mBits_; }
 
 private:
 	b2Body* body_;

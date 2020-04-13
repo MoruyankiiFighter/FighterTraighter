@@ -15,7 +15,7 @@ public:
 	virtual ~Transform();
 
 	// get and set for position
-	virtual const Vector2D& getPosition() const { return position_; }
+	virtual Vector2D getPosition() const { return position_; }
 	virtual void setPosition(const Vector2D& v) { position_ = v; }
 	virtual void setPosition(double x, double y) { position_ = { x,y }; }
 

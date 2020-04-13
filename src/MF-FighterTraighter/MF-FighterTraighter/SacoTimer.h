@@ -15,7 +15,7 @@ public:
 	virtual void update() override;
 private:
 	int timeLimit_;
-	int startTime_;
+	int startTime_=0;
 	int currTime_ = 0;
 };
 

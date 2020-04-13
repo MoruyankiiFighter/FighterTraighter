@@ -6,7 +6,7 @@ GameStateMachine::GameStateMachine(){ }
 GameStateMachine::~GameStateMachine()
 {
 	while (!states.empty()) {
-		delete states.top();
+		//delete states.top();
 		popState();
 	}
 }
