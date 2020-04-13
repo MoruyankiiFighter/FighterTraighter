@@ -30,7 +30,7 @@ public:
 	static void LessBright(App* app);
 	
 	//changes the volume
-	static void SetGeneralVolume(App* app, double value);
+	static void SetVolume(App* app, double value);
 
 	//fullscreen
 	static void fullScreen(App* app);
