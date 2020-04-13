@@ -57,7 +57,7 @@ Mix_Music* AssetsManager::getMusic(size_t id)
 
 void AssetsManager::loadMusic()
 {
-	size_t id = 1;
+	size_t id = 2;
 	music_.reserve(id);
 	music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/New Hope menu.ogg"));
 	music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
@@ -73,6 +73,9 @@ Mix_Chunk* AssetsManager::getSFX(size_t id)
 
 void AssetsManager::loadSFX()
 {
+	size_t id = 1;
+	sfx_.reserve(id);
+
 }
 
 AssetsManager::~AssetsManager()
