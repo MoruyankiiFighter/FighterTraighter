@@ -20,7 +20,7 @@ AudioManager::~AudioManager()
 Mix_Chunk* AudioManager::loadSound(const std::string& fileName)
 {
 
-	return false;
+	return nullptr;
 }
 
 int AudioManager::playChannel(int tag, int loops, int channel)
