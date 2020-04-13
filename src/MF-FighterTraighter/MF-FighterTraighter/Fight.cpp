@@ -27,7 +27,6 @@ void Fight::init()
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	floor->addComponent<FloorOnHit>();
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
-	floor->addComponent<FloorOnHit>();
 
 	Entity* player1 = FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
 		SDL_SCANCODE_SPACE }, PLAYER_1, PLAYER_2 | BOUNDARY);
