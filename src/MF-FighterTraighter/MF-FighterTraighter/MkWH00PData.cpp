@@ -8,29 +8,29 @@ void MkWH00PData::init() {
 	std::vector<Move*> vecMov;
 
 	vecMov.push_back(new Move(27, nullptr, NP1, entity_));
-	vecMov.push_back(new Move(32, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(90, nullptr, nullptr, entity_));
 	normal_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
 	vecMov.push_back(new Move(29, nullptr, HP1, entity_));
-	vecMov.push_back(new Move(40, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(46, nullptr, nullptr, entity_));
 	hard_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
 	vecMov.push_back(new Move(25, nullptr, NK1, entity_));
 	vecMov.push_back(new Move(20, nullptr, NK2, entity_));
-	vecMov.push_back(new Move(25, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(35, nullptr, nullptr, entity_));
 	normal_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
 	vecMov.push_back(new Move(35, nullptr, HK1, entity_));
-	vecMov.push_back(new Move(65, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(100, nullptr, nullptr, entity_));
 	hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
 	vecMov.push_back(new Move(40, nullptr, ANP1, entity_));
 	vecMov.push_back(new Move(25, nullptr, ANP2, entity_));
-	vecMov.push_back(new Move(25, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(35, nullptr, nullptr, entity_));
 	air_normal_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -41,17 +41,17 @@ void MkWH00PData::init() {
 
 	vecMov.push_back(new Move(34, nullptr, ANK1, entity_));
 	vecMov.push_back(new Move(17, nullptr, ANK2, entity_));
-	vecMov.push_back(new Move(22, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(39, nullptr, nullptr, entity_));
 	air_normal_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
 	vecMov.push_back(new Move(32, nullptr, AHK1, entity_));
-	vecMov.push_back(new Move(65, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(95, nullptr, nullptr, entity_));
 	air_hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(32, nullptr, GB, entity_));
-	vecMov.push_back(new Move(65, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(72, nullptr, GB, entity_));
+	vecMov.push_back(new Move(50, nullptr, nullptr, entity_));
 	guard_breaker_ = new AnimationChain(vecMov);
 	vecMov.clear();
 }
@@ -67,7 +67,7 @@ void MkWH00PData::NP1(Entity* ent)//cBits and mBits are there to use the same co
 	int hitboxX = 100;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-250 }, width, 250, 20, 9, 42, { (double)orientation_ * 10, -25 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-250 }, width, 200, 20, 9, 42, { (double)orientation_ * 10, -25 }, pT->getBody(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::HP1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes

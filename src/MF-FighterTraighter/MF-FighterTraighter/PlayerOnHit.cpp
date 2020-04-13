@@ -19,7 +19,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
 		helth->LoseLife(hBox_data->damage_);
 		if (!hBox_data->guardBreaker) {//if isnt a guardBreaker go to hitstun
-			if (hBox_data->knockBack_.getY() > 0)	//vertical knockback, goes to airborne hitstun
+			if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
 				currState->goHitsun(hBox_data->hitstun_);
 			else
 				currState->goHitstunAirborne();

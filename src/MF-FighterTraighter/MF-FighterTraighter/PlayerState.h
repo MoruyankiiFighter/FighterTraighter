@@ -63,7 +63,8 @@ public:
 	void goJumping() { playerStatus_ = Jumping; };
 	void goJumpingTrans( int frames ) { playerStatus_ = JumpingTransition; holdingFrames_ = frames; };
 	bool isJumpingTrans() { return playerStatus_ == JumpingTransition; }
-	bool isJumping() { return playerStatus_ == Jumping || playerStatus_ == AttackingAir; };
+	bool isJumping() { return playerStatus_ == Jumping; };
+	bool isJumpingOrAirAttacking() { return playerStatus_ == Jumping || playerStatus_ == AttackingAir; };
 	bool canJump() { return playerStatus_ == Idle || playerStatus_ == Crouching || playerStatus_ == Moving; }
 
 	//LANDING
