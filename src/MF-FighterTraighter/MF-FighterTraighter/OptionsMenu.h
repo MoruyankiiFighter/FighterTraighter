@@ -20,6 +20,9 @@ public:
 	//go to the state that was before
 	static void GoBackCallback(App* app);
 	
+	//go to the controls menu
+	static void GoControlsCallback(App* app);
+
 	//change the brightness
 	static void SetBright(App* app, double value);
 	
@@ -37,5 +40,9 @@ public:
 	
 	//changes the resolution
 	static void setResolution(App* app, double value);	
+	
+	//saves the settings, and applies the resolution
+	static void applySettings(App* app);
+protected:
+	static double curResolution_;
 };
-

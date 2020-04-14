@@ -10,15 +10,12 @@ namespace ecs {
 		PlayerController,
 		Health,
 		RenderImage,
-		Button,
 		Jump,
-		PhysicsTransform,
 		TextComponent,
 		SacoTimer,
 		PunchingBagCollision,
 		Crouch,
 		PlayerAttacks,
-		Slider,
 		VerticalSlider,
 		IndexSlider,
 		CreatorBody,
@@ -27,6 +24,11 @@ namespace ecs {
 		NavigationController,
 		PlayerState,
 		OnHit,
+		UIElement,
+		UITimer,
+		UIHealthbar,
+		UIRoundRenderer,
+		PlayerData,
 		/*
 		
 		*/

@@ -38,5 +38,6 @@ public:
 protected:
 	EntityManager entManager_;
 	App* app_=nullptr;
+	bool handled = false;//to avoid errors when we popState
 };
 

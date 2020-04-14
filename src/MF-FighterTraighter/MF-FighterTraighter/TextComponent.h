@@ -6,8 +6,14 @@ class TextComponent :
 	public Component
 {
 public:
+	enum TextAlignment {
+		Left,
+		Center,
+		Right
+	};
+public:
 	//constructor
-	TextComponent(std::string text, Font* font, int size);
+	TextComponent(std::string text, Font* font, int size = 20, TextAlignment alignment = Left);
 	//destructor
 	virtual ~TextComponent();
 
@@ -19,13 +25,15 @@ public:
 	void setText(std::string text);
 	void setSize(int size);
 	void setFont(Font* font);
+	inline void setAlignment(TextAlignment al) { alignment_ = al; }
 
 protected:
-	Transform* transform_=nullptr;
-	Text* text_=nullptr;
+	Transform* transform_ = nullptr;
+	Text* text_ = nullptr;
 	Font* font_ = nullptr;
 
-	std::string textString_="";
-	int textSize_=0;
+	std::string textString_ = "";
+	TextAlignment alignment_;
+	int textSize_ = 0;
 };
 

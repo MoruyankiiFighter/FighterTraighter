@@ -16,26 +16,27 @@ WindowManager::WindowManager(App* app) : app_(app) {
 	//window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		//supportedResolutions_[currentResolution_].w, supportedResolutions_[currentResolution_].h, SDL_WINDOW_SHOWN)
 	window = SDL_CreateWindow("Fighter Traighter ver 0.2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		800, 600, SDL_WINDOW_SHOWN);
+		1280, 720, SDL_WINDOW_SHOWN);
 	if (!window) throw new SDLExceptions::SDLException("Unable to create window");
-	SDL_GetCurrentDisplayMode(0, &curr);
-	setFullscreen(true);
+	SDL_GetCurrentDisplayMode(0, &initialDisplayMode_);
+	//setFullscreen(true);
 	//setResolution(currentResolution_);
 }
 
 // Sets the window in fullscreen
 void WindowManager::setFullscreen(bool fullscreen)
 {
-	bool isFullscreen = SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN_DESKTOP;
+	bool isFullscreen = SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN;
 	if (!fullscreen) {
 		if (isFullscreen) {
 			SDL_SetWindowFullscreen(window, 0);
+			SDL_SetWindowSize(window, 1280, 720);
 			fullscreen_ = fullscreen;
 		}
 	}
 	else if (!isFullscreen) {
-		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-		SDL_RenderSetLogicalSize(app_->getRenderer(), supportedResolutions_[currentResolution_].w, supportedResolutions_[currentResolution_].h); //para que se redimensionen a su proporcion
+		SDL_SetWindowDisplayMode(window, &supportedResolutions_[currentResolution_]);
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 		fullscreen_ = fullscreen;
 	}
 }
@@ -44,7 +45,9 @@ void WindowManager::setFullscreen(bool fullscreen)
 void WindowManager::setResolution(int resIndex)
 {
 	if (fullscreen_) {
-		SDL_RenderSetLogicalSize(app_->getRenderer(), supportedResolutions_[resIndex].w, supportedResolutions_[resIndex].h); //para que se redimensionen a su proporcion
+		SDL_SetWindowFullscreen(window, 0);
+		SDL_SetWindowDisplayMode(window, &supportedResolutions_[resIndex]);
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 		currentResolution_ = resIndex;
 	}
 }

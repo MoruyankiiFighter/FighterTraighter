@@ -15,12 +15,12 @@ public:
 	virtual ~Transform();
 
 	// get and set for position
-	virtual const Vector2D& getPosition() const { return position_; }
+	virtual Vector2D getPosition() const { return position_; }
 	virtual void setPosition(const Vector2D& v) { position_ = v; }
 	virtual void setPosition(double x, double y) { position_ = { x,y }; }
 
 	//get and set for speed
-	virtual const Vector2D& getSpeed() const { return speed_; }
+	virtual  Vector2D getSpeed() const { return speed_; }
 	virtual void setSpeed(const Vector2D& v) { speed_ = v; }
 	virtual void setSpeed(double x, double y) { speed_ = { x,y }; }
 
