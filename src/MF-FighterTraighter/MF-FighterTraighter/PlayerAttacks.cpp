@@ -46,31 +46,31 @@ void PlayerAttacks::handleInput() {
 	PlayerController* ctrl = entity_->getComponent<PlayerController>(ecs::PlayerController);
 	if (currState->isAbleToAttack()) {
 		if (currState->isGrounded()) {
-			if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
+			if (app_->getInputManager()->KeyPressed(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
 				activeAttack_ = attacksList[0];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
+			else if (app_->getInputManager()->KeyPressed(lowFistKey)) {
 				activeAttack_ = attacksList[1];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(highKickKey)) {
+			else if (app_->getInputManager()->KeyPressed(highKickKey)) {
 				activeAttack_ = attacksList[2];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
+			else if (app_->getInputManager()->KeyPressed(lowKickKey)) {
 				activeAttack_ = attacksList[3];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(guardBreaker_)) {
+			else if (app_->getInputManager()->KeyPressed(guardBreaker_)) {
 				activeAttack_ = attacksList[8];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
@@ -78,35 +78,35 @@ void PlayerAttacks::handleInput() {
 			}
 		}
 		else {
-			if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
+			if (app_->getInputManager()->KeyPressed(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
 				activeAttack_ = attacksList[4];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
+			else if (app_->getInputManager()->KeyPressed(lowFistKey)) {
 				activeAttack_ = attacksList[5];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(highKickKey)) {
+			else if (app_->getInputManager()->KeyPressed(highKickKey)) {
 				activeAttack_ = attacksList[6];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
+			else if (app_->getInputManager()->KeyPressed(lowKickKey)) {
 				activeAttack_ = attacksList[7];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
 		}
-		if (app_->getInputManager()->isKeyDown(abilityKey1)) {
+		if (app_->getInputManager()->KeyPressed(abilityKey1)) {
 			if (abilityList[0] != nullptr) {
 				activeAttack_ = abilityList[0];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
 		}
-		else if (app_->getInputManager()->isKeyDown(abilityKey2)) {
+		else if (app_->getInputManager()->KeyPressed(abilityKey2)) {
 			if (abilityList[1] != nullptr) {
 				activeAttack_ = abilityList[1];
 				tr->setSpeed(0, tr->getSpeed().getY());
