@@ -53,9 +53,9 @@ Mix_Music* AssetsManager::getMusic(size_t id)
 void AssetsManager::loadMusic()
 {
 	size_t id = 1;
-	music_.reserve(id);
-	music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/New Hope menu.ogg"));
-	music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
+	
+	music_.emplace_(MENU_PRINCIPAL, app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/New Hope menu.ogg"));
+	music_.emplace_(FIGHT_1, app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
 	
 	//music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/nombre de la cancion. formato"));
 

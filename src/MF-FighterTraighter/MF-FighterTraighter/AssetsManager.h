@@ -28,13 +28,37 @@ public:
 		Roboto_Black
 	};
 
-	enum MusicNames{
-		
-	}
+	enum MusicNames {
+		MENU_PRINCIPAL,
+		MENU_OPCIONES,
+		FIGHT_1,
+		FIGHT_2,
+		FIGHT_3,
+		FIGHT_4
+	};
 
-	enum SFXNames{
-		
-	}
+	enum SFXNames {
+		/// Taunts
+		AISHA_1,
+		AISHA_2,
+		AISHA_3,
+		AISHA_4,
+		AISHA_5,
+		AISHA_6,
+		FLOR_1,
+		FLOR_2,
+		FLOR_3,
+		MKWOP_1,
+		MKWOP_2,
+		MKWOP_3,
+		MKWOP_4,
+		MKWOP_5,
+		MKBIRD_1,
+		MKBIRD_2,
+		MKBIRD_3,
+		/// SFX
+
+	};
 
 	//constructors
 	AssetsManager(App* app);
@@ -65,10 +89,10 @@ public:
 
 
 private:
-	std::vector<Texture*> textures_;	//images/Textures
-	std::vector<Font*> fonts_;			//fonts
-	std::vector <Mix_Chunk*> sfx_;		//sound effects
-	std::vector <Mix_Music*> music_;	//music
+	std::map <TextureNames,Texture*> textures_;	//images/Textures
+	std::map <FontNames,Font*> fonts_;			//fonts
+	std::map <MusicNames,Mix_Music*> music_;	//music
+	std::map <SFXNames,Mix_Chunk*> sfx_;		//sound effects
 	App* app_;
 };
 
