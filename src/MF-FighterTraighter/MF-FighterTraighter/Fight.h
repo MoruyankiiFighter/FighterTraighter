@@ -21,6 +21,7 @@ class Fight : public GameState
 		BOUNDARY = 0x0001,
 		PLAYER_1 = 0x0002,
 		PLAYER_2 = 0x0004,
+		WALL = 0x0006,
 		EVERYTHING = 0XFFFF
 	};
 public:

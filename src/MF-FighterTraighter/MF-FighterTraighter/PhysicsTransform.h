@@ -21,7 +21,7 @@ public:
 	virtual void setPosition(double x, double y) { body_->SetTransform({ (float32)x,(float32)y }, body_->GetAngle()); }
 
 	//get and set for speed
-	virtual const Vector2D& getSpeed() const { /*return speed_;*/ Vector2D pos{ body_->GetLinearVelocity().x,body_->GetLinearVelocity().y };
+	virtual Vector2D getSpeed() const { /*return speed_;*/ Vector2D pos{ body_->GetLinearVelocity().x,body_->GetLinearVelocity().y };
 	return pos;
 	}
 	virtual void setSpeed(const Vector2D& v) { body_->SetLinearVelocity({ (float32)v.getX(), (float32)v.getY() }); }

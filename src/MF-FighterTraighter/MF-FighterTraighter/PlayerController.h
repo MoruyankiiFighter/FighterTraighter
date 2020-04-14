@@ -18,11 +18,17 @@ public:
 	void crouch();
 	void uncrouch();
 	float getJumpImpulse() { return jumpImpulse; }
+	void wallLeft(bool collision) {
+		wallLeft_ = collision;
+	}
+	void wallRight(bool collision) {
+		wallRight_ = collision;
+	}
 private:
 	PhysicsTransform* transform_ = nullptr;
 	SDL_Scancode left_, right_, block_;
 	Vector2D dir_;
-
+	bool wallLeft_=false, wallRight_ = false;
 	SDL_Scancode jumpKey_;
 	float jumpImpulse = 0;
 

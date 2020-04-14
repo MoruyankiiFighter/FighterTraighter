@@ -20,7 +20,7 @@ public:
 	virtual void setPosition(double x, double y) { position_ = { x,y }; }
 
 	//get and set for speed
-	virtual const Vector2D& getSpeed() const { return speed_; }
+	virtual  Vector2D getSpeed() const { return speed_; }
 	virtual void setSpeed(const Vector2D& v) { speed_ = v; }
 	virtual void setSpeed(double x, double y) { speed_ = { x,y }; }
 

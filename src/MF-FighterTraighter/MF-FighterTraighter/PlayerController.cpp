@@ -21,6 +21,7 @@ PlayerController::~PlayerController()
 void PlayerController::init()
 {
 	transform_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
+	
 }
 
 //update
@@ -60,15 +61,20 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && (input->isKeyDown(left_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0))
 	{
-		speed = { -45, speed.getY() };
+		if(!wallLeft_) speed = { -45, speed.getY() };
+		else {
+			speed = { 0, speed.getY() };
+		}
 		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}
 	else if (currState->isAbletoMove() && (input->isKeyDown(right_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.09))
 	{
-		speed = { 45, speed.getY() };
-		transform_->setSpeed(speed);
+		if (!wallRight_) speed = { 45, speed.getY() };
+		else {
+			speed = { 0, speed.getY() };
+		}		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}

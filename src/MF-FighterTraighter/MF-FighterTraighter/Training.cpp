@@ -48,6 +48,15 @@ void Training::init()
 	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	//floor->addComponent<FloorOnHit>();
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
+
+	//Walls
+	Entity* wall1 = entManager_.addEntity();
+	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALL, EVERYTHING, false);
+	app_->getHitboxMng()->addFloorHitbox(W1pT->getMainFixture());
+
+	Entity* wall2 = entManager_.addEntity();
+	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALL, EVERYTHING, false);
+	app_->getHitboxMng()->addFloorHitbox(W2pT->getMainFixture());
 }
 
 void Training::handleInput()
