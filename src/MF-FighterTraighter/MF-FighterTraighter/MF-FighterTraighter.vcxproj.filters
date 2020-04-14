@@ -145,9 +145,17 @@
     <ClCompile Include="NavigationController.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="AudioManager.cpp">
-      <Filter>Source Files\Manager and factorys</Filter>
-    </ClCompile>
+    <ClCompile Include="AbilityFactory.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="MkWH00PData.cpp" />
+    <ClCompile Include="PlayerData.cpp" />
+    <ClCompile Include="PlayerOnHit.cpp" />
+    <ClCompile Include="LinkedGrid.cpp" />
+    <ClCompile Include="UIHealthbar.cpp" />
+    <ClCompile Include="UIRoundRenderer.cpp" />
+    <ClCompile Include="UITimer.cpp" />
+    <ClCompile Include="UITransform.cpp" />
+    <ClCompile Include="ControlsMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -315,9 +323,6 @@
     <ClInclude Include="NavigationController.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="AudioManager.h">
-      <Filter>Header files\Managers and factorys</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerOnHit.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
@@ -356,6 +361,7 @@
     </ClInclude>
     <ClInclude Include="UIHealthbar.h" />
     <ClInclude Include="UIRoundRenderer.h" />
+    <ClInclude Include="AudioManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

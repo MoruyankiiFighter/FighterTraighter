@@ -45,7 +45,7 @@ void AssetsManager::loadFonts()
 	// fonts_.emplace_back(new Font("Filepath", size));
 }
 
-Mix_Music* AssetsManager::getMusic(size_t id)
+Mix_Music* AssetsManager::getMusic(AssetsManager::MusicNames id)
 {
 	return music_[id];
 }
@@ -54,14 +54,14 @@ void AssetsManager::loadMusic()
 {
 	size_t id = 1;
 	
-	music_.emplace_(MENU_PRINCIPAL, app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/New Hope menu.ogg"));
-	music_.emplace_(FIGHT_1, app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
+	music_.emplace(MENU_PRINCIPAL, app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/New Hope menu.ogg"));
+	music_.emplace(FIGHT_1, app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
 	
-	//music_.emplace_back(app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/nombre de la cancion. formato"));
+	//music_.emplace(Nombre,app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/nombre de la cancion. formato"));
 
 }
 
-Mix_Chunk* AssetsManager::getSFX(size_t id)
+Mix_Chunk* AssetsManager::getSFX(AssetsManager::SFXNames id)
 {
 	return sfx_[id];
 }
@@ -84,11 +84,12 @@ void AssetsManager::UnloadAssets()
 		delete font->second;
 	}
 
-	for (Mix_Music* m : music_) {
-		delete m;
+	for (auto music = music_.begin(); music != music_.end(); ++music) {
+		delete music->second;
+	}
+	
+	for (auto audio = sfx_.begin(); audio != sfx_.end(); ++audio) {
+		delete audio->second;
 	}
 
-	for (Mix_Chunk* sfx : sfx_) {
-		delete sfx;
-	}
 }

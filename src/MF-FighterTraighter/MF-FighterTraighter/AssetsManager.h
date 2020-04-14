@@ -45,14 +45,17 @@ public:
 		AISHA_4,
 		AISHA_5,
 		AISHA_6,
+
 		FLOR_1,
 		FLOR_2,
 		FLOR_3,
+		
 		MKWOP_1,
 		MKWOP_2,
 		MKWOP_3,
 		MKWOP_4,
 		MKWOP_5,
+		
 		MKBIRD_1,
 		MKBIRD_2,
 		MKBIRD_3,
@@ -79,12 +82,14 @@ public:
 	Font* getFont(AssetsManager::FontNames id);
 	void loadFonts(); // Fonts are hardcoded for now
 
+
 	//music methods
-	Mix_Music* getMusic(size_t id);
+	Mix_Music* getMusic(AssetsManager::MusicNames id);
 	void loadMusic();
+
 	
 	//sfx methods
-	Mix_Chunk* getSFX(size_t id);
+	Mix_Chunk* getSFX(AssetsManager::SFXNames id);
 	void loadSFX();
 
 
