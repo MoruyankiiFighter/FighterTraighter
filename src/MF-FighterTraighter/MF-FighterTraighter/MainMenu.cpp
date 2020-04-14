@@ -73,7 +73,9 @@ void MainMenu::init()
 	nav->SetElementInPos(std::get<0>(options)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 	nav->SetElementInPos(std::get<0>(exit)->getComponent<UIElement>(ecs::UIElement), 0, 3);
 
+	app_->getAudioManager()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::MENU_PRINCIPAL),true);
 }
+
 
 void MainMenu::handleInput()
 {
@@ -105,5 +107,6 @@ void MainMenu::GoOptions(App* app)
 
 void MainMenu::Leave(App* app)
 {
+	app->getAudioManager()->stopMusic();
 	app->Exit();
 }

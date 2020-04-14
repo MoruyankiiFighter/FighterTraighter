@@ -63,9 +63,15 @@ void OptionsMenu::init()
 
 	tuple<Entity*, Entity*, Entity*, Entity*> brightSlider = UIFactory::createSlider(app_, this, 0.4, 1, 6,
 		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, 350), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(0, 200), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(250, 5),
 		500, 10, SetBright, "BRIGHTNESS", 60, "", 60);
+	
+	tuple<Entity*, Entity*, Entity*, Entity*> volumeSlider = UIFactory::createSlider(app_, this, 0, 128, 6,
+		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D(0, 350), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(250, 5),
+		500, 10, SetVolume, "AUDIO", 60, to_string(app_->getAudioManager()->getGeneralVolume()), 60);
 
 	tuple<Entity*, Entity*> applyButton = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 450), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
@@ -78,14 +84,16 @@ void OptionsMenu::init()
 		std::get<0>(brightSlider)->getComponent<Slider>(ecs::UIElement),
 		std::get<3>(brightSlider)->getComponent<TextComponent>(ecs::TextComponent));
 
+
 	Entity* nav = entManager_.addEntity();
-	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 6);
+	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 7);
 	ctrl->SetElementInPos(std::get<0>(back)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrl->SetElementInPos(std::get<0>(controls)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	ctrl->SetElementInPos(std::get<0>(fullscreen)->getComponent<UIElement>(ecs::UIElement), 0, 2);	
 	ctrl->SetElementInPos(std::get<0>(resolutionSlider)->getComponent<UIElement>(ecs::UIElement), 0, 3);
 	ctrl->SetElementInPos(std::get<0>(brightSlider)->getComponent<UIElement>(ecs::UIElement), 0, 4);
-	ctrl->SetElementInPos(std::get<0>(applyButton)->getComponent<UIElement>(ecs::UIElement), 0, 5);
+	ctrl->SetElementInPos(std::get<0>(volumeSlider)->getComponent<UIElement>(ecs::UIElement), 0, 5);
+	ctrl->SetElementInPos(std::get<0>(applyButton)->getComponent<UIElement>(ecs::UIElement), 0, 6);
 }
 
 void OptionsMenu::handleInput()

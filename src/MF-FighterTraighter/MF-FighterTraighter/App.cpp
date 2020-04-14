@@ -36,6 +36,7 @@ void App::run()
 		if (frameTime < 10) 
 			SDL_Delay(10 - frameTime);
 	}
+	getAudioManager()->stopMusic();
 }
 
 void App::handleInput() 
