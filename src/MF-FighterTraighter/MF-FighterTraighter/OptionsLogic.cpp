@@ -20,6 +20,7 @@ void OptionsLogic::SetElements()
 		+ "@" + std::to_string(mngr->getSupportedResolutions()[resolutionsSlider_->getValue()].refresh_rate) + "Hz");
 
 	brightnessText_->setText(std::to_string(mngr->getCurBrightness()));
+	
 }
 
 void OptionsLogic::update()

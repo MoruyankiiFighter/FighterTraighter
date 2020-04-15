@@ -67,7 +67,7 @@ void OptionsMenu::init()
 		Vector2D(250, 5),
 		500, 10, SetBright, "BRIGHTNESS", 60, "", 60);
 	
-	tuple<Entity*, Entity*, Entity*, Entity*> volumeSlider = UIFactory::createSlider(app_, this, 0, 128, 6,
+	tuple<Entity*, Entity*, Entity*, Entity*> volumeSlider = UIFactory::createSlider(app_, this, 0, 100, 10,
 		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 350), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(250, 5),
@@ -82,7 +82,9 @@ void OptionsMenu::init()
 	logic->addComponent<OptionsLogic>(std::get<0>(resolutionSlider)->getComponent<Slider>(ecs::UIElement),
 		std::get<3>(resolutionSlider)->getComponent<TextComponent>(ecs::TextComponent),
 		std::get<0>(brightSlider)->getComponent<Slider>(ecs::UIElement),
-		std::get<3>(brightSlider)->getComponent<TextComponent>(ecs::TextComponent));
+		std::get<3>(brightSlider)->getComponent<TextComponent>(ecs::TextComponent),
+		std::get<0>(volumeSlider)->getComponent<Slider>(ecs::UIElement),
+		std::get<3>(volumeSlider)->getComponent<TextComponent>(ecs::TextComponent));
 
 
 	Entity* nav = entManager_.addEntity();
