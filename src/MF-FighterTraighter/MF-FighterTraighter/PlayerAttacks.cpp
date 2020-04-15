@@ -50,6 +50,7 @@ void PlayerAttacks::handleInput() {
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
+				currState->goStun(true);
 			}
 			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
 				activeAttack_ = attacksList[1];

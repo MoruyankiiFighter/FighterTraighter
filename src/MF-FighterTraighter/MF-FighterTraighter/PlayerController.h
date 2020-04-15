@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "PhysicsTransform.h"
+#include "PlayerState.h"
 
 class PlayerController :
 	public Component
@@ -17,6 +18,7 @@ public:
 	void update() override;
 	void crouch();
 	void uncrouch();
+
 private:
 	PhysicsTransform* transform_ = nullptr;
 	SDL_Scancode left_, right_, block_;

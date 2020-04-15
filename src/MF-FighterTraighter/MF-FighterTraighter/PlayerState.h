@@ -52,7 +52,7 @@ public:
 
 	//ATTACKING
 	bool isAttacking() { return playerStatus_ == Attacking || playerStatus_ == AttackingAir || playerStatus_ == AttackingCrouch; };
-	bool isAbleToAttack() { return (playerStatus_ == Idle) || (playerStatus_ == Jumping) || (playerStatus_ == Crouching) || (playerStatus_ == Moving); }; //Y si te est�s moviendo? Deber�a pararte...
+	bool isAbleToAttack() { return (playerStatus_ == Idle) || (playerStatus_ == Jumping) || (playerStatus_ == Crouching) || (playerStatus_ == Moving) || (playerStatus_ != Stunned); }; //Y si te est�s moviendo? Deber�a pararte...
 	void goAttack(){
 		if (playerStatus_ == Jumping)  playerStatus_ = AttackingAir;
 		else if (playerStatus_ == Crouching) playerStatus_ = AttackingCrouch;
@@ -163,7 +163,27 @@ public:
 		//if (playerStatus_ == Guarding) std::cout << "GGG" << endl;
 	};
 
+	//STUNNED
+	bool isStunned() { return playerStatus_ == Stunned; }
+
+	void goStun(bool stunEffect) {
+		if (stunEffect) {
+			playerStatus_ = Stunned;
+			Uint32 startTime = SDL_GetTicks();
+			Uint32 aux;
+			while (playerStatus_ == Stunned) {
+				aux = SDL_GetTicks();
+				if (aux - startTime >= stunTime) {
+					playerStatus_ = Idle;
+				}
+				
+			}
+		}
+		else { playerStatus_ = Idle; }
+	}
+
 private:
 	Status playerStatus_;
 	int holdingFrames_ = -1;
+	Uint32 stunTime = 3000;
 };
