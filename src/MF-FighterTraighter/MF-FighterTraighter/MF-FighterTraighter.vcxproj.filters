@@ -146,7 +146,6 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="AbilityFactory.cpp" />
-    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="MkWH00PData.cpp" />
     <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="PlayerOnHit.cpp" />
@@ -156,6 +155,9 @@
     <ClCompile Include="UITimer.cpp" />
     <ClCompile Include="UITransform.cpp" />
     <ClCompile Include="ControlsMenu.cpp" />
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Source Files\Manager and factories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -361,7 +363,9 @@
     </ClInclude>
     <ClInclude Include="UIHealthbar.h" />
     <ClInclude Include="UIRoundRenderer.h" />
-    <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="AudioManager.h">
+      <Filter>Header files\Managers and factories</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

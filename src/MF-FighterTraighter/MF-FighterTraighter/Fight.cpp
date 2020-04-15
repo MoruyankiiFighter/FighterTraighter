@@ -84,11 +84,14 @@ void Fight::init()
 	Entity* gameController = entManager_.addEntity();
 	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(3);
 	gameController->addComponent<UIRoundRenderer>(rightCounter);
+
+	app_->getAudioManager()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 }
 
 void Fight::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
+		app_->getAudioManager()->pauseMusic();
 		app_->getStateMachine()->pushState(new PauseMenu(app_));
 	}
 	else

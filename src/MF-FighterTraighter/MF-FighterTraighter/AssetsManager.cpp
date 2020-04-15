@@ -68,6 +68,7 @@ Mix_Chunk* AssetsManager::getSFX(AssetsManager::SFXNames id)
 
 void AssetsManager::loadSFX()
 {
+
 }
 
 AssetsManager::~AssetsManager()
@@ -85,11 +86,12 @@ void AssetsManager::UnloadAssets()
 	}
 
 	for (auto music = music_.begin(); music != music_.end(); ++music) {
-		delete music->second;
+		Mix_FreeMusic((*music).second);
 	}
 	
 	for (auto audio = sfx_.begin(); audio != sfx_.end(); ++audio) {
-		delete audio->second;
+	
+		Mix_FreeChunk((*audio).second);
 	}
 
 }

@@ -41,7 +41,6 @@ void App::run()
 
 void App::handleInput() 
 {
-
 	inputManager_->update();
 
 	stateMachine_->getCurrentState()->handleInput();
@@ -81,7 +80,6 @@ void App::init()
 	std::cout << "Num Buttons :" << SDL_JoystickNumButtons(joystick) << std::endl;*/
 	
 	windowManager_.reset(new WindowManager(this));
-	audioManager_.reset(new AudioManager());
 	renderer = SDL_CreateRenderer(windowManager_->getWindow(), -1, SDL_RENDERER_ACCELERATED);
 	SDL_RenderSetLogicalSize(renderer, windowManager_->getCurResolution().w, windowManager_->getCurResolution().h); //para que se redimensionen a su proporcion
 	if (!renderer) {
@@ -90,6 +88,7 @@ void App::init()
 
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
+	audioManager_.reset(new AudioManager());
 	assetsManager_.reset(new AssetsManager(this));
 	hitboxManager_.reset(new HitboxMng(this));
 
@@ -99,11 +98,11 @@ void App::init()
 void App::clean()
 {
 	// Reset pointers to prevent errors (especially assetsManager)
+	audioManager_.reset();
 	stateMachine_.reset();
 	inputManager_.reset();
 	// If we try to close fonts after TTF_Quit(), an error will occur
 	assetsManager_.reset();
-
 	// Delete SDL's attributes
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
