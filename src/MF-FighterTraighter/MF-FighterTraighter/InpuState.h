@@ -1,0 +1,22 @@
+#pragma once
+#include <vector>
+#include "Component.h"
+
+class InputState: public Component {
+public:
+	InputState() : Component(ecs::InputState) {};
+	bool getInput(int index) {
+		return inputVec[index];
+	}
+	virtual void init() override {
+		inputVec = std::vector<bool>(inputsSize);
+		 for(auto e: inputVec) {
+			 e = false;
+		}
+	}
+private:
+	//left, right, up, down, hit1, hit2, hit3, hit4, block, guardbreak
+	int inputsSize = 10;
+	std::vector<bool> inputVec;
+
+};
