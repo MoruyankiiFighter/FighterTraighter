@@ -17,6 +17,7 @@ public:
 	void update() override;
 	void crouch();
 	void uncrouch();
+	void stop();
 	float getJumpImpulse() { return jumpImpulse; }
 	void wallLeft(bool collision) {
 		wallLeft_ = collision;
@@ -27,7 +28,9 @@ public:
 private:
 	PhysicsTransform* transform_ = nullptr;
 	SDL_Scancode left_, right_, block_;
-	Vector2D dir_;
+	b2Vec2 dir_;
+	float acc_ = 100.0;
+	float maxSpeed = 100.0;
 	bool wallLeft_=false, wallRight_ = false;
 	SDL_Scancode jumpKey_;
 	float jumpImpulse = 0;

@@ -61,7 +61,6 @@ void MkWH00PData::NP1(Entity* ent)//cBits and mBits are there to use the same co
 	std::cout << "Uppercut" << endl;
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = pT->getOrientation();
-
 	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
 	int width = 150;
 	int hitboxX = 100;
