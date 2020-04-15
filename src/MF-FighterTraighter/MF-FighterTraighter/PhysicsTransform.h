@@ -38,6 +38,7 @@ public:
 	uint16 getCategory() { return cBits_; }
 	uint16 getMask() { return mBits_; }
 
+	
 private:
 	b2Body* body_;
 	uint16 cBits_, mBits_;

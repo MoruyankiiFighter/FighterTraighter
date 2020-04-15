@@ -14,7 +14,7 @@ Fight::Fight(App* app) : GameState(app)
 
 void Fight::init()
 {
-	world = new b2World(b2Vec2(0.0f, 18.0f));//inicializamos el mundo para las fisicas de b2D
+	world = new b2World(b2Vec2(0.0f, 32.0f));//inicializamos el mundo para las fisicas de b2D
 	//---------Debuggear hitbox-------------------------------------------
 	debugInstance = new SDLDebugDraw(app_->getRenderer());
 	world->SetDebugDraw(debugInstance);
