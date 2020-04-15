@@ -81,7 +81,7 @@ void App::init()
 	std::cout << "Num Buttons :" << SDL_JoystickNumButtons(joystick) << std::endl;*/
 	
 	windowManager_.reset(new WindowManager(this));
-
+	audioManager_.reset(new AudioManager());
 
 	
 	renderer = SDL_CreateRenderer(windowManager_->getWindow(), -1, SDL_RENDERER_ACCELERATED);
