@@ -20,7 +20,8 @@ public:
 		Background,
 		Healthbar,
 		HealthbarBack,
-		RoundCounter
+		RoundCounter,
+		CharacterSelection
 	};
 
 	enum FontNames {

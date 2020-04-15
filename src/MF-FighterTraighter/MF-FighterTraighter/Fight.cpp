@@ -54,18 +54,24 @@ void Fight::init()
 	timer->addComponent<UITimer>(UITimer::Minutes);
 
 	Entity* healthbarBack1 = entManager_.addEntity();
-	healthbarBack1->addComponent<UITransform>(Vector2D(470, 50), Vector2D(0, 0), Vector2D(345, 20), Vector2D(690, 40));
+	healthbarBack1->addComponent<UITransform>(Vector2D(460, 50), Vector2D(0, 0), Vector2D(365, 20), Vector2D(730, 40));
 	healthbarBack1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::HealthbarBack));
 	Entity* healthbar1 = entManager_.addEntity();
-	healthbar1->addComponent<UITransform>(Vector2D(470, 50), Vector2D(0, 0), Vector2D(345, 20), Vector2D(690, 40));
+	healthbar1->addComponent<UITransform>(Vector2D(460, 50), Vector2D(0, 0), Vector2D(365, 20), Vector2D(730, 40));
 	healthbar1->addComponent<UIHealthbar>(player1->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar), true);
+	Entity* character1 = entManager_.addEntity();
+	character1->addComponent<UITransform>(Vector2D(70, 70), Vector2D(), Vector2D(70, 70), Vector2D(140, 140));
+	character1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection))->setFrame(2, 0);
 
 	Entity* healthbarBack2 = entManager_.addEntity();
-	healthbarBack2->addComponent<UITransform>(Vector2D(-470, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(345, 20), Vector2D(690, 40));
+	healthbarBack2->addComponent<UITransform>(Vector2D(-460, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(365, 20), Vector2D(730, 40));
 	healthbarBack2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::HealthbarBack));
 	Entity* healthbar2 = entManager_.addEntity();
-	healthbar2->addComponent<UITransform>(Vector2D(-470, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(345, 20), Vector2D(690, 40));
+	healthbar2->addComponent<UITransform>(Vector2D(-460, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(365, 20), Vector2D(730, 40));
 	healthbar2->addComponent<UIHealthbar>(player2->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar));
+	Entity* character2 = entManager_.addEntity();
+	character2->addComponent<UITransform>(Vector2D(-70, 70), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(70, 70), Vector2D(140, 140));
+	character2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection))->setFrame(2, 0);
 
 	std::vector<Entity*> leftCounter;
 	std::vector<Entity*> rightCounter;
