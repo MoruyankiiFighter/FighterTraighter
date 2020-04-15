@@ -17,8 +17,5 @@ protected:
 	TextComponent* resolutionsText_;
 	Slider* brightnessSlider_;
 	TextComponent* brightnessText_;
-
-	Slider* volumeSlider_;
-	TextComponent* volumeText_;
 };
 
