@@ -82,8 +82,6 @@ void App::init()
 	
 	windowManager_.reset(new WindowManager(this));
 	audioManager_.reset(new AudioManager());
-
-	
 	renderer = SDL_CreateRenderer(windowManager_->getWindow(), -1, SDL_RENDERER_ACCELERATED);
 	SDL_RenderSetLogicalSize(renderer, windowManager_->getCurResolution().w, windowManager_->getCurResolution().h); //para que se redimensionen a su proporcion
 	if (!renderer) {
