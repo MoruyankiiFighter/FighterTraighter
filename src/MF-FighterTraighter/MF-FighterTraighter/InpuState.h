@@ -18,8 +18,8 @@ public:
 		}
 	}
 private:
-	//left, right, up, down, hit1, hit2, hit3, hit4, block, guardbreak
-	int inputsSize = 10;
+	//left, right, up, down, hit1, hit2, hit3, hit4, ab1, ab2, block, guardbreak
+	int inputsSize = 12;
 	std::vector<bool> inputVec;
 
 };
