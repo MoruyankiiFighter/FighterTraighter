@@ -20,9 +20,15 @@ public:
 		}
 	}
 	virtual void handleInput() override {
-		for (int i = 0; i < keysSize; ++i) {
-			if (app_->getInputManager()->isKeyDown(keys_[i])) inSt->setInput(i, true);
-			else inSt->setInput(i, false);
+		int i = 0;
+		for (; i < 4; ++i) {
+			inSt->setInput(i, app_->getInputManager()->isKeyDown(keys_[i]));
+		}
+		for (; i < 10; ++i) {
+			inSt->setInput(i, app_->getInputManager()->KeyPressed(keys_[i]));
+		}
+		for (; i < keysSize; ++i) {
+			inSt->setInput(i, app_->getInputManager()->isKeyDown(keys_[i]));
 		}
 	}
 private:

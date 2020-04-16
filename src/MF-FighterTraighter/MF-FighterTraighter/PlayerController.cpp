@@ -75,7 +75,7 @@ void PlayerController::handleInput()
 	}
 
 	//Si eésa tecla no está activa
-	if(!inputSt_->getInput(0) && inputSt_->getInput(1) && inputSt_->getInput(2)){
+	if(!inputSt_->getInput(0) && !inputSt_->getInput(1) && !inputSt_->getInput(2)){
 		if (currState->isMoving() || currState->isJumping()) 
 		{
 			transform_->setSpeed(0, speed.getY());
