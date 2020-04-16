@@ -11,6 +11,7 @@
 #include "FloorOnHit.h"
 #include "UITransform.h"
 #include "UITimer.h"
+#include "UIHealthbar.h"
 Training::Training(App* app) : GameState(app)
 {
 	init();
@@ -28,20 +29,33 @@ void Training::init()
 	
 	FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X,
 		SDL_SCANCODE_SPACE, SDL_SCANCODE_R, SDL_SCANCODE_1, SDL_SCANCODE_2 }, PLAYER_1, PLAYER_2 | BOUNDARY | P_BAG);
-	//FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M },
-		//PLAYER_2, PLAYER_1 | BOUNDARY);
-
-	Entity* timer = entManager_.addEntity();
-	timer->addComponent<UITransform>(Vector2D(0, 75), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
-	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timer->addComponent<UITimer>(UITimer::Minutes);
+	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M,
+		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, PLAYER_2, PLAYER_1 | WALL | BOUNDARY);
 
 	Entity* saco = entManager_.addEntity();
-	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(800, 200), Vector2D(10, 10), 150, 500, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
+	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h - 455), Vector2D(10, 10), 150, 500, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
 	app_->getHitboxMng()->addMainHitbox(pBpT->getMainFixture());
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	saco->addComponent<PunchingBagOnHit>();
+	Health* sacoHealth = saco->addComponent<Health>(200);
 	//saco->addComponent<SacoTimer>(5000);
+
+	Entity* timer = entManager_.addEntity();
+	timer->addComponent<UITransform>(Vector2D(0, 150), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
+	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
+	timer->addComponent<UITimer>(UITimer::Minutes);
+
+	Entity* healthbarBack = entManager_.addEntity();
+	healthbarBack->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(750, 25), Vector2D(1500, 50));
+	healthbarBack->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::HealthbarBack));
+
+	Entity* healthbarL = entManager_.addEntity();
+	healthbarL->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(0, 25), Vector2D(750, 50));
+	healthbarL->addComponent<UIHealthbar>(sacoHealth, app_->getAssetsManager()->getTexture(AssetsManager::Healthbar));
+
+	Entity* healthbarR = entManager_.addEntity();
+	healthbarR->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(750, 25), Vector2D(750, 50));
+	healthbarR->addComponent<UIHealthbar>(sacoHealth, app_->getAssetsManager()->getTexture(AssetsManager::Healthbar), true);
 
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0, 0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, false);
