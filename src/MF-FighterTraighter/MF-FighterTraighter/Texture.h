@@ -29,14 +29,9 @@ public:
 	Texture operator=(Texture& tex) = delete; // No assignment operator
 	~Texture() { cleanTexture(); };
 
-	inline int getWidth() { return width; }
-	inline int getHeight() { return height; }
-
 	void load(string filename, int cols, int fils);
-	void setColor(SDL_Color col);
 	void cleanTexture();
 	void render(const SDL_Rect& rect, SDL_RendererFlip flip = SDL_FLIP_NONE) const; 
 	void render(Vector2D pos, int widthMul, int heightMult, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
 	void render(const SDL_Rect& destRect, int row, int col, int angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
-	void render(const SDL_Rect& srcRect, const SDL_Rect& destRect, int angle = 0, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
 };
