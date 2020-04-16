@@ -5,6 +5,9 @@
 class InputState: public Component {
 public:
 	InputState() : Component(ecs::InputState) {};
+	void setInput(int index, bool value) {
+		inputVec[index] = value;
+	}
 	bool getInput(int index) {
 		return inputVec[index];
 	}
