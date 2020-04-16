@@ -29,10 +29,10 @@ public:
 
 
 	static Entity* createPanel(App* app, GameState* state, Texture* texture_, Vector2D position = Vector2D(), double width = 0, double height = 0, double rotation = 0);
-	static Entity* createHab(App* app, GameState* state, Vector2D pos, double width, double height, Texture* texture_);
- static	std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> createSubMenu(App* app, GameState* state, Texture* bg, Texture* button_texture_, Texture* hab_1, Texture* hab_2, Texture* hab_3, Vector2D pos, double width, double height, double width_hab, double height_hab);
-
-static std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*>createSubHabMenu(App* app, GameState* state, Texture* bg, Entity* h1_, Entity* h2_, Entity* h3_, Entity* h4_, Entity* h5_, Entity* h6_, Entity* h7_, Entity* h8_, Entity* h9_, Entity* h10_, Vector2D pos, double width, double height);
+	static Entity* createHab(App* app, GameState* state, Entity* e, Vector2D pos, double width, double height, Texture* texture_);
+	
+	static std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> createSubMenu(App* app, GameState* state, Texture* bg, Texture* bt, Entity* hab1_, Entity* hab2_, Entity* hab3_, Vector2D pos, double width, double height);
+	static std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*>createSubHabMenu(App* app, GameState* state, Texture* bg, Entity* h1_, Entity* h2_, Entity* h3_, Entity* h4_, Entity* h5_, Entity* h6_, Entity* h7_, Entity* h8_, Entity* h9_, Entity* h10_, Vector2D pos, double width, double height);
 
 
 protected:
