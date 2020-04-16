@@ -15,7 +15,7 @@ void Texture::load(string filename, int cols, int rows) {
 	SDL_Surface* tempSurface;
 	tempSurface = IMG_Load(filename.c_str());
 	if (tempSurface == nullptr)
-		throw new AssetsExceptions::TextureException("Unable to load texture: ", filename);
+		throw AssetsExceptions::TextureException("Unable to load texture: ", filename);
 	else {
 		cleanTexture();
 		texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
@@ -30,6 +30,12 @@ void Texture::load(string filename, int cols, int rows) {
 
 		SDL_FreeSurface(tempSurface);
 	}
+}
+
+void Texture::setColor(SDL_Color col)
+{
+	SDL_SetTextureColorMod(texture, col.r, col.g, col.b);
+	SDL_SetTextureAlphaMod(texture, col.a);
 }
 
 // Render whole image, or first frame
@@ -48,5 +54,11 @@ void Texture::render(const SDL_Rect& destRect, int row, int col, int angle, SDL_
 	SDL_Rect srcRect;
 	srcRect.x = fWidth * col; srcRect.y = fHeight * row;
 	srcRect.w = fWidth; srcRect.h = fHeight;
+	render(srcRect, destRect, angle, flip);
+}
+
+// Render whatever rectangle of the texture
+void Texture::render(const SDL_Rect& srcRect, const SDL_Rect& destRect, int angle, SDL_RendererFlip flip) const
+{
 	SDL_RenderCopyEx(renderer, texture, &srcRect, &destRect, angle, 0, flip);
 }

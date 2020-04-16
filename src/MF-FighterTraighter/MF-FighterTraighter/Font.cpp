@@ -1,7 +1,7 @@
 #include "Font.h"
 #include "AssetsExceptions.h"
 
-Font::Font() : font(nullptr), fontSize_(), path_(), symbolWidth_()
+Font::Font() : font(nullptr), fontSize_(), path_(), widthRatio_()
 {
 }
 
@@ -15,7 +15,7 @@ Font::~Font()
 bool Font::setFontSize(int size)
 {
 	if (fontSize_ != size) {
-		Loadfont(path_, size, symbolWidth_);
+		Loadfont(path_, size, widthRatio_);
 		return true;
 	}
 	return false;
@@ -25,25 +25,25 @@ bool Font::setFontSize(int size)
 void Font::changeFont(std::string path)
 {
 	if (path_ != path) {
-		Loadfont(path, fontSize_, symbolWidth_);
+		Loadfont(path, fontSize_, widthRatio_);
 	}
 }
 
 // Width of every character
-void Font::setSymbolWidth(int symbolW)
+void Font::setWidthRatio(double width)
 {
-	symbolWidth_ = symbolW;
+	widthRatio_ = width;
 }
 
 // Loads a font using these args
-void Font::Loadfont(std::string path, int size, int symbolWidth)
+void Font::Loadfont(std::string path, int size, double widthRatio)
 {
 	if (font != nullptr) ClearFont();
 	font = TTF_OpenFont(path.c_str(), size);
-	if (font == nullptr) throw new AssetsExceptions::FontException("Unable to load font: ", path);
+	if (font == nullptr) throw AssetsExceptions::FontException("Unable to load font: ", path);
 	path_ = path;
 	fontSize_ = size;
-	symbolWidth_ = symbolWidth;
+	widthRatio_ = widthRatio;
 }
 
 //deletes the font

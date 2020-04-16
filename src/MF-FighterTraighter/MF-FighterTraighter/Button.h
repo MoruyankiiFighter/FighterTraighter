@@ -1,19 +1,38 @@
 #include "Component.h"
 #include "RenderImage.h"
+#include "UIElement.h"
 
 using CallBackOnClick = void(App* app);
 
-class Button : public Component {
+class Button : public UIElement {
 
 public:
 	//constructor
-	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr) : Component(ecs::Button), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
-	inline void setSelected(bool sel) 
+	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr) : UIElement(), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
+
+	virtual void Press()
 	{
-		selected_ = sel; 
-		if(sel) entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
-		else entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(0, 0);
-	}
+		state_ = Pressed;
+		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(2, 0);
+		if (clickCallback_) clickCallback_(app_);
+	};
+	virtual void Select() 
+	{
+		if (state_ != Selected) {
+			state_ = Selected;
+			entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
+		}
+	};
+	virtual void Disable() 
+	{
+		state_ = Disabled;
+	};
+	virtual void Deselect()
+	{
+		state_ = Normal;
+		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(0, 0);
+	};
+
 	//destructor
 	virtual ~Button() {};
 	
@@ -25,11 +44,9 @@ public:
 	void init() override;
 	//handle the input of the mouse by the moment
 	void handleInput() override;
+	void render() override;
 
 private:
-	Transform* transform_ = nullptr;
-	bool pressed_ = false;
-	bool selected_ = false;
 	CallBackOnClick* clickCallback_ = nullptr;
 	CallBackOnClick* stopClickCallback_ = nullptr;
 };

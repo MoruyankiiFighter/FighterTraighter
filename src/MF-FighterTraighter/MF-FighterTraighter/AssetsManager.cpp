@@ -9,47 +9,43 @@ AssetsManager::AssetsManager(App* app) : app_(app)
 	loadMusic();
 }
 
-Texture* AssetsManager::getTexture(size_t id)
+Texture* AssetsManager::getTexture(AssetsManager::TextureNames id)
 {
 	return textures_[id];
 }
 
 void AssetsManager::loadTextures()
 {
-	size_t numTextures = 3; // Must match the amount of loaded textures, efficiency
-	textures_.reserve(numTextures);
-
-
-	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/personaje.png", 1, 1));
-	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/buttons.png", 3, 1));
-	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/logo.png", 1, 1));
-	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/controller.png", 1, 1));
+	textures_.emplace(Player, new Texture(app_->getRenderer(), "../../../../assets/Assets/personaje.png", 1, 1));
+	textures_.emplace(Button, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/buttons.png", 3, 1));
+	textures_.emplace(Logo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/logo.png", 1, 1));
+	textures_.emplace(Controller, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/controller.png", 1, 1));
 	
-	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/slidebar.png", 1, 1));
-	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/regulador.png", 1, 1));
-	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/personajeActing.png", 1, 1));
+	textures_.emplace(Slidebar, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/slidebar.png", 1, 1));
+	textures_.emplace(SliderRegulator, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/regulador.png", 1, 1));
+	textures_.emplace(PlayerActing, new Texture(app_->getRenderer(), "../../../../assets/Assets/personajeActing.png", 1, 1));
 	
-	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/backgroundtemp.png", 1, 1));
+	textures_.emplace(Background, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/backgroundtemp.png", 1, 1));
+	textures_.emplace(Healthbar, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/healthbar.png", 1, 1));
+	textures_.emplace(HealthbarBack, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/healthbarBack.png", 1, 1));
+	textures_.emplace(RoundCounter, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/RoundCounter.png", 2, 1));
+	textures_.emplace(CharacterSelection, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/characters_selection.png", 4, 1));
 	
 	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuFondo.jpg", 1, 1));
 	textures_.emplace_back(new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuwin.jpg", 1, 1));
 	
 	
-	// textures_.emplace_back(new Texture(app_->getRenderer(), "Filepath", cols, fils));
+	// textures_.emplace("key", new Texture(app_->getRenderer(), "Filepath", cols, fils));
 }
 
-Font* AssetsManager::getFont(size_t id)
+Font* AssetsManager::getFont(AssetsManager::FontNames id)
 {
 	return fonts_[id];
 }
 
 void AssetsManager::loadFonts()
 {
-	size_t numFonts = 1; // Must match the amount of loaded fonts, efficiency
-	fonts_.reserve(numFonts);
-
-
-	fonts_.emplace_back(new Font("../../../../assets/Assets/Fonts/Roboto-Black.ttf", 20, 45));
+	fonts_.emplace(Roboto_Black, new Font("../../../../assets/Assets/Fonts/Roboto-Black.ttf", 20, 0.5));
 	// fonts_.emplace_back(new Font("Filepath", size));
 }
 
@@ -116,10 +112,10 @@ AssetsManager::~AssetsManager()
 
 void AssetsManager::UnloadAssets()
 {
-	for (Texture* tex : textures_) {
-		delete tex;
+	for (auto tex = textures_.begin(); tex != textures_.end(); ++tex) {
+		delete tex->second;
 	}
-	for (Font* font : fonts_) {
-		delete font;
+	for (auto font = fonts_.begin(); font != fonts_.end(); ++font) {
+		delete font->second;
 	}
 }

@@ -9,7 +9,7 @@ public:
 	Font();
 	Font(const Font&) = delete;
 	Font operator=(const Font&) = delete;
-	Font(std::string path, int size, int symbolWidth) { Loadfont(path, size, symbolWidth); }
+	Font(std::string path, int size, double widthRatio) { Loadfont(path, size, widthRatio); }
 
 	//destructor
 	virtual ~Font();
@@ -20,11 +20,11 @@ public:
 	//change the current font to the path one
 	void changeFont(std::string path);
 	// Width of every character
-	void setSymbolWidth(int symbolW);
+	void setWidthRatio(double width);
 	// Loads a font using these args
-	void Loadfont(std::string path, int size, int symbolWidth);
+	void Loadfont(std::string path, int size, double widthRatio);
 	inline TTF_Font* getFont() const { return font; }
-	inline int getSymbolWidth() const { return symbolWidth_; }
+	inline double getWidthRatio() const { return widthRatio_; }
 
 	// Deletes this font
 	void ClearFont();
@@ -33,6 +33,6 @@ protected:
 	TTF_Font* font;
 	int fontSize_;
 	std::string path_;
-	int symbolWidth_;
+	double widthRatio_;
 };
 

@@ -1,8 +1,8 @@
 #include "TextComponent.h"
 #include "Entity.h"
 
-TextComponent::TextComponent(std::string text, Font* font, int size) : Component(ecs::TextComponent),
-text_(nullptr), transform_(nullptr), textString_(text), textSize_(size), font_(font)
+TextComponent::TextComponent(std::string text, Font* font, int size, TextAlignment alignment) : Component(ecs::TextComponent),
+text_(nullptr), transform_(nullptr), textString_(text), textSize_(size), font_(font), alignment_(alignment)
 {
 }
 
@@ -15,10 +15,24 @@ void TextComponent::init()
 
 void TextComponent::render()
 {
-	SDL_Rect dest = SDL_Rect();
-	dest.x = transform_->getPosition().getX();
+	SDL_Rect dest;
+	int destWidth = textString_.length() * transform_->getWMult() * textSize_ * font_->getWidthRatio();
+	switch (alignment_)
+	{
+	case TextComponent::Left:
+		dest.x = transform_->getPosition().getX();
+		break;
+	case TextComponent::Center:
+		dest.x = transform_->getPosition().getX() + (transform_->getWidth() * transform_->getWMult() - destWidth) / 2;
+		break;
+	case TextComponent::Right:
+		dest.x = transform_->getPosition().getX() + (transform_->getWidth() * transform_->getWMult() - destWidth);
+		break;
+	default:
+		break;
+	}
 	dest.y = transform_->getPosition().getY();
-	dest.w = textString_.length() * font_->getSymbolWidth() * transform_->getWMult();
+	dest.w = destWidth;
 	dest.h = textSize_ * transform_->getHMult();
 	text_->render(dest);
 }

@@ -6,6 +6,7 @@
 #include "Jump.h"
 #include "PlayerAttacks.h"
 #include <vector>
+#include "ResetJumpListener.h"
 
 
 class Training: public GameState
@@ -15,6 +16,7 @@ class Training: public GameState
 		BOUNDARY = 0x0001,
 		PLAYER_1 = 0x0002,
 		PLAYER_2 = 0x0004,
+		WALL = 0x0006,
 		P_BAG = 0X008,
 		EVERYTHING = 0XFFFF
 	};
@@ -37,5 +39,7 @@ private:
 	std::vector<Move*> vecMov;
 	b2World* world= nullptr;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
+	ResetJumpListener* resJumpListener = nullptr;
+
 };
 

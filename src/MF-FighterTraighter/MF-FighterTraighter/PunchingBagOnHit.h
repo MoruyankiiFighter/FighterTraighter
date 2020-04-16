@@ -6,7 +6,7 @@ class PunchingBagOnHit : public OnHit
 public:
 	PunchingBagOnHit() : OnHit() {}
 	~PunchingBagOnHit() {}
-	void onHit() override {
+	void onHit(b2Fixture* fixture) override {
 		std::cout << "Soy un saco" << std::endl;
 	}
 };
