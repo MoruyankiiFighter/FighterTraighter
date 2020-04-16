@@ -76,9 +76,17 @@ Entity* UIFactory::createHab(App* app, GameState* state, Vector2D pos, double wi
 	
 	Entity* ent = state->getEntityManager().addEntity();
 
-		ent->addComponent<Transform>(pos, Vector2D(), width, height, 0);
+		ent->addComponent<Transform>(pos, Vector2D(0,0), width, height, 0);
 		ent->addComponent<RenderImage>(texture_);
 		return ent;
+<<<<<<< HEAD
+=======
+	}
+	else
+	{
+		return nullptr;
+	}
+>>>>>>> parent of 1d8e6de... arreglado toh
 }
 
 //create a submenu with almost 2 habilitys
@@ -87,10 +95,17 @@ std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> UIFactory::createSubMenu
 	Entity* panel = UIFactory::createPanel(app, state, bg, pos, width, height, 0);
 	
 	//fija
+<<<<<<< HEAD
 	Entity* h1 = UIFactory::createHab(app, state, Vector2D(pos.getX()+ 35, pos.getY()+150), width_hab, height_hab, hab_1);
 
 	Entity* h2 = UIFactory::createHab(app, state, Vector2D(pos.getX() + 150, pos.getY() + 150), width_hab, height_hab, hab_2);
 	Entity* h3 = UIFactory::createHab(app, state, Vector2D(pos.getX() + 400, pos.getY() + 150), width_hab, height_hab, hab_3);
+=======
+	Entity* h1 = UIFactory::createHab(app, state, hab1_, Vector2D(100, 300), 50, 50, hab1_->getComponent<RenderImage>(ecs::RenderImage)->getTexture());
+
+	Entity* h2 = UIFactory::createHab(app, state, hab2_, Vector2D(200, 300), 50, 50, hab2_->getComponent<RenderImage>(ecs::RenderImage)->getTexture());
+	Entity* h3 = UIFactory::createHab(app, state, hab3_, Vector2D(300/*pos.getX() + width / 4*/, 600), 50, 50, hab3_->getComponent<RenderImage>(ecs::RenderImage)->getTexture());
+>>>>>>> parent of 1d8e6de... arreglado toh
 	
 	Entity* button = state->getEntityManager().addEntity();
 	button->addComponent<Transform>(Vector2D((pos.getX() + width / 2)-(100/2), pos.getY() + height - 100),Vector2D(),100,40,0);

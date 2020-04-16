@@ -60,8 +60,24 @@ void Training::init()
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALL, EVERYTHING, false);
 	app_->getHitboxMng()->addFloorHitbox(W2pT->getMainFixture());
 
+<<<<<<< HEAD
 
 	UIFactory::createSubMenu(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getTexture(AssetsManager::Mina), nullptr, Vector2D(100, 100), 600, 600,100,100);
+=======
+	///// Esto es para los submenus
+	Entity* pollo = entManager_.addEntity();
+	pollo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Pollo));
+	pollo->addComponent<Transform>(Vector2D(0, 0), Vector2D(0,0), 50, 50, 0);
+	Entity* mina = entManager_.addEntity();
+	mina->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mina));
+	mina->addComponent<Transform>(Vector2D(0, 0), Vector2D(0,0), 50, 50, 0);
+	Entity* hielo = entManager_.addEntity();
+	hielo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Hielo));
+	hielo->addComponent<Transform>(Vector2D(0, 0), Vector2D(0,0), 50, 50, 0);
+
+	UIFactory::createSubMenu(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuWin), app_->getAssetsManager()->getTexture(AssetsManager::Button),
+		pollo, mina, hielo, Vector2D(200, 100), 600, 400);
+>>>>>>> parent of 1d8e6de... arreglado toh
 
 }
 
