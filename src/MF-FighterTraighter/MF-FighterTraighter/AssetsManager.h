@@ -21,7 +21,14 @@ public:
 		Healthbar,
 		HealthbarBack,
 		RoundCounter,
-		CharacterSelection
+		CharacterSelection,
+		SubMenuFondo,
+		SubMenuWin,
+		Wall,
+		//////// Habilidades
+		Pollo,
+		Mina,
+		Hielo,
 	};
 
 	enum FontNames {

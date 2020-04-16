@@ -50,7 +50,7 @@ void Training::init()
 	//floor->addComponent<FloorOnHit>();
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 
-	//	UIFactory::createHabSubMenu(app_, this, Vector2D(0, 0), 500, 500, app_->getAssetsManager()->getTexture(7),);
+	
 	//Walls
 	Entity* wall1 = entManager_.addEntity();
 	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALL, EVERYTHING, false);
@@ -59,6 +59,21 @@ void Training::init()
 	Entity* wall2 = entManager_.addEntity();
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALL, EVERYTHING, false);
 	app_->getHitboxMng()->addFloorHitbox(W2pT->getMainFixture());
+
+	///// Esto es para los submenus
+	Entity* pollo = entManager_.addEntity();
+	pollo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Pollo));
+	pollo->addComponent<Transform>(Vector2D(0, 0), Vector2D(0,0), 50, 50, 0);
+	Entity* mina = entManager_.addEntity();
+	mina->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mina));
+	mina->addComponent<Transform>(Vector2D(0, 0), Vector2D(0,0), 50, 50, 0);
+	Entity* hielo = entManager_.addEntity();
+	hielo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Hielo));
+	hielo->addComponent<Transform>(Vector2D(0, 0), Vector2D(0,0), 50, 50, 0);
+
+	UIFactory::createSubMenu(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuWin), app_->getAssetsManager()->getTexture(AssetsManager::Button),
+		pollo, mina, hielo, Vector2D(200, 100), 600, 400);
+
 }
 
 void Training::handleInput()

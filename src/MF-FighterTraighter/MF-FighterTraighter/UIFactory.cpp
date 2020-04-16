@@ -78,7 +78,7 @@ Entity* UIFactory::createHab(App* app, GameState* state,Entity* e, Vector2D pos,
 	if (e != nullptr) {
 		Entity* ent = state->getEntityManager().addEntity();
 
-		ent->addComponent<Transform>(pos, Vector2D(), width, height, 0);
+		ent->addComponent<Transform>(pos, Vector2D(0,0), width, height, 0);
 		ent->addComponent<RenderImage>(texture_);
 		return ent;
 	}
@@ -89,19 +89,19 @@ Entity* UIFactory::createHab(App* app, GameState* state,Entity* e, Vector2D pos,
 }
 
 //create a submenu with almost 2 habilitys
-std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> UIFactory::createSubMenu(App* app, GameState* state, Texture* bg, Entity* hab1_, Entity* hab2_, Entity* hab3_, Vector2D pos, double width, double height)
+std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> UIFactory::createSubMenu(App* app, GameState* state, Texture* bg, Texture* bt, Entity* hab1_, Entity* hab2_, Entity* hab3_, Vector2D pos, double width, double height)
 {
 	Entity* panel = UIFactory::createPanel(app, state, bg, pos, width, height, 0);
 	
 	//fija
-	Entity* h1 = UIFactory::createHab(app, state, hab1_, Vector2D(pos.getX() + width / 4, 300), 50, 50,bg);
+	Entity* h1 = UIFactory::createHab(app, state, hab1_, Vector2D(100, 300), 50, 50, hab1_->getComponent<RenderImage>(ecs::RenderImage)->getTexture());
 
-	Entity* h2 = UIFactory::createHab(app, state, hab2_, Vector2D(pos.getX() + width / 2, 300), 50, 50,bg);	
-	Entity* h3 = UIFactory::createHab(app, state, hab3_, Vector2D(pos.getX() + width / 4, 600), 50, 50,bg);
+	Entity* h2 = UIFactory::createHab(app, state, hab2_, Vector2D(200, 300), 50, 50, hab2_->getComponent<RenderImage>(ecs::RenderImage)->getTexture());
+	Entity* h3 = UIFactory::createHab(app, state, hab3_, Vector2D(300/*pos.getX() + width / 4*/, 600), 50, 50, hab3_->getComponent<RenderImage>(ecs::RenderImage)->getTexture());
 	
 	Entity* button = state->getEntityManager().addEntity();
-	button->addComponent<Transform>(Vector2D(pos.getX() + width / 2, pos.getY() + height - 200),Vector2D(),300,150,0);
-	button->addComponent<RenderImage>(bg);
+	button->addComponent<Transform>(Vector2D((pos.getX() + width / 2)-(100/2), pos.getY() + height - 100),Vector2D(),100,40,0);
+	button->addComponent<RenderImage>(bt);
 
 	return std::make_tuple(panel, button, h1, h2, h3);
 }
