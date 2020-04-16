@@ -72,38 +72,29 @@ Entity* UIFactory::createPanel(App* app, GameState* state, Texture* texture_, Ve
 	return panel;
 }
 
-Entity* UIFactory::createHab(App* app, GameState* state,Entity* e, Vector2D pos, double width, double height, Texture* texture_)
-{
+Entity* UIFactory::createHab(App* app, GameState* state, Vector2D pos, double width, double height, Texture* texture_){
 	
-	if (e != nullptr) {
-		Entity* ent = state->getEntityManager().addEntity();
+	Entity* ent = state->getEntityManager().addEntity();
 
 		ent->addComponent<Transform>(pos, Vector2D(), width, height, 0);
 		ent->addComponent<RenderImage>(texture_);
 		return ent;
-	}
-	else
-	{
-		return nullptr;
-	}
-
-	return nullptr;
 }
 
 //create a submenu with almost 2 habilitys
-std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> UIFactory::createSubMenu(App* app, GameState* state, Texture* bg, Texture* bt, Entity* hab1_, Entity* hab2_, Entity* hab3_, Vector2D pos, double width, double height)
+std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> UIFactory::createSubMenu(App* app, GameState* state, Texture* bg, Texture* button_texture_,Texture* hab_1,Texture* hab_2,Texture* hab_3 , Vector2D pos, double width, double height, double width_hab, double height_hab)
 {
 	Entity* panel = UIFactory::createPanel(app, state, bg, pos, width, height, 0);
 	
 	//fija
-	Entity* h1 = UIFactory::createHab(app, state, hab1_, Vector2D(pos.getX()+ 35, pos.getY()+150), 100, 100, hab1_->getComponent<RenderImage>(ecs::RenderImage)->getTexture());
+	Entity* h1 = UIFactory::createHab(app, state, Vector2D(pos.getX()+ 35, pos.getY()+150), width_hab, height_hab, hab_1);
 
-	Entity* h2 = UIFactory::createHab(app, state, hab2_, Vector2D(pos.getX() + 150, pos.getY() + 150), 100, 100, hab2_->getComponent<RenderImage>(ecs::RenderImage)->getTexture());
-	Entity* h3 = UIFactory::createHab(app, state, hab3_, Vector2D(pos.getX() + 400, pos.getY() + 150), 100, 100, hab3_->getComponent<RenderImage>(ecs::RenderImage)->getTexture());
+	Entity* h2 = UIFactory::createHab(app, state, Vector2D(pos.getX() + 150, pos.getY() + 150), width_hab, height_hab, hab_2);
+	Entity* h3 = UIFactory::createHab(app, state, Vector2D(pos.getX() + 400, pos.getY() + 150), width_hab, height_hab, hab_3);
 	
 	Entity* button = state->getEntityManager().addEntity();
 	button->addComponent<Transform>(Vector2D((pos.getX() + width / 2)-(100/2), pos.getY() + height - 100),Vector2D(),100,40,0);
-	button->addComponent<RenderImage>(bt);
+	button->addComponent<RenderImage>(button_texture_);
 
 	return std::make_tuple(panel, button, h1, h2, h3);
 }
@@ -113,19 +104,19 @@ std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*,Entity*, Entity*, Entity*
 {
 	Entity* panel = UIFactory::createPanel(app, state, bg, pos, width, height, 0);
 
-	Entity* h1 = UIFactory::createHab(app, state, h1_, Vector2D(pos.getX() + width / 4, 300), 50, 50, bg);
-	Entity* h2 = UIFactory::createHab(app, state, h2_, Vector2D(pos.getX() + width / 2, 300), 50, 50, bg);
-	Entity* h3 = UIFactory::createHab(app, state, h3_, Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
+	Entity* h1 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 300), 50, 50, bg);
+	Entity* h2 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 2, 300), 50, 50, bg);
+	Entity* h3 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
 	
-	Entity* h4 = UIFactory::createHab(app, state, h4_, Vector2D(pos.getX() + width / 4, 300), 50, 50, bg);
-	Entity* h5 = UIFactory::createHab(app, state, h5_, Vector2D(pos.getX() + width / 2, 300), 50, 50, bg);
-	Entity* h6 = UIFactory::createHab(app, state, h6_, Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
+	Entity* h4 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 300), 50, 50, bg);
+	Entity* h5 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 2, 300), 50, 50, bg);
+	Entity* h6 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
 	
-	Entity* h7 = UIFactory::createHab(app, state, h7_, Vector2D(pos.getX() + width / 4, 300), 50, 50, bg);
-	Entity* h8 = UIFactory::createHab(app, state, h8_, Vector2D(pos.getX() + width / 2, 300), 50, 50, bg);
-	Entity* h9 = UIFactory::createHab(app, state, h9_, Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
+	Entity* h7 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 300), 50, 50, bg);
+	Entity* h8 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 2, 300), 50, 50, bg);
+	Entity* h9 = UIFactory::createHab(app, state,  Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
 	
-	Entity* h10 = UIFactory::createHab(app, state, h10_, Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
+	Entity* h10 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
 
 
 	Entity* button = state->getEntityManager().addEntity();
