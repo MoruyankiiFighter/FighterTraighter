@@ -15,7 +15,7 @@ public:
 	inline void setFrame(size_t x, size_t y) { curX = x; curY = y; }
 	//destructor
 	~RenderImage();
-
+	Texture* getTexture();
 	inline void setTexture(Texture* tex) { texture_ = tex; }
 	inline void setColor(SDL_Color col) { color_ = col; }
 	void init();

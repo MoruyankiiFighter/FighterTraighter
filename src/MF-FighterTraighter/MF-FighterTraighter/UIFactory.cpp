@@ -61,3 +61,157 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 
 	return std::make_tuple(slider, reg_, text_, ValueText_);
 }
+
+Entity* UIFactory::createPanel(App* app, GameState* state, Texture* texture_, Vector2D position, double width, double height, double rotation)
+{
+	Entity* panel = state->getEntityManager().addEntity();
+	panel->addComponent<Transform>(position, Vector2D(), width, height, rotation);
+	panel->addComponent<RenderImage>(texture_);
+	//a�adir tema de UIComponent para las resoluciones
+
+	return panel;
+}
+
+Entity* UIFactory::createHab(App* app, GameState* state, Vector2D pos, double width, double height, Texture* texture_){
+	
+	Entity* ent = state->getEntityManager().addEntity();
+
+		ent->addComponent<Transform>(pos, Vector2D(), width, height, 0);
+		ent->addComponent<RenderImage>(texture_);
+		return ent;
+}
+
+//create a submenu with almost 2 habilitys
+std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*> UIFactory::createSubMenu(App* app, GameState* state, Texture* bg, Texture* button_texture_,Texture* hab_1,Texture* hab_2,Texture* hab_3 , Vector2D pos, double width, double height, double width_hab, double height_hab)
+{
+	Entity* panel = UIFactory::createPanel(app, state, bg, pos, width, height, 0);
+	
+	//fija
+	Entity* h1 = UIFactory::createHab(app, state, Vector2D(pos.getX()+ 35, pos.getY()+150), width_hab, height_hab, hab_1);
+
+	Entity* h2 = UIFactory::createHab(app, state, Vector2D(pos.getX() + 150, pos.getY() + 150), width_hab, height_hab, hab_2);
+	Entity* h3 = UIFactory::createHab(app, state, Vector2D(pos.getX() + 400, pos.getY() + 150), width_hab, height_hab, hab_3);
+	
+	Entity* button = state->getEntityManager().addEntity();
+	button->addComponent<Transform>(Vector2D((pos.getX() + width / 2)-(100/2), pos.getY() + height - 100),Vector2D(),100,40,0);
+	button->addComponent<RenderImage>(button_texture_);
+
+	return std::make_tuple(panel, button, h1, h2, h3);
+}
+
+//asign skills submenu
+std::tuple<Entity*, Entity*, Entity*, Entity*, Entity*,Entity*, Entity*, Entity*, Entity*, Entity*, Entity*, Entity*> UIFactory::createSubHabMenu(App* app, GameState* state, Texture* bg, Entity* h1_, Entity* h2_, Entity* h3_, Entity* h4_, Entity* h5_, Entity* h6_, Entity* h7_, Entity* h8_, Entity* h9_, Entity* h10_, Vector2D pos, double width, double height)
+{
+	Entity* panel = UIFactory::createPanel(app, state, bg, pos, width, height, 0);
+
+	Entity* h1 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 300), 50, 50, bg);
+	Entity* h2 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 2, 300), 50, 50, bg);
+	Entity* h3 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
+	
+	Entity* h4 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 300), 50, 50, bg);
+	Entity* h5 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 2, 300), 50, 50, bg);
+	Entity* h6 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
+	
+	Entity* h7 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 300), 50, 50, bg);
+	Entity* h8 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 2, 300), 50, 50, bg);
+	Entity* h9 = UIFactory::createHab(app, state,  Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
+	
+	Entity* h10 = UIFactory::createHab(app, state, Vector2D(pos.getX() + width / 4, 600), 50, 50, bg);
+
+
+	Entity* button = state->getEntityManager().addEntity();
+	button->addComponent<Transform>(Vector2D(pos.getX() + width / 2, pos.getY() + height - 200),Vector2D(), 300, 150, 0);
+	button->addComponent<RenderImage>(bg);
+	
+	return std::make_tuple(panel, h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, button);
+}
+//
+// vector<Entity*> UIFactory::createHabSubMenu(App* app, GameState* state, Vector2D position, double width, double height, Texture* wallTexture_, vector<Entity*> habilidades) //este vector tiene 3 habilidades
+//{
+//	vector<Entity*> aux;
+//	Entity* panel = createPanel(app, state, wallTexture_, position, width, height);
+//	aux.push_back(panel);
+//	for (int i = 0; i < habilidades.size(); i++) {
+//
+//		Entity* e = state->getEntityManager().addEntity();
+//
+//		Transform* t = e->addComponent<Transform>(Vector2D(position.getX() + 60 * i, 300),
+//			Vector2D(),habilidades[i]->getComponent<Transform>(ecs::Transform)->getWidth(),
+//			habilidades[i]->getComponent<Transform>(ecs::Transform)->getHeight());
+//		
+//		//RenderImage* im = habilidades[i]->getComponent<RenderImage>(ecs::RenderImage);
+//		RenderImage* im = e->addComponent<RenderImage>(wallTexture_); //esto es auxiliar
+//
+//		aux.push_back(e);
+//	}
+//
+//	Entity* button = state->getEntityManager().addEntity();
+//	aux.push_back(button);
+//
+//	return aux;
+//}
+//
+// vector<Entity*> UIFactory::createSelectionHabSubMenu(App* app, GameState* state, Vector2D position, double width, double height, Texture* wallTexture_, std::list<Entity*> habilidades)
+// {
+//	 vector<Entity*> menu;
+//	 Entity* panel = createPanel(app, state, wallTexture_, position, width, height);
+//	 menu.push_back(panel);
+//
+//	 Entity* lButton=state->getEntityManager().addEntity();
+//	 lButton->addComponent<Transform>(Vector2D(position.getX() + (width / 2) - 100, position.getY()), Vector2D(), 50, 50, 0);
+//	 lButton->addComponent<RenderImage>(wallTexture_);
+//	 menu.push_back(lButton);
+//
+//	 Entity* rButton=state->getEntityManager().addEntity();
+//	 rButton->addComponent<Transform>(Vector2D(position.getX() + (width / 2) + 100, position.getY()), Vector2D(), 50, 50, 0);
+//	 rButton->addComponent<RenderImage>(wallTexture_);
+//	 menu.push_back(rButton);
+//
+//	 for (int i = 0; i < habilidades.size(); i++) {
+//		
+//		 Entity* e = state->getEntityManager().addEntity();
+//
+//		 if (i <= 4) {
+//			 Transform* t = e->addComponent<Transform>(Vector2D(position.getX() + 60 * i, 300),
+//				 Vector2D(), habilidades[i]->getComponent<Transform>(ecs::Transform)->getWidth(),
+//				 habilidades[i]->getComponent<Transform>(ecs::Transform)->getHeight());
+//		 }
+//		 //ESTO LUEGO SE CAMBIA
+//		 else if(i<=9) {
+//			 Transform* t = e->addComponent<Transform>(Vector2D(position.getX() + 60 * i, 600),
+//				 Vector2D(), habilidades[i]->getComponent<Transform>(ecs::Transform)->getWidth(),
+//				 habilidades[i]->getComponent<Transform>(ecs::Transform)->getHeight());
+//
+//		 }
+//		 //RenderImage* im = habilidades[i]->getComponent<RenderImage>(ecs::RenderImage);
+//		 RenderImage* im = e->addComponent<RenderImage>(wallTexture_); //esto es auxiliar
+//
+//		 menu.push_back(e);
+//	 }
+//	 
+//	 return menu;
+// }
+
+
+//std::tuple<Entity*,std::list<Entity*>> 
+//UIFactory::createSelectionHabMenu(GameState* state, double width, double height, Texture* wallTexture_, double x, double y, Entity* player)
+//{
+//	Entity* wall_ = state->getEntityManager().addEntity();
+//	wall_->addComponent<Transform>(Vector2D(x, y), Vector2D(), width, height, 0);
+//	wall_->addComponent<RenderImage>(wallTexture_);
+//
+//	std::list<Entity*>hab;
+//	//hab = player->getHabilitiesList();
+//	//pedir al player su lista de habilidades
+//
+//	for (int i = 0; i < hab.size(); i++) {
+//		Entity* num_ = state->getEntityManager().addEntity();
+//		num_->addComponent<Transform>(Vector2D(x, y), Vector2D(), width, height, 0);
+//		num_->addComponent<RenderImage>(/*hab[i].getRender()*/);
+//	}
+//
+//
+//	return std::make_tuple(wall_, hab);
+//}
+//
+//

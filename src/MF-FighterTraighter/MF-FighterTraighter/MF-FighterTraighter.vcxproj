@@ -196,6 +196,7 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FloorOnHit.h" />
+    <ClInclude Include="Hability.h" />
     <ClInclude Include="HitboxData.h" />
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />

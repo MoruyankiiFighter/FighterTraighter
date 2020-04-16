@@ -6,6 +6,11 @@ RenderImage::~RenderImage()
 	texture_ = nullptr;
 }
 
+Texture* RenderImage::getTexture()
+{
+	return texture_;
+}
+
 //set the transform to the entity transform
 void RenderImage::init()
 {

@@ -31,6 +31,14 @@ void AssetsManager::loadTextures()
 	textures_.emplace(RoundCounter, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/RoundCounter.png", 2, 1));
 	textures_.emplace(CharacterSelection, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/characters_selection.png", 4, 1));
 	
+	textures_.emplace(SubMenuFondo,new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuFondo.jpg", 1, 1));
+	textures_.emplace(SubMenuWin,new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuwin.jpg", 1, 1));
+	
+	////// Imagenes de habilidades
+	textures_.emplace(Pollo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/habilidades/pollo.png", 1, 1));
+	textures_.emplace(Mina, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/habilidades/mina.png", 1, 1));
+	textures_.emplace(Hielo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/habilidades/hielo.png", 1, 1));
+
 	
 	// textures_.emplace("key", new Texture(app_->getRenderer(), "Filepath", cols, fils));
 }

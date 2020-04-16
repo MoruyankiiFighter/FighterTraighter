@@ -9,6 +9,7 @@
 #include "FactoryMk.h"
 #include "PunchingBagOnHit.h"
 #include "FloorOnHit.h"
+#include "UIFactory.h"
 #include "UITransform.h"
 #include "UITimer.h"
 Training::Training(App* app) : GameState(app)
@@ -49,6 +50,7 @@ void Training::init()
 	//floor->addComponent<FloorOnHit>();
 	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 
+	
 	//Walls
 	Entity* wall1 = entManager_.addEntity();
 	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALL, EVERYTHING, false);
@@ -57,6 +59,10 @@ void Training::init()
 	Entity* wall2 = entManager_.addEntity();
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALL, EVERYTHING, false);
 	app_->getHitboxMng()->addFloorHitbox(W2pT->getMainFixture());
+
+
+	UIFactory::createSubMenu(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getTexture(AssetsManager::Mina), nullptr, Vector2D(100, 100), 600, 600,100,100);
+
 }
 
 void Training::handleInput()
