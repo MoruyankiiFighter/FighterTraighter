@@ -51,11 +51,11 @@ void Training::init()
 
 	Entity* healthbarL = entManager_.addEntity();
 	healthbarL->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(0, 25), Vector2D(750, 50));
-	healthbarL->addComponent<UIHealthbar>(sacoHealth, app_->getAssetsManager()->getTexture(AssetsManager::Healthbar));
+	healthbarL->addComponent<UIHealthbar>(sacoHealth, app_->getAssetsManager()->getTexture(AssetsManager::HealthbarSaco));
 
 	Entity* healthbarR = entManager_.addEntity();
 	healthbarR->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(750, 25), Vector2D(750, 50));
-	healthbarR->addComponent<UIHealthbar>(sacoHealth, app_->getAssetsManager()->getTexture(AssetsManager::Healthbar), true);
+	healthbarR->addComponent<UIHealthbar>(sacoHealth, app_->getAssetsManager()->getTexture(AssetsManager::HealthbarSaco), true);
 
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0, 0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, false);
