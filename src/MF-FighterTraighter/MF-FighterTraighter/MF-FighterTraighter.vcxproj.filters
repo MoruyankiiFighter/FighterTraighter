@@ -172,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="UIHealthbar.cpp" />
     <ClCompile Include="UIRoundRenderer.cpp" />
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files\Manager and factories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -377,6 +380,9 @@
     </ClInclude>
     <ClInclude Include="UIHealthbar.h" />
     <ClInclude Include="UIRoundRenderer.h" />
+    <ClInclude Include="GameManager.h">
+      <Filter>Header files\Managers and factories</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
