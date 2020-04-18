@@ -21,6 +21,8 @@ public:
 	// To inform that player (0 or 1) lost a round, or that it's a draw (-1)
 	// Maybe there's something better than an int?
 	void playerLost(int player);
+	// To inform that saco has lost all its health
+	void trainingEnded();
 protected:
 	unsigned int playerLrounds_ = 0;
 	unsigned int playerRrounds_ = 0;

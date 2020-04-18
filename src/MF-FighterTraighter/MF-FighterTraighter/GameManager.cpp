@@ -56,6 +56,14 @@ void GameManager::playerLost(int player)
 
 }
 
+void GameManager::trainingEnded()
+{
+	GameStateMachine* stateMachine = app_->getStateMachine();
+	// Remove the current training mode
+	stateMachine->popState();
+	stateMachine->pushState(new Fight(app_));
+}
+
 void GameManager::GoBackToMain(GameStateMachine* stateMachine)
 {
 	GameState* currState = stateMachine->getCurrentState();
