@@ -54,7 +54,8 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	Entity* text_ = state->getEntityManager().addEntity();
 	text_->addComponent<UITransform>(Vector2D(position.getX(), position.getY() - fontSize - 20), anchor, pivot, Vector2D(width, fontSize));
 	text_->addComponent<TextComponent>(text, font, fontSize);
-	
+
+
 	Entity* ValueText_ = state->getEntityManager().addEntity();
 	ValueText_->addComponent<UITransform>(Vector2D(position.getX() + width + 10, position.getY() - fontSize / 2), anchor, pivot, Vector2D(width, fontSize));
 	ValueText_->addComponent<TextComponent>(valueText, font, valueFontSize);

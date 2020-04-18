@@ -20,6 +20,8 @@
 #include "consts.h"
 #include "UIFactory.h"
 
+#include "KeyboardInput.h"
+
 ControlsMenu::ControlsMenu(App* app) : GameState(app)
 {
 	cout << "MovementsMenu" << endl;
@@ -48,7 +50,6 @@ void ControlsMenu::init()
 	Entity* movement = entManager_.addEntity();
 	movement->addComponent<Transform>(Vector2D(100, 100), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
 	movement->addComponent<TextComponent>("Movement-> Arrows", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-	
 	Entity* movementC = entManager_.addEntity();
 	movementC->addComponent<Transform>(Vector2D(850, 100), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
 	movementC->addComponent<TextComponent>(" ->Joystick", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
@@ -80,6 +81,12 @@ void ControlsMenu::init()
 	Entity* block = entManager_.addEntity();
 	block->addComponent<Transform>(Vector2D(100, 260), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
 	block->addComponent<TextComponent>("Block-> D", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
+
+	std::tuple<Entity*, Entity*> menu_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(100, -50),
+		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(0, 50),
+		500, 100, 0, nullptr, ChangeControl, "D", 100);
 	
 	Entity* blockC = entManager_.addEntity();
 	blockC->addComponent<Transform>(Vector2D(850, 260), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
@@ -116,6 +123,13 @@ void ControlsMenu::init()
 
 void ControlsMenu::GoBack(App* app) {
 	app->getStateMachine()->popState();
+}
+
+void ControlsMenu::ChangeControl(std::tuple<Entity*, Entity*> button) {
+	Entity* h = std::get<1>(button);
+
+    h->getComponent<TextComponent>(ecs::TextComponent)->setText("hola");
+	
 }
 
 void ControlsMenu::handleInput()

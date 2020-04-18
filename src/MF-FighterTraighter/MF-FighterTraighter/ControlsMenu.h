@@ -10,6 +10,8 @@ class ControlsMenu:public GameState
 public:
 	//constructor
 	ControlsMenu(App* app);
+	static void ChangeControl(std::tuple<Entity*, Entity*> button);
+
 	//destructor
 	virtual ~ControlsMenu();
 
