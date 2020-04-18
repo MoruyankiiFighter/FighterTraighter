@@ -105,7 +105,8 @@ private:
 	InputState* inSt = nullptr;
 	int inputsize = 10;
 	const float deadZone = 0.2;
-		bool mov=false;
+	bool mov=false;
+
 	std::vector<SDL_GameControllerButton>button = {
 	SDL_CONTROLLER_BUTTON_A,
 	SDL_CONTROLLER_BUTTON_B,
