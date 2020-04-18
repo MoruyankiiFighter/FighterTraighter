@@ -2,13 +2,12 @@
 #include "GameState.h"
 #include <stack>
 #include <iostream>
-class App;
 
 class GameStateMachine
 {
 public:
 	//constructor
-	GameStateMachine(App* app);
+	GameStateMachine();
 	
 	//destructor
 	~GameStateMachine();
@@ -34,7 +33,5 @@ private:
 	std::stack<GameState*> states; //stack with the different scenes
 	std::stack<GameState*> toDelete;
 	int stackSize_;
-
-	App* app_;
 };
 

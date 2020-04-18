@@ -1,5 +1,7 @@
 #include "AbilityFactory.h"
 #include "PhysicsTransform.h"
+#include "MkWH00PData.h"
+#include "Entity.h"
 
 AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 {
@@ -28,7 +30,8 @@ void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 	int hitboxX = 100;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 150, 7, 2, 50, { (double)orientation_ * 0, 0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 150, 7, 2, 50,
+		{ (double)orientation_ * 0, 0 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), filter.categoryBits, filter.maskBits);
 }
 
 void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
@@ -48,6 +51,6 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 	int hitboxX2 = 280;
 	if (orientation_ == -1) hitboxX2 += width2;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX1,-85 }, width1, 175, 15, 27, 100, { (double)orientation_ * 500, 0 }, body, filter.categoryBits, filter.maskBits);
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX2,-85 }, width2, 180, 12, 2, 150, { (double)orientation_ * 400, 0 }, body, filter.categoryBits, filter.maskBits);
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1,-85 }, width1, 175, 15, 27, 100, { (double)orientation_ * 500, 0 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), filter.categoryBits, filter.maskBits);
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2,-85 }, width2, 180, 12, 2, 150, { (double)orientation_ * 400, 0 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), filter.categoryBits, filter.maskBits);
 }

@@ -25,21 +25,21 @@ void App::run()
 	exit = false;
 
 	while (!exit) {
-		
+
 		Uint32 startTime = SDL_GetTicks();
-		
+
 		handleInput();
 		update();
 		render();
 		stateMachine_->deleteStates();
 
 		Uint32 frameTime = SDL_GetTicks() - startTime;
-		if (frameTime < 10) 
-			SDL_Delay(10 - frameTime);
+		if (frameTime < 1000 / frameRate_)
+			SDL_Delay(1000 / frameRate_ - frameTime);
 	}
 }
 
-void App::handleInput() 
+void App::handleInput()
 {
 	inputManager_->update();
 
@@ -49,6 +49,8 @@ void App::handleInput()
 void App::update()
 {
 	stateMachine_->getCurrentState()->update();
+	// right now, doStep is always true, change it to only be true when needed
+	if (doStep) world->Step(1.0 / frameRate_, 8, 3);//update box2d
 }
 
 void App::render()
@@ -57,21 +59,21 @@ void App::render()
 }
 
 //creates the window and the renderer, and opens ttf also set up the state machine and the input manager
-void App::init()	
+void App::init()
 {
 	int ttf = TTF_Init();
 	if (ttf == -1) {
 		throw new SDLExceptions::TTFException(TTF_GetError() + std::string("\nUnable to init TTF"));
 	}
 
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048)<0) {
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
 		throw new SDLExceptions::SDLException("\nUnable to load audio");
 	}
 
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
 		throw new SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
-	}	
+	}
 	windowManager_.reset(new WindowManager(this));
 
 	renderer = SDL_CreateRenderer(windowManager_->getWindow(), -1, SDL_RENDERER_ACCELERATED);
@@ -80,13 +82,21 @@ void App::init()
 		throw new SDLExceptions::SDLException("Unable to create renderer");
 	}
 
-	gravity = Vector2D(0, 18);
+	gravity = { 0, 18 };
 	world = new b2World(gravity);
+#ifdef NDEBUG
+	debugInstance = nullptr;
+#else
+	debugInstance = new SDLDebugDraw(renderer);
+	world->SetDebugDraw(debugInstance);
+	debugInstance->SetFlags(b2Draw::e_aabbBit);
+#endif
+	resJumpListener = new ResetJumpListener();
+	world->SetContactListener(resJumpListener);
 
-	stateMachine_.reset(new GameStateMachine(this));
+	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
-	hitboxManager_.reset(new HitboxMng(this));
 	gameManager_.reset(new GameManager(this));
 
 }
@@ -98,7 +108,7 @@ void App::clean()
 	inputManager_.reset();
 	// If we try to close fonts after TTF_Quit(), an error will occur
 	assetsManager_.reset();
-	hitboxManager_.reset();
+	windowManager_.reset();
 	gameManager_.reset();
 
 	// Delete SDL's attributes
@@ -107,4 +117,6 @@ void App::clean()
 	TTF_Quit();
 
 	delete world;
+	delete debugInstance;
+	delete resJumpListener;
 }

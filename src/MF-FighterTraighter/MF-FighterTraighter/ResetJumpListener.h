@@ -19,7 +19,7 @@ public:
 				currState->goLanding(11 + (currState->getHoldingFrames()) * 0.8);
 		}
 
-		if (currState != nullptr && (contact->GetFixtureB()->GetFilterData().categoryBits == 0x0006 || contact->GetFixtureB()->GetFilterData().categoryBits == 0x0008)) {	//if it collides with boundary (floor)
+		if (currState != nullptr && (contact->GetFixtureB()->GetFilterData().categoryBits == 0x0010 || contact->GetFixtureB()->GetFilterData().categoryBits == 0x0008)) {	//if it collides with boundary (floor)
 
 			if (player->getComponent<PhysicsTransform>(ecs::Transform)->getSpeed().getX() < 0) {
 				player->getComponent<PlayerController>(ecs::PlayerController)->wallLeft(true);
@@ -43,7 +43,7 @@ public:
 			else currState->goLanding(10);
 		}
 
-		if (currState != nullptr && (contact->GetFixtureA()->GetFilterData().categoryBits == 0x0006 || contact->GetFixtureA()->GetFilterData().categoryBits == 0x0008)) {	//if it collides with walls
+		if (currState != nullptr && (contact->GetFixtureA()->GetFilterData().categoryBits == 0x0010 || contact->GetFixtureA()->GetFilterData().categoryBits == 0x0008)) {	//if it collides with walls
 
 			if (player->getComponent<PhysicsTransform>(ecs::Transform)->getSpeed().getX() < 0) {
 				player->getComponent<PlayerController>(ecs::PlayerController)->wallLeft(true);
@@ -62,7 +62,7 @@ public:
 		PlayerState* currState = player->getComponent<PlayerState>(ecs::PlayerState);
 		
 
-		if (currState != nullptr && (contact->GetFixtureB()->GetFilterData().categoryBits == 0x0006 || contact->GetFixtureB()->GetFilterData().categoryBits == 0x0008)) {	//if it collides with boundary (floor)
+		if (currState != nullptr && (contact->GetFixtureB()->GetFilterData().categoryBits == 0x0010 || contact->GetFixtureB()->GetFilterData().categoryBits == 0x0008)) {	//if it collides with boundary (floor)
 
 			//if (player->getComponent<PhysicsTransform>(ecs::Transform)->getSpeed().getX() < 0) {
 				player->getComponent<PlayerController>(ecs::PlayerController)->wallLeft(false);
@@ -77,7 +77,7 @@ public:
 		currState = player->getComponent<PlayerState>(ecs::PlayerState);
 		
 
-		if (currState != nullptr && (contact->GetFixtureA()->GetFilterData().categoryBits == 0x0006 || contact->GetFixtureA()->GetFilterData().categoryBits == 0x0008)) {	//if it collides with walls
+		if (currState != nullptr && (contact->GetFixtureA()->GetFilterData().categoryBits == 0x0010 || contact->GetFixtureA()->GetFilterData().categoryBits == 0x0008)) {	//if it collides with walls
 
 			//if (player->getComponent<PhysicsTransform>(ecs::Transform)->getSpeed().getX() < 0) {
 				player->getComponent<PlayerController>(ecs::PlayerController)->wallLeft(false);

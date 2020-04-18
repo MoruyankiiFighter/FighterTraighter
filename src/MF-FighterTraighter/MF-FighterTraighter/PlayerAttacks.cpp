@@ -126,6 +126,5 @@ void PlayerAttacks::interruptAttack()
 {
 	if(activeAttack_ != nullptr) activeAttack_->reset();
 	activeAttack_ = nullptr;
-	app_->getHitboxMng()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
-	
+	app_->getStateMachine()->getCurrentState()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
 }

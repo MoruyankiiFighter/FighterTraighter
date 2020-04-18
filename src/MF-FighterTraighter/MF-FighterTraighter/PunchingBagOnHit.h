@@ -3,6 +3,8 @@
 #include <iostream>
 #include "Entity.h"
 #include "Health.h"
+#include "HitboxData.h"
+
 class PunchingBagOnHit : public OnHit
 {
 public:

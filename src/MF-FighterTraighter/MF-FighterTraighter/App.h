@@ -37,9 +37,6 @@ public:
 	//returns the assets manager/ resources manager for getting textures, fonts or audio elements
 	inline AssetsManager* getAssetsManager() const { return assetsManager_.get(); };
 
-	//returns the hitbox manager for handling the collisions
-	inline HitboxMng* getHitboxMng() const { return hitboxManager_.get(); };
-
 	//returns the window manager
 	inline WindowManager* getWindowManager() const { return windowManager_.get(); };
 
@@ -59,6 +56,7 @@ public:
 	//quit game
 	inline void Exit() { exit = true; }
 
+	inline void setDoStep(bool step) { doStep = step; }
 private:
 
 	//open the window and creates everything
@@ -72,14 +70,17 @@ private:
 	std::unique_ptr<GameStateMachine> stateMachine_; //game state machine
 	std::unique_ptr<InputManager> inputManager_;//input manager
 	std::unique_ptr<AssetsManager> assetsManager_;//assets manager
-	std::unique_ptr<HitboxMng> hitboxManager_;//hitbox manager
 	std::unique_ptr<WindowManager> windowManager_;//window manager
 	std::unique_ptr<GameManager> gameManager_;//game manager
 
 
 	/*static*/ bool exit;
+	unsigned int frameRate_ = 60;
 
 	Vector2D gravity;
 	b2World* world;
+	bool doStep = true;
+	b2Draw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
+	b2ContactListener* resJumpListener = nullptr;
 };
 

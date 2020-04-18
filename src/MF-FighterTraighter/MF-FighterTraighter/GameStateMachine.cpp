@@ -1,13 +1,13 @@
 #include "GameStateMachine.h"
-#include "App.h"
 
-GameStateMachine::GameStateMachine(App* app): app_(app){ }
+GameStateMachine::GameStateMachine(){ }
 
 GameStateMachine::~GameStateMachine()
 {
 	while (!states.empty()) {
-		//delete states.top();
-		popState();
+		GameState* s = states.top();
+		delete s;
+		states.pop();
 	}
 }
 
@@ -25,7 +25,6 @@ void GameStateMachine::popState()
 {
 	GameState* state = states.top();
 	toDelete.push(state);
-	app_->getHitboxMng()->clear();
 	states.pop();
 	stackSize_--; std::cout << "Stack size: " << stackSize_ << std::endl;
 }
