@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 class App;
+class GameStateMachine;
 
 class GameManager
 {
@@ -14,10 +15,11 @@ protected:
 		unsigned int ability2Index;
 	};
 public:
-	GameManager(App* app) : app_(app) {}
+	GameManager(App* app);
 	// To inform this that start/escape was pressed
 	void pressedStart();
 	// To inform that player (0 or 1) lost a round, or that it's a draw (-1)
+	// Maybe there's something better than an int?
 	void playerLost(int player);
 protected:
 	unsigned int playerLrounds_ = 0;
@@ -30,5 +32,7 @@ protected:
 	playerInfo player2_;
 
 	App* app_;
+
+	void GoBackToMain(GameStateMachine* stateMachine);
 };
 

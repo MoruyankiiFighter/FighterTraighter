@@ -91,7 +91,7 @@ void OptionsMenu::init()
 void OptionsMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->getStateMachine()->popState();
+		app_->getGameManager()->pressedStart();
 	}
 	else
 		GameState::handleInput();

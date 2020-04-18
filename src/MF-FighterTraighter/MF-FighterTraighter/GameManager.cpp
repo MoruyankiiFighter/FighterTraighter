@@ -10,6 +10,11 @@
 #include "OptionsMenu.h"
 #include "Training.h"
 
+GameManager::GameManager(App* app) : app_(app)
+{
+	app_->getStateMachine()->pushState(new MainMenu(app_));
+}
+
 void GameManager::pressedStart()
 {
 	GameState* curState = app_->getStateMachine()->getCurrentState();
@@ -46,12 +51,16 @@ void GameManager::playerLost(int player)
 		currentRound_ = 0;
 		playerLrounds_ = 0;
 		playerRrounds_ = 0;
-		// Go back to menu
-		GameState* currState = stateMachine->getCurrentState();
-		while (dynamic_cast<MainMenu*>(currState) == nullptr) {
-			stateMachine->popState();
-			currState = stateMachine->getCurrentState();
-		}
+		GoBackToMain(stateMachine);
 	}
 
+}
+
+void GameManager::GoBackToMain(GameStateMachine* stateMachine)
+{
+	GameState* currState = stateMachine->getCurrentState();
+	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
+		stateMachine->popState();
+		currState = stateMachine->getCurrentState();
+	}
 }

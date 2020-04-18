@@ -40,7 +40,6 @@ void App::run()
 
 void App::handleInput() 
 {
-
 	inputManager_->update();
 
 	stateMachine_->getCurrentState()->handleInput();
@@ -93,8 +92,7 @@ void App::init()
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
 	hitboxManager_.reset(new HitboxMng(this));
-
-	stateMachine_->pushState(new MainMenu(this));
+	gameManager_.reset(new GameManager(this));
 }
 
 void App::clean()
@@ -104,51 +102,11 @@ void App::clean()
 	inputManager_.reset();
 	// If we try to close fonts after TTF_Quit(), an error will occur
 	assetsManager_.reset();
+	hitboxManager_.reset();
+	gameManager_.reset();
 
 	// Delete SDL's attributes
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	TTF_Quit();
-}
-
-
-//init the main menu
-void App::Menu() {
-	GameState* currState = stateMachine_->getCurrentState();
-	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
-		stateMachine_->popState();
-		currState = stateMachine_->getCurrentState();
-	}
-}
-
-//set up arcade state
-void App::PlayArcade() {
-	getStateMachine()->pushState(new Training(this));
-}
-
-//set up the options state
-void App::Options() {
-	getStateMachine()->pushState(new OptionsMenu(this));
-}
-
-
-//set up pvp state
-void App::PlayOnevsOne() {
-	//getStateMachine()->pushState(new PlayOneVsOne());
-}
-
-//quit pause state to previous state
-void App::ContinuePlaying() {
-	getStateMachine()->popState();
-}
-
-//pause the game
-void App::Pause() {
-	getStateMachine()->pushState(new PauseMenu(this));
-}
-
-
-void App::Movements() {
-	std::cout << "Movements" << endl;
-	//getStateMachine()->pushState(new Movements());
 }

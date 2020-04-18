@@ -95,7 +95,7 @@ void Fight::init()
 void Fight::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->getStateMachine()->pushState(new PauseMenu(app_));
+		app_->getGameManager()->pressedStart();
 	}
 	else
 		GameState::handleInput();

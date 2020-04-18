@@ -78,7 +78,7 @@ void MainMenu::init()
 void MainMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->Exit();
+		app_->getGameManager()->pressedStart();
 	}
 	else
 		GameState::handleInput();
@@ -97,7 +97,7 @@ void MainMenu::Go1v1(App* app)
 
 void MainMenu::GoOptions(App* app)
 {
-	app->Options();
+	app->getStateMachine()->pushState(new OptionsMenu(app));
 }
 
 void MainMenu::Leave(App* app)

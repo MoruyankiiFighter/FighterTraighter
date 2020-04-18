@@ -62,7 +62,7 @@ void Training::init()
 void Training::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->getStateMachine()->pushState(new PauseMenu(app_));
+		app_->getGameManager()->pressedStart();
 	}
 	GameState::handleInput();
 }

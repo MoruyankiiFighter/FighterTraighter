@@ -121,7 +121,7 @@ void ControlsMenu::GoBack(App* app) {
 void ControlsMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->getStateMachine()->popState();
+		app_->getGameManager()->pressedStart();
 	}
 	GameState::handleInput();
 }

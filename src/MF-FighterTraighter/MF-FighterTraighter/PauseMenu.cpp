@@ -60,7 +60,7 @@ void PauseMenu::init()
 void PauseMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		Resume(app_);
+		app_->getGameManager()->pressedStart();
 	}
 	else
 		GameState::handleInput();
