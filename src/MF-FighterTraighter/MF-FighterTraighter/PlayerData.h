@@ -153,6 +153,10 @@ public:
 	virtual void setAbility2(Ability* ability_2) {
 		ability_2_ = ability_2;
 	}
+
+	virtual void addAbilityInventory(string ability) {
+		abilities.push_back(ability);
+	}
 	virtual ~PlayerData() {}
 	
 protected:
@@ -185,7 +189,8 @@ protected:
 			 *speed_;
 	double 	attack_,
 			defense_;
-
+	//Inventory
+	vector<string> abilities;
 	//Attacks
 	//Normal Punch 
 	AnimationChain* normal_punch_;
