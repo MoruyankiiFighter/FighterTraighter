@@ -30,7 +30,7 @@ public:
 
 		inSt->setInput(i, app_->getInputManager()->isKeyDown(keys_[i]));	//Block
 		++i;
-		inSt->setInput(i, app_->getInputManager()->KeyPressed(keys_[i]));	//Guardbreak, although controller can hold to do it on cooldown (must look into it)
+		inSt->setInput(i, app_->getInputManager()->KeyPressed(keys_[i]));	//Guardbreak
 		++i;
 	}
 private:

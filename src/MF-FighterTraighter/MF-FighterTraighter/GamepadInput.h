@@ -67,20 +67,22 @@ public:
 			++i;
 		}
 
-		for (int h = 0; h < blocking.size(); ++h)	//triggers
-		{
-			if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, blocking[h]) > deadZone)
-			{
-				inSt->setInput(i, true);
-			}
-			else
-			{
-				inSt->setInput(i, false);
-			}
-			++i;
-		}
+		if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, blocking[0]) > deadZone) inSt->setInput(i, true);
+		else (inSt->setInput(i, false));
+		++i;
 
-		/*	for (int j =0; j < button.size(); j++)			//button held 
+		if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, blocking[1]) > deadZone && gbReleased) { 
+			inSt->setInput(i, true); 
+			gbReleased = false;
+		}
+		else if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, blocking[1]) <= deadZone) {	//So guardbreak can't be spammed
+			inSt->setInput(i, false);																			//Spaghetti? Maybe
+			gbReleased = true;																					//Work? It sure do be fuckin workin
+		}
+		else inSt->setInput(i, false);
+		++i;
+
+		/*	for (int j =0; j < button.size(); j++)			//button held
 		{
 			if (app_->getInputManager()->isControllerButtonHeld(InputManager::PLAYER1, button[j]) )
 			{
@@ -106,6 +108,7 @@ private:
 	int inputsize = 10;
 	const float deadZone = 0.5;
 	bool mov = false;
+	bool gbReleased = true;
 
 	std::vector<SDL_GameControllerButton>attacks = {
 	SDL_CONTROLLER_BUTTON_A,
