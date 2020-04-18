@@ -19,7 +19,7 @@ public:
 			indexNew++;
 		}
 	}
-	virtual void handleInput() override {
+	virtual void handleInput() override {	//This could easily be done much less spaghettily
 		int i = 0;
 		for (; i < 4; ++i) {
 			inSt->setInput(i, app_->getInputManager()->isKeyDown(keys_[i]));
@@ -27,9 +27,11 @@ public:
 		for (; i < 10; ++i) {
 			inSt->setInput(i, app_->getInputManager()->KeyPressed(keys_[i]));
 		}
-		for (; i < keysSize; ++i) {
-			inSt->setInput(i, app_->getInputManager()->isKeyDown(keys_[i]));
-		}
+
+		inSt->setInput(i, app_->getInputManager()->isKeyDown(keys_[i]));	//Block
+		++i;
+		inSt->setInput(i, app_->getInputManager()->KeyPressed(keys_[i]));	//Guardbreak, although controller can hold to do it on cooldown (must look into it)
+		++i;
 	}
 private:
 	//left, right, up, down, hit1, hit2, hit3, hit4, ab1, ab2, block, guardbreak
