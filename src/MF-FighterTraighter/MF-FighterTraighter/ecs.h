@@ -31,6 +31,7 @@ namespace ecs {
 		PlayerData,
 		InputState,
 		KeyboardInput,
+		GamepadInput,
 		/*
 		
 		*/

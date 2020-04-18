@@ -12,6 +12,7 @@
 #include "MkWH00PData.h"
 #include "InpuState.h"
 #include "KeyboardInput.h"
+#include "GamepadInput.h"
 
 Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, bool gamePad, uint16 cBits, uint16 mBits, bool dyn)
 {
@@ -22,11 +23,12 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 	app->getHitboxMng()->addMainHitbox(pT->getMainFixture());
 
 	e->addComponent<InputState>();
-	if (!gamePad) {
+	if (gamePad) {
 		e->addComponent<KeyboardInput>(keys);
 	}
 	else {
-		//ControllerInput
+		//se tiene que llamar a inputmanager la contructora
+		e->addComponent<GamepadInput>();
 	}
 
 	PlayerController* pC = e->addComponent<PlayerController>(-1500);
