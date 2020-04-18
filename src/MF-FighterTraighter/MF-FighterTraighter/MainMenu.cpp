@@ -83,12 +83,14 @@ void MainMenu::handleInput()
 	}
 	else
 		GameState::handleInput();
-	std::cout << world->GetBodyCount() << std::endl;
+	
 }
 
 void MainMenu::GoArcade(App* app)
 {
+	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 	app->getStateMachine()->pushState(new Fight(app));
+	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 }
 
 void MainMenu::Go1v1(App* app)
