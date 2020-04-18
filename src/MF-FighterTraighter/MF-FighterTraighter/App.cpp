@@ -5,7 +5,7 @@
 #include "Fight.h"
 #include "OptionsMenu.h"
 #include "Training.h"
-
+#include "SkillSelection.h"
 
 #include <SDL_mixer.h>
 
@@ -151,4 +151,10 @@ void App::Pause() {
 void App::Movements() {
 	std::cout << "Movements" << endl;
 	//getStateMachine()->pushState(new Movements());
+}
+
+void App::SelectSkills()
+{
+	getStateMachine()->pushState(new SkillSelection(this));
+
 }

@@ -60,26 +60,14 @@ void Training::init()
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALL, EVERYTHING, false);
 	app_->getHitboxMng()->addFloorHitbox(W2pT->getMainFixture());
 
-	///// Esto es para los submenus
-	Entity* pollo = entManager_.addEntity();
-	pollo->addComponent<Transform>(Vector2D(0, 0), Vector2D(0,0), 50, 50, 0);
-	pollo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Pollo));
-	Entity* mina = entManager_.addEntity();
-	mina->addComponent<Transform>(Vector2D(60, 0), Vector2D(0,0), 50, 50, 0);
-	mina->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mina));
-	Entity* hielo = entManager_.addEntity();
-	hielo->addComponent<Transform>(Vector2D(120, 0), Vector2D(0,0), 50, 50, 0);
-	hielo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Hielo));
-
-	UIFactory::createSubMenu(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuWin), app_->getAssetsManager()->getTexture(AssetsManager::Button),
-		pollo, mina, hielo, Vector2D(200, 100), 600, 400);
+	
 
 }
 
 void Training::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->getStateMachine()->pushState(new PauseMenu(app_));
+		skillSelection(app_);
 	}
 	GameState::handleInput();
 }
@@ -99,6 +87,11 @@ void Training::render() {
 	}
 	world->DrawDebugData();
 	SDL_RenderPresent(app_->getRenderer());
+}
+
+void Training::skillSelection(App* app)
+{
+	app->SelectSkills();
 }
 
 Training::~Training()

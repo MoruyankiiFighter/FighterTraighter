@@ -35,6 +35,8 @@ public:
 	//render the gamestate entitys if needed and the hitboxes for debuging
 	virtual void render() override;
 	
+	static void skillSelection(App* app);
+
 private:
 	std::vector<Move*> vecMov;
 	b2World* world= nullptr;

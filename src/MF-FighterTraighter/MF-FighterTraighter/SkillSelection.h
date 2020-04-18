@@ -3,10 +3,14 @@
 
 class SkillSelection: public GameState
 {
-
 public:
+	SkillSelection(App* app) : GameState(app) { init(); }
 
-private:
+	void init() override;
+	void render();
+	void handleInput() override;
+
+	
 
 };
 

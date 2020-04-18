@@ -60,6 +60,9 @@ public:
 	void Menu();
 	void Movements();
 
+	void SelectSkills();
+
+
 private:
 	
 	//open the window and creates everything
