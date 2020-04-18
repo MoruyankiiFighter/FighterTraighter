@@ -77,7 +77,7 @@ public:
 		}
 		else if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, blocking[1]) <= deadZone) {	//So guardbreak can't be spammed
 			inSt->setInput(i, false);																			//Spaghetti? Maybe
-			gbReleased = true;																					//Work? It sure do be fuckin workin
+			gbReleased = true;																					//Works? It sure do be fuckin workin
 		}
 		else inSt->setInput(i, false);
 		++i;
