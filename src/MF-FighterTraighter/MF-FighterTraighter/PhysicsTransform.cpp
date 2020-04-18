@@ -18,7 +18,7 @@ void PhysicsTransform::init() {
 	bodydef.position.Set(position_.getX(), position_.getY());
 	if (dynamic_)
 		bodydef.type = b2_dynamicBody;	//makes the dynamic body if it is dynamic
-	body_ = app_->getb2World()->CreateBody(&bodydef);
+	body_ = app_->getStateMachine()->getCurrentState()->getb2World()->CreateBody(&bodydef);
 	b2PolygonShape shape;
 	shape.SetAsBox(width_ * wMult_ / 2, height_ * hMult_ / 2);
 	resetMainFixture(shape);

@@ -14,6 +14,8 @@ Fight::Fight(App* app) : GameState(app)
 
 void Fight::init()
 {
+	GameState::init();
+	doStep = true;
 	//Floor
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0,0), 1920, 450, 0, BOUNDARY, EVERYTHING, false);

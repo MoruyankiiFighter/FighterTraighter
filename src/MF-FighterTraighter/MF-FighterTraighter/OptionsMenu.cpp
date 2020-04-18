@@ -29,6 +29,7 @@ OptionsMenu::~OptionsMenu()
 
 void OptionsMenu::init()
 {
+	GameState::init();
 	/*Entity* bg = entManager_.addEntity();
 	Transform* t = bg->addComponent<Transform>();
 	t->setPosition(0, 0);

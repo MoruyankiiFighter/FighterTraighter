@@ -8,8 +8,6 @@
 #include "HitboxMng.h"
 #include "WindowManager.h"
 #include "GameManager.h"
-#include "Vector2D.h"
-#include <Box2D/Box2D.h>
 
 class App
 {
@@ -42,7 +40,7 @@ public:
 
 	inline GameManager* getGameManager() const { return gameManager_.get(); }
 
-	inline b2World* getb2World() const { return world; }
+	inline unsigned int getFrameRate() { return frameRate_; }
 
 	//calls update of the current state
 	void update();
@@ -55,8 +53,6 @@ public:
 
 	//quit game
 	inline void Exit() { exit = true; }
-
-	inline void setDoStep(bool step) { doStep = step; }
 private:
 
 	//open the window and creates everything
@@ -76,11 +72,5 @@ private:
 
 	/*static*/ bool exit;
 	unsigned int frameRate_ = 60;
-
-	Vector2D gravity;
-	b2World* world;
-	bool doStep = true;
-	b2Draw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
-	b2ContactListener* resJumpListener = nullptr;
 };
 

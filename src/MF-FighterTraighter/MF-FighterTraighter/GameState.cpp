@@ -3,13 +3,25 @@
 #include "App.h"
 #include "OnHit.h"
 #include "HitboxData.h"
+#include "ResetJumpListener.h"
 
-GameState::GameState(App* app) : app_(app), entManager_(app) {
-
+GameState::GameState(App* app) : app_(app), entManager_(app) 
+{
 }
 void GameState::init()
 {
-	
+	gravity = { 0, 18 };
+	world = new b2World(gravity);
+#ifdef NDEBUG
+	debugInstance = nullptr;
+#else
+	debugInstance = new SDLDebugDraw(app_->getRenderer());
+	world->SetDebugDraw(debugInstance);
+	debugInstance->SetFlags(b2Draw::e_aabbBit);
+#endif
+	resJumpListener = new ResetJumpListener();
+	world->SetContactListener(resJumpListener);
+
 }
 
 void GameState::handleInput()
@@ -28,6 +40,9 @@ void GameState::update()
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->update();
 	}
+
+	if (doStep) 
+		world->Step(1.0 / app_->getFrameRate(), 8, 3); //update box2d
 }
 
 void GameState::UpdateHitboxes()
@@ -99,12 +114,12 @@ void GameState::clearHitboxes() {
 		}
 		hitboxGroups_[i].clear();
 	}
-	b2Body* cur = app_->getb2World()->GetBodyList();
+	b2Body* cur = world->GetBodyList();
 	b2Body* aux = cur;
 	while (aux != nullptr)
 	{
 		aux = cur->GetNext();
-		app_->getb2World()->DestroyBody(cur);
+		world->DestroyBody(cur);
 		cur = aux;
 	}
 }
@@ -133,7 +148,7 @@ void GameState::render()
 	}
 #ifdef NDEBUG
 #else
-	app_->getb2World()->DrawDebugData();
+	world->DrawDebugData();
 #endif
 	SDL_RenderPresent(app_->getRenderer());
 }
@@ -150,4 +165,8 @@ GameState::~GameState()
 {
 	empty();
 	clearHitboxes();
+
+	delete world;
+	delete debugInstance;
+	delete resJumpListener;
 }

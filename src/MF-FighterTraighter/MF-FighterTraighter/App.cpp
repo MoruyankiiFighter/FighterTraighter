@@ -49,8 +49,6 @@ void App::handleInput()
 void App::update()
 {
 	stateMachine_->getCurrentState()->update();
-	// right now, doStep is always true, change it to only be true when needed
-	if (doStep) world->Step(1.0 / frameRate_, 8, 3);//update box2d
 }
 
 void App::render()
@@ -82,18 +80,6 @@ void App::init()
 		throw new SDLExceptions::SDLException("Unable to create renderer");
 	}
 
-	gravity = { 0, 18 };
-	world = new b2World(gravity);
-#ifdef NDEBUG
-	debugInstance = nullptr;
-#else
-	debugInstance = new SDLDebugDraw(renderer);
-	world->SetDebugDraw(debugInstance);
-	debugInstance->SetFlags(b2Draw::e_aabbBit);
-#endif
-	resJumpListener = new ResetJumpListener();
-	world->SetContactListener(resJumpListener);
-
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
@@ -115,8 +101,4 @@ void App::clean()
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	TTF_Quit();
-
-	delete world;
-	delete debugInstance;
-	delete resJumpListener;
 }

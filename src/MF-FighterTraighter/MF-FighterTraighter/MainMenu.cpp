@@ -33,6 +33,7 @@ MainMenu::~MainMenu()
 
 void MainMenu::init()
 {
+	GameState::init();
 	/*Entity* bg = entManager_.addEntity();
 	Transform* t = bg->addComponent<Transform>();
 	t->setPosition(0, 0);
@@ -82,6 +83,7 @@ void MainMenu::handleInput()
 	}
 	else
 		GameState::handleInput();
+	std::cout << world->GetBodyCount() << std::endl;
 }
 
 void MainMenu::GoArcade(App* app)

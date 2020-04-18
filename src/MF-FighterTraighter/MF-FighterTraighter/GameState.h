@@ -52,6 +52,10 @@ public:
 
 	//return the entity mangaer of the scene
 	EntityManager& getEntityManager() { return entManager_; };
+
+	inline void setDoStep(bool step) { doStep = step; }
+
+	inline b2World* getb2World() const { return world; }
 protected:
 	void RemoveHitbox();
 	void UpdateHitboxes();
@@ -62,5 +66,11 @@ protected:
 	std::vector<b2Fixture*> mainHurtboxes;	//to get the main fixtures of the players and the punching bag to check overlaps
 	std::array<std::list<b2Fixture*>, 2> hitboxGroups_;	// hitboxes groups that players use (max 2 players)
 	std::list<std::pair<std::list<b2Fixture*>::iterator, unsigned int>> hitboxRemove_pair_;
+
+	Vector2D gravity;
+	b2World* world;
+	bool doStep = false;
+	b2Draw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
+	b2ContactListener* resJumpListener = nullptr;
 };
 

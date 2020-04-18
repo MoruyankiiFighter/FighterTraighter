@@ -17,6 +17,7 @@
 
 void PauseMenu::init()
 {
+	GameState::init();
 	cout << "initPausa" << endl;
 
 	Entity* logo = entManager_.addEntity();
