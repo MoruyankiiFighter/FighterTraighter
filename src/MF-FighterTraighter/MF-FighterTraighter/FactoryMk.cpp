@@ -23,11 +23,10 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 	app->getHitboxMng()->addMainHitbox(pT->getMainFixture());
 
 	e->addComponent<InputState>();
-	if (gamePad) {
+	if (!gamePad) {
 		e->addComponent<KeyboardInput>(keys);
 	}
 	else {
-		//se tiene que llamar a inputmanager la contructora
 		e->addComponent<GamepadInput>();
 	}
 

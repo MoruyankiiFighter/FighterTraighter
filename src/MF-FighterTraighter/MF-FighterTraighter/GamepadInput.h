@@ -79,7 +79,7 @@ public:
 			}
 		}
 		//button held 
-		for (int j =0; j < button.size(); j++)
+		/*	for (int j =0; j < button.size(); j++)
 		{
 			if (app_->getInputManager()->isControllerButtonHeld(InputManager::PLAYER1, button[j]) )
 			{
@@ -93,7 +93,7 @@ public:
 				inSt->setInput(false,i + j);
 
 			}
-		}
+		}*/
 
 
 	}
