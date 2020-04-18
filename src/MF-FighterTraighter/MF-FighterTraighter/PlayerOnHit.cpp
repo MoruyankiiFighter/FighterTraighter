@@ -5,6 +5,7 @@
 #include "HitboxData.h"
 #include "PlayerAttacks.h"
 #include "PlayerController.h"
+#include "MkWH00PData.h"
 
 void PlayerOnHit::onHit(b2Fixture* fixture)
 {
@@ -41,6 +42,11 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 			pT->getBody()->ApplyLinearImpulse(b2Vec2((hBox_data->knockBack_.getX() + hBox_data->knockBack_.getX()) * 0.015, 0), pT->getBody()->GetWorldCenter(), true);
 		}
 		cout << "He bloqueado dano pero estoy en hitstun" << endl;
+	}
+
+	// he died
+	if (helth->getHealth() == 0) {
+		app_->getGameManager()->playerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
 	}
 }
 

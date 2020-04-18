@@ -10,7 +10,7 @@
 #include "Health.h"
 #include "PlayerOnHit.h"
 #include "MkWH00PData.h"
-Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, uint16 cBits, uint16 mBits, bool dyn)
+Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, uint16 cBits, uint16 mBits, bool dyn, int playerNumber)
 {
 	Entity* e = state->getEntityManager().addEntity();
 	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 600), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, dyn);
@@ -25,7 +25,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 	e->addComponent<PlayerState>();
 	Health* h = e->addComponent<Health>(110);
 	e->addComponent<PlayerOnHit>();
-	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pT->getSpeed(), h->getHealth(), 50, 50);
+	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pT->getSpeed(), h->getHealth(), 50, 50, playerNumber);
 
 	
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");

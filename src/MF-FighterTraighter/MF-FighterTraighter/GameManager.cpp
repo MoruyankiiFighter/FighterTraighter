@@ -44,6 +44,8 @@ void GameManager::playerLost(int player)
 	}
 
 	if (currentRound_ < totalRounds_ - 1) {
+		// Remove the current fight mode
+		stateMachine->popState();
 		stateMachine->pushState(new Training(app_));
 		++currentRound_;
 	}
