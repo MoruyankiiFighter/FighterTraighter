@@ -65,7 +65,7 @@ public:
 		//button pressed
 		for (int j =0; j < button.size(); j++)
 		{
-			if (app_->getInputManager()->isControllerButtonPressed(InputManager::PLAYER1, button[i]) )
+			if (app_->getInputManager()->isControllerButtonPressed(InputManager::PLAYER1, button[j]) )
 			{
 
 				inSt->setInput(i + j, true);
