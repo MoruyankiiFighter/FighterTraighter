@@ -1,7 +1,7 @@
 #include "GameStateMachine.h"
+#include "App.h"
 
-
-GameStateMachine::GameStateMachine(){ }
+GameStateMachine::GameStateMachine(App* app): app_(app){ }
 
 GameStateMachine::~GameStateMachine()
 {
@@ -19,4 +19,13 @@ GameState* GameStateMachine::getCurrentState() //if there is a state then return
 	else {
 		return nullptr;
 	}
+}
+
+void GameStateMachine::popState()
+{
+	GameState* state = states.top();
+	toDelete.push(state);
+	app_->getHitboxMng()->clear();
+	states.pop();
+	stackSize_--; std::cout << "Stack size: " << stackSize_ << std::endl;
 }

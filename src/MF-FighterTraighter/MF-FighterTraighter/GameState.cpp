@@ -12,16 +12,10 @@ void GameState::init()
 
 void GameState::handleInput()
 {
-	auto it = entManager_.getScene().begin();
-	while (!handled && it != entManager_.getScene().end()) {
-		(*it)->handleInput();
-		if (!handled)++it;
-	}
-	if (handled) handled = false;
-	/*for (auto it = entManager_.getScene().begin();  it != entManager_.getScene().end() ;++it) {
+	for (auto it = entManager_.getScene().begin();  it != entManager_.getScene().end() ;++it) {
 		(*it)->handleInput();
 		
-	}*/
+	}
 	
 }
 
@@ -29,6 +23,7 @@ void GameState::update()
 {
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->update();
+
 	}
 }
 
@@ -49,7 +44,6 @@ void GameState::empty()
 		delete* it;
 	}
 	entManager_.getScene().clear();
-	handled = true;
 }
 
 GameState::~GameState()

@@ -8,6 +8,8 @@
 #include "HitboxMng.h"
 #include "WindowManager.h"
 #include "GameManager.h"
+#include "Vector2D.h"
+#include <Box2D/Box2D.h>
 
 class App
 {
@@ -43,6 +45,8 @@ public:
 
 	inline GameManager* getGameManager() const { return gameManager_.get(); }
 
+	inline b2World* getb2World() const { return world; }
+
 	//calls update of the current state
 	void update();
 
@@ -74,5 +78,8 @@ private:
 
 
 	/*static*/ bool exit;
+
+	Vector2D gravity;
+	b2World* world;
 };
 

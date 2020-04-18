@@ -31,6 +31,7 @@ void App::run()
 		handleInput();
 		update();
 		render();
+		stateMachine_->deleteStates();
 
 		Uint32 frameTime = SDL_GetTicks() - startTime;
 		if (frameTime < 10) 
@@ -70,29 +71,24 @@ void App::init()
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
 		throw new SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
-	}
-	//int nJoysticks = SDL_NumJoysticks();
-    
-	/*SDL_Joystick* joystick = SDL_JoystickOpen(0);
-	std::cout << "Controller Name:" << SDL_JoystickName(joystick) << std::endl;
-	std::cout << "Num Axes :" << SDL_JoystickNumAxes(joystick) << std::endl;
-	std::cout << "Num Buttons :" << SDL_JoystickNumButtons(joystick) << std::endl;*/
-	
+	}	
 	windowManager_.reset(new WindowManager(this));
 
-
-	
 	renderer = SDL_CreateRenderer(windowManager_->getWindow(), -1, SDL_RENDERER_ACCELERATED);
 	SDL_RenderSetLogicalSize(renderer, windowManager_->getCurResolution().w, windowManager_->getCurResolution().h); //para que se redimensionen a su proporcion
 	if (!renderer) {
 		throw new SDLExceptions::SDLException("Unable to create renderer");
 	}
 
-	stateMachine_.reset(new GameStateMachine());
+	gravity = Vector2D(0, 18);
+	world = new b2World(gravity);
+
+	stateMachine_.reset(new GameStateMachine(this));
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
 	hitboxManager_.reset(new HitboxMng(this));
 	gameManager_.reset(new GameManager(this));
+
 }
 
 void App::clean()
@@ -109,4 +105,6 @@ void App::clean()
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	TTF_Quit();
+
+	delete world;
 }
