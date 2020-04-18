@@ -7,7 +7,6 @@ public:
 	SkillSelection(App* app) : GameState(app) { init(); }
 
 	void init() override;
-	void render();
 	void handleInput() override;
 
 	
