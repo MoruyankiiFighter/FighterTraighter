@@ -153,6 +153,11 @@ public:
 	virtual void setAbility2(Ability* ability_2) {
 		ability_2_ = ability_2;
 	}
+
+	virtual int getAnimLength(int index) {
+		return animLength_[index];
+	}
+
 	virtual ~PlayerData() {}
 	
 protected:
@@ -213,4 +218,7 @@ protected:
 	//To generate hitboxes easily
 	PhysicsTransform* pT;
 	b2Filter mask;
+
+	//Animation data
+	std::vector<int> animLength_;
 };

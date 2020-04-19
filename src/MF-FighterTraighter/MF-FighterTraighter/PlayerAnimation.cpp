@@ -11,8 +11,8 @@ void PlayerAnimation::update()
 		//render (currently testing)
 		imgR_->setFrame(activeFrame_, currStateInt_);
 		timeSinceLastIncrement_++;
-		if (timeSinceLastIncrement_ >= 15) {	//Every 15 frames
-			activeFrame_ = (activeFrame_ + 1) % 15;	//Should have a "velocity" in PlayerData per animation, teh number it increases each frame, now it's hardcoded but works
+		if (timeSinceLastIncrement_ >= timeBetweenIncrements_) {	//Every 15 frames
+			activeFrame_ = (activeFrame_ + 1) % data_->getAnimLength(currStateInt_);	//Should have a "velocity" in PlayerData per animation, teh number it increases each frame, now it's hardcoded but works
 			timeSinceLastIncrement_ = 0;
 		}
 	}
