@@ -16,7 +16,8 @@ public:
 	virtual void update();
 private:
 	RenderImage* imgR_;
-	double activeFrame_;
+	int activeFrame_;
+	int timeSinceLastIncrement_ = 0; //Manually delay animation speed
 	PlayerState* currState_;
 	int currStateInt_;
 };
