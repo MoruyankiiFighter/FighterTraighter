@@ -7,6 +7,12 @@
 //Podemos tener todos los datos en un .json o un .txt
 //Tener un método para parsear y rellenar el attackData
 
+struct AnimationData {
+	int sheetLength_;
+	bool loops_;
+	int increaseVelocity_;
+};
+
 class PlayerData : public Component {
 
 	//hacer luego getters y setters
@@ -155,7 +161,13 @@ public:
 	}
 
 	virtual int getAnimLength(int index) {
-		return animLength_[index];
+		return animLength_[index].sheetLength_;
+	}
+	virtual bool getAnimLoops(int index) {
+		return animLength_[index].loops_;
+	}
+	virtual int getAnimVelocity(int index) {
+		return animLength_[index].increaseVelocity_;
 	}
 
 	virtual ~PlayerData() {}
@@ -220,5 +232,5 @@ protected:
 	b2Filter mask;
 
 	//Animation data
-	std::vector<int> animLength_;
+	std::vector<AnimationData> animLength_;
 };

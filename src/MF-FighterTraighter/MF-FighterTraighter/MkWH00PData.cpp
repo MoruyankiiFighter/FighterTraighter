@@ -2,7 +2,8 @@
 
 MkWH00PData::MkWH00PData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense) :
 	PlayerData(keys, width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense) {
-	animLength_ = { 4, 4, 6, 7, 8, 15, 3, 3, 7, 7, 6, 4, 4, 4, 2 };
+	animLength_ = { {4, true, 8}, {4, true, 15}, {6, true, 15}, {7, true}, {8, true, 15}, {15, true, 15}, {3, true, 15}, {3, true, 15}, 
+		{7, true, 15}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {4, true, 15}, {4, true, 15}, {2, true, 15} };
 }
 
 void MkWH00PData::init() {

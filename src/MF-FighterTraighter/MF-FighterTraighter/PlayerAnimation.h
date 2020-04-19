@@ -7,7 +7,7 @@
 
 class PlayerAnimation : public Component {
 public:
-	PlayerAnimation(int incr) : Component(ecs::PlayerAnimation), activeFrame_(0), currStateInt_(0), timeBetweenIncrements_(incr) {};
+	PlayerAnimation() : Component(ecs::PlayerAnimation), activeFrame_(0), currStateInt_(0) {};
 	~PlayerAnimation() {};
 	virtual void init() {
 		imgR_ = entity_->getComponent<RenderImage>(ecs::RenderImage);
@@ -20,7 +20,6 @@ private:
 	RenderImage* imgR_;
 	int activeFrame_;
 	int timeSinceLastIncrement_ = 0; //Manually delay animation speed
-	int timeBetweenIncrements_;
 	PlayerData* data_;
 	PlayerState* currState_;
 	int currStateInt_;
