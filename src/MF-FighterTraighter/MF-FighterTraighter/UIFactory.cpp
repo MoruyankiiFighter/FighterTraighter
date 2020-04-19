@@ -11,6 +11,7 @@
 #include "RenderImage.h"
 #include "App.h"
 #include "Slider.h"
+#include "ButtonControl.h"
 #include "IndexSlider.h"
 #include "UITransform.h"
 
@@ -31,6 +32,25 @@ std::tuple<Entity*, Entity*> UIFactory::createButton
 
 	return std::make_tuple(button, textEnt);
 }
+std::tuple<Entity*, Entity*> UIFactory::createButtonControl
+(int index, GameState* state, Texture* buttonTex,
+	Font* font, Vector2D position, Vector2D anchor, Vector2D pivot, double width, double height, double rotation,
+	CallBackOnClick* clickCallback, CallBackOnClick* stopClickCallback, std::string text, int fontSize, TextComponent::TextAlignment alignment)
+{
+	Entity* button = state->getEntityManager().addEntity();
+	button->addComponent<UITransform>(position, anchor, pivot, Vector2D(width, height));
+	button->addComponent<RenderImage>(buttonTex);
+	button->addComponent<ButtonControl>(index,clickCallback, stopClickCallback);
+
+	Entity* textEnt = state->getEntityManager().addEntity();
+	textEnt->addComponent<UITransform>(position, anchor, pivot, Vector2D(width, height));
+	textEnt->addComponent<TextComponent>(text, font, fontSize, alignment);
+
+	return std::make_tuple(button, textEnt);
+}
+
+
+
 
 // create the structure of  slider (bar, buttons and the index)
 std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider

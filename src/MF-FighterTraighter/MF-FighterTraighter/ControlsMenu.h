@@ -10,7 +10,6 @@ class ControlsMenu:public GameState
 public:
 	//constructor
 	ControlsMenu(App* app);
-	static void ChangeControl(std::tuple<Entity*, Entity*> button);
 
 	//destructor
 	virtual ~ControlsMenu();
@@ -21,6 +20,9 @@ public:
 
 	//callback
 	static void GoBack(App* app);
+	static void ChangeControl(App*app,int index);
 
+	std::vector<std::tuple<Entity*, Entity*> >botones;
+	int index;
 };
 

@@ -82,7 +82,7 @@ void ControlsMenu::init()
 	block->addComponent<Transform>(Vector2D(100, 260), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
 	block->addComponent<TextComponent>("Block-> D", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
 
-	std::tuple<Entity*, Entity*> menu_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+	std::tuple<Entity*, Entity*> menu_button = UIFactory::createButtonControl(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
 		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(100, -50),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(0, 50),
@@ -123,10 +123,13 @@ void ControlsMenu::init()
 
 void ControlsMenu::GoBack(App* app) {
 	app->getStateMachine()->popState();
+	Entity* h = std::get<1>(botones[index]);
+
 }
 
-void ControlsMenu::ChangeControl(std::tuple<Entity*, Entity*> button) {
-	Entity* h = std::get<1>(button);
+void ControlsMenu::ChangeControl(App*app,int index) {
+	Entity* h = std::get<1>(botones[index]);
+	
 
     h->getComponent<TextComponent>(ecs::TextComponent)->setText("hola");
 	

@@ -134,6 +134,7 @@
     <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="ButtonControl.cpp" />
     <ClCompile Include="GamepadInput.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="ButtonControl.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FloorOnHit.h" />
