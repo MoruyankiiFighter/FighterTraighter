@@ -29,6 +29,7 @@ namespace ecs {
 		UIHealthbar,
 		UIRoundRenderer,
 		PlayerData,
+		PlayerAnimation,
 		/*
 		
 		*/

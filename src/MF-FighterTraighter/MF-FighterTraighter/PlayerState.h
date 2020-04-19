@@ -164,6 +164,11 @@ public:
 		//if (playerStatus_ == Guarding) std::cout << "GGG" << endl;
 	};
 
+	//Animation?
+	int getState() {
+		return playerStatus_;
+	}
+
 private:
 	Status playerStatus_;
 	int holdingFrames_ = -1;
