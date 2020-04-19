@@ -21,7 +21,8 @@ public:
 		Healthbar,
 		HealthbarBack,
 		RoundCounter,
-		CharacterSelection
+		CharacterSelection,
+		GanonSheet
 	};
 
 	enum FontNames {

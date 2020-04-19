@@ -7,8 +7,8 @@ void PlayerAnimation::update()
 		currStateInt_ = currState_->getState();
 	}
 	else {
-		//render (must change renderImage and/or Texture to be able to render a single frame in a position with a multiplier)
-		spriteShit_->render({ 0, 0, 256, 256 }, currStateInt_, activeFrame_, 0);
+		//render (currently testing)
+		imgR_->setFrame(activeFrame_, currStateInt_);
 		activeFrame_++;	//Should have a "velocity" in PlayerData per animation, teh number it increases each frame
 	}
 }
