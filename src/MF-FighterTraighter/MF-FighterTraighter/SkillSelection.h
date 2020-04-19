@@ -11,6 +11,6 @@ public:
 
 private:
 //	vector<Entity*> hab_; //todas las habilidades que genere el saco????
-
+	bool win1 = false;
 };
 
