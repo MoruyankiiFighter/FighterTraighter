@@ -84,7 +84,7 @@ void MkWH00PData::HP1(Entity* ent)//cBits and mBits are there to use the same co
 
 
 
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX,-85 }, width, 150, 17, 15, 55, { (double)orientation_ * 4, 125 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX,-85 }, width, 150, 17, 180, 55, { (double)orientation_ * 4, 125 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::NK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes

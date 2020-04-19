@@ -5,7 +5,7 @@
 #include "HitboxData.h"
 #include "ResetJumpListener.h"
 
-GameState::GameState(App* app) : app_(app), entManager_(app) 
+GameState::GameState(App* app) : app_(app), entManager_(app)
 {
 }
 void GameState::init()
@@ -26,22 +26,22 @@ void GameState::init()
 
 void GameState::handleInput()
 {
-	for (auto it = entManager_.getScene().begin();  it != entManager_.getScene().end() ;++it) {
+	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->handleInput();
 	}
 }
 
 void GameState::update()
 {
-	//destroy the hitbox and pop it from the hitbox list
-	RemoveHitbox();
-	UpdateHitboxes();
-	
+
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->update();
 	}
+	//destroy the hitbox and pop it from the hitbox list
+	UpdateHitboxes();
+	RemoveHitbox();
 
-	if (doStep) 
+	if (doStep)
 		world->Step(1.0 / app_->getFrameRate(), 8, 3); //update box2d
 }
 
@@ -57,8 +57,11 @@ void GameState::UpdateHitboxes()
 				}
 			}
 			else {	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
+				
 				for (b2Fixture* mainHB : mainHurtboxes) {
-					if (mainHB->GetBody() != (*it)->GetBody() && b2TestOverlap((*it)->GetAABB(0), mainHB->GetAABB(0))) {
+					if ((mainHB->GetFilterData().maskBits & (*it)->GetFilterData().categoryBits) != 0
+						&& (mainHB->GetFilterData().categoryBits & (*it)->GetFilterData().maskBits) != 0
+						&& b2TestOverlap((*it)->GetAABB(0), mainHB->GetAABB(0))) {
 						//gets the OnHitComponent if the mainObject has it, if it doesnt, it does nothing
 						OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
 						if (objOnHit != nullptr) {
@@ -67,7 +70,6 @@ void GameState::UpdateHitboxes()
 								hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
 								hB->destroy = true;
 							}
-
 						}
 					}
 				}
@@ -85,9 +87,17 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.density = 0.00001f;			//densidad casi 0, para que no cambie segun el ancho y el alto por ahora
 	fixturedef.isSensor = true;
 	fixturedef.filter.categoryBits = cBits;
-	fixturedef.filter.maskBits = mBits;
+	fixturedef.filter.maskBits = mBits & (PLAYER_1 | PLAYER_2 | P_BAG); //kk
 	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack,guardBreaker };//create the hitbox's data
-	//for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
+
+	//if (PLAYER_1 == cBits >> 2) fixturedef.filter.maskBits = PLAYER_2;
+	//else  fixturedef.filter.maskBits = PLAYER_1;
+	//HitboxData* hitbox = new HitboxData{ damage,time, hitstun, knockBack,guardBreaker };//create the hitbox's data
+	////for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
+	//hitboxGroups_[cBits >> 2].push_back(body->CreateFixture(&fixturedef));
+	//hitboxGroups_[cBits >> 2].back()->SetUserData(hitbox);//saving hitbox's data
+	////for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
+
 	hitboxGroups_[id].push_back(body->CreateFixture(&fixturedef));
 	hitboxGroups_[id].back()->SetUserData(hitbox_);//saving hitbox's data
 }
@@ -113,14 +123,6 @@ void GameState::clearHitboxes() {
 			(*it)->GetBody()->DestroyFixture(*it);
 		}
 		hitboxGroups_[i].clear();
-	}
-	b2Body* cur = world->GetBodyList();
-	b2Body* aux = cur;
-	while (aux != nullptr)
-	{
-		aux = cur->GetNext();
-		world->DestroyBody(cur);
-		cur = aux;
 	}
 }
 
