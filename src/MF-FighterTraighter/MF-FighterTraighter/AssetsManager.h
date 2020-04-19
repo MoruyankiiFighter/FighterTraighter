@@ -25,6 +25,7 @@ public:
 		SubMenuFondo,
 		SubMenuWin,
 		Wall,
+		FSGente,
 		//////// Habilidades
 		Pollo,
 		Mina,

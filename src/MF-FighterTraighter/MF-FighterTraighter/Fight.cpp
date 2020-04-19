@@ -6,6 +6,7 @@
 #include "UIHealthbar.h"
 #include "UIRoundRenderer.h"
 #include "AbilityFactory.h"
+#include "UIFactory.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -22,7 +23,11 @@ void Fight::init()
 	//---------------------------------------------------------------
 	resJumpListener = new ResetJumpListener();
 	world->SetContactListener(resJumpListener);
-	
+	//Static Wallpaper
+
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::FSGente),
+		Vector2D(0, 0), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+
 	//Floor
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0,0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, false);

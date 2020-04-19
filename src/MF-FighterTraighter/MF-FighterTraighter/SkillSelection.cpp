@@ -7,6 +7,9 @@ void SkillSelection::init()
 {
 	// Fondo?
 
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::FSGente),
+		Vector2D(0, 0), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+
 	// Paneles de fondo
 
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo), 
@@ -14,17 +17,24 @@ void SkillSelection::init()
 
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo), 
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 2) + 50, 50), (app_->getWindowManager()->getCurResolution().w / 2) - 100, (app_->getWindowManager()->getCurResolution().h) - 100, 0);
+	// Texto informativo
+
+	Entity* texto_ = entManager_.addEntity();
+	texto_->addComponent<Transform>(Vector2D((app_->getWindowManager()->getCurResolution().w / 2) - 425, 50), Vector2D(0, 0),
+		(app_->getWindowManager()->getCurResolution().w / 2) - 200, 100, 0);
+	texto_->addComponent<TextComponent>("Elige tu habilidad", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 75, TextComponent::TextAlignment::Center);
+	
+
 
 	// boton de cambio de estado
-
-
+	
 	tuple < Entity*, Entity*> options = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(-600, 400), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(250, 75),
 		300, 100, 0, nullptr, nullptr, "Continue", 50, TextComponent::TextAlignment::Center);
 
 	tuple < Entity*, Entity*> exit = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(((app_->getWindowManager()->getCurResolution().h / 4) * 3) - 75, 400), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(((app_->getWindowManager()->getCurResolution().h / 4) * 3) - 25, 400), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(250, 75),
 		300, 100, 0, nullptr, nullptr, "Acept", 50, TextComponent::TextAlignment::Center);
 

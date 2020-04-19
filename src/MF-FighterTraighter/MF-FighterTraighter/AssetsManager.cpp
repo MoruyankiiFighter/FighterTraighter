@@ -33,6 +33,7 @@ void AssetsManager::loadTextures()
 	
 	textures_.emplace(SubMenuFondo,new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuFondo.jpg", 1, 1));
 	textures_.emplace(SubMenuWin,new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuwin.jpg", 1, 1));
+	textures_.emplace(FSGente,new Texture(app_->getRenderer(), "../../../../assets/Assets/images/FondoSGente.jpg", 1, 1));
 	
 	////// Imagenes de habilidades
 	textures_.emplace(Pollo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/habilidades/pollo.png", 1, 1));
