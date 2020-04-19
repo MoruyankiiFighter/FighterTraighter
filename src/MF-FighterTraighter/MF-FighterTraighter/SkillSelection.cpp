@@ -6,19 +6,11 @@
 void SkillSelection::init()
 {
 
-	///// Esto es para los submenus-----new entity para que no se añada a la escena
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo), Vector2D(100, 100), (app_->getWindowManager()->getCurResolution().w / 2) - 100, (app_->getWindowManager()->getCurResolution().h) - 100, 0);
 
-	///HABILIDADES QUE TENGAMOS QUE AÑADIR AL SUBMENU, DE MOMENTO ASI
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo), Vector2D((app_->getWindowManager()->getCurResolution().w) + 100, 100), (app_->getWindowManager()->getCurResolution().w / 2) - 100, (app_->getWindowManager()->getCurResolution().h) - 100, 0);
 
-	Entity* pollo = new Entity();
-	pollo->addComponent<Transform>(Vector2D(0, 0), Vector2D(0, 0), 50, 50, 0);
-	pollo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Pollo));
-	Entity* mina = new Entity();
-	mina->addComponent<Transform>(Vector2D(60, 0), Vector2D(0, 0), 50, 50, 0);
-	mina->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mina));
-	Entity* hielo = new Entity();
-	hielo->addComponent<Transform>(Vector2D(120, 0), Vector2D(0, 0), 50, 50, 0);
-	hielo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Hielo));
+
 
 }
 
