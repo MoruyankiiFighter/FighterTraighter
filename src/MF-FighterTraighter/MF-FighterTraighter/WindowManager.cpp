@@ -27,12 +27,12 @@ WindowManager::WindowManager(App* app) : app_(app) {
 void WindowManager::setFullscreen(bool fullscreen)
 {
 	if (!fullscreen) {
-		if (getFullscreen) {
+		if (getFullscreen()) {
 			SDL_SetWindowFullscreen(window, 0);
 			SDL_SetWindowSize(window, 1280, 720);
 		}
 	}
-	else if (!getFullscreen) {
+	else if (!getFullscreen()) {
 		SDL_SetWindowDisplayMode(window, &supportedResolutions_[currentResolution_]);
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 	}
