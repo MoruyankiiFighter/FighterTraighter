@@ -123,7 +123,14 @@ void SkillSelection::createInventoryMenu()
 		Vector2D(150 , 100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 0), Vector2D(0, 0),
 		100, 100, 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 	//inventario
-
+		/*
+		.
+		.
+		.
+		.
+		.
+		.
+		*/
 
 
 	//description
@@ -136,7 +143,15 @@ void SkillSelection::createInventoryMenu()
 
 
 	//habilidades j2
-	
+		/* for con 2 filas de habilidades
+		.
+		.
+		.
+		.
+		.
+		.
+		*/
+
 	//ranuras
 		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(-150, 100), Vector2D((3*app_->getWindowManager()->getCurResolution().w / 4), 0), Vector2D(0, 0),
