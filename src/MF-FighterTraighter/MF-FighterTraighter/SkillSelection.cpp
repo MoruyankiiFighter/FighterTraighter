@@ -50,10 +50,10 @@ void SkillSelection::createFirstMenu()
 	// boton de cambio de estado
 
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 4 * app_->getWindowManager()->getCurResolution().h / 5), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(), 300, 100, 0, nullptr, nullptr, "Continue", 20);
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 4 * app_->getWindowManager()->getCurResolution().h / 5), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150,50), 300, 100, 0, nullptr, nullptr, "Continue", 20);
 		
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(3*app_->getWindowManager()->getCurResolution().w / 4, 4*app_->getWindowManager()->getCurResolution().h/5), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(), 300, 100, 0, nullptr, nullptr, "Continue", 20);
+		Vector2D(3*app_->getWindowManager()->getCurResolution().w / 4, 4*app_->getWindowManager()->getCurResolution().h/5), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150,50), 300, 100, 0, nullptr, nullptr, "Continue", 20);
 		
 	if (win1) {
 		// Fija ganador
