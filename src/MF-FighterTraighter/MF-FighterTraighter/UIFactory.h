@@ -28,7 +28,7 @@ public:
 		std::string valueText = "", int valueFontSize = 20);
 
 
-	static Entity* createPanel(App* app, GameState* state, Texture* texture_, Vector2D position = Vector2D(), double width = 0, double height = 0, double rotation = 0);
+	static Entity* createPanel(App* app, GameState* state, Texture* texture_, Vector2D position, Vector2D anchor,Vector2D pivot, double width = 0, double height = 0, double rotation = 0);
 	static Entity* createHab(App* app, GameState* state, Vector2D pos, double width, double height, Texture* texture_);
 	
 

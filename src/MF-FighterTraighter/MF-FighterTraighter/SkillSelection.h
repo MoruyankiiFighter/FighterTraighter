@@ -8,9 +8,15 @@ public:
 
 	void init() override;
 	void handleInput() override;
+	
+	void createFirstMenu();
+
+	void createInventoryMenu();
+
 
 private:
 //	vector<Entity*> hab_; //todas las habilidades que genere el saco????
 	bool win1 = false;
+
 };
 
