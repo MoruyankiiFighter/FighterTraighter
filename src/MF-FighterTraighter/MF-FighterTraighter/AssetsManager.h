@@ -19,6 +19,7 @@ public:
 		PlayerActing,
 		Background,
 		Healthbar,
+		HealthbarSaco,
 		HealthbarBack,
 		RoundCounter,
 		CharacterSelection,

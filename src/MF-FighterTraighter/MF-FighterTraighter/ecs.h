@@ -30,6 +30,9 @@ namespace ecs {
 		UIRoundRenderer,
 		PlayerData,
 		PlayerAnimation,
+		InputState,
+		KeyboardInput,
+		GamepadInput,
 		/*
 		
 		*/

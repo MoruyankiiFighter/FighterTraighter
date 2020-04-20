@@ -33,6 +33,7 @@ MainMenu::~MainMenu()
 
 void MainMenu::init()
 {
+	GameState::init();
 	/*Entity* bg = entManager_.addEntity();
 	Transform* t = bg->addComponent<Transform>();
 	t->setPosition(0, 0);
@@ -78,15 +79,18 @@ void MainMenu::init()
 void MainMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->Exit();
+		app_->getGameManager()->pressedStart();
 	}
 	else
 		GameState::handleInput();
+	
 }
 
 void MainMenu::GoArcade(App* app)
 {
+	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 	app->getStateMachine()->pushState(new Fight(app));
+	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 }
 
 void MainMenu::Go1v1(App* app)
@@ -97,7 +101,7 @@ void MainMenu::Go1v1(App* app)
 
 void MainMenu::GoOptions(App* app)
 {
-	app->Options();
+	app->getStateMachine()->pushState(new OptionsMenu(app));
 }
 
 void MainMenu::Leave(App* app)

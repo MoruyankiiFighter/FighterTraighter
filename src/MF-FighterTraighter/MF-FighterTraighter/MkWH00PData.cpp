@@ -1,9 +1,9 @@
 #include "MkWH00PData.h"
 
-MkWH00PData::MkWH00PData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense) :
-	PlayerData(keys, width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense) {
-	animLength_ = { {4, true, 8}, {4, true, 15}, {6, true, 15}, {7, true}, {8, true, 15}, {15, true, 15}, {3, true, 15}, {3, true, 15}, 
-		{7, true, 15}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {4, true, 15}, {4, true, 15}, {2, true, 15} };
+MkWH00PData::MkWH00PData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense, int playerNumber) :
+	PlayerData(keys, width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
+		animLength_ = { {4, true, 8}, {4, true, 15}, {6, true, 15}, {7, true}, {8, true, 15}, {15, true, 15}, {3, true, 15}, {3, true, 15}, 
+		{7, true, 15}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {4, true, 15}, {4, true, 15}, {2, true, 15} }
 }
 
 void MkWH00PData::init() {
@@ -64,12 +64,12 @@ void MkWH00PData::NP1(Entity* ent)//cBits and mBits are there to use the same co
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = pT->getOrientation();
 
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	//NO ME GUSTA ASï¿½ PERO NO Sï¿½ Cï¿½MO HACERLO SI NO
 	int width = 150;
 	int hitboxX = 100;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-250 }, width, 200, 20, 9, 42, { (double)orientation_ * 10, -25 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX,-250 }, width, 200, 20, 9, 42, { (double)orientation_ * 10, -25 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::HP1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -79,14 +79,14 @@ void MkWH00PData::HP1(Entity* ent)//cBits and mBits are there to use the same co
 	int orientation_ = pT->getOrientation();
 
 
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	//NO ME GUSTA ASï¿½ PERO NO Sï¿½ Cï¿½MO HACERLO SI NO
 	int width = 175;
 	int hitboxX = 100;
 	if (orientation_ == -1) hitboxX += width;
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-85 }, width, 150, 17, 15, 55, { (double)orientation_ * 4, 125 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX,-85 }, width, 150, 17, 15, 55, { (double)orientation_ * 4, 125 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::NK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -96,14 +96,14 @@ void MkWH00PData::NK1(Entity* ent)//cBits and mBits are there to use the same co
 	int orientation_ = pT->getOrientation();
 
 
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	//NO ME GUSTA ASï¿½ PERO NO Sï¿½ Cï¿½MO HACERLO SI NO
 	int width = 155;
 	int hitboxX = 105;
 	if (orientation_ == -1) hitboxX += width;
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,125 }, width, 125, 13, 6, 16, { (double)orientation_ * 2.5, -2.5 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX,125 }, width, 125, 13, 6, 16, { (double)orientation_ * 2.5, -2.5 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::NK2(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -113,14 +113,14 @@ void MkWH00PData::NK2(Entity* ent)//cBits and mBits are there to use the same co
 	int orientation_ = pT->getOrientation();
 
 
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	//NO ME GUSTA ASï¿½ PERO NO Sï¿½ Cï¿½MO HACERLO SI NO
 	int width = 140;
 	int hitboxX = 135;
 	if (orientation_ == -1) hitboxX += width;
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 100 }, width, 125, 17, 6, 35, { (double)orientation_ * 50, -15 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 100 }, width, 125, 17, 6, 35, { (double)orientation_ * 50, -15 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::HK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
@@ -138,9 +138,9 @@ void MkWH00PData::HK1(Entity* ent)//cBits and mBits are there to use the same co
 
 
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX1, 105 }, width1, 150, 17, 17, 50, { (double)orientation_ * 5, 500 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1, 105 }, width1, 150, 17, 17, 50, { (double)orientation_ * 5, 500 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 	std::cout << "Brrrrrjrnkrrbr" << endl;
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX2, 220 }, width2, 50, 20, 5, 40, { (double)orientation_ * 500, -150 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2, 220 }, width2, 50, 20, 5, 40, { (double)orientation_ * 500, -150 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::ANP1(Entity* ent)
@@ -153,7 +153,7 @@ void MkWH00PData::ANP1(Entity* ent)
 	int hitboxX = -165;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -65 }, width, 120, 35, 5, 16, { (double)orientation_ * 1, -1 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, -65 }, width, 120, 35, 5, 16, { (double)orientation_ * 1, -1 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::ANP2(Entity* ent)
@@ -166,7 +166,7 @@ void MkWH00PData::ANP2(Entity* ent)
 	int hitboxX = -165;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -45 }, width, 120, 35, 8, 30, { (double)orientation_ * 75, -5 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, -45 }, width, 120, 35, 8, 30, { (double)orientation_ * 75, -5 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::AHP1(Entity* ent)
@@ -179,7 +179,7 @@ void MkWH00PData::AHP1(Entity* ent)
 	int hitboxX = 115;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -65 }, width, 300, 25, 22, 65, { (double)orientation_ * 25, 1000000 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, -65 }, width, 300, 25, 22, 65, { (double)orientation_ * 25, 1000000 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::ANK1(Entity* ent)
@@ -192,7 +192,7 @@ void MkWH00PData::ANK1(Entity* ent)
 	int hitboxX = 105;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 135 }, width, 155, 17, 4, 15, { (double)orientation_ * 5, -5 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 135 }, width, 155, 17, 4, 15, { (double)orientation_ * 5, -5 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::ANK2(Entity* ent)
@@ -205,7 +205,7 @@ void MkWH00PData::ANK2(Entity* ent)
 	int hitboxX = 105;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, 135 }, width, 155, 17, 10, 28, { (double)orientation_ * 25, 12.5 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 135 }, width, 155, 17, 10, 28, { (double)orientation_ * 25, 12.5 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::AHK1(Entity* ent)
@@ -218,7 +218,7 @@ void MkWH00PData::AHK1(Entity* ent)
 	int hitboxX = 50;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -75 }, width, 200, 50, 18, 55, { (double)orientation_ * 4000, 0 }, pT->getBody(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, -75 }, width, 200, 50, 18, 55, { (double)orientation_ * 4000, 0 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 void MkWH00PData::GB(Entity* ent)
@@ -231,6 +231,6 @@ void MkWH00PData::GB(Entity* ent)
 	int hitboxX = 50;
 	if (orientation_ == -1) hitboxX += width;
 
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX, -75 }, width, 200, 50, 0, 2000, { (double)orientation_ * 200, -50 }, pT->getBody(), pT->getCategory(), pT->getMask(), true);
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, -75 }, width, 200, 50, 0, 2000, { (double)orientation_ * 200, -50 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask(), true);
 
 }

@@ -3,21 +3,9 @@
 //	cBits are the category bits, the collision group this body is in
 //	cMask are the mask bits, the collision groups to check
 //	if not modified, the body will collide with everything
-PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation, b2World* world, uint16 cBits, uint16 mBits, bool dyn)
-	: Transform(position, speed, width, height, rotation)
+PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation,b2World* world, uint16 cBits, uint16 mBits, bool dyn)
+	: Transform(position, speed, width, height, rotation), cBits_(cBits), mBits_(mBits), dynamic_(dyn),world_(world)
 {
-	cBits_ = cBits;
-	mBits_ = mBits;
-	b2BodyDef bodydef;
-	bodydef.position.Set(position.getX(), position.getY());
-	if (dyn)  
-		bodydef.type = b2_dynamicBody;	//makes the dynamic body if it is dynamic
-	body_ = world->CreateBody(&bodydef);
-	b2PolygonShape shape;
-	shape.SetAsBox(width * wMult_/2 , height * hMult_/2 );
-	resetMainFixture(shape);
-	body_->SetFixedRotation(true);
-	
 }
 
 
@@ -26,6 +14,15 @@ PhysicsTransform::~PhysicsTransform() {
 }
 
 void PhysicsTransform::init() {
+	b2BodyDef bodydef;
+	bodydef.position.Set(position_.getX(), position_.getY());
+	if (dynamic_)
+		bodydef.type = b2_dynamicBody;	//makes the dynamic body if it is dynamic
+	body_ = world_->CreateBody(&bodydef);
+	b2PolygonShape shape;
+	shape.SetAsBox(width_ * wMult_ / 2, height_ * hMult_ / 2);
+	resetMainFixture(shape);
+	body_->SetFixedRotation(true);
 	mainFixture_->SetUserData(this->entity_);	//tener acceso a la entidad para hacer cosas con las colisiones // ahora es en la mainFixture para poder acceder a la entidad en el HBManager
 }
 

@@ -1,14 +1,13 @@
 #pragma once
 #include "Component.h"
 #include "PhysicsTransform.h"
+#include "InpuState.h"
 
 class PlayerController :
 	public Component
 {
 public:
-	PlayerController(SDL_Scancode left, SDL_Scancode right, SDL_Scancode block, 
-		float jImpulse, SDL_Scancode jumpkey,
-		SDL_Scancode crouchk);
+	PlayerController(float jImpulse);
 	virtual ~PlayerController();
 
 	//methods overrided from Component
@@ -25,12 +24,9 @@ public:
 		wallRight_ = collision;
 	}
 private:
+	InputState* inputSt_ = nullptr;
 	PhysicsTransform* transform_ = nullptr;
-	SDL_Scancode left_, right_, block_;
 	Vector2D dir_;
 	bool wallLeft_=false, wallRight_ = false;
-	SDL_Scancode jumpKey_;
 	float jumpImpulse = 0;
-
-	SDL_Scancode crouchKey_;
 };

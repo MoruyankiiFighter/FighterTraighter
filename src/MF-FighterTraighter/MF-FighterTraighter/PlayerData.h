@@ -18,7 +18,7 @@ class PlayerData : public Component {
 	//hacer luego getters y setters
 public:
 	//PlayerData() : Component(ecs::PlayerData) {}
-	PlayerData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense);
+	PlayerData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense, int playerNumber);
 	virtual double* getWidth() {
 		return width_;
 	}
@@ -170,6 +170,9 @@ public:
 		return animLength_[index].increaseVelocity_;
 	}
 
+	virtual int getPlayerNumber() {
+		return playerNumber_;
+	}
 	virtual ~PlayerData() {}
 	
 protected:
@@ -233,4 +236,7 @@ protected:
 
 	//Animation data
 	std::vector<AnimationData> animLength_;
+	
+	// Either player 1 or 2 (0 or 1)
+	int playerNumber_;
 };
