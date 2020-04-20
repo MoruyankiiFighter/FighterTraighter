@@ -30,7 +30,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, std:
 		e->addComponent<GamepadInput>();
 	}
 
-	PlayerController* pC = e->addComponent<PlayerController>(-1500);
+	PlayerController* pC = e->addComponent<PlayerController>(-7);
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
 	//e->addComponent<Jump>(-1000, keys[2]);
 	//e->addComponent<Crouch>(keys[3]);
