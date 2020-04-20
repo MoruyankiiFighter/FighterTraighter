@@ -2,7 +2,6 @@
 #include "Entity.h"
 #include "App.h"
 #include "OnHit.h"
-#include "HitboxData.h"
 #include "ResetJumpListener.h"
 
 GameState::GameState(App* app) : app_(app), entManager_(app)
@@ -33,6 +32,7 @@ void GameState::handleInput()
 
 void GameState::update()
 {
+	cout<<entManager_.size()<<endl;
 
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->update();
@@ -102,12 +102,26 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	hitboxGroups_[id].back()->SetUserData(hitbox_);//saving hitbox's data
 }
 
+void GameState::addHitbox( uint16 id, HitboxData* hitbox, b2Fixture* fixture)
+{
+	hitboxGroups_[id].push_back(fixture);
+	hitboxGroups_[id].back()->SetUserData(hitbox);//saving hitbox's data
+}
+
 void GameState::RemoveHitbox()
 {
 	for (auto hb_it = hitboxRemove_pair_.begin(); hb_it != hitboxRemove_pair_.end(); ++hb_it) {
+		HitboxData* hitbox= static_cast<HitboxData*>((*(*hb_it).first)->GetUserData());
+		if (hitbox->destroyEntity) {//destroy entity
+			(*(*hb_it).first)->GetBody()->GetWorld()->DestroyBody((*(*hb_it).first)->GetBody());
+			//entManager_.removeEntity((*(*hb_it).first).)
+			//delete entity;
 
-		delete static_cast<HitboxData*>((*(*hb_it).first)->GetUserData());
-		(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
+		}
+		else {
+			(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
+		}
+		delete hitbox;
 		hitboxGroups_[(*hb_it).second].erase((*hb_it).first);
 	}
 	hitboxRemove_pair_.clear();

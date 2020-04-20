@@ -3,7 +3,7 @@
 //	cBits are the category bits, the collision group this body is in
 //	cMask are the mask bits, the collision groups to check
 //	if not modified, the body will collide with everything
-PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation,b2World* world, uint16 cBits, uint16 mBits, bool dyn)
+PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation,b2World* world, uint16 cBits, uint16 mBits, int dyn)
 	: Transform(position, speed, width, height, rotation), cBits_(cBits), mBits_(mBits), dynamic_(dyn),world_(world)
 {
 }
@@ -16,8 +16,10 @@ PhysicsTransform::~PhysicsTransform() {
 void PhysicsTransform::init() {
 	b2BodyDef bodydef;
 	bodydef.position.Set(position_.getX(), position_.getY());
-	if (dynamic_)
+	if (dynamic_ == 0)
 		bodydef.type = b2_dynamicBody;	//makes the dynamic body if it is dynamic
+	else if (dynamic_ == 1) bodydef.type = b2_kinematicBody;
+	else  bodydef.type = b2_staticBody;//default
 	body_ = world_->CreateBody(&bodydef);
 	b2PolygonShape shape;
 	shape.SetAsBox(width_ * wMult_ / 2, height_ * hMult_ / 2);

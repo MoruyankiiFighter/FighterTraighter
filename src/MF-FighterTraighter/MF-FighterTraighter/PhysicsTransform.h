@@ -5,7 +5,7 @@
 class PhysicsTransform : public Transform
 {
 public:
-	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation,b2World* world,uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, bool dyn = true);
+	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation,b2World* world,uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, int dyn = 2);
 	//PhysicsTransform();
 	virtual ~PhysicsTransform();
 
@@ -42,7 +42,7 @@ private:
 	b2Body* body_;
 	uint16 cBits_, mBits_;
 	b2Fixture* mainFixture_;
-	bool dynamic_;
+	int dynamic_;
 	b2World* world_ = nullptr;
 	void resetMainFixture(const b2PolygonShape& shape);
 };
