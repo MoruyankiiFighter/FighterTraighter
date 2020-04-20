@@ -79,9 +79,6 @@
     <ClCompile Include="Training.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="HitboxMng.cpp">
-      <Filter>Source Files\Manager and factories</Filter>
-    </ClCompile>
     <ClCompile Include="UIFactory.cpp">
       <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
@@ -221,9 +218,6 @@
     </ClInclude>
     <ClInclude Include="Fight.h">
       <Filter>Header files\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="HitboxMng.h">
-      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="OptionsLogic.h">
       <Filter>Header files\Components</Filter>

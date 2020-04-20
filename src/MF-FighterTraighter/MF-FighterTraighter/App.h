@@ -5,7 +5,6 @@
 #include "InputManager.h"
 #include "MainMenu.h"
 #include "AssetsManager.h"
-#include "HitboxMng.h"
 #include "WindowManager.h"
 #include "GameManager.h"
 
