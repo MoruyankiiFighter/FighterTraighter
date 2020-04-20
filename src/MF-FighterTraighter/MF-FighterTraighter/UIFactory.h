@@ -30,7 +30,7 @@ public:
 
 	static Entity* createPanel(App* app, GameState* state, Texture* texture_, Vector2D position, Vector2D anchor,Vector2D pivot, double width = 0, double height = 0, double rotation = 0);
 	static Entity* createHab(App* app, GameState* state, Vector2D pos, double width, double height, Texture* texture_);
-	
+	static Entity* createText(App* app, GameState* state, Vector2D pos, Vector2D anchor, Vector2D pivot, Font* font, std::string text, int fontSize, double width, double height);
 
 protected:
 	UIFactory() = delete;
