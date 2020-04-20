@@ -9,12 +9,12 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 	cBits_ = cBits;
 	mBits_ = mBits;
 	b2BodyDef bodydef;
-	bodydef.position.Set(position.getX(), position.getY());
+	bodydef.position.Set(position.getX() * 0.01, position.getY() * 0.01);
 	if (dyn)  
 		bodydef.type = b2_dynamicBody;	//makes the dynamic body if it is dynamic
 	body_ = world->CreateBody(&bodydef);
 	b2PolygonShape shape;
-	shape.SetAsBox(width * wMult_/2 , height * hMult_/2 );
+	shape.SetAsBox((width * 0.01) * wMult_/2 , (height * 0.01) * hMult_/2 );
 	resetMainFixture(shape);
 	body_->SetFixedRotation(true);
 	

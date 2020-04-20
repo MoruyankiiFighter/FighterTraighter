@@ -29,8 +29,8 @@ private:
 	PhysicsTransform* transform_ = nullptr;
 	SDL_Scancode left_, right_, block_;
 	b2Vec2 dir_;
-	float acc_ = 100.0;
-	float maxSpeed = 100.0;
+	float acc_ = 10.0;
+	float maxSpeed = 25.0;
 	bool wallLeft_=false, wallRight_ = false;
 	SDL_Scancode jumpKey_;
 	float jumpImpulse = 0;
