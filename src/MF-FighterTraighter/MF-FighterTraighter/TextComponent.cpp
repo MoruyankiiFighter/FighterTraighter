@@ -31,7 +31,7 @@ void TextComponent::render()
 	default:
 		break;
 	}
-	dest.y = transform_->getPosition().getY();
+	dest.y = transform_->getPosition().getY()+ textSize_/12;
 	dest.w = destWidth;
 	dest.h = textSize_ * transform_->getHMult();
 	text_->render(dest);

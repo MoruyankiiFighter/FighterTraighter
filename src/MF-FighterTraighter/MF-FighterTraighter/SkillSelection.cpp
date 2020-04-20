@@ -3,7 +3,7 @@
 #include "Entity.h"
 #include "RenderImage.h"
 #include "UITransform.h"
-
+#include "Fight.h"
 void SkillSelection::init()
 {
 	// Fondo?
@@ -16,25 +16,15 @@ void SkillSelection::init()
 
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo),
 		Vector2D((app_->getWindowManager()->getCurResolution().w/2) + 50, 50),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),Vector2D((app_->getWindowManager()->getCurResolution().w / 2),0), (app_->getWindowManager()->getCurResolution().w /2)-100, (app_->getWindowManager()->getCurResolution().h)-100, 0);
-
-
-	//// Paneles de fondo
-
-	//UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo), 
-	//	Vector2D(50, 50), Vector2D()(app_->getWindowManager()->getCurResolution().w / 2) - 100, (app_->getWindowManager()->getCurResolution().h) - 100, 0);
-
-	//UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo), 
-	//	Vector2D((app_->getWindowManager()->getCurResolution().w / 2) + 50, 50), (app_->getWindowManager()->getCurResolution().w / 2) - 100, (app_->getWindowManager()->getCurResolution().h) - 100, 0);
-	//// Texto informativo
-
-	createFirstMenu();
+	createInventoryMenu();
+	//createFirstMenu();
 
 	}
 
 void SkillSelection::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->getStateMachine()->popState();
+		app_->getStateMachine()->pushState(new Fight(app_));
 	}
 	else
 		GameState::handleInput();
@@ -43,23 +33,24 @@ void SkillSelection::handleInput()
 void SkillSelection::createFirstMenu()
 {
 	Entity* text_ = entManager_.addEntity();
-	text_->addComponent<UITransform>(Vector2D(0,0),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),Vector2D(app_->getWindowManager()->getCurResolution().w/2,200));
+	text_->addComponent<UITransform>(Vector2D(-20, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(app_ ->getWindowManager()->getCurResolution().w/5 , 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 200));
 	text_->addComponent<TextComponent>("Elige tu habilidad", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 75, TextComponent::TextAlignment::Center); 
 
 
 	// boton de cambio de estado
 
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, 4 * app_->getWindowManager()->getCurResolution().h / 5), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150,50), 300, 100, 0, nullptr, nullptr, "Continue", 20);
+		Vector2D(50, 5 * app_->getWindowManager()->getCurResolution().h / 6), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(300,75), 600, 150, 0, nullptr, nullptr, "Continue", 100, TextComponent::TextAlignment::Center);
 		
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(3*app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150, 50), Vector2D(150,50), 300, 100, 0, nullptr, nullptr, "Continue", 20);
+		Vector2D(50, 5 * app_->getWindowManager()->getCurResolution().h / 6), Vector2D(3* app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(300,75), 600, 150, 0, nullptr, nullptr, "Continue_", 100, TextComponent::TextAlignment::Center);
+		
 		
 	if (win1) {
 		// Fija ganador
 
 		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(-(app_->getWindowManager()->getCurResolution().w / 4) - (75), (app_->getWindowManager()->getCurResolution().h / 2) - 175), Vector2D((app_->getWindowManager()->getCurResolution().w / 2), 0), Vector2D(0, 0),
+			Vector2D(-(app_->getWindowManager()->getCurResolution().w / 4) - (75), (app_->getWindowManager()->getCurResolution().h / 2) - 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 2), 0), Vector2D(0, 0),
 			150, 150, 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 
 		// Fija perdedor
@@ -116,35 +107,47 @@ void SkillSelection::createFirstMenu()
 
 void SkillSelection::createInventoryMenu()
 {
-
-	Entity* texto_ = entManager_.addEntity();
-	texto_->addComponent<Transform>(Vector2D((app_->getWindowManager()->getCurResolution().w / 2) - 425, 50), Vector2D(0, 0),
-		(app_->getWindowManager()->getCurResolution().w / 2) - 200, 100, 0);
-	texto_->addComponent<TextComponent>(" ... ", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 75, TextComponent::TextAlignment::Center);
+	Entity* text_ = entManager_.addEntity();
+	text_->addComponent<UITransform>(Vector2D(-20, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 5, 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 200));
+	text_->addComponent<TextComponent>("Set your skills", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 75, TextComponent::TextAlignment::Center);
 
 	// boton de cambio de estado
 
-	//j1
-	tuple < Entity*, Entity*> options = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(-600, 400), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(250, 75),
-		300, 100, 0, nullptr, nullptr, "Go to fight", 50, TextComponent::TextAlignment::Center);
-
-	//j2
-	tuple < Entity*, Entity*> exit = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(((app_->getWindowManager()->getCurResolution().h / 4) * 3) - 25, 400), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(250, 75),
-		300, 100, 0, nullptr, nullptr, "Go to fight too", 50, TextComponent::TextAlignment::Center);
-
-
 	//habilidades j1
+
+	//ranuras
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 4) - (75), (app_->getWindowManager()->getCurResolution().h / 2) - 175), Vector2D((app_->getWindowManager()->getCurResolution().w / 2), 0), Vector2D(0, 0),
-		150, 150, 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+		Vector2D(-150 , 100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 0), Vector2D(0, 0),
+		100, 100, 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D(150 , 100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 0), Vector2D(0, 0),
+		100, 100, 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+	//inventario
+
+	//descripcion
+
+	//button
+
+		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+			Vector2D(50, 5 * app_->getWindowManager()->getCurResolution().h / 6), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150, 32), 300, 75, 0, nullptr, nullptr, "Continue", 100, TextComponent::TextAlignment::Center);
+
 
 
 	//habilidades j2
+	
+	//ranuras
+		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+			Vector2D(-150, 100), Vector2D((3*app_->getWindowManager()->getCurResolution().w / 4), 0), Vector2D(0, 0),
+			100, 100, 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+			Vector2D(150, 100), Vector2D((3*app_->getWindowManager()->getCurResolution().w / 4), 0), Vector2D(0, 0),
+			100, 100, 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+		//inventario
+		
+		//description
 
+		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+			Vector2D(50, 5 * app_->getWindowManager()->getCurResolution().h / 6), Vector2D(3 * app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150, 32), 300, 75, 0, nullptr, nullptr, "Continue_", 100, TextComponent::TextAlignment::Center);
 
 
 }
