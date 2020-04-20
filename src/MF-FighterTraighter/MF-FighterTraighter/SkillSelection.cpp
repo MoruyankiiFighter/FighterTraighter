@@ -11,10 +11,10 @@ void SkillSelection::init()
 		Vector2D(0, 0),Vector2D(0,0),Vector2D(0,0), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
 
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo),
-		Vector2D(100, 50), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D((app_->getWindowManager()->getCurResolution().w / 2), 0), (app_->getWindowManager()->getCurResolution().w / 2) - 100, (app_->getWindowManager()->getCurResolution().h) - 100, 0);
+		Vector2D(50, 50), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D((app_->getWindowManager()->getCurResolution().w / 2), 0), (app_->getWindowManager()->getCurResolution().w / 2) - 100, (app_->getWindowManager()->getCurResolution().h) - 100, 0);
 
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo),
-		Vector2D((app_->getWindowManager()->getCurResolution().w/2) + 100, 50),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),Vector2D((app_->getWindowManager()->getCurResolution().w / 2),0), (app_->getWindowManager()->getCurResolution().w /2)-100, (app_->getWindowManager()->getCurResolution().h)-100, 0);
+		Vector2D((app_->getWindowManager()->getCurResolution().w/2) + 50, 50),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),Vector2D((app_->getWindowManager()->getCurResolution().w / 2),0), (app_->getWindowManager()->getCurResolution().w /2)-100, (app_->getWindowManager()->getCurResolution().h)-100, 0);
 
 
 	//// Paneles de fondo
@@ -26,6 +26,7 @@ void SkillSelection::init()
 	//	Vector2D((app_->getWindowManager()->getCurResolution().w / 2) + 50, 50), (app_->getWindowManager()->getCurResolution().w / 2) - 100, (app_->getWindowManager()->getCurResolution().h) - 100, 0);
 	//// Texto informativo
 
+	createFirstMenu();
 
 	}
 
@@ -48,16 +49,12 @@ void SkillSelection::createFirstMenu()
 
 	// boton de cambio de estado
 
-	tuple < Entity*, Entity*> options = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(-600, 400), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(250, 75),
-		300, 100, 0, nullptr, nullptr, "Continue", 50, TextComponent::TextAlignment::Center);
-
-	tuple < Entity*, Entity*> exit = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(((app_->getWindowManager()->getCurResolution().h / 4) * 3) - 25, 400), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(250, 75),
-		300, 100, 0, nullptr, nullptr, "Acept", 50, TextComponent::TextAlignment::Center);
-
+	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 4 * app_->getWindowManager()->getCurResolution().h / 5), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(), 300, 100, 0, nullptr, nullptr, "Continue", 20);
+		
+	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D(3*app_->getWindowManager()->getCurResolution().w / 4, 4*app_->getWindowManager()->getCurResolution().h/5), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(), 300, 100, 0, nullptr, nullptr, "Continue", 20);
+		
 	if (win1) {
 		// Fija ganador
 
