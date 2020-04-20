@@ -7,7 +7,7 @@
 #include "PlayerAttacks.h"
 #include <vector>
 #include "ResetJumpListener.h"
-
+#include "PlayerData.h"
 
 class Training: public GameState
 {
@@ -40,6 +40,7 @@ private:
 	b2World* world= nullptr;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	ResetJumpListener* resJumpListener = nullptr;
-
+	Entity* saco;
+	PlayerData* player;
 };
 

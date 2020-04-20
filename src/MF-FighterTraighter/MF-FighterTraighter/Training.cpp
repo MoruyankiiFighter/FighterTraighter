@@ -32,7 +32,7 @@ void Training::init()
 	FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M,
 		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, PLAYER_2, PLAYER_1 | WALL | BOUNDARY);
 
-	Entity* saco = entManager_.addEntity();
+	saco = entManager_.addEntity();
 	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h - 455), Vector2D(10, 10), 150, 500, 0, world, P_BAG, PLAYER_1 | PLAYER_2, false);
 	app_->getHitboxMng()->addMainHitbox(pBpT->getMainFixture());
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
@@ -40,10 +40,12 @@ void Training::init()
 	Health* sacoHealth = saco->addComponent<Health>(200);
 	//saco->addComponent<SacoTimer>(5000);
 
+
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
 	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
 	timer->addComponent<UITimer>(UITimer::Minutes);
+	
 
 	Entity* healthbarBack = entManager_.addEntity();
 	healthbarBack->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(850, 20), Vector2D(1700, 40));
@@ -89,9 +91,16 @@ void Training::handleInput()
 
 void Training::update()
 {
-	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
-	GameState::update();
-	world->Step(1.0 / 30, 8, 3);//update box2d
+	if (saco->getComponent<Health>(ecs::Health)->getHealth() <= 0) {
+		//llama al metodo de dame habilidades
+		player->addAbilityInventory("Counter");
+		player->addAbilityInventory("Shell Power");
+	}
+	else {
+		app_->getHitboxMng()->update();		//es posible que esto sea un sistema
+		GameState::update();
+		world->Step(1.0 / 30, 8, 3);//update box2d
+	}
 }
 
 

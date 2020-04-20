@@ -14,6 +14,7 @@ public:
 	//method overrided from Component
 	virtual void init() override { startTime_ = SDL_GetTicks(); };
 	virtual void update() override;
+
 private:
 	int timeLimit_;
 	int startTime_=0;
