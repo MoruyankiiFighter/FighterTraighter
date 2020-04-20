@@ -135,10 +135,12 @@
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GamepadInput.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
     <ClCompile Include="HitboxMng.cpp" />
+    <ClCompile Include="KeyboardInput.cpp" />
     <ClCompile Include="MkWH00PData.cpp" />
     <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="NavigationController.cpp" />
@@ -198,10 +200,13 @@
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FloorOnHit.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GamepadInput.h" />
     <ClInclude Include="HitboxData.h" />
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IndexSlider.h" />
+    <ClInclude Include="InpuState.h" />
+    <ClInclude Include="KeyboardInput.h" />
     <ClInclude Include="MkWH00PData.h" />
     <ClInclude Include="MoveParser.h" />
     <ClInclude Include="NavigationController.h" />

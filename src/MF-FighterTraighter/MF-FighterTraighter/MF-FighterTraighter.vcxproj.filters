@@ -171,9 +171,17 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="UIHealthbar.cpp" />
+    </ClCompile>
     <ClCompile Include="UIRoundRenderer.cpp" />
+    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files\Manager and factories</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardInput.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GamepadInput.cpp">
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -379,9 +387,20 @@
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="UIHealthbar.h" />
+    </ClInclude>
     <ClInclude Include="UIRoundRenderer.h" />
+    </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Header files\Managers and factories</Filter>
+    </ClInclude>
+    <ClInclude Include="InpuState.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GamepadInput.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardInput.h">
+      <Filter>Header files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

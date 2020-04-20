@@ -62,7 +62,7 @@ void MkWH00PData::NP1(Entity* ent)//cBits and mBits are there to use the same co
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = pT->getOrientation();
 
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	//NO ME GUSTA ASï¿½ PERO NO Sï¿½ Cï¿½MO HACERLO SI NO
 	int width = 150;
 	int hitboxX = 100;
 	if (orientation_ == -1) hitboxX += width;
@@ -77,7 +77,7 @@ void MkWH00PData::HP1(Entity* ent)//cBits and mBits are there to use the same co
 	int orientation_ = pT->getOrientation();
 
 
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	//NO ME GUSTA ASï¿½ PERO NO Sï¿½ Cï¿½MO HACERLO SI NO
 	int width = 175;
 	int hitboxX = 100;
 	if (orientation_ == -1) hitboxX += width;
@@ -94,7 +94,7 @@ void MkWH00PData::NK1(Entity* ent)//cBits and mBits are there to use the same co
 	int orientation_ = pT->getOrientation();
 
 
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	//NO ME GUSTA ASï¿½ PERO NO Sï¿½ Cï¿½MO HACERLO SI NO
 	int width = 155;
 	int hitboxX = 105;
 	if (orientation_ == -1) hitboxX += width;
@@ -111,7 +111,7 @@ void MkWH00PData::NK2(Entity* ent)//cBits and mBits are there to use the same co
 	int orientation_ = pT->getOrientation();
 
 
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	//NO ME GUSTA ASï¿½ PERO NO Sï¿½ Cï¿½MO HACERLO SI NO
 	int width = 140;
 	int hitboxX = 135;
 	if (orientation_ == -1) hitboxX += width;

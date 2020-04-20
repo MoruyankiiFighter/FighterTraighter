@@ -5,10 +5,7 @@
 #include "PhysicsTransform.h"
 
 //constructor
-PlayerController::PlayerController(SDL_Scancode left, SDL_Scancode right, SDL_Scancode block,
-	float jImpulse, SDL_Scancode jumpkey,
-	SDL_Scancode crouchk) : Component(ecs::PlayerController),
-transform_(nullptr), left_(left), right_(right), block_(block), jumpKey_(jumpkey), jumpImpulse(jImpulse), crouchKey_(crouchk)
+PlayerController::PlayerController(float jImpulse) : Component(ecs::PlayerController), transform_(nullptr), inputSt_(nullptr), jumpImpulse(jImpulse)
 {
 }
 
@@ -21,7 +18,7 @@ PlayerController::~PlayerController()
 void PlayerController::init()
 {
 	transform_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
-	
+	inputSt_ = entity_->getComponent<InputState>(ecs::InputState);
 }
 
 //update
@@ -36,14 +33,13 @@ void PlayerController::handleInput()
 	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	InputManager* input = app_->getInputManager();
-	if (input->isKeyDown(block_) && currState->canGuard())
+	if (inputSt_->getInput(10) && currState->canGuard())
 	{
 		if (currState->isCrouch()) uncrouch();
 		else if (currState->isMoving())transform_->setSpeed(0, speed.getY());
 		if (!currState->isGuarding()) currState->goGuardingTransition(6);
 	}
-	else if ((input->isKeyDown(jumpKey_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9)
-		&& currState->canJump()) 
+	else if (inputSt_->getInput(2) && currState->canJump()) 
 	{
 		//pTR_->setSpeed(0, 5);
 		//force and where you use the fore
@@ -52,14 +48,13 @@ void PlayerController::handleInput()
 		currState->goJumpingTrans(7);
 		std::cout << "salto" << std::endl;
 	}
-	else if ((input->isKeyDown(crouchKey_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.1)
-		&& currState->canCrouch())
+	else if (inputSt_->getInput(3) && currState->canCrouch())
 	{
 		cout << "crouch" << endl;
 		if (currState->isMoving()) transform_->setSpeed(0, speed.getY());
 		crouch();
 	}
-	else if (currState->isAbletoMove() && (input->isKeyDown(left_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < 0))
+	else if (currState->isAbletoMove() && inputSt_->getInput(0))
 	{
 		if(!wallLeft_) speed = { -45, speed.getY() };
 		else {
@@ -69,7 +64,7 @@ void PlayerController::handleInput()
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}
-	else if (currState->isAbletoMove() && (input->isKeyDown(right_) || input->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.09))
+	else if (currState->isAbletoMove() && inputSt_->getInput(1))
 	{
 		if (!wallRight_) speed = { 45, speed.getY() };
 		else {
@@ -80,7 +75,7 @@ void PlayerController::handleInput()
 	}
 
 	//Si eésa tecla no está activa
-	if(input->isKeyUp(left_) && input->isKeyUp(right_) && input->isKeyUp(jumpKey_)){	
+	if(!inputSt_->getInput(0) && !inputSt_->getInput(1) && !inputSt_->getInput(2)){
 		if (currState->isMoving() || currState->isJumping()) 
 		{
 			transform_->setSpeed(0, speed.getY());
@@ -88,13 +83,13 @@ void PlayerController::handleInput()
 			else { currState->goJumping(); };
 		}	
 	}
-	if (input->isKeyUp(block_)) {
+	if (!inputSt_->getInput(10)) {
 		if (currState->isGuarding())
 		{
 			currState->goGuardingLeaving(14);
 		}
 	}
-	if (input->isKeyUp(crouchKey_)) {
+	if (!inputSt_->getInput(3)) {
 		if (currState->isCrouch())
 		{
 			uncrouch();
