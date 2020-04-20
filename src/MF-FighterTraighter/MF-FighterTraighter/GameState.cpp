@@ -10,14 +10,14 @@ GameState::GameState(App* app) : app_(app), entManager_(app)
 }
 void GameState::init()
 {
-	gravity = { 0, 10.0f };
+	gravity = { 0, 18.0f };//10.0
 	world = new b2World(gravity);
 #ifdef NDEBUG
 	debugInstance = nullptr;
 #else
-	debugInstance = new SDLDebugDraw(app_->getRenderer(), app_->PIXELS_PER_METER);
+	debugInstance = new SDLDebugDraw(app_->getRenderer());//, app_->PIXELS_PER_METER);
 	world->SetDebugDraw(debugInstance);
-	debugInstance->SetFlags(b2Draw::e_shapeBit);
+	debugInstance->SetFlags(b2Draw::e_aabbBit);
 #endif
 	resJumpListener = new ResetJumpListener();
 	world->SetContactListener(resJumpListener);
