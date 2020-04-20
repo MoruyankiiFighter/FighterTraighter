@@ -2,6 +2,7 @@
 #include "UIFactory.h"
 #include "Entity.h"
 #include "RenderImage.h"
+#include "UITransform.h"
 
 void SkillSelection::init()
 {
@@ -41,19 +42,18 @@ void SkillSelection::handleInput()
 
 void SkillSelection::createFirstMenu()
 {
+	Entity* text_ = entManager_.addEntity();
+	text_->addComponent<UITransform>(Vector2D(0,0),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),app_->getWindowManager()->getCurResolution().w/2,200);
+	text_->addComponent<TextComponent>("Elige tu habilidad", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 75, TextComponent::TextAlignment::Center); 
 
-	Entity* texto_ = entManager_.addEntity();
-	texto_->addComponent<Transform>(Vector2D((app_->getWindowManager()->getCurResolution().w / 2) - 425, 50), Vector2D(0, 0),
-		(app_->getWindowManager()->getCurResolution().w / 2) - 200, 100, 0);
-	texto_->addComponent<TextComponent>("Elige tu habilidad", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 75, TextComponent::TextAlignment::Center);
 
 	// boton de cambio de estado
 
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 4 * app_->getWindowManager()->getCurResolution().h / 5), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(), 300, 100, 0, nullptr, nullptr, "Continue", 20);
+		Vector2D(0, 4 * app_->getWindowManager()->getCurResolution().h / 5), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150,50), 300, 100, 0, nullptr, nullptr, "Continue", 20);
 		
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(3*app_->getWindowManager()->getCurResolution().w / 4, 4*app_->getWindowManager()->getCurResolution().h/5), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(), 300, 100, 0, nullptr, nullptr, "Continue", 20);
+		Vector2D(3*app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150, 50), Vector2D(150,50), 300, 100, 0, nullptr, nullptr, "Continue", 20);
 		
 	if (win1) {
 		// Fija ganador
