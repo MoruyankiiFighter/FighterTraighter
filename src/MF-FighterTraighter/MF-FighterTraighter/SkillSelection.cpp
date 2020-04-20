@@ -124,13 +124,14 @@ void SkillSelection::createInventoryMenu()
 		100, 100, 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 	//inventario
 
+
+
 	//description
 		UIFactory::createText(app_, this, Vector2D(-50, 2 * app_->getWindowManager()->getCurResolution().h / 3), Vector2D(3*app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(300, 50), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "descripcion", 50, 600, 200);
 
 	//button
-
 		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(50, 5 * app_->getWindowManager()->getCurResolution().h / 6), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150, 32), 300, 75, 0, nullptr, nullptr, "Continue", 100, TextComponent::TextAlignment::Center);
+			Vector2D(-50, 5 * app_->getWindowManager()->getCurResolution().h / 6), Vector2D(app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150, 32), 300, 75, 0, nullptr, nullptr, "Continue", 50, TextComponent::TextAlignment::Center);
 
 
 
@@ -150,7 +151,7 @@ void SkillSelection::createInventoryMenu()
 
 		//button
 		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(50, 5 * app_->getWindowManager()->getCurResolution().h / 6), Vector2D(3 * app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150, 32), 300, 75, 0, nullptr, nullptr, "Continue_", 100, TextComponent::TextAlignment::Center);
+			Vector2D(-50, 5 * app_->getWindowManager()->getCurResolution().h / 6), Vector2D(3 * app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150, 32), 300, 75, 0, nullptr, nullptr, "Continue_", 50, TextComponent::TextAlignment::Center);
 
 
 }
