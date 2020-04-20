@@ -168,5 +168,4 @@ void SkillSelection::createInventoryMenu()
 		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(-50, 5 * app_->getWindowManager()->getCurResolution().h / 6), Vector2D(3 * app_->getWindowManager()->getCurResolution().w / 4, 0), Vector2D(150, 32), 300, 75, 0, nullptr, nullptr, "Continue_", 50, TextComponent::TextAlignment::Center);
 
-
 }
