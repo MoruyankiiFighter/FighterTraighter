@@ -43,7 +43,7 @@ void SkillSelection::handleInput()
 void SkillSelection::createFirstMenu()
 {
 	Entity* text_ = entManager_.addEntity();
-	text_->addComponent<UITransform>(Vector2D(0,0),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),app_->getWindowManager()->getCurResolution().w/2,200);
+	text_->addComponent<UITransform>(Vector2D(0,0),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),Vector2D(app_->getWindowManager()->getCurResolution().w/2,0),Vector2D(app_->getWindowManager()->getCurResolution().w/2,200));
 	text_->addComponent<TextComponent>("Elige tu habilidad", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 75, TextComponent::TextAlignment::Center); 
 
 
