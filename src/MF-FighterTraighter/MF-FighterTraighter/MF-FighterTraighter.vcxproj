@@ -134,10 +134,12 @@
     <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="GamepadInput.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
     <ClCompile Include="HitboxMng.cpp" />
+    <ClCompile Include="KeyboardInput.cpp" />
     <ClCompile Include="MkWH00PData.cpp" />
     <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="NavigationController.cpp" />
@@ -186,7 +188,7 @@
     <ClCompile Include="UIFactory.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="VerticalSlider.cpp" />
-    <ClCompile Include="ControlsMenu.cpp"/>
+    <ClCompile Include="ControlsMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ability.h" />
@@ -197,10 +199,13 @@
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FloorOnHit.h" />
     <ClInclude Include="Hability.h" />
+    <ClInclude Include="GamepadInput.h" />
     <ClInclude Include="HitboxData.h" />
     <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IndexSlider.h" />
+    <ClInclude Include="InpuState.h" />
+    <ClInclude Include="KeyboardInput.h" />
     <ClInclude Include="MkWH00PData.h" />
     <ClInclude Include="MoveParser.h" />
     <ClInclude Include="NavigationController.h" />
@@ -255,7 +260,7 @@
     <ClInclude Include="UIFactory.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="VerticalSlider.h" />
-    <ClInclude Include="ControlsMenu.h"/>
+    <ClInclude Include="ControlsMenu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

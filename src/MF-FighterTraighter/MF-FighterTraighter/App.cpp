@@ -72,12 +72,7 @@ void App::init()
 	if (e > 0) {
 		throw new SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
 	}
-	//int nJoysticks = SDL_NumJoysticks();
-    
-	/*SDL_Joystick* joystick = SDL_JoystickOpen(0);
-	std::cout << "Controller Name:" << SDL_JoystickName(joystick) << std::endl;
-	std::cout << "Num Axes :" << SDL_JoystickNumAxes(joystick) << std::endl;
-	std::cout << "Num Buttons :" << SDL_JoystickNumButtons(joystick) << std::endl;*/
+	
 	
 	windowManager_.reset(new WindowManager(this));
 
