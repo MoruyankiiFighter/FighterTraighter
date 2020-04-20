@@ -26,7 +26,7 @@ void Fight::init()
 	//Static Wallpaper
 
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::FSGente),
-		Vector2D(0, 0), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+		Vector2D(0, 0), Vector2D(0, 0), Vector2D(0, 0), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
