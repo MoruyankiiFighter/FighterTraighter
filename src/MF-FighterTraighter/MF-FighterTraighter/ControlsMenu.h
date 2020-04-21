@@ -26,6 +26,7 @@ public:
 	std::vector<std::tuple<Entity*, Entity*> >botones;
 	int index;
 	string predet[12];
+	string texto[12];
 
 	
 

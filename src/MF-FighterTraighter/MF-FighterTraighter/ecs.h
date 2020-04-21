@@ -32,6 +32,7 @@ namespace ecs {
 		InputState,
 		KeyboardInput,
 		GamepadInput,
+		OptionsControlLogic,
 		/*
 		
 		*/
