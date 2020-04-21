@@ -2,19 +2,19 @@
 #include "RenderImage.h"
 #include "UIElement.h"
 
-using CallBackOnClick = void(int index);
+using SetIndexOnClick = void(App * app, int index);
 
 class ButtonControl : public UIElement {
 
 public:
 	//constructor
-	ButtonControl(int index,CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr) : UIElement(), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
+	ButtonControl(SetIndexOnClick* setIndexOnclick ,int index) : UIElement(),index(index) {};
 
 	virtual void Press()
 	{
 		state_ = Pressed;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(2, 0);
-		//if (clickCallback_) clickCallback_(app_);
+		if (setIndexOnclick_) setIndexOnclick_(app_,index);
 	};
 	virtual void Select()
 	{
@@ -37,16 +37,19 @@ public:
 	virtual ~ButtonControl() {};
 
 	//callbacks
-	inline void setClickCallback(CallBackOnClick* callback) { clickCallback_ = callback; }
-	inline void setStopClickCallback(CallBackOnClick* callback) { stopClickCallback_ = callback; }
+	inline void setClickCallback(SetIndexOnClick* setonclick) { setIndexOnclick_ = setonclick; }
 
 	//methods overrided of Component
 	void init() override;
 	//handle the input of the mouse by the moment
 	void handleInput() override;
 	void render() override;
+	int getIndex()
+	{
+		return index;
+	}
 
 private:
-	CallBackOnClick* clickCallback_ = nullptr;
-	CallBackOnClick* stopClickCallback_ = nullptr;
+	SetIndexOnClick* setIndexOnclick_ = nullptr;
+	int index;
 };

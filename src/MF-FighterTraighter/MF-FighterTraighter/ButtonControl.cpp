@@ -20,7 +20,6 @@ void ButtonControl::handleInput()
 	else if (state_ == Pressed) {
 		state_ = Selected;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
-		if (stopClickCallback_) stopClickCallback_(app_);
 	}
 }
 
