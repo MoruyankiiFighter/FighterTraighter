@@ -24,7 +24,8 @@ void PlayerController::init()
 //update
 void PlayerController::update()
 {
-	transform_->setPosition(transform_->getPosition() + transform_->getSpeed());
+	//transform_->setPosition(transform_->getPosition() + transform_->getSpeed());
+	cout << transform_->getSpeed().getY() << endl;
 }
 
 //handle input
@@ -56,7 +57,7 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && inputSt_->getInput(0))
 	{
-		if(!wallLeft_) speed = { -4.5, speed.getY() };
+		if(!wallLeft_) speed = { -4.50, speed.getY() };
 		else {
 			speed = { 0, speed.getY() };
 		}
@@ -66,7 +67,7 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && inputSt_->getInput(1))
 	{
-		if (!wallRight_) speed = { 4.5, speed.getY() };
+		if (!wallRight_) speed = { 4.50, speed.getY() };
 		else {
 			speed = { 0, speed.getY() };
 		}		transform_->setSpeed(speed);
