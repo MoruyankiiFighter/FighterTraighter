@@ -7,30 +7,31 @@ public:
 	virtual ~MkWH00PData() {}
 	void init() override;
 private:
-	//Moves Callbacks
-	//lista de vectores pero no se
+	//Static callbacks to generate hitboxes, if both player choose the same player, their attacks are the same, the values that 
+	//change are PlayerData non static values (attack, deffense...)
+
 	static void NP1(Entity* ent);
-	CallbackData np1;
+	static CallbackData np1;
 	static void HP1(Entity* ent);
-	CallbackData hp1;
+	static CallbackData hp1;
 	static void NK1(Entity* ent);
-	CallbackData nk1;
+	static CallbackData nk1;
 	static void NK2(Entity* ent);
-	CallbackData nk2;
+	static CallbackData nk2;
 	static void HK1(Entity* ent);
-	CallbackData hk1;
+	static CallbackData hk1;
 	static void ANP1(Entity* ent);
-	CallbackData anp1;
+	static CallbackData anp1;
 	static void ANP2(Entity* ent);
-	CallbackData anp2;
+	static CallbackData anp2;
 	static void AHP1(Entity* ent);
-	CallbackData ahp1;
+	static CallbackData ahp1;
 	static void ANK1(Entity* ent);
-	CallbackData ank1;
+	static CallbackData ank1;
 	static void ANK2(Entity* ent);
-	CallbackData ank2;
+	static CallbackData ank2;
 	static void AHK1(Entity* ent);
-	CallbackData ahk1;
+	static CallbackData ahk1;
 	static void GB(Entity* ent);
 };
 

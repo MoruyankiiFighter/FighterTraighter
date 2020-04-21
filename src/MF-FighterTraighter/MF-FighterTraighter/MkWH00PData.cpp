@@ -55,37 +55,50 @@ void MkWH00PData::init() {
 	guard_breaker_ = new AnimationChain(vecMov);
 	vecMov.clear();
 }
-//Esto es para geenrar hitboxes, habr? uno para cada hitbox generada
-void MkWH00PData::NP1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
+void MkWH00PData::NP1(Entity* ent)
 {
 	std::cout << "Uppercut" << endl;
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = pT->getOrientation();
-
-	//NO ME GUSTA AS� PERO NO S� C�MO HACERLO SI NO
-	int width = 150;
-	int hitboxX = 100;
-	if (orientation_ == -1) hitboxX += width;
-
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX,-250 }, width, 200, 20, 9, 42, { (double)orientation_ * 10, -25 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+	if(orientation_ == -1)
+		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * (np1.position.getX() * np1.width), np1.position.getY() }, np1.width, np1.height, np1.time, np1.damage, np1.hitstun, { (double)orientation_ * np1.knockBack.getX(), np1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+	else
+		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+			{ (double)orientation_ * np1.position.getX(), np1.position.getY() }, np1.width, np1.height, np1.time, np1.damage, np1.hitstun, { (double)orientation_ * np1.knockBack.getX(), np1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
-void MkWH00PData::HP1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
+PlayerData::CallbackData MkWH00PData::np1 = PlayerData::CallbackData{
+	{ 100, -250 },
+	{ 100, -250 },
+	150,
+	200,
+	20,
+	9,
+	42};
+
+void MkWH00PData::HP1(Entity* ent)
 {
 	std::cout << "Hostia" << endl;
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = pT->getOrientation();
-
-
-	//NO ME GUSTA AS� PERO NO S� C�MO HACERLO SI NO
-	int width = 175;
-	int hitboxX = 100;
-	if (orientation_ == -1) hitboxX += width;
-
-
-
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX,-85 }, width, 150, 17, 15, 55, { (double)orientation_ * 4, 125 }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+	if (orientation_ == -1) 
+		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * (hp1.position.getX() + hp1.width), hp1.position.getY() }, hp1.width, hp1.height, hp1.time, hp1.damage, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+	else 
+		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hp1.position.getX(), hp1.position.getY() }, hp1.width, hp1.height, hp1.time, hp1.damage, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+	
 }
+
+PlayerData::CallbackData MkWH00PData::hp1 = PlayerData::CallbackData{
+	{ 175, -85 },
+	{ 40, -1250 },
+	175,
+	150,
+	17,
+	15,
+	55 };
 
 void MkWH00PData::NK1(Entity* ent)//cBits and mBits are there to use the same collision filters as the body when adding hitboxes
 {

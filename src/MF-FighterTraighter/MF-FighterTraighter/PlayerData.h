@@ -167,12 +167,13 @@ protected:
 
 	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 9, 42, { (double)orientation_ * 10, -50 }, pT->getBody(), pT->getCategory(), pT->getMask());*/
 	struct CallbackData {
-		Vector2D position;
-		int width;
-		int height;
-		int time;
-		int damage;
-		int hitstun;
+		Vector2D position,
+			knockBack;
+		int width,
+			height,
+			time,
+			damage,
+			hitstun;
 	};
 	//Control Keys
 	SDL_Scancode leftKey_, righKey_, jumpKey_, crouchKey_, guardKey_,

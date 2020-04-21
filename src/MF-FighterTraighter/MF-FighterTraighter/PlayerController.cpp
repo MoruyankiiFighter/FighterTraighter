@@ -25,7 +25,7 @@ void PlayerController::init()
 void PlayerController::update()
 {
 	//transform_->setPosition(transform_->getPosition() + transform_->getSpeed());
-	cout << transform_->getSpeed().getY() << endl;
+	//cout << transform_->getSpeed().getY() << endl;
 }
 
 //handle input
