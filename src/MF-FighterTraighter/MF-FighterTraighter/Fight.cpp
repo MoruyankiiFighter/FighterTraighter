@@ -2,6 +2,7 @@
 #include "FloorOnHit.h"
 #include "UITimer.h"
 #include "UITransform.h"
+#include "UIFactory.h"
 #include "Health.h"
 #include "UIHealthbar.h"
 #include "UIRoundRenderer.h"
@@ -16,10 +17,14 @@ void Fight::init()
 {
 	GameState::init();
 	doStep = true;
+	Entity* bg = entManager_.addEntity();
+	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+	bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight));
+
 	//Floor
 	Entity* floor = entManager_.addEntity();
-	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0,0), 1920, 450, 0, world,BOUNDARY, EVERYTHING, false);
-	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1200), Vector2D(0,0), 1920, 450, 0, world,BOUNDARY, EVERYTHING, false);
+	/*floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));*/
 	//floor->addComponent<FloorOnHit>();
 
 	//Walls
