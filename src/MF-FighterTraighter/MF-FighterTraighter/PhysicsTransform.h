@@ -14,7 +14,7 @@ public:
 	
 	// get and set for position
 	virtual Vector2D getPosition() const {
-		Vector2D pos{ body_->GetTransform().p.x - width_ * wMult_ / 2, body_->GetTransform().p.y - height_ * hMult_ / 2 }; //Vector2D pos{(((float)(body_->GetTransform().p.x)) * 100) - width_ * wMult_ / 2, (((float)(body_->GetTransform().p.y)) * 100.0) - height_ * hMult_ / 2 };
+		Vector2D pos{(((float)(body_->GetTransform().p.x)) * 100) - width_ * wMult_ / 2, (((float)(body_->GetTransform().p.y)) * 100.0) - height_ * hMult_ / 2 };
 		return  pos;
 	}
 	virtual void setPosition(const Vector2D& v) {/* body_->SetTransform(b2Vec2());*/ }

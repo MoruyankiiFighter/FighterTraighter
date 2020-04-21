@@ -15,12 +15,12 @@ PhysicsTransform::~PhysicsTransform() {
 
 void PhysicsTransform::init() {
 	b2BodyDef bodydef;
-	bodydef.position.Set(position_.getX(), position_.getY());//bodydef.position.Set(position_.getX() * app_->METERS_PER_PIXEL, position_.getY() * app_->METERS_PER_PIXEL);
+	bodydef.position.Set(position_.getX() * app_->METERS_PER_PIXEL, position_.getY() * app_->METERS_PER_PIXEL);
 	if (dynamic_)
 		bodydef.type = b2_dynamicBody;	//makes the dynamic body if it is dynamic
 	body_ = world_->CreateBody(&bodydef);
 	b2PolygonShape shape;
-	shape.SetAsBox(width_ * wMult_ / 2, height_ * hMult_ / 2); //shape.SetAsBox((width_ * app_->METERS_PER_PIXEL) * wMult_ / 2, (height_ * app_->METERS_PER_PIXEL) * hMult_ / 2);
+	shape.SetAsBox((width_ * app_->METERS_PER_PIXEL) * wMult_ / 2, (height_ * app_->METERS_PER_PIXEL) * hMult_ / 2);
 	resetMainFixture(shape);
 	body_->SetFixedRotation(true);
 	mainFixture_->SetUserData(this->entity_);	//tener acceso a la entidad para hacer cosas con las colisiones // ahora es en la mainFixture para poder acceder a la entidad en el HBManager
@@ -33,8 +33,10 @@ void PhysicsTransform::setHeight(double height) {
 void PhysicsTransform::setColliderHeight(double height) {
 
 	body_->DestroyFixture(mainFixture_);
+	//(width * 0.01) * wMult_/2 , (height * 0.01) * hMult_/2 
+	//(((float)(body_->GetTransform().p.x)) * 100) - width_ * wMult_/2, (((float)(body_->GetTransform().p.y)) * 100.0)  - height_ * hMult_/2
 	b2PolygonShape shape;
-	shape.SetAsBox(width_ / 2, height / 2); //shape.SetAsBox((width_ * app_->METERS_PER_PIXEL) * wMult_ / 2, (height * app_->METERS_PER_PIXEL) * hMult_ / 2);
+	shape.SetAsBox((width_ * app_->METERS_PER_PIXEL) * wMult_ / 2, (height * app_->METERS_PER_PIXEL) * hMult_ / 2);
 	resetMainFixture(shape);
 	mainFixture_->SetUserData(this->entity_);
 }
@@ -48,7 +50,7 @@ void PhysicsTransform::setColliderWidth(double width) {
 	body_->DestroyFixture(mainFixture_);
 
 	b2PolygonShape shape;
-	shape.SetAsBox(width / 2, height_ / 2); //shape.SetAsBox((width * app_->METERS_PER_PIXEL) * wMult_ / 2, (height_ * app_->METERS_PER_PIXEL) * hMult_ / 2);
+	shape.SetAsBox((width * app_->METERS_PER_PIXEL) * wMult_ / 2, (height_ * app_->METERS_PER_PIXEL) * hMult_ / 2);
 	resetMainFixture(shape);
 	mainFixture_->SetUserData(this->entity_);
 }
@@ -58,7 +60,7 @@ void PhysicsTransform::setWidthHeight(double width, double height) {
 	body_->DestroyFixture(mainFixture_);
 
 	b2PolygonShape shape;
-	shape.SetAsBox(width / 2, height / 2); //shape.SetAsBox((width * app_->METERS_PER_PIXEL)* wMult_ / 2, (height * app_->METERS_PER_PIXEL)* hMult_ / 2);
+	shape.SetAsBox((width * app_->METERS_PER_PIXEL)* wMult_ / 2, (height * app_->METERS_PER_PIXEL)* hMult_ / 2);
 	resetMainFixture(shape);
 	mainFixture_->SetUserData(this->entity_);
 	width_ = width;

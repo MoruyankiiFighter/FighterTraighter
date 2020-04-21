@@ -56,7 +56,7 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && inputSt_->getInput(0))
 	{
-		if(!wallLeft_) speed = { -45, speed.getY() };
+		if(!wallLeft_) speed = { -4.5, speed.getY() };
 		else {
 			speed = { 0, speed.getY() };
 		}
@@ -66,7 +66,7 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && inputSt_->getInput(1))
 	{
-		if (!wallRight_) speed = { 45, speed.getY() };
+		if (!wallRight_) speed = { 4.5, speed.getY() };
 		else {
 			speed = { 0, speed.getY() };
 		}		transform_->setSpeed(speed);
