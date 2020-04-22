@@ -20,5 +20,6 @@ private:
 	const double ancho = app_->getWindowManager()->getCurResolution().w, alto = app_->getWindowManager()->getCurResolution().h;
 	int factorLetra = 25;
 	int letra = int( std::sqrt((ancho * ancho) + (alto * alto)) / factorLetra);
+	string texto1 = "Esto es una descripcion de la habilidad"" seleccionada, tiene muuuuucho texto";
 };
 
