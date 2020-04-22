@@ -27,7 +27,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, b2World* world, int o
 		e->addComponent<KeyboardInput>(keys);
 	}
 	else {
-		e->addComponent<GamepadInput>();
+		e->addComponent<GamepadInput>(app->getInputManager()->ControlButton(), app->getInputManager()->ControlAxis());
 	}
 
 	PlayerController* pC = e->addComponent<PlayerController>(-1500);

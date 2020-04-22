@@ -239,16 +239,16 @@ private:
 				keys_[index] = lastKey();
 
 			}
-			else
+			else if(index>3)
 			{
-				if (index<6)
+				if (index<10)
 				{
-					botonesMando[index] = lastButton();
+					botonesMando[index-3] = lastButton();
 
 				}
 				else
 				{
-					EjesMando[index-5.0] = lastAxis();
+					EjesMando[index-10] = lastAxis();
 
 				}
 

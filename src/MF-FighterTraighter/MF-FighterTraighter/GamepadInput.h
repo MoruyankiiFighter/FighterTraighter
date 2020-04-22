@@ -4,7 +4,7 @@
 class GamepadInput :public  Component
 {
 public:
-	GamepadInput() :Component(ecs::GamepadInput) {};
+	GamepadInput(std::vector<SDL_GameControllerButton>attacks, std::vector<SDL_GameControllerAxis>blocking) :Component(ecs::GamepadInput),attacks(attacks),blocking(blocking) {};
 
 	~GamepadInput() {};
 	virtual void init();
@@ -107,19 +107,19 @@ private:
 	const float deadZone = 0.5;
 	bool mov = false;
 
-	std::vector<SDL_GameControllerButton>attacks = {
+	std::vector<SDL_GameControllerButton>attacks;/* = {
 	SDL_CONTROLLER_BUTTON_A,
 	SDL_CONTROLLER_BUTTON_B,
 	SDL_CONTROLLER_BUTTON_X,
 	SDL_CONTROLLER_BUTTON_Y,
 	SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
 	SDL_CONTROLLER_BUTTON_RIGHTSHOULDER
-	};
+	};*/
 
-	std::vector<SDL_GameControllerAxis>blocking = {
+	std::vector<SDL_GameControllerAxis>blocking; /*= {
 	SDL_CONTROLLER_AXIS_TRIGGERLEFT,
 	SDL_CONTROLLER_AXIS_TRIGGERRIGHT
-	};
+	};*/
 
 	std::vector<SDL_GameControllerAxis>movement = {
 	SDL_CONTROLLER_AXIS_LEFTX,
