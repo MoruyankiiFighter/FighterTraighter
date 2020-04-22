@@ -26,9 +26,11 @@ public:
 	InputManager(App* app);
 	InputManager(InputManager&) = delete;
 	InputManager& operator= (InputManager&) = delete;
-
+	
 	void update();
 
+	
+	
 	// Keyboard
 	inline bool isKeyUp(SDL_Scancode code) {
 		return keyboardState_[code] == 0;
@@ -138,6 +140,20 @@ public:
 			|| isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START);
 	}
 
+
+	std::string Getinput()
+	{
+			std::string h = SDL_GetKeyName(last);
+			return h;	
+	}
+	void setInput(SDL_Event* e)
+	{
+		last = e->key.keysym.sym;
+
+	}
+	void setread(bool read) { readmode = read; }
+
+
 	virtual ~InputManager();
 private:
 	void clearState();
@@ -173,9 +189,29 @@ private:
 	std::vector<GamePad> lastControllerInputs;
 	int numGamepads;
 
+
+
+	SDL_Keycode last;
 	// if in this frame there has been an event
 	bool mouseEvent_ = false; // click
 	bool keyboardEvent_ = false; // press
 	bool controllerEvent_ = false; // button
 	bool axisEvent_ = false; //axis
+	bool readmode = false;
+	std::vector<SDL_Scancode> keys_ = { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X,
+		SDL_SCANCODE_SPACE, SDL_SCANCODE_R, SDL_SCANCODE_1, SDL_SCANCODE_2,};
+	public:
+		void change(int index, int control) 
+		{
+			if (control==0)
+			{
+				keys_[index] = SDL_GetScancodeFromKey(last);
+
+			}
+			
+		};
+		std::vector<SDL_Scancode>ControlKeyboard()
+		{
+			return keys_;
+		}
 };

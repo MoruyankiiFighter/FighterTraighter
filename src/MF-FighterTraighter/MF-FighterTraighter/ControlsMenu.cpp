@@ -11,6 +11,7 @@
 #include "RenderImage.h"
 #include "Transform.h"
 #include "Button.h"
+#include "ButtonControl.h"
 #include "TextComponent.h"
 #include "NavigationController.h"
 
@@ -21,6 +22,7 @@
 #include "UIFactory.h"
 
 #include "KeyboardInput.h"
+
 
 ControlsMenu::ControlsMenu(App* app) : GameState(app)
 {
@@ -55,6 +57,7 @@ void ControlsMenu::init()
 			250, 50, 0, ChangeControl, predet[i], 50, TextComponent::Center, i);
 		ctrl->SetElementInPos(std::get<0>(Key)->getComponent<UIElement>(ecs::UIElement), 0, i+1);
 
+		
 	
 		std::tuple<Entity*, Entity*> Button = UIFactory::createButtonControl(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
 			app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(700, i * 45.0-350),
@@ -80,23 +83,6 @@ void ControlsMenu::init()
 		text->addComponent<Transform>(Vector2D(60, 145.0+i*45), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
 		text->addComponent<TextComponent>(texto[i], app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 50);
 	}
-
-
-	
-	
-
-
-
-
-	
-/*	Entity* logic = entManager_.addEntity();
-	logic->addComponent<OptionsLogic>(std::get<0>(resolutionSlider)->getComponent<Slider>(ecs::UIElement),
-		std::get<3>(resolutionSlider)->getComponent<TextComponent>(ecs::TextComponent),
-		std::get<0>(brightSlider)->getComponent<Slider>(ecs::UIElement),
-		std::get<3>(brightSlider)->getComponent<TextComponent>(ecs::TextComponent));*/
-
-	
-	
 }
 
 void ControlsMenu::GoBack(App* app) {
@@ -105,9 +91,9 @@ void ControlsMenu::GoBack(App* app) {
 }
 
 void ControlsMenu::ChangeControl(App*app,int index) {
+	app->getInputManager()->change(index,0);
+		
 
-	cout << "hola";
-	
 }
 //left, right, up, down, hit1, hit2, hit3, hit4, ab1, ab2, block, guardbreak
 

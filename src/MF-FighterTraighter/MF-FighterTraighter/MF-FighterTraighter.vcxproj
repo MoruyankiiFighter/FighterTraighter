@@ -144,7 +144,6 @@
     <ClCompile Include="MkWH00PData.cpp" />
     <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="NavigationController.cpp" />
-    <ClCompile Include="OptionsControlLogic.cpp" />
     <ClCompile Include="OptionsLogic.cpp" />
     <ClCompile Include="PlayerAttacks.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -212,7 +211,6 @@
     <ClInclude Include="MoveParser.h" />
     <ClInclude Include="NavigationController.h" />
     <ClInclude Include="OnHit.h" />
-    <ClInclude Include="OptionsControlLogic.h" />
     <ClInclude Include="OptionsLogic.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />

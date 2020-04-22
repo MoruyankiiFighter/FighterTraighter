@@ -41,6 +41,11 @@ void InputManager::update()
 			app_->Exit();
 			break;
 		case SDL_KEYDOWN:
+			if (readmode)
+			{
+				setInput(&e);
+
+			}
 			keyboardEvent_ = true;
 			break;
 		case SDL_KEYUP:
