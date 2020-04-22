@@ -10,7 +10,7 @@ GameState::GameState(App* app) : app_(app), entManager_(app)
 }
 void GameState::init()
 {
-	gravity = { 0, 10.0f };
+	gravity = Vector2D(0.0f, 10.0f);
 	world = new b2World(gravity);
 #ifdef NDEBUG
 	debugInstance = nullptr;

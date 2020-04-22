@@ -37,7 +37,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, std:
 	e->addComponent<PlayerState>();
 	Health* h = e->addComponent<Health>(110);
 	e->addComponent<PlayerOnHit>();
-	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pT->getSpeed(), h->getHealth(), 50, 50, playerNumber);
+	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pT->getSpeed(), h->getHealth(), 1, 50, playerNumber);
 
 	
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");

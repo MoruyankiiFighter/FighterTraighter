@@ -58,15 +58,14 @@ void MkWH00PData::init() {
 void MkWH00PData::NP1(Entity* ent)
 {
 	std::cout << "Uppercut" << endl;
+	double hitbox_X = np1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
-	
-	if(orientation_ == -1)
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * (np1.position.getX() * np1.width), np1.position.getY() }, np1.width, np1.height, np1.time, np1.damage, np1.hitstun, { (double)orientation_ * np1.knockBack.getX(), np1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * np1.position.getX(), np1.position.getY() }, np1.width, np1.height, np1.time, np1.damage, np1.hitstun, { (double)orientation_ * np1.knockBack.getX(), np1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+	if (orientation_ == -1)
+		hitbox_X += np1.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, np1.position.getY() }, np1.width, np1.height, np1.time, pD->getAttack() * np1.damage, np1.hitstun, { (double)orientation_ * np1.knockBack.getX(), np1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 PlayerData::CallbackData MkWH00PData::np1 = PlayerData::CallbackData{
@@ -81,15 +80,14 @@ PlayerData::CallbackData MkWH00PData::np1 = PlayerData::CallbackData{
 void MkWH00PData::HP1(Entity* ent)
 {
 	std::cout << "Hostia" << endl;
+	double hitbox_X = hp1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
-	if (orientation_ == -1) 
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * (hp1.position.getX() + hp1.width), hp1.position.getY() }, hp1.width, hp1.height, hp1.time, hp1.damage, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else 
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hp1.position.getX(), hp1.position.getY() }, hp1.width, hp1.height, hp1.time, hp1.damage, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	
+	if (orientation_ == -1)
+		hitbox_X += hp1.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, hp1.position.getY() }, hp1.width, hp1.height, hp1.time, pD->getAttack() * hp1.damage, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 PlayerData::CallbackData MkWH00PData::hp1 = PlayerData::CallbackData{
@@ -104,14 +102,14 @@ PlayerData::CallbackData MkWH00PData::hp1 = PlayerData::CallbackData{
 void MkWH00PData::NK1(Entity* ent)
 {
 	std::cout << "Rodilla 1" << endl;
+	double hitbox_X = nk1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1)
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (nk1.position.getX() + nk1.width), nk1.position.getY() }, nk1.width, nk1.height, nk1.time, nk1.damage, nk1.hitstun, { (double)orientation_ * nk1.knockBack.getX(), nk1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * nk1.position.getX(), nk1.position.getY() }, nk1.width, nk1.height, nk1.time, nk1.damage, nk1.hitstun, { (double)orientation_ * nk1.knockBack.getX(), nk1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		hitbox_X += nk1.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, nk1.position.getY() }, nk1.width, nk1.height, nk1.time, pD->getAttack() * nk1.damage, nk1.hitstun, { (double)orientation_ * nk1.knockBack.getX(), nk1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 PlayerData::CallbackData MkWH00PData::nk1 = PlayerData::CallbackData{
@@ -121,19 +119,19 @@ PlayerData::CallbackData MkWH00PData::nk1 = PlayerData::CallbackData{
 	13,
 	20,
 	9,
-	42 };
+	42};
 
 void MkWH00PData::NK2(Entity* ent)
 {
 	std::cout << "Rodilla 2" << endl;
+	double hitbox_X = nk2.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1)
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (nk2.position.getX() + nk2.width), nk2.position.getY() }, nk2.width, nk2.height, nk2.time, nk2.damage, nk2.hitstun, { (double)orientation_ * nk2.knockBack.getX(), nk2.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * nk2.position.getX(), nk2.position.getY() }, nk2.width, nk2.height, nk2.time, nk2.damage, nk2.hitstun, { (double)orientation_ * nk2.knockBack.getX(), nk2.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		hitbox_X += nk2.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, nk2.position.getY() }, nk2.width, nk2.height, nk2.time, pD->getAttack() * nk2.damage, nk2.hitstun, { (double)orientation_ * nk2.knockBack.getX(), nk2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 PlayerData::CallbackData MkWH00PData::nk2 = PlayerData::CallbackData{
@@ -148,21 +146,19 @@ PlayerData::CallbackData MkWH00PData::nk2 = PlayerData::CallbackData{
 void MkWH00PData::HK1(Entity* ent)
 {
 	std::cout << "Falcon stomp" << endl;
+	double hitbox_X1 = hk1_1.position.getX();
+	double hitbox_X2 = hk1_2.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
-
 	if (orientation_ == -1) {
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (hk1_1.position.getX() + hk1_1.width), hk1_1.position.getY() }, hk1_1.width, hk1_1.height, hk1_1.time, hk1_1.damage, hk1_1.hitstun, { (double)orientation_ * hk1_1.knockBack.getX(), hk1_1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (hk1_2.position.getX() + hk1_2.width), hk1_2.position.getY() }, hk1_2.width, hk1_2.height, hk1_2.time, hk1_2.damage, hk1_2.hitstun, { (double)orientation_ * hk1_2.knockBack.getX(), hk1_2.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		hitbox_X1 += hk1_1.width;
+		hitbox_X2 += hk1_2.width;
 	}
-	else {
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * hk1_1.position.getX(), hk1_1.position.getY() }, hk1_1.width, hk1_1.height, hk1_1.time, hk1_1.damage, hk1_1.hitstun, { (double)orientation_ * hk1_1.knockBack.getX(), hk1_1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (hk1_2.position.getX() + hk1_2.width), hk1_2.position.getY() }, hk1_2.width, hk1_2.height, hk1_2.time, hk1_2.damage, hk1_2.hitstun, { (double)orientation_ * hk1_2.knockBack.getX(), hk1_2.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	}
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X1, hk1_1.position.getY() }, hk1_1.width, hk1_1.height, hk1_1.time, pD->getAttack() * hk1_1.damage, hk1_1.hitstun, { (double)orientation_ * hk1_1.knockBack.getX(), hk1_1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X2, hk1_2.position.getY() }, hk1_2.width, hk1_2.height, hk1_2.time, pD->getAttack() * hk1_2.damage, hk1_2.hitstun, { (double)orientation_ * hk1_2.knockBack.getX(), hk1_2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
 PlayerData::CallbackData MkWH00PData::hk1_1 = PlayerData::CallbackData{
@@ -174,7 +170,7 @@ PlayerData::CallbackData MkWH00PData::hk1_1 = PlayerData::CallbackData{
 	17,
 	50 };
 PlayerData::CallbackData MkWH00PData::hk1_2 = PlayerData::CallbackData{
-	{ 10, 220 },
+	{ 100, 220 },
 	{ 500, -150 },
 	600,
 	50,
@@ -185,14 +181,14 @@ PlayerData::CallbackData MkWH00PData::hk1_2 = PlayerData::CallbackData{
 void MkWH00PData::ANP1(Entity* ent)
 {
 	std::cout << "Speeeee-" << endl;
+	double hitbox_X = anp1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1)
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (anp1.position.getX() + anp1.width), anp1.position.getY() }, anp1.width, anp1.height, anp1.time, anp1.damage, anp1.hitstun, { (double)orientation_ * anp1.knockBack.getX(), anp1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * anp1.position.getX(), anp1.position.getY() }, anp1.width, anp1.height, anp1.time, anp1.damage, anp1.hitstun, { (double)orientation_ * anp1.knockBack.getX(), anp1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		hitbox_X += anp1.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, anp1.position.getY() }, anp1.width, anp1.height, anp1.time, pD->getAttack() * anp1.damage, anp1.hitstun, { (double)orientation_ * anp1.knockBack.getX(), anp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::anp1 = PlayerData::CallbackData{
 	{ -165, -65 },
@@ -206,14 +202,14 @@ PlayerData::CallbackData MkWH00PData::anp1 = PlayerData::CallbackData{
 void MkWH00PData::ANP2(Entity* ent)
 {
 	std::cout << "-eeeeeeen" << endl;
+	double hitbox_X = anp2.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1)
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (anp2.position.getX() + anp2.width), anp2.position.getY() }, anp2.width, anp2.height, anp2.time, anp2.damage, anp2.hitstun, { (double)orientation_ * anp2.knockBack.getX(), anp2.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * anp2.position.getX(), anp2.position.getY() }, anp2.width, anp2.height, anp2.time, anp2.damage, anp2.hitstun, { (double)orientation_ * anp2.knockBack.getX(), anp2.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		hitbox_X += anp2.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, anp2.position.getY() }, anp2.width, anp2.height, anp2.time, pD->getAttack() * anp2.damage, anp2.hitstun, { (double)orientation_ * anp2.knockBack.getX(), anp2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::anp2 = PlayerData::CallbackData{
 	{ -165, -45 },
@@ -227,14 +223,14 @@ PlayerData::CallbackData MkWH00PData::anp2 = PlayerData::CallbackData{
 void MkWH00PData::AHP1(Entity* ent)
 {
 	std::cout << "Get spiked son" << endl;
+	double hitbox_X = ahp1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1)
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (ahp1.position.getX() + ahp1.width), ahp1.position.getY() }, ahp1.width, ahp1.height, ahp1.time, ahp1.damage, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * ahp1.position.getX(), ahp1.position.getY() }, ahp1.width, ahp1.height, ahp1.time, ahp1.damage, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		hitbox_X += ahp1.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, ahp1.position.getY() }, ahp1.width, ahp1.height, ahp1.time, pD->getAttack() * ahp1.damage, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::ahp1 = PlayerData::CallbackData{
 	{ 115, -65 },
@@ -248,14 +244,14 @@ PlayerData::CallbackData MkWH00PData::ahp1 = PlayerData::CallbackData{
 void MkWH00PData::ANK1(Entity* ent)
 {
 	std::cout << "Steppy" << endl;
+	double hitbox_X = ank1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1)
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (ank1.position.getX() + ank1.width), ank1.position.getY() }, ank1.width, ank1.height, ank1.time, ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * ank1.position.getX(), ank1.position.getY() }, ank1.width, ank1.height, ank1.time, ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		hitbox_X += ank1.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, ank1.position.getY() }, ank1.width, ank1.height, ank1.time, pD->getAttack() * ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::ank1 = PlayerData::CallbackData{
 	{ 105, 135 },
@@ -268,14 +264,14 @@ PlayerData::CallbackData MkWH00PData::ank1 = PlayerData::CallbackData{
 void MkWH00PData::ANK2(Entity* ent)
 {
 	std::cout << "STEPPY!!!" << endl;
+	double hitbox_X = ank2.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1)
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (ank2.position.getX() + ank2.width), ank2.position.getY() }, ank2.width, ank2.height, ank2.time, ank2.damage, ank1.hitstun, { (double)orientation_ * ank2.knockBack.getX(), ank2.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * ank2.position.getX(), ank2.position.getY() }, ank2.width, ank2.height, ank2.time, ank2.damage, ank2.hitstun, { (double)orientation_ * ank2.knockBack.getX(), ank2.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		hitbox_X += ank2.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, ank2.position.getY() }, ank2.width, ank2.height, ank2.time, pD->getAttack() * ank2.damage, ank1.hitstun, { (double)orientation_ * ank2.knockBack.getX(), ank2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::ank2 = PlayerData::CallbackData{
 	{ 105, 135 },
@@ -289,14 +285,14 @@ PlayerData::CallbackData MkWH00PData::ank2 = PlayerData::CallbackData{
 void MkWH00PData::AHK1(Entity* ent)
 {
 	std::cout << "Dropkick" << endl;
+	double hitbox_X = ahk1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1)
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (ahk1.position.getX() + ahk1.width), ahk1.position.getY() }, ahk1.width, ahk1.height, ahk1.time, ahk1.damage, ahk1.hitstun, { (double)orientation_ * ahk1.knockBack.getX(), ahk1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * ahk1.position.getX(), ahk1.position.getY() }, ahk1.width, ahk1.height, ahk1.time, ahk1.damage, ahk1.hitstun, { (double)orientation_ * ahk1.knockBack.getX(), ahk1.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		hitbox_X += ahk1.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, ahk1.position.getY() }, ahk1.width, ahk1.height, ahk1.time, pD->getAttack() * ahk1.damage, ahk1.hitstun, { (double)orientation_ * ahk1.knockBack.getX(), ahk1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());	
 }
 PlayerData::CallbackData MkWH00PData::ahk1 = PlayerData::CallbackData{
 	{ 50, -75 },
@@ -310,14 +306,14 @@ PlayerData::CallbackData MkWH00PData::ahk1 = PlayerData::CallbackData{
 void MkWH00PData::GB(Entity* ent)
 {
 	std::cout << "BreakerGuard" << endl;
+	double hitbox_X = gb.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1)
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * (gb.position.getX() + gb.width), gb.position.getY() }, gb.width, gb.height, gb.time, gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	else
-		ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-			{ (double)orientation_ * gb.position.getX(), gb.position.getY() }, gb.width, gb.height, gb.time, gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		hitbox_X += gb.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, gb.position.getY() }, gb.width, gb.height, gb.time, pD->getAttack() * gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());	
 }
 PlayerData::CallbackData MkWH00PData::gb = PlayerData::CallbackData{
 	{ 50, -75 },
