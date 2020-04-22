@@ -241,13 +241,14 @@ private:
 			}
 			else
 			{
-				if (controllerEvent_)
+				if (index<6)
 				{
-					//keys_[index] = lastKey();
+					botonesMando[index] = lastButton();
 
 				}
-				else if(axisEvent_)
+				else
 				{
+					EjesMando[index-5.0] = lastAxis();
 
 				}
 
