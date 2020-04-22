@@ -16,7 +16,6 @@ void ButtonControl::handleInput()
 		if (imngr->pressedAccept()) {
 			Press();
 			leeKey = true;
-			imngr->setread(true);
 			text_->setText("Press keyboard");
 
 		}
@@ -29,7 +28,6 @@ void ButtonControl::handleInput()
 			clickCallback_(app_, index);
 		}
 		text_->setText(app_->getInputManager()->Getinput());
-		app_->getInputManager()->setread(false);
 
 		state_ = Selected;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);

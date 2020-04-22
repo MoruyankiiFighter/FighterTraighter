@@ -40,8 +40,7 @@ void Fight::init()
 	app_->getHitboxMng()->addFloorHitbox(W2pT->getMainFixture());
 
 	//Player 1
-	Entity* player1 = FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
-		SDL_SCANCODE_1, SDL_SCANCODE_2, SDL_SCANCODE_SPACE, SDL_SCANCODE_R, }, false, PLAYER_1, PLAYER_2 | WALL | BOUNDARY);
+	Entity* player1 = FactoryMk::addMkToGame(app_, this, world, 1, app_->getInputManager()->ControlKeyboard(), false, PLAYER_1, PLAYER_2 | WALL | BOUNDARY);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player1), 0);
 
 	//Player 2

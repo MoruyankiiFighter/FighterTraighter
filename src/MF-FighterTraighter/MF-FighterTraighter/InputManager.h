@@ -143,15 +143,14 @@ public:
 
 	std::string Getinput()
 	{
-			std::string h = SDL_GetKeyName(last);
+			std::string h = SDL_GetScancodeName(last);
 			return h;	
 	}
 	void setInput(SDL_Event* e)
 	{
-		last = e->key.keysym.sym;
+		last = e->key.keysym.scancode;
 
 	}
-	void setread(bool read) { readmode = read; }
 
 
 	virtual ~InputManager();
@@ -191,7 +190,7 @@ private:
 
 
 
-	SDL_Keycode last;
+	SDL_Scancode last;
 	// if in this frame there has been an event
 	bool mouseEvent_ = false; // click
 	bool keyboardEvent_ = false; // press

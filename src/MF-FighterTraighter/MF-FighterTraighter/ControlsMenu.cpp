@@ -99,20 +99,11 @@ void ControlsMenu::ChangeControl(App*app,int index) {
 
 void ControlsMenu::initString()
 {
-	predet[0] = "A";
-	predet[1] = "D";
-	predet[2] = "W";
-	predet[3] = "S";
-	predet[4] = "Q";
-	predet[5] = "E";
-	predet[6] = "Z";
-	predet[7] = "X";
-	predet[8] = "SPACE";
-	predet[9] = "R";
-	predet[10] = "1";
-	predet[11] = "2";
-	//left, right, up, down, hit1, hit2, hit3, hit4, ab1, ab2, block, guardbreak
-
+	std::vector < SDL_Scancode >scan=app_->getInputManager()->ControlKeyboard();
+	for (int i = 0; i < 12; i++)
+	{
+		predet[i] =SDL_GetScancodeName( scan[i]);
+	}
 	texto[0] = "LEFT";
 	texto[1] = "RIGHT";
 	texto[2] = "UP";
