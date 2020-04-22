@@ -11,7 +11,7 @@ class Font;
 
 using CallBackOnClick = void(App * app);//method with a reference to app
 using SetValueOnClick = void(App * app, double value); //method with a reference to app and a value
-using SetIndexOnClick = void(App * app, int index);
+using SetIndexOnClick = void(App * app, int index,int control);
 
 
 class UIFactory
@@ -20,7 +20,7 @@ public:
 	//creates a button with functionality
 	static std::tuple<Entity*, Entity*> createButton(App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position = Vector2D(), Vector2D anchor = Vector2D(), Vector2D pivot = Vector2D(), double width = 0, double height = 0, double rotation = 0, CallBackOnClick* clickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr, std::string text = "", int fontSize = 20, TextComponent::TextAlignment alignment = TextComponent::TextAlignment::Left);
 
-	static std::tuple<Entity*, Entity*> createButtonControl(App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position = Vector2D(), Vector2D anchor = Vector2D(), Vector2D pivot = Vector2D(), double width = 0, double height = 0, double rotation = 0, SetIndexOnClick* clickCallback = nullptr, std::string text = "", int fontSize = 20, TextComponent::TextAlignment alignment = TextComponent::TextAlignment::Left,int index=0);
+	static std::tuple<Entity*, Entity*> createButtonControl(App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position = Vector2D(), Vector2D anchor = Vector2D(), Vector2D pivot = Vector2D(), double width = 0, double height = 0, double rotation = 0, SetIndexOnClick* clickCallback = nullptr, std::string text = "", int fontSize = 20, TextComponent::TextAlignment alignment = TextComponent::TextAlignment::Left,int index=0,int control=0);
 
 	// Creates a slider with two texts
 	static std::tuple<Entity*, Entity*, Entity*, Entity*> createSlider

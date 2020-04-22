@@ -125,6 +125,7 @@ private:
 	SDL_CONTROLLER_AXIS_LEFTX,
 	SDL_CONTROLLER_AXIS_LEFTY,
 	};
+	
 
 
 	void ZonaMuerta(SDL_GameControllerAxis ejeX, SDL_GameControllerAxis ejeY)

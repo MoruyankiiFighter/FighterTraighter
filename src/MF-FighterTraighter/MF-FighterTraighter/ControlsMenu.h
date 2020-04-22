@@ -17,15 +17,15 @@ public:
 	//methods overrided from GameState where we create the entitys
 	void init() override;
 	void handleInput() override;
-	void change();
 	void initString();
 	//callback
 	static void GoBack(App* app);
-	static void ChangeControl(App*app,int index);
+	static void ChangeControl(App*app,int index,int control);
 
 	std::vector<std::tuple<Entity*, Entity*> >botones;
 	int index;
 	string predet[12];
+	string predetMando[8];
 	string texto[12];
 
 	

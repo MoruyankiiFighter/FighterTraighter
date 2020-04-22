@@ -20,7 +20,7 @@ void InputManager::update()
 	// For later knowing if the mouse moved
 	Vector2D tempMousePos = mousePos_;
 
-	SDL_Event e;
+	
 	///Update control input
 	for (int i = 0; i < numGamepads; i++) {
 		for (int a = 0; a < SDL_CONTROLLER_AXIS_MAX; a++) {
@@ -41,7 +41,6 @@ void InputManager::update()
 			app_->Exit();
 			break;
 		case SDL_KEYDOWN:
-				setInput(&e);
 			keyboardEvent_ = true;
 			break;
 		case SDL_KEYUP:
@@ -72,6 +71,7 @@ void InputManager::update()
 				if (e.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(connectedControllers[i]))) {
 					// So the relevant state can be updated
 					controllerInputs[i].buttons[e.cbutton.button] = true;
+
 				}
 			}
 			break;
@@ -97,11 +97,15 @@ void InputManager::update()
 					}
 
 					controllerInputs[i].axis[e.caxis.axis] = e.caxis.value;
+					
+
 				}
 			}
 			break;
 		}
+		
 	}
+	
 
 	// After mouse has updated its position, update the mouse movement
 	mouseMovementInFrame_ = mousePos_ - tempMousePos;

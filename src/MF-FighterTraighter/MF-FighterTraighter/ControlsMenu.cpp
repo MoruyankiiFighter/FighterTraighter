@@ -54,19 +54,34 @@ void ControlsMenu::init()
 			app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(400,i*45.0-350),
 			Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
 			Vector2D(0, 50),
-			250, 50, 0, ChangeControl, predet[i], 50, TextComponent::Center, i);
+			250, 50, 0, ChangeControl, predet[i], 50, TextComponent::Center, i,0);
 		ctrl->SetElementInPos(std::get<0>(Key)->getComponent<UIElement>(ecs::UIElement), 0, i+1);
-
+		if (i>3)
+		{
+			std::tuple<Entity*, Entity*> Button = UIFactory::createButtonControl(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+				app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(700, i * 45.0 - 350),
+				Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
+				Vector2D(0, 50),
+				250, 50, 0, ChangeControl, predetMando[i-4], 50, TextComponent::Center, i,1);
+			ctrl->SetElementInPos(std::get<0>(Button)->getComponent<UIElement>(ecs::UIElement), 1, i + 1);
+		}
 		
-	
-		std::tuple<Entity*, Entity*> Button = UIFactory::createButtonControl(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
-			app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(700, i * 45.0-350),
-			Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
-			Vector2D(0, 50),
-			250, 50, 0, ChangeControl, "Mando", 50, TextComponent::Center, i);
-		ctrl->SetElementInPos(std::get<0>(Button)->getComponent<UIElement>(ecs::UIElement), 1, i+1);
+
 
 	}
+	std::tuple<Entity*, Entity*> Joy = UIFactory::createButtonControl(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(700,-360),
+		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(0, 50),
+		250, 200, 0, ChangeControl, "JOYSTICK", 50, TextComponent::Center, 0);
+	ctrl->SetElementInPos(std::get<0>(Joy)->getComponent<UIElement>(ecs::UIElement), 1, 1 );
+	ctrl->SetElementInPos(std::get<0>(Joy)->getComponent<UIElement>(ecs::UIElement), 1, 2 );
+	ctrl->SetElementInPos(std::get<0>(Joy)->getComponent<UIElement>(ecs::UIElement), 1, 3 );
+	ctrl->SetElementInPos(std::get<0>(Joy)->getComponent<UIElement>(ecs::UIElement), 1, 4 );
+
+	
+
+		
 	
 	Entity* keyboard = entManager_.addEntity();
 	keyboard->addComponent<Transform>(Vector2D(410, 60), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 400, 400, 0);
@@ -90,8 +105,8 @@ void ControlsMenu::GoBack(App* app) {
 	
 }
 
-void ControlsMenu::ChangeControl(App*app,int index) {
-	app->getInputManager()->change(index,0);
+void ControlsMenu::ChangeControl(App*app,int index,int control) {
+	app->getInputManager()->change(index,control);
 		
 
 }
@@ -100,10 +115,22 @@ void ControlsMenu::ChangeControl(App*app,int index) {
 void ControlsMenu::initString()
 {
 	std::vector < SDL_Scancode >scan=app_->getInputManager()->ControlKeyboard();
+	std::vector < SDL_GameControllerAxis >axis=app_->getInputManager()->ControlAxis();
+	std::vector < SDL_GameControllerButton >button=app_->getInputManager()->ControlButton();
+
 	for (int i = 0; i < 12; i++)
 	{
 		predet[i] =SDL_GetScancodeName( scan[i]);
 	}
+	for (int i = 0; i < 6; i++)
+	{
+		predetMando[i] = SDL_GameControllerGetStringForButton(button[i]);
+	}
+	predetMando[6] = SDL_GameControllerGetStringForAxis( axis[0]);
+	predetMando[7] = SDL_GameControllerGetStringForAxis(axis[1]);
+
+	
+
 	texto[0] = "LEFT";
 	texto[1] = "RIGHT";
 	texto[2] = "UP";

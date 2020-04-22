@@ -4,13 +4,13 @@
 #include "UIElement.h"
 #include "TextComponent.h"
 
-using SetIndexOnClick = void(App * app, int index);
+using SetIndexOnClick = void(App * app, int index,int control);
 
 class ButtonControl : public UIElement {
 
 public:
 	//constructor
-	ButtonControl(SetIndexOnClick* startClickCallback = nullptr,int index=0,TextComponent*text=nullptr) : UIElement(), clickCallback_(startClickCallback),index(index),text_(text) {};
+	ButtonControl(SetIndexOnClick* startClickCallback = nullptr,int index=0,int control=0,TextComponent*text=nullptr) : UIElement(), clickCallback_(startClickCallback),index(index),control(control),text_(text) {};
 
 	virtual void Press()
 	{
@@ -53,7 +53,9 @@ private:
 	SetIndexOnClick* clickCallback_ = nullptr;
 	//SetIndexOnClick* stopClickCallback_ = nullptr;
 	int index;
+	int control;
 	bool leeKey = false;
+	bool arriba = false;
 	TextComponent* text_;
  
 };

@@ -140,17 +140,35 @@ public:
 			|| isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START);
 	}
 
-
-	std::string Getinput()
+	SDL_Scancode lastKey()
 	{
-			std::string h = SDL_GetScancodeName(last);
-			return h;	
+		return e.key.keysym.scancode;
 	}
-	void setInput(SDL_Event* e)
+	SDL_GameControllerAxis lastAxis()
 	{
-		last = e->key.keysym.scancode;
-
+		return (SDL_GameControllerAxis)e.caxis.axis;
 	}
+	SDL_GameControllerButton lastButton()
+	{
+		return (SDL_GameControllerButton)e.cbutton.button;
+	}
+	std::string lastKeystring()
+	{
+	
+		return SDL_GetScancodeName( e.key.keysym.scancode);
+	}
+	std::string lastAxisstring()
+	{
+		return SDL_GameControllerGetStringForAxis((SDL_GameControllerAxis) e.caxis.axis);
+	}
+	std::string lastButtonstring()
+	{
+		
+		return SDL_GameControllerGetStringForButton((SDL_GameControllerButton)e.cbutton.button);
+	}
+	
+
+	
 
 
 	virtual ~InputManager();
@@ -174,7 +192,7 @@ private:
 			mouseState_[Right] = state;
 		}
 	};
-
+	SDL_Event e;
 	App* app_;
 	const Uint8* keyboardState_;
 	Uint8* lastKeyboardState_;
@@ -189,22 +207,49 @@ private:
 	int numGamepads;
 
 
-
-	SDL_Scancode last;
+	
 	// if in this frame there has been an event
 	bool mouseEvent_ = false; // click
 	bool keyboardEvent_ = false; // press
 	bool controllerEvent_ = false; // button
 	bool axisEvent_ = false; //axis
-	bool readmode = false;
 	std::vector<SDL_Scancode> keys_ = { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X,
 		SDL_SCANCODE_SPACE, SDL_SCANCODE_R, SDL_SCANCODE_1, SDL_SCANCODE_2,};
+	
+	std::vector<SDL_GameControllerButton>botonesMando = {
+	SDL_CONTROLLER_BUTTON_A,
+	SDL_CONTROLLER_BUTTON_B,
+	SDL_CONTROLLER_BUTTON_X,
+	SDL_CONTROLLER_BUTTON_Y,
+	SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
+	SDL_CONTROLLER_BUTTON_RIGHTSHOULDER
+	};
+
+	std::vector<SDL_GameControllerAxis>EjesMando = {
+	SDL_CONTROLLER_AXIS_TRIGGERLEFT,
+	SDL_CONTROLLER_AXIS_TRIGGERRIGHT
+	};
+
+	
 	public:
 		void change(int index, int control) 
 		{
 			if (control==0)
 			{
-				keys_[index] = SDL_GetScancodeFromKey(last);
+				keys_[index] = lastKey();
+
+			}
+			else
+			{
+				if (controllerEvent_)
+				{
+					//keys_[index] = lastKey();
+
+				}
+				else if(axisEvent_)
+				{
+
+				}
 
 			}
 			
@@ -213,4 +258,13 @@ private:
 		{
 			return keys_;
 		}
+		std::vector<SDL_GameControllerAxis>ControlAxis()
+		{
+			return EjesMando;
+		}
+		std::vector<SDL_GameControllerButton>ControlButton()
+		{
+			return botonesMando;
+		}
+
 };
