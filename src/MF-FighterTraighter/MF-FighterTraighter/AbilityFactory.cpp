@@ -2,7 +2,8 @@
 #include "PhysicsTransform.h"
 #include "MkWH00PData.h"
 #include "Entity.h"
-
+#include "Bullet.h"
+#include "RenderImage.h"
 AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 {
 	std::vector<Move*> vecMov;
@@ -53,4 +54,34 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1,-85 }, width1, 175, 15, 27, 100, { (double)orientation_ * 500, 0 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), filter.categoryBits, filter.maskBits);
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2,-85 }, width2, 180, 12, 2, 150, { (double)orientation_ * 400, 0 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), filter.categoryBits, filter.maskBits);
+}
+
+
+AnimationChain* AbilityFactory::Bullets(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	//Entity* e = state->getEntityManager().addEntity();
+	vecMov.push_back(new Move(50, nullptr, Bullet1, e));
+	
+	AnimationChain* Bullet = new AnimationChain(vecMov);
+	return Bullet;
+}
+
+void AbilityFactory::Bullet1(Entity* ent)	//Golpes stuneantes
+{
+	//CollisionFilters
+	App* app = ent->getApp();
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	uint16 mask;
+	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)  mask = currentState->PLAYER_2;
+	else   mask = currentState->PLAYER_1;
+
+	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	Vector2D pos =  Vector2D(phTr->getPosition().getX()+ phTr->getWidth(), phTr->getPosition().getY()+phTr->getHeight()/2) ;
+	//Bullet(GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
+	e->addComponent<PhysicsTransform>(pos, Vector2D(0, 0), 80,20, 0, currentState->getb2World(),
+		currentState->BULLET, mask, 1);
+	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
+	e->addComponent<Bullet>(currentState, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), Vector2D(10000, 0), 10, 0, Vector2D(50, 50), 1000, true);
 }

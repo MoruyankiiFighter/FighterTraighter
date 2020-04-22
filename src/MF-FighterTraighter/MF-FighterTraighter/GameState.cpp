@@ -113,10 +113,16 @@ void GameState::RemoveHitbox()
 	for (auto hb_it = hitboxRemove_pair_.begin(); hb_it != hitboxRemove_pair_.end(); ++hb_it) {
 		HitboxData* hitbox= static_cast<HitboxData*>((*(*hb_it).first)->GetUserData());
 		if (hitbox->destroyEntity) {//destroy entity
-			(*(*hb_it).first)->GetBody()->GetWorld()->DestroyBody((*(*hb_it).first)->GetBody());
-			//entManager_.removeEntity((*(*hb_it).first).)
+			if (hitbox->destroyOnHit) {
+				(*(*hb_it).first)->GetBody()->GetWorld()->DestroyBody((*(*hb_it).first)->GetBody());
+				entManager_.removeEntity(hitbox->entity);
+			}
+			else {
+				(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
+				//destroy the entity after something like be out of boundary(?) 
+			}
 			//delete entity;
-
+			
 		}
 		else {
 			(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));

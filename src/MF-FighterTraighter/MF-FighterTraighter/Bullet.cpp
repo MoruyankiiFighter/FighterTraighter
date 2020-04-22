@@ -8,7 +8,7 @@ void Bullet::init()
 {
 	transform_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 	transform_->setSpeed(speed_);
-	HitboxData* hitbox_ = new HitboxData{ damage_,timeAlive_, hitstun_, knockBack_,false,false,destroyInContact_ ,true};//create the hitbox's data
+	HitboxData* hitbox_ = new HitboxData{ damage_,timeAlive_, hitstun_, knockBack_,false,false,destroyInContact_ ,true, entity_};//create the hitbox's data
 	transform_->getMainFixture()->SetUserData(hitbox_);
 	state_->addHitbox(playerNumber_,hitbox_,transform_->getMainFixture());
 

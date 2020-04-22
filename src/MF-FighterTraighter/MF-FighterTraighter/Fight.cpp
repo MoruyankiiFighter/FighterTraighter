@@ -29,17 +29,19 @@ void Fight::init()
 
 	Entity* wall2 = entManager_.addEntity();
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
-	Entity* bullet = entManager_.addEntity();// = entManager_.addEntity();
+	/*Entity* bullet = entManager_.addEntity();// = entManager_.addEntity();
 	//PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 600), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, dyn);
 	//bullet->setApp(app_);
 	bullet->addComponent<PhysicsTransform>(Vector2D(100, 300), Vector2D(0, 0), 500, 500, 0, world, BULLET, PLAYER_2,1);
 	bullet->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	//uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time
-	bullet->addComponent<Bullet>(this,0, Vector2D(5000, 0), 10,0,Vector2D(50,50),1000);
+	bullet->addComponent<Bullet>(this,0, Vector2D(5000, 0), 10,0,Vector2D(50,50),1000,false);*/
 	//Player 1
 	Entity* player1 = FactoryMk::addMkToGame(app_, this, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
 		SDL_SCANCODE_SPACE, SDL_SCANCODE_R, SDL_SCANCODE_1, SDL_SCANCODE_2, }, world, false, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0, 0);
-	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player1), 0);
+	//player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player1), 0);
+	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::Bullets(player1), 0);
+
 	//player1->addComponent
 	//Player 2
 	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 

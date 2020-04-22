@@ -176,7 +176,7 @@ protected:
 	};
 	//Control Keys
 	SDL_Scancode leftKey_, righKey_, jumpKey_, crouchKey_, guardKey_,
-				 normalPunchKey_, hardPunchKey_, normalKickKey_, hardKickKey_, ability1Key_, ability2Key_;
+				 normalPunchKey_, hardPunchKey_, normalKickKey_, hardKickKey_, guardBreakerKey_,ability1Key_, ability2Key_;
 	//Player Features
 	double* width_,
 			*height_,
