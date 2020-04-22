@@ -46,67 +46,67 @@ void PlayerAttacks::handleInput() {
 				activeAttack_ = attacksList[0];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack();
+				currState->goAttack(0);
 			}
 			else if (inputSt_->getInput(5)) {
 				activeAttack_ = attacksList[1];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack();
+				currState->goAttack(1);
 			}
 			else if (inputSt_->getInput(6)) {
 				activeAttack_ = attacksList[2];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack();
+				currState->goAttack(2);
 			}
 			else if (inputSt_->getInput(7)) {
 				activeAttack_ = attacksList[3];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack();
+				currState->goAttack(3);
 			}
 			else if (inputSt_->getInput(11)) {
 				activeAttack_ = attacksList[8];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack();
+				currState->goAttack(4);
 			}
 		}
 		else {
 			if (inputSt_->getInput(4)) {
 				activeAttack_ = attacksList[4];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack();
+				currState->goAttack(0);
 			}
 			else if (inputSt_->getInput(5)) {
 				activeAttack_ = attacksList[5];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack();
+				currState->goAttack(1);
 			}
 			else if (inputSt_->getInput(6)) {
 				activeAttack_ = attacksList[6];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack();
+				currState->goAttack(2);
 			}
 			else if (inputSt_->getInput(7)) {
 				activeAttack_ = attacksList[7];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack();
+				currState->goAttack(3);
 			}
 		}
 		if (inputSt_->getInput(8)) {
 			if (abilityList[0] != nullptr) {
 				activeAttack_ = abilityList[0];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack();
+				currState->goAttack(4);
 			}
 		}
 		else if (inputSt_->getInput(9)) {
 			if (abilityList[1] != nullptr) {
 				activeAttack_ = abilityList[1];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack();
+				currState->goAttack(4);
 			}
 		}
 	}
