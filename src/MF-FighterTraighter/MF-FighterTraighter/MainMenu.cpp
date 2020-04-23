@@ -21,8 +21,6 @@
 
 MainMenu::MainMenu(App* app) : GameState(app)
 {
-
-	cout << "Menu principal" << endl;
 	init();
 }
 
@@ -39,13 +37,6 @@ void MainMenu::init()
 	t->setPosition(0, 0);
 	t->setWidthHeight(800, 600);
 	RenderImage* img = bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(7));*/
-
-	Entity* ent = entManager_.addEntity();
-	Transform* transform = ent->addComponent<Transform>();
-	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
-	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
-	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Logo));
-
 
 	tuple < Entity*, Entity*> arcade = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, -200), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 

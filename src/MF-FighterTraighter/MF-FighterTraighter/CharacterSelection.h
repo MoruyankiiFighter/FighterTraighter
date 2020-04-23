@@ -5,7 +5,7 @@ class CharacterSelection: public GameState
 
 public:
 	//constructor
-	CharacterSelection(App* app) : GameState(app) { init(); }
+	CharacterSelection(App* app) : GameState(app) { }
 
 	//init overrided from GameState
 	void init() override;

@@ -7,6 +7,7 @@
 
 GameState::GameState(App* app) : app_(app), entManager_(app)
 {
+	init();
 }
 void GameState::init()
 {
