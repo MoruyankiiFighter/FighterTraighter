@@ -61,6 +61,7 @@ AnimationChain* AbilityFactory::Bullets(Entity* e)
 {
 	std::vector<Move*> vecMov;
 	//Entity* e = state->getEntityManager().addEntity();
+	Vector2D speed = { 10000, 0 };
 	vecMov.push_back(new Move(50, nullptr, Bullet1, e));
 	
 	AnimationChain* Bullet = new AnimationChain(vecMov);
@@ -84,4 +85,70 @@ void AbilityFactory::Bullet1(Entity* ent)	//Golpes stuneantes
 		currentState->BULLET, mask, 1);
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
 	e->addComponent<Bullet>(currentState, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), Vector2D(10000, 0), 10, 0, Vector2D(50, 50), 1000, true);
+}
+
+AnimationChain* AbilityFactory::SeismicShock(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(35, nullptr, SeismicS1, e));
+	//Entity* e = state->getEntityManager().addEntity();
+	vecMov.push_back(new Move(50, nullptr, SeismicS2, e));
+
+	AnimationChain* Bullet = new AnimationChain(vecMov);
+	return Bullet;
+}
+
+void AbilityFactory::SeismicS1(Entity* e) {
+	
+
+	std::cout << "Falcon stomp" << endl;
+	PhysicsTransform* pT = e->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = pT->getOrientation();
+
+	int width1 = 120;
+	int hitboxX1 = 130;
+	if (orientation_ == -1) hitboxX1 += width1;
+	int width2 = 600;
+	int hitboxX2 = 0;
+	if (orientation_ == -1) hitboxX2 += width2;
+
+
+
+	e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1, 105 }, width1, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+	std::cout << "Brrrrrjrnkrrbr" << endl;
+	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2, 220 }, width2, 50, 20, 5, 40, { (double)orientation_ * 500, -150 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
+
+}
+
+void AbilityFactory::SeismicS2(Entity* ent)
+{
+	Vector2D speed(0, 150);
+	uint16 mask;
+	//CollisionFilters
+	App* app = ent->getApp();
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)  mask = currentState->PLAYER_2;
+	else   mask = currentState->PLAYER_1;
+	
+	Vector2D pos = Vector2D(900,0);
+	Vector2D pos1 = Vector2D(1100,-100);
+	Vector2D pos2 = Vector2D(1300, -130);
+	createProyectile(ent, pos, speed, mask,currentState,app);
+	createProyectile(ent, pos2, speed, mask, currentState, app);
+
+	createProyectile(ent, pos1, speed, mask, currentState, app);
+
+	//Bullet(GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
+}
+
+void AbilityFactory::createProyectile(Entity* ent, Vector2D pos,Vector2D speed, uint16 mask, GameState* currentState,App* app) {
+	
+	//App* app = ent->getApp();
+	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
+	e->addComponent<PhysicsTransform>(pos, speed, 150, 150, 0, currentState->getb2World(),
+		currentState->BULLET, mask, 1);
+	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
+	e->addComponent<Bullet>(currentState, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, 10, 0, Vector2D(50, 50), 1000, true);
+
 }

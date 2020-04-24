@@ -9,10 +9,12 @@ public:
 	static void MG2(Entity* ent);
 
 	static AnimationChain* Bullets(Entity* e);
-	//Bullet(GameState* state, uint16 playerNumber, Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
-
 	static void Bullet1(Entity* ent);
-	//static void MG2(Entity* ent);
+
+	static AnimationChain* SeismicShock(Entity* e);
+	static void SeismicS1(Entity* e);
+	static void SeismicS2(Entity* ent);
+	static void createProyectile(Entity* ent, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app);
 private: 
 	AbilityFactory() {};
 	~AbilityFactory() {};
