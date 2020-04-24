@@ -13,4 +13,4 @@ Hay 4 personajes principales: Aisha, una mutante; Mk WH00P, un robot; Mockingbir
 
 * Enlace a Github: https://github.com/MoruyankiiFighter/FighterTraighter.
 * Enlace al GDD: https://github.com/MoruyankiiFighter/FighterTraighter/wiki
-* Página web del juego: https://moruyankiifighter.github.io/FighterTraighter/docs/
+* Página web del juego: https://moruyankiifighter.github.io/FighterTraighter/
