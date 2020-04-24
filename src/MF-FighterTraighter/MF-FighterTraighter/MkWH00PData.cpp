@@ -92,7 +92,7 @@ void MkWH00PData::HP1(Entity* ent)
 
 PlayerData::CallbackData MkWH00PData::hp1 = PlayerData::CallbackData{
 	{ 175, -85 },
-	{ 40, -1250 },
+	{ 40, 1250 },
 	175,
 	150,
 	17,
