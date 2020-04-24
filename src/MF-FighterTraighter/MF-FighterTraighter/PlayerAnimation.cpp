@@ -11,10 +11,15 @@ void PlayerAnimation::update()
 		//render (currently testing)
 		imgR_->setFrame(activeFrame_, currStateInt_);
 		timeSinceLastIncrement_++;
-		if (timeSinceLastIncrement_ >= data_->getAnimVelocity(currStateInt_)) {	
-			activeFrame_ = (activeFrame_ + 1) % data_->getAnimLength(currStateInt_);	//Should have a "velocity" in PlayerData per animation, 
-			timeSinceLastIncrement_ = 0;												//the number it increases each frame, now it's hardcoded but works
-			//if (!data_->getAnimLoops(currStateInt_)) currStateInt_ = 0;				//No idea how to handle looping, I suppose it just does but on attacks ends before it
+		if (timeSinceLastIncrement_ >= data_->getAnimVelocity(currStateInt_)) {	//If it's time to change frame
+			if (data_->getAnimLoops(currStateInt_)) {	//If it loops make the active frame loop simply
+				activeFrame_ = (activeFrame_ + 1) % data_->getAnimLength(currStateInt_);	 
+			}
+			else {	//If not, check if it suprasses de maximum and if it does take it back so it it stuck at the end
+				activeFrame_++;
+				if (activeFrame_ >= data_->getAnimLength(currStateInt_)) activeFrame_ = data_->getAnimLength(currStateInt_) - 1;
+			}
+			timeSinceLastIncrement_ = 0;	//This should be independent
 		}
 	}
 }
