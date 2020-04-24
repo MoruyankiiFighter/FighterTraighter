@@ -115,14 +115,12 @@ void AbilityFactory::SeismicS1(Entity* e) {
 
 
 	e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1, 105 }, width1, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	std::cout << "Brrrrrjrnkrrbr" << endl;
-	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2, 220 }, width2, 50, 20, 5, 40, { (double)orientation_ * 500, -150 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 
 }
 
 void AbilityFactory::SeismicS2(Entity* ent)
 {
-	Vector2D speed(0, 150);
+	Vector2D speed(0, 7);
 	uint16 mask;
 	//CollisionFilters
 	App* app = ent->getApp();
@@ -131,8 +129,8 @@ void AbilityFactory::SeismicS2(Entity* ent)
 	else   mask = currentState->PLAYER_1;
 	
 	Vector2D pos = Vector2D(900,0);
-	Vector2D pos1 = Vector2D(1100,-100);
-	Vector2D pos2 = Vector2D(1300, -130);
+	Vector2D pos1 = Vector2D(1100,-160);
+	Vector2D pos2 = Vector2D(1300, -320);
 	createProyectile(ent, pos, speed, mask,currentState,app);
 	createProyectile(ent, pos2, speed, mask, currentState, app);
 
