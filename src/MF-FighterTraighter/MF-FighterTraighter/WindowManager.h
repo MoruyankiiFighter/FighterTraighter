@@ -33,13 +33,15 @@ public:
 	inline int getCurResolutionIndex() { return currentResolution_; }
 
 	//get the number of resolutions that are supported in the computer 
-	inline int getAvailableResolutions() { return supportedResolutions_.size(); }
+	inline size_t getAvailableResolutions() { return supportedResolutions_.size(); }
 
 	//returns true if it's the fullscreen on
-	inline bool getFullscreen() { return fullscreen_; }
+	inline bool getFullscreen() { return SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN; }
 
 	//returns the current brightness
 	inline float getCurBrightness() { return currentBrightness_; }
+
+	inline const std::vector<SDL_DisplayMode>& getSupportedResolutions() { return supportedResolutions_; }
 	
 protected:
 	App* app_;
@@ -49,7 +51,6 @@ protected:
 
 	int currentResolution_ = 0;
 	float currentBrightness_ = 1;
-
-	bool fullscreen_ = true;
+	SDL_DisplayMode initialDisplayMode_;
 };
 

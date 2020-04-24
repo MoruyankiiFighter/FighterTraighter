@@ -9,8 +9,6 @@ namespace SDLExceptions
 	public:
 		SDLException(const std::string& what) : logic_error("SDL error: " + what) {}
 		SDLException(const char* what) : logic_error("SDL error: " + std::string(what)) {}
-		SDLException(const SDLException&) = delete;
-		SDLException operator=(const SDLException&) = delete;
 	};
 
 	//TTF exceptions
@@ -19,8 +17,6 @@ namespace SDLExceptions
 	public:
 		TTFException(const std::string& what) : logic_error("TTF error: " + what) {}
 		TTFException(const char* what) : logic_error("TTF error: " + std::string(what)) {}
-		TTFException(const TTFException&) = delete;
-		TTFException operator=(const TTFException&) = delete;
 	};
 	
 

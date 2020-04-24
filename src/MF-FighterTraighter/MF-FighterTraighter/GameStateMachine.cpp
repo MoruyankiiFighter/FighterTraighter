@@ -1,13 +1,13 @@
 #include "GameStateMachine.h"
 
-
 GameStateMachine::GameStateMachine(){ }
 
 GameStateMachine::~GameStateMachine()
 {
 	while (!states.empty()) {
-		delete states.top();
-		popState();
+		GameState* s = states.top();
+		delete s;
+		states.pop();
 	}
 }
 
@@ -19,4 +19,12 @@ GameState* GameStateMachine::getCurrentState() //if there is a state then return
 	else {
 		return nullptr;
 	}
+}
+
+void GameStateMachine::popState()
+{
+	GameState* state = states.top();
+	toDelete.push(state);
+	states.pop();
+	stackSize_--; std::cout << "Stack size: " << stackSize_ << std::endl;
 }

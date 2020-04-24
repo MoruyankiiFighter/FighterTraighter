@@ -42,6 +42,12 @@ public:
 	inline bool isKeyDown(SDL_Keycode code) {
 		return isKeyDown(SDL_GetScancodeFromKey(code));
 	};
+	inline bool KeyPressed(SDL_Scancode code) {
+		return lastKeyboardState_[code] == 0 && keyboardState_[code] == 1;
+	};
+	inline bool KeyPressed(SDL_Keycode code) {
+		return KeyPressed(SDL_GetScancodeFromKey(code));
+	}
 	// if pressed or released a key this frame
 	inline bool keyboardEvent() {
 		return keyboardEvent_;
@@ -84,6 +90,13 @@ public:
 
 		return controllerInputs[controllerID].buttons[button] && lastControllerInputs[controllerID].buttons[button];
 	}
+	bool isControllerButtonUp(Controllers controllerID, SDL_GameControllerButton button)
+	{
+		// SMELLS
+		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return false;
+
+		return !controllerInputs[controllerID].buttons[button] && lastControllerInputs[controllerID].buttons[button];
+	}
 	float getControllerAxis(Controllers controllerID, SDL_GameControllerAxis axis)
 	{
 		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return 0.0;
@@ -99,79 +112,30 @@ public:
 	}
 
 	inline bool pressedUp() {
-		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_UP)) // keyboard
-			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.8f) // controller joystick
-			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_UP))) { // controller dpad
-			upEvent_ = true;
-		}
-		else {
-			upEvent_ = false;
-		}
-		return upEvent_;
+		return KeyPressed(SDL_SCANCODE_UP) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_UP)
+			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.8f);
 	}
 	inline bool pressedLeft() {
-		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_LEFT)) // keyboard
-			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < -0.8f) // controller joystick
-			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_LEFT))) { // controller dpad
-			leftEvent_ = true;
-		}
-		else {
-			leftEvent_ = false;
-		}
-		return leftEvent_;
+		return KeyPressed(SDL_SCANCODE_LEFT) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_LEFT)
+			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < -0.8f);
 	}
 	inline bool pressedDown() {
-		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_DOWN)) // keyboard
-			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.8f) // controller joystick
-			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_DOWN))) { // controller dpad
-			downEvent_ = true;
-		}
-		else {
-			downEvent_ = false;
-		}
-		return downEvent_;
+		return KeyPressed(SDL_SCANCODE_DOWN) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_DOWN)
+			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.8f);
 	}
 	inline bool pressedRight() {
-		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_RIGHT)) // keyboard
-			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.8f) // controller joystick
-			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_RIGHT))) { // controller dpad
-			rightEvent_ = true;
-		}
-		else {
-			rightEvent_ = false;
-		}
-		return rightEvent_;
+		return KeyPressed(SDL_SCANCODE_RIGHT) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
+			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.8f);
 	}
 	inline bool pressedAccept() {
-		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_Z)) // keyboard
-			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A))) { // controller
-			acceptEvent_ = true;
-		}
-		else {
-			acceptEvent_ = false;
-		}
-		return acceptEvent_;
+		return KeyPressed(SDL_SCANCODE_RETURN) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A);
 	}
 	inline bool pressedCancel() {
-		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_X)) // keyboard
-			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_B))) { // controller
-			cancelEvent_ = true;
-		}
-		else {
-			cancelEvent_ = false;
-		}
-		return cancelEvent_;
+		return KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_B);
 	}
 	inline bool pressedStart() {
-		if ((keyboardEvent() && isKeyDown(SDL_SCANCODE_ESCAPE)) // keyboard
-			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START)) // player 1
-			|| (controllerEvent() && isControllerButtonPressed(InputManager::PLAYER2, SDL_CONTROLLER_BUTTON_START))) { // player 2
-			startEvent_ = true;
-		}
-		else {
-			startEvent_ = false;
-		}
-		return startEvent_;
+		return KeyPressed(SDL_SCANCODE_ESCAPE) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START) 
+			|| isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START);
 	}
 
 	virtual ~InputManager();
@@ -198,6 +162,8 @@ private:
 
 	App* app_;
 	const Uint8* keyboardState_;
+	Uint8* lastKeyboardState_;
+	int numKeys_;
 	Vector2D mousePos_;
 	std::array<bool, 3> mouseState_; // true = pressed
 	Vector2D mouseMovementInFrame_;
@@ -212,11 +178,4 @@ private:
 	bool keyboardEvent_ = false; // press
 	bool controllerEvent_ = false; // button
 	bool axisEvent_ = false; //axis
-	bool upEvent_ = false;
-	bool leftEvent_ = false;
-	bool downEvent_ = false;
-	bool rightEvent_ = false;
-	bool acceptEvent_ = false;
-	bool cancelEvent_ = false;
-	bool startEvent_ = false;
 };

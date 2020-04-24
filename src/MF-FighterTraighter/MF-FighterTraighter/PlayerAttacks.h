@@ -3,24 +3,22 @@
 #include "AnimationChain.h"
 #include <vector>
 #include "PlayerState.h"
+#include "InpuState.h"
+
 //component that have all the attacks that you have
 class PlayerAttacks : public Component 
 {
 public:
-	//testing
-	PlayerAttacks(AnimationChain* highFist, SDL_Scancode key1) :Component(ecs::PlayerAttacks)
-		
-	{
-		attacksList.push_back(highFist);
-		highFistKey = key1;
-	}
-	PlayerAttacks(AnimationChain* highFist , AnimationChain* airHighFist, SDL_Scancode key1, AnimationChain* lowFist, AnimationChain* airLowFist, 
-		SDL_Scancode key2, AnimationChain* highKick, AnimationChain* airHighKick, SDL_Scancode key3, AnimationChain* lowKick, AnimationChain* airLowKick, 
-		SDL_Scancode key4/*, Hability* hability1, SDL_Scancode key5, Hability* hability2, SDL_Scancode key6*/);
+	
+	PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, AnimationChain* lowFist, AnimationChain* airLowFist,
+		AnimationChain* highKick, AnimationChain* airHighKick, AnimationChain* lowKick, AnimationChain* airLowKick, AnimationChain* testGB);
 	virtual ~PlayerAttacks();
+	virtual void init() override;
 	virtual void update() override { 
 		if (activeAttack_ != nullptr) { 
+			
 			if (activeAttack_->update()) {
+				activeAttack_->reset();
 				activeAttack_ = nullptr;
 				if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isGrounded()) {
 					entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
@@ -29,20 +27,18 @@ public:
 					entity_->getComponent<PlayerState>(ecs::PlayerState)->goJumping();
 				}
 			}
+			//else if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isHitstun()) interruptAttack(); <-- Esto es in�til (nunca va a estar atacando y ser hitstun)
 		}
 	};
-	//methods to change your habilities
-	/*void addFirstHability(Hability* hab);//add first hability
-	void addSecondHability(Hability* hab);*///add second hability
 	void handleInput() override;
-
+	void setAbility(AnimationChain* newAbility, int index);
 	void interruptAttack();
 private:
-	std::vector<AnimationChain*> attacksList;//pointer to the attack that you can use
-	//std::list<Hability*> habilityList;//pointer to the habilities 
-	AnimationChain* activeAttack_=nullptr;
+	std::vector<AnimationChain*> attacksList;	//pointer to the attack that you can use
+	std::vector<AnimationChain*> abilityList = std::vector<AnimationChain*>(2);	//pointer to the abilities 
+	AnimationChain* activeAttack_ = nullptr;
 
-	//keys to use the attacks and habilities
-	SDL_Scancode highFistKey, lowFistKey, highKickKey, lowKickKey;
+	//keys to use the attacks and abilities
+	InputState* inputSt_;
 };
 

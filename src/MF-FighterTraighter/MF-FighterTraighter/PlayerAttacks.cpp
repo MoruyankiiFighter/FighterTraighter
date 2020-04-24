@@ -1,9 +1,8 @@
 #include "PlayerAttacks.h"
-#include "Crouch.h"
+#include "PlayerController.h"
 
-PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, SDL_Scancode key1, AnimationChain* lowFist, AnimationChain* airLowFist,
-	SDL_Scancode key2, AnimationChain* highKick, AnimationChain* airHighKick, SDL_Scancode key3, AnimationChain* lowKick, AnimationChain* airLowKick,
-	SDL_Scancode key4/*, Hability* hability1, SDL_Scancode key5, Hability* hability2, SDL_Scancode key6*/) : Component(ecs::PlayerAttacks)
+PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, AnimationChain* lowFist, AnimationChain* airLowFist,
+	AnimationChain* highKick, AnimationChain* airHighKick, AnimationChain* lowKick, AnimationChain* airLowKick,  AnimationChain* testGB) : Component(ecs::PlayerAttacks)
 {
 	attacksList.push_back(highFist);
 	attacksList.push_back(lowFist);
@@ -13,13 +12,7 @@ PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFi
 	attacksList.push_back(airLowFist);
 	attacksList.push_back(airHighKick);
 	attacksList.push_back(airLowKick);
-	highFistKey = key1;
-	lowFistKey = key2;
-	highKickKey = key3;
-	lowKickKey = key4;
-	/*hability1Key = key5;
-	hability2Key = key6;*/
-
+	attacksList.push_back(testGB);
 }
 
 PlayerAttacks::~PlayerAttacks() {
@@ -30,92 +23,104 @@ PlayerAttacks::~PlayerAttacks() {
 		attacksList[i] = nullptr;
 	}
 	attacksList.clear();
-	//delete activeAttack_;
-	/*cout << "destruyendo habilidades "<<endl;
-	for (int i = 0; i < habilityList.size(); i++) {
-		delete habilityList[i];
-		habilityList[i] = nullptr;
+
+	for (int i = 0; i < abilityList.size(); i++) {
+		delete abilityList[i];
+		abilityList[i] = nullptr;
 	}
-	habilityList.clear();*/
+	abilityList.clear();
+}
+
+void PlayerAttacks::init()
+{
+	inputSt_ = entity_->getComponent<InputState>(ecs::InputState);
 }
 
 void PlayerAttacks::handleInput() {
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	Transform* tr = entity_->getComponent<Transform>(ecs::Transform);
-	Crouch* cr = entity_->getComponent<Crouch>(ecs::Crouch);
+	PlayerController* ctrl = entity_->getComponent<PlayerController>(ecs::PlayerController);
 	if (currState->isAbleToAttack()) {
 		if (currState->isGrounded()) {
-			if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
+			if (inputSt_->getInput(4)) {
 				activeAttack_ = attacksList[0];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) cr->uncrouch();
+				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
+			else if (inputSt_->getInput(5)) {
 				activeAttack_ = attacksList[1];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) cr->uncrouch();
+				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(highKickKey)) {
+			else if (inputSt_->getInput(6)) {
 				activeAttack_ = attacksList[2];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) cr->uncrouch();
+				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
+			else if (inputSt_->getInput(7)) {
 				activeAttack_ = attacksList[3];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) cr->uncrouch();
+				else if (currState->isCrouch()) ctrl->uncrouch();
+				currState->goAttack();
+			}
+			else if (inputSt_->getInput(11)) {
+				activeAttack_ = attacksList[8];
+				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
+				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack();
 			}
 		}
 		else {
-			if (app_->getInputManager()->isKeyDown(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
+			if (inputSt_->getInput(4)) {
 				activeAttack_ = attacksList[4];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowFistKey)) {
+			else if (inputSt_->getInput(5)) {
 				activeAttack_ = attacksList[5];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(highKickKey)) {
+			else if (inputSt_->getInput(6)) {
 				activeAttack_ = attacksList[6];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
-			else if (app_->getInputManager()->isKeyDown(lowKickKey)) {
+			else if (inputSt_->getInput(7)) {
 				activeAttack_ = attacksList[7];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack();
 			}
 		}
-		/*else if (app_->getInputManager()->isKeyDown(hability1Key)) {
-			habilityList[0]->makeAttack();
+		if (inputSt_->getInput(8)) {
+			if (abilityList[0] != nullptr) {
+				activeAttack_ = abilityList[0];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
 		}
-		else if (app_->getInputManager()->isKeyDown(hability2Key)) {
-			habilityList[1]->makeAttack();
-		}*/
+		else if (inputSt_->getInput(9)) {
+			if (abilityList[1] != nullptr) {
+				activeAttack_ = abilityList[1];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
+		}
 	}
+}
+
+void PlayerAttacks::setAbility(AnimationChain* newAbility, int index)
+{
+	if (abilityList[index] != nullptr)delete abilityList[index]; //Necesario? no se
+	abilityList[index] = newAbility;
 }
 
 void PlayerAttacks::interruptAttack()
 {
+	if(activeAttack_ != nullptr) activeAttack_->reset();
 	activeAttack_ = nullptr;
+	app_->getStateMachine()->getCurrentState()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
 }
-
-/*
-void Attacks::addFirstHability(Hability* hab) {
-	if(!habilityList.empty())
-		habilityList.pop_front();
-	habilityList.push_front(hab);
-}
-
-void Attacks::addFirstHability(Hability* hab) {
-	if (!habilityList.size==2)
-		habilityList.pop_back(hab);
-	habilityList.push_back(hab);
-}
-*/

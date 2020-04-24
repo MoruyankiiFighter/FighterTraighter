@@ -10,6 +10,7 @@ public:
 	OptionsLogic(Slider* resolutionsSlider, TextComponent* resolutionsText, Slider* brightnessSlider, TextComponent* brightnessText) :
 		Component(ecs::OptionsLogic), resolutionsSlider_(resolutionsSlider), resolutionsText_(resolutionsText), brightnessSlider_(brightnessSlider), brightnessText_(brightnessText) {};
 	void init() override;
+	void SetElements();
 	void update() override;
 protected:
 	Slider* resolutionsSlider_;

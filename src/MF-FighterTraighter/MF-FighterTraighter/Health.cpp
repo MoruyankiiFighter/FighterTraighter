@@ -1,19 +1,24 @@
 #include "Health.h"
+#include "PlayerState.h"
+#include "Entity.h"
 
+bool Health::LoseLife(unsigned int damage) {
+	bool toReturn = false;
 
-bool Health::LoseLife(unsigned int  damage) {
 	health_ -= damage;
-	std::cout << health_;
 
-	if (health_ > 0) {		
-		return true;
+	if (health_ > 0) {
+		toReturn = true;
 	}
 	else
 	{
 		health_ = 0;
-		std::cout << "memori";
-		return false;
+		std::cout << "memori" << endl;
+		toReturn = false;
 	}
+
+	std::cout << health_ << endl;
+	return toReturn;
 }
 
 

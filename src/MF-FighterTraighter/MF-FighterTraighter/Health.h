@@ -5,7 +5,7 @@ class Health : public Component
 public:
 
 	//constructor
-	Health(int health) :Component(ecs::Health), maxHealth_(health),health_(health){};
+	Health(int health) :Component(ecs::Health), maxHealth_(health), health_(health){};
 	virtual ~Health() {}
 	
 	// lose damage life (life-=damage) and check if life<0 to be dead
@@ -19,6 +19,9 @@ public:
 	
 	//return the current health(health_)
 	int getLife();
+	inline int getMaxHealth() { return maxHealth_; }
+
+	int getHealth() { return health_; }
 
 private:
 	int health_; //current health

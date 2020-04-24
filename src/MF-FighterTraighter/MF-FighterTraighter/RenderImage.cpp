@@ -15,7 +15,7 @@ void RenderImage::init()
 //render the image
 void RenderImage::render()
 {
-	Vector2D pos = transform_->getPosition();
+	Vector2D pos(transform_->getPosition());
 	SDL_Rect dest = SDL_Rect();
 	dest.x = pos.getX();
 	dest.y = pos.getY();
@@ -23,6 +23,11 @@ void RenderImage::render()
 	dest.h = transform_->getHeight() * transform_->getHMult();
 	//dest.x = pos.getX() - dest.w / 2;
 	//dest.y = pos.getY() - dest.h / 2;
+	if (color_.r != 255 || color_.g != 255 || color_.b != 255 || color_.a != 255) {
+		texture_->setColor(color_);
+	}
 	texture_->render(dest, curY, curX);
-	
+	if (color_.r != 255 || color_.g != 255 || color_.b != 255 || color_.a != 255) {
+		texture_->setColor({ 255, 255, 255, 255 });
+	}
 }
