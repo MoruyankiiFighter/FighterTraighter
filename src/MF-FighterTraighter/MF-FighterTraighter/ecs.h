@@ -33,6 +33,7 @@ namespace ecs {
 		InputState,
 		KeyboardInput,
 		GamepadInput,
+		RenderAnimation,
 		/*
 		
 		*/
