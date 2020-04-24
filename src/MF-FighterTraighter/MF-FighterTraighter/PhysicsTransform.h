@@ -12,20 +12,34 @@ public:
 	//method overrided from transform 
 	virtual void init() override;
 	
-	// get and set for position
+	// get returns the position in pixels
 	virtual Vector2D getPosition() const {
-		Vector2D pos { body_->GetTransform().p.x - width_ * wMult_/2, body_->GetTransform().p.y  - height_ * hMult_/2};
+		Vector2D pos{(((float)(body_->GetTransform().p.x)) * app_->PIXELS_PER_METER) - width_ * wMult_ / 2, (((float)(body_->GetTransform().p.y)) * app_->PIXELS_PER_METER) - height_ * hMult_ / 2 };
 		return  pos;
 	}
-	virtual void setPosition(const Vector2D& v) {/* body_->SetTransform(b2Vec2());*/ }
-	virtual void setPosition(double x, double y) { body_->SetTransform({ (float32)x,(float32)y }, body_->GetAngle()); }
-
-	//get and set for speed
-	virtual Vector2D getSpeed() const { /*return speed_;*/ Vector2D pos{ body_->GetLinearVelocity().x,body_->GetLinearVelocity().y };
-	return pos;
+	// set transforms the position in pixels in meters
+	virtual void setPosition(Vector2D& v) {
+		body_->SetTransform((b2Vec2)(v * app_->METERS_PER_PIXEL), body_->GetAngle()); 
 	}
-	virtual void setSpeed(const Vector2D& v) { body_->SetLinearVelocity({ (float32)v.getX(), (float32)v.getY() }); }
-	virtual void setSpeed(double x, double y) { body_->SetLinearVelocity({ (float32)x,(float32)y }); }
+	// set transforms the position in pixels in meters
+	virtual void setPosition(double x, double y) { 
+		body_->SetTransform({ (float32)x * app_->METERS_PER_PIXEL,(float32)y * app_->METERS_PER_PIXEL}, body_->GetAngle());
+	}
+
+	//<---se puede transformar tb en pixeles la velocidad, pero como lo estamos usando, mejor poner los valores en m/s y nos ahorramos un par de operaciones->
+	//gets the speed in m/s
+	virtual Vector2D getSpeed() const { 
+		return Vector2D((float)body_->GetLinearVelocity().x, (float)body_->GetLinearVelocity().y);
+	}
+
+	//sets the speed in m/s
+	virtual void setSpeed(const Vector2D& v) { 
+		body_->SetLinearVelocity({ (float32)v.getX(), (float32)v.getY()});
+	}
+	//sets the speed transforming pixels/s in m/s
+	virtual void setSpeed(double x, double y) {
+		body_->SetLinearVelocity({ (float32)x,(float32)y}); 
+	}
 
 	virtual void setWidth(double width);
 	virtual void setColliderWidth(double width);

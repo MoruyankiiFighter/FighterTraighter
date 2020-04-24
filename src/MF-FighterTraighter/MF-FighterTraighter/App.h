@@ -52,6 +52,10 @@ public:
 
 	//quit game
 	inline void Exit() { exit = true; }
+
+	const float PIXELS_PER_METER = 100;
+	const float METERS_PER_PIXEL = 1 / PIXELS_PER_METER;	//inverse for better performance
+
 private:
 
 	//open the window and creates everything

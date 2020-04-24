@@ -10,14 +10,14 @@ GameState::GameState(App* app) : app_(app), entManager_(app)
 }
 void GameState::init()
 {
-	gravity = { 0, 150 };
+	gravity = Vector2D(0.0f, 10.0f);
 	world = new b2World(gravity);
 #ifdef NDEBUG
 	debugInstance = nullptr;
 #else
-	debugInstance = new SDLDebugDraw(app_->getRenderer());
+	debugInstance = new SDLDebugDraw(app_->getRenderer(), app_->PIXELS_PER_METER);
 	world->SetDebugDraw(debugInstance);
-	debugInstance->SetFlags(b2Draw::e_aabbBit);
+	debugInstance->SetFlags(b2Draw::e_shapeBit);
 #endif
 	resJumpListener = new ResetJumpListener();
 	world->SetContactListener(resJumpListener);
@@ -78,17 +78,25 @@ void GameState::UpdateHitboxes()
 	}
 }
 
+//Adds a hitbox relative to a body parameter
+//pos is the positon of the hitbox relative to the body
+//width and height of the hitbox
+//time is the lifetime of the hitbox
+//damage, hitstun and knockback(as meters)
+//id is the player ID
+//cBits are the same as the player, and mBits are the same except it excludes boundaries and walls to avoid bugs /*CAMBIAR CON CLASE BASE*/
+//guardBreaker indicates if the hitbox is a GuardBreaker
 void GameState::addHitbox(Vector2D pos, int width, int height, int time, int damage, int hitstun, Vector2D knockBack, b2Body* body, uint16 id, uint16 cBits, uint16 mBits, bool guardBreaker)
 {
 	b2PolygonShape shape;
-	shape.SetAsBox(width / 2, height / 2, { float32(pos.getX() + width / 2),float32(pos.getY() + height / 2) }, 0);
+	shape.SetAsBox(width * app_->METERS_PER_PIXEL / 2, height * app_->METERS_PER_PIXEL / 2, { float32((pos.getX() + width / 2) * app_->METERS_PER_PIXEL),float32((pos.getY() + height / 2) * app_->METERS_PER_PIXEL) }, 0);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.00001f;			//densidad casi 0, para que no cambie segun el ancho y el alto por ahora
 	fixturedef.isSensor = true;
 	fixturedef.filter.categoryBits = cBits;
 	fixturedef.filter.maskBits = mBits & (PLAYER_1 | PLAYER_2 | P_BAG); //kk
-	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack,guardBreaker };//create the hitbox's data
+	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack * app_->METERS_PER_PIXEL,guardBreaker };//create the hitbox's data
 
 	//if (PLAYER_1 == cBits >> 2) fixturedef.filter.maskBits = PLAYER_2;
 	//else  fixturedef.filter.maskBits = PLAYER_1;
