@@ -5,7 +5,7 @@
 #include "PhysicsTransform.h"
 
 //constructor
-PlayerController::PlayerController(float jImpulse) : Component(ecs::PlayerController), transform_(nullptr), inputSt_(nullptr), jumpImpulse(jImpulse)
+PlayerController::PlayerController(float jImpulse, double speed) : Component(ecs::PlayerController), transform_(nullptr), inputSt_(nullptr), jumpImpulse(jImpulse), movSpeed(speed)
 {
 }
 
@@ -24,7 +24,8 @@ void PlayerController::init()
 //update
 void PlayerController::update()
 {
-	transform_->setPosition(transform_->getPosition() + transform_->getSpeed());
+	//transform_->setPosition(transform_->getPosition() + transform_->getSpeed());
+	//cout << transform_->getSpeed().getY() << endl;
 }
 
 //handle input
@@ -56,9 +57,9 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && inputSt_->getInput(0))
 	{
-		if(!wallLeft_) speed = { -45, speed.getY() };
+		if(!wallLeft_) speed = Vector2D(-movSpeed, speed.getY());
 		else {
-			speed = { 0, speed.getY() };
+			speed = Vector2D(0, speed.getY());
 		}
 		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
@@ -66,10 +67,11 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && inputSt_->getInput(1))
 	{
-		if (!wallRight_) speed = { 45, speed.getY() };
+		if (!wallRight_) speed = Vector2D(movSpeed, speed.getY());
 		else {
-			speed = { 0, speed.getY() };
-		}		transform_->setSpeed(speed);
+			speed = Vector2D(0, speed.getY());
+		}		
+		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}

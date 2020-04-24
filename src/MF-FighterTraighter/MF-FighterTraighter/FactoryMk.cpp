@@ -30,15 +30,14 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, std:
 		e->addComponent<GamepadInput>();
 	}
 
-	PlayerController* pC = e->addComponent<PlayerController>(-1500);
+	PlayerController* pC = e->addComponent<PlayerController>(-7, 4.5);
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
 	//e->addComponent<Jump>(-1000, keys[2]);
 	//e->addComponent<Crouch>(keys[3]);
 	e->addComponent<PlayerState>();
 	Health* h = e->addComponent<Health>(110);
 	e->addComponent<PlayerOnHit>();
-	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pT->getSpeed(), h->getHealth(), 50, 50, playerNumber);
-
+	PlayerData* p_data_ = e->addComponent<MkWH00PData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 50, playerNumber);
 	
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
 	e->addComponent<PlayerAttacks>(p_data_->getNormal_punch(), p_data_->air_normal_punch(), p_data_->getHard_punch(), p_data_->air_hard_punch(),
