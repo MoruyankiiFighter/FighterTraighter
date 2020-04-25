@@ -180,6 +180,7 @@
     </ClCompile>
     <ClCompile Include="UserData.cpp" />
     <ClCompile Include="EntityData.cpp" />
+    <ClCompile Include="EntityHitboxData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -396,6 +397,7 @@
     </ClInclude>
     <ClInclude Include="UserData.h" />
     <ClInclude Include="EntityData.h" />
+    <ClInclude Include="EntityHitboxData.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

@@ -2,7 +2,7 @@
 #include "UserData.h"
 #include "Entity.h"
 
-struct EntityData: UserData
+class EntityData: virtual public UserData
 {
 public:
 	EntityData(Entity* e) : entity_(e) {}

@@ -1,7 +1,8 @@
 #pragma once
-#include "Vector2D.h"
 #include "UserData.h"
-class HitboxData : UserData
+#include "Vector2D.h"
+
+class HitboxData : virtual public UserData
 {
 public:
 	HitboxData(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, bool destroy = false) :

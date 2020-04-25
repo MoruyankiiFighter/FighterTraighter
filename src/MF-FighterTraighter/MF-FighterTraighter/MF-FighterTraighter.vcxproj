@@ -135,6 +135,7 @@
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="EntityData.cpp" />
+    <ClCompile Include="EntityHitboxData.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadInput.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="EntityData.h" />
+    <ClInclude Include="EntityHitboxData.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FloorOnHit.h" />
