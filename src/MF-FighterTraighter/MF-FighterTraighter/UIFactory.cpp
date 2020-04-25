@@ -61,3 +61,20 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 
 	return std::make_tuple(slider, reg_, text_, ValueText_);
 }
+Entity* UIFactory::createPanel(App* app, GameState* state, Texture* texture_, Vector2D position, Vector2D anchor, Vector2D pivot, double width, double height, double rotation)
+{
+	Entity* panel = state->getEntityManager().addEntity();
+	panel->addComponent<UITransform>(position, anchor, pivot, Vector2D(width, height));
+	panel->addComponent<RenderImage>(texture_);
+
+	return panel;
+}
+Entity* UIFactory::createText(App* app, GameState* state, Vector2D pos, Vector2D anchor, Vector2D pivot, Font* font, std::string text, int fontSize, double width, double height)
+{
+	Entity* ent = state->getEntityManager().addEntity();
+
+	ent->addComponent<UITransform>(pos, anchor, pivot, Vector2D(width, height));
+	ent->addComponent<TextComponent>(text, font, fontSize, TextComponent::TextAlignment::Center);
+
+	return ent;
+}
