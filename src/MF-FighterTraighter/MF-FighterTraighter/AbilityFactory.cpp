@@ -155,21 +155,22 @@ void AbilityFactory::SeismicS2(Entity* ent)
 	bool destroyInContact = true;
 	double width = 150;
 	double height = 150;
-	createProyectile(ent, width,height,pos, speed, damage,hitstun,knockBack,time,mask,currentState,app,destroyInContact);
-	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, destroyInContact);
-	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, destroyInContact);
+	Texture* texture=app->getAssetsManager()->getTexture(AssetsManager::Player);
+	createProyectile(ent, width,height,pos, speed, damage,hitstun,knockBack,time,mask,currentState,app,texture,destroyInContact);
+	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture,destroyInContact);
+	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture,destroyInContact);
 
 }
 
 void AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
-	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, bool destroyInContact) {
+	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture,bool destroyInContact) {
 	
 	//App* app = ent->getApp();
-	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
 	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
 		currentState->BULLET, mask, 1);
-	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
+	e->addComponent<RenderImage>(texture);
 	e->addComponent<Bullet>(currentState, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, damage, hitstun, knockBack, time, destroyInContact);
 
 }
