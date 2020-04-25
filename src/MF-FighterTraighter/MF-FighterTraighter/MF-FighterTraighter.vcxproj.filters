@@ -178,6 +178,9 @@
     <ClCompile Include="GamepadInput.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="CharacterSelectionLogic.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -390,6 +393,9 @@
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="KeyboardInput.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSelectionLogic.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
   </ItemGroup>
