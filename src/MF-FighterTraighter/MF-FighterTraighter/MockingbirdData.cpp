@@ -3,7 +3,9 @@
 MockingbirdData::MockingbirdData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(keys, width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber)
 {
-	animLength_ = { };
+	animLength_ = { {4, true, 12}, {4, true, 15}, {2, true, 3}, {1, true, 15}, {4, true, 15}, {12, false, 10}, {7, true, 15}, {8, true, 15},
+	{15, true, 15}, {6, true, 15}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {2, true, 15}, {3, true, 4}, {2, true, 15}, {4, true, 15},
+	{4, true, 15}, {2, true, 15} };
 }
 
 void MockingbirdData::init()
@@ -26,7 +28,7 @@ void MockingbirdData::init()
 	vecMov.clear();
 
 	vecMov.push_back(new Move(30, nullptr, HK1, entity_));
-	vecMov.push_back(new Move(13, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(6, nullptr, nullptr, entity_));
 	hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -42,8 +44,8 @@ void MockingbirdData::init()
 	air_hard_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(7, nullptr, ANK1, entity_));
-	vecMov.push_back(new Move(12, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(12, nullptr, ANK1, entity_));
+	vecMov.push_back(new Move(24, nullptr, nullptr, entity_));
 	air_normal_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -72,8 +74,8 @@ void MockingbirdData::NP1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::np1 = PlayerData::CallbackData{
-	{ 100, -250 },
-	{30, 0},
+	{ 125, -40 },
+	{50, 0},
 	150,
 	75,
 	10,
@@ -95,10 +97,10 @@ void MockingbirdData::HP1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::hp1 = PlayerData::CallbackData{
-	{ 100, -250 },
-	{140, 0},
+	{ 125, -200 },
+	{ 300, 0 },
 	150,
-	250,
+	180,
 	5,
 	12,
 	36
@@ -118,9 +120,9 @@ void MockingbirdData::NK1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::nk1 = PlayerData::CallbackData{
-	{ 0, 0 },
-	{100, 250},
-	350,
+	{ 125, -40 },
+	{100, 0},
+	270,
 	75,
 	5,
 	8,
@@ -141,10 +143,10 @@ void MockingbirdData::HK1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::hk1 = PlayerData::CallbackData{
-	{ 0, 0 },
-	{250, 250},
-	100,
-	100,
+	{ 125, 100 },
+	{ 250, -850 },
+	200,
+	150,
 	12,
 	15,
 	26
@@ -164,10 +166,10 @@ void MockingbirdData::ANP1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::anp1 = PlayerData::CallbackData{
-	{ 0, 0 },
-	{30, -60},
-	100,
-	100,
+	{ 125, -75 },
+	{80, 0},
+	160,
+	180,
 	12,
 	10,
 	20
@@ -187,9 +189,9 @@ void MockingbirdData::AHP1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::ahp1 = PlayerData::CallbackData{
-	{ 100, -250 },
+	{ 125, -40 },
 	{10, 0},
-	100,
+	150,
 	75,
 	5,
 	4,
@@ -210,9 +212,9 @@ void MockingbirdData::AHP2(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::ahp2 = PlayerData::CallbackData{
-	{ 0, 0 },
+	{ 125, -30 },
 	{20, 0},
-	100,
+	150,
 	75,
 	8,
 	7,
@@ -233,9 +235,9 @@ void MockingbirdData::ANK1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::ank1 = PlayerData::CallbackData{
-	{ 0, 0 },
-	{10, 40},
-	150,
+	{ 125, 10 },
+	{10, -150},
+	250,
 	85,
 	15,
 	4,
@@ -256,10 +258,10 @@ void MockingbirdData::AHK1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::ahk1 = PlayerData::CallbackData{
-	{ 0, 0 },
-	{100, -100},
-	180,
-	180,
+	{ 125, -80 },
+	{100, 1000},
+	200,
+	200,
 	20,
 	14,
 	30
@@ -278,7 +280,7 @@ void MockingbirdData::GB(Entity* ent)
 		{ (double)orientation_ * hitbox_X, gb.position.getY() }, gb.width, gb.height, gb.time, pD->getAttack() * gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MockingbirdData::gb = PlayerData::CallbackData{
-	{ 50, -75 },
+	{ 125, -75 },
 	{ -80, -50 },
 	300,
 	150,
