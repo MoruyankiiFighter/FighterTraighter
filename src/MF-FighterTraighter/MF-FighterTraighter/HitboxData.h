@@ -2,7 +2,7 @@
 #include "UserData.h"
 #include "Vector2D.h"
 
-class HitboxData : virtual public UserData
+class HitboxData :  public UserData
 {
 public:
 	HitboxData(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, bool destroy = false) :

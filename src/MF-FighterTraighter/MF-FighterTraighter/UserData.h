@@ -2,7 +2,7 @@
 class UserData
 {
 public:
-	~UserData() {}
+	virtual ~UserData() {}
 	//virtual void onHit() = 0;
 };
 

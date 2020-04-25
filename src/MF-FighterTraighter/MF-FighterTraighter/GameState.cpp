@@ -3,7 +3,7 @@
 #include "App.h"
 #include "OnHit.h"
 #include "ResetJumpListener.h"
-
+#include "EntityHitboxData.h"
 GameState::GameState(App* app) : app_(app), entManager_(app)
 {
 }
@@ -32,7 +32,6 @@ void GameState::handleInput()
 
 void GameState::update()
 {
-	cout<<entManager_.size()<<endl;
 
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->update();
@@ -109,7 +108,7 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	hitboxGroups_[id].back()->SetUserData(new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker));//saving hitbox's data
 }
 
-void GameState::addHitbox( uint16 id, HitboxData* hitbox, b2Fixture* fixture)
+void GameState::addHitbox( uint16 id, EntityHitboxData* hitbox, b2Fixture* fixture)
 {
 	hitboxGroups_[id].push_back(fixture);
 	hitboxGroups_[id].back()->SetUserData(hitbox);//saving hitbox's data
@@ -118,22 +117,24 @@ void GameState::addHitbox( uint16 id, HitboxData* hitbox, b2Fixture* fixture)
 void GameState::RemoveHitbox()
 {
 	for (auto hb_it = hitboxRemove_pair_.begin(); hb_it != hitboxRemove_pair_.end(); ++hb_it) {
-		HitboxData* hitbox= static_cast<HitboxData*>((*(*hb_it).first)->GetUserData());
-		if (hitbox->destroyEntity) {//destroy entity
-			if (hitbox->destroyOnHit) {
-				(*(*hb_it).first)->GetBody()->GetWorld()->DestroyBody((*(*hb_it).first)->GetBody());
-				entManager_.removeEntity(hitbox->entity);
-			}
-			else {
-				(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
-				//destroy the entity after something like be out of boundary(?) 
-			}
-			//delete entity;
-			
-		}
-		else {
-			(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
-		}
+		UserData* hitbox= static_cast<UserData*>((*(*hb_it).first)->GetUserData());
+		//HitboxData* ht = dynamic_cast<HitboxData*>(hitbox);
+		//if (hitbox->destroyEntity) {//destroy entity
+		//	if (hitbox->destroyOnHit) {
+		//		(*(*hb_it).first)->GetBody()->GetWorld()->DestroyBody((*(*hb_it).first)->GetBody());
+		//		//entManager_.removeEntity(hitbox->entity);
+		//	}
+		//	else {
+		//		(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
+		//		//destroy the entity after something like be out of boundary(?) 
+		//	}
+		//	//delete entity;
+		//	
+		//}
+		//else {
+		//	(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
+		//}
+		(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
 		delete hitbox;
 		hitboxGroups_[(*hb_it).second].erase((*hb_it).first);
 	}
@@ -184,8 +185,10 @@ void GameState::render()
 
 void GameState::empty()
 {
+	//entManager_.empty();
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		delete* it;
+		*it = nullptr;
 	}
 	entManager_.getScene().clear();
 }

@@ -91,7 +91,7 @@ void AbilityFactory::Bullet1(Entity* ent)	//Golpes stuneantes
 AnimationChain* AbilityFactory::SeismicShock(Entity* e)
 {
 	std::vector<Move*> vecMov;
-	vecMov.push_back(new Move(35, nullptr, SeismicS1, e));//the kick
+	//vecMov.push_back(new Move(35, nullptr, SeismicS1, e));//the kick
 	//Entity* e = state->getEntityManager().addEntity();
 	vecMov.push_back(new Move(50, nullptr, SeismicS2, e));//the rocks
 
@@ -157,8 +157,8 @@ void AbilityFactory::SeismicS2(Entity* ent)
 	double height = 150;
 	Texture* texture=app->getAssetsManager()->getTexture(AssetsManager::Player);
 	createProyectile(ent, width,height,pos, speed, damage,hitstun,knockBack,time,mask,currentState,app,texture,destroyInContact);
-	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture,destroyInContact);
-	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture,destroyInContact);
+	//createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture,destroyInContact);
+	//createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture,destroyInContact);
 
 }
 
