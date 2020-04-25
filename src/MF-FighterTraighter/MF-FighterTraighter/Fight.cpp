@@ -41,12 +41,19 @@ void Fight::init()
 		SDL_SCANCODE_1, SDL_SCANCODE_2, SDL_SCANCODE_SPACE, SDL_SCANCODE_R }, world, false, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0, 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player1), 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::SeismicShock(player1),1);
+	vector<std::string>abilitiesP1;
+	abilitiesP1.push_back("MegatonGrip");
+	abilitiesP1.push_back("SeismicShock");
+	app_->getGameManager()->setPlayerInfo1(player1, "MKWHOOP", abilitiesP1, 0, 1);
 
 	//player1->addComponent
 	//Player 2
 	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
-		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, world, true, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0, 1);
-
+		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, world, false, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0, 1);
+	vector<std::string>abilitiesP2;
+	//abilities.push_back("MegatonGrip");
+	//abilities.push_back("SeismicShock");
+	app_->getGameManager()->setPlayerInfo2(player2, "MKWHOOP", abilitiesP2, -1, -1);
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 75), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
 	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
@@ -89,6 +96,8 @@ void Fight::init()
 	Entity* gameController = entManager_.addEntity();
 	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(3);
 	gameController->addComponent<UIRoundRenderer>(rightCounter);
+
+	//app_->getGameManager().
 }
 
 void Fight::handleInput()

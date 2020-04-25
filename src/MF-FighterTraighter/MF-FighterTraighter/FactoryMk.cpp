@@ -42,7 +42,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, std:
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
 	e->addComponent<PlayerAttacks>(p_data_->getNormal_punch(), p_data_->air_normal_punch(), p_data_->getHard_punch(), p_data_->air_hard_punch(),
 		p_data_->getNormal_kick(), p_data_->air_normal_kick(), p_data_->getHard_kick(), p_data_->air_hard_kick(), p_data_->guard_breaker());
-
+	
 	return e;
 }
 

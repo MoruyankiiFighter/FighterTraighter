@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "Bullet.h"
 #include "RenderImage.h"
+//#include "playerinfo"
 AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 {
 	std::vector<Move*> vecMov;
@@ -86,18 +87,18 @@ void AbilityFactory::Bullet1(Entity* ent)	//Golpes stuneantes
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
 	e->addComponent<Bullet>(currentState, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), Vector2D(10000, 0), 10, 0, Vector2D(50, 50), 1000, true);
 }
-
+//ability that kick the floor and moments later 3 rocks fall on top of the other player
 AnimationChain* AbilityFactory::SeismicShock(Entity* e)
 {
 	std::vector<Move*> vecMov;
-	vecMov.push_back(new Move(35, nullptr, SeismicS1, e));
+	vecMov.push_back(new Move(35, nullptr, SeismicS1, e));//the kick
 	//Entity* e = state->getEntityManager().addEntity();
-	vecMov.push_back(new Move(50, nullptr, SeismicS2, e));
+	vecMov.push_back(new Move(50, nullptr, SeismicS2, e));//the rocks
 
 	AnimationChain* Bullet = new AnimationChain(vecMov);
 	return Bullet;
 }
-
+//the attack to the floor
 void AbilityFactory::SeismicS1(Entity* e) {
 	
 
@@ -117,36 +118,58 @@ void AbilityFactory::SeismicS1(Entity* e) {
 	e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1, 105 }, width1, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), pT->getCategory(), pT->getMask());
 
 }
-
+//3 rocks
 void AbilityFactory::SeismicS2(Entity* ent)
 {
 	Vector2D speed(0, 7);
 	uint16 mask;
 	//CollisionFilters
 	App* app = ent->getApp();
+	Entity* otherPlayer;
 	GameState* currentState = app->getStateMachine()->getCurrentState();
-	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)  mask = currentState->PLAYER_2;
-	else   mask = currentState->PLAYER_1;
-	
-	Vector2D pos = Vector2D(900,0);
-	Vector2D pos1 = Vector2D(1100,-160);
-	Vector2D pos2 = Vector2D(1300, -320);
-	createProyectile(ent, pos, speed, mask,currentState,app);
-	createProyectile(ent, pos2, speed, mask, currentState, app);
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		otherPlayer=app->getGameManager()->getPlayerInfo(2).entity;
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		otherPlayer = app->getGameManager()->getPlayerInfo(1).entity;
+		mask = currentState->PLAYER_1;
+	}
+	double otherWidth=otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getWidth();
+	Vector2D otherPos = otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getPosition();
+	Vector2D pos = Vector2D(otherPos.getX()+ otherWidth/2,0);//first rock
+	Vector2D pos1;//second rock
+	Vector2D pos2;//third rock
+	int windowWidth = app->getWindowManager()->getCurResolution().w;
+	double rocksSeparation = 150;
+	if (pos.getX() + rocksSeparation >= (double)windowWidth)  pos1 = {(double) windowWidth, -160 };
+	else pos1 = { pos.getX() + rocksSeparation, -320 };
 
-	createProyectile(ent, pos1, speed, mask, currentState, app);
+	if (pos.getX() - rocksSeparation <= 0)  pos2 = { 0, -160 };
+	else pos2 = { pos.getX() - rocksSeparation, -320 };
+	//pos2 = Vector2D(otherPos.getX()-150, -320);
+	int damage = 10;
+	int hitstun = 0;
+	Vector2D knockBack(5, 2);
+	int time = 1000;
+	bool destroyInContact = true;
+	double width = 150;
+	double height = 150;
+	createProyectile(ent, width,height,pos, speed, damage,hitstun,knockBack,time,mask,currentState,app,destroyInContact);
+	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, destroyInContact);
+	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, destroyInContact);
 
-	//Bullet(GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
 }
 
-void AbilityFactory::createProyectile(Entity* ent, Vector2D pos,Vector2D speed, uint16 mask, GameState* currentState,App* app) {
+void AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
+	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, bool destroyInContact) {
 	
 	//App* app = ent->getApp();
 	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
-	e->addComponent<PhysicsTransform>(pos, speed, 150, 150, 0, currentState->getb2World(),
+	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
 		currentState->BULLET, mask, 1);
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
-	e->addComponent<Bullet>(currentState, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, 10, 0, Vector2D(50, 50), 1000, true);
+	e->addComponent<Bullet>(currentState, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, damage, hitstun, knockBack, time, destroyInContact);
 
 }
