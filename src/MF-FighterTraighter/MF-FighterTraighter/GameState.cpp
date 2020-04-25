@@ -51,9 +51,9 @@ void GameState::UpdateHitboxes()
 		for (auto it = hitboxGroups_[i].begin(); it != hitboxGroups_[i].end(); ++it) {
 			HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
 			if (hB->time_-- <= 0) {//time habra que modificar a frames			checks if the hitbox "dies"
-				if (!hB->destroy) {
+				if (!hB->destroy_) {
 					hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
-					hB->destroy = true;
+					hB->destroy_ = true;
 				}
 			}
 			else {	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
@@ -66,9 +66,9 @@ void GameState::UpdateHitboxes()
 						OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
 						if (objOnHit != nullptr) {
 							objOnHit->onHit(*it);
-							if (!hB->destroy) {
+							if (!hB->destroy_) {
 								hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
-								hB->destroy = true;
+								hB->destroy_ = true;
 							}
 						}
 					}
@@ -96,7 +96,6 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.isSensor = true;
 	fixturedef.filter.categoryBits = cBits;
 	fixturedef.filter.maskBits = mBits & (PLAYER_1 | PLAYER_2 | P_BAG); //kk
-	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack * app_->METERS_PER_PIXEL,guardBreaker };//create the hitbox's data
 
 	//if (PLAYER_1 == cBits >> 2) fixturedef.filter.maskBits = PLAYER_2;
 	//else  fixturedef.filter.maskBits = PLAYER_1;
@@ -107,7 +106,7 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	////for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
 
 	hitboxGroups_[id].push_back(body->CreateFixture(&fixturedef));
-	hitboxGroups_[id].back()->SetUserData(hitbox_);//saving hitbox's data
+	hitboxGroups_[id].back()->SetUserData(new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker));//saving hitbox's data
 }
 
 void GameState::addHitbox( uint16 id, HitboxData* hitbox, b2Fixture* fixture)
@@ -162,9 +161,9 @@ void GameState::resetGroup(int group) {
 
 	for (auto it = hitboxGroups_[group].begin(); it != hitboxGroups_[group].end(); ++it) {
 		HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
-		if (!hB->destroy) {
+		if (!hB->destroy_) {
 			hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, group));
-			hB->destroy = true;
+			hB->destroy_ = true;
 		}
 	}
 }
