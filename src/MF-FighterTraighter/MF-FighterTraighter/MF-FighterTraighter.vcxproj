@@ -134,6 +134,7 @@
     <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="EntityData.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadInput.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="UIRoundRenderer.cpp" />
     <ClCompile Include="UITimer.cpp" />
     <ClCompile Include="UITransform.cpp" />
+    <ClCompile Include="UserData.cpp" />
     <ClCompile Include="WindowManager.cpp" />
     <ClCompile Include="SacoTimer.cpp" />
     <ClCompile Include="SDLDebugDraw.cpp" />
@@ -195,6 +197,7 @@
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="EntityData.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FloorOnHit.h" />
@@ -244,6 +247,7 @@
     <ClInclude Include="UITimer.h" />
     <ClInclude Include="UITransform.h" />
     <ClInclude Include="ResetJumpListener.h" />
+    <ClInclude Include="UserData.h" />
     <ClInclude Include="WindowManager.h" />
     <ClInclude Include="SacoTimer.h" />
     <ClInclude Include="SDLDebugDraw.h" />
