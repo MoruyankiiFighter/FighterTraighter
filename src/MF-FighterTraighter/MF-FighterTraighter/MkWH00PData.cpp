@@ -53,7 +53,7 @@ void MkWH00PData::init() {
 	air_hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(72, nullptr, GB, entity_));
+	vecMov.push_back(new Move(30, nullptr, GB, entity_));
 	vecMov.push_back(new Move(50, nullptr, nullptr, entity_));
 	guard_breaker_ = new AnimationChain(vecMov);
 	vecMov.clear();
@@ -320,9 +320,9 @@ void MkWH00PData::GB(Entity* ent)
 }
 PlayerData::CallbackData MkWH00PData::gb = PlayerData::CallbackData{
 	{ 50, -75 },
-	{ 200, -50 },
+	{ 20, -50 },
 	250,
 	200,
-	50,
+	15,
 	0,
-	2000};
+	75};
