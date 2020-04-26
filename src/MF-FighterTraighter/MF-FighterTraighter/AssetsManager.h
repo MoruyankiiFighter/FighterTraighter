@@ -22,7 +22,9 @@ public:
 		HealthbarSaco,
 		HealthbarBack,
 		RoundCounter,
-		CharacterSelection
+		CharacterSelection,
+		Mark1,
+		Mark2
 	};
 
 	enum FontNames {
