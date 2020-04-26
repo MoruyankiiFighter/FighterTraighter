@@ -4,7 +4,7 @@
 //	cMask are the mask bits, the collision groups to check
 //	if not modified, the body will collide with everything
 PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation,b2World* world, uint16 cBits, uint16 mBits, bool dyn)
-	: Transform(position, speed, width, height, rotation), cBits_(cBits), mBits_(mBits), dynamic_(dyn),world_(world)
+	: Transform(position, speed, width, height, rotation), cBits_(cBits), mBits_(mBits), dynamic_(dyn),world_(world), col_width_(width), col_height_(height)
 {
 }
 
@@ -19,56 +19,56 @@ void PhysicsTransform::init() {
 	if (dynamic_)
 		bodydef.type = b2_dynamicBody;	//makes the dynamic body if it is dynamic
 	body_ = world_->CreateBody(&bodydef);
-	b2PolygonShape shape;
-	shape.SetAsBox((width_ * app_->METERS_PER_PIXEL) * wMult_ / 2, (height_ * app_->METERS_PER_PIXEL) * hMult_ / 2);
-	resetMainFixture(shape);
+	resetMainFixture(b2Vec2_zero, 0);	//por defecto en el centro del cuerpo, y con angulo 0
 	body_->SetFixedRotation(true);
-	mainFixture_->SetUserData(this->entity_);	//tener acceso a la entidad para hacer cosas con las colisiones // ahora es en la mainFixture para poder acceder a la entidad en el HBManager
 }
 
 void PhysicsTransform::setHeight(double height) {
 	height_ = height;
 }
 
-void PhysicsTransform::setColliderHeight(double height) {
+void PhysicsTransform::setColliderHeight(double height, Vector2D center, float angle) {
 
+	col_height_ = height;
 	body_->DestroyFixture(mainFixture_);
-	//(width * 0.01) * wMult_/2 , (height * 0.01) * hMult_/2 
-	//(((float)(body_->GetTransform().p.x)) * 100) - width_ * wMult_/2, (((float)(body_->GetTransform().p.y)) * 100.0)  - height_ * hMult_/2
-	b2PolygonShape shape;
-	shape.SetAsBox((width_ * app_->METERS_PER_PIXEL) * wMult_ / 2, (height * app_->METERS_PER_PIXEL) * hMult_ / 2);
-	resetMainFixture(shape);
-	mainFixture_->SetUserData(this->entity_);
+	resetMainFixture((b2Vec2)(center * app_->METERS_PER_PIXEL), angle);
 }
 
 void PhysicsTransform::setWidth(double width) {
 	width_ = width;
 }
 
-void PhysicsTransform::setColliderWidth(double width) {
+void PhysicsTransform::setColliderWidth(double width, Vector2D center, float angle) {
 
+	col_width_ = width;
 	body_->DestroyFixture(mainFixture_);
 
-	b2PolygonShape shape;
-	shape.SetAsBox((width * app_->METERS_PER_PIXEL) * wMult_ / 2, (height_ * app_->METERS_PER_PIXEL) * hMult_ / 2);
-	resetMainFixture(shape);
-	mainFixture_->SetUserData(this->entity_);
+	resetMainFixture((b2Vec2)(center * app_->METERS_PER_PIXEL), angle);
 }
 
-void PhysicsTransform::setWidthHeight(double width, double height) {
+void PhysicsTransform::setSize(double width, double height) {
+	width_ = width, height_ = height;
+}
 
+void PhysicsTransform::setColliderSize(double width, double height, Vector2D center, float angle) {
+
+	col_width_ = width;
+	col_height_ = height;
 	body_->DestroyFixture(mainFixture_);
 
-	b2PolygonShape shape;
-	shape.SetAsBox((width * app_->METERS_PER_PIXEL)* wMult_ / 2, (height * app_->METERS_PER_PIXEL)* hMult_ / 2);
-	resetMainFixture(shape);
-	mainFixture_->SetUserData(this->entity_);
-	width_ = width;
-	height_ = height;
+	resetMainFixture((b2Vec2)(center * app_->METERS_PER_PIXEL), angle);
+
 }
 
-void PhysicsTransform::resetMainFixture(const b2PolygonShape& shape) {
+void PhysicsTransform::moveCollider(const Vector2D& move) {
+	b2Shape* preShape = mainFixture_->GetShape();
+}
 
+void PhysicsTransform::resetMainFixture(const b2Vec2& center, float angle) {
+	b2PolygonShape shape;
+	//shape.m_centroid = b2Vec2()
+	shape.SetAsBox((col_width_ * (double)app_->METERS_PER_PIXEL) * wMult_ / 2, (col_height_ * (double)app_->METERS_PER_PIXEL) * hMult_ / 2, center, angle);
+	//shape.m_centroid = b2Vec2(0, 50);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0f;
@@ -76,4 +76,5 @@ void PhysicsTransform::resetMainFixture(const b2PolygonShape& shape) {
 	fixturedef.filter.maskBits = mBits_;
 	fixturedef.friction = 1;
 	mainFixture_ = body_->CreateFixture(&fixturedef);
+	mainFixture_->SetUserData(this->entity_);
 }
