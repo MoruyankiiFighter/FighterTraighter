@@ -39,6 +39,11 @@ void UITimer::stopTimer()
 	timerStopped_ = true;
 }
 
+bool UITimer::isTimerStopped()
+{
+	return timerStopped_;
+}
+
 void UITimer::resumeTimer()
 {
 	timerStopped_ = false;

@@ -33,6 +33,10 @@ void AssetsManager::loadTextures()
 	textures_.emplace(CharacterSelection, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/characters_selection.png", 4, 1));
 	textures_.emplace(Mark1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/marco1.png", 1, 1));
 	textures_.emplace(Mark2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/marco2.png", 1, 1));
+	textures_.emplace(SeismicShock, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/Seismicshock.png", 1, 1));
+	textures_.emplace(ExplosiveWillpower, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ExplosiveWillpower.png", 1, 1));
+	textures_.emplace(RandomRage, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/RandomRage.png", 1, 1));
+	textures_.emplace(KnifeDance, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/KnifeDance.png", 1, 1));
 
 	// textures_.emplace("key", new Texture(app_->getRenderer(), "Filepath", cols, fils));
 }

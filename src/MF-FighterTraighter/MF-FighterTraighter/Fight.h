@@ -21,4 +21,9 @@ public:
 	void init() override;
 	virtual void handleInput() override;
 	virtual ~Fight();
+	Entity* giveMeTimerAb1() { return timerab1; };
+	Entity* giveMeTimerAb2() { return timerab2; };
+private:
+	Entity* timerab1;
+	Entity* timerab2;
 };

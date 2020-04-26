@@ -24,7 +24,11 @@ public:
 		RoundCounter,
 		CharacterSelection,
 		Mark1,
-		Mark2
+		Mark2,
+		SeismicShock,
+		ExplosiveWillpower,
+		RandomRage,
+		KnifeDance
 	};
 
 	enum FontNames {

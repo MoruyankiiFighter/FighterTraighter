@@ -1,5 +1,6 @@
 #include "PlayerAttacks.h"
 #include "PlayerController.h"
+#include "UITimer.h"
 
 PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, AnimationChain* lowFist, AnimationChain* airLowFist,
 	AnimationChain* highKick, AnimationChain* airHighKick, AnimationChain* lowKick, AnimationChain* airLowKick,  AnimationChain* testGB) : Component(ecs::PlayerAttacks)
@@ -61,6 +62,19 @@ void PlayerAttacks::handleInput() {
 				currState->goAttack();
 			}
 			else if (inputSt_->getInput(7)) {
+				activeAttack_ = attacksList[3];
+				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
+				else if (currState->isCrouch()) ctrl->uncrouch();
+				currState->goAttack();
+			}
+			else if (/*fight->giveMeTimerAb1()->getComponent<UITimer>(ecs::UITimer)->isTimerStopped() &&*/ inputSt_->getInput(8)) {
+				//activeAttack_ = attacksList[3];
+				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
+				else if (currState->isCrouch()) ctrl->uncrouch();
+				currState->goAttack();
+				//fight->giveMeTimerAb1()->getComponent<UITimer>(ecs::UITimer)->resetTimer();
+			}
+			else if (inputSt_->getInput(9)) {
 				activeAttack_ = attacksList[3];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();

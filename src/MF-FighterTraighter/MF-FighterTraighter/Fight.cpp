@@ -35,40 +35,52 @@ void Fight::init()
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player1), 0);
 
 	//Abilities player 1
+	Entity* imageability1 = entManager_.addEntity();
+	imageability1->addComponent<UITransform>(Vector2D(80, 650), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
+	imageability1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SeismicShock));
 	Entity* ability1 = entManager_.addEntity();
-	ability1->addComponent<UITransform>(Vector2D(80, 650), Vector2D(0, 0), Vector2D(0,0), Vector2D(100, 100));
+	ability1->addComponent<UITransform>(Vector2D(80, 650), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
 	ability1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mark1));
+	Entity* imageability2 = entManager_.addEntity();
+	imageability2->addComponent<UITransform>(Vector2D(180, 650), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
+	imageability2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::ExplosiveWillpower));
 	Entity* ability2 = entManager_.addEntity();
 	ability2->addComponent<UITransform>(Vector2D(180, 650), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
 	ability2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mark2));
-	Entity* timerab1 = entManager_.addEntity();
+	timerab1 = entManager_.addEntity();
 	timerab1->addComponent<UITransform>(Vector2D(30, 600), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab1->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab1->addComponent<UITimer>(UITimer::Minutes);
-	Entity* timerab2 = entManager_.addEntity();
+	timerab1->addComponent<UITimer>(UITimer::Seconds)->setCountdown(10000);
+	timerab2 = entManager_.addEntity();
 	timerab2->addComponent<UITransform>(Vector2D(130, 600), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab2->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab2->addComponent<UITimer>(UITimer::Minutes);
+	timerab2->addComponent<UITimer>(UITimer::Seconds)->setCountdown(10000);
 
 	//Player 2
 	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
 		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, world, true, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY, true, 1);
 
 	//Abilities player 2
+	Entity* imageability1p2 = entManager_.addEntity();
+	imageability1p2->addComponent<UITransform>(Vector2D(1080, 650), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
+	imageability1p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RandomRage));
 	Entity* ability1p2 = entManager_.addEntity();
 	ability1p2->addComponent<UITransform>(Vector2D(1080, 650), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
 	ability1p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mark1));
+	Entity* imageability2p2 = entManager_.addEntity();
+	imageability2p2->addComponent<UITransform>(Vector2D(1180, 650), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
+	imageability2p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::KnifeDance));
 	Entity* ability2p2 = entManager_.addEntity();
 	ability2p2->addComponent<UITransform>(Vector2D(1180, 650), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
 	ability2p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mark2));
 	Entity* timerab1p2 = entManager_.addEntity();
 	timerab1p2->addComponent<UITransform>(Vector2D(1030, 600), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab1p2->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab1p2->addComponent<UITimer>(UITimer::Minutes);
+	timerab1p2->addComponent<UITimer>(UITimer::Seconds)->setCountdown(10000);
 	Entity* timerab2p2 = entManager_.addEntity();
 	timerab2p2->addComponent<UITransform>(Vector2D(1130, 600), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab2p2->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab2p2->addComponent<UITimer>(UITimer::Minutes);
+	timerab2p2->addComponent<UITimer>(UITimer::Seconds)->setCountdown(10000);
 
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 75), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));

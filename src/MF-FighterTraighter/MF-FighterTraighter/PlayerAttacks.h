@@ -4,6 +4,7 @@
 #include <vector>
 #include "PlayerState.h"
 #include "InpuState.h"
+//#include "Fight.h";
 
 //component that have all the attacks that you have
 class PlayerAttacks : public Component 
@@ -40,5 +41,6 @@ private:
 
 	//keys to use the attacks and abilities
 	InputState* inputSt_;
+	//Fight* fight;
 };
 

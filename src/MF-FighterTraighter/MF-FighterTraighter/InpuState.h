@@ -6,7 +6,12 @@ class InputState: public Component {
 public:
 	InputState() : Component(ecs::InputState) {};
 	void setInput(int index, bool value) {
-		inputVec[index] = value;
+		if (inputCooldownVec[index]==0)
+		{
+			inputVec[index] = value;
+			// devuelve el cool down su valor oficialinputCooldownVec[index] = 30;
+		}
+		
 	}
 	/*void setInput(bool activo,int index)
 	{
@@ -40,6 +45,19 @@ private:
 	int inputsSize = 12;
 	
 	std::vector<bool> inputVec;
+	std::vector<Uint32> inputCooldownVec;
+	void update()
+	{
+		for (int i = 0; i < inputCooldownVec.size; i++)
+		{
+			if (inputCooldownVec[i]>0)
+			{
+				inputCooldownVec[i]--;
+
+			}
+		
+		}
+	}
 	//to control forze abilities
 	//std::vector<int>inputVecHeld;
 	/**/

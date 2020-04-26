@@ -30,6 +30,7 @@ public:
 
 	void resetTimer();
 	void stopTimer();
+	bool isTimerStopped();
 	void resumeTimer();
 
 	virtual ~UITimer() {}
