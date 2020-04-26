@@ -72,7 +72,7 @@ void MkWH00PData::NP1(Entity* ent)
 }
 
 PlayerData::CallbackData MkWH00PData::np1 = PlayerData::CallbackData{
-	{ 100, -250 },
+	{ 100, -150 },
 	{ 100, -250 },
 	150,
 	200,
