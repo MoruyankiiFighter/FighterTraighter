@@ -4,10 +4,13 @@
 class EntityHitboxData:  public HitboxData, public EntityData
 {
 public:
-	EntityHitboxData(Entity* e, int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, bool destroy = false) : 
+	EntityHitboxData(Entity* e, int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, GameState* state, bool destroy = false) : 
 		EntityData(e), 
-		HitboxData(damage, time, hitstun, knockback, guardbreaker, destroy){}
-	//virtual void onHit();
+		HitboxData(damage, time, hitstun, knockback, guardbreaker, id, state, destroy){}
+	virtual void onHit() {
+		HitboxData::onHit();
+		EntityData::onHit();
+	}
 	virtual ~EntityHitboxData() {}
 };
 

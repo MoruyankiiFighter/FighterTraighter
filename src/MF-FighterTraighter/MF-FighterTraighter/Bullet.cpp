@@ -11,7 +11,7 @@ void Bullet::init()
 	transform_->setSpeed(speed_);
 	//	EntityHitboxData(Entity* e, int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, bool destroy = false) : 
 	cout << damage_ << endl;
-	EntityHitboxData* hitbox_ = new EntityHitboxData( entity_, damage_,timeAlive_, hitstun_, knockBack_,false/*,false,destroyInContact_ */,false );//create the hitbox's data
+	EntityHitboxData* hitbox_ = new EntityHitboxData( entity_, damage_,timeAlive_, hitstun_, knockBack_,false/*,false,destroyInContact_ */, playerNumber_, entity_->getApp()->getStateMachine()->getCurrentState());//create the hitbox's data
 	transform_->getMainFixture()->SetUserData(hitbox_);
 	state_->addHitbox(playerNumber_,hitbox_,transform_->getMainFixture());
 

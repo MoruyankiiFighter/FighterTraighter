@@ -65,11 +65,9 @@ void GameState::UpdateHitboxes()
 						OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
 						if (objOnHit != nullptr) {
 							objOnHit->onHit(*it);
-							if (!hB->destroy_) {
-								hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
-								hB->destroy_ = true;
-							}
 						}
+						//UserData* uD = static_cast<UserData*>((*it)->GetUserData());	//esto se puede sacar de lo de antes
+						hB->onHit();
 					}
 				}
 			}
@@ -95,7 +93,7 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	fixturedef.isSensor = true;
 	fixturedef.filter.categoryBits = cBits;
 	fixturedef.filter.maskBits = mBits & (PLAYER_1 | PLAYER_2 | P_BAG); //kk
-
+	//fixturedef.userData
 	//if (PLAYER_1 == cBits >> 2) fixturedef.filter.maskBits = PLAYER_2;
 	//else  fixturedef.filter.maskBits = PLAYER_1;
 	//HitboxData* hitbox = new HitboxData{ damage,time, hitstun, knockBack,guardBreaker };//create the hitbox's data
@@ -103,14 +101,18 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	//hitboxGroups_[cBits >> 2].push_back(body->CreateFixture(&fixturedef));
 	//hitboxGroups_[cBits >> 2].back()->SetUserData(hitbox);//saving hitbox's data
 	////for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
-
+	HitboxData* hData = new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, this);
+	fixturedef.userData = hData;
 	hitboxGroups_[id].push_back(body->CreateFixture(&fixturedef));
-	hitboxGroups_[id].back()->SetUserData(new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker));//saving hitbox's data
+	hData->setIt(--hitboxGroups_[id].end());
+	//hitboxGroups_[id].back()->SetUserData(new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, this));//saving hitbox's data
 }
 
 void GameState::addHitbox( uint16 id, EntityHitboxData* hitbox, b2Fixture* fixture)
 {
+	EntityHitboxData* hData = hitbox;
 	hitboxGroups_[id].push_back(fixture);
+	hData->setIt(--hitboxGroups_[id].end());
 	hitboxGroups_[id].back()->SetUserData(hitbox);//saving hitbox's data
 }
 
@@ -167,6 +169,10 @@ void GameState::resetGroup(int group) {
 			hB->destroy_ = true;
 		}
 	}
+}
+
+void GameState::killHitbox(std::list<b2Fixture*>::iterator it, unsigned int id) {
+	hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, id));
 }
 
 void GameState::render()

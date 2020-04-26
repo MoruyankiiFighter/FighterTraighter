@@ -46,7 +46,7 @@ public:
 		b2Body* body, uint16 id, uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, bool guardBreaker = false);
 	void addHitbox(uint16 id, EntityHitboxData* hitbox, b2Fixture* fixture);
 	void addHurtbox(b2Fixture* fixt) { mainHurtboxes.push_back(fixt); }
-
+	void killHitbox(std::list<b2Fixture*>::iterator it, unsigned int id);
 	void resetGroup(int group);
 	void clearHitboxes();
 	// deletes the entitys of the list
