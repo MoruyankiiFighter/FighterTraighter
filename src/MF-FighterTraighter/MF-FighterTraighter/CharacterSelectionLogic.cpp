@@ -18,5 +18,5 @@ void CharacterSelectionLogic::update()
 void CharacterSelectionLogic::SetElements()
 {
 
-	j2_text_->setText;
+	j2_text_->setText("....");
 }

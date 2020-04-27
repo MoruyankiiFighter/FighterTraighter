@@ -2,7 +2,7 @@
 #include "Fight.h"
 #include "OptionsMenu.h"
 #include "Training.h"
-
+#include "CharacterSelection.h"
 #include "InputManager.h"
 
 #include "Entity.h"
@@ -80,7 +80,8 @@ void MainMenu::handleInput()
 void MainMenu::GoArcade(App* app)
 {
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
-	app->getStateMachine()->pushState(new Fight(app));
+//	app->getStateMachine()->pushState(new Fight(app));
+	app->getStateMachine()->pushState(new CharacterSelection(app));
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 }
 
