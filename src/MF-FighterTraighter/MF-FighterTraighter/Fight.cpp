@@ -7,6 +7,7 @@
 #include "UIHealthbar.h"
 #include "UIRoundRenderer.h"
 #include "AbilityFactory.h"
+#include "RenderAnimation.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -19,7 +20,7 @@ void Fight::init()
 	doStep = true;
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
-	bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight));
+	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
