@@ -18,6 +18,7 @@
 #include "App.h"
 #include "consts.h"
 #include "UIFactory.h"
+#include "RenderAnimation.h"
 
 MainMenu::MainMenu(App* app) : GameState(app)
 {
@@ -34,17 +35,9 @@ MainMenu::~MainMenu()
 void MainMenu::init()
 {
 	GameState::init();
-	/*Entity* bg = entManager_.addEntity();
-	Transform* t = bg->addComponent<Transform>();
-	t->setPosition(0, 0);
-	t->setWidthHeight(800, 600);
-	RenderImage* img = bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(7));*/
-
-	Entity* ent = entManager_.addEntity();
-	Transform* transform = ent->addComponent<Transform>();
-	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
-	transform->setPosition(POS_X_BUTTONS, POS_Y_LOGO);
-	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Logo));
+	Entity* bg = entManager_.addEntity();
+	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
 
 
 	tuple < Entity*, Entity*> arcade = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),

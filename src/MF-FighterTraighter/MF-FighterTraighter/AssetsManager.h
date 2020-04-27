@@ -22,7 +22,9 @@ public:
 		HealthbarSaco,
 		HealthbarBack,
 		RoundCounter,
-		CharacterSelection
+		CharacterSelection,
+		GanonSheet,
+		BackgroundFight
 	};
 
 	enum FontNames {

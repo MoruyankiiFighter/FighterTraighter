@@ -64,9 +64,9 @@ void App::init()
 		throw new SDLExceptions::TTFException(TTF_GetError() + std::string("\nUnable to init TTF"));
 	}
 
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-		throw new SDLExceptions::SDLException("\nUnable to load audio");
-	}
+	//if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+	//	throw new SDLExceptions::SDLException("\nUnable to load audio");
+	//}
 
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {

@@ -2,13 +2,16 @@
 
 MkWH00PData::MkWH00PData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(keys, width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
+	animLength_ = { {4, true, 12}, {4, true, 15}, {2, true, 3}, {1, true, 15}, {1, false, 1}, {12, false, 10}, {7, false, 10}, {9, false, 8},
+	{15, false, 7}, {7, false, 13}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {2, true, 15}, {2, false, 10}, {3, true, 4}, {2, false, 10}, 
+	{2, false, 3}, {4, true, 12}, {2, false, 7}, {2, false, 7}, {2, true, 15} };
 }
 
 void MkWH00PData::init() {
 	std::vector<Move*> vecMov;
 
 	vecMov.push_back(new Move(27, nullptr, NP1, entity_));
-	vecMov.push_back(new Move(90, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(70, nullptr, nullptr, entity_));
 	normal_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -24,11 +27,12 @@ void MkWH00PData::init() {
 	vecMov.clear();
 
 	vecMov.push_back(new Move(35, nullptr, HK1, entity_));
-	vecMov.push_back(new Move(100, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(15, nullptr, HK2, entity_));
+	vecMov.push_back(new Move(60, nullptr, nullptr, entity_));
 	hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(40, nullptr, ANP1, entity_));
+	vecMov.push_back(new Move(32, nullptr, ANP1, entity_));
 	vecMov.push_back(new Move(25, nullptr, ANP2, entity_));
 	vecMov.push_back(new Move(35, nullptr, nullptr, entity_));
 	air_normal_punch_ = new AnimationChain(vecMov);
@@ -50,7 +54,7 @@ void MkWH00PData::init() {
 	air_hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(72, nullptr, GB, entity_));
+	vecMov.push_back(new Move(30, nullptr, GB, entity_));
 	vecMov.push_back(new Move(50, nullptr, nullptr, entity_));
 	guard_breaker_ = new AnimationChain(vecMov);
 	vecMov.clear();
@@ -69,7 +73,7 @@ void MkWH00PData::NP1(Entity* ent)
 }
 
 PlayerData::CallbackData MkWH00PData::np1 = PlayerData::CallbackData{
-	{ 100, -250 },
+	{ 100, -150 },
 	{ 100, -250 },
 	150,
 	200,
@@ -91,9 +95,9 @@ void MkWH00PData::HP1(Entity* ent)
 }
 
 PlayerData::CallbackData MkWH00PData::hp1 = PlayerData::CallbackData{
-	{ 175, -85 },
+	{ 115, -85 },
 	{ 40, 1250 },
-	175,
+	125,
 	150,
 	17,
 	15,
@@ -113,10 +117,10 @@ void MkWH00PData::NK1(Entity* ent)
 }
 
 PlayerData::CallbackData MkWH00PData::nk1 = PlayerData::CallbackData{
-	{ 105, 125 },
+	{ 105, 90 },
 	{ 25, -25 },
-	125,
-	13,
+	95,
+	130,
 	20,
 	9,
 	42};
@@ -135,9 +139,9 @@ void MkWH00PData::NK2(Entity* ent)
 }
 
 PlayerData::CallbackData MkWH00PData::nk2 = PlayerData::CallbackData{
-	{ 135, 100 },
+	{ 133, 100 },
 	{ 500, -150 },
-	140,
+	110,
 	125,
 	17,
 	6,
@@ -146,34 +150,45 @@ PlayerData::CallbackData MkWH00PData::nk2 = PlayerData::CallbackData{
 void MkWH00PData::HK1(Entity* ent)
 {
 	std::cout << "Falcon stomp" << endl;
-	double hitbox_X1 = hk1_1.position.getX();
-	double hitbox_X2 = hk1_2.position.getX();
+	double hitbox_X1 = hk1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1) {
-		hitbox_X1 += hk1_1.width;
-		hitbox_X2 += hk1_2.width;
+		hitbox_X1 += hk1.width;
 	}
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X1, hk1_1.position.getY() }, hk1_1.width, hk1_1.height, hk1_1.time, pD->getAttack() * hk1_1.damage, hk1_1.hitstun, { (double)orientation_ * hk1_1.knockBack.getX(), hk1_1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X2, hk1_2.position.getY() }, hk1_2.width, hk1_2.height, hk1_2.time, pD->getAttack() * hk1_2.damage, hk1_2.hitstun, { (double)orientation_ * hk1_2.knockBack.getX(), hk1_2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		{ (double)orientation_ * hitbox_X1, hk1.position.getY() }, hk1.width, hk1.height, hk1.time, pD->getAttack() * hk1.damage, hk1.hitstun, { (double)orientation_ * hk1.knockBack.getX(), hk1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
-PlayerData::CallbackData MkWH00PData::hk1_1 = PlayerData::CallbackData{
-	{ 130, 105 },
+PlayerData::CallbackData MkWH00PData::hk1 = PlayerData::CallbackData{
+	{ 115, 95 },
 	{ 50, 500 },
-	120,
-	150,
+	110,
+	170,
 	17,
 	17,
 	50 };
-PlayerData::CallbackData MkWH00PData::hk1_2 = PlayerData::CallbackData{
-	{ 100, 220 },
-	{ 500, -150 },
-	600,
-	50,
+
+void MkWH00PData::HK2(Entity* ent)
+{
+	std::cout << "Shockwave" << endl;
+	double hitbox_X2 = hk2.position.getX();
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	int orientation_ = pT->getOrientation();
+	if (orientation_ == -1) {
+		hitbox_X2 += hk2.width;
+	}
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X2, hk2.position.getY() }, hk2.width, hk2.height, hk2.time, pD->getAttack() * hk2.damage, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
+}
+
+PlayerData::CallbackData MkWH00PData::hk2 = PlayerData::CallbackData{
+	{ 100, 175 },
+	{ 750, -150 },
+	200,
+	100,
 	20,
 	5,
 	40 };
@@ -191,10 +206,10 @@ void MkWH00PData::ANP1(Entity* ent)
 		{ (double)orientation_ * hitbox_X, anp1.position.getY() }, anp1.width, anp1.height, anp1.time, pD->getAttack() * anp1.damage, anp1.hitstun, { (double)orientation_ * anp1.knockBack.getX(), anp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::anp1 = PlayerData::CallbackData{
-	{ -165, -65 },
+	{ -200, -50 },
 	{ 10, -10 },
-	350,
-	120,
+	420,
+	130,
 	35,
 	5,
 	16 };
@@ -212,10 +227,10 @@ void MkWH00PData::ANP2(Entity* ent)
 		{ (double)orientation_ * hitbox_X, anp2.position.getY() }, anp2.width, anp2.height, anp2.time, pD->getAttack() * anp2.damage, anp2.hitstun, { (double)orientation_ * anp2.knockBack.getX(), anp2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::anp2 = PlayerData::CallbackData{
-	{ -165, -45 },
+	{ -200, -40 },
 	{ 750, -500},
-	350,
-	120,
+	420,
+	130,
 	35,
 	8,
 	30 };
@@ -317,9 +332,9 @@ void MkWH00PData::GB(Entity* ent)
 }
 PlayerData::CallbackData MkWH00PData::gb = PlayerData::CallbackData{
 	{ 50, -75 },
-	{ 200, -50 },
+	{ 20, -50 },
 	250,
 	200,
-	50,
+	15,
 	0,
-	2000};
+	75};

@@ -7,6 +7,12 @@
 //Podemos tener todos los datos en un .json o un .txt
 //Tener un método para parsear y rellenar el attackData
 
+struct AnimationData {
+	int sheetLength_;
+	bool loops_;
+	int increaseVelocity_;
+};
+
 class PlayerData : public Component {
 
 	//hacer luego getters y setters
@@ -153,6 +159,17 @@ public:
 	virtual void setAbility2(Ability* ability_2) {
 		ability_2_ = ability_2;
 	}
+
+	virtual int getAnimLength(int index) {
+		return animLength_[index].sheetLength_;
+	}
+	virtual bool getAnimLoops(int index) {
+		return animLength_[index].loops_;
+	}
+	virtual int getAnimVelocity(int index) {
+		return animLength_[index].increaseVelocity_;
+	}
+
 	virtual int getPlayerNumber() {
 		return playerNumber_;
 	}
@@ -171,7 +188,7 @@ protected:
 	};
 	//Control Keys
 	SDL_Scancode leftKey_, righKey_, jumpKey_, crouchKey_, guardKey_,
-				 normalPunchKey_, hardPunchKey_, normalKickKey_, hardKickKey_, ability1Key_, ability2Key_;
+				 normalPunchKey_, hardPunchKey_, normalKickKey_, hardKickKey_, guardBreakerKey_,ability1Key_, ability2Key_;
 	//Player Features
 	double* width_,
 			*height_,
@@ -212,6 +229,9 @@ protected:
 	PhysicsTransform* pT;
 	b2Filter mask;
 
+	//Animation data
+	std::vector<AnimationData> animLength_;
+	
 	// Either player 1 or 2 (0 or 1)
 	int playerNumber_;
 };

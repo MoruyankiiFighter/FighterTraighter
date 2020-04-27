@@ -76,7 +76,7 @@ void PlayerController::handleInput()
 		else { currState->goJumping(); };
 	}
 
-	//Si eésa tecla no está activa
+	//Si eï¿½sa tecla no estï¿½ activa
 	if(!inputSt_->getInput(0) && !inputSt_->getInput(1) && !inputSt_->getInput(2)){
 		if (currState->isMoving() || currState->isJumping()) 
 		{

@@ -23,8 +23,9 @@ private:
 	static CallbackData nk2;
 
 	static void HK1(Entity* ent);
-	static CallbackData hk1_1;
-	static CallbackData hk1_2;
+	static void HK2(Entity* ent);
+	static CallbackData hk1;
+	static CallbackData hk2;
 
 	static void ANP1(Entity* ent);
 	static CallbackData anp1;

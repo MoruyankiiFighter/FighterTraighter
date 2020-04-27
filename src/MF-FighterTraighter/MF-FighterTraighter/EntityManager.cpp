@@ -18,6 +18,7 @@ void EntityManager::removeEntity(Entity* e)
 {
 	list_.remove(e);
 	delete e;
+	e = nullptr;
 }
 
 std::list<Entity*>& EntityManager::getScene()
@@ -27,7 +28,10 @@ std::list<Entity*>& EntityManager::getScene()
 
 void EntityManager::empty() {
 	for (auto it = list_.begin(); it != list_.end(); ++it) {
-		delete* it;
+		if (*it != nullptr) {
+			delete* it;
+			*it = nullptr;
+		}
 	}
 	list_.clear();
 }
