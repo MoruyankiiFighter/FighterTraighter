@@ -181,6 +181,7 @@
     <ClCompile Include="UserData.cpp" />
     <ClCompile Include="EntityData.cpp" />
     <ClCompile Include="EntityHitboxData.cpp" />
+    <ClCompile Include="Bullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
