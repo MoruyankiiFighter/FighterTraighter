@@ -3,7 +3,7 @@
 MkWH00PData::MkWH00PData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(keys, width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
 	animLength_ = { {4, true, 12}, {4, true, 15}, {2, true, 3}, {1, true, 15}, {1, false, 1}, {12, false, 10}, {7, false, 10}, {9, false, 8},
-	{15, false, 7}, {6, true, 15}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {2, true, 15}, {2, false, 10}, {3, true, 4}, {2, false, 10}, 
+	{15, false, 7}, {6, false, 10}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {2, true, 15}, {2, false, 10}, {3, true, 4}, {2, false, 10}, 
 	{2, false, 3}, {4, true, 12}, {2, false, 7}, {2, false, 7}, {2, true, 15} };
 }
 
@@ -11,7 +11,7 @@ void MkWH00PData::init() {
 	std::vector<Move*> vecMov;
 
 	vecMov.push_back(new Move(27, nullptr, NP1, entity_));
-	vecMov.push_back(new Move(90, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(70, nullptr, nullptr, entity_));
 	normal_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
