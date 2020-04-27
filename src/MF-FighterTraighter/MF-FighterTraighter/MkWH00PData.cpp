@@ -3,7 +3,7 @@
 MkWH00PData::MkWH00PData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(keys, width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
 	animLength_ = { {4, true, 12}, {4, true, 15}, {2, true, 3}, {1, true, 15}, {1, false, 1}, {12, false, 10}, {7, false, 10}, {9, false, 8},
-	{15, false, 7}, {6, false, 10}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {2, true, 15}, {2, false, 10}, {3, true, 4}, {2, false, 10}, 
+	{15, false, 7}, {7, false, 13}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {2, true, 15}, {2, false, 10}, {3, true, 4}, {2, false, 10}, 
 	{2, false, 3}, {4, true, 12}, {2, false, 7}, {2, false, 7}, {2, true, 15} };
 }
 
@@ -32,7 +32,7 @@ void MkWH00PData::init() {
 	hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(40, nullptr, ANP1, entity_));
+	vecMov.push_back(new Move(32, nullptr, ANP1, entity_));
 	vecMov.push_back(new Move(25, nullptr, ANP2, entity_));
 	vecMov.push_back(new Move(35, nullptr, nullptr, entity_));
 	air_normal_punch_ = new AnimationChain(vecMov);
@@ -206,10 +206,10 @@ void MkWH00PData::ANP1(Entity* ent)
 		{ (double)orientation_ * hitbox_X, anp1.position.getY() }, anp1.width, anp1.height, anp1.time, pD->getAttack() * anp1.damage, anp1.hitstun, { (double)orientation_ * anp1.knockBack.getX(), anp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::anp1 = PlayerData::CallbackData{
-	{ -165, -65 },
+	{ -200, -50 },
 	{ 10, -10 },
-	350,
-	120,
+	420,
+	130,
 	35,
 	5,
 	16 };
@@ -227,10 +227,10 @@ void MkWH00PData::ANP2(Entity* ent)
 		{ (double)orientation_ * hitbox_X, anp2.position.getY() }, anp2.width, anp2.height, anp2.time, pD->getAttack() * anp2.damage, anp2.hitstun, { (double)orientation_ * anp2.knockBack.getX(), anp2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::anp2 = PlayerData::CallbackData{
-	{ -165, -45 },
+	{ -200, -40 },
 	{ 750, -500},
-	350,
-	120,
+	420,
+	130,
 	35,
 	8,
 	30 };
