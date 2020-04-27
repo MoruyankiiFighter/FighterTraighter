@@ -188,6 +188,10 @@
     <ClCompile Include="MockingbirdData.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="UserData.cpp" />
+    <ClCompile Include="EntityData.cpp" />
+    <ClCompile Include="EntityHitboxData.cpp" />
+    <ClCompile Include="Bullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -412,6 +416,10 @@
     <ClInclude Include="MockingbirdData.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="UserData.h" />
+    <ClInclude Include="EntityData.h" />
+    <ClInclude Include="EntityHitboxData.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

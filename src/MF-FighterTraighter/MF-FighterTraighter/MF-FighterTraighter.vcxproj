@@ -121,6 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\SDL2_mixer-2.0.4\include;..\SDL2_ttf-2.0.15\include;..\SDL2_image-2.0.5\include;..\SDL2-2.0.10\include;..\Box2D\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +135,9 @@
     <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="EntityData.cpp" />
+    <ClCompile Include="EntityHitboxData.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadInput.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
@@ -176,6 +180,7 @@
     <ClCompile Include="UIRoundRenderer.cpp" />
     <ClCompile Include="UITimer.cpp" />
     <ClCompile Include="UITransform.cpp" />
+    <ClCompile Include="UserData.cpp" />
     <ClCompile Include="WindowManager.cpp" />
     <ClCompile Include="SacoTimer.cpp" />
     <ClCompile Include="SDLDebugDraw.cpp" />
@@ -197,6 +202,9 @@
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="EntityData.h" />
+    <ClInclude Include="EntityHitboxData.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FloorOnHit.h" />
@@ -248,6 +256,7 @@
     <ClInclude Include="UITimer.h" />
     <ClInclude Include="UITransform.h" />
     <ClInclude Include="ResetJumpListener.h" />
+    <ClInclude Include="UserData.h" />
     <ClInclude Include="WindowManager.h" />
     <ClInclude Include="SacoTimer.h" />
     <ClInclude Include="SDLDebugDraw.h" />

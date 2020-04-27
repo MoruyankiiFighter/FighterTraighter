@@ -34,6 +34,7 @@ namespace ecs {
 		KeyboardInput,
 		GamepadInput,
 		RenderAnimation,
+		Bullet,
 		/*
 		
 		*/
