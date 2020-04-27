@@ -3,7 +3,7 @@
 MkWH00PData::MkWH00PData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(keys, width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
 	animLength_ = { {4, true, 12}, {4, true, 15}, {2, true, 3}, {1, true, 15}, {1, false, 1}, {12, false, 10}, {7, false, 10}, {9, false, 8},
-	{15, true, 15}, {6, true, 15}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {2, true, 15}, {2, false, 10}, {3, true, 4}, {2, false, 10}, 
+	{15, false, 7}, {6, true, 15}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {2, true, 15}, {2, false, 10}, {3, true, 4}, {2, false, 10}, 
 	{2, false, 3}, {4, true, 12}, {2, false, 7}, {2, false, 7}, {2, true, 15} };
 }
 
@@ -27,7 +27,8 @@ void MkWH00PData::init() {
 	vecMov.clear();
 
 	vecMov.push_back(new Move(35, nullptr, HK1, entity_));
-	vecMov.push_back(new Move(100, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(15, nullptr, HK2, entity_));
+	vecMov.push_back(new Move(60, nullptr, nullptr, entity_));
 	hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -149,34 +150,45 @@ PlayerData::CallbackData MkWH00PData::nk2 = PlayerData::CallbackData{
 void MkWH00PData::HK1(Entity* ent)
 {
 	std::cout << "Falcon stomp" << endl;
-	double hitbox_X1 = hk1_1.position.getX();
-	double hitbox_X2 = hk1_2.position.getX();
+	double hitbox_X1 = hk1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1) {
-		hitbox_X1 += hk1_1.width;
-		hitbox_X2 += hk1_2.width;
+		hitbox_X1 += hk1.width;
 	}
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X1, hk1_1.position.getY() }, hk1_1.width, hk1_1.height, hk1_1.time, pD->getAttack() * hk1_1.damage, hk1_1.hitstun, { (double)orientation_ * hk1_1.knockBack.getX(), hk1_1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X2, hk1_2.position.getY() }, hk1_2.width, hk1_2.height, hk1_2.time, pD->getAttack() * hk1_2.damage, hk1_2.hitstun, { (double)orientation_ * hk1_2.knockBack.getX(), hk1_2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
+		{ (double)orientation_ * hitbox_X1, hk1.position.getY() }, hk1.width, hk1.height, hk1.time, pD->getAttack() * hk1.damage, hk1.hitstun, { (double)orientation_ * hk1.knockBack.getX(), hk1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 
-PlayerData::CallbackData MkWH00PData::hk1_1 = PlayerData::CallbackData{
-	{ 130, 105 },
+PlayerData::CallbackData MkWH00PData::hk1 = PlayerData::CallbackData{
+	{ 115, 95 },
 	{ 50, 500 },
-	120,
-	150,
+	110,
+	170,
 	17,
 	17,
 	50 };
-PlayerData::CallbackData MkWH00PData::hk1_2 = PlayerData::CallbackData{
-	{ 100, 220 },
-	{ 500, -150 },
-	600,
-	50,
+
+void MkWH00PData::HK2(Entity* ent)
+{
+	std::cout << "Shockwave" << endl;
+	double hitbox_X2 = hk2.position.getX();
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	int orientation_ = pT->getOrientation();
+	if (orientation_ == -1) {
+		hitbox_X2 += hk2.width;
+	}
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X2, hk2.position.getY() }, hk2.width, hk2.height, hk2.time, pD->getAttack() * hk2.damage, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
+}
+
+PlayerData::CallbackData MkWH00PData::hk2 = PlayerData::CallbackData{
+	{ 100, 175 },
+	{ 750, -150 },
+	200,
+	100,
 	20,
 	5,
 	40 };
