@@ -248,10 +248,10 @@ void MkWH00PData::AHP1(Entity* ent)
 		{ (double)orientation_ * hitbox_X, ahp1.position.getY() }, ahp1.width, ahp1.height, ahp1.time, pD->getAttack() * ahp1.damage, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::ahp1 = PlayerData::CallbackData{
-	{ 115, -65 },
+	{ 110, 50 },
 	{ 250, 1000 },
-	125,
-	300,
+	130,
+	200,
 	25,
 	22,
 	65 };
