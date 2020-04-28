@@ -30,6 +30,8 @@ public:
 		Pollo,
 		Mina,
 		Hielo,
+		Buff,
+		Toxic,
 	};
 
 	enum FontNames {

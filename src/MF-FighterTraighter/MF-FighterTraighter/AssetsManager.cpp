@@ -39,8 +39,9 @@ void AssetsManager::loadTextures()
 	textures_.emplace(Pollo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/habilidades/pollo.png", 1, 1));
 	textures_.emplace(Mina, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/habilidades/mina.png", 1, 1));
 	textures_.emplace(Hielo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/habilidades/hielo.png", 1, 1));
+	textures_.emplace(Toxic, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/habilidades/poison syrup.png", 1, 1));
+	textures_.emplace(Buff, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/habilidades/doping.png", 1, 1));
 
-	
 	// textures_.emplace("key", new Texture(app_->getRenderer(), "Filepath", cols, fils));
 }
 

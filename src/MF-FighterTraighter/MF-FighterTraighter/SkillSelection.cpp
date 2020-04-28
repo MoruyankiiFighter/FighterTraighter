@@ -17,8 +17,8 @@ void SkillSelection::init()
 
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::SubMenuFondo),
 		Vector2D((ancho/2) + 50, 50),Vector2D(ancho/2,0),Vector2D((ancho / 2),0), (ancho /2)-100, (alto)-100, 0);
-	createInventoryMenu();
-	//createFirstMenu();
+	//createInventoryMenu();
+	createFirstMenu();
 
 	}
 
@@ -66,31 +66,31 @@ void SkillSelection::createFirstMenu()
 		tuple<Entity*, Entity*> hop_win =UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mina), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D((ancho / 12) * 1, (alto / 12) * 1.7), Vector2D((ancho / 12) * 1, (alto / 12) * 1.7), Vector2D((ancho / 12) * 1, (alto / 12) * 1.7),
 			(ancho / 12), (ancho / 12), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-		tuple<Entity*, Entity*> hop_win2 =UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Hielo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hop_win2 =UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Toxic), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D((ancho / 12) * 4, (alto / 12) * 1.7), Vector2D((ancho / 12) * 4, (alto / 12) * 1.7), Vector2D((ancho / 12) * 4, (alto / 12) * 1.7),
 			(ancho / 12), (ancho / 12), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 
 		// Opcionales perdedor
 
-		tuple<Entity*, Entity*> hop_lose =UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hop_lose =UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Buff), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D((ancho / 12) * 8.5, (alto / 12)*1.7), Vector2D((ancho / 12) * 8.5, (alto / 12)*1.7), Vector2D((ancho / 12) * 8.5, (alto / 12)*1.7),
 			(ancho / 12), (ancho / 12), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 	//winner
-	Entity* nav_win = entManager_.addEntity();
+	/*Entity* nav_win = entManager_.addEntity();
 	NavigationController* ctrl = nav_win->addComponent<NavigationController>(2, 3);
 	ctrl->SetElementInPos(std::get<0>(hop_win)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-	ctrl->SetElementInPos(std::get<0>(hop_win2)->getComponent<UIElement>(ecs::UIElement), 0, 1);
-	ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 1, 0);
+	ctrl->SetElementInPos(std::get<0>(hop_win2)->getComponent<UIElement>(ecs::UIElement), 1, 0);
+	ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 1, 1);
-	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 2, 0);
-	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 2, 1);
+	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 2);
+	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 1, 2);*/
 	
 	//loser
 	Entity* nav_loser = entManager_.addEntity();
 	NavigationController* ctrl_ = nav_loser->addComponent<NavigationController>(1, 3);
-	ctrl->SetElementInPos(std::get<0>(hop_lose)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-	ctrl->SetElementInPos(std::get<0>(hf_lose)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-	ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 2, 0);
+	ctrl_->SetElementInPos(std::get<0>(hop_lose)->getComponent<UIElement>(ecs::UIElement), 0, 0);
+	ctrl_->SetElementInPos(std::get<0>(hf_lose)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 
 	
 	}
@@ -102,7 +102,7 @@ void SkillSelection::createFirstMenu()
 			(ancho / 12), (ancho / 12), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 
 		// Fija perdedor
-		tuple<Entity*, Entity*> hf_lose= UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Hielo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hf_lose= UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Toxic), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D((ancho / 12) * 2.5, (alto / 6) * 2), Vector2D((ancho / 12) * 2.5, (alto / 6) * 2), Vector2D((ancho / 12) * 2.5, (alto / 6) * 2),
 			(ancho / 12), (ancho / 12), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 
@@ -117,26 +117,26 @@ void SkillSelection::createFirstMenu()
 
 		// Opcionales perdedor
 
-		tuple<Entity*, Entity*> hop_lose= UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hop_lose= UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Buff), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D((ancho / 12) * 2.5, (alto / 12) * 1.7), Vector2D((ancho / 12) * 2.5, (alto / 12) * 1.7), Vector2D((ancho / 12) * 2.5, (alto / 12) * 1.7),
 			(ancho / 12), (ancho / 12), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 
 		//winner
-		Entity* nav_win = entManager_.addEntity();
+		/*Entity* nav_win = entManager_.addEntity();
 		NavigationController* ctrl = nav_win->addComponent<NavigationController>(2, 3);
 		ctrl->SetElementInPos(std::get<0>(hop_win)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-		ctrl->SetElementInPos(std::get<0>(hop_win2)->getComponent<UIElement>(ecs::UIElement), 0, 1);
-		ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 1, 0);
+		ctrl->SetElementInPos(std::get<0>(hop_win2)->getComponent<UIElement>(ecs::UIElement), 1, 0);
+		ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 		ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 1, 1);
-		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 2, 0);
-		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 2, 1);
+		ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 0, 2);
+		ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 1, 2);*/
 
 		//loser
 		Entity* nav_loser = entManager_.addEntity();
 		NavigationController* ctrl_ = nav_loser->addComponent<NavigationController>(1, 3);
-		ctrl->SetElementInPos(std::get<0>(hop_lose)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-		ctrl->SetElementInPos(std::get<0>(hf_lose)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-		ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 2, 0);
+		ctrl_->SetElementInPos(std::get<0>(hop_lose)->getComponent<UIElement>(ecs::UIElement), 0, 0);
+		ctrl_->SetElementInPos(std::get<0>(hf_lose)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+		ctrl_->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 
 	}
 
