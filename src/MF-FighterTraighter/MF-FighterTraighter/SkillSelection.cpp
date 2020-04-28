@@ -184,7 +184,7 @@ void SkillSelection::createInventoryMenu()
 			//app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "descripcion", letra/2, (ancho / 25) * 5, (alto / 14) * 2);
 		Entity* habDefinitionText_ = entManager_.addEntity();
 		habDefinitionText_->addComponent<UITransform>(Vector2D((ancho / 25) * 1.5, (alto / 14) * 8), Vector2D((ancho / 25) * 1.5, (alto / 14) * 8), Vector2D((ancho / 25) * 1.5, (alto / 14) * 8), Vector2D((ancho/25)*8,(alto / 14) *2));
-		habDefinitionText_->addComponent<TextComponent>("Esto es una descripcion de la habilidad selecci", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), letra/3, TextComponent::TextAlignment::Left);
+		habDefinitionText_->addComponent<TextComponent>(texto1, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), letra/3, TextComponent::TextAlignment::Left);
 
 
 
@@ -211,7 +211,7 @@ void SkillSelection::createInventoryMenu()
 		//description
 		Entity* habDefinitionText2_ = entManager_.addEntity();
 		habDefinitionText2_->addComponent<UITransform>(Vector2D((ancho / 25) * 14, (alto / 14) * 8), Vector2D((ancho / 25) * 14, (alto / 14) * 8), Vector2D((ancho / 25) * 14, (alto / 14) * 8), Vector2D((ancho / 25) * 8, (alto / 14) * 2));
-		habDefinitionText2_->addComponent<TextComponent>("Esto es una descripcion de la habilidad selec2", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), letra / 3, TextComponent::TextAlignment::Left);
+		habDefinitionText2_->addComponent<TextComponent>(texto1, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), letra / 3, TextComponent::TextAlignment::Left);
 
 }
 
