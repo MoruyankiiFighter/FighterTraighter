@@ -25,22 +25,22 @@ void App::run()
 	exit = false;
 
 	while (!exit) {
-		
+
 		Uint32 startTime = SDL_GetTicks();
-		
+
 		handleInput();
 		update();
 		render();
+		stateMachine_->deleteStates();
 
 		Uint32 frameTime = SDL_GetTicks() - startTime;
-		if (frameTime < 10) 
-			SDL_Delay(10 - frameTime);
+		if (frameTime < 1000 / frameRate_)
+			SDL_Delay(1000 / frameRate_ - frameTime);
 	}
 }
 
-void App::handleInput() 
+void App::handleInput()
 {
-
 	inputManager_->update();
 
 	stateMachine_->getCurrentState()->handleInput();
@@ -57,7 +57,7 @@ void App::render()
 }
 
 //creates the window and the renderer, and opens ttf also set up the state machine and the input manager
-void App::init()	
+void App::init()
 {
 	int ttf = TTF_Init();
 	if (ttf == -1) {
@@ -67,17 +67,16 @@ void App::init()
 	/*if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048)<0) {
 		throw new SDLExceptions::SDLException("\nUnable to load audio");
 	}*/
+	//if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+	//	throw new SDLExceptions::SDLException("\nUnable to load audio");
+	//}
 
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
 		throw new SDLExceptions::SDLException(SDL_GetError() + std::string("\nUnable to init SDL"));
 	}
-	
-	
 	windowManager_.reset(new WindowManager(this));
 
-
-	
 	renderer = SDL_CreateRenderer(windowManager_->getWindow(), -1, SDL_RENDERER_ACCELERATED);
 	SDL_RenderSetLogicalSize(renderer, windowManager_->getCurResolution().w, windowManager_->getCurResolution().h); //para que se redimensionen a su proporcion
 	if (!renderer) {
@@ -87,9 +86,8 @@ void App::init()
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
-	hitboxManager_.reset(new HitboxMng(this));
+	gameManager_.reset(new GameManager(this));
 
-	stateMachine_->pushState(new MainMenu(this));
 }
 
 void App::clean()
@@ -99,57 +97,11 @@ void App::clean()
 	inputManager_.reset();
 	// If we try to close fonts after TTF_Quit(), an error will occur
 	assetsManager_.reset();
+	windowManager_.reset();
+	gameManager_.reset();
 
 	// Delete SDL's attributes
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 	TTF_Quit();
-}
-
-
-//init the main menu
-void App::Menu() {
-	GameState* currState = stateMachine_->getCurrentState();
-	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
-		stateMachine_->popState();
-		currState = stateMachine_->getCurrentState();
-	}
-}
-
-//set up arcade state
-void App::PlayArcade() {
-	getStateMachine()->pushState(new Training(this));
-}
-
-//set up the options state
-void App::Options() {
-	getStateMachine()->pushState(new OptionsMenu(this));
-}
-
-
-//set up pvp state
-void App::PlayOnevsOne() {
-	//getStateMachine()->pushState(new PlayOneVsOne());
-}
-
-//quit pause state to previous state
-void App::ContinuePlaying() {
-	getStateMachine()->popState();
-}
-
-//pause the game
-void App::Pause() {
-	getStateMachine()->pushState(new PauseMenu(this));
-}
-
-
-void App::Movements() {
-	std::cout << "Movements" << endl;
-	//getStateMachine()->pushState(new Movements());
-}
-
-void App::SelectSkills()
-{
-	getStateMachine()->pushState(new SkillSelection(this));
-
 }

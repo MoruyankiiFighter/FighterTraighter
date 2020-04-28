@@ -4,7 +4,6 @@
 #include "Texture.h"
 #include "Entity.h"
 
-
 using namespace std;
 using callBackOnEnd = void(Entity*);
 
@@ -41,5 +40,4 @@ private:
 	Texture* animaSheet_;
 	callBackOnEnd* generateHitbox_; //crea hitboxes con daño, posición, escala, empuje y frames de vida
 	Entity* entity_;
-	HitboxData* hitbox_ = nullptr;
 };
