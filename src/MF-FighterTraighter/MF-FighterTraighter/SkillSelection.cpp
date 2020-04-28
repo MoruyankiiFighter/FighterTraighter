@@ -128,15 +128,15 @@ void SkillSelection::createFirstMenu()
 		ctrl->SetElementInPos(std::get<0>(hop_win2)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 		ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 1, 0);
 		ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 1, 1);
-		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 2, 0);
-		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 2, 1);
+		ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 2, 0);
+		ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 2, 1);
 
 		//loser
 		Entity* nav_loser = entManager_.addEntity();
 		NavigationController* ctrl_ = nav_loser->addComponent<NavigationController>(1, 3);
 		ctrl->SetElementInPos(std::get<0>(hop_lose)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 		ctrl->SetElementInPos(std::get<0>(hf_lose)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-		ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 2, 0);
+		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 2, 0);
 
 	}
 
