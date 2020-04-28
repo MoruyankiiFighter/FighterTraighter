@@ -464,5 +464,8 @@
     <Filter Include="Source Files\Types">
       <UniqueIdentifier>{41e6a81d-749c-4cd6-946f-63ac0b631e5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\OnHits">
+      <UniqueIdentifier>{37fcfd60-7960-4747-8836-d6a19a15eb57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

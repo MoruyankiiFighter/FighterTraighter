@@ -49,7 +49,7 @@ void GameState::UpdateHitboxes()
 	for (unsigned int i = 0; i < 2; i++) {
 		for (auto it = hitboxGroups_[i].begin(); it != hitboxGroups_[i].end(); ++it) {
 			HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
-			if (hB->time_-- <= 0) {//time habra que modificar a frames			checks if the hitbox "dies"
+			if (hB->time_-- <= 0) {//checks if the hitbox "dies"
 				if (!hB->destroy_) {
 					hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
 					hB->destroy_ = true;
@@ -58,16 +58,14 @@ void GameState::UpdateHitboxes()
 			else {	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
 				
 				for (b2Fixture* mainHB : mainHurtboxes) {
+					//checks overlaps considering masks
 					if ((mainHB->GetFilterData().maskBits & (*it)->GetFilterData().categoryBits) != 0
 						&& (mainHB->GetFilterData().categoryBits & (*it)->GetFilterData().maskBits) != 0
 						&& b2TestOverlap((*it)->GetAABB(0), mainHB->GetAABB(0))) {
-						//gets the OnHitComponent if the mainObject has it, if it doesnt, it does nothing
-						OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
-						if (objOnHit != nullptr) {
-							objOnHit->onHit(*it);
-						}
-						//UserData* uD = static_cast<UserData*>((*it)->GetUserData());	//esto se puede sacar de lo de antes
-						hB->onHit();
+						//does both objects onHits if they hit each other
+						UserData* objOnHit = static_cast<UserData*>(mainHB->GetUserData());
+						objOnHit->onHit(*it);
+						hB->onHit(mainHB);
 					}
 				}
 			}

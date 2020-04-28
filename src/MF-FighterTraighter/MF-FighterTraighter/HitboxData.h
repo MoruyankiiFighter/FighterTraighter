@@ -10,7 +10,7 @@ public:
 	HitboxData(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, GameState* state, bool destroy = false) :
 		damage_(damage), time_(time), hitstun_(hitstun), knockBack_(knockback), guardBreaker_(guardbreaker), id_(id), destroy_(destroy), state_(state){}
 	virtual ~HitboxData() {}
-	virtual void onHit() {
+	virtual void onHit(b2Fixture* other) {
 		if (!destroy_) {
 			state_->killHitbox(it_, id_);
 			destroy_ = true;
@@ -28,7 +28,5 @@ public:
 	Vector2D knockBack_; //Assuming looking to the right
 	bool guardBreaker_ = false;
 	bool destroy_ = false;//if its true it means that it has to be destroyed
-	/*destroyOnHit = false,//if its true dont destroy de entity on Hit, destroy it later (its for proyectiles)
-	 destroyEntity = false;//if its true destroy de entity (its for abilities)*/
 };
 

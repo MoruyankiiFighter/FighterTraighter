@@ -19,6 +19,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, std:
 {
 	Entity* e = state->getEntityManager().addEntity();
 	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 600), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
+	pT->getMainFixture()->SetUserData(new PlayerOnHit(e));
 	pT->setOrientation(orientation);
 	pT->setColliderWidth(pT->getWidth() / 2);
 	state->addHurtbox(pT->getMainFixture());
@@ -35,7 +36,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, std:
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::GanonSheet));
 	e->addComponent<PlayerState>();
 	Health* h = e->addComponent<Health>(110);
-	e->addComponent<PlayerOnHit>();
+	//e->addComponent<PlayerOnHit>();
 	PlayerData* pdata = e->addComponent<MkWH00PData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 50, playerNumber);
 
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
@@ -66,7 +67,7 @@ Entity* FactoryMk::addMockToGame(App* app, GameState* state, int orientation, st
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::GanonSheet)); // CHANGE ME
 	e->addComponent<PlayerState>();
 	Health* h = e->addComponent<Health>(100);
-	e->addComponent<PlayerOnHit>();
+	//e->addComponent<PlayerOnHit>();
 	PlayerData* p_data_ = e->addComponent<MockingbirdData>(keys, pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 50, playerNumber);
 
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");

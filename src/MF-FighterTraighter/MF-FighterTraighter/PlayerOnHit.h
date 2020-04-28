@@ -1,10 +1,10 @@
 #pragma once
-#include "OnHit.h"
-class PlayerOnHit : public OnHit
+#include "EntityData.h"
+class PlayerOnHit : public EntityData
 {
 public:
-	PlayerOnHit() : OnHit() {}
-	~PlayerOnHit() {}
+	PlayerOnHit(Entity* e) : EntityData(e) {}
+	virtual ~PlayerOnHit() {}
 	virtual void onHit(b2Fixture* fixture) override;
 };
 
