@@ -9,25 +9,20 @@ enum Status {
 	JumpingTransition,
 	Jumping,
 	Crouching,
-	AttackingNP,
-	AttackingHP,
-	AttackingNK,
-	AttackingHK,
-	AttackingANP,
-	AttackingAHP,
-	AttackingANK,
-	AttackingAHK,
+	Attacking,
+	AttackingAir,
+	AttackingCrouch,
 	Hit,
 	HitAirborne,
 	Landing,
 	HitLading,
 	//KnockedTheFuckDown,
+	Stunned,
 	GuardingTransition,
 	Guarding,
 	GuardingStun,
 	GuardingLeaving,
 	Guardbreaking,
-	Stunned,
 	Dead,
 };
 
@@ -38,14 +33,8 @@ public:
 	~PlayerState() {};
 
 	//POSITION CHECK
-	bool isGrounded() {
-		return playerStatus_ != Jumping && playerStatus_ != AttackingANP && playerStatus_ != AttackingANK && playerStatus_ != AttackingAHP
-			&& playerStatus_ != AttackingAHK && playerStatus_ != HitAirborne && playerStatus_ != JumpingTransition;
-	};
-	bool isAirborne() {
-		return playerStatus_ == Jumping || playerStatus_ == HitAirborne || playerStatus_ == AttackingANP || playerStatus_ == AttackingANK || playerStatus_ == AttackingAHP
-			|| playerStatus_ == AttackingAHK;
-	};
+	bool isGrounded() { return playerStatus_ != Jumping && playerStatus_ != AttackingAir && playerStatus_ != HitAirborne && playerStatus_ != JumpingTransition; };
+	bool isAirborne() { return playerStatus_ == Jumping || playerStatus_ == HitAirborne || playerStatus_ == AttackingAir; };
 
 	//IDLE
 	void goIdle() { playerStatus_ = Idle; };
@@ -62,51 +51,12 @@ public:
 	bool isCrouch() { return playerStatus_ == Crouching; };
 
 	//ATTACKING
-	bool isAttacking() { return playerStatus_ == AttackingNP || playerStatus_ == AttackingNK || playerStatus_ == AttackingHK || playerStatus_ == AttackingHP || 
-		playerStatus_ == AttackingANP || playerStatus_ == AttackingANK || playerStatus_ == AttackingAHP || playerStatus_ == AttackingAHK || playerStatus_ == Guardbreaking; };
+	bool isAttacking() { return playerStatus_ == Attacking || playerStatus_ == AttackingAir || playerStatus_ == AttackingCrouch; };
 	bool isAbleToAttack() { return (playerStatus_ == Idle) || (playerStatus_ == Jumping) || (playerStatus_ == Crouching) || (playerStatus_ == Moving); }; //Y si te est�s moviendo? Deber�a pararte...
-	void goAttack(int attackId){
-		if (playerStatus_ == Jumping) { 
-			switch (attackId)
-			{
-			case 0:
-				playerStatus_ = AttackingANP;
-				break;
-			case 1:
-				playerStatus_ = AttackingAHP;
-				break;
-			case 2:
-				playerStatus_ = AttackingANK;
-				break;
-			case 3:
-				playerStatus_ = AttackingAHK;
-				break;
-			default:
-				break;
-			}
-		}
-		else { 
-			switch (attackId)
-			{
-			case 0:
-				playerStatus_ = AttackingNP;
-				break;
-			case 1:
-				playerStatus_ = AttackingHP;
-				break;
-			case 2:
-				playerStatus_ = AttackingNK;
-				break;
-			case 3:
-				playerStatus_ = AttackingHK;
-				break;
-			case 4:
-				playerStatus_ = Guardbreaking;
-				break;
-			default:
-				break;
-			}
-		}
+	void goAttack(){
+		if (playerStatus_ == Jumping)  playerStatus_ = AttackingAir;
+		else if (playerStatus_ == Crouching) playerStatus_ = AttackingCrouch;
+		else playerStatus_ = Attacking;
 	}
 
 	//JUMPING
@@ -114,10 +64,7 @@ public:
 	void goJumpingTrans( int frames ) { playerStatus_ = JumpingTransition; holdingFrames_ = frames; };
 	bool isJumpingTrans() { return playerStatus_ == JumpingTransition; }
 	bool isJumping() { return playerStatus_ == Jumping; };
-	bool isJumpingOrAirAttacking() {
-		return playerStatus_ == Jumping || playerStatus_ == AttackingAHP || playerStatus_ == AttackingANP || playerStatus_ == AttackingANK
-			|| playerStatus_ == AttackingAHK;
-	};
+	bool isJumpingOrAirAttacking() { return playerStatus_ == Jumping || playerStatus_ == AttackingAir; };
 	bool canJump() { return playerStatus_ == Idle || playerStatus_ == Crouching || playerStatus_ == Moving; }
 
 	//LANDING
@@ -216,11 +163,6 @@ public:
 		//if (playerStatus_ == Jumping) std::cout << "AA";
 		//if (playerStatus_ == Guarding) std::cout << "GGG" << endl;
 	};
-
-	//Animation?
-	int getState() {
-		return playerStatus_;
-	}
 
 private:
 	Status playerStatus_;

@@ -26,22 +26,25 @@ WindowManager::WindowManager(App* app) : app_(app) {
 // Sets the window in fullscreen
 void WindowManager::setFullscreen(bool fullscreen)
 {
+	bool isFullscreen = SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN;
 	if (!fullscreen) {
-		if (getFullscreen()) {
+		if (isFullscreen) {
 			SDL_SetWindowFullscreen(window, 0);
 			SDL_SetWindowSize(window, 1280, 720);
+			fullscreen_ = fullscreen;
 		}
 	}
-	else if (!getFullscreen()) {
+	else if (!isFullscreen) {
 		SDL_SetWindowDisplayMode(window, &supportedResolutions_[currentResolution_]);
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+		fullscreen_ = fullscreen;
 	}
 }
 
 // Sets the current window resolution, if on fullscreen
 void WindowManager::setResolution(int resIndex)
 {
-	if (getFullscreen()) {
+	if (fullscreen_) {
 		SDL_SetWindowFullscreen(window, 0);
 		SDL_SetWindowDisplayMode(window, &supportedResolutions_[resIndex]);
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);

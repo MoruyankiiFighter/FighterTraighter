@@ -36,7 +36,7 @@ public:
 	inline size_t getAvailableResolutions() { return supportedResolutions_.size(); }
 
 	//returns true if it's the fullscreen on
-	inline bool getFullscreen() { return SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN; }
+	inline bool getFullscreen() { return fullscreen_; }
 
 	//returns the current brightness
 	inline float getCurBrightness() { return currentBrightness_; }
@@ -52,5 +52,7 @@ protected:
 	int currentResolution_ = 0;
 	float currentBrightness_ = 1;
 	SDL_DisplayMode initialDisplayMode_;
+
+	bool fullscreen_ = true;
 };
 

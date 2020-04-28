@@ -5,7 +5,7 @@
 #include "PhysicsTransform.h"
 
 //constructor
-PlayerController::PlayerController(float jImpulse, double speed) : Component(ecs::PlayerController), transform_(nullptr), inputSt_(nullptr), jumpImpulse(jImpulse), movSpeed(speed)
+PlayerController::PlayerController(float jImpulse) : Component(ecs::PlayerController), transform_(nullptr), inputSt_(nullptr), jumpImpulse(jImpulse)
 {
 }
 
@@ -24,8 +24,7 @@ void PlayerController::init()
 //update
 void PlayerController::update()
 {
-	//transform_->setPosition(transform_->getPosition() + transform_->getSpeed());
-	//cout << transform_->getSpeed().getY() << endl;
+	transform_->setPosition(transform_->getPosition() + transform_->getSpeed());
 }
 
 //handle input
@@ -57,9 +56,9 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && inputSt_->getInput(0))
 	{
-		if(!wallLeft_) speed = Vector2D(-movSpeed, speed.getY());
+		if(!wallLeft_) speed = { -45, speed.getY() };
 		else {
-			speed = Vector2D(0, speed.getY());
+			speed = { 0, speed.getY() };
 		}
 		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
@@ -67,16 +66,15 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && inputSt_->getInput(1))
 	{
-		if (!wallRight_) speed = Vector2D(movSpeed, speed.getY());
+		if (!wallRight_) speed = { 45, speed.getY() };
 		else {
-			speed = Vector2D(0, speed.getY());
-		}		
-		transform_->setSpeed(speed);
+			speed = { 0, speed.getY() };
+		}		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}
 
-	//Si eï¿½sa tecla no estï¿½ activa
+	//Si eésa tecla no está activa
 	if(!inputSt_->getInput(0) && !inputSt_->getInput(1) && !inputSt_->getInput(2)){
 		if (currState->isMoving() || currState->isJumping()) 
 		{
@@ -104,15 +102,13 @@ void PlayerController::crouch()
 {
 	entity_->getComponent<PlayerState>(ecs::PlayerState)->goCrouch();
 
-	//transform_->setHeight(transform_->getHeight() / 2);
-	float height = transform_->getHeight();
-	transform_->setColliderHeight(height / 2, Vector2D(0, height / 4));
-	
-	//transform_->setColliderWidth(transform_->getWidth() / 2);
-	//double height = transform_->getHeight();
-	//double width = transform_->getWidth();
+	transform_->setHeight(transform_->getHeight() / 2);
+	transform_->setColliderHeight(transform_->getHeight());
+	transform_->setColliderWidth(transform_->getWidth() / 2);
+	double height = transform_->getHeight();
+	double width = transform_->getWidth();
 
-	//transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY() + height);
+	transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY() + height);
 
 	//animaciones de agachar
 }
@@ -122,12 +118,12 @@ void PlayerController::uncrouch()
 {
 	entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
 
-	//double width = transform_->getWidth();
+	double width = transform_->getWidth();
 
-	//transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY());
-	//transform_->setHeight(transform_->getHeight());
-	transform_->setColliderHeight(transform_->getHeight(), Vector2D(0, 0));
-	//transform_->setColliderWidth(transform_->getWidth() / 2);
+	transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY());
+	transform_->setHeight(transform_->getHeight() * 2);
+	transform_->setColliderHeight(transform_->getHeight());
+	transform_->setColliderWidth(transform_->getWidth() / 2);
 
 	//animaciones por defecto
 }

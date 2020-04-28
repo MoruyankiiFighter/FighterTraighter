@@ -7,8 +7,7 @@ class App;
 class FactoryMk
 {
 public:
-	static Entity* addMkToGame(App* app, GameState* state, int orientation, std::vector<SDL_Scancode> keys, b2World* world, bool gamePad,uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, int playerNumber = 0);
-	static Entity* addMockToGame(App* app, GameState* state, int orientation, std::vector<SDL_Scancode> keys, b2World* world, bool gamePad,uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, int playerNumber = 0);
+	static Entity* addMkToGame(App* app, GameState* state, b2World* world, int orientation, std::vector<SDL_Scancode> keys, bool gamePad, uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, bool dyn = true);
 private:
 	FactoryMk() = delete;
 	~FactoryMk() {};

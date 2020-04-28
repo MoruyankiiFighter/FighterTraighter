@@ -121,7 +121,6 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\SDL2_mixer-2.0.4\include;..\SDL2_ttf-2.0.15\include;..\SDL2_image-2.0.5\include;..\SDL2-2.0.10\include;..\Box2D\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,21 +134,16 @@
     <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="EntityData.cpp" />
-    <ClCompile Include="EntityHitboxData.cpp" />
-    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadInput.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
+    <ClCompile Include="HitboxMng.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
     <ClCompile Include="MkWH00PData.cpp" />
-    <ClCompile Include="MockingbirdData.cpp" />
     <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="NavigationController.cpp" />
     <ClCompile Include="OptionsLogic.cpp" />
-    <ClCompile Include="PlayerAnimation.cpp" />
     <ClCompile Include="PlayerAttacks.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelection.cpp" />
@@ -180,7 +174,6 @@
     <ClCompile Include="UIRoundRenderer.cpp" />
     <ClCompile Include="UITimer.cpp" />
     <ClCompile Include="UITransform.cpp" />
-    <ClCompile Include="UserData.cpp" />
     <ClCompile Include="WindowManager.cpp" />
     <ClCompile Include="SacoTimer.cpp" />
     <ClCompile Include="SDLDebugDraw.cpp" />
@@ -202,27 +195,22 @@
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="EntityData.h" />
-    <ClInclude Include="EntityHitboxData.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FloorOnHit.h" />
     <ClInclude Include="Hability.h" />
-    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GamepadInput.h" />
     <ClInclude Include="HitboxData.h" />
+    <ClInclude Include="HitboxMng.h" />
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IndexSlider.h" />
     <ClInclude Include="InpuState.h" />
     <ClInclude Include="KeyboardInput.h" />
     <ClInclude Include="MkWH00PData.h" />
-    <ClInclude Include="MockingbirdData.h" />
     <ClInclude Include="MoveParser.h" />
     <ClInclude Include="NavigationController.h" />
     <ClInclude Include="OnHit.h" />
     <ClInclude Include="OptionsLogic.h" />
-    <ClInclude Include="PlayerAnimation.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />
@@ -257,7 +245,6 @@
     <ClInclude Include="UITimer.h" />
     <ClInclude Include="UITransform.h" />
     <ClInclude Include="ResetJumpListener.h" />
-    <ClInclude Include="UserData.h" />
     <ClInclude Include="WindowManager.h" />
     <ClInclude Include="SacoTimer.h" />
     <ClInclude Include="SDLDebugDraw.h" />

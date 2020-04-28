@@ -5,7 +5,6 @@
 #include "HitboxData.h"
 #include "PlayerAttacks.h"
 #include "PlayerController.h"
-#include "MkWH00PData.h"
 
 void PlayerOnHit::onHit(b2Fixture* fixture)
 {
@@ -19,7 +18,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
 		helth->LoseLife(hBox_data->damage_);
-		if (!hBox_data->guardBreaker_) {//if isnt a guardBreaker go to hitstun
+		if (!hBox_data->guardBreaker) {//if isnt a guardBreaker go to hitstun
 			if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
 				currState->goHitsun(hBox_data->hitstun_);
 			else
@@ -30,7 +29,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		cout << "Hago X:" << hBox_data->knockBack_.getX() << " Y: " << hBox_data->knockBack_.getY() << endl;
 	}
 	else {
-		if (hBox_data->guardBreaker_) {
+		if (hBox_data->guardBreaker) {
 			currState->goHitsun(hBox_data->hitstun_);
 			helth->LoseLife(hBox_data->damage_ );
 			pT->getBody()->ApplyLinearImpulse(b2Vec2(hBox_data->knockBack_.getX(), hBox_data->knockBack_.getY()), pT->getBody()->GetWorldCenter(), true);
@@ -42,11 +41,6 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 			pT->getBody()->ApplyLinearImpulse(b2Vec2((hBox_data->knockBack_.getX() + hBox_data->knockBack_.getX()) * 0.015, 0), pT->getBody()->GetWorldCenter(), true);
 		}
 		cout << "He bloqueado dano pero estoy en hitstun" << endl;
-	}
-
-	// he died
-	if (helth->getHealth() == 0) {
-		app_->getGameManager()->playerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
 	}
 }
 

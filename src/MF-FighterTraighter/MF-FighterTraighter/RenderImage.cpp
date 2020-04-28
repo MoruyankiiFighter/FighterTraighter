@@ -31,11 +31,7 @@ void RenderImage::render()
 	if (color_.r != 255 || color_.g != 255 || color_.b != 255 || color_.a != 255) {
 		texture_->setColor(color_);
 	}
-
-	//Experimental
-	if (transform_->getOrientation() == 1)	texture_->render(dest, curY, curX, transform_->getRotation());
-	else texture_->render(dest, curY, curX, transform_->getRotation(), SDL_FLIP_HORIZONTAL);
-
+	texture_->render(dest, curY, curX);
 	if (color_.r != 255 || color_.g != 255 || color_.b != 255 || color_.a != 255) {
 		texture_->setColor({ 255, 255, 255, 255 });
 	}

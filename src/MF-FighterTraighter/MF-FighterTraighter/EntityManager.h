@@ -19,9 +19,7 @@ public:
 
 	//deletes all the entities of the list
 	void empty();
-	int size() {
-		return list_.size();
-	}
+
 	//return the list
 	std::list<Entity*>& getScene();
 private:

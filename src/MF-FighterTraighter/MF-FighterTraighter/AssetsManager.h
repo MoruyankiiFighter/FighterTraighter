@@ -19,7 +19,6 @@ public:
 		PlayerActing,
 		Background,
 		Healthbar,
-		HealthbarSaco,
 		HealthbarBack,
 		RoundCounter,
 		CharacterSelection,
@@ -27,8 +26,6 @@ public:
 		SubMenuWin,
 		Wall,
 		FSGente,
-		BackgroundFight,
-		GanonSheet,
 		//////// Habilidades
 		Pollo,
 		Mina,

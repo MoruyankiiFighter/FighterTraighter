@@ -32,9 +32,6 @@ public:
 	inline int getWidth() { return width; }
 	inline int getHeight() { return height; }
 
-	inline int getCols() { return nCols; }
-	inline int getRows() { return nRows; }
-
 	void load(string filename, int cols, int fils);
 	void setColor(SDL_Color col);
 	void cleanTexture();

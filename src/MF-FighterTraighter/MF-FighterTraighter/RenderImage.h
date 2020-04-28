@@ -18,7 +18,7 @@ public:
 	Texture* getTexture();
 	inline void setTexture(Texture* tex) { texture_ = tex; }
 	inline void setColor(SDL_Color col) { color_ = col; }
-	void init() override;
+	void init();
 	//method overrided from Component
 	virtual void render() override;
 private:

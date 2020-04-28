@@ -46,67 +46,67 @@ void PlayerAttacks::handleInput() {
 				activeAttack_ = attacksList[0];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(0);
+				currState->goAttack();
 			}
 			else if (inputSt_->getInput(5)) {
 				activeAttack_ = attacksList[1];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(1);
+				currState->goAttack();
 			}
 			else if (inputSt_->getInput(6)) {
 				activeAttack_ = attacksList[2];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(2);
+				currState->goAttack();
 			}
 			else if (inputSt_->getInput(7)) {
 				activeAttack_ = attacksList[3];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(3);
+				currState->goAttack();
 			}
 			else if (inputSt_->getInput(11)) {
 				activeAttack_ = attacksList[8];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(4);
+				currState->goAttack();
 			}
 		}
 		else {
 			if (inputSt_->getInput(4)) {
 				activeAttack_ = attacksList[4];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(0);
+				currState->goAttack();
 			}
 			else if (inputSt_->getInput(5)) {
 				activeAttack_ = attacksList[5];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(1);
+				currState->goAttack();
 			}
 			else if (inputSt_->getInput(6)) {
 				activeAttack_ = attacksList[6];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(2);
+				currState->goAttack();
 			}
 			else if (inputSt_->getInput(7)) {
 				activeAttack_ = attacksList[7];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(3);
+				currState->goAttack();
 			}
 		}
 		if (inputSt_->getInput(8)) {
 			if (abilityList[0] != nullptr) {
 				activeAttack_ = abilityList[0];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(4);
+				currState->goAttack();
 			}
 		}
 		else if (inputSt_->getInput(9)) {
 			if (abilityList[1] != nullptr) {
 				activeAttack_ = abilityList[1];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(4);
+				currState->goAttack();
 			}
 		}
 	}
@@ -122,5 +122,6 @@ void PlayerAttacks::interruptAttack()
 {
 	if(activeAttack_ != nullptr) activeAttack_->reset();
 	activeAttack_ = nullptr;
-	app_->getStateMachine()->getCurrentState()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
+	app_->getHitboxMng()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
+	
 }
