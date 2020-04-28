@@ -118,6 +118,9 @@ void GameState::RemoveHitbox()
 {
 	for (auto hb_it = hitboxRemove_pair_.begin(); hb_it != hitboxRemove_pair_.end(); ++hb_it) {
 		UserData* hitbox= static_cast<UserData*>((*(*hb_it).first)->GetUserData());
+		if (hitbox != nullptr) { //es null, si ya se ha destruido, es decir es un UserData con herencia multiple de HitboxData y EntityData
+			delete hitbox;
+		}
 		//HitboxData* ht = dynamic_cast<HitboxData*>(hitbox);
 		//if (hitbox->destroyEntity) {//destroy entity
 		//	if (hitbox->destroyOnHit) {
@@ -134,8 +137,8 @@ void GameState::RemoveHitbox()
 		//else {
 		//	(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
 		//}
-		(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
-		delete hitbox;
+			(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
+			
 		hitboxGroups_[(*hb_it).second].erase((*hb_it).first);
 	}
 	hitboxRemove_pair_.clear();

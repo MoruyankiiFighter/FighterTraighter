@@ -11,6 +11,7 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 
 PhysicsTransform::~PhysicsTransform() {
 	delete static_cast<UserData*>(mainFixture_->GetUserData());
+	mainFixture_->SetUserData(nullptr);//???????????
 }
 
 void PhysicsTransform::init() {
