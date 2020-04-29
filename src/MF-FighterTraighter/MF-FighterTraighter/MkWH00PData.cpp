@@ -207,7 +207,7 @@ void MkWH00PData::ANP1(Entity* ent)
 }
 PlayerData::CallbackData MkWH00PData::anp1 = PlayerData::CallbackData{
 	{ -200, -50 },
-	{ 10, -10 },
+	{ 10, -55 },
 	420,
 	130,
 	35,
