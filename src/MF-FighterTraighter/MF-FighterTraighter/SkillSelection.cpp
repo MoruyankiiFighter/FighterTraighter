@@ -202,28 +202,30 @@ void SkillSelection::createInventoryMenu()
 		habDefinitionText_->addComponent<UITransform>(Vector2D((ancho / 25) * 1.5, (alto / 14) * 8), Vector2D((ancho / 25) * 1.5, (alto / 14) * 8), Vector2D((ancho / 25) * 1.5, (alto / 14) * 8), Vector2D((ancho/25)*8,(alto / 14) *2));
 		habDefinitionText_->addComponent<TextComponent>("Esto es una descripcion de la habilidad selecci", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), letra/3, TextComponent::TextAlignment::Left);
 		
-		vector<tuple<Entity*, Entity*>> habj2;
+		//vector<tuple<Entity*, Entity*>> habj2;
 
 		//inventario j2
-			//pos anchor pivot
-		//for (int i = 0; i < 10; i++)//cambiar el hasta 10 por largo vector hab j1
-		//{//ACCESO A J1->ACCESO A HAB->RETURN ASSET()
-		//	if (i < 5) {
-		//		habj2[i] = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Buff), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		//			Vector2D(((ancho / 15) + i * (ancho / 15)) + 1000, (alto / 15) * 4.7), Vector2D(((ancho / 15) + i * (ancho / 15)) + 1000, (alto / 15) * 4.7), Vector2D(((ancho / 15) + i * (ancho / 15)) + 1000, (alto / 15) * 4.7),
-		//			(ancho / 15), (ancho / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-		//	}
-		//	else {
-		//		habj2[i] = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mina), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		//			Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 1000, (alto / 15) * 6.7), Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 1000, (alto / 15) * 6.7), Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 1000, (alto / 15) * 6.7),
-		//			(ancho / 15), (ancho / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-		//	}
-		//}
-		//// Navigation controller
-		//Entity* nav_j2 = entManager_.addEntity();
-		//NavigationController* ctrl_ = nav_j2->addComponent<NavigationController>(0, 0);
-		//ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 0, 0);
+		Entity* nav_j2 = entManager_.addEntity();
+		NavigationController* ctrl_ = nav_j2->addComponent<NavigationController>(0, 0);
+			
+		for (int i = 0; i < 10; i++)//cambiar el hasta 10 por largo vector hab j1
+		{//ACCESO A J1->ACCESO A HAB->RETURN ASSET()
+			if (i < 5) {
+				tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Buff), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+					Vector2D(((ancho / 15) + i * (ancho / 15)) + 1000, (alto / 15) * 4.7), Vector2D(((ancho / 15) + i * (ancho / 15)) + 1000, (alto / 15) * 4.7), Vector2D(((ancho / 15) + i * (ancho / 15)) + 1000, (alto / 15) * 4.7),
+					(ancho / 15), (ancho / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+			}
+			else {
+				tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mina), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+					Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 1000, (alto / 15) * 6.7), Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 1000, (alto / 15) * 6.7), Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 1000, (alto / 15) * 6.7),
+					(ancho / 15), (ancho / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+			}
+		}
+		// Navigation controller
 		
+		for (int i = 0; i < 5; i++) {
+			ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), i, 2);
+		}
 		//ranuras
 		
 		//Player2
