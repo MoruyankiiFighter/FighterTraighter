@@ -215,12 +215,14 @@ void SkillSelection::createInventoryMenu()
 					Vector2D(((ancho / 15) + i * (ancho / 15)) + 1000, (alto / 15) * 4.7), Vector2D(((ancho / 15) + i * (ancho / 15)) + 1000, (alto / 15) * 4.7), Vector2D(((ancho / 15) + i * (ancho / 15)) + 1000, (alto / 15) * 4.7),
 					(ancho / 15), (ancho / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 				ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i, 0);
+
 			}
 			else {
 				tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Buff), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 					Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 1000, (alto / 15) * 6.7), Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 1000, (alto / 15) * 6.7), Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 1000, (alto / 15) * 6.7),
 					(ancho / 15), (ancho / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 				ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i-5, 1);
+
 			}
 		}
 		// Navigation controller
