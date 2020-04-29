@@ -9,10 +9,15 @@ class GameStateMachine;
 class GameManager
 {
 protected:
+	enum CharacterID {
+		MKWh00p,
+		Mockingbird,
+		Aisha,
+		F10R
+	};
 	// CHANGE ME TO SOMETHING PROPER
 	struct playerInfo {
-		Entity* entity;
-		std::string character;
+		CharacterID character;
 		std::vector<std::string> abilities;
 		unsigned int ability1Index;
 		unsigned int ability2Index;

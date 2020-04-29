@@ -128,11 +128,11 @@ void AbilityFactory::SeismicS2(Entity* ent)
 	Entity* otherPlayer;
 	GameState* currentState = app->getStateMachine()->getCurrentState();
 	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
-		otherPlayer=app->getGameManager()->getPlayerInfo(2).entity;
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2);
 		mask = currentState->PLAYER_2;
 	}
 	else {
-		otherPlayer = app->getGameManager()->getPlayerInfo(1).entity;
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
 		mask = currentState->PLAYER_1;
 	}
 	double otherWidth=otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getWidth();

@@ -1,5 +1,7 @@
 #pragma once
 #include <list>
+#include <vector>
+#include "ecs.h"
 class App;
 class Entity;
 
@@ -24,9 +26,16 @@ public:
 	}
 	//return the list
 	std::list<Entity*>& getScene();
+
+	Entity* getHandler(ecs::HandlerIdType handler) {
+		return handlers_[handler];
+	}
+
+	void setHandler(Entity* e, ecs::HandlerIdType handler) {
+		handlers_[handler] = e;
+	}
 private:
-
-	App* app_=nullptr;
-	std::list<Entity*> list_ = std::list<Entity*>(); //list of the entities
+	App* app_ = nullptr;
+	std::list<Entity*> list_ = std::list<Entity*>(); // list of the entities
+	std::vector<Entity*> handlers_ = std::vector<Entity*>(ecs::maxHandlers); // all the important entities
 };
-
