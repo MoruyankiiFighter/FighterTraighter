@@ -34,13 +34,12 @@ public:
 	virtual void update() override;
 	//render the gamestate entitys if needed and the hitboxes for debuging
 	virtual void render() override;
-	
+	Entity* giveMeSaco() { return saco; };
 private:
 	std::vector<Move*> vecMov;
 	b2World* world= nullptr;
 	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	ResetJumpListener* resJumpListener = nullptr;
 	Entity* saco;
-	PlayerData* player;
 };
 

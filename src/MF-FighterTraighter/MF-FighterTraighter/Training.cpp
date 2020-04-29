@@ -12,6 +12,7 @@
 #include "UITransform.h"
 #include "UITimer.h"
 #include "UIHealthbar.h"
+#include "SacoFunction.h"
 Training::Training(App* app) : GameState(app)
 {
 	init();
@@ -38,6 +39,7 @@ void Training::init()
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	saco->addComponent<PunchingBagOnHit>();
 	Health* sacoHealth = saco->addComponent<Health>(200);
+	saco->addComponent<SacoFunction>(saco);
 	//saco->addComponent<SacoTimer>(5000);
 
 
@@ -91,16 +93,11 @@ void Training::handleInput()
 
 void Training::update()
 {
-	if (saco->getComponent<Health>(ecs::Health)->getHealth() <= 0) {
-		//llama al metodo de dame habilidades
-		player->addAbilityInventory("Counter");
-		player->addAbilityInventory("Shell Power");
-	}
-	else {
+	
 		app_->getHitboxMng()->update();		//es posible que esto sea un sistema
 		GameState::update();
 		world->Step(1.0 / 30, 8, 3);//update box2d
-	}
+	
 }
 
 
