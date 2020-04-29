@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "Bullet.h"
 #include "RenderImage.h"
+#include "PlayerAttacks.h"
 //#include "playerinfo"
 AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 {
@@ -14,7 +15,7 @@ AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 	vecMov.push_back(new Move(10, nullptr, MG1, e));
 	vecMov.push_back(new Move(10, nullptr, MG1, e));
 	vecMov.push_back(new Move(50, nullptr, MG2, e));
-	vecMov.push_back(new Move(100, nullptr, nullptr, e));
+	vecMov.push_back(new Move(100, nullptr, MGC, e));
 	AnimationChain* MegatonGrip = new AnimationChain(vecMov);
 	return MegatonGrip;
 }
@@ -55,6 +56,11 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1,-85 }, width1, 175, 15, 27, 100, { (double)orientation_ * 7500, -5000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2,-85 }, width2, 180, 12, 2, 150, { (double)orientation_ * 5250, -4000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
+}
+
+void AbilityFactory::MGC(Entity* ent)
+{
+	goOnCoolodwn(ent, 600);
 }
 
 
@@ -173,4 +179,10 @@ void AbilityFactory::createProyectile(Entity* ent, double width, double height,V
 	e->addComponent<RenderImage>(texture);
 	e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, damage, hitstun, knockBack, time, destroyInContact);
 
+}
+
+void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
+{
+	PlayerAttacks* pl = e->getComponent<PlayerAttacks>(ecs::PlayerAttacks);
+	pl->goOnCooldown(pl->getAbilityIndex(), cool);
 }

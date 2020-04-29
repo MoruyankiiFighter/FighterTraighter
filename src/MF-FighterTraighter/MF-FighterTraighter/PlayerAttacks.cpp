@@ -72,14 +72,14 @@ void PlayerAttacks::handleInput() {
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack(4);
 			}else if (inputSt_->getInput(8)) {
-				if (abilityList[0] != nullptr) {
+				if (abilityList[0] != nullptr && cooldowns[0] == 0) {
 					activeAttack_ = abilityList[0];
 					tr->setSpeed(0, tr->getSpeed().getY());
 					currState->goCasting();
 				}
 			}
 			else if (inputSt_->getInput(9)) {
-				if (abilityList[1] != nullptr) {
+				if (abilityList[1] != nullptr && cooldowns[1] == 0) {
 					activeAttack_ = abilityList[1];
 					tr->setSpeed(0, tr->getSpeed().getY());
 					currState->goCasting();
@@ -122,4 +122,13 @@ void PlayerAttacks::interruptAttack()
 	if(activeAttack_ != nullptr) activeAttack_->reset();
 	activeAttack_ = nullptr;
 	app_->getStateMachine()->getCurrentState()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
+}
+
+int PlayerAttacks::getAbilityIndex()	//IN THEORY IT NEVER SHOULD RETURN -1
+{										//BUT
+	int index = -1;
+	for (int i = 0; i < abilityList.size(); ++i) {
+		if (activeAttack_ == abilityList[i]) index = i;
+	}
+	return index;
 }
