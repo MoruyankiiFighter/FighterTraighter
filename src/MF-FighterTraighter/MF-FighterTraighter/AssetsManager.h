@@ -28,7 +28,7 @@ public:
 		SeismicShock,
 		ExplosiveWillpower,
 		RandomRage,
-		KnifeDance
+		KnifeDance,
 		GanonSheet,
 		BackgroundFight
 	};

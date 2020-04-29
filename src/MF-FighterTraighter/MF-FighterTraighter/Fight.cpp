@@ -80,10 +80,6 @@ void Fight::init()
 	timerab2->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
 	timerab2->addComponent<UITimer>(UITimer::Seconds)->setCountdown(10000);
 
-	//Player 2
-	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
-		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, world, true, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY, true, 1);
-
 	//for() que recorre el vector de habilidades buscando las habilidades del jugador 1
 	//cogemos la imagen correspondiente a esa habilidad 
 	//ponemos el tiempo de esa habilidad en el timer
