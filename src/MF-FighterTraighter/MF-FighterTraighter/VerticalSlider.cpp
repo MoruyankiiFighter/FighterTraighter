@@ -15,7 +15,7 @@ VerticalSlider::~VerticalSlider()
 
 void VerticalSlider::handleInput()
 {
-	if (state_ == Selected) {
+	if (Buttonstate_ == Selected) {
 		if (app_->getInputManager()->pressedUp()) {
 			if (steps_ > 1) {
 				setValue(value_ + (maxValue_ - minValue_) / steps_);

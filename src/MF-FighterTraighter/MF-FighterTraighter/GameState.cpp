@@ -4,7 +4,7 @@
 #include "OnHit.h"
 #include "ResetJumpListener.h"
 #include "EntityHitboxData.h"
-GameState::GameState(App* app) : app_(app), entManager_(app)
+GameState::GameState(App* app) : app_(app), entManager_(app, this)
 {
 }
 void GameState::init()

@@ -27,6 +27,7 @@ enum Status {
 	GuardingStun,
 	GuardingLeaving,
 	Guardbreaking,
+	Casting,
 	Stunned,
 	Dead,
 };
@@ -62,8 +63,11 @@ public:
 	bool isCrouch() { return playerStatus_ == Crouching; };
 
 	//ATTACKING
-	bool isAttacking() { return playerStatus_ == AttackingNP || playerStatus_ == AttackingNK || playerStatus_ == AttackingHK || playerStatus_ == AttackingHP || 
-		playerStatus_ == AttackingANP || playerStatus_ == AttackingANK || playerStatus_ == AttackingAHP || playerStatus_ == AttackingAHK || playerStatus_ == Guardbreaking; };
+	bool isAttacking() {
+		return playerStatus_ == AttackingNP || playerStatus_ == AttackingNK || playerStatus_ == AttackingHK || playerStatus_ == AttackingHP ||
+			playerStatus_ == AttackingANP || playerStatus_ == AttackingANK || playerStatus_ == AttackingAHP || playerStatus_ == AttackingAHK ||
+			playerStatus_ == Guardbreaking || playerStatus_ == Casting;
+	};
 	bool isAbleToAttack() { return (playerStatus_ == Idle) || (playerStatus_ == Jumping) || (playerStatus_ == Crouching) || (playerStatus_ == Moving); }; //Y si te est�s moviendo? Deber�a pararte...
 	void goAttack(int attackId){
 		if (playerStatus_ == Jumping) { 
@@ -107,6 +111,12 @@ public:
 				break;
 			}
 		}
+	}
+
+	//ABILITIES
+	void goCasting() {
+		playerStatus_ = Casting;
+		holdingFrames_ = -1;
 	}
 
 	//JUMPING
