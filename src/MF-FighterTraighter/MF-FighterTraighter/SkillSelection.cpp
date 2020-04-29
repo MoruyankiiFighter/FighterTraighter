@@ -171,30 +171,30 @@ void SkillSelection::createInventoryMenu()
 	//inventario j1
 		//pos anchor pivot
 	//vector<tuple<Entity*, Entity*>> habj1; //SE SALE DEL VECTOR
-	//Entity* nav_j1 = entManager_.addEntity();
-	//NavigationController* ctrl = nav_j1->addComponent<NavigationController>(4, 3);
+	Entity* nav_j1 = entManager_.addEntity();
+	NavigationController* ctrl = nav_j1->addComponent<NavigationController>(5, 3);
+	
 	for (int i = 0; i < 10; i++)//cambiar el hasta 10 por largo vector hab j1
-	{//ACCESO A J1->ACCESO A HAB->RETURN ASSET()
-		if (i < 5) {
-			/*habj1[i] =*/ UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Toxic), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	{
+		//ACCESO A J1->ACCESO A HAB->RETURN ASSET()
+		if (i < 5) { //cambiarlo por la mitad del vector
+			tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Toxic), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 				Vector2D(((ancho / 15) + i* (ancho / 15))+40, (alto / 15) * 4.7), Vector2D(((ancho / 15) + i * (ancho / 15)) + 40, (alto / 15) * 4.7), Vector2D(((ancho / 15) + i * (ancho / 15)) + 40, (alto / 15) * 4.7),
 				(ancho / 15), (ancho / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-			//ctrl->SetElementInPos(std::get<0>(habj1[i])->getComponent<UIElement>(ecs::UIElement), i, 0);
+			ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
 		}
 		else {
-			/*habj1[i]=*/ UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+			tuple <Entity*, Entity*> habj1= UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 				Vector2D(((ancho / 15) + (i-5) * (ancho / 15)) + 40, (alto / 15) * 6.7), Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 40, (alto / 15) * 6.7), Vector2D(((ancho / 15) + (i - 5) * (ancho / 15)) + 40, (alto / 15) * 6.7),
 				(ancho / 15), (ancho / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-			//ctrl->SetElementInPos(std::get<0>(habj1[i])->getComponent<UIElement>(ecs::UIElement), i-5, 1);
+			ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i-5, 1);
 		}
-	}
-	// Navigation controller
-	/*for (int i = 0; i < 5; i++) {
-		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), i, 2);
-	}	*/
-		
-		
+	}	
 
+	for (int i = 0; i < 5; i++) {
+		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), i, 2);
+	}
+	
 	//description
 		//UIFactory::createText(app_, this, Vector2D((ancho / 25) * 3, (alto / 14) * 5), Vector2D((ancho / 25) * 3, (alto / 14) * 5), Vector2D((ancho / 25) * 3, (alto / 14) * 5),
 			//app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "descripcion", letra/2, (ancho / 25) * 5, (alto / 14) * 2);
@@ -223,14 +223,17 @@ void SkillSelection::createInventoryMenu()
 		//Entity* nav_j2 = entManager_.addEntity();
 		//NavigationController* ctrl_ = nav_j2->addComponent<NavigationController>(0, 0);
 		//ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-	//ranuras
-		///Player2
+		
+		//ranuras
+		
+		//Player2
 		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mina), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D((ancho / 12) * 7, (alto / 12) * 1.7), Vector2D((ancho / 12) * 7, (alto / 12) * 1.7), Vector2D((ancho / 12) * 7, (alto / 12) * 1.7),
 			(ancho / 12), (ancho / 12), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 		UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D((ancho / 12) * 10, (alto / 12) * 1.7), Vector2D((ancho / 12) * 10, (alto / 12) * 1.7), Vector2D((ancho / 12) * 10, (alto / 12) * 1.7),
 			(ancho / 12), (ancho / 12), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+	
 		//inventario
 		
 		//description
