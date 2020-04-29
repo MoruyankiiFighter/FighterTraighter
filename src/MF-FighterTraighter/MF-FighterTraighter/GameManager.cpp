@@ -10,9 +10,10 @@
 #include "OptionsMenu.h"
 #include "Training.h"
 #include "Entity.h"
+#include "CharacterSelection.h"
 GameManager::GameManager(App* app) : app_(app)
 {
-	app_->getStateMachine()->pushState(new MainMenu(app_));
+	app_->getStateMachine()->pushState(new CharacterSelection(app_));//OJO CAMBIAR LUEGO
 }
 
 void GameManager::pressedStart()

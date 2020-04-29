@@ -24,7 +24,8 @@ public:
 		RoundCounter,
 		CharacterSelection,
 		GanonSheet,
-		BackgroundFight
+		BackgroundFight,
+		Banner,
 	};
 
 	enum FontNames {
