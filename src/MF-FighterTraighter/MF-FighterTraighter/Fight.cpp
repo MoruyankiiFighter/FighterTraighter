@@ -34,6 +34,10 @@ void Fight::init()
 		SDL_SCANCODE_SPACE, SDL_SCANCODE_R, SDL_SCANCODE_1, SDL_SCANCODE_2, }, world, false, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY, true, 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player1), 0);
 
+	//for() que recorre el vector de habilidades buscando las habilidades del jugador 1
+	//cogemos la imagen correspondiente a esa habilidad 
+	//ponemos el tiempo de esa habilidad en el timer
+
 	//Abilities player 1
 	Entity* imageability1 = entManager_.addEntity();
 	imageability1->addComponent<UITransform>(Vector2D(80, 650), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
@@ -59,6 +63,10 @@ void Fight::init()
 	//Player 2
 	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
 		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, world, true, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY, true, 1);
+
+	//for() que recorre el vector de habilidades buscando las habilidades del jugador 1
+	//cogemos la imagen correspondiente a esa habilidad 
+	//ponemos el tiempo de esa habilidad en el timer
 
 	//Abilities player 2
 	Entity* imageability1p2 = entManager_.addEntity();
