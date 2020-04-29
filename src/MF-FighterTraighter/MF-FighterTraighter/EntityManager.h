@@ -4,12 +4,13 @@
 #include "ecs.h"
 class App;
 class Entity;
+class GameState;
 
 class EntityManager
 {
 public:
 	//constructor
-	EntityManager(App* app) : app_(app) { };
+	EntityManager(App* app, GameState* state) : app_(app), state_(state) { };
 	//destructor
 	virtual ~EntityManager();
 
@@ -36,6 +37,7 @@ public:
 	}
 private:
 	App* app_ = nullptr;
+	GameState* state_ = nullptr;
 	std::list<Entity*> list_ = std::list<Entity*>(); // list of the entities
 	std::vector<Entity*> handlers_ = std::vector<Entity*>(ecs::maxHandlers); // all the important entities
 };

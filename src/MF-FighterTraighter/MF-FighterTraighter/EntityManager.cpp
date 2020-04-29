@@ -10,6 +10,7 @@ Entity* EntityManager::addEntity()
 {
 	Entity* e = new Entity(); // Until we have factories
 	e->setApp(app_);
+	e->setState(state_);
 	list_.push_back(e);
 	return e;
 }
@@ -17,6 +18,9 @@ Entity* EntityManager::addEntity()
 void EntityManager::removeEntity(Entity* e)
 {
 	list_.remove(e);
+	int i = 0;
+	while (i < handlers_.size() && handlers_[i] != e) ++i;
+	if (i != handlers_.size()) handlers_[i] = nullptr;
 	delete e;
 	e = nullptr;
 }
@@ -34,4 +38,5 @@ void EntityManager::empty() {
 		}
 	}
 	list_.clear();
+	handlers_.clear();
 }

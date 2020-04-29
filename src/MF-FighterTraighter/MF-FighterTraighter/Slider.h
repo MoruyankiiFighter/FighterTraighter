@@ -30,9 +30,9 @@ public:
 	void render() override;
 
 	virtual void Press() {};
-	virtual void Select() { if (state_ != Selected) state_ = Selected; };
-	virtual void Disable() { state_ = Disabled; };
-	virtual void Deselect() { state_ = Normal; };
+	virtual void Select() { if (Buttonstate_ != Selected) Buttonstate_ = Selected; };
+	virtual void Disable() { Buttonstate_ = Disabled; };
+	virtual void Deselect() { Buttonstate_ = Normal; };
 
 	//different get 
 	double getValue() { return value_; }
