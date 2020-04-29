@@ -106,7 +106,7 @@ void PlayerController::crouch()
 
 	//transform_->setHeight(transform_->getHeight() / 2);
 	float height = transform_->getHeight();
-	transform_->setColliderHeight(height / 2, Vector2D(0, height / 4));
+	transform_->setColliderHeight(height * 0.6, Vector2D(0, height / 5));
 	
 	//transform_->setColliderWidth(transform_->getWidth() / 2);
 	//double height = transform_->getHeight();
