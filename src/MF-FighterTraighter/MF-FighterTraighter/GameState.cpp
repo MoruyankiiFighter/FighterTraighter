@@ -3,7 +3,7 @@
 #include "App.h"
 #include "OnHit.h"
 #include "ResetJumpListener.h"
-#include "EntityHitboxData.h"
+#include "HitboxData.h"
 GameState::GameState(App* app) : app_(app), entManager_(app, this)
 {
 }
@@ -81,7 +81,7 @@ void GameState::UpdateHitboxes()
 //id is the player ID
 //cBits are the same as the player, and mBits are the same except it excludes boundaries and walls to avoid bugs /*CAMBIAR CON CLASE BASE*/
 //guardBreaker indicates if the hitbox is a GuardBreaker
-void GameState::addHitbox(Vector2D pos, int width, int height, int time, int damage, int hitstun, Vector2D knockBack, b2Body* body, uint16 id, uint16 cBits, uint16 mBits, bool guardBreaker)
+void GameState::addHitbox(Vector2D pos, int width, int height, int time, int damage, int hitstun, Vector2D knockBack, b2Body* body, uint16 id, Entity* e, uint16 cBits, uint16 mBits, bool guardBreaker)
 {
 	b2PolygonShape shape;
 	shape.SetAsBox(width * app_->METERS_PER_PIXEL / 2, height * app_->METERS_PER_PIXEL / 2, { float32((pos.getX() + width / 2) * app_->METERS_PER_PIXEL),float32((pos.getY() + height / 2) * app_->METERS_PER_PIXEL) }, 0);
@@ -99,16 +99,16 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	//hitboxGroups_[cBits >> 2].push_back(body->CreateFixture(&fixturedef));
 	//hitboxGroups_[cBits >> 2].back()->SetUserData(hitbox);//saving hitbox's data
 	////for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
-	HitboxData* hData = new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, this);
+	HitboxData* hData = new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, e);
 	fixturedef.userData = hData;
 	hitboxGroups_[id].push_back(body->CreateFixture(&fixturedef));
 	hData->setIt(--hitboxGroups_[id].end());
 	//hitboxGroups_[id].back()->SetUserData(new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, this));//saving hitbox's data
 }
 
-void GameState::addHitbox( uint16 id, EntityHitboxData* hitbox, b2Fixture* fixture)
+void GameState::addHitbox( uint16 id, HitboxData* hitbox, b2Fixture* fixture)
 {
-	EntityHitboxData* hData = hitbox;
+	HitboxData* hData = hitbox;
 	hitboxGroups_[id].push_back(fixture);
 	hData->setIt(--hitboxGroups_[id].end());
 	hitboxGroups_[id].back()->SetUserData(hitbox);//saving hitbox's data

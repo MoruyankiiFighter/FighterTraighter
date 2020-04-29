@@ -6,7 +6,7 @@
 class Bullet : public Component
 {
 public:
-	Bullet(GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
+	Bullet(uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
 
 	void init() override;
 private:
@@ -18,6 +18,5 @@ private:
 	Vector2D knockBack_;
 	bool destroyInContact_ = false;
 	int playerNumber_;
-	GameState* state_;
 };
 

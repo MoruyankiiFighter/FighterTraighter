@@ -1,5 +1,5 @@
 #include "PhysicsTransform.h"
-#include "EntityData.h"
+#include "UserData.h"
 //	cBits are the category bits, the collision group this body is in
 //	cMask are the mask bits, the collision groups to check
 //	if not modified, the body will collide with everything
@@ -10,8 +10,12 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 
 
 PhysicsTransform::~PhysicsTransform() {
+	resetUserData(nullptr);
+}
+
+void PhysicsTransform::resetUserData(UserData* newData) {
 	delete static_cast<UserData*>(mainFixture_->GetUserData());
-	mainFixture_->SetUserData(nullptr);//???????????
+	mainFixture_->SetUserData(newData);
 }
 
 void PhysicsTransform::init() {
@@ -25,7 +29,7 @@ void PhysicsTransform::init() {
 	resetMainFixture(b2Vec2_zero, 0);	//por defecto en el centro del cuerpo, y con angulo 0
 	body_->SetFixedRotation(true);
 	//The default userData is the entity
-	mainFixture_->SetUserData(new EntityData(this->entity_));
+	mainFixture_->SetUserData(new UserData(this->entity_));
 }
 
 void PhysicsTransform::setHeight(double height) {

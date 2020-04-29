@@ -19,7 +19,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, std:
 {
 	Entity* e = state->getEntityManager().addEntity();
 	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 600), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
-	pT->getMainFixture()->SetUserData(new PlayerOnHit(e));
+	pT->resetUserData(new PlayerOnHit(e));
 	pT->setOrientation(orientation);
 	pT->setColliderWidth(pT->getWidth() / 2);
 	state->addHurtbox(pT->getMainFixture());

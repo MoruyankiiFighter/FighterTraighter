@@ -1,10 +1,14 @@
 #pragma once
 //A class to handle bodies / fixtures userData with inheritance
 #include "Box2D/Box2D.h"
+#include "Entity.h"
 class UserData
 {
 public:
-	virtual ~UserData() {}
+	UserData(Entity* e) : entity_(e) {};
+	virtual ~UserData() {}	//this doesnt destroy the entity
 	virtual void onHit(b2Fixture* other) {}
+	//es public por comodidad y por ahora
+	Entity* entity_ = nullptr;
 };
 

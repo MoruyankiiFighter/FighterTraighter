@@ -2,6 +2,7 @@
 #include "Transform.h"
 #include "Box2D\Box2D.h"
 # include <vector>
+#include "HitboxData.h"
 class PhysicsTransform : public Transform
 {
 public:
@@ -52,7 +53,7 @@ public:
 	b2Fixture* getMainFixture() { return mainFixture_; }
 	uint16 getCategory() { return cBits_; }
 	uint16 getMask() { return mBits_; }
-
+	void resetUserData(UserData* newData);
 private:
 	b2Body* body_;
 	uint16 cBits_, mBits_;

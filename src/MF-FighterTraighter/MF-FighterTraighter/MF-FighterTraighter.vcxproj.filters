@@ -189,8 +189,6 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="UserData.cpp" />
-    <ClCompile Include="EntityData.cpp" />
-    <ClCompile Include="EntityHitboxData.cpp" />
     <ClCompile Include="Bullet.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -418,8 +416,7 @@
     </ClInclude>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="UserData.h" />
-    <ClInclude Include="EntityData.h" />
-    <ClInclude Include="EntityHitboxData.h" />
+    <ClInclude Include="DestroyOnHit.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

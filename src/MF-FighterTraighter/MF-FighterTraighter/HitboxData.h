@@ -1,25 +1,22 @@
 #pragma once
 #include "UserData.h"
 #include "Vector2D.h"
-#include "GameState.h"
 
 class HitboxData :  public UserData
 {
-	
 public:
-	HitboxData(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, GameState* state, bool destroy = false) :
-		damage_(damage), time_(time), hitstun_(hitstun), knockBack_(knockback), guardBreaker_(guardbreaker), id_(id), destroy_(destroy), state_(state){}
+	HitboxData(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroy = false) : UserData(e),
+		damage_(damage), time_(time), hitstun_(hitstun), knockBack_(knockback), guardBreaker_(guardbreaker), id_(id), destroy_(destroy) {}
 	virtual ~HitboxData() {}
 	virtual void onHit(b2Fixture* other) {
 		if (!destroy_) {
-			state_->killHitbox(it_, id_);
+			entity_->getState()->killHitbox(it_, id_);
 			destroy_ = true;
 		}
 	}
 	void setIt(std::list<b2Fixture*>::iterator i) {
 		it_ = i;
 	}
-	GameState* state_;
 	std::list<b2Fixture*>::iterator it_; 
 	unsigned int id_ = 1;
 	int damage_ = -1,
