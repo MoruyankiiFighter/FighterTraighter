@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include <string>
+
+class Entity;
 class App;
 class GameStateMachine;
 
@@ -9,6 +11,7 @@ class GameManager
 protected:
 	// CHANGE ME TO SOMETHING PROPER
 	struct playerInfo {
+		Entity* entity;
 		std::string character;
 		std::vector<std::string> abilities;
 		unsigned int ability1Index;
@@ -23,6 +26,12 @@ public:
 	void playerLost(int player);
 	// To inform that saco has lost all its health
 	void trainingEnded();
+	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index);
+	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index);
+	playerInfo getPlayerInfo(int player) {
+		if (player == 1) return player1_;
+		return player2_;
+	}
 protected:
 	unsigned int playerLrounds_ = 0;
 	unsigned int playerRrounds_ = 0;

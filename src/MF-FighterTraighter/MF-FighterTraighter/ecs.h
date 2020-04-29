@@ -29,9 +29,12 @@ namespace ecs {
 		UIHealthbar,
 		UIRoundRenderer,
 		PlayerData,
+		PlayerAnimation,
 		InputState,
 		KeyboardInput,
 		GamepadInput,
+		RenderAnimation,
+		Bullet,
 		/*
 		
 		*/

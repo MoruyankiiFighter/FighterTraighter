@@ -2,22 +2,21 @@
 #include "Entity.h"
 #include "App.h"
 #include "OnHit.h"
-#include "HitboxData.h"
 #include "ResetJumpListener.h"
-
+#include "EntityHitboxData.h"
 GameState::GameState(App* app) : app_(app), entManager_(app)
 {
 }
 void GameState::init()
 {
-	gravity = { 0, 18.0f };//10.0
+	gravity = Vector2D(0.0f, 10.0f);
 	world = new b2World(gravity);
 #ifdef NDEBUG
 	debugInstance = nullptr;
 #else
-	debugInstance = new SDLDebugDraw(app_->getRenderer());//, app_->PIXELS_PER_METER);
+	debugInstance = new SDLDebugDraw(app_->getRenderer(), app_->PIXELS_PER_METER);
 	world->SetDebugDraw(debugInstance);
-	debugInstance->SetFlags(b2Draw::e_aabbBit);
+	debugInstance->SetFlags(b2Draw::e_shapeBit);
 #endif
 	resJumpListener = new ResetJumpListener();
 	world->SetContactListener(resJumpListener);
@@ -51,9 +50,9 @@ void GameState::UpdateHitboxes()
 		for (auto it = hitboxGroups_[i].begin(); it != hitboxGroups_[i].end(); ++it) {
 			HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
 			if (hB->time_-- <= 0) {//time habra que modificar a frames			checks if the hitbox "dies"
-				if (!hB->destroy) {
+				if (!hB->destroy_) {
 					hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
-					hB->destroy = true;
+					hB->destroy_ = true;
 				}
 			}
 			else {	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
@@ -66,11 +65,9 @@ void GameState::UpdateHitboxes()
 						OnHit* objOnHit = static_cast<Entity*>(mainHB->GetUserData())->getComponent<OnHit>(ecs::OnHit);
 						if (objOnHit != nullptr) {
 							objOnHit->onHit(*it);
-							if (!hB->destroy) {
-								hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
-								hB->destroy = true;
-							}
 						}
+						//UserData* uD = static_cast<UserData*>((*it)->GetUserData());	//esto se puede sacar de lo de antes
+						hB->onHit();
 					}
 				}
 			}
@@ -78,18 +75,25 @@ void GameState::UpdateHitboxes()
 	}
 }
 
+//Adds a hitbox relative to a body parameter
+//pos is the positon of the hitbox relative to the body
+//width and height of the hitbox
+//time is the lifetime of the hitbox
+//damage, hitstun and knockback(as meters)
+//id is the player ID
+//cBits are the same as the player, and mBits are the same except it excludes boundaries and walls to avoid bugs /*CAMBIAR CON CLASE BASE*/
+//guardBreaker indicates if the hitbox is a GuardBreaker
 void GameState::addHitbox(Vector2D pos, int width, int height, int time, int damage, int hitstun, Vector2D knockBack, b2Body* body, uint16 id, uint16 cBits, uint16 mBits, bool guardBreaker)
 {
 	b2PolygonShape shape;
-	shape.SetAsBox(width / 2, height / 2, { float32(pos.getX() + width / 2),float32(pos.getY() + height / 2) }, 0);
+	shape.SetAsBox(width * app_->METERS_PER_PIXEL / 2, height * app_->METERS_PER_PIXEL / 2, { float32((pos.getX() + width / 2) * app_->METERS_PER_PIXEL),float32((pos.getY() + height / 2) * app_->METERS_PER_PIXEL) }, 0);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.00001f;			//densidad casi 0, para que no cambie segun el ancho y el alto por ahora
 	fixturedef.isSensor = true;
 	fixturedef.filter.categoryBits = cBits;
 	fixturedef.filter.maskBits = mBits & (PLAYER_1 | PLAYER_2 | P_BAG); //kk
-	HitboxData* hitbox_ = new HitboxData{ damage,time, hitstun, knockBack,guardBreaker };//create the hitbox's data
-
+	//fixturedef.userData
 	//if (PLAYER_1 == cBits >> 2) fixturedef.filter.maskBits = PLAYER_2;
 	//else  fixturedef.filter.maskBits = PLAYER_1;
 	//HitboxData* hitbox = new HitboxData{ damage,time, hitstun, knockBack,guardBreaker };//create the hitbox's data
@@ -97,17 +101,43 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	//hitboxGroups_[cBits >> 2].push_back(body->CreateFixture(&fixturedef));
 	//hitboxGroups_[cBits >> 2].back()->SetUserData(hitbox);//saving hitbox's data
 	////for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
-
+	HitboxData* hData = new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, this);
+	fixturedef.userData = hData;
 	hitboxGroups_[id].push_back(body->CreateFixture(&fixturedef));
-	hitboxGroups_[id].back()->SetUserData(hitbox_);//saving hitbox's data
+	hData->setIt(--hitboxGroups_[id].end());
+	//hitboxGroups_[id].back()->SetUserData(new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, this));//saving hitbox's data
+}
+
+void GameState::addHitbox( uint16 id, EntityHitboxData* hitbox, b2Fixture* fixture)
+{
+	EntityHitboxData* hData = hitbox;
+	hitboxGroups_[id].push_back(fixture);
+	hData->setIt(--hitboxGroups_[id].end());
+	hitboxGroups_[id].back()->SetUserData(hitbox);//saving hitbox's data
 }
 
 void GameState::RemoveHitbox()
 {
 	for (auto hb_it = hitboxRemove_pair_.begin(); hb_it != hitboxRemove_pair_.end(); ++hb_it) {
-
-		delete static_cast<HitboxData*>((*(*hb_it).first)->GetUserData());
+		UserData* hitbox= static_cast<UserData*>((*(*hb_it).first)->GetUserData());
+		//HitboxData* ht = dynamic_cast<HitboxData*>(hitbox);
+		//if (hitbox->destroyEntity) {//destroy entity
+		//	if (hitbox->destroyOnHit) {
+		//		(*(*hb_it).first)->GetBody()->GetWorld()->DestroyBody((*(*hb_it).first)->GetBody());
+		//		//entManager_.removeEntity(hitbox->entity);
+		//	}
+		//	else {
+		//		(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
+		//		//destroy the entity after something like be out of boundary(?) 
+		//	}
+		//	//delete entity;
+		//	
+		//}
+		//else {
+		//	(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
+		//}
 		(*(*hb_it).first)->GetBody()->DestroyFixture((*(*hb_it).first));
+		delete hitbox;
 		hitboxGroups_[(*hb_it).second].erase((*hb_it).first);
 	}
 	hitboxRemove_pair_.clear();
@@ -134,11 +164,15 @@ void GameState::resetGroup(int group) {
 
 	for (auto it = hitboxGroups_[group].begin(); it != hitboxGroups_[group].end(); ++it) {
 		HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
-		if (!hB->destroy) {
+		if (!hB->destroy_) {
 			hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, group));
-			hB->destroy = true;
+			hB->destroy_ = true;
 		}
 	}
+}
+
+void GameState::killHitbox(std::list<b2Fixture*>::iterator it, unsigned int id) {
+	hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, id));
 }
 
 void GameState::render()
@@ -157,8 +191,10 @@ void GameState::render()
 
 void GameState::empty()
 {
+	//entManager_.empty();
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		delete* it;
+		*it = nullptr;
 	}
 	entManager_.getScene().clear();
 }

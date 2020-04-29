@@ -29,6 +29,8 @@ public:
 		ExplosiveWillpower,
 		RandomRage,
 		KnifeDance
+		GanonSheet,
+		BackgroundFight
 	};
 
 	enum FontNames {

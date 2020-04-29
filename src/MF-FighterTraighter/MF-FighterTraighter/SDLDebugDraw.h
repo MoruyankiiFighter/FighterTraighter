@@ -8,11 +8,10 @@
 class SDLDebugDraw : public b2Draw
 {
 public:
-	SDLDebugDraw(SDL_Renderer* r) : b2Draw(), renderer(r){}
-	//SDLDebugDraw(SDL_Renderer* r, float scale_factor) :  b2Draw(), renderer(r), scale_factor_(scale_factor) {}
-	//debug de hitbox de box2D, solo usar drawPoligon si van a ser poligonos, las demas hacen nada
-	/// Dibuja la hitbox
+	SDLDebugDraw(SDL_Renderer* r, float scale_factor) :  b2Draw(), renderer(r), scale_factor_(scale_factor) {}
+	//draws debug polygons with the e_aabbBit flag
 	void DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) override;
+	//draws debug polygons with the e_shapeBit flag
 	void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)override;
 	void DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color)override {}
 	void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {}
@@ -20,6 +19,6 @@ public:
 	void DrawTransform(const b2Transform& xf)override {}
 private:
 	SDL_Renderer* renderer;
-	//float scale_factor_ = 1;
+	float scale_factor_ = 1;
 };
 
