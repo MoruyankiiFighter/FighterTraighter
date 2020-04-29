@@ -67,18 +67,19 @@ void PlayerAttacks::handleInput() {
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack(3);
 			}
-			else if (/*fight->giveMeTimerAb1()->getComponent<UITimer>(ecs::UITimer)->isTimerStopped() &&*/ inputSt_->getInput(8)) {
-				//activeAttack_ = attacksList[3];
-				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack();
-				//fight->giveMeTimerAb1()->getComponent<UITimer>(ecs::UITimer)->resetTimer();
+			else if (inputSt_->getInput(8)) {
+				if (abilityList[0] != nullptr && cooldowns[0] == 0) {
+					activeAttack_ = abilityList[0];
+					tr->setSpeed(0, tr->getSpeed().getY());
+					currState->goCasting();
+				}
 			}
 			else if (inputSt_->getInput(9)) {
-				activeAttack_ = attacksList[3];
-				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack();
+				if (abilityList[1] != nullptr && cooldowns[1] == 0) {
+					activeAttack_ = abilityList[1];
+					tr->setSpeed(0, tr->getSpeed().getY());
+					currState->goCasting();
+				}
 			}
 			else if (inputSt_->getInput(11)) {
 				activeAttack_ = attacksList[8];
