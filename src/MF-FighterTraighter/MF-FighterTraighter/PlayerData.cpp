@@ -4,5 +4,7 @@ PlayerData::PlayerData(std::vector<SDL_Scancode> keys, double width, double heig
     Component(ecs::PlayerData), width_(&width), height_(&height), rotation_(&rotation), jump_impulse_(&jump_impulse), initial_position_(ini_pos), speed_(&speed), health_(&ini_health), attack_(attack), defense_(defense), playerNumber_(playerNumber){
     leftKey_ = keys[0]; righKey_ = keys[1]; jumpKey_ = keys[2]; crouchKey_ = keys[3]; guardKey_ = keys[8];
     normalPunchKey_ = keys[4]; hardPunchKey_ = keys[5]; normalKickKey_ = keys[6]; hardKickKey_ = keys[7];
+	guardBreakerKey_ = keys[9]; ability1Key_ = keys[10]; ability2Key_ = keys[11];
+
     //--!-- faltan keys de guarbreaker y abilities
 }

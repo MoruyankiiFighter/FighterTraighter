@@ -2,10 +2,11 @@
 #include "Transform.h"
 #include "Box2D\Box2D.h"
 # include <vector>
+#include "HitboxData.h"
 class PhysicsTransform : public Transform
 {
 public:
-	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation,b2World* world,uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, bool dyn = true);
+	PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation,b2World* world,uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, int dyn = 2);
 	//PhysicsTransform();
 	virtual ~PhysicsTransform();
 
@@ -42,22 +43,25 @@ public:
 	}
 
 	virtual void setWidth(double width);
-	virtual void setColliderWidth(double width);
+	virtual void setColliderWidth(double width, Vector2D center = Vector2D(0,0), float angle = 0);
 	virtual void setHeight(double height);
-	virtual void setColliderHeight(double height);
-
-	virtual void setWidthHeight(double width, double height);
+	virtual void setColliderHeight(double height, Vector2D center = Vector2D(0, 0), float angle = 0);
+	virtual void setSize(double width, double height);
+	virtual void setColliderSize(double width, double height, Vector2D center = Vector2D(0, 0), float angle = 0);
+	virtual void moveCollider(const Vector2D& move);
 	b2Body* getBody() { return body_; }
 	b2Fixture* getMainFixture() { return mainFixture_; }
 	uint16 getCategory() { return cBits_; }
 	uint16 getMask() { return mBits_; }
-
+	void resetUserData(UserData* newData);
 private:
 	b2Body* body_;
 	uint16 cBits_, mBits_;
 	b2Fixture* mainFixture_;
-	bool dynamic_;
+	float col_width_,
+		 col_height_;
+	int dynamic_;
 	b2World* world_ = nullptr;
-	void resetMainFixture(const b2PolygonShape& shape);
+	void resetMainFixture(const b2Vec2& center, float angle);
 };
 

@@ -19,8 +19,8 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
 		helth->LoseLife(hBox_data->damage_);
-		if (!hBox_data->guardBreaker) {//if isnt a guardBreaker go to hitstun
-			if (hBox_data->knockBack_.getY() < 0)	//vertical knockback, goes to airborne hitstun
+		if (!hBox_data->guardBreaker_) {//if isnt a guardBreaker go to hitstun
+			if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
 				currState->goHitsun(hBox_data->hitstun_);
 			else
 				currState->goHitstunAirborne();
@@ -30,7 +30,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		cout << "Hago X:" << hBox_data->knockBack_.getX() << " Y: " << hBox_data->knockBack_.getY() << endl;
 	}
 	else {
-		if (hBox_data->guardBreaker) {
+		if (hBox_data->guardBreaker_) {
 			currState->goHitsun(hBox_data->hitstun_);
 			helth->LoseLife(hBox_data->damage_ );
 			pT->getBody()->ApplyLinearImpulse(b2Vec2(hBox_data->knockBack_.getX(), hBox_data->knockBack_.getY()), pT->getBody()->GetWorldCenter(), true);
@@ -46,7 +46,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 
 	// he died
 	if (helth->getHealth() == 0) {
-		app_->getGameManager()->playerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
+		entity_->getApp()->getGameManager()->playerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
 	}
 }
 

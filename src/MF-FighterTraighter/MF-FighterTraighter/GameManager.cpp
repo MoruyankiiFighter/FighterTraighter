@@ -9,7 +9,7 @@
 #include "Fight.h"
 #include "OptionsMenu.h"
 #include "Training.h"
-
+#include "Entity.h"
 GameManager::GameManager(App* app) : app_(app)
 {
 	app_->getStateMachine()->pushState(new MainMenu(app_));
@@ -64,6 +64,22 @@ void GameManager::trainingEnded()
 	// Remove the current training mode
 	stateMachine->popState();
 	stateMachine->pushState(new Fight(app_));
+}
+
+void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index)
+{
+	//player1_.character = character;
+	player1_.abilities = abilities;
+	player1_.ability1Index = ability1Index;
+	player1_.ability2Index = ability2Index;
+}
+
+void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index)
+{
+	//player2_.character = character;
+	player2_.abilities = abilities;
+	player2_.ability1Index = ability1Index;
+	player2_.ability2Index = ability2Index;
 }
 
 void GameManager::GoBackToMain(GameStateMachine* stateMachine)
