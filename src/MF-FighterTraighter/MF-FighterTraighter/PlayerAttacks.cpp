@@ -71,6 +71,19 @@ void PlayerAttacks::handleInput() {
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
 				currState->goAttack(4);
+			}else if (inputSt_->getInput(8)) {
+				if (abilityList[0] != nullptr) {
+					activeAttack_ = abilityList[0];
+					tr->setSpeed(0, tr->getSpeed().getY());
+					currState->goCasting();
+				}
+			}
+			else if (inputSt_->getInput(9)) {
+				if (abilityList[1] != nullptr) {
+					activeAttack_ = abilityList[1];
+					tr->setSpeed(0, tr->getSpeed().getY());
+					currState->goCasting();
+				}
 			}
 		}
 		else {
@@ -93,20 +106,6 @@ void PlayerAttacks::handleInput() {
 				activeAttack_ = attacksList[7];
 				tr->setSpeed(0, tr->getSpeed().getY());
 				currState->goAttack(3);
-			}
-		}
-		if (inputSt_->getInput(8)) {
-			if (abilityList[0] != nullptr) {
-				activeAttack_ = abilityList[0];
-				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(4);
-			}
-		}
-		else if (inputSt_->getInput(9)) {
-			if (abilityList[1] != nullptr) {
-				activeAttack_ = abilityList[1];
-				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(4);
 			}
 		}
 	}
