@@ -154,7 +154,7 @@ void AbilityFactory::SeismicS2(Entity* ent)
 	int damage = 10;
 	int hitstun = 0;
 	Vector2D knockBack(5, 2);
-	int time = 1000;
+	int time = 150;
 	bool destroyInContact = true;
 	double width = 150;
 	double height = 150;

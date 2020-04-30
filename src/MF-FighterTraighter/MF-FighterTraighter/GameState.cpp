@@ -51,8 +51,9 @@ void GameState::UpdateHitboxes()
 			HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
 			if (hB->time_-- <= 0) {//checks if the hitbox "dies"
 				if (!hB->destroy_) {
-					hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
-					hB->destroy_ = true;
+					//hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
+					//hB->destroy_ = true;
+					hB->onHit();
 				}
 			}
 			else {	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
@@ -65,7 +66,7 @@ void GameState::UpdateHitboxes()
 						//does both objects onHits if they hit each other
 						UserData* objOnHit = static_cast<UserData*>(mainHB->GetUserData());
 						objOnHit->onHit(*it);
-						hB->onHit(mainHB);
+						hB->onHit(/*mainHB*/);
 					}
 				}
 			}

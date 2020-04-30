@@ -15,8 +15,15 @@ PhysicsTransform::~PhysicsTransform() {
 }
 
 void PhysicsTransform::resetUserData(UserData* newData) {
-	delete static_cast<UserData*>(mainFixture_->GetUserData());
-	mainFixture_->SetUserData(newData);
+	//if (newData == nullptr) {
+	//int* m = nullptr;
+	//delete m;
+		delete static_cast<UserData*>(mainFixture_->GetUserData());
+		mainFixture_->SetUserData(newData);
+	/*}
+	else {
+		cout << "mal";
+	}*/
 }
 
 void PhysicsTransform::init() {
