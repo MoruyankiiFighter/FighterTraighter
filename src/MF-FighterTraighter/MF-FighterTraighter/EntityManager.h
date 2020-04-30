@@ -22,7 +22,7 @@ public:
 
 	//deletes all the entities of the list
 	void empty();
-	int size() {
+	size_t size() {
 		return list_.size();
 	}
 	//return the list

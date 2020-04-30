@@ -28,7 +28,7 @@ void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
 
 
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	//NO ME GUSTA ASï¿½ PERO NO Sï¿½ Cï¿½MO HACERLO SI NO
 	int width = 175;
 	int hitboxX = 100;
 	if (orientation_ == -1) hitboxX += width;
@@ -45,7 +45,7 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
 
 
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
+	//NO ME GUSTA ASï¿½ PERO NO Sï¿½ Cï¿½MO HACERLO SI NO
 	int width1 = 175;
 	int hitboxX1 = 100;
 	if (orientation_ == -1) hitboxX1 += width1;
@@ -63,15 +63,48 @@ void AbilityFactory::MGC(Entity* ent)
 	goOnCoolodwn(ent, 600);
 }
 
+////no se usa
+//AnimationChain* AbilityFactory::Bullets(Entity* e)
+//{
+//	std::vector<Move*> vecMov;
+//	//Entity* e = state->getEntityManager().addEntity();
+//	Vector2D speed = { 10000, 0 };
+//	vecMov.push_back(new Move(50, nullptr, Bullet1, e));
+//	
+//	AnimationChain* Bullet = new AnimationChain(vecMov);
+//	return Bullet;
+//}
+////no se usa
+//void AbilityFactory::Bullet1(Entity* ent)	//Golpes stuneantes
+//{
+//	//CollisionFilters
+//	App* app = ent->getApp();
+//	GameState* currentState = app->getStateMachine()->getCurrentState();
+//	uint16 mask;
+//	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
+//	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)  mask = currentState->PLAYER_2;
+//	else   mask = currentState->PLAYER_1;
+//
+//	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+//	Vector2D pos =  Vector2D(phTr->getPosition().getX()+ phTr->getWidth(), phTr->getPosition().getY()+phTr->getHeight()/2) ;
+//	//Bullet(GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
+//	e->addComponent<PhysicsTransform>(pos, Vector2D(0, 0), 80,20, 0, currentState->getb2World(),
+//		currentState->BULLET, mask, 1);
+//	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
+//	e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), Vector2D(10000, 0), 10, 0, Vector2D(50, 50), 1000, true);
+//}
+
 //ability that kick the floor and moments later 3 rocks fall on top of the other player
-AnimationChain* AbilityFactory::SeismicShock(Entity* e)
+AnimationChain* AbilityFactory::GiveSeismicShock(Entity* e)
 {
 	std::vector<Move*> vecMov;
 	vecMov.push_back(new Move(35, nullptr, SeismicS1, e));//the kick
-	vecMov.push_back(new Move(50, nullptr, SeismicS2, e));//the rocks
+	vecMov.push_back(new Move(20, nullptr, SeismicS3, e));//the rocks going up
+	vecMov.push_back(new Move(0, nullptr, SeismicSC, e));//the cooldown
+	vecMov.push_back(new Move(90, nullptr, SeismicS2, e));//the punches going down
 
-	AnimationChain* Bullet = new AnimationChain(vecMov);
-	return Bullet;
+	AnimationChain* SeismicShock = new AnimationChain(vecMov);
+	return SeismicShock;
 }
 //the attack to the floor
 void AbilityFactory::SeismicS1(Entity* e) {
@@ -91,7 +124,6 @@ void AbilityFactory::SeismicS1(Entity* e) {
 
 
 	e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1, 105 }, width1, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
-	goOnCoolodwn(e, 200);
 }
 //3 rocks
 void AbilityFactory::SeismicS2(Entity* ent)
@@ -113,20 +145,16 @@ void AbilityFactory::SeismicS2(Entity* ent)
 	double otherWidth=otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getWidth();
 	Vector2D otherPos = otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getPosition();
 	Vector2D pos = Vector2D(otherPos.getX()+ otherWidth/2,0);//first rock
-	Vector2D pos1;//second rock
-	Vector2D pos2;//third rock
-	int windowWidth = app->getWindowManager()->getCurResolution().w;
-	double rocksSeparation = 150;
-	if (pos.getX() + rocksSeparation >= (double)windowWidth)  pos1 = {(double) windowWidth, -160 };
-	else pos1 = { pos.getX() + rocksSeparation, -160 };
 
-	if (pos.getX() - rocksSeparation <= 0)  pos2 = { 0, -320 };
-	else pos2 = { pos.getX() - rocksSeparation, -320 };
+	double rocksSeparation = 160;
+	Vector2D pos1 = Vector2D(pos.getX() + rocksSeparation, -160);//second rock
+
+	Vector2D pos2 = Vector2D(pos.getX() - rocksSeparation, -320);//third rock
 	//pos2 = Vector2D(otherPos.getX()-150, -320);
 	int damage = 10;
 	int hitstun = 0;
 	Vector2D knockBack(5, 2);
-	int time = 1000;
+	int time = 150;
 	bool destroyInContact = true;
 	double width = 150;
 	double height = 150;
@@ -200,6 +228,24 @@ void AbilityFactory::Bullet1(Entity* ent)	//Golpes stuneantes
 void AbilityFactory::createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage,
 	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, bool destroyInContact) {
 
+void AbilityFactory::SeismicS3(Entity* ent)
+{
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	Vector2D pos = Vector2D(phtr->getPosition().getX() + phtr->getWidth(), phtr->getPosition().getY() + phtr->getHeight());
+	createProyectile(ent, 300, 300, pos, { 0,-10 }, 0, 0, { 0,0 }, 250, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, false);
+
+}
+
+void AbilityFactory::SeismicSC(Entity* ent)
+{
+}
+
+void AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
+	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture,bool destroyInContact) {
+	double windowWidth = app->getWindowManager()->getCurResolution().w;
+	if (pos.getX() >= windowWidth)  pos.setX(windowWidth);
+	else if (pos.getX() <= 0)  pos.setX(0);
 	//App* app = ent->getApp();
 	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();

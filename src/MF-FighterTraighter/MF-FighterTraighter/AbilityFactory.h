@@ -13,8 +13,10 @@ public:
 	//Seismic Shock
 	static AnimationChain* SeismicShock(Entity* e);
 
-	static void SeismicS1(Entity* e);
-	static void SeismicS2(Entity* ent);
+	static void SeismicS1(Entity* e);//kick
+	static void SeismicS2(Entity* ent);//rock going up
+	static void SeismicS3(Entity* ent);//punches going down
+	static void SeismicSC(Entity* ent);//go cd
 
 	//Explosive Willpower
 	static AnimationChain* GiveExplosiveWillpower(Entity* e);
