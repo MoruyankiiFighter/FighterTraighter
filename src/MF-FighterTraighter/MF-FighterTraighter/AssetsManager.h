@@ -26,6 +26,10 @@ public:
 		GanonSheet,
 		BackgroundFight,
 		Banner,
+		Aisha_icon,
+		Mk_icon,
+		Mock_icon,
+		Flor_icon
 	};
 
 	enum FontNames {

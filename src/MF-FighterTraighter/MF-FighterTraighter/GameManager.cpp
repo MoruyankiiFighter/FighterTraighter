@@ -13,13 +13,13 @@
 #include "CharacterSelection.h"
 GameManager::GameManager(App* app) : app_(app)
 {
-	app_->getStateMachine()->pushState(new CharacterSelection(app_));//OJO CAMBIAR LUEGO
+	app_->getStateMachine()->pushState(new MainMenu(app_));//OJO CAMBIAR LUEGO
 }
 
 void GameManager::pressedStart()
 {
 	GameState* curState = app_->getStateMachine()->getCurrentState();
-	if (dynamic_cast<MainMenu*>(curState)) app_->Exit();
+	if (dynamic_cast<MainMenu*>(curState)) app_->getStateMachine()->pushState(new CharacterSelection(app_));
 	else if (dynamic_cast<PauseMenu*>(curState)
 		|| dynamic_cast<ControlsMenu*>(curState)
 		|| dynamic_cast<OptionsMenu*>(curState)) app_->getStateMachine()->popState();

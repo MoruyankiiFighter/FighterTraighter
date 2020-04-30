@@ -38,16 +38,16 @@ void CharacterSelection::init()
 	std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Center;
 	
 	//icons of the character
-	tuple <Entity*, Entity*> flor_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	tuple <Entity*, Entity*> flor_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Flor_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((ancho / 25) * 6, (alto / 14) * 2), Vector2D((ancho / 25) * 6, (alto / 14) * 2), Vector2D((ancho / 25) * 6, (alto / 14) * 2), (ancho / 25) * 3, (alto / 14) * 3 ,0,
 		nullptr, nullptr, " ", letra, TextComponent::TextAlignment::Center);
-	tuple <Entity*, Entity*> mkwhoop_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	tuple <Entity*, Entity*> mkwhoop_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mk_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((ancho / 25) * 9.5, (alto / 14) * 2), Vector2D((ancho / 25) * 9.5, (alto / 14) * 2), Vector2D((ancho / 25) * 9.5, (alto / 14) * 2), (ancho / 25) * 3, (alto / 14) * 3, 0,
 		nullptr, nullptr, " ", letra, TextComponent::TextAlignment::Center);
-	tuple <Entity*, Entity*> aisha_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	tuple <Entity*, Entity*> aisha_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Aisha_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((ancho / 25) * 13, (alto / 14) * 2), Vector2D((ancho / 25) * 13, (alto / 14) * 2), Vector2D((ancho / 25) * 13, (alto / 14) * 2), (ancho / 25) * 3, (alto / 14) * 3, 0,
 		nullptr, nullptr, " ", letra, TextComponent::TextAlignment::Center);
-	tuple <Entity*, Entity*> mockinbird_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	tuple <Entity*, Entity*> mockinbird_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mock_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((ancho / 25) * 16.5, (alto / 14) * 2), Vector2D((ancho / 25) * 16.5, (alto / 14) * 2), Vector2D((ancho / 25) * 16.5, (alto / 14) * 2), (ancho / 25) * 3, (alto / 14) * 3, 0,
 		nullptr, nullptr, " ", letra, TextComponent::TextAlignment::Center);
 
@@ -63,16 +63,13 @@ void CharacterSelection::init()
 
 	//Entitys
 
-
-	Entity* navEnt = entManager_.addEntity();
-	NavigationController* nav = navEnt->addComponent<NavigationController>(2, 3);
-	nav->SetElementInPos(std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-	nav->SetElementInPos(std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), 0, 1);
-	nav->SetElementInPos(std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-	nav->SetElementInPos(std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), 1, 1);
-	nav->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 2);
-	nav->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 1, 2);
-
-
+	Entity* nav = entManager_.addEntity();
+	NavigationController* ctrl = nav->addComponent<NavigationController>(4, 4);
+	ctrl->SetElementInPos(std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), 0, 0);
+	ctrl->SetElementInPos(std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), 1, 0);
+	ctrl->SetElementInPos(std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), 2, 0);
+	ctrl->SetElementInPos(std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement), 3, 0);
+	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 1, 0);
+	ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 1, 1);
 	//logic of that for changing the artwork of each player 
 }

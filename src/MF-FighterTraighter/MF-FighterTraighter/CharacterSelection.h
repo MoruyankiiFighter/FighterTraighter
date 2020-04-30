@@ -9,8 +9,6 @@ public:
 	CharacterSelection(App* app) : GameState(app) { init(); }
 	
 	void init() override;
-	void handleInput() override {}
-
 
 private:
 	double ancho = app_->getWindowManager()->getCurResolution().w, alto = app_->getWindowManager()->getCurResolution().h;
