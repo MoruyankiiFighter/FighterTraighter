@@ -56,8 +56,10 @@ void CharacterSelection::init()
 
 	Entity* j1_ = entManager_.addEntity();
 	Entity* j2 = entManager_.addEntity();
-	Entity* text_j1 = UIFactory::createText(app_, this, Vector2D(), Vector2D(), Vector2D(), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j1", 10, 100,100);
-	Entity* text_j2 = UIFactory::createText(app_, this, Vector2D(), Vector2D(), Vector2D(), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j2", 10, 100,100);
+	Entity* text_j1 = UIFactory::createText(app_, this, Vector2D((ancho / 25) * 5, (alto / 14) * 7), Vector2D((ancho / 25) * 5, (alto / 14) * 7),
+		Vector2D((ancho / 25) * 5, (alto / 14) * 7), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j1", 30, (ancho / 25) * 5, (alto / 14) * 2);
+	Entity* text_j2 = UIFactory::createText(app_, this, Vector2D((ancho / 25) * 15, (alto / 14) * 8), Vector2D((ancho / 25) * 15, (alto / 14) * 8),
+		Vector2D((ancho / 25) * 15, (alto / 14) * 8), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j2", 30, (ancho / 25) * 5, (alto / 14) * 2);
 
 	//Entitys
 
