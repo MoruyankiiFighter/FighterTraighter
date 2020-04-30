@@ -63,37 +63,6 @@ void AbilityFactory::MGC(Entity* ent)
 	goOnCoolodwn(ent, 600);
 }
 
-//no se usa
-AnimationChain* AbilityFactory::Bullets(Entity* e)
-{
-	std::vector<Move*> vecMov;
-	//Entity* e = state->getEntityManager().addEntity();
-	Vector2D speed = { 10000, 0 };
-	vecMov.push_back(new Move(50, nullptr, Bullet1, e));
-	
-	AnimationChain* Bullet = new AnimationChain(vecMov);
-	return Bullet;
-}
-//no se usa
-void AbilityFactory::Bullet1(Entity* ent)	//Golpes stuneantes
-{
-	//CollisionFilters
-	App* app = ent->getApp();
-	GameState* currentState = app->getStateMachine()->getCurrentState();
-	uint16 mask;
-	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
-	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)  mask = currentState->PLAYER_2;
-	else   mask = currentState->PLAYER_1;
-
-	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	Vector2D pos =  Vector2D(phTr->getPosition().getX()+ phTr->getWidth(), phTr->getPosition().getY()+phTr->getHeight()/2) ;
-	//Bullet(GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
-	e->addComponent<PhysicsTransform>(pos, Vector2D(0, 0), 80,20, 0, currentState->getb2World(),
-		currentState->BULLET, mask, 1);
-	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
-	e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), Vector2D(10000, 0), 10, 0, Vector2D(50, 50), 1000, true);
-}
-
 //ability that kick the floor and moments later 3 rocks fall on top of the other player
 AnimationChain* AbilityFactory::SeismicShock(Entity* e)
 {
@@ -168,9 +137,57 @@ void AbilityFactory::SeismicS2(Entity* ent)
 
 }
 
-void AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
-	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture,bool destroyInContact) {
-	
+AnimationChain* AbilityFactory::GiveExplosiveWillpower(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(1, nullptr, EWC, e));
+	vecMov.push_back(new Move(10, nullptr, EW1, e));
+	vecMov.push_back(new Move(10, nullptr, EW2, e));
+	vecMov.push_back(new Move(10, nullptr, EW3, e));
+	vecMov.push_back(new Move(10, nullptr, nullptr, e));
+	AnimationChain* MegatonGrip = new AnimationChain(vecMov);
+	return MegatonGrip;
+}
+
+void AbilityFactory::EWC(Entity* ent)
+{
+	goOnCoolodwn(ent, 7 * 60);
+}
+
+//no se usa
+AnimationChain* AbilityFactory::Bullets(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	//Entity* e = state->getEntityManager().addEntity();
+	Vector2D speed = { 10000, 0 };
+	vecMov.push_back(new Move(50, nullptr, Bullet1, e));
+
+	AnimationChain* Bullet = new AnimationChain(vecMov);
+	return Bullet;
+}
+//no se usa
+void AbilityFactory::Bullet1(Entity* ent)	//Golpes stuneantes
+{
+	//CollisionFilters
+	App* app = ent->getApp();
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	uint16 mask;
+	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)  mask = currentState->PLAYER_2;
+	else   mask = currentState->PLAYER_1;
+
+	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	Vector2D pos = Vector2D(phTr->getPosition().getX() + phTr->getWidth(), phTr->getPosition().getY() + phTr->getHeight() / 2);
+	//Bullet(GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
+	e->addComponent<PhysicsTransform>(pos, Vector2D(0, 0), 80, 20, 0, currentState->getb2World(),
+		currentState->BULLET, mask, 1);
+	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
+	e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), Vector2D(10000, 0), 10, 0, Vector2D(50, 50), 1000, true);
+}
+
+void AbilityFactory::createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage,
+	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, bool destroyInContact) {
+
 	//App* app = ent->getApp();
 	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
