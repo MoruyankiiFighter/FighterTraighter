@@ -75,6 +75,7 @@ void PlayerAttacks::handleInput() {
 				if (abilityList[0] != nullptr && cooldowns[0] == 0) {
 					activeAttack_ = abilityList[0];
 					tr->setSpeed(0, tr->getSpeed().getY());
+					if (currState->isCrouch()) ctrl->uncrouch();
 					currState->goCasting();
 				}
 			}
@@ -82,6 +83,7 @@ void PlayerAttacks::handleInput() {
 				if (abilityList[1] != nullptr && cooldowns[1] == 0) {
 					activeAttack_ = abilityList[1];
 					tr->setSpeed(0, tr->getSpeed().getY());
+					if (currState->isCrouch()) ctrl->uncrouch();
 					currState->goCasting();
 				}
 			}

@@ -154,6 +154,18 @@ void AbilityFactory::EWC(Entity* ent)
 	goOnCoolodwn(ent, 7 * 60);
 }
 
+void AbilityFactory::EW1(Entity* ent)
+{
+}
+
+void AbilityFactory::EW2(Entity* ent)
+{
+}
+
+void AbilityFactory::EW3(Entity* ent)
+{
+}
+
 //no se usa
 AnimationChain* AbilityFactory::Bullets(Entity* e)
 {
