@@ -4,6 +4,7 @@
 #include "OnHit.h"
 #include "ResetJumpListener.h"
 #include "EntityHitboxData.h"
+
 GameState::GameState(App* app) : app_(app), entManager_(app, this)
 {
 }
@@ -11,12 +12,11 @@ void GameState::init()
 {
 	gravity = Vector2D(0.0f, 10.0f);
 	world = new b2World(gravity);
-#ifdef NDEBUG
-	debugInstance = nullptr;
-#else
+#ifdef _DEBUG
 	debugInstance = new SDLDebugDraw(app_->getRenderer(), app_->PIXELS_PER_METER);
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_shapeBit);
+#else
 #endif
 	resJumpListener = new ResetJumpListener();
 	world->SetContactListener(resJumpListener);
@@ -182,8 +182,7 @@ void GameState::render()
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->render();
 	}
-#ifdef NDEBUG
-#else
+#ifdef _DEBUG // only compiles in debug
 	world->DrawDebugData();
 #endif
 	SDL_RenderPresent(app_->getRenderer());
@@ -205,6 +204,8 @@ GameState::~GameState()
 	clearHitboxes();
 
 	delete world;
+#ifdef _DEBUG
 	delete debugInstance;
+#endif // _DEBUG
 	delete resJumpListener;
 }

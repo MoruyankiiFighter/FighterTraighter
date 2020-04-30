@@ -70,7 +70,7 @@ void GameManager::trainingEnded()
 void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index)
 {
 	//player1_.character = character;
-	player1_.abilities = abilities;
+	//player1_.abilities = abilities;
 	player1_.ability1Index = ability1Index;
 	player1_.ability2Index = ability2Index;
 }
@@ -78,7 +78,7 @@ void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<
 void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index)
 {
 	//player2_.character = character;
-	player2_.abilities = abilities;
+	//player2_.abilities = abilities;
 	player2_.ability1Index = ability1Index;
 	player2_.ability2Index = ability2Index;
 }
