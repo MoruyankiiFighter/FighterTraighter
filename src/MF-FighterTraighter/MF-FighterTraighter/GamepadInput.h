@@ -4,7 +4,7 @@
 class GamepadInput :public  Component
 {
 public:
-	GamepadInput(std::vector<SDL_GameControllerButton>attacks, std::vector<SDL_GameControllerAxis>blocking) :Component(ecs::GamepadInput),attacks(attacks),blocking(blocking) {};
+	GamepadInput(std::vector<std::string>mando) :Component(ecs::GamepadInput),mando_(mando) {};
 
 	~GamepadInput() {};
 	virtual void init();
@@ -53,32 +53,22 @@ public:
 		}
 
 		int j = 0;
-		for (; j < attacks.size(); ++j)	//button pressed
-		{
-			if (app_->getInputManager()->isControllerButtonPressed(InputManager::PLAYER1, attacks[j]))
+		
+			for (; j < mando_.size(); ++j)	//button pressed
 			{
 
-				inSt->setInput(i, true);
-			}
-			else
-			{
 				inSt->setInput(i, false);
-			}
-			++i;
-		}
+				if ((app_->getInputManager()->axisEvent() || app_->getInputManager()->controllerEvent()))
+				{
+					if (app_->getInputManager()->lastAxisstring() == mando_[j] || app_->getInputManager()->lastButtonstring() == mando_[j])
+					{
+						inSt->setInput(i, true);
 
-		for (int h = 0; h < blocking.size(); ++h)	//triggers
-		{
-			if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, blocking[h]) > deadZone)
-			{
-				inSt->setInput(i, true);
+					}
+				}
+				i++;
 			}
-			else
-			{
-				inSt->setInput(i, false);
-			}
-			++i;
-		}
+	}
 
 		/*	for (int j =0; j < button.size(); j++)			//button held 
 		{
@@ -95,10 +85,10 @@ public:
 
 			}
 		}*/
-	}
+	
 
-	void changeButton(int index, SDL_GameControllerButton newbutton) {
-		attacks[index] = newbutton;
+	void changeButton(int index, std::string newbutton) {
+		mando_[index] = newbutton;
 	}
 
 private:
@@ -106,20 +96,10 @@ private:
 	int inputsize = 10;
 	const float deadZone = 0.5;
 	bool mov = false;
+	std::vector<std::string>mando_;
+	
 
-	std::vector<SDL_GameControllerButton>attacks;/* = {
-	SDL_CONTROLLER_BUTTON_A,
-	SDL_CONTROLLER_BUTTON_B,
-	SDL_CONTROLLER_BUTTON_X,
-	SDL_CONTROLLER_BUTTON_Y,
-	SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
-	SDL_CONTROLLER_BUTTON_RIGHTSHOULDER
-	};*/
-
-	std::vector<SDL_GameControllerAxis>blocking; /*= {
-	SDL_CONTROLLER_AXIS_TRIGGERLEFT,
-	SDL_CONTROLLER_AXIS_TRIGGERRIGHT
-	};*/
+	
 
 	std::vector<SDL_GameControllerAxis>movement = {
 	SDL_CONTROLLER_AXIS_LEFTX,

@@ -115,19 +115,17 @@ void ControlsMenu::ChangeControl(App*app,int index,int control) {
 void ControlsMenu::initString()
 {
 	std::vector < SDL_Scancode >scan=app_->getInputManager()->ControlKeyboard();
-	std::vector < SDL_GameControllerAxis >axis=app_->getInputManager()->ControlAxis();
-	std::vector < SDL_GameControllerButton >button=app_->getInputManager()->ControlButton();
+	std::vector < std::string >button=app_->getInputManager()->ControlMando();
 
 	for (int i = 0; i < 12; i++)
 	{
 		predet[i] =SDL_GetScancodeName( scan[i]);
 	}
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < button.size(); i++)
 	{
-		predetMando[i] = SDL_GameControllerGetStringForButton(button[i]);
+		predetMando[i] = button[i];
 	}
-	predetMando[6] = SDL_GameControllerGetStringForAxis( axis[0]);
-	predetMando[7] = SDL_GameControllerGetStringForAxis(axis[1]);
+	
 
 	
 

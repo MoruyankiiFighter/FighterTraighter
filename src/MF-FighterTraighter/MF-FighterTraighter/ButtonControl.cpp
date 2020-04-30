@@ -7,69 +7,102 @@
 
 void ButtonControl::init()
 {
+	b = ini;
 }
 
 void ButtonControl::handleInput()
 {
 	InputManager* imngr = app_->getInputManager();
-	string texto;
-	if (!leeKey)
+	
+	switch (b)
 	{
+	case ButtonControl::ini:
 		if (state_ == Selected) {
 
-			if (imngr->pressedAccept()) {
+			if (imngr->isKeyDown(SDL_SCANCODE_RETURN) && control == 0) {
 				Press();
-				leeKey = true;
-				text_->setText("Press");
+				text_->setText("Press Key");
+
+				b = pressEnter;
+			}
+			else if (imngr->isControllerButtonUp(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A) && control == 1)
+			{
+				Press();
+				text_->setText("Press Button");
+				b = pressA;
 			}
 		}
-	}
-	else if (leeKey)
-	{
-	
-		if (!arriba)
+		break;
+	case ButtonControl::pressEnter:
+		if (imngr->isKeyUp(SDL_GetScancodeFromName("Return")))
 		{
-		 arriba=imngr->isKeyUp(SDL_GetScancodeFromName("Return")) && imngr->isControllerButtonUp(InputManager::PLAYER1,SDL_CONTROLLER_BUTTON_A);
+			b = ENTERUP;
+		}
+		
+		break;
+	case ButtonControl::pressA:
+		if (!imngr->isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A))
+		{
+			b = AUP;
 
 		}
-		else if (arriba)
+		break;
+	case ButtonControl::AUP:
+		if (imngr->axisEvent())
 		{
+			texto = imngr->lastAxisstring();
+
+		}
+		else if (imngr->controllerEvent() )
+		{
+			texto = imngr->lastButtonstring();
 			
-			if (imngr->axisEvent() && control ==1)
-			{
-				texto = imngr->lastAxisstring();
+		}
+		if (texto != "")
+		{
+			b = leeInput;
 
-			}
-			else if (imngr->controllerEvent()&& control ==1)
+		}
+		break;
+	case ButtonControl::ENTERUP:
+		if (imngr->keyboardEvent())
+		{
+			texto = imngr->lastKeystring();
+			if (texto!="")
 			{
-				texto = imngr->lastButtonstring();
+				b = leeInput;
 
-
-			}
-			else if (imngr->keyboardEvent() && control ==0)
-			{
-				texto = imngr->lastKeystring();
-			}
-
-			if (texto != "" )
-			{
-				text_->setText(texto);
-				leeKey = false;
-				arriba = false;
-				if (clickCallback_)
-				{
-					clickCallback_(app_, index, control);
-				}
-				state_ = Selected;
-				entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
 			}
 
 		}
-	}
+		break;
+	case ButtonControl::leeInput:
+		texto = "";
+		b = ini;
+		if (clickCallback_)
+		{
+			clickCallback_(app_, index, control);
+		}
+		state_ = Selected;
+		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
+		break;
+	}			
 }
 
 void ButtonControl::render()
 {
+	if (b==ini)
+	{
+		if (control == 0 )
+		{
+			text_->setText(SDL_GetScancodeName(app_->getInputManager()->ControlKeyboard()[index]));
 
+		}
+		else if(index>3)
+		{
+			text_->setText(app_->getInputManager()->ControlMando()[index-4]);
+		}
+	}
+	
 };
 

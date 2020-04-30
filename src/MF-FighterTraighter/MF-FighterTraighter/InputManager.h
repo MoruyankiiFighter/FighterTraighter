@@ -140,32 +140,6 @@ public:
 			|| isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START);
 	}
 
-	SDL_Scancode lastKey()
-	{
-		return e.key.keysym.scancode;
-	}
-	SDL_GameControllerAxis lastAxis()
-	{
-		return (SDL_GameControllerAxis)e.caxis.axis;
-	}
-	SDL_GameControllerButton lastButton()
-	{
-		return (SDL_GameControllerButton)e.cbutton.button;
-	}
-	std::string lastKeystring()
-	{
-	
-		return SDL_GetScancodeName( e.key.keysym.scancode);
-	}
-	std::string lastAxisstring()
-	{
-		return SDL_GameControllerGetStringForAxis((SDL_GameControllerAxis) e.caxis.axis);
-	}
-	std::string lastButtonstring()
-	{
-		
-		return SDL_GameControllerGetStringForButton((SDL_GameControllerButton)e.cbutton.button);
-	}
 	
 
 	
@@ -216,41 +190,88 @@ private:
 	std::vector<SDL_Scancode> keys_ = { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X,
 		SDL_SCANCODE_SPACE, SDL_SCANCODE_R, SDL_SCANCODE_1, SDL_SCANCODE_2,};
 	
-	std::vector<SDL_GameControllerButton>botonesMando = {
-	SDL_CONTROLLER_BUTTON_A,
-	SDL_CONTROLLER_BUTTON_B,
-	SDL_CONTROLLER_BUTTON_X,
-	SDL_CONTROLLER_BUTTON_Y,
-	SDL_CONTROLLER_BUTTON_LEFTSHOULDER,
-	SDL_CONTROLLER_BUTTON_RIGHTSHOULDER
+	std::vector<std::string>mando= {
+	"a","b","x","y","leftshoulder","rightshoulder","lefttrigger","rigthtrigger"
 	};
-
-	std::vector<SDL_GameControllerAxis>EjesMando = {
-	SDL_CONTROLLER_AXIS_TRIGGERLEFT,
-	SDL_CONTROLLER_AXIS_TRIGGERRIGHT
-	};
-
+		
 	
 	public:
+		SDL_Scancode lastKey()
+		{
+			return e.key.keysym.scancode;
+		}
+		SDL_GameControllerAxis lastAxis()
+		{
+			return RepairGamePadAxis();
+		}
+		SDL_GameControllerButton lastButton()
+		{
+			return RepairGamePadButton();
+		}
+		std::string lastKeystring()
+		{
+			return SDL_GetScancodeName(e.key.keysym.scancode);
+		}
+		std::string lastAxisstring()
+		{
+			return SDL_GameControllerGetStringForAxis(lastAxis());
+		}
+		std::string lastButtonstring()
+		{
+			return SDL_GameControllerGetStringForButton(lastButton());
+		}
 		void change(int index, int control) 
 		{
+			bool usado = false;
 			if (control==0)
 			{
-				keys_[index] = lastKey();
+			
+				for (int i = 0; i < keys_.size(); i++)
+				{
+					if (keys_[i]==lastKey())
+					{
+						usado = true;
+						SDL_Scancode aux= keys_[i];
+						keys_[i] = keys_[index];
+						keys_[index] = aux;
+						break;
+					}
+				}
+				if (!usado)
+				{
+					keys_[index] = lastKey();
+
+				}
 
 			}
 			else if(index>3)
 			{
-				if (index<10)
+				for (int i = 0; i < mando.size(); i++)
 				{
-					botonesMando[index-3] = lastButton();
+					if (mando[i] == lastAxisstring() || mando[i] == lastButtonstring())
+					{
+						usado = true;
+						std::string aux = mando[i];
+						mando[i] = mando[index-4];
+						mando[index-4] = aux;
+						break;
+					}
+				}
+				if (!usado)
+				{
+					if (controllerEvent_)
+					{
+						mando[index] = lastButtonstring();
+
+					}
+					else
+					{
+						mando[index] = lastAxisstring();
+
+					}
 
 				}
-				else
-				{
-					EjesMando[index-10] = lastAxis();
-
-				}
+				
 
 			}
 			
@@ -259,13 +280,37 @@ private:
 		{
 			return keys_;
 		}
-		std::vector<SDL_GameControllerAxis>ControlAxis()
+		std::vector<std::string>ControlMando()
 		{
-			return EjesMando;
+			return mando;
 		}
-		std::vector<SDL_GameControllerButton>ControlButton()
+	
+		//hell code to repair the gamepad
+		SDL_GameControllerButton RepairGamePadButton()
 		{
-			return botonesMando;
-		}
+			switch ((SDL_GameControllerButton)e.cbutton.button)
+			{
+			case SDL_CONTROLLER_BUTTON_BACK:
+				return SDL_CONTROLLER_BUTTON_LEFTSHOULDER;
+				break;
+			case SDL_CONTROLLER_BUTTON_GUIDE:
+				return SDL_CONTROLLER_BUTTON_RIGHTSHOULDER;
+				break;
+			default: 
+				return (SDL_GameControllerButton)e.cbutton.button;
+			}
 
+		}
+		SDL_GameControllerAxis RepairGamePadAxis()
+		{
+			switch ((SDL_GameControllerAxis)e.caxis.axis)
+			{
+			case SDL_CONTROLLER_AXIS_RIGHTX:
+				return SDL_CONTROLLER_AXIS_TRIGGERLEFT;
+				break;
+			default: 
+				return (SDL_GameControllerAxis)e.caxis.axis;
+			}
+
+		}
 };

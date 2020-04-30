@@ -54,8 +54,18 @@ private:
 	//SetIndexOnClick* stopClickCallback_ = nullptr;
 	int index;
 	int control;
-	bool leeKey = false;
-	bool arriba = false;
+	
+	enum state
+	{
+		ini,
+		pressA,
+		pressEnter,
+		AUP,
+		ENTERUP,
+		leeInput,
+	};
+	state b;
+	string texto;
 	TextComponent* text_;
  
 };
