@@ -417,8 +417,6 @@
     </ClInclude>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="UserData.h" />
-    <ClInclude Include="EntityData.h" />
-    <ClInclude Include="EntityHitboxData.h" />
     <ClInclude Include="HID.h" />
     <ClInclude Include="DestroyOnHit.h" />
   </ItemGroup>
