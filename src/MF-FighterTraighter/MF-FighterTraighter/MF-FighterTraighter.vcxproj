@@ -140,6 +140,7 @@
     <ClCompile Include="EntityHitboxData.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadInput.cpp" />
+    <ClCompile Include="HID.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="FloorOnHit.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GamepadInput.h" />
+    <ClInclude Include="HID.h" />
     <ClInclude Include="HitboxData.h" />
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IndexSlider.h" />

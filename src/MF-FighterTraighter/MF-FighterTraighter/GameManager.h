@@ -9,18 +9,32 @@ class GameStateMachine;
 class GameManager
 {
 protected:
+	// TODO: Move from here to somewhere else
 	enum CharacterID {
 		MKWh00p,
 		Mockingbird,
 		Aisha,
 		F10R
 	};
+
+	enum AbilityID {
+		SeismicShock,
+		MegatonPunch
+	};
+
+	enum ControlMode {
+		Keyboard,
+		Controller
+	};
+
 	// CHANGE ME TO SOMETHING PROPER
 	struct playerInfo {
 		CharacterID character;
-		std::vector<std::string> abilities;
+		std::vector<AbilityID> abilities;
 		unsigned int ability1Index;
 		unsigned int ability2Index;
+		ControlMode mode;
+		//Key/button assignment
 	};
 public:
 	GameManager(App* app);

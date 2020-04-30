@@ -192,6 +192,7 @@
     <ClCompile Include="EntityData.cpp" />
     <ClCompile Include="EntityHitboxData.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="HID.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -420,6 +421,7 @@
     <ClInclude Include="UserData.h" />
     <ClInclude Include="EntityData.h" />
     <ClInclude Include="EntityHitboxData.h" />
+    <ClInclude Include="HID.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

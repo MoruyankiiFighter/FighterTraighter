@@ -10,6 +10,7 @@
 #include "OptionsMenu.h"
 #include "Training.h"
 #include "Entity.h"
+
 GameManager::GameManager(App* app) : app_(app)
 {
 	app_->getStateMachine()->pushState(new MainMenu(app_));
