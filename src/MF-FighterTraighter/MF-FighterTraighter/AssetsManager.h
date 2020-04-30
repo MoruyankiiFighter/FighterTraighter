@@ -29,7 +29,8 @@ public:
 		Aisha_icon,
 		Mk_icon,
 		Mock_icon,
-		Flor_icon
+		Flor_icon,
+		Panel,
 	};
 
 	enum FontNames {

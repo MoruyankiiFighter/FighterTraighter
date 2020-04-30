@@ -20,14 +20,14 @@ void CharacterSelection::init()
 
 	//panel
 
-	Entity* centralP_ = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Background),
-		Vector2D(ancho / 5, 50), Vector2D(ancho /5, 50), Vector2D(ancho / 5, 50), (ancho / 25)*15, (alto/15)*10, 0);
+	Entity* centralP_ = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Panel),
+		Vector2D(ancho / 8.5, 50), Vector2D(ancho /5, 50), Vector2D(ancho / 5, 50), (ancho / 20)*16, (alto/15)*10, 0);
 
 	Entity* leftP_ = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
-		Vector2D((ancho / 25) *1, 100), Vector2D((ancho / 25) * 1, 100), Vector2D((ancho / 25) * 1, 100), (ancho / 25) *4.5, (alto/15)*10, 0);
+		Vector2D((ancho / 25) *1, 100), Vector2D((ancho / 25) * 1, 100), Vector2D((ancho / 25) * 1, 100), (ancho / 30) *4.5, (alto/15)*10, 0);
 
 	Entity* rightP_ = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
-		Vector2D((ancho / 25) * 19.5, 100), Vector2D((ancho / 25) * 19.5, 100), Vector2D((ancho / 25) * 19.5, 100), (ancho / 25) * 4.5, (alto / 15) * 10, 0);
+		Vector2D((ancho / 25) * 20.5, 100), Vector2D((ancho / 25) * 19.5, 100), Vector2D((ancho / 25) * 19.5, 100), (ancho / 30) * 4.5, (alto / 15) * 10, 0);
 
 	// buttons
 	tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
@@ -64,12 +64,16 @@ void CharacterSelection::init()
 	//Entitys
 
 	Entity* nav = entManager_.addEntity();
-	NavigationController* ctrl = nav->addComponent<NavigationController>(4, 4);
+	NavigationController* ctrl = nav->addComponent<NavigationController>(4, 2);
 	ctrl->SetElementInPos(std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrl->SetElementInPos(std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), 1, 0);
 	ctrl->SetElementInPos(std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), 2, 0);
 	ctrl->SetElementInPos(std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement), 3, 0);
-	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-	ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 1, 1);
+	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 1, 1);
+	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 2, 1);
+	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 3, 1);
+
+	//ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 1, 1);
 	//logic of that for changing the artwork of each player 
 }
