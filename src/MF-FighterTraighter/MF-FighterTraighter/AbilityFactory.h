@@ -12,7 +12,7 @@ public:
 //	static AnimationChain* Bullets(Entity* e);
 //	static void Bullet1(Entity* ent);
 
-	static AnimationChain* SeismicShock(Entity* e);
+	static AnimationChain* GiveSeismicShock(Entity* e);
 	static void SeismicS1(Entity* e);//kick
 	static void SeismicS2(Entity* ent);//rock going up
 	static void SeismicS3(Entity* ent);//punches going down

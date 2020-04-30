@@ -147,9 +147,9 @@ void AbilityFactory::SeismicS2(Entity* ent)
 	Vector2D pos = Vector2D(otherPos.getX()+ otherWidth/2,0);//first rock
 
 	double rocksSeparation = 160;
-	Vector2D pos1 = Vector2D(pos.getX() + rocksSeparation, -160);
+	Vector2D pos1 = Vector2D(pos.getX() + rocksSeparation, -160);//second rock
 
-	Vector2D pos2 = Vector2D(pos.getX() - rocksSeparation, -320);
+	Vector2D pos2 = Vector2D(pos.getX() - rocksSeparation, -320);//third rock
 	//pos2 = Vector2D(otherPos.getX()-150, -320);
 	int damage = 10;
 	int hitstun = 0;
