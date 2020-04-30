@@ -4,7 +4,8 @@
 //	cMask are the mask bits, the collision groups to check
 //	if not modified, the body will collide with everything
 PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double width, double height, double rotation,b2World* world, uint16 cBits, uint16 mBits, int dyn)
-	: Transform(position, speed, width, height, rotation), cBits_(cBits), mBits_(mBits), dynamic_(dyn),world_(world), col_width_(width), col_height_(height)
+	: Transform(position, speed, width, height, rotation), cBits_(cBits), mBits_(mBits), dynamic_(dyn),world_(world), col_width_(width),
+	col_height_(height), body_(nullptr), mainFixture_(nullptr)
 {
 }
 
