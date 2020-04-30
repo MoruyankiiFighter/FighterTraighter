@@ -7,6 +7,7 @@ public:
 
 	static void MG1(Entity* ent);
 	static void MG2(Entity* ent);
+	static void MGC(Entity* ent);
 
 	static AnimationChain* Bullets(Entity* e);
 	static void Bullet1(Entity* ent);
@@ -20,4 +21,5 @@ public:
 private: 
 	AbilityFactory() {};
 	~AbilityFactory() {};
+	static void goOnCoolodwn(Entity* e, int cool);
 };

@@ -46,7 +46,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 
 	// he died
 	if (helth->getHealth() == 0) {
-		app_->getGameManager()->playerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
+		entity_->getApp()->getGameManager()->playerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
 	}
 }
 

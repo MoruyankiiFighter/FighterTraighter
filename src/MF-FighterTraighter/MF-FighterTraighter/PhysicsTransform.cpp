@@ -1,5 +1,5 @@
 #include "PhysicsTransform.h"
-
+#include "UserData.h"
 //	cBits are the category bits, the collision group this body is in
 //	cMask are the mask bits, the collision groups to check
 //	if not modified, the body will collide with everything
@@ -10,7 +10,12 @@ PhysicsTransform::PhysicsTransform(Vector2D position, Vector2D speed, double wid
 
 
 PhysicsTransform::~PhysicsTransform() {
-	//world_->DestroyBody(body_);
+	resetUserData(nullptr);
+}
+
+void PhysicsTransform::resetUserData(UserData* newData) {
+	delete static_cast<UserData*>(mainFixture_->GetUserData());
+	mainFixture_->SetUserData(newData);
 }
 
 void PhysicsTransform::init() {
@@ -23,6 +28,8 @@ void PhysicsTransform::init() {
 	body_ = world_->CreateBody(&bodydef);
 	resetMainFixture(b2Vec2_zero, 0);	//por defecto en el centro del cuerpo, y con angulo 0
 	body_->SetFixedRotation(true);
+	//The default userData is the entity
+	mainFixture_->SetUserData(new UserData(this->entity_));
 }
 
 void PhysicsTransform::setHeight(double height) {
@@ -32,8 +39,10 @@ void PhysicsTransform::setHeight(double height) {
 void PhysicsTransform::setColliderHeight(double height, Vector2D center, float angle) {
 
 	col_height_ = height;
+	void* prev_data = mainFixture_->GetUserData();	//it applies to the new collider the same user data as it had before
 	body_->DestroyFixture(mainFixture_);
 	resetMainFixture((b2Vec2)(center * app_->METERS_PER_PIXEL), angle);
+	mainFixture_->SetUserData(prev_data);
 }
 
 void PhysicsTransform::setWidth(double width) {
@@ -43,9 +52,10 @@ void PhysicsTransform::setWidth(double width) {
 void PhysicsTransform::setColliderWidth(double width, Vector2D center, float angle) {
 
 	col_width_ = width;
+	void* prev_data = mainFixture_->GetUserData();	//it applies to the new collider the same user data as it had before
 	body_->DestroyFixture(mainFixture_);
-
 	resetMainFixture((b2Vec2)(center * app_->METERS_PER_PIXEL), angle);
+	mainFixture_->SetUserData(prev_data);
 }
 
 void PhysicsTransform::setSize(double width, double height) {
@@ -56,21 +66,20 @@ void PhysicsTransform::setColliderSize(double width, double height, Vector2D cen
 
 	col_width_ = width;
 	col_height_ = height;
+	void* prev_data = mainFixture_->GetUserData();	//it applies to the new collider the same user data as it had before
 	body_->DestroyFixture(mainFixture_);
-
 	resetMainFixture((b2Vec2)(center * app_->METERS_PER_PIXEL), angle);
-
+	mainFixture_->SetUserData(prev_data);
 }
 
 void PhysicsTransform::moveCollider(const Vector2D& move) {
 	b2Shape* preShape = mainFixture_->GetShape();
 }
 
+
 void PhysicsTransform::resetMainFixture(const b2Vec2& center, float angle) {
 	b2PolygonShape shape;
-	//shape.m_centroid = b2Vec2()
 	shape.SetAsBox((col_width_ * (double)app_->METERS_PER_PIXEL) * wMult_ / 2, (col_height_ * (double)app_->METERS_PER_PIXEL) * hMult_ / 2, center, angle);
-	//shape.m_centroid = b2Vec2(0, 50);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0f;
@@ -78,5 +87,4 @@ void PhysicsTransform::resetMainFixture(const b2Vec2& center, float angle) {
 	fixturedef.filter.maskBits = mBits_;
 	fixturedef.friction = 1;
 	mainFixture_ = body_->CreateFixture(&fixturedef);
-	mainFixture_->SetUserData(this->entity_);
 }
