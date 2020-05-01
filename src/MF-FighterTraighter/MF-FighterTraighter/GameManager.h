@@ -9,6 +9,11 @@ class GameStateMachine;
 
 class GameManager
 {
+public:	
+enum AbilityID {
+	SeismicShock,
+	MegatonGrip
+};
 protected:
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
@@ -16,11 +21,6 @@ protected:
 		Mockingbird,
 		Aisha,
 		F10R
-	};
-
-	enum AbilityID {
-		SeismicShock,
-		MegatonPunch
 	};
 
 	struct PlayerInfo {
@@ -47,8 +47,8 @@ public:
 	// To inform that saco has lost all its health
 	void trainingEnded();
 
-	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index);
-	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index);
+	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
+	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
 	const PlayerInfo& getPlayerInfo(int player) {
 		if (player == 1) return player1_;
 		return player2_;

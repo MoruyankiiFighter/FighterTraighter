@@ -6,6 +6,11 @@
 #include "RenderImage.h"
 #include "PlayerAttacks.h"
 //#include "playerinfo"
+
+
+AnimationChain* AbilityFactory::GiveAbility(GameManager::AbilityID id, Entity* e) {
+	return abilities_map[id](e);
+}
 AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 {
 	std::vector<Move*> vecMov;
@@ -95,7 +100,7 @@ void AbilityFactory::Bullet1(Entity* ent)	//Golpes stuneantes
 }
 
 //ability that kick the floor and moments later 3 rocks fall on top of the other player
-AnimationChain* AbilityFactory::SeismicShock(Entity* e)
+AnimationChain* AbilityFactory::GiveSeismicShock(Entity* e)
 {
 	std::vector<Move*> vecMov;
 	vecMov.push_back(new Move(35, nullptr, SeismicS1, e));//the kick
@@ -186,3 +191,8 @@ void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 	PlayerAttacks* pl = e->getComponent<PlayerAttacks>(ecs::PlayerAttacks);
 	pl->goOnCooldown(pl->getAbilityIndex(), cool);
 }
+
+std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> AbilityFactory::abilities_map = {
+	{GameManager::AbilityID::SeismicShock, AbilityFactory::GiveSeismicShock},
+	{GameManager::AbilityID::MegatonGrip, AbilityFactory::GiveMegatonGrip}
+};
