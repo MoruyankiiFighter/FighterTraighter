@@ -93,40 +93,50 @@ void AbilityFactory::MGC(Entity* ent)
 	goOnCoolodwn(ent, 600);
 }
 
-//ability that kick the floor and moments later 3 rocks fall on top of the other player
-AnimationChain* AbilityFactory::GiveSeismicShock(Entity* e)
+AnimationChain* AbilityFactory::GiveSeismicShock(Entity* e) //ability that kick the floor and moments later 3 rocks fall on top of the other player
 {
 	std::vector<Move*> vecMov;
-	vecMov.push_back(new Move(35, nullptr, SeismicS1, e));//the kick
-	vecMov.push_back(new Move(20, nullptr, SeismicS3, e));//the rocks going up
-	vecMov.push_back(new Move(0, nullptr, SeismicSC, e));//the cooldown
-	vecMov.push_back(new Move(90, nullptr, SeismicS2, e));//the punches going down
+	vecMov.push_back(new Move(35, nullptr, SeismicS1, e));	//the kick
+	vecMov.push_back(new Move(20, nullptr, SeismicS2, e));	//the rocks going up
+	vecMov.push_back(new Move(0, nullptr, SeismicSC, e));	//the cooldown
+	vecMov.push_back(new Move(90, nullptr, SeismicS3, e));	//the punches going down
 
 	AnimationChain* SeismicShock = new AnimationChain(vecMov);
 	return SeismicShock;
 }
-//the attack to the floor
-void AbilityFactory::SeismicS1(Entity* e) {
-	
 
-	std::cout << "Falcon stomp" << endl;
+void AbilityFactory::SeismicS1(Entity* e)	//the attack to the floor
+{
+	std::cout << "Heave to!" << endl;
 	PhysicsTransform* pT = e->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = pT->getOrientation();
 
-	int width1 = 120;
-	int hitboxX1 = 130;
-	if (orientation_ == -1) hitboxX1 += width1;
-	int width2 = 600;
-	int hitboxX2 = 0;
-	if (orientation_ == -1) hitboxX2 += width2;
+	int width = 120;
+	int hitboxX = 130;
+	if (orientation_ == -1) hitboxX += width;
 
-
-
-	e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1, 105 }, width1, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
+	e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
 }
-//3 rocks
-void AbilityFactory::SeismicS2(Entity* ent)
+
+void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
 {
+	std::cout << "Rise up gamers" << endl;
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = phtr->getOrientation();
+
+	int width = 300;
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2) + 60;
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2) - 60;
+
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight());
+	createProyectile(ent, width, 300, pos, { 0,-10 }, 0, 0, { 0,0 }, 250, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, false);
+
+}
+
+void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
+{
+	std::cout << "Meatballs" << endl;
 	Vector2D speed(0, 7);
 	uint16 mask;
 	//CollisionFilters
@@ -141,14 +151,14 @@ void AbilityFactory::SeismicS2(Entity* ent)
 		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
 		mask = currentState->PLAYER_1;
 	}
-	double otherWidth=otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getWidth();
+	double otherWidth = otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getWidth();
 	Vector2D otherPos = otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getPosition();
-	Vector2D pos = Vector2D(otherPos.getX()+ otherWidth/2,0);//first rock
+	Vector2D pos = Vector2D(otherPos.getX() + otherWidth / 2, 0);//first rock
 
-	double rocksSeparation = 160;
-	Vector2D pos1 = Vector2D(pos.getX() + rocksSeparation, -160);//second rock
+	double rocksSeparation = 240;
+	Vector2D pos1 = Vector2D(pos.getX() + rocksSeparation, -320);//second rock
 
-	Vector2D pos2 = Vector2D(pos.getX() - rocksSeparation, -320);//third rock
+	Vector2D pos2 = Vector2D(pos.getX() - rocksSeparation, -640);//third rock
 	//pos2 = Vector2D(otherPos.getX()-150, -320);
 	int damage = 10;
 	int hitstun = 0;
@@ -157,19 +167,10 @@ void AbilityFactory::SeismicS2(Entity* ent)
 	bool destroyInContact = true;
 	double width = 150;
 	double height = 150;
-	Texture* texture=app->getAssetsManager()->getTexture(AssetsManager::Player);
-	createProyectile(ent, width,height,pos, speed, damage,hitstun,knockBack,time,mask,currentState,app,texture,destroyInContact);
-	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture,destroyInContact);
-	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture,destroyInContact);
-}
-
-void AbilityFactory::SeismicS3(Entity* ent)
-{
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
-	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	Vector2D pos = Vector2D(phtr->getPosition().getX() + phtr->getWidth(), phtr->getPosition().getY() + phtr->getHeight());
-	createProyectile(ent, 300, 300, pos, { 0,-10 }, 0, 0, { 0,0 }, 250, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, false);
-
+	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Player);
+	createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact);
+	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact);
+	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact);
 }
 
 void AbilityFactory::SeismicSC(Entity* ent)

@@ -60,9 +60,10 @@ void Fight::init()
 	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M,
 		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, world, true, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
 	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player2), 1);
+	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveSeismicShock(player2), 0);
 	vector<std::string>abilitiesP2;
-	//abilities.push_back("MegatonGrip");
-	//abilities.push_back("SeismicShock");
+	abilitiesP2.push_back("SeismicShock");
+	abilitiesP2.push_back("MegatonGrip");
 	entManager_.setHandler(player2, ecs::Player2);
 
 
