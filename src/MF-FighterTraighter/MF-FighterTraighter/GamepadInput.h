@@ -30,14 +30,14 @@ public:
 			{
 
 
-				if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, movement[i]) < -deadZone)
+				if (app_->getInputManager()->getControllerAxis(0, movement[i]) < -deadZone)
 				{
 
 					inSt->setInput(k, true);
 					inSt->setInput(k + 1, false);
 
 				}
-				else if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, movement[i]) > deadZone)
+				else if (app_->getInputManager()->getControllerAxis(0, movement[i]) > deadZone)
 				{
 					inSt->setInput(k + 1, true);
 					inSt->setInput(k, false);
@@ -55,7 +55,7 @@ public:
 		int j = 0;
 		for (; j < attacks.size(); ++j)	//button pressed
 		{
-			if (app_->getInputManager()->isControllerButtonPressed(InputManager::PLAYER1, attacks[j]))
+			if (app_->getInputManager()->isControllerButtonPressed(0, attacks[j]))
 			{
 
 				inSt->setInput(i, true);
@@ -67,15 +67,15 @@ public:
 			++i;
 		}
 
-		if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, blocking[0]) > deadZone) inSt->setInput(i, true);
+		if (app_->getInputManager()->getControllerAxis(0, blocking[0]) > deadZone) inSt->setInput(i, true);
 		else (inSt->setInput(i, false));
 		++i;
 
-		if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, blocking[1]) > deadZone && gbReleased) { 
-			inSt->setInput(i, true); 
+		if (app_->getInputManager()->getControllerAxis(0, blocking[1]) > deadZone&& gbReleased) {
+			inSt->setInput(i, true);
 			gbReleased = false;
 		}
-		else if (app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, blocking[1]) <= deadZone) {	//So guardbreak can't be spammed
+		else if (app_->getInputManager()->getControllerAxis(0, blocking[1]) <= deadZone) {	//So guardbreak can't be spammed
 			inSt->setInput(i, false);																			//Spaghetti? Maybe
 			gbReleased = true;																					//Works? It sure do be fuckin workin
 		}
@@ -106,7 +106,7 @@ public:
 private:
 	InputState* inSt = nullptr;
 	int inputsize = 10;
-	const float deadZone = 0.5;
+	const float deadZone = 0.2;
 	bool mov = false;
 	bool gbReleased = true;
 
@@ -132,24 +132,14 @@ private:
 
 	void ZonaMuerta(SDL_GameControllerAxis ejeX, SDL_GameControllerAxis ejeY)
 	{
-		double stickX = app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, ejeX); // devuelve un valor entre -1.0 y 1.0
-		double stickY = app_->getInputManager()->getControllerAxis(InputManager::PLAYER1, ejeY);; // devuelve un valor entre -1.0 y 1.0
+		double stickX = app_->getInputManager()->getControllerAxis(0, ejeX); // devuelve un valor entre -1.0 y 1.0
+		double stickY = app_->getInputManager()->getControllerAxis(0, ejeY); // devuelve un valor entre -1.0 y 1.0
 		//hipo^2=Cat^2+Cat^2 Pitagoras
 		const double deadzoneRadius = deadZone;
 		const double deadzoneAlCuadrado = deadzoneRadius * deadzoneRadius;
 		double cuadradocatop = stickY * stickY;
 		double cuadradocatadj = stickX * stickX;
 		//Si la deadzone al cuadrado es menor que la suma de los cuadrados al cuadrado se puede leer el input 
-		if ((cuadradocatop + cuadradocatadj) > deadzoneAlCuadrado)
-		{
-			mov = true;
-		}
-		else
-		{
-			mov = false;
-		}
+		mov = (cuadradocatop + cuadradocatadj) > deadzoneAlCuadrado;
 	}
-
-
-
 };

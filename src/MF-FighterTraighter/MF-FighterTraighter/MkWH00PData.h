@@ -3,7 +3,7 @@
 class MkWH00PData : public PlayerData
 {
 public:
-	MkWH00PData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber);
+	MkWH00PData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber);
 	virtual ~MkWH00PData() {}
 	void init() override;
 private:

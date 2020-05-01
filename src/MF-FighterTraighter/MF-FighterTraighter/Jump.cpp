@@ -16,7 +16,7 @@ void Jump::init()
 void Jump::handleInput()
 {
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
-	if ((app_->getInputManager()->isKeyDown(jumpKey_)|| app_->getInputManager()->getControllerAxis(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.9)
+	if ((app_->getInputManager()->isKeyDown(jumpKey_)|| app_->getInputManager()->getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) < -0.9)
 		&& currState->canJump()) {
 		//pTR_->setSpeed(0, 5);
 		//force and where you use the fore

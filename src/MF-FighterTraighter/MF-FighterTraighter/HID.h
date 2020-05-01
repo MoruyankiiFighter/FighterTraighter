@@ -1,8 +1,10 @@
 #pragma once
+#include <vector>
+#include "InputManager.h"
 class HID
 {
 public:
-	enum ControlButtonsID {
+	enum ButtonsID {
 		Start = 1,
 		Select = 2,
 		LeftPad_Left = 4,
@@ -16,20 +18,36 @@ public:
 		LeftBumper = 1024,
 		RightBumper = 2048,
 		LeftJoystickClick = 4096,
-		RightJoystickClick = 8192,
+		RightJoystickClick = 8192
 	};
 
-	virtual bool isButtonPressed(ControlButtonsID button) {
-		return (curbuttonState & button) == 0;
+	enum AxesID {
+		LJoyX = 0,
+		LJoyY,
+		RJoyX,
+		RJoyY,
+		LTrigger,
+		RTrigger,
+		/*
+		
+		*/
+		_NumAxes_
+	};
+
+	inline virtual bool isButtonDown(ButtonsID button) {
+		return (curbuttonState & button) != 0;
+	}
+	inline virtual float AxisInput(AxesID axis) {
+		return axes[axis];
 	}
 
 	virtual void updateInput() = 0;
+
+	virtual ~HID() {}
 protected:
 	short curbuttonState; // 0 = not pressed
 	short lastButtonState;
-	int LJoyX;
-	int LJoyY;
-	int RJoyX;
-	int RJoyY;
+	// LJoyX, LJoyY, RJoyX, RJoyY, LTrigger, RTrigger
+	std::vector<float> axes = std::vector<float>(_NumAxes_); // (-1 to) 0 to 1
 };
 

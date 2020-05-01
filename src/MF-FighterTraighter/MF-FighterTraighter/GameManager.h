@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "HID.h"
 
 class Entity;
 class App;
@@ -22,22 +23,22 @@ protected:
 		MegatonPunch
 	};
 
-	enum ControlMode {
-		Keyboard,
-		Controller
-	};
-
-	// CHANGE ME TO SOMETHING PROPER
-	struct playerInfo {
+	struct PlayerInfo {
 		CharacterID character;
 		std::vector<AbilityID> abilities;
 		unsigned int ability1Index;
 		unsigned int ability2Index;
-		ControlMode mode;
-		//Key/button assignment
+		HID* hid;
+		virtual ~PlayerInfo() { 
+			delete hid; 
+		}
 	};
 public:
 	GameManager(App* app);
+
+	// To update HIDs
+	void handleInput();
+
 	// To inform this that start/escape was pressed
 	void pressedStart();
 	// To inform that player (0 or 1) lost a round, or that it's a draw (-1)
@@ -45,11 +46,15 @@ public:
 	void playerLost(int player);
 	// To inform that saco has lost all its health
 	void trainingEnded();
+
 	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index);
 	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index);
-	playerInfo getPlayerInfo(int player) {
+	const PlayerInfo& getPlayerInfo(int player) {
 		if (player == 1) return player1_;
 		return player2_;
+	}
+
+	virtual ~GameManager() {
 	}
 protected:
 	unsigned int playerLrounds_ = 0;
@@ -57,9 +62,8 @@ protected:
 	unsigned int totalRounds_ = 100;
 	unsigned int currentRound_ = 0;
 
-	// CHANGE ME TO SOMETHING PROPER
-	playerInfo player1_;
-	playerInfo player2_;
+	PlayerInfo player1_;
+	PlayerInfo player2_;
 
 	App* app_;
 

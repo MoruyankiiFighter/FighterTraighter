@@ -191,6 +191,8 @@
     <ClCompile Include="UserData.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="HID.cpp" />
+    <ClCompile Include="KeyboardHID.cpp" />
+    <ClCompile Include="GamepadHID.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -419,6 +421,8 @@
     <ClInclude Include="UserData.h" />
     <ClInclude Include="HID.h" />
     <ClInclude Include="DestroyOnHit.h" />
+    <ClInclude Include="KeyboardHID.h" />
+    <ClInclude Include="GamepadHID.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
