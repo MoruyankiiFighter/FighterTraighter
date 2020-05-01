@@ -26,8 +26,8 @@ protected:
 	struct PlayerInfo {
 		CharacterID character;
 		std::vector<AbilityID> abilities;
-		unsigned int ability1Index;
-		unsigned int ability2Index;
+		AbilityID ability1Index;
+		AbilityID ability2Index;
 		HID* hid;
 		virtual ~PlayerInfo() { 
 			delete hid; 
