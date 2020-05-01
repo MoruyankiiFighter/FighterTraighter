@@ -106,3 +106,8 @@ void PhysicsTransform::changeMask(uint16 newMask) {
 	//f->SetFilterData(&filter);
 	mainFixture_->SetFilterData(filter);
 }
+
+void PhysicsTransform::changeFriction(float32 newFrict)
+{
+	mainFixture_->SetFriction(newFrict);
+}

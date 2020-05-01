@@ -30,6 +30,7 @@ void Training::init()
 	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h - 455), Vector2D(10, 10), 150, 500, 0, world, P_BAG, PLAYER_1 | PLAYER_2, 2);
 	addHurtbox(pBpT->getMainFixture());
 	pBpT->resetUserData(new PunchingBagOnHit(saco));
+	pBpT->changeFriction(0);
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	//saco->addComponent<PunchingBagOnHit>();
 	Health* sacoHealth = saco->addComponent<Health>(200);
@@ -67,9 +68,12 @@ void Training::init()
 	//Walls
 	Entity* wall1 = entManager_.addEntity();
 	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
+	W1pT->changeFriction(0);
 
 	Entity* wall2 = entManager_.addEntity();
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
+	W2pT->changeFriction(0);
+
 }
 
 void Training::handleInput()
