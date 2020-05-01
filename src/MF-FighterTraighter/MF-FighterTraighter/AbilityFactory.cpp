@@ -108,20 +108,36 @@ AnimationChain* AbilityFactory::GiveSeismicShock(Entity* e) //ability that kick 
 void AbilityFactory::SeismicS1(Entity* e)	//the attack to the floor
 {
 	std::cout << "Heave to!" << endl;
-	PhysicsTransform* pT = e->getComponent<PhysicsTransform>(ecs::Transform);
-	int orientation_ = pT->getOrientation();
+	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::Ss1);
+	PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = phtr->getOrientation();
+
+	App* app = e->getApp();
+	Entity* otherPlayer;
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	uint16 mask;
+	if (e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2);
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
+		mask = currentState->PLAYER_1;
+	}
 
 	int width = 120;
-	int hitboxX = 130;
-	if (orientation_ == -1) hitboxX += width;
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2);
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
 
-	e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
+	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
+	createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, false);
 }
 
 void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
 {
 	std::cout << "Rise up gamers" << endl;
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Ss2);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = phtr->getOrientation();
 
@@ -129,9 +145,8 @@ void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
 	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2) + 60;
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2) - 60;
 
-	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight());
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + 150);
 	createProyectile(ent, width, 300, pos, { 0,-10 }, 0, 0, { 0,0 }, 250, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, false);
-
 }
 
 void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
@@ -157,17 +172,18 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 
 	double rocksSeparation = 240;
 	Vector2D pos1 = Vector2D(pos.getX() + rocksSeparation, -320);//second rock
-
 	Vector2D pos2 = Vector2D(pos.getX() - rocksSeparation, -640);//third rock
 	//pos2 = Vector2D(otherPos.getX()-150, -320);
+
 	int damage = 10;
-	int hitstun = 0;
+	int hitstun = 9;
 	Vector2D knockBack(5, 2);
-	int time = 150;
+	int time = 165;
 	bool destroyInContact = true;
 	double width = 150;
 	double height = 150;
-	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Player);
+
+	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Ss2);
 	createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact);
 	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact);
 	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact);

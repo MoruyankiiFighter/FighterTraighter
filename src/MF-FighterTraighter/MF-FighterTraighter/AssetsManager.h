@@ -28,7 +28,8 @@ public:
 		Mg1, 
 		Mg21,
 		Mg22,
-		Ss1
+		Ss1,
+		Ss2
 	};
 
 	enum FontNames {
