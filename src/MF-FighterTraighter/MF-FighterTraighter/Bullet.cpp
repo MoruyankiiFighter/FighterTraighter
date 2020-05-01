@@ -10,12 +10,16 @@ void Bullet::init()
 	transform_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 	transform_->setSpeed(speed_);
 	//	EntityHitboxData(Entity* e, int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, bool destroy = false) : 
-	cout << damage_ << endl;
+	//cout << damage_ << endl;
 	DestroyOnHit* hitbox_ = new DestroyOnHit(damage_,timeAlive_, hitstun_, knockBack_,false/*,false,destroyInContact_ */, playerNumber_, entity_);//create the hitbox's data
 	transform_->resetUserData(hitbox_);
 	entity_->getState()->addHitbox(playerNumber_,hitbox_,transform_->getMainFixture());
 
 }
+
+//void Bullet::update()
+//{
+//}
 
 
 
