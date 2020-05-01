@@ -24,7 +24,10 @@ public:
 		RoundCounter,
 		CharacterSelection,
 		GanonSheet,
-		BackgroundFight
+		BackgroundFight,
+		Mg1, 
+		Mg21,
+		Mg22,
 	};
 
 	enum FontNames {

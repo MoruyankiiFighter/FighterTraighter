@@ -25,7 +25,7 @@ void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 	std::cout << "RATATATA-" << endl;
 
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg1);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 
 	uint16 mask;
@@ -55,7 +55,8 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 	//b2Filter filter = body->GetFixtureList()->GetFilterData();
 
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	Texture* texture1 = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg21);
+	Texture* texture2 = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg22);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 
 	uint16 mask;
@@ -74,14 +75,14 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 	if (orientation_ == -1) projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width1 / 2);
 
 	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 225);
-	createProyectile(ent, width1, 150, pos1, { 0, 0 }, 27, 100, { (double)orientation_ * 7500, -5000 }, 15, mask, ent->getState(), ent->getApp(), texture, false);
+	createProyectile(ent, width1, 150, pos1, { 0, 0 }, 27, 100, { (double)orientation_ * 7500, -5000 }, 15, mask, ent->getState(), ent->getApp(), texture1, false);
 
 	int width2 = 250;
 	int projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width2 / 2) + 150;
 	if (orientation_ == -1) projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width2 / 2) - 150;
 
 	Vector2D pos2 = Vector2D(projX2, phtr->getPosition().getY() + 225);
-	createProyectile(ent, width2, 180, pos2, { 0, 0 }, 2, 150, { (double)orientation_ * 5250, -4000 }, 12, mask, ent->getState(), ent->getApp(), texture, false);
+	createProyectile(ent, width2, 180, pos2, { 0, 0 }, 2, 150, { (double)orientation_ * 5250, -4000 }, 12, mask, ent->getState(), ent->getApp(), texture2, false);
 
 	//ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1,-85 }, width1, 175, 15, 27, 100, { (double)orientation_ * 7500, -5000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
 	//ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2,-85 }, width2, 180, 12, 2, 150, { (double)orientation_ * 5250, -4000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
