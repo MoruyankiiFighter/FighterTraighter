@@ -49,8 +49,9 @@ void Fight::init()
 	//	SDL_SCANCODE_1, SDL_SCANCODE_2, SDL_SCANCODE_SPACE, SDL_SCANCODE_R }, world, false, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	Entity* player1 = FactoryMk::addMkToGame(app_, this, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
 		SDL_SCANCODE_1, SDL_SCANCODE_2, SDL_SCANCODE_SPACE, SDL_SCANCODE_R }, world, false, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
-	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player1), 0);
-	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::SeismicShock(player1), 1);
+	//esto se tendria que hacer para todas las habilidades, pero necesitamos mas estados
+	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(app_->getGameManager()->getPlayerInfo(1).ability1Index, player1), 0);
+	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::MegatonGrip, player1), 1);
 	vector<std::string>abilitiesP1;
 	abilitiesP1.push_back("MegatonGrip");
 	abilitiesP1.push_back("SeismicShock");
@@ -59,7 +60,8 @@ void Fight::init()
 	//Player 2
 	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M,
 		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, world, true, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
-	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player2), 1);
+	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(app_->getGameManager()->getPlayerInfo(1).ability1Index, player1), 0);
+	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::MegatonGrip, player1), 1);
 	vector<std::string>abilitiesP2;
 	//abilities.push_back("MegatonGrip");
 	//abilities.push_back("SeismicShock");
