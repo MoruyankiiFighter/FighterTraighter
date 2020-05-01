@@ -18,7 +18,7 @@ public:
 			}
 			//the hitbox doesnt collide with anything
 			else
-			{
+			{//maybe detect if we want multihits
 				entity_->getComponent<PhysicsTransform>(ecs::Transform)->changeMask(entity_->getState()->NONE);
 			}
 		}
