@@ -11,9 +11,7 @@ void GameState::init()
 {
 	gravity = Vector2D(0.0f, 10.0f);
 	world = new b2World(gravity);
-#ifdef NDEBUG
-	debugInstance = nullptr;
-#else
+#if _DEBUG
 	debugInstance = new SDLDebugDraw(app_->getRenderer(), app_->PIXELS_PER_METER);
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_shapeBit);
@@ -165,8 +163,7 @@ void GameState::render()
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->render();
 	}
-#ifdef NDEBUG
-#else
+#if _DEBUG
 	world->DrawDebugData();
 #endif
 	SDL_RenderPresent(app_->getRenderer());
@@ -188,6 +185,8 @@ GameState::~GameState()
 	clearHitboxes();
 
 	delete world;
-	delete debugInstance;
 	delete resJumpListener;
+#if _DEBUG
+	delete debugInstance;
+#endif 
 }
