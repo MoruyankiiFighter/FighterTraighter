@@ -10,6 +10,7 @@
 #include "Font.h"
 #include "RenderAnimation.h"
 #include "UITransform.h"
+#include "CharacterSelectionLogic.h"
 void CharacterSelection::init()
 {
 	// background
@@ -76,4 +77,7 @@ void CharacterSelection::init()
 
 	//ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 1, 1);
 	//logic of that for changing the artwork of each player 
+
+	Entity* logic = entManager_.addEntity();
+	logic->addComponent<CharacterSelectionLogic>(text_j1->getComponent<TextComponent>(ecs::TextComponent), " aisha.....", "mkwhoop.....", "flor........", "mock.....", nav->getComponent<NavigationController>(ecs::NavigationController), std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement));
 }

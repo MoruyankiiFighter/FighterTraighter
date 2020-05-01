@@ -1,24 +1,24 @@
 #pragma once
 #include "Component.h"
 #include "TextComponent.h"
+#include "NavigationController.h"
 class CharacterSelectionLogic: public Component
 {
 public:
 
-	CharacterSelectionLogic(Texture* J1_character, Texture* J2_character, TextComponent* j1_text, TextComponent* j2_text, std::vector<string> char_bio): Component(ecs::OptionsLogic),
-		j1_char_(J1_character), j2_char_(J2_character), j1_text_(j1_text), j2_text_(j2_text), bio_(char_bio){}
-	~CharacterSelectionLogic();
-
+	CharacterSelectionLogic(TextComponent* j1_desc, string aisha_desc, string mkwhoop_desc, string flor_desc, string mock_desc, NavigationController* nav, UIElement* aisha, UIElement* flor, UIElement* mkwhoop, UIElement* mock  ) : Component(ecs::CharacterSelectionLogic),
+		desc_(j1_desc), aisha_(aisha),aisha_desc_(aisha_desc),flor_(flor), flor_desc_(flor_desc),mock_(mock),mock_desc_(mock_desc),mkwhoop_(mkwhoop),mkwhoop_desc_(mkwhoop_desc),nav_(nav) { }
 	void init() override;
 	void update() override;
 
 	void SetElements();
 private:
-	Texture* j1_char_;
-	Texture * j2_char_;
-	TextComponent* j1_text_;
-	TextComponent* j2_text_;
-
-	std::vector <string> bio_;
+	TextComponent* desc_=nullptr;
+	string aisha_desc_, flor_desc_, mkwhoop_desc_, mock_desc_;
+	NavigationController* nav_;
+	UIElement* aisha_;
+	UIElement* flor_;
+	UIElement* mkwhoop_;
+	UIElement* mock_;
 };
 
