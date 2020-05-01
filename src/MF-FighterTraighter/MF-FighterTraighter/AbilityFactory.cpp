@@ -23,39 +23,68 @@ AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 {
 	std::cout << "RATATATA-" << endl;
-	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
-	b2Filter filter = body->GetFixtureList()->GetFilterData();
+
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	uint16 mask;
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
 
 
-	//NO ME GUSTA AS� PERO NO S� C�MO HACERLO SI NO
-	int width = 175;
-	int hitboxX = 100;
-	if (orientation_ == -1) hitboxX += width;
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		mask = currentState->PLAYER_1;
+	}
 
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 150, 7, 2, 50,
-		{ (double)orientation_ * 5, 5 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
+	////NO ME GUSTA AS� PERO NO S� C�MO HACERLO SI NO
+	int width = 175;
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2);
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
+
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 225);
+	createProyectile(ent, width, 150, pos, { 0, 0 }, 2, 50, { (double)orientation_ * 5, 5 }, 7, mask, ent->getState(), ent->getApp(), texture, false);
 }
 
 void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 {
 	std::cout << "KABOOM" << endl;
-	b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
-	b2Filter filter = body->GetFixtureList()->GetFilterData();
+	//b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
+	//b2Filter filter = body->GetFixtureList()->GetFilterData();
+
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	uint16 mask;
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
 
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		mask = currentState->PLAYER_1;
+	}
 
 	//NO ME GUSTA AS� PERO NO S� C�MO HACERLO SI NO
-	int width1 = 175;
-	int hitboxX1 = 100;
-	if (orientation_ == -1) hitboxX1 += width1;
+	int width1 = 150;
+	int projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width1 / 2);
+	if (orientation_ == -1) projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width1 / 2);
+
+	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 225);
+	createProyectile(ent, width1, 150, pos1, { 0, 0 }, 27, 100, { (double)orientation_ * 7500, -5000 }, 15, mask, ent->getState(), ent->getApp(), texture, false);
 
 	int width2 = 250;
-	int hitboxX2 = 280;
-	if (orientation_ == -1) hitboxX2 += width2;
+	int projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width2 / 2) + 150;
+	if (orientation_ == -1) projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width2 / 2) - 150;
 
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1,-85 }, width1, 175, 15, 27, 100, { (double)orientation_ * 7500, -5000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2,-85 }, width2, 180, 12, 2, 150, { (double)orientation_ * 5250, -4000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
+	Vector2D pos2 = Vector2D(projX2, phtr->getPosition().getY() + 225);
+	createProyectile(ent, width2, 180, pos2, { 0, 0 }, 2, 150, { (double)orientation_ * 5250, -4000 }, 12, mask, ent->getState(), ent->getApp(), texture, false);
+
+	//ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1,-85 }, width1, 175, 15, 27, 100, { (double)orientation_ * 7500, -5000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
+	//ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2,-85 }, width2, 180, 12, 2, 150, { (double)orientation_ * 5250, -4000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
 }
 
 void AbilityFactory::MGC(Entity* ent)
@@ -166,6 +195,28 @@ void AbilityFactory::EWC(Entity* ent)
 
 void AbilityFactory::EW1(Entity* ent)
 {
+	App* app = ent->getApp();
+	Entity* otherPlayer;
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	uint16 mask;
+
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2);
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
+		mask = currentState->PLAYER_1;
+	}
+
+	std::cout << "Falcon stomp" << endl;
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = pT->getOrientation();
+
+	int width1 = 175;
+	int hitboxX1 = 100;
+	if (orientation_ == -1) hitboxX1 += width1;
+	createProyectile(ent, width1, 100, { 100, 100 }, { 0, 0 }, 100, 55, {0, 0}, 15, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Player), true);
 }
 
 void AbilityFactory::EW2(Entity* ent)
