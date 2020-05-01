@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbilitiesTimerFunction.cpp" />
     <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
@@ -198,6 +199,7 @@
     <ClCompile Include="ControlsMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbilitiesTimerFunction.h" />
     <ClInclude Include="Ability.h" />
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AnimationChain.h" />

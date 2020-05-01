@@ -13,6 +13,7 @@
 #include "Crouch.h"
 #include "FactoryMk.h"
 #include "ResetJumpListener.h"
+#include "UITimer.h"
 
 class Fight : public GameState
 {
@@ -21,9 +22,4 @@ public:
 	void init() override;
 	virtual void handleInput() override;
 	virtual ~Fight();
-	Entity* giveMeTimerAb1() { return timerab1; };
-	Entity* giveMeTimerAb2() { return timerab2; };
-private:
-	Entity* timerab1;
-	Entity* timerab2;
 };

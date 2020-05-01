@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "RenderImage.h"
 #include "PlayerAttacks.h"
+#include "Fight.h"
 //#include "playerinfo"
 AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 {
@@ -60,7 +61,7 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 
 void AbilityFactory::MGC(Entity* ent)
 {
-	goOnCoolodwn(ent, 600);
+	goOnCoolodwn(ent, 6000);
 }
 
 
@@ -184,5 +185,5 @@ void AbilityFactory::createProyectile(Entity* ent, double width, double height,V
 void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 {
 	PlayerAttacks* pl = e->getComponent<PlayerAttacks>(ecs::PlayerAttacks);
-	pl->goOnCooldown(pl->getAbilityIndex(), cool);
+	pl->goOnCooldown(pl->getAbilityIndex(), cool);	
 }

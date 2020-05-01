@@ -26,6 +26,7 @@ public:
 		countdown_ = true;
 		countdownAmount_ = c; 
 		resetTimer();
+		resumeTimer();
 	}
 
 	void resetTimer();

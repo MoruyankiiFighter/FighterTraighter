@@ -5,6 +5,7 @@
 #include "PlayerAttacks.h"
 #include "PlayerController.h"
 #include "HitboxData.h"
+
 class ResetJumpListener : public b2ContactListener
 {
 public:

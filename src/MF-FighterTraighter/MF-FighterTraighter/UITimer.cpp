@@ -17,6 +17,7 @@ void UITimer::update()
 			timerStart_ = SDL_GetTicks();
 			if (timerNow_ - timerStart_ <= 0) {
 				timerStart_ = timerNow_;
+				stopTimer();
 			}
 		}
 		setText();

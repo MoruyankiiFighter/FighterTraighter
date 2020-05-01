@@ -4,7 +4,7 @@
 #include <vector>
 #include "PlayerState.h"
 #include "InpuState.h"
-//#include "Fight.h";
+#include "AbilitiesTimerFunction.h"
 
 //component that have all the attacks that you have
 class PlayerAttacks : public Component 
@@ -42,6 +42,7 @@ public:
 		cooldowns[id] = cool;
 	}
 	int getAbilityIndex();
+	int getAbilityCooldown(int index) { return cooldowns[index]; }
 private:
 	std::vector<AnimationChain*> attacksList;	//pointer to the attack that you can use
 	std::vector<AnimationChain*> abilityList = std::vector<AnimationChain*>(2);	//pointer to the abilities 
@@ -50,6 +51,5 @@ private:
 
 	//keys to use the attacks and abilities
 	InputState* inputSt_;
-	//Fight* fight;
 };
 
