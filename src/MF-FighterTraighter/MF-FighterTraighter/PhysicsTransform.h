@@ -49,6 +49,7 @@ public:
 	virtual void setSize(double width, double height);
 	virtual void setColliderSize(double width, double height, Vector2D center = Vector2D(0, 0), float angle = 0);
 	virtual void moveCollider(const Vector2D& move);
+	virtual void changeMask(uint16 newMask);
 	b2Body* getBody() { return body_; }
 	b2Fixture* getMainFixture() { return mainFixture_; }
 	uint16 getCategory() { return cBits_; }

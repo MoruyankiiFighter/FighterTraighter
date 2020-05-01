@@ -96,3 +96,13 @@ void PhysicsTransform::resetMainFixture(const b2Vec2& center, float angle) {
 	fixturedef.friction = 1;
 	mainFixture_ = body_->CreateFixture(&fixturedef);
 }
+
+void PhysicsTransform::changeMask(uint16 newMask) {
+	b2Filter filter;
+	filter=mainFixture_->GetFilterData();
+	//filter.categoryBits = filte;
+	filter.maskBits = newMask;
+	//filter.groupIndex = ...;
+	//f->SetFilterData(&filter);
+	mainFixture_->SetFilterData(filter);
+}
