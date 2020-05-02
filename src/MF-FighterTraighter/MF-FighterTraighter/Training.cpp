@@ -2,9 +2,7 @@
 #include "Entity.h"
 #include "PlayerController.h"
 #include "RenderImage.h"
-#include "Jump.h"
 #include "PauseMenu.h"
-#include "Crouch.h"
 #include "SacoTimer.h"
 #include "FactoryMk.h"
 #include "PunchingBagOnHit.h"
@@ -12,6 +10,7 @@
 #include "UITransform.h"
 #include "UITimer.h"
 #include "UIHealthbar.h"
+
 Training::Training(App* app) : GameState(app)
 {
 	init();

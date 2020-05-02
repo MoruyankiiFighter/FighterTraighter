@@ -3,7 +3,6 @@
 #include "Box2D\Box2D.h"
 #include "PhysicsTransform.h"
 #include "SDLDebugDraw.h"
-#include "Jump.h"
 #include "PlayerAttacks.h"
 #include <vector>
 #include "ResetJumpListener.h"
