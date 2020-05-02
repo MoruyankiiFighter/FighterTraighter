@@ -5,7 +5,7 @@
 #include "PhysicsTransform.h"
 
 //constructor
-PlayerController::PlayerController(float jImpulse, double speed) : Component(ecs::PlayerController), transform_(nullptr), inputSt_(nullptr), jumpImpulse(jImpulse), movSpeed(speed)
+PlayerController::PlayerController(HID* hid, float jImpulse, double speed) : Component(ecs::PlayerController), transform_(nullptr), inputSt_(hid), jumpImpulse(jImpulse), movSpeed(speed)
 {
 }
 
@@ -18,7 +18,6 @@ PlayerController::~PlayerController()
 void PlayerController::init()
 {
 	transform_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
-	inputSt_ = entity_->getComponent<InputState>(ecs::InputState);
 }
 
 //update
@@ -34,13 +33,13 @@ void PlayerController::handleInput()
 	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	InputManager* input = app_->getInputManager();
-	if (inputSt_->getInput(10) && currState->canGuard())
+	if (inputSt_->AxisInput(HID::LTrigger) > 0 && currState->canGuard())
 	{
 		if (currState->isCrouch()) uncrouch();
 		else if (currState->isMoving())transform_->setSpeed(0, speed.getY());
 		if (!currState->isGuarding()) currState->goGuardingTransition(6);
 	}
-	else if (inputSt_->getInput(2) && currState->canJump()) 
+	else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0) && currState->canJump())
 	{
 		//force and where you use the fore
 		transform_->getBody()->SetLinearDamping(0);//0 friction in the air
@@ -49,15 +48,15 @@ void PlayerController::handleInput()
 		currState->goJumpingTrans(7);
 		std::cout << "salto" << std::endl;
 	}
-	else if (inputSt_->getInput(3) && currState->canCrouch())
+	else if ((inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > 0) && currState->canCrouch())
 	{
 		cout << "crouch" << endl;
 		if (currState->isMoving()) transform_->setSpeed(0, speed.getY());
 		crouch();
 	}
-	else if (currState->isAbletoMove() && inputSt_->getInput(0))
+	else if (currState->isAbletoMove() && (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0))
 	{
-		if(!wallLeft_) speed = Vector2D(-movSpeed, speed.getY());
+		if (!wallLeft_) speed = Vector2D(-movSpeed, speed.getY());
 		else {
 			speed = Vector2D(0, speed.getY());
 		}
@@ -65,33 +64,35 @@ void PlayerController::handleInput()
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}
-	else if (currState->isAbletoMove() && inputSt_->getInput(1))
+	else if (currState->isAbletoMove() && (inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0))
 	{
 		if (!wallRight_) speed = Vector2D(movSpeed, speed.getY());
 		else {
 			speed = Vector2D(0, speed.getY());
-		}		
+		}
 		transform_->setSpeed(speed);
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}
 
-	//Si e�sa tecla no est� activa
-	if(!inputSt_->getInput(0) && !inputSt_->getInput(1) && !inputSt_->getInput(2)){
-		if (currState->isMoving() || currState->isJumping()) 
+	// If these keys aren't active
+	if (!(inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) &&
+		!(inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0) &&
+		!(inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0)) {
+		if (currState->isMoving() || currState->isJumping())
 		{
 			transform_->setSpeed(0, speed.getY());
 			if (currState->isGrounded()) currState->goIdle();
 			else { currState->goJumping(); };
-		}	
+		}
 	}
-	if (!inputSt_->getInput(10)) {
+	if (!inputSt_->AxisInput(HID::LTrigger) > 0) {
 		if (currState->isGuarding())
 		{
 			currState->goGuardingLeaving(14);
 		}
 	}
-	if (!inputSt_->getInput(3)) {
+	if (!(inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > 0)) {
 		if (currState->isCrouch())
 		{
 			uncrouch();
@@ -107,7 +108,7 @@ void PlayerController::crouch()
 	//transform_->setHeight(transform_->getHeight() / 2);
 	float height = transform_->getHeight();
 	transform_->setColliderHeight(height * 0.6, Vector2D(0, height / 5));
-	
+
 	//transform_->setColliderWidth(transform_->getWidth() / 2);
 	//double height = transform_->getHeight();
 	//double width = transform_->getWidth();

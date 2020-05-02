@@ -16,10 +16,7 @@ public:
 		Right = 1,
 		Middle = 2
 	};
-	enum Controllers {
-		PLAYER1, PLAYER2
-	};
-	struct  GamePad {
+	struct GamePad {
 		bool buttons[SDL_CONTROLLER_BUTTON_MAX];
 		int axis[SDL_CONTROLLER_AXIS_MAX];
 	};
@@ -76,28 +73,28 @@ public:
 
 	// Controller
 
-	bool isControllerButtonPressed(Controllers controllerID, SDL_GameControllerButton button)
+	bool isControllerButtonPressed(int controllerID, SDL_GameControllerButton button)
 	{
 		// SMELLS A LOT
 		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return false;
 
 		return controllerInputs[controllerID].buttons[button] && !lastControllerInputs[controllerID].buttons[button];
 	}
-	bool isControllerButtonHeld(Controllers controllerID, SDL_GameControllerButton button)
+	bool isControllerButtonHeld(int controllerID, SDL_GameControllerButton button)
 	{
 		// SMELLS
 		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return false;
 
 		return controllerInputs[controllerID].buttons[button] && lastControllerInputs[controllerID].buttons[button];
 	}
-	bool isControllerButtonUp(Controllers controllerID, SDL_GameControllerButton button)
+	bool isControllerButtonUp(int controllerID, SDL_GameControllerButton button)
 	{
 		// SMELLS
 		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return false;
 
 		return !controllerInputs[controllerID].buttons[button] && lastControllerInputs[controllerID].buttons[button];
 	}
-	float getControllerAxis(Controllers controllerID, SDL_GameControllerAxis axis)
+	float getControllerAxis(int controllerID, SDL_GameControllerAxis axis)
 	{
 		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return 0.0;
 		return controllerInputs[controllerID].axis[axis] / 32768.0f;
@@ -112,30 +109,30 @@ public:
 	}
 
 	inline bool pressedUp() {
-		return KeyPressed(SDL_SCANCODE_UP) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_UP)
-			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) < -0.8f);
+		return KeyPressed(SDL_SCANCODE_UP) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_UP)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) < -0.8f);
 	}
 	inline bool pressedLeft() {
-		return KeyPressed(SDL_SCANCODE_LEFT) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_LEFT)
-			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) < -0.8f);
+		return KeyPressed(SDL_SCANCODE_LEFT) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_LEFT)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTX) < -0.8f);
 	}
 	inline bool pressedDown() {
-		return KeyPressed(SDL_SCANCODE_DOWN) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_DOWN)
-			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTY) > 0.8f);
+		return KeyPressed(SDL_SCANCODE_DOWN) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_DOWN)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) > 0.8f);
 	}
 	inline bool pressedRight() {
-		return KeyPressed(SDL_SCANCODE_RIGHT) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
-			|| (axisEvent() && getControllerAxis(InputManager::PLAYER1, SDL_CONTROLLER_AXIS_LEFTX) > 0.8f);
+		return KeyPressed(SDL_SCANCODE_RIGHT) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTX) > 0.8f);
 	}
 	inline bool pressedAccept() {
-		return KeyPressed(SDL_SCANCODE_RETURN) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A);
+		return KeyPressed(SDL_SCANCODE_RETURN) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_A);
 	}
 	inline bool pressedCancel() {
-		return KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_B);
+		return KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_B);
 	}
 	inline bool pressedStart() {
-		return KeyPressed(SDL_SCANCODE_ESCAPE) || isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START) 
-			|| isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_START);
+		return KeyPressed(SDL_SCANCODE_ESCAPE) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START) 
+			|| isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START);
 	}
 
 	virtual ~InputManager();

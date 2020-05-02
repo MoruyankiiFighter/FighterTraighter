@@ -1,7 +1,7 @@
 #include "MockingbirdData.h"
 
-MockingbirdData::MockingbirdData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
-	PlayerData(keys, width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber)
+MockingbirdData::MockingbirdData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
+	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber)
 {
 	animLength_ = { {4, true, 12}, {4, true, 15}, {2, true, 3}, {1, true, 15}, {4, true, 15}, {12, false, 10}, {7, true, 15}, {8, true, 15},
 	{15, true, 15}, {6, true, 15}, {7, true, 15}, {6, true, 15}, {4, true, 15}, {2, true, 15}, {3, true, 4}, {2, true, 15}, {4, true, 15},
@@ -277,7 +277,7 @@ void MockingbirdData::GB(Entity* ent)
 	if (orientation_ == -1)
 		hitbox_X += gb.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X, gb.position.getY() }, gb.width, gb.height, gb.time, pD->getAttack() * gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+		{ (double)orientation_ * hitbox_X, gb.position.getY() }, gb.width, gb.height, gb.time, pD->getAttack() * gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask(), true);
 }
 PlayerData::CallbackData MockingbirdData::gb = PlayerData::CallbackData{
 	{ 125, -75 },
@@ -286,4 +286,4 @@ PlayerData::CallbackData MockingbirdData::gb = PlayerData::CallbackData{
 	150,
 	20,
 	0,
-	75 };
+	85 };
