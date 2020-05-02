@@ -197,6 +197,9 @@
     <ClCompile Include="Bullet.cpp">
   <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserData.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="PunchingBagOnHit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
