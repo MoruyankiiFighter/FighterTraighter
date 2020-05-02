@@ -135,6 +135,7 @@ public:
 		playerStatus_ = Landing;
 		holdingFrames_ = frames;
 		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
+		entity_->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->SetLinearDamping(10);//friction
 	}
 
 	void goHitLanding(int frames) {

@@ -51,6 +51,7 @@ public:
 	virtual void moveCollider(const Vector2D& move);
 	virtual void changeMask(uint16 newMask);
 	virtual void changeFriction(float32 newFrict);
+	virtual void resetMainFixture2(const b2Vec2& center, float angle, float32 newFrict);
 
 
 	b2Body* getBody() { return body_; }
@@ -58,6 +59,8 @@ public:
 	uint16 getCategory() { return cBits_; }
 	uint16 getMask() { return mBits_; }
 	void resetUserData(UserData* newData);
+	void resetMainFixture(const b2Vec2& center, float angle);
+
 private:
 	b2Body* body_;
 	uint16 cBits_, mBits_;
@@ -66,6 +69,5 @@ private:
 		 col_height_;
 	int dynamic_;
 	b2World* world_ = nullptr;
-	void resetMainFixture(const b2Vec2& center, float angle);
 };
 

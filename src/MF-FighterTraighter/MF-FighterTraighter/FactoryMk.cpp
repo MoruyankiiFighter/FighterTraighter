@@ -18,10 +18,11 @@
 Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, std::vector<SDL_Scancode> keys, b2World* world, bool gamePad, uint16 cBits, uint16 mBits, int playerNumber)
 {
 	Entity* e = state->getEntityManager().addEntity();
-	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 600), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
+	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 700), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
 	pT->resetUserData(new PlayerOnHit(e));
 	pT->setOrientation(orientation);
 	pT->setColliderWidth(pT->getWidth() / 2);
+	pT->getBody()->SetLinearDamping(10);//friction
 	state->addHurtbox(pT->getMainFixture());
 
 	e->addComponent<InputState>();
@@ -53,6 +54,8 @@ Entity* FactoryMk::addMockToGame(App* app, GameState* state, int orientation, st
 	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 600), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
 	pT->setOrientation(orientation);
 	pT->setColliderWidth(pT->getWidth() / 2);
+	pT->getBody()->SetLinearDamping(10);//friction
+
 	state->addHurtbox(pT->getMainFixture());
 
 	e->addComponent<InputState>();

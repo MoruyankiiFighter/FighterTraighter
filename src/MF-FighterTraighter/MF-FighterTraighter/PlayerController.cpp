@@ -24,13 +24,13 @@ void PlayerController::init()
 //update
 void PlayerController::update()
 {
-	//transform_->setPosition(transform_->getPosition() + transform_->getSpeed());
-	//cout << transform_->getSpeed().getY() << endl;
+	
 }
 
 //handle input
 void PlayerController::handleInput()
 {
+	
 	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	InputManager* input = app_->getInputManager();
@@ -42,8 +42,8 @@ void PlayerController::handleInput()
 	}
 	else if (inputSt_->getInput(2) && currState->canJump()) 
 	{
-		//pTR_->setSpeed(0, 5);
 		//force and where you use the fore
+		transform_->getBody()->SetLinearDamping(0);//0 friction in the air
 		transform_->getBody()->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), transform_->getBody()->GetWorldCenter(), true);
 		if (currState->isCrouch()) uncrouch();
 		currState->goJumpingTrans(7);
