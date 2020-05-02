@@ -189,8 +189,15 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="UserData.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="PunchingBagOnHit.cpp" />
+    <ClCompile Include="HID.cpp" />
+    <ClCompile Include="KeyboardHID.cpp" />
+    <ClCompile Include="GamepadHID.cpp" />
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="PunchingBagOnHit.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -415,9 +422,14 @@
     <ClInclude Include="MockingbirdData.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h" />
     <ClInclude Include="UserData.h" />
+    <ClInclude Include="HID.h" />
     <ClInclude Include="DestroyOnHit.h" />
+    <ClInclude Include="KeyboardHID.h" />
+    <ClInclude Include="GamepadHID.h" />
+    <ClInclude Include="Bullet.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
@@ -453,9 +465,6 @@
     <Filter Include="Header files\Listeners">
       <UniqueIdentifier>{18d04ed8-c573-40a6-a897-ab56628383d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header files\Managers and factories">
-      <UniqueIdentifier>{5e0e2b7a-0be3-4397-b253-d5783acd59a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Manager and factories">
       <UniqueIdentifier>{93ba5123-48ec-49d2-ae69-9ddb772cc77b}</UniqueIdentifier>
     </Filter>
@@ -464,6 +473,9 @@
     </Filter>
     <Filter Include="Header files\OnHits">
       <UniqueIdentifier>{37fcfd60-7960-4747-8836-d6a19a15eb57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Managers and factories">
+      <UniqueIdentifier>{5e0e2b7a-0be3-4397-b253-d5783acd59a8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

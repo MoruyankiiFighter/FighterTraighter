@@ -134,7 +134,10 @@ public:
 	void goLanding(int frames) {
 		playerStatus_ = Landing;
 		holdingFrames_ = frames;
-		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
+		Vector2D speed(0,0);
+
+		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(speed);
+		entity_->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->SetLinearDamping(10);//friction
 	}
 
 	void goHitLanding(int frames) {
@@ -194,6 +197,8 @@ public:
 		entity_->getComponent<PhysicsTransform>(ecs::Transform)->setSpeed(0, 0);
 		playerStatus_ = HitAirborne;
 		holdingFrames_ = -1;
+		entity_->getComponent<PhysicsTransform>(ecs::Transform)->getBody()->SetLinearDamping(0);//friction
+
 	}
 	void releaseHitstun() {
 		if (playerStatus_ == Hit) {

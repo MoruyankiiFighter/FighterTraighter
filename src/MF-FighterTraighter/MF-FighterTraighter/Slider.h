@@ -10,8 +10,7 @@ class Slider :
 {
 public:
 	//constructor
-	Slider(double minValue, double maxValue, int steps = 10);
-	Slider(double minValue, double maxValue, int steps, CallbackOnValueChanged* valueChanged);
+	Slider(double minValue, double maxValue, int steps = 10, CallbackOnValueChanged* valueChanged = nullptr, HID* owner = nullptr);
 
 	//destructor
 	virtual ~Slider();

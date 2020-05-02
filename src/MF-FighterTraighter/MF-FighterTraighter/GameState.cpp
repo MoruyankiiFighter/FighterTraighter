@@ -15,6 +15,7 @@ void GameState::init()
 	debugInstance = new SDLDebugDraw(app_->getRenderer(), app_->PIXELS_PER_METER);
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_shapeBit);
+#else
 #endif
 	resJumpListener = new ResetJumpListener();
 	world->SetContactListener(resJumpListener);
@@ -30,6 +31,9 @@ void GameState::handleInput()
 
 void GameState::update()
 {
+	/*for (b2Fixture* mainHB : mainHurtboxes) {
+		cout << "friction: " << mainHB->GetFriction() << endl;
+	}*/
 
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->update();
@@ -51,7 +55,7 @@ void GameState::UpdateHitboxes()
 				if (!hB->destroy_) {
 					//hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
 					//hB->destroy_ = true;
-					hB->onHit();
+					hB->onHit(nullptr);
 				}
 			}
 			else {	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
@@ -64,7 +68,7 @@ void GameState::UpdateHitboxes()
 						//does both objects onHits if they hit each other
 						UserData* objOnHit = static_cast<UserData*>(mainHB->GetUserData());
 						objOnHit->onHit(*it);
-						hB->onHit(/*mainHB*/);
+						hB->onHit(mainHB);
 					}
 				}
 			}

@@ -12,8 +12,7 @@ void Button::init()
 void Button::handleInput()
 {
 	if (Buttonstate_ == Selected) {
-		InputManager* imngr = app_->getInputManager();
-		if (imngr->pressedAccept()) {
+		if (!owner_ && app_->getInputManager()->pressedAccept() || owner_ && owner_->ButtonPressed(HID::RightPad_Down)) {
 			Press();
 		}
 	}
