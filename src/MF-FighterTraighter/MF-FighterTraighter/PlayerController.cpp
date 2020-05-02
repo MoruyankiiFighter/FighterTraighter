@@ -79,7 +79,7 @@ void PlayerController::handleInput()
 	if (!(inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) &&
 		!(inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0) &&
 		!(inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0)) {
-		if (currState->isMoving() || currState->isJumping())
+		if (currState->isMoving() /*|| currState->isJumping()*/)
 		{
 			transform_->setSpeed(0, speed.getY());
 			if (currState->isGrounded()) currState->goIdle();
