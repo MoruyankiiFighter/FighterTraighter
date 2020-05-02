@@ -3,17 +3,12 @@
 #include "PhysicsTransform.h"
 #include "PlayerController.h"
 #include "RenderImage.h"
-#include "Jump.h"
-#include "Crouch.h"
 #include "PlayerAttacks.h"
 #include "PlayerState.h"
 #include "Health.h"
 #include "PlayerOnHit.h"
 #include "MkWH00PData.h"
 #include "PlayerAnimation.h"
-#include "InpuState.h"
-#include "KeyboardInput.h"
-#include "GamepadInput.h"
 #include "MockingbirdData.h"
 
 Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, HID* hid, b2World* world, uint16 cBits, uint16 mBits, int playerNumber)

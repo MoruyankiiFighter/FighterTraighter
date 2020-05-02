@@ -54,7 +54,7 @@ public:
 
 	//MOVEMENT
 	bool isMoving() { return playerStatus_ == Moving; };
-	bool isAbletoMove() { return playerStatus_ == Idle || playerStatus_ == Moving || playerStatus_ == Jumping; };
+	bool isAbletoMove() { return playerStatus_ == Idle || playerStatus_ == Moving /*|| playerStatus_ == Jumping*/; };
 	void goMoving() { playerStatus_ = Moving; };
 
 	//CROUCHING
