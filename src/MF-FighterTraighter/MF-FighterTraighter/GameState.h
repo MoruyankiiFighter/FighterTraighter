@@ -75,8 +75,10 @@ protected:
 	Vector2D gravity;
 	b2World* world;
 	bool doStep = false;
-#ifdef _DEBUG
+	b2ContactListener* resJumpListener = nullptr;
+#if _DEBUG
 	b2Draw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 #endif
-	b2ContactListener* resJumpListener = nullptr;
+
 };
+

@@ -193,6 +193,7 @@
     <ClCompile Include="HID.cpp" />
     <ClCompile Include="KeyboardHID.cpp" />
     <ClCompile Include="GamepadHID.cpp" />
+    <ClCompile Include="PunchingBagOnHit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">

@@ -25,7 +25,7 @@ using callBackOnEnd = void(Entity*);
 class Move {
 public:
 	//igual es mejor tener un puntero al body
-	Move() : endingFrame_(15), animaSheet_(nullptr), entity_(nullptr){};
+	Move() : endingFrame_(15), animaSheet_(nullptr), entity_(nullptr), generateHitbox_(nullptr){};
 	Move(/*string name, idMovimiento id, */int endingFrame, Texture* animSheet, callBackOnEnd* callback, Entity* entity) : 
 	/*name_(name), id_(id), */endingFrame_(endingFrame), animaSheet_(animSheet), generateHitbox_(callback), entity_(entity) {};
 	~Move() {};

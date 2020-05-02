@@ -8,7 +8,7 @@ public:
 	HitboxData(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroy = false) : UserData(e),
 		damage_(damage), time_(time), hitstun_(hitstun), knockBack_(knockback), guardBreaker_(guardbreaker), id_(id), destroy_(destroy) {}
 	virtual ~HitboxData() {}
-	virtual void onHit(b2Fixture* other) {
+	virtual void onHit(/*b2Fixture* other*/) {
 		if (!destroy_) {
 			entity_->getState()->killHitbox(it_, id_);
 			destroy_ = true;

@@ -4,14 +4,14 @@
 #include "OnHit.h"
 #include "ResetJumpListener.h"
 #include "HitboxData.h"
-GameState::GameState(App* app) : app_(app), entManager_(app, this)
+GameState::GameState(App* app) : app_(app), entManager_(app, this), world(nullptr)
 {
 }
 void GameState::init()
 {
 	gravity = Vector2D(0.0f, 10.0f);
 	world = new b2World(gravity);
-#ifdef _DEBUG
+#if _DEBUG
 	debugInstance = new SDLDebugDraw(app_->getRenderer(), app_->PIXELS_PER_METER);
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_shapeBit);
@@ -50,8 +50,9 @@ void GameState::UpdateHitboxes()
 			HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
 			if (hB->time_-- <= 0) {//checks if the hitbox "dies"
 				if (!hB->destroy_) {
-					hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
-					hB->destroy_ = true;
+					//hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
+					//hB->destroy_ = true;
+					hB->onHit();
 				}
 			}
 			else {	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
@@ -64,7 +65,7 @@ void GameState::UpdateHitboxes()
 						//does both objects onHits if they hit each other
 						UserData* objOnHit = static_cast<UserData*>(mainHB->GetUserData());
 						objOnHit->onHit(*it);
-						hB->onHit(mainHB);
+						hB->onHit(/*mainHB*/);
 					}
 				}
 			}
@@ -164,7 +165,7 @@ void GameState::render()
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->render();
 	}
-#ifdef _DEBUG // only compiles in debug
+#if _DEBUG
 	world->DrawDebugData();
 #endif
 	SDL_RenderPresent(app_->getRenderer());
@@ -186,8 +187,8 @@ GameState::~GameState()
 	clearHitboxes();
 
 	delete world;
-#ifdef _DEBUG
-	delete debugInstance;
-#endif // _DEBUG
 	delete resJumpListener;
+#if _DEBUG
+	delete debugInstance;
+#endif 
 }
