@@ -25,7 +25,7 @@ void CharacterSelection::init()
 		Vector2D(ancho / 8.5, 50), Vector2D(ancho /5, 50), Vector2D(ancho / 5, 50), (ancho / 20)*16, (alto/15)*10, 0);
 
 	Entity* leftP_ = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
-		Vector2D((ancho / 25) *1, 100), Vector2D((ancho / 25) * 1, 100), Vector2D((ancho / 25) * 1, 100), (ancho / 30) *4.5, (alto/15)*10, 0);
+		Vector2D((ancho / 25) *1, 100), Vector2D((ancho / 25) * 1, 100), Vector2D((ancho / 25) * 1, 100), (ancho / 30) *6, (alto/15)*10, 0);
 
 	Entity* rightP_ = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
 		Vector2D((ancho / 25) * 20.5, 100), Vector2D((ancho / 25) * 19.5, 100), Vector2D((ancho / 25) * 19.5, 100), (ancho / 30) * 4.5, (alto / 15) * 10, 0);
@@ -42,7 +42,7 @@ void CharacterSelection::init()
 	tuple <Entity*, Entity*> flor_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Flor_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((ancho / 25) * 6, (alto / 14) * 2), Vector2D((ancho / 25) * 6, (alto / 14) * 2), Vector2D((ancho / 25) * 6, (alto / 14) * 2), (ancho / 25) * 3, (alto / 14) * 3 ,0,
 		nullptr, nullptr, " ", letra, TextComponent::TextAlignment::Center);
-	tuple <Entity*, Entity*> mkwhoop_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mk_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	tuple <Entity*, Entity*> mkwhoop_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Ganonbot_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((ancho / 25) * 9.5, (alto / 14) * 2), Vector2D((ancho / 25) * 9.5, (alto / 14) * 2), Vector2D((ancho / 25) * 9.5, (alto / 14) * 2), (ancho / 25) * 3, (alto / 14) * 3, 0,
 		nullptr, nullptr, " ", letra, TextComponent::TextAlignment::Center);
 	tuple <Entity*, Entity*> aisha_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Aisha_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
@@ -79,5 +79,7 @@ void CharacterSelection::init()
 	//logic of that for changing the artwork of each player 
 
 	Entity* logic = entManager_.addEntity();
-	logic->addComponent<CharacterSelectionLogic>(text_j1->getComponent<TextComponent>(ecs::TextComponent),aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav->getComponent<NavigationController>(ecs::NavigationController), std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement));
+	logic->addComponent<CharacterSelectionLogic>(text_j1->getComponent<TextComponent>(ecs::TextComponent),leftP_->getComponent<RenderImage>(ecs::RenderImage),aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav->getComponent<NavigationController>(ecs::NavigationController), 
+		std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement),
+		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork),app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
 }

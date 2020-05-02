@@ -23,14 +23,30 @@ public:
 		HealthbarBack,
 		RoundCounter,
 		CharacterSelection,
-		GanonSheet,
 		BackgroundFight,
 		Banner,
-		Aisha_icon,
-		Mk_icon,
-		Mock_icon,
-		Flor_icon,
 		Panel,
+
+		//resources of aisha
+		Aisha_icon,
+		AishaArtwork,
+		AishaSheet,
+		
+		//resources of mkwhoop
+		Ganonbot_icon,
+		GanonArtwork,
+		GanonSheet,
+		
+		//resources of mockingbird
+		Mock_icon,
+		MockArtwork,
+		MockSheet,
+
+		//resources of flor
+		Flor_icon,
+		FlorArtwork,
+		FlorSheet,
+
 	};
 
 	enum FontNames {
