@@ -23,7 +23,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, std:
 	pT->setOrientation(orientation);
 	pT->setColliderWidth(pT->getWidth() / 2);
 	state->addHurtbox(pT->getMainFixture());
-	pT->changeFriction(0.0f);
+
 	e->addComponent<InputState>();
 	if (!gamePad) {
 		e->addComponent<KeyboardInput>(keys);
