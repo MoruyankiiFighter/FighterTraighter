@@ -4,7 +4,6 @@
 #include <vector>
 #include "PlayerState.h"
 #include "InpuState.h"
-#include "AbilitiesTimerFunction.h"
 
 //component that have all the attacks that you have
 class PlayerAttacks : public Component 

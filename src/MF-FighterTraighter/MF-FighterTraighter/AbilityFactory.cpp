@@ -61,7 +61,7 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 
 void AbilityFactory::MGC(Entity* ent)
 {
-	goOnCoolodwn(ent, 6000);
+	goOnCoolodwn(ent, 600);
 }
 
 
