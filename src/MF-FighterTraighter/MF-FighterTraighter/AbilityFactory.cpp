@@ -203,17 +203,17 @@ AnimationChain* AbilityFactory::GiveExplosiveWillpower(Entity* e)
 {
 	std::vector<Move*> vecMov;
 	vecMov.push_back(new Move(1, nullptr, EWC, e));
-	vecMov.push_back(new Move(10, nullptr, EW1, e));
-	vecMov.push_back(new Move(10, nullptr, EW2, e));
-	vecMov.push_back(new Move(10, nullptr, EW3, e));
-	vecMov.push_back(new Move(10, nullptr, nullptr, e));
+	vecMov.push_back(new Move(40, nullptr, EW1, e));
+	//vecMov.push_back(new Move(10, nullptr, EW2, e));
+	//vecMov.push_back(new Move(10, nullptr, EW3, e));
+	vecMov.push_back(new Move(25, nullptr, nullptr, e));
 	AnimationChain* MegatonGrip = new AnimationChain(vecMov);
 	return MegatonGrip;
 }
 
 void AbilityFactory::EWC(Entity* ent)
 {
-	goOnCoolodwn(ent, 7 * 60);
+	goOnCoolodwn(ent, 0 * 60);
 }
 
 void AbilityFactory::EW1(Entity* ent)
@@ -232,14 +232,31 @@ void AbilityFactory::EW1(Entity* ent)
 		mask = currentState->PLAYER_1;
 	}
 
-	std::cout << "Falcon stomp" << endl;
+#if _DEBUG
+	std::cout << "No estoy explotando por dentro" << endl;
+#endif
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = pT->getOrientation();
 
-	int width1 = 175;
-	int hitboxX1 = 100;
-	if (orientation_ == -1) hitboxX1 += width1;
-	createProyectile(ent, width1, 100, { 100, 100 }, { 0, 0 }, 100, 55, {0, 0}, 15, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Player), true);
+	//Palante
+	int width1 = 100;
+	int projX1 = pT->getPosition().getX() + (pT->getWidth() * 3 / 4) + (width1 / 2) - 80;
+	if (orientation_ == -1) projX1 = pT->getPosition().getX() + (pT->getWidth() * 1 / 4) - (width1 / 2) + 80;
+	Vector2D pos1 = Vector2D(projX1, pT->getPosition().getY() + (pT->getHeight() / 2));
+	createProyectile(ent, width1, 375, pos1, { 4.5 * orientation_, 0 }, 10, 55, { 10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Player), false);
+
+	//Patrás
+	int width2 = 100;
+	int projX2 = pT->getPosition().getX() + (pT->getWidth() * 1 / 4) - (width2 / 2) + 80;
+	if (orientation_ == -1) projX2 = pT->getPosition().getX() + (pT->getWidth() * 3 / 4) + (width2 / 2) - 80;
+	Vector2D pos2 = Vector2D(projX2, pT->getPosition().getY() + (pT->getHeight() / 2));
+	createProyectile(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, 10, 55, { -10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Player), false);
+
+	//Parriba
+	/*int width3 = 160;
+	int projX3 = pT->getPosition().getX() + (pT->getWidth() * 2 / 4);
+	Vector2D pos3 = Vector2D(projX3, pT->getPosition().getY() + 75);
+	createProyectile(ent, width3, 60, pos3, { 0, -5.0 }, 20, 55, { 0, -10.0}, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Player), false);*/
 }
 
 void AbilityFactory::EW2(Entity* ent)
@@ -306,5 +323,6 @@ void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 
 std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> AbilityFactory::abilities_map = {
 	{GameManager::AbilityID::SeismicShock, AbilityFactory::GiveSeismicShock},
-	{GameManager::AbilityID::MegatonGrip, AbilityFactory::GiveMegatonGrip}
+	{GameManager::AbilityID::MegatonGrip, AbilityFactory::GiveMegatonGrip},
+	{GameManager::AbilityID::ExplosiveWillpower, AbilityFactory::GiveExplosiveWillpower}
 };
