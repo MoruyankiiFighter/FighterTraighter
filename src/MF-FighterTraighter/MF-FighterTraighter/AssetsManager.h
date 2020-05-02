@@ -20,8 +20,12 @@ public:
 		PlayerActing,
 		Background,
 		Healthbar,
+		HealthbarSaco,
 		HealthbarBack,
-		RoundCounter
+		RoundCounter,
+		CharacterSelection,
+		GanonSheet,
+		BackgroundFight
 	};
 
 	enum FontNames {

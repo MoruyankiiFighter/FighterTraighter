@@ -3,15 +3,17 @@
 #include "AnimationChain.h"
 #include <vector>
 #include "PlayerState.h"
+#include "InpuState.h"
+
 //component that have all the attacks that you have
 class PlayerAttacks : public Component 
 {
 public:
 	
-	PlayerAttacks(AnimationChain* highFist , AnimationChain* airHighFist, SDL_Scancode key1, AnimationChain* lowFist, AnimationChain* airLowFist, 
-		SDL_Scancode key2, AnimationChain* highKick, AnimationChain* airHighKick, SDL_Scancode key3, AnimationChain* lowKick, AnimationChain* airLowKick, 
-		SDL_Scancode key4, AnimationChain* testGB,SDL_Scancode key5, SDL_Scancode key6, SDL_Scancode key7);
+	PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, AnimationChain* lowFist, AnimationChain* airLowFist,
+		AnimationChain* highKick, AnimationChain* airHighKick, AnimationChain* lowKick, AnimationChain* airLowKick, AnimationChain* testGB);
 	virtual ~PlayerAttacks();
+	virtual void init() override;
 	virtual void update() override { 
 		if (activeAttack_ != nullptr) { 
 			
@@ -27,17 +29,25 @@ public:
 			}
 			//else if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isHitstun()) interruptAttack(); <-- Esto es in�til (nunca va a estar atacando y ser hitstun)
 		}
+
+		for (int i = 0; i < cooldowns.size(); ++i) {
+			if (cooldowns[i] > 0) --cooldowns[i];
+		}
 	};
 	void handleInput() override;
 	void setAbility(AnimationChain* newAbility, int index);
 	void interruptAttack();
+	inline void goOnCooldown(int id, int cool) {
+		cooldowns[id] = cool;
+	}
+	int getAbilityIndex();
 private:
 	std::vector<AnimationChain*> attacksList;	//pointer to the attack that you can use
 	std::vector<AnimationChain*> abilityList = std::vector<AnimationChain*>(2);	//pointer to the abilities 
-	AnimationChain* activeAttack_=nullptr;
+	std::vector<int> cooldowns = std::vector<int>(2);
+	AnimationChain* activeAttack_ = nullptr;
 
 	//keys to use the attacks and abilities
-	SDL_Scancode highFistKey, lowFistKey, highKickKey, lowKickKey, guardBreaker_;
-	SDL_Scancode abilityKey1, abilityKey2;
+	InputState* inputSt_;
 };
 

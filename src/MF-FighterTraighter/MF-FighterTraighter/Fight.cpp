@@ -2,10 +2,13 @@
 #include "FloorOnHit.h"
 #include "UITimer.h"
 #include "UITransform.h"
+#include "UIFactory.h"
 #include "Health.h"
 #include "UIHealthbar.h"
 #include "UIRoundRenderer.h"
 #include "AbilityFactory.h"
+#include "RenderAnimation.h"
+#include "Bullet.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -14,39 +17,54 @@ Fight::Fight(App* app) : GameState(app)
 
 void Fight::init()
 {
-	world = new b2World(b2Vec2(0.0f, 18.0f));//inicializamos el mundo para las fisicas de b2D
-	//---------Debuggear hitbox-------------------------------------------
-	debugInstance = new SDLDebugDraw(app_->getRenderer());
-	world->SetDebugDraw(debugInstance);
-	debugInstance->SetFlags(b2Draw::e_aabbBit);
-	//---------------------------------------------------------------
-	resJumpListener = new ResetJumpListener();
-	world->SetContactListener(resJumpListener);
-	
+	GameState::init();
+	doStep = true;
+	Entity* bg = entManager_.addEntity();
+	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+
 	//Floor
 	Entity* floor = entManager_.addEntity();
-	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0,0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, false);
-	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1200), Vector2D(0, 0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, 2);
+	/*floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));*/
 	//floor->addComponent<FloorOnHit>();
-	app_->getHitboxMng()->addFloorHitbox(FpT->getMainFixture());
 
 	//Walls
 	Entity* wall1 = entManager_.addEntity();
-	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALL, EVERYTHING, false);
-	app_->getHitboxMng()->addFloorHitbox(W1pT->getMainFixture());
+	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
 
 	Entity* wall2 = entManager_.addEntity();
-	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALL, EVERYTHING, false);
-	app_->getHitboxMng()->addFloorHitbox(W2pT->getMainFixture());
+	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
+
+	/*Entity* bullet = entManager_.addEntity();// = entManager_.addEntity();
+	//PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 600), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, dyn);
+	//bullet->setApp(app_);
+	bullet->addComponent<PhysicsTransform>(Vector2D(100, 300), Vector2D(0, 0), 500, 500, 0, world, BULLET, PLAYER_2,1);
+	bullet->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	//uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time
+	bullet->addComponent<Bullet>(this,0, Vector2D(5000, 0), 10,0,Vector2D(50,50),1000,false);*/
 
 	//Player 1
-	Entity* player1 = FactoryMk::addMkToGame(app_, this, world, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
-		SDL_SCANCODE_SPACE, SDL_SCANCODE_R, SDL_SCANCODE_1, SDL_SCANCODE_2, }, PLAYER_1, PLAYER_2 | WALL | BOUNDARY);
+	//Entity* player1 = FactoryMk::addMockToGame(app_, this, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X,
+	//	SDL_SCANCODE_1, SDL_SCANCODE_2, SDL_SCANCODE_SPACE, SDL_SCANCODE_R }, world, false, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
+	Entity* player1 = FactoryMk::addMkToGame(app_, this, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X, 
+		SDL_SCANCODE_1, SDL_SCANCODE_2, SDL_SCANCODE_SPACE, SDL_SCANCODE_R }, world, false, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player1), 0);
+	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveSeismicShock(player1), 1);
+	vector<std::string>abilitiesP1;
+	abilitiesP1.push_back("MegatonGrip");
+	abilitiesP1.push_back("SeismicShock");
+	entManager_.setHandler(player1, ecs::Player1);
 
 	//Player 2
-	Entity* player2 = FactoryMk::addMkToGame(app_, this, world, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M, 
-		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, PLAYER_2, PLAYER_1 | WALL | BOUNDARY);
+	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M,
+		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, world, true, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
+	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player2), 1);
+	vector<std::string>abilitiesP2;
+	//abilities.push_back("MegatonGrip");
+	//abilities.push_back("SeismicShock");
+	entManager_.setHandler(player2, ecs::Player2);
+
 
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 75), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
@@ -54,18 +72,24 @@ void Fight::init()
 	timer->addComponent<UITimer>(UITimer::Minutes);
 
 	Entity* healthbarBack1 = entManager_.addEntity();
-	healthbarBack1->addComponent<UITransform>(Vector2D(470, 50), Vector2D(0, 0), Vector2D(345, 20), Vector2D(690, 40));
+	healthbarBack1->addComponent<UITransform>(Vector2D(460, 50), Vector2D(0, 0), Vector2D(365, 20), Vector2D(730, 40));
 	healthbarBack1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::HealthbarBack));
 	Entity* healthbar1 = entManager_.addEntity();
-	healthbar1->addComponent<UITransform>(Vector2D(470, 50), Vector2D(0, 0), Vector2D(345, 20), Vector2D(690, 40));
+	healthbar1->addComponent<UITransform>(Vector2D(460, 50), Vector2D(0, 0), Vector2D(365, 20), Vector2D(730, 40));
 	healthbar1->addComponent<UIHealthbar>(player1->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar), true);
+	Entity* character1 = entManager_.addEntity();
+	character1->addComponent<UITransform>(Vector2D(70, 70), Vector2D(), Vector2D(70, 70), Vector2D(140, 140));
+	character1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection))->setFrame(2, 0);
 
 	Entity* healthbarBack2 = entManager_.addEntity();
-	healthbarBack2->addComponent<UITransform>(Vector2D(-470, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(345, 20), Vector2D(690, 40));
+	healthbarBack2->addComponent<UITransform>(Vector2D(-460, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(365, 20), Vector2D(730, 40));
 	healthbarBack2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::HealthbarBack));
 	Entity* healthbar2 = entManager_.addEntity();
-	healthbar2->addComponent<UITransform>(Vector2D(-470, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(345, 20), Vector2D(690, 40));
+	healthbar2->addComponent<UITransform>(Vector2D(-460, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(365, 20), Vector2D(730, 40));
 	healthbar2->addComponent<UIHealthbar>(player2->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar));
+	Entity* character2 = entManager_.addEntity();
+	character2->addComponent<UITransform>(Vector2D(-70, 70), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(70, 70), Vector2D(140, 140));
+	character2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection))->setFrame(2, 0);
 
 	std::vector<Entity*> leftCounter;
 	std::vector<Entity*> rightCounter;
@@ -91,40 +115,13 @@ void Fight::init()
 void Fight::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
+
 		app_->getAudioManager()->pauseMusic();
-		app_->getStateMachine()->pushState(new PauseMenu(app_));
+		app_->getGameManager()->pressedStart();
 	}
 	else
 		GameState::handleInput();
 }
-
-void Fight::update()
-{
-	GameState::update();
-	app_->getHitboxMng()->update();		//es posible que esto sea un sistema
-
-	world->Step(1.0 / 30, 8, 3);//update box2d
-
-
-}
-
-void Fight::render() {
-	SDL_RenderClear(app_->getRenderer());
-	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
-		(*it)->render();
-	}
-	world->DrawDebugData();
-	SDL_RenderPresent(app_->getRenderer());
-}
-
 Fight::~Fight()
 {
-	/*for (auto vec : vecMov) {
-		delete vec;
-	}*/
-	app_->getHitboxMng()->clear();
-
-	delete world;
-	delete debugInstance;
-	delete resJumpListener;
 }

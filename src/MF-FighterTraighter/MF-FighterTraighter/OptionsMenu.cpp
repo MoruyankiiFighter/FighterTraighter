@@ -29,6 +29,7 @@ OptionsMenu::~OptionsMenu()
 
 void OptionsMenu::init()
 {
+	GameState::init();
 	/*Entity* bg = entManager_.addEntity();
 	Transform* t = bg->addComponent<Transform>();
 	t->setPosition(0, 0);
@@ -101,7 +102,7 @@ void OptionsMenu::init()
 void OptionsMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->getStateMachine()->popState();
+		app_->getGameManager()->pressedStart();
 	}
 	else
 		GameState::handleInput();

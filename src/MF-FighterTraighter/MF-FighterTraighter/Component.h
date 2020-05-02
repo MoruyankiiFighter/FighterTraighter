@@ -4,6 +4,7 @@
 #include "App.h"
 #include "ecs.h"
 class Entity;
+class GameState;
 class Component
 {
 
@@ -13,9 +14,10 @@ public:
 	//destructor
 	virtual ~Component();
 
-	//set for the entity and the app
+	//set for the entity, app and state
 	inline void setEntity(Entity* entity) { entity_ = entity; }
 	inline void setApp(App* app) { app_ = app; }
+	inline void setState(GameState* state) { state_ = state; }
 
 	//return the ID
 	ecs::CmpId getID() { return id_; }
@@ -30,6 +32,7 @@ public:
 protected:
 	Entity* entity_;
 	App* app_;
+	GameState* state_;
 	ecs::CmpId id_;
 };
 
