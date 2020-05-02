@@ -11,12 +11,12 @@ void MkWH00PData::init() {
 	std::vector<Move*> vecMov;
 
 	vecMov.push_back(new Move(27, nullptr, NP1, entity_));
-	vecMov.push_back(new Move(70, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(40, nullptr, nullptr, entity_));
 	normal_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
 	vecMov.push_back(new Move(29, nullptr, HP1, entity_));
-	vecMov.push_back(new Move(46, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(33, nullptr, nullptr, entity_));
 	hard_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -28,7 +28,7 @@ void MkWH00PData::init() {
 
 	vecMov.push_back(new Move(35, nullptr, HK1, entity_));
 	vecMov.push_back(new Move(15, nullptr, HK2, entity_));
-	vecMov.push_back(new Move(60, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(45, nullptr, nullptr, entity_));
 	hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -50,7 +50,7 @@ void MkWH00PData::init() {
 	vecMov.clear();
 
 	vecMov.push_back(new Move(32, nullptr, AHK1, entity_));
-	vecMov.push_back(new Move(95, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(55, nullptr, nullptr, entity_));
 	air_hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -74,7 +74,7 @@ void MkWH00PData::NP1(Entity* ent)
 
 PlayerData::CallbackData MkWH00PData::np1 = PlayerData::CallbackData{
 	{ 100, -150 },
-	{ 100, -250 },
+	{ 300, -360 },
 	150,
 	200,
 	20,
@@ -96,7 +96,7 @@ void MkWH00PData::HP1(Entity* ent)
 
 PlayerData::CallbackData MkWH00PData::hp1 = PlayerData::CallbackData{
 	{ 115, -85 },
-	{ 40, 1250 },
+	{ 40, 0 },
 	125,
 	150,
 	17,
@@ -268,14 +268,16 @@ void MkWH00PData::ANK1(Entity* ent)
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, ank1.position.getY() }, ank1.width, ank1.height, ank1.time, pD->getAttack() * ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 }
+
 PlayerData::CallbackData MkWH00PData::ank1 = PlayerData::CallbackData{
 	{ 105, 135 },
-	{ 5, -50 },
+	{ 5, 0 },
 	145,
 	120,
 	17,
 	4,
 	15 };
+
 void MkWH00PData::ANK2(Entity* ent)
 {
 	std::cout << "STEPPY!!!" << endl;
@@ -286,16 +288,16 @@ void MkWH00PData::ANK2(Entity* ent)
 	if (orientation_ == -1)
 		hitbox_X += ank2.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X, ank2.position.getY() }, ank2.width, ank2.height, ank2.time, pD->getAttack() * ank2.damage, ank1.hitstun, { (double)orientation_ * ank2.knockBack.getX(), ank2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+		{ (double)orientation_ * hitbox_X, ank2.position.getY() }, ank2.width, ank2.height, ank2.time, pD->getAttack() * ank2.damage, ank2.hitstun, { (double)orientation_ * ank2.knockBack.getX(), ank2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::ank2 = PlayerData::CallbackData{
 	{ 105, 125 },
-	{ 250, 500 },
+	{ 350, 0 },
 	145,
 	135,
 	17,
 	10,
-	28 };
+	43 };
 
 void MkWH00PData::AHK1(Entity* ent)
 {
