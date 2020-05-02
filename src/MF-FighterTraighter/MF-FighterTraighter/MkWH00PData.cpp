@@ -328,7 +328,7 @@ void MkWH00PData::GB(Entity* ent)
 	if (orientation_ == -1)
 		hitbox_X += gb.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X, gb.position.getY() }, gb.width, gb.height, gb.time, pD->getAttack() * gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+		{ (double)orientation_ * hitbox_X, gb.position.getY() }, gb.width, gb.height, gb.time, pD->getAttack() * gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask(), true);
 }
 PlayerData::CallbackData MkWH00PData::gb = PlayerData::CallbackData{
 	{ 50, -75 },
@@ -337,4 +337,4 @@ PlayerData::CallbackData MkWH00PData::gb = PlayerData::CallbackData{
 	200,
 	15,
 	0,
-	75};
+	100};

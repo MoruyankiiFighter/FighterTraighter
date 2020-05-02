@@ -277,7 +277,7 @@ void MockingbirdData::GB(Entity* ent)
 	if (orientation_ == -1)
 		hitbox_X += gb.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X, gb.position.getY() }, gb.width, gb.height, gb.time, pD->getAttack() * gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+		{ (double)orientation_ * hitbox_X, gb.position.getY() }, gb.width, gb.height, gb.time, pD->getAttack() * gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask(), true);
 }
 PlayerData::CallbackData MockingbirdData::gb = PlayerData::CallbackData{
 	{ 125, -75 },
@@ -286,4 +286,4 @@ PlayerData::CallbackData MockingbirdData::gb = PlayerData::CallbackData{
 	150,
 	20,
 	0,
-	75 };
+	85 };
