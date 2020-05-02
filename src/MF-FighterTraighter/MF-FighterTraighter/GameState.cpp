@@ -15,6 +15,7 @@ void GameState::init()
 	debugInstance = new SDLDebugDraw(app_->getRenderer(), app_->PIXELS_PER_METER);
 	world->SetDebugDraw(debugInstance);
 	debugInstance->SetFlags(b2Draw::e_shapeBit);
+#else
 #endif
 	resJumpListener = new ResetJumpListener();
 	world->SetContactListener(resJumpListener);
