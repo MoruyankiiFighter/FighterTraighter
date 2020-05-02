@@ -32,9 +32,9 @@ void GameState::handleInput()
 
 void GameState::update()
 {
-	for (b2Fixture* mainHB : mainHurtboxes) {
+	/*for (b2Fixture* mainHB : mainHurtboxes) {
 		cout << "friction: " << mainHB->GetFriction() << endl;
-	}
+	}*/
 
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->update();
