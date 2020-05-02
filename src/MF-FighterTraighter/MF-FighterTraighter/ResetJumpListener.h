@@ -49,10 +49,15 @@ public:
 						if (currState != nullptr && currState2 != nullptr) {	//if it collides with boundary (floor)
 							PhysicsTransform* Pt1 = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
 							PhysicsTransform* Pt2 = data2->entity_->getComponent<PhysicsTransform>(ecs::Transform);
+							PlayerController* Pc1 = data->entity_->getComponent<PlayerController>(ecs::PlayerController);
+							PlayerController* Pc2 = data2->entity_->getComponent<PlayerController>(ecs::PlayerController);
 							//if (abs(Pt1->getSpeed().getY()) > 0.1 || abs(Pt2->getSpeed().getY()) > 0.1) {//not both on the floor
 							if (!data->entity_->getComponent <PlayerState>(ecs::PlayerState)->canCrouch() || !data2->entity_->getComponent <PlayerState>(ecs::PlayerState)->canCrouch()) {
-								Pt1->changeFriction(0.1);
-								Pt2->changeFriction(0.1);
+								
+								//Pt1->changeFriction(0.1);
+								//Pt2->changeFriction(0.1);
+								//Pc1->wallRight(true);
+								//Pc2->wallLeft(true);
 							}
 							/*else if(!data2->entity_->getComponent <PlayerState>(ecs::PlayerState)->canCrouch()) {
 								Pt2->changeFriction(0); Pt1->changeFriction(0);
@@ -128,7 +133,9 @@ public:
 		}
 	}
 
-
+	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) override {
+		//contact->SetEnabled(!bothPlayerCollide);
+	}
 	void EndContact(b2Contact* contact) override {
 
 		// if 1st fixture is the player, and 2nd fixture is the floor
@@ -162,12 +169,18 @@ public:
 						
 						PhysicsTransform* Pt1 = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
 						PhysicsTransform* Pt2 = data2->entity_->getComponent<PhysicsTransform>(ecs::Transform);
+						PlayerController* Pc1 = data->entity_->getComponent<PlayerController>(ecs::PlayerController);
+						PlayerController* Pc2 = data2->entity_->getComponent<PlayerController>(ecs::PlayerController);
+
 						//if (abs(Pt1->getSpeed().getY()) > 0.1 || abs(Pt2->getSpeed().getY()) > 0.1) {//not both on the floor
 						//if (!data->entity_->getComponent <PlayerState>(ecs::PlayerState)->canCrouch() || !data2->entity_->getComponent <PlayerState>(ecs::PlayerState)->canCrouch()) {
-							Pt1->changeFriction(1);
+							//Pt1->changeFriction(1);
 						//}
 						//else if (!data2->entity_->getComponent <PlayerState>(ecs::PlayerState)->canCrouch()) {
-							Pt2->changeFriction(1);
+							//Pt2->changeFriction(1);
+							//Pc1->wallRight(false);
+							//Pc2->wallLeft(false);
+
 						//}
 						/*if (data->entity_->getComponent<PhysicsTransform>(ecs::Transform)->getPosition().getX() <
 							data2->entity_->getComponent<PhysicsTransform>(ecs::Transform)->getPosition().getX())
@@ -206,7 +219,8 @@ public:
 			}
 		}*/
 	}
-	
+private:
+	bool bothPlayerCollide = false; //kk
 
 };
 

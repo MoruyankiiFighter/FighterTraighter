@@ -57,7 +57,10 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && inputSt_->getInput(0))
 	{
-		if(!wallLeft_) speed = Vector2D(-movSpeed, speed.getY());
+		if (!wallLeft_) {
+			speed = Vector2D(-movSpeed, speed.getY());
+			//cout << "me muevo a la izq" << endl;
+		}
 		else {
 			speed = Vector2D(0, speed.getY());
 		}
@@ -67,7 +70,10 @@ void PlayerController::handleInput()
 	}
 	else if (currState->isAbletoMove() && inputSt_->getInput(1))
 	{
-		if (!wallRight_) speed = Vector2D(movSpeed, speed.getY());
+		if (!wallRight_) {
+			speed = Vector2D(movSpeed, speed.getY());
+			//cout << "me muevo a la der" << endl;
+		}
 		else {
 			speed = Vector2D(0, speed.getY());
 		}		
@@ -96,6 +102,11 @@ void PlayerController::handleInput()
 		{
 			uncrouch();
 		}
+	}
+	//si
+
+	if (currState->isIdle() && transform_->getSpeed().getX() != 0.0f) {
+		transform_->setSpeed(0, speed.getY());
 	}
 }
 
