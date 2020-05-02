@@ -34,11 +34,18 @@ public:
 		_NumAxes_
 	};
 
-	inline virtual bool isButtonDown(ButtonsID button) {
+	inline virtual bool ButtonDown(ButtonsID button) {
 		return (curbuttonState & button) != 0;
+	}
+	inline virtual bool ButtonPressed(ButtonsID button) {
+		return (curbuttonState & button) != 0 && (lastButtonState & button) == 0;
 	}
 	inline virtual float AxisInput(AxesID axis) {
 		return axes[axis];
+	}
+	// To detect if axis changed its state this frame
+	inline virtual bool AxisChanged(AxesID axis) {
+		return (curAxesState & (1 << axis)) != 0 && (lastAxesState & (1 << axis)) == 0;
 	}
 
 	virtual void updateInput() = 0;
@@ -49,5 +56,7 @@ protected:
 	short lastButtonState;
 	// LJoyX, LJoyY, RJoyX, RJoyY, LTrigger, RTrigger
 	std::vector<float> axes = std::vector<float>(_NumAxes_); // (-1 to) 0 to 1
+	char curAxesState; // 0 = no input
+	char lastAxesState;
 };
 

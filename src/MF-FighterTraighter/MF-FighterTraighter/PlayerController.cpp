@@ -39,7 +39,7 @@ void PlayerController::handleInput()
 		else if (currState->isMoving())transform_->setSpeed(0, speed.getY());
 		if (!currState->isGuarding()) currState->goGuardingTransition(6);
 	}
-	else if ((inputSt_->isButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0) && currState->canJump())
+	else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0) && currState->canJump())
 	{
 		//pTR_->setSpeed(0, 5);
 		//force and where you use the fore
@@ -48,13 +48,13 @@ void PlayerController::handleInput()
 		currState->goJumpingTrans(7);
 		std::cout << "salto" << std::endl;
 	}
-	else if ((inputSt_->isButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > 0) && currState->canCrouch())
+	else if ((inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > 0) && currState->canCrouch())
 	{
 		cout << "crouch" << endl;
 		if (currState->isMoving()) transform_->setSpeed(0, speed.getY());
 		crouch();
 	}
-	else if (currState->isAbletoMove() && (inputSt_->isButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0))
+	else if (currState->isAbletoMove() && (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0))
 	{
 		if (!wallLeft_) speed = Vector2D(-movSpeed, speed.getY());
 		else {
@@ -64,7 +64,7 @@ void PlayerController::handleInput()
 		if (currState->isGrounded()) currState->goMoving();
 		else { currState->goJumping(); };
 	}
-	else if (currState->isAbletoMove() && (inputSt_->isButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0))
+	else if (currState->isAbletoMove() && (inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0))
 	{
 		if (!wallRight_) speed = Vector2D(movSpeed, speed.getY());
 		else {
@@ -76,9 +76,9 @@ void PlayerController::handleInput()
 	}
 
 	// If these keys aren't active
-	if (!(inputSt_->isButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) &&
-		!(inputSt_->isButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0) &&
-		!(inputSt_->isButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0)) {
+	if (!(inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) &&
+		!(inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0) &&
+		!(inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0)) {
 		if (currState->isMoving() || currState->isJumping())
 		{
 			transform_->setSpeed(0, speed.getY());
@@ -92,7 +92,7 @@ void PlayerController::handleInput()
 			currState->goGuardingLeaving(14);
 		}
 	}
-	if (!(inputSt_->isButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > 0)) {
+	if (!(inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > 0)) {
 		if (currState->isCrouch())
 		{
 			uncrouch();

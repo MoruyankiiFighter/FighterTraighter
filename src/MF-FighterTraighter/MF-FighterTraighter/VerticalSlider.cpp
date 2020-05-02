@@ -16,7 +16,7 @@ VerticalSlider::~VerticalSlider()
 void VerticalSlider::handleInput()
 {
 	if (Buttonstate_ == Selected) {
-		if (app_->getInputManager()->pressedUp()) {
+		if (!owner_ && app_->getInputManager()->pressedUp() || owner_ && owner_->ButtonPressed(HID::LeftPad_Up)) {
 			if (steps_ > 1) {
 				setValue(value_ + (maxValue_ - minValue_) / steps_);
 			}
@@ -24,7 +24,7 @@ void VerticalSlider::handleInput()
 				setValue(value_ + 1);
 			}
 		}
-		else if (app_->getInputManager()->pressedDown()) {
+		else if (!owner_ && app_->getInputManager()->pressedDown() || owner_ && owner_->ButtonPressed(HID::LeftPad_Down)) {
 			if (steps_ > 1) {
 				setValue(value_ - (maxValue_ - minValue_) / steps_);
 			}

@@ -8,7 +8,7 @@ class Button : public UIElement {
 
 public:
 	//constructor
-	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr) : UIElement(), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
+	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr, HID* owner = nullptr) : UIElement(owner), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
 
 	virtual void Press()
 	{

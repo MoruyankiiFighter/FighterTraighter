@@ -71,7 +71,7 @@ public:
 		else (inSt->setInput(i, false));
 		++i;
 
-		if (app_->getInputManager()->getControllerAxis(0, blocking[1]) > deadZone&& gbReleased) {
+		if (app_->getInputManager()->getControllerAxis(0, blocking[1]) > deadZone && gbReleased) {
 			inSt->setInput(i, true);
 			gbReleased = false;
 		}
