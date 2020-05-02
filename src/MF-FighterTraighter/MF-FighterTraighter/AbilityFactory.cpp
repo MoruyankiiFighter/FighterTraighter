@@ -244,6 +244,7 @@ void AbilityFactory::EW1(Entity* ent)
 
 void AbilityFactory::EW2(Entity* ent)
 {
+	///<bbgzccvfAFG
 }
 
 void AbilityFactory::EW3(Entity* ent)
