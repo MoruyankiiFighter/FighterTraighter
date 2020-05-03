@@ -11,10 +11,18 @@ public:
 
 	void init() override;
 
+
+	//callbacks
+	static void setAisha(App* app);
+	static void setFlor(App* app);
+	static void setGanonbot(App* app);
+	static void setMockingBird(App* app);
+	static void setRandomCharacter(App* app);
+
+	static void GoToFight(App* app);
+
+
 private:
-	
-	int factorLetra = 25;
-	int letra = 120;
 	
 	string mkwhoop_desc= "MKW00P: \n  Tiene un playstyle lento pero poderoso, \n con golpes contundentes y de alto empuje.\n Tiene una vida alta.";
 	string aisha_desc= "Aisha: \n Tiene un playstyle balanceado, ni muy rápido ni muy lento,\n con movimientos que brillan sobre todo en el aire. \n Tiene una vida media.";

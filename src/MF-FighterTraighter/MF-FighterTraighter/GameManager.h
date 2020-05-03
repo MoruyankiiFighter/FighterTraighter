@@ -9,20 +9,23 @@ class GameStateMachine;
 class GameManager
 {
 protected:
-	enum CharacterID {
-		MKWh00p,
-		Mockingbird,
-		Aisha,
-		F10R
-	};
+	
 	// CHANGE ME TO SOMETHING PROPER
+	
+public:
+	enum CharacterID {
+		None,
+		F10R,
+		Aisha,
+		MKWh00p,
+		Mockingbird
+	};
 	struct playerInfo {
 		CharacterID character;
 		std::vector<std::string> abilities;
 		unsigned int ability1Index;
 		unsigned int ability2Index;
 	};
-public:
 	GameManager(App* app);
 	// To inform this that start/escape was pressed
 	void pressedStart();
@@ -33,6 +36,11 @@ public:
 	void trainingEnded();
 	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index);
 	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index);
+	
+	void setCharacter(CharacterID char_) {
+		player1_.character = char_;
+	}
+	
 	playerInfo getPlayerInfo(int player) {
 		if (player == 1) return player1_;
 		return player2_;
