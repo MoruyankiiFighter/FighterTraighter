@@ -74,6 +74,7 @@ void PauseMenu::Resume(App* app)
 
 void PauseMenu::GoMainMenu(App* app)
 {
+	app->getGameManager()->setCharacter(app->getGameManager()->None); //reseteamos el personaje elegido
 	app->getStateMachine()->popState();
 	while (dynamic_cast<MainMenu*>(app->getStateMachine()->getCurrentState()) == nullptr) {
 		app->getStateMachine()->popState();

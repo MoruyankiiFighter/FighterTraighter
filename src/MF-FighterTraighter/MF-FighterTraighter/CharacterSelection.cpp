@@ -175,10 +175,7 @@ void CharacterSelection::setRandomCharacter(App* app)
 
 void CharacterSelection::GoToFight(App* app)
 {
-	if (app->getGameManager()->getPlayerInfo(1).character == app->getGameManager()->F10R ||
-		app->getGameManager()->getPlayerInfo(1).character == app->getGameManager()->Aisha ||
-		app->getGameManager()->getPlayerInfo(1).character == app->getGameManager()->Mockingbird ||
-		app->getGameManager()->getPlayerInfo(1).character == app->getGameManager()->MKWh00p) {
+	if (app->getGameManager()->getPlayerInfo(1).character != app->getGameManager()->None) {
 
 		app->getStateMachine()->pushState(new Fight(app));
 	}
