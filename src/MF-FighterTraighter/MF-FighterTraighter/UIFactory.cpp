@@ -74,7 +74,7 @@ Entity* UIFactory::createText(App* app, GameState* state, Vector2D pos, Vector2D
 	Entity* ent = state->getEntityManager().addEntity();
 
 	ent->addComponent<UITransform>(pos, anchor, pivot, Vector2D(width, height));
-	ent->addComponent<TextComponent>(text, font, fontSize, TextComponent::TextAlignment::Center);
+	ent->addComponent<TextComponent>(text, font, fontSize, TextComponent::TextAlignment::Left);
 
 	return ent;
 }

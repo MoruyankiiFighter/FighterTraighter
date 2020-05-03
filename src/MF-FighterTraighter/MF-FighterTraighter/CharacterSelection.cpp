@@ -86,18 +86,26 @@ void CharacterSelection::init()
 		nullptr, setMockingBird, " ", 120, TextComponent::TextAlignment::Center);
 
 
+
+
+	
+	Entity* j1_ = UIFactory::createText(app_, this, Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 5),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 7),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 7),
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j1", 60, 
+		(app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 4);
 	
 	Entity* text_j1 = UIFactory::createText(app_, this, Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 7),
 		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j1", 30, 
-		(app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 2);
+		(app_->getWindowManager()->getCurResolution().w / 30) , (app_->getWindowManager()->getCurResolution().h / 10) * 8);
 	
 	Entity* text_j2 = UIFactory::createText(app_, this, Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 15, (app_->getWindowManager()->getCurResolution().h / 14) * 8),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 15, (app_->getWindowManager()->getCurResolution().h / 14) * 8),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 15, (app_->getWindowManager()->getCurResolution().h / 14) * 8),
 		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j2", 30, 
-		(app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 2);
+		(app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 4);
 
 	//Entitys
 
@@ -115,7 +123,7 @@ void CharacterSelection::init()
 
 	//logic of that for changing the artwork of each player 
 	Entity* logic = entManager_.addEntity();
-	logic->addComponent<CharacterSelectionLogic>(text_j1->getComponent<TextComponent>(ecs::TextComponent),leftP_->getComponent<RenderImage>(ecs::RenderImage),aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav->getComponent<NavigationController>(ecs::NavigationController), 
+	logic->addComponent<CharacterSelectionLogic>(j1_->getComponent<TextComponent>(ecs::TextComponent),text_j1->getComponent<TextComponent>(ecs::TextComponent),leftP_->getComponent<RenderImage>(ecs::RenderImage),aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav->getComponent<NavigationController>(ecs::NavigationController), 
 		std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement),
 		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork),app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
 
@@ -139,7 +147,6 @@ void CharacterSelection::setFlor(App* app)
 
 void CharacterSelection::setGanonbot(App* app)
 {
-
 	//preguntar player
 	app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p);
 	cout << app->getGameManager()->getPlayerInfo(1).character;

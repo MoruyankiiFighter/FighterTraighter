@@ -24,10 +24,10 @@ public:
 
 private:
 	
-	string mkwhoop_desc= "MKW00P: \n  Tiene un playstyle lento pero poderoso, \n con golpes contundentes y de alto empuje.\n Tiene una vida alta.";
-	string aisha_desc= "Aisha: \n Tiene un playstyle balanceado, ni muy rápido ni muy lento,\n con movimientos que brillan sobre todo en el aire. \n Tiene una vida media.";
-	string flor_desc= "F10R: \n Es capaz de atacar desde muy lejos, \n evitando que sus oponentes se acerquen, tiene el rol de zoner. \n Tiene una vida media-baja.";
-	string mock_desc = "MockingBird: \n Sus ataques son rápidos pero de poco daño, \n promoviendo un playstyle de hacer combos mezclándolos. \n Tiene una vida baja.";
+	string mkwhoop_desc= " Tiene un playstyle lento pero poderoso de golpes potentes";
+	string aisha_desc= " Tiene un playstyle balanceado con movimientos que brillan en el aire. ";
+	string flor_desc= "Es capaz de atacar desde muy lejos, evitando que se acerquen.";
+	string mock_desc = " Sus ataques son rápidos pero de poco daño, promoviendo un playstyle de hacer combos. ";
 
 };
 

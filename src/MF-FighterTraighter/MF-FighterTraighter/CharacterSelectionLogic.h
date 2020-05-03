@@ -7,8 +7,8 @@ class CharacterSelectionLogic: public Component
 {
 public:
 
-	CharacterSelectionLogic(TextComponent* j_desc, RenderImage* im, string aisha_desc, string mkwhoop_desc, string flor_desc, string mock_desc, NavigationController* nav, UIElement* aisha, UIElement* flor, UIElement* mkwhoop, UIElement* mock, Texture* aishatexture, Texture* flortexture, Texture* mkwhooptexture, Texture* mocktexture  ) : Component(ecs::CharacterSelectionLogic),
-		desc_(j_desc), aisha_(aisha),aisha_desc_(aisha_desc),flor_(flor), flor_desc_(flor_desc),mock_(mock),mock_desc_(mock_desc),mkwhoop_(mkwhoop),mkwhoop_desc_(mkwhoop_desc),nav_(nav),
+	CharacterSelectionLogic(TextComponent* title,TextComponent* j_desc, RenderImage* im, string aisha_desc, string mkwhoop_desc, string flor_desc, string mock_desc, NavigationController* nav, UIElement* aisha, UIElement* flor, UIElement* mkwhoop, UIElement* mock, Texture* aishatexture, Texture* flortexture, Texture* mkwhooptexture, Texture* mocktexture  ) : Component(ecs::CharacterSelectionLogic),
+		title_(title),desc_(j_desc), aisha_(aisha),aisha_desc_(aisha_desc),flor_(flor), flor_desc_(flor_desc),mock_(mock),mock_desc_(mock_desc),mkwhoop_(mkwhoop),mkwhoop_desc_(mkwhoop_desc),nav_(nav),
 		aisha_texture(aishatexture), flor_texture(flortexture), mkwhoop_texture(mkwhooptexture), mock_texture(mocktexture), image_(im) { }
 	
 	void init() override;
@@ -17,6 +17,7 @@ public:
 	void SetElements();
 private:
 
+	TextComponent* title_=nullptr;
 	TextComponent* desc_=nullptr;
 	RenderImage* image_ = nullptr;
 	string aisha_desc_, flor_desc_, mkwhoop_desc_, mock_desc_;
