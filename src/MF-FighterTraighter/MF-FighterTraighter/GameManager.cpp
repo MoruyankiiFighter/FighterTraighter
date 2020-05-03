@@ -85,6 +85,12 @@ void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<
 	player2_.ability2Index = ability2Index;
 }
 
+void GameManager::resetCharacters()
+{
+	player1_.character = None;
+	player2_.character = None;
+}
+
 void GameManager::GoBackToMain(GameStateMachine* stateMachine)
 {
 	GameState* currState = stateMachine->getCurrentState();

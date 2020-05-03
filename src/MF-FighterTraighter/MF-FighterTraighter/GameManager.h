@@ -40,6 +40,8 @@ public:
 	void setCharacter(CharacterID char_) {
 		player1_.character = char_;
 	}
+
+	void resetCharacters();
 	
 	playerInfo getPlayerInfo(int player) {
 		if (player == 1) return player1_;
