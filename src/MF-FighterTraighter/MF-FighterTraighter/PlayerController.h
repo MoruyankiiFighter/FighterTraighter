@@ -30,4 +30,5 @@ private:
 	bool wallLeft_=false, wallRight_ = false;
 	float jumpImpulse = 0;
 	double movSpeed = 1;
+	
 };

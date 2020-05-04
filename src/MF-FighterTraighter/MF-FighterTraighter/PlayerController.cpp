@@ -23,13 +23,13 @@ void PlayerController::init()
 //update
 void PlayerController::update()
 {
-	//transform_->setPosition(transform_->getPosition() + transform_->getSpeed());
-	//cout << transform_->getSpeed().getY() << endl;
+	
 }
 
 //handle input
 void PlayerController::handleInput()
 {
+	
 	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	InputManager* input = app_->getInputManager();
@@ -41,8 +41,8 @@ void PlayerController::handleInput()
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0) && currState->canJump())
 	{
-		//pTR_->setSpeed(0, 5);
 		//force and where you use the fore
+		transform_->getBody()->SetLinearDamping(0);//0 friction in the air
 		transform_->getBody()->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), transform_->getBody()->GetWorldCenter(), true);
 		if (currState->isCrouch()) uncrouch();
 		currState->goJumpingTrans(7);
@@ -79,7 +79,7 @@ void PlayerController::handleInput()
 	if (!(inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) &&
 		!(inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0) &&
 		!(inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0)) {
-		if (currState->isMoving() || currState->isJumping())
+		if (currState->isMoving() /*|| currState->isJumping()*/)
 		{
 			transform_->setSpeed(0, speed.getY());
 			if (currState->isGrounded()) currState->goIdle();

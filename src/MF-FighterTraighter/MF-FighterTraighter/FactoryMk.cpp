@@ -3,26 +3,22 @@
 #include "PhysicsTransform.h"
 #include "PlayerController.h"
 #include "RenderImage.h"
-#include "Jump.h"
-#include "Crouch.h"
 #include "PlayerAttacks.h"
 #include "PlayerState.h"
 #include "Health.h"
 #include "PlayerOnHit.h"
 #include "MkWH00PData.h"
 #include "PlayerAnimation.h"
-#include "InpuState.h"
-#include "KeyboardInput.h"
-#include "GamepadInput.h"
 #include "MockingbirdData.h"
 
 Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, HID* hid, b2World* world, uint16 cBits, uint16 mBits, int playerNumber)
 {
 	Entity* e = state->getEntityManager().addEntity();
-	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 600), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
+	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 700), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
 	pT->resetUserData(new PlayerOnHit(e));
 	pT->setOrientation(orientation);
 	pT->setColliderWidth(pT->getWidth() / 2);
+	pT->getBody()->SetLinearDamping(10);//friction
 	state->addHurtbox(pT->getMainFixture());
 
 	PlayerController* pC = e->addComponent<PlayerController>(hid, -7, 4.5);
@@ -46,6 +42,8 @@ Entity* FactoryMk::addMockToGame(App* app, GameState* state, int orientation, HI
 	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100 + 960, 600), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
 	pT->setOrientation(orientation);
 	pT->setColliderWidth(pT->getWidth() / 2);
+	pT->getBody()->SetLinearDamping(10);//friction
+
 	state->addHurtbox(pT->getMainFixture());
 
 	PlayerController* pC = e->addComponent<PlayerController>(hid, -7, 4.5);
