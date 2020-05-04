@@ -1,6 +1,4 @@
 #pragma once
-#include <Box2D/Box2D.h>
-
 class Vector2D
 {
 public:
@@ -43,10 +41,6 @@ public:
 	}
 	inline bool operator!=(const Vector2D& v) const {
 		return !(*this == v);
-	}
-
-	inline operator b2Vec2() {
-		return b2Vec2((float32)_x, (float32)_y);
 	}
 
 	virtual ~Vector2D() {}

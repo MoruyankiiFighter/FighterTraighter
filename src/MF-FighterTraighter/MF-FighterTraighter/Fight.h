@@ -16,6 +16,14 @@
 
 class Fight : public GameState
 {
+	//	Collision filters for the b2d collision
+	enum CollisionFilters : uint16 {
+		BOUNDARY = 0x0001,
+		PLAYER_1 = 0x0002,
+		PLAYER_2 = 0x0004,
+		WALL = 0x0006,
+		EVERYTHING = 0XFFFF
+	};
 public:
 	
 	//constructor
@@ -27,5 +35,11 @@ public:
 	//methods overrided from GameState
 	void init() override;
 	virtual void handleInput() override;
-	virtual ~Fight();
+	virtual void update() override;
+	virtual void render() override;
+private:
+	std::vector<Move*> vecMov;//until we have factories to create characters
+	b2World* world;
+	SDLDebugDraw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
+	ResetJumpListener* resJumpListener = nullptr;
 };

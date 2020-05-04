@@ -18,7 +18,7 @@ void Slider::init()
 
 void Slider::handleInput()
 {
-	if (Buttonstate_ == Selected) {
+	if (state_ == Selected) {
 		if (app_->getInputManager()->pressedRight()) {
 			if (steps_ > 1) {
 				setValue(value_ + (maxValue_ - minValue_) / steps_);

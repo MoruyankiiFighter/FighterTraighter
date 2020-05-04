@@ -90,13 +90,6 @@ public:
 
 		return controllerInputs[controllerID].buttons[button] && lastControllerInputs[controllerID].buttons[button];
 	}
-	bool isControllerButtonUp(Controllers controllerID, SDL_GameControllerButton button)
-	{
-		// SMELLS
-		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return false;
-
-		return !controllerInputs[controllerID].buttons[button] && lastControllerInputs[controllerID].buttons[button];
-	}
 	float getControllerAxis(Controllers controllerID, SDL_GameControllerAxis axis)
 	{
 		if (controllerID < 0 || controllerID > numGamepads || !GamepadConnected()) return 0.0;

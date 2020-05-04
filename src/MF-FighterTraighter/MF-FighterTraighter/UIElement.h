@@ -24,6 +24,6 @@ public:
 
 	virtual ~UIElement() {}
 protected:
-	State Buttonstate_ = Normal;
+	State state_ = Normal;
 };
 

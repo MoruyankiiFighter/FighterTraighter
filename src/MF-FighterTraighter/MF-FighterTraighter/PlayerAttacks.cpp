@@ -1,8 +1,9 @@
 #include "PlayerAttacks.h"
 #include "PlayerController.h"
 
-PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, AnimationChain* lowFist, AnimationChain* airLowFist,
-	AnimationChain* highKick, AnimationChain* airHighKick, AnimationChain* lowKick, AnimationChain* airLowKick,  AnimationChain* testGB) : Component(ecs::PlayerAttacks)
+PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, SDL_Scancode key1, AnimationChain* lowFist, AnimationChain* airLowFist,
+	SDL_Scancode key2, AnimationChain* highKick, AnimationChain* airHighKick, SDL_Scancode key3, AnimationChain* lowKick, AnimationChain* airLowKick, 
+	SDL_Scancode key4, AnimationChain* testGB, SDL_Scancode key5, SDL_Scancode key6, SDL_Scancode key7) : Component(ecs::PlayerAttacks)
 {
 	attacksList.push_back(highFist);
 	attacksList.push_back(lowFist);
@@ -13,6 +14,14 @@ PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFi
 	attacksList.push_back(airHighKick);
 	attacksList.push_back(airLowKick);
 	attacksList.push_back(testGB);
+	highFistKey = key1;
+	lowFistKey = key2;
+	highKickKey = key3;
+	lowKickKey = key4;
+	guardBreaker_ = key5;
+	abilityKey1 = key6;
+	abilityKey2 = key7;
+
 }
 
 PlayerAttacks::~PlayerAttacks() {
@@ -31,81 +40,77 @@ PlayerAttacks::~PlayerAttacks() {
 	abilityList.clear();
 }
 
-void PlayerAttacks::init()
-{
-	inputSt_ = entity_->getComponent<InputState>(ecs::InputState);
-}
-
 void PlayerAttacks::handleInput() {
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	Transform* tr = entity_->getComponent<Transform>(ecs::Transform);
 	PlayerController* ctrl = entity_->getComponent<PlayerController>(ecs::PlayerController);
 	if (currState->isAbleToAttack()) {
 		if (currState->isGrounded()) {
-			if (inputSt_->getInput(4)) {
+			if (app_->getInputManager()->KeyPressed(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
 				activeAttack_ = attacksList[0];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(0);
+				currState->goAttack();
 			}
-			else if (inputSt_->getInput(5)) {
+			else if (app_->getInputManager()->KeyPressed(lowFistKey)) {
 				activeAttack_ = attacksList[1];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(1);
+				currState->goAttack();
 			}
-			else if (inputSt_->getInput(6)) {
+			else if (app_->getInputManager()->KeyPressed(highKickKey)) {
 				activeAttack_ = attacksList[2];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(2);
+				currState->goAttack();
 			}
-			else if (inputSt_->getInput(7)) {
+			else if (app_->getInputManager()->KeyPressed(lowKickKey)) {
 				activeAttack_ = attacksList[3];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(3);
+				currState->goAttack();
 			}
-			else if (inputSt_->getInput(11)) {
+			else if (app_->getInputManager()->KeyPressed(guardBreaker_)) {
 				activeAttack_ = attacksList[8];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(4);
-			}else if (inputSt_->getInput(8)) {
-				if (abilityList[0] != nullptr && cooldowns[0] == 0) {
-					activeAttack_ = abilityList[0];
-					tr->setSpeed(0, tr->getSpeed().getY());
-					currState->goCasting();
-				}
-			}
-			else if (inputSt_->getInput(9)) {
-				if (abilityList[1] != nullptr && cooldowns[1] == 0) {
-					activeAttack_ = abilityList[1];
-					tr->setSpeed(0, tr->getSpeed().getY());
-					currState->goCasting();
-				}
+				currState->goAttack();
 			}
 		}
 		else {
-			if (inputSt_->getInput(4)) {
+			if (app_->getInputManager()->KeyPressed(highFistKey) || app_->getInputManager()->isControllerButtonPressed(InputManager::Controllers::PLAYER1, SDL_CONTROLLER_BUTTON_A)) {
 				activeAttack_ = attacksList[4];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(0);
+				currState->goAttack();
 			}
-			else if (inputSt_->getInput(5)) {
+			else if (app_->getInputManager()->KeyPressed(lowFistKey)) {
 				activeAttack_ = attacksList[5];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(1);
+				currState->goAttack();
 			}
-			else if (inputSt_->getInput(6)) {
+			else if (app_->getInputManager()->KeyPressed(highKickKey)) {
 				activeAttack_ = attacksList[6];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(2);
+				currState->goAttack();
 			}
-			else if (inputSt_->getInput(7)) {
+			else if (app_->getInputManager()->KeyPressed(lowKickKey)) {
 				activeAttack_ = attacksList[7];
 				tr->setSpeed(0, tr->getSpeed().getY());
-				currState->goAttack(3);
+				currState->goAttack();
+			}
+		}
+		if (app_->getInputManager()->KeyPressed(abilityKey1)) {
+			if (abilityList[0] != nullptr) {
+				activeAttack_ = abilityList[0];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
+		}
+		else if (app_->getInputManager()->KeyPressed(abilityKey2)) {
+			if (abilityList[1] != nullptr) {
+				activeAttack_ = abilityList[1];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
 			}
 		}
 	}
@@ -121,14 +126,6 @@ void PlayerAttacks::interruptAttack()
 {
 	if(activeAttack_ != nullptr) activeAttack_->reset();
 	activeAttack_ = nullptr;
-	app_->getStateMachine()->getCurrentState()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
-}
-
-int PlayerAttacks::getAbilityIndex()	//IN THEORY IT NEVER SHOULD RETURN -1
-{										//BUT
-	int index = -1;
-	for (int i = 0; i < abilityList.size(); ++i) {
-		if (activeAttack_ == abilityList[i]) index = i;
-	}
-	return index;
+	app_->getHitboxMng()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
+	
 }
