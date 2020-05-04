@@ -158,6 +158,7 @@ void OptionsMenu::silence(App* app)
 	if (!audioMng->pausedMusic())
 		audioMng->stopMusic();
 	else audioMng->resumeMusic();
+	//parar tambien en futuro el sonido de efectos 
 }
 
 /*
