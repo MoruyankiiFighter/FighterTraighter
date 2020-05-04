@@ -10,6 +10,7 @@
 #include "MkWH00PData.h"
 #include "PlayerAnimation.h"
 #include "MockingbirdData.h"
+#include "F10RData.h"
 
 Entity* CharFactory::addCharacterToGame(App* app, GameState* state, int orientation, b2World* world, const GameManager::PlayerInfo* character, uint16 cBits, uint16 mBits, int playerNumber)
 {
@@ -39,9 +40,9 @@ Entity* CharFactory::addCharacterToGame(App* app, GameState* state, int orientat
 		pdata = e->addComponent<MockingbirdData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 50, playerNumber);
 		break;
 	case(GameManager::F10R):
-		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::GanonSheet));
+		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::F10rSheet));
 		h = e->addComponent<Health>(100);
-		pdata = e->addComponent<MkWH00PData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 50, playerNumber);
+		pdata = e->addComponent<F10RData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 50, playerNumber);
 		break;
 	case(GameManager::Aisha):
 		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::GanonSheet));

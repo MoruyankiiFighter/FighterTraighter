@@ -24,6 +24,7 @@ public:
 		RoundCounter,
 		CharacterSelection,
 		GanonSheet,
+		F10rSheet,
 		BackgroundFight,
 		Mg1, 
 		Mg21,

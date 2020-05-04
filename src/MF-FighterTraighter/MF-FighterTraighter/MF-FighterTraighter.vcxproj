@@ -137,6 +137,7 @@
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="F10RData.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadHID.cpp" />
     <ClCompile Include="HID.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="DestroyOnHit.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="CharFactory.h" />
+    <ClInclude Include="F10RData.h" />
     <ClInclude Include="FloorOnHit.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GamepadHID.h" />
