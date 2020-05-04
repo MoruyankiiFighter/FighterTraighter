@@ -50,18 +50,13 @@ public:
 	// Maybe there's something better than an int?
 	void playerLost(int player);
 	// To inform that saco has lost all its health
-	void trainingEnded();
-	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index);
-	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index);
-	
+	void trainingEnded();	
 	void setCharacter(CharacterID char_) {
 		player1_.character = char_;
 	}
 
 	void resetCharacters();
 	
-	playerInfo getPlayerInfo(int player) {
-
 	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
 	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
 	const PlayerInfo& getPlayerInfo(int player) {

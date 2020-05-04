@@ -102,7 +102,7 @@ void CharacterSelection::init()
 	//Entitys
 
 	Entity* nav = entManager_.addEntity();
-	NavigationController* ctrl = nav->addComponent<NavigationController>(4, 2);
+	NavigationController* ctrl = nav->addComponent<NavigationController>(4, 2, app_->getGameManager()->getPlayerInfo(0).hid);
 	ctrl->SetElementInPos(std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrl->SetElementInPos(std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), 1, 0);
 	ctrl->SetElementInPos(std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), 2, 0);
@@ -111,6 +111,18 @@ void CharacterSelection::init()
 	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 1, 1);
 	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 2, 1);
 	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 3, 1);
+	
+	
+	Entity* nav_ = entManager_.addEntity();
+	NavigationController* ctrl_ = nav_->addComponent<NavigationController>(4, 2, app_->getGameManager()->getPlayerInfo(1).hid);
+	ctrl_->SetElementInPos(std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), 0, 0);
+	ctrl_->SetElementInPos(std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), 1, 0);
+	ctrl_->SetElementInPos(std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), 2, 0);
+	ctrl_->SetElementInPos(std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement), 3, 0);
+	ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 1, 1);
+	ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 2, 1);
+	ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 3, 1);
 	
 
 	//logic of that for changing the artwork of each player 
@@ -170,12 +182,14 @@ void CharacterSelection::setRandomCharacter(App* app)
 	case 3:
 		app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird);
 		break;
+	default:
+		app->getGameManager()->setCharacter(app->getGameManager()->None);
 	}
 }
 
 void CharacterSelection::GoToFight(App* app)
 {
-	if (app->getGameManager()->getPlayerInfo(1).character != app->getGameManager()->None) {
+	if (app->getGameManager()->getPlayerInfo(1).character != app->getGameManager()->None && app->getGameManager()->getPlayerInfo(0).character!= app->getGameManager()->None) {
 
 		app->getStateMachine()->pushState(new Fight(app));
 	}

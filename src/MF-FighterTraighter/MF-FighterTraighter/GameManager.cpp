@@ -13,10 +13,10 @@
 #include "CharacterSelection.h"
 #include "KeyboardHID.h"
 #include "GamepadHID.h"
-GameManager::GameManager(App* app) : app_(app)
-{
-	app_->getStateMachine()->pushState(new MainMenu(app_));//OJO CAMBIAR LUEGO
-
+//GameManager::GameManager(App* app) : app_(app)
+//{
+//	app_->getStateMachine()->pushState(new MainMenu(app_));//OJO CAMBIAR LUEGO
+//}
 GameManager::GameManager(App* app) : app_(app)
 {
 	app_->getStateMachine()->pushState(new MainMenu(app_));
