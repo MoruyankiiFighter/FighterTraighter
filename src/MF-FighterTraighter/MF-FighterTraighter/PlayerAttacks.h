@@ -3,14 +3,13 @@
 #include "AnimationChain.h"
 #include <vector>
 #include "PlayerState.h"
-#include "InpuState.h"
-
+#include "HID.h"
 //component that have all the attacks that you have
 class PlayerAttacks : public Component 
 {
 public:
 	
-	PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, AnimationChain* lowFist, AnimationChain* airLowFist,
+	PlayerAttacks(HID* hid, AnimationChain* highFist, AnimationChain* airHighFist, AnimationChain* lowFist, AnimationChain* airLowFist,
 		AnimationChain* highKick, AnimationChain* airHighKick, AnimationChain* lowKick, AnimationChain* airLowKick, AnimationChain* testGB);
 	virtual ~PlayerAttacks();
 	virtual void init() override;
@@ -49,6 +48,6 @@ private:
 	AnimationChain* activeAttack_ = nullptr;
 
 	//keys to use the attacks and abilities
-	InputState* inputSt_;
+	HID* inputSt_;
 };
 

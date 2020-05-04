@@ -8,11 +8,11 @@
 #include <array>
 #include <utility>
 #include "Vector2D.h"
-//#include "EntityHitboxData.h"
+//#include "HitboxData.h"
 
 class Entity;
 class App;
-class EntityHitboxData;
+class HitboxData;
 class GameState
 {
 public:
@@ -43,8 +43,8 @@ public:
 
 	// Create hitboxes
 	void addHitbox(Vector2D pos, int width, int height, int time, int damage, int hitstun, Vector2D knockBack,
-		b2Body* body, uint16 id, uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, bool guardBreaker = false);
-	void addHitbox(uint16 id, EntityHitboxData* hitbox, b2Fixture* fixture);
+		b2Body* body, uint16 id, Entity* e, uint16 cBits = 0x0001, uint16 mBits = 0xFFFF, bool guardBreaker = false);
+	void addHitbox(uint16 id, HitboxData* hitbox, b2Fixture* fixture);
 	void addHurtbox(b2Fixture* fixt) { mainHurtboxes.push_back(fixt); }
 	void killHitbox(std::list<b2Fixture*>::iterator it, unsigned int id);
 	void resetGroup(int group);
@@ -75,7 +75,10 @@ protected:
 	Vector2D gravity;
 	b2World* world;
 	bool doStep = false;
-	b2Draw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
 	b2ContactListener* resJumpListener = nullptr;
+#if _DEBUG
+	b2Draw* debugInstance = nullptr; //utilizar solo si estamos debuggeando
+#endif
+
 };
 

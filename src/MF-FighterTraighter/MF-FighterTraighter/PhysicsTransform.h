@@ -2,6 +2,7 @@
 #include "Transform.h"
 #include "Box2D\Box2D.h"
 # include <vector>
+#include "HitboxData.h"
 class PhysicsTransform : public Transform
 {
 public:
@@ -48,10 +49,17 @@ public:
 	virtual void setSize(double width, double height);
 	virtual void setColliderSize(double width, double height, Vector2D center = Vector2D(0, 0), float angle = 0);
 	virtual void moveCollider(const Vector2D& move);
+	virtual void changeMask(uint16 newMask);
+	virtual void changeFriction(float32 newFrict);
+	virtual void resetMainFixture2(const b2Vec2& center, float angle, float32 newFrict);
+
+
 	b2Body* getBody() { return body_; }
 	b2Fixture* getMainFixture() { return mainFixture_; }
 	uint16 getCategory() { return cBits_; }
 	uint16 getMask() { return mBits_; }
+	void resetUserData(UserData* newData);
+	void resetMainFixture(const b2Vec2& center, float angle);
 
 private:
 	b2Body* body_;
@@ -61,6 +69,5 @@ private:
 		 col_height_;
 	int dynamic_;
 	b2World* world_ = nullptr;
-	void resetMainFixture(const b2Vec2& center, float angle);
 };
 

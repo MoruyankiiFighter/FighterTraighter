@@ -42,6 +42,8 @@ void App::run()
 void App::handleInput()
 {
 	inputManager_->update();
+	//TODO: Where should HIDs be updated?
+	gameManager_->handleInput();
 
 	stateMachine_->getCurrentState()->handleInput();
 }

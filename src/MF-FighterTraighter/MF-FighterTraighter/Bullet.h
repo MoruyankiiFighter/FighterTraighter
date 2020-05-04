@@ -6,9 +6,10 @@
 class Bullet : public Component
 {
 public:
-	Bullet(GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
-
+	Bullet(uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
+	virtual ~Bullet() {}
 	void init() override;
+	//void update() override;
 private:
 	PhysicsTransform* transform_ = nullptr;
 	Vector2D speed_;
@@ -18,6 +19,5 @@ private:
 	Vector2D knockBack_;
 	bool destroyInContact_ = false;
 	int playerNumber_;
-	GameState* state_;
 };
 

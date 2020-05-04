@@ -18,7 +18,7 @@ class PlayerData : public Component {
 	//hacer luego getters y setters
 public:
 	//PlayerData() : Component(ecs::PlayerData) {}
-	PlayerData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber);
+	PlayerData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber);
 	virtual double* getWidth() {
 		return width_;
 	}
@@ -186,9 +186,6 @@ protected:
 			damage,
 			hitstun;
 	};
-	//Control Keys
-	SDL_Scancode leftKey_, righKey_, jumpKey_, crouchKey_, guardKey_,
-				 normalPunchKey_, hardPunchKey_, normalKickKey_, hardKickKey_, guardBreakerKey_,ability1Key_, ability2Key_;
 	//Player Features
 	double* width_,
 			*height_,
