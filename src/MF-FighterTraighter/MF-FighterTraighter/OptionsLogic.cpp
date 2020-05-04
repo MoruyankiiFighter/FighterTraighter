@@ -20,6 +20,7 @@ void OptionsLogic::SetElements()
 		+ "@" + std::to_string(mngr->getSupportedResolutions()[resolutionsSlider_->getValue()].refresh_rate) + "Hz");
 
 	brightnessText_->setText(std::to_string(mngr->getCurBrightness()));
+	musicText_->setText(std::to_string(app_->getAudioMngr()->getMusicVolume()));
 }
 
 void OptionsLogic::update()
