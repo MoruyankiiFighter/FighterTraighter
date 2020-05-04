@@ -10,7 +10,7 @@ void TextComponent::init()
 {
 	transform_ = entity_->getComponent<Transform>(ecs::Transform);
 	font_->setFontSize(textSize_);
-	text_ = new Text(app_->getRenderer(), textString_, font_);
+	text_ = new Text(app_->getRenderer(), textString_, font_, longText_);
 }
 
 void TextComponent::render()
@@ -31,9 +31,11 @@ void TextComponent::render()
 	default:
 		break;
 	}
+	int lines = int((text_->getHeight() / textSize_) / transform_->getHMult())*2;
+	
 	dest.y = transform_->getPosition().getY();
 	dest.w = destWidth;
-	dest.h = textSize_ * transform_->getHMult();
+	dest.h = textSize_ * transform_->getHMult()*(lines);
 	text_->render(dest);
 }
 

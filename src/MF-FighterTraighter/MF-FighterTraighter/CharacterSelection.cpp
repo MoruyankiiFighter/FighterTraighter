@@ -90,14 +90,14 @@ void CharacterSelection::init()
 	Entity* text_j1 = UIFactory::createText(app_, this, Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 7),
-		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j1", 30, 
-		(app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 2);
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j1", 20, 
+		(app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 4);
 	
 	Entity* text_j2 = UIFactory::createText(app_, this, Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 15, (app_->getWindowManager()->getCurResolution().h / 14) * 8),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 15, (app_->getWindowManager()->getCurResolution().h / 14) * 8),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 15, (app_->getWindowManager()->getCurResolution().h / 14) * 8),
-		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j2", 30, 
-		(app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 2);
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j2", 20, 
+		(app_->getWindowManager()->getCurResolution().w / 25) * 5, (app_->getWindowManager()->getCurResolution().h / 14) * 4);
 
 	//Entitys
 
