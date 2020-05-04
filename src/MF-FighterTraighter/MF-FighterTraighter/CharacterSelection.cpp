@@ -36,8 +36,8 @@ void CharacterSelection::init()
 	Entity* rightP_ = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 20.5, 100),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 19.5, 100), Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 19.5, 100),
-		(app_->getWindowManager()->getCurResolution().w / 30) * 4.5, (app_->getWindowManager()->getCurResolution().h / 15) * 10, 0);
-
+		(app_->getWindowManager()->getCurResolution().w / 30) * 6, (app_->getWindowManager()->getCurResolution().h / 15) * 10, 0);
+	rightP_->getComponent<UITransform>(ecs::Transform)->setOrientation(-1);
 	// buttons
 	tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 1, (app_->getWindowManager()->getCurResolution().h / 14) * 11.5),
@@ -130,7 +130,10 @@ void CharacterSelection::init()
 	logic->addComponent<CharacterSelectionLogic>(text_j1->getComponent<TextComponent>(ecs::TextComponent),leftP_->getComponent<RenderImage>(ecs::RenderImage),aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav->getComponent<NavigationController>(ecs::NavigationController), 
 		std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement),
 		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork),app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
-
+	Entity* logic_ = entManager_.addEntity();
+	logic_->addComponent<CharacterSelectionLogic>(text_j2->getComponent<TextComponent>(ecs::TextComponent), rightP_->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav_->getComponent<NavigationController>(ecs::NavigationController),
+		std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement),
+		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
 }
 
 
