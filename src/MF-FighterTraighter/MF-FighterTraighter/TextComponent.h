@@ -13,7 +13,7 @@ public:
 	};
 public:
 	//constructor
-	TextComponent(std::string text, Font* font, int size = 20, TextAlignment alignment = Left);
+	TextComponent(std::string text, Font* font, int size = 20, TextAlignment alignment = Left, int wrapLength = 600);
 	//destructor
 	virtual ~TextComponent();
 
@@ -35,6 +35,6 @@ protected:
 	std::string textString_ = "";
 	TextAlignment alignment_;
 	int textSize_ = 0;
-	int longText_ = 400;
+	int longText_;
 };
 
