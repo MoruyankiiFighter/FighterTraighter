@@ -91,31 +91,31 @@ public:
 	Font* getFont(AssetsManager::FontNames id);
 	void loadFonts(); // Fonts are hardcoded for now
 
-	//music methods
+	////music methods
 	Mix_Music* getMusic(AssetsManager::MusicNames id);
 	void loadMusic();
 
 
-	//sfx methods
-	Mix_Chunk* getSFX(AssetsManager::SFXNames id);
-	//void loadSFX();
-	//return the audio with the position id
-	//Audio* getAudio(size_t id);
-	
+	////sfx methods
+	//Mix_Chunk* getSFX(AssetsManager::SFXNames id);
+	////void loadSFX();
+	////return the audio with the position id
+	////Audio* getAudio(size_t id);
+	//
 
-	void playMusic(const string& name, int channel);
-	void resumeAll();
-	void resumeMusic();
-	void pauseMusic();
-	void stopMusic();
+	//void playMusic(const string& name, int channel);
+	//void resumeAll();
+	//void resumeMusic();
+	//void pauseMusic();
+	//void stopMusic();
 
-	int getGeneralVolume() const;
-	int getMusicVolume() const;
-	int getChannelVolume(int channel) const;
-	void setGeneralVolume(float volume_ratio);
-	void setChannelvolume(int channel, float volume_ratio);
-	void setMusicVolume(float volume_ratio);
-	void setSFXVolume(const string& name, float volume_ratio);
+	//int getGeneralVolume() const;
+	//int getMusicVolume() const;
+	//int getChannelVolume(int channel) const;
+	//void setGeneralVolume(float volume_ratio);
+	//void setChannelvolume(int channel, float volume_ratio);
+	//void setMusicVolume(float volume_ratio);
+	//void setSFXVolume(const string& name, float volume_ratio);
 
 
 private:

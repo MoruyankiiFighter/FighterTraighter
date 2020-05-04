@@ -70,61 +70,61 @@ void AssetsManager::loadMusic()
 	//music_.emplace(Nombre,app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/nombre de la cancion. formato"));
 
 }
-
-Mix_Chunk* AssetsManager::getSFX(AssetsManager::SFXNames id)
-{
-	return sfx_[id];
-}
-void AssetsManager::playMusic(const string& name, int channel)
-{
-}
-
-void AssetsManager::resumeAll()
-{
-}
-
-void AssetsManager::resumeMusic()
-{
-}
-
-void AssetsManager::pauseMusic()
-{
-}
-
-void AssetsManager::stopMusic()
-{
-}
-
-int AssetsManager::getGeneralVolume() const
-{
-	return 0;
-}
-
-int AssetsManager::getMusicVolume() const
-{
-	return 0;
-}
-
-int AssetsManager::getChannelVolume(int channel) const
-{
-	return 0;
-}
-
-void AssetsManager::setGeneralVolume(float volume_ratio)
-{
-}
-
-void AssetsManager::setChannelvolume(int channel, float volume_ratio)
-{
-}
-
-void AssetsManager::setMusicVolume(float volume_ratio)
-{
-}
-
-void AssetsManager::setSFXVolume(const string& name, float volume_ratio)
-{
-}
+//
+//Mix_Chunk* AssetsManager::getSFX(AssetsManager::SFXNames id)
+//{	
+//	return sfx_[id];
+//}
+//void AssetsManager::playMusic(const string& name, int channel)
+//{
+//}
+//
+//void AssetsManager::resumeAll()
+//{
+//}
+//
+//void AssetsManager::resumeMusic()
+//{
+//}
+//
+//void AssetsManager::pauseMusic()
+//{
+//}
+//
+//void AssetsManager::stopMusic()
+//{
+//}
+//
+//int AssetsManager::getGeneralVolume() const
+//{
+//	return 0;
+//}
+//
+//int AssetsManager::getMusicVolume() const
+//{
+//	return 0;
+//}
+//
+//int AssetsManager::getChannelVolume(int channel) const
+//{
+//	return 0;
+//}
+//
+//void AssetsManager::setGeneralVolume(float volume_ratio)
+//{
+//}
+//
+//void AssetsManager::setChannelvolume(int channel, float volume_ratio)
+//{
+//}
+//
+//void AssetsManager::setMusicVolume(float volume_ratio)
+//{
+//}
+//
+//void AssetsManager::setSFXVolume(const string& name, float volume_ratio)
+//{
+//}
 
 AssetsManager::~AssetsManager()
 {

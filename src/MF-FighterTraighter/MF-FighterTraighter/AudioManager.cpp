@@ -52,6 +52,7 @@ int AudioManager::setMusicVolume(int volume)
 	return Mix_VolumeMusic(volume);
 }
 
+
 void AudioManager::pauseMusic()
 {
 	Mix_PauseMusic();
@@ -91,3 +92,4 @@ int AudioManager::getChannelVolume(int channel) const
 {
 	return Mix_Volume(channel, -1);
 }
+
