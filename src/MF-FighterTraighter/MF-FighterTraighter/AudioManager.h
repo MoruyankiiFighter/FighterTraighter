@@ -23,16 +23,17 @@ public:
 	
     virtual int setSFXVolume( int volume);
 	virtual int setMusicVolume(int volume);
-
+	
 	void stopMusic();
 	virtual void pauseMusic();
+	virtual bool pausedMusic();
 	virtual void resumeMusic();
-
 	void resumeAll();
 
 	//int getGeneralVolume() const;
 	int getMusicVolume() const;
 	int getSFXVolume() const;
+	//bool isSilenced() { return silenced; }
 
 	//for settings
 	//void setGeneralVolume(float MaxVolume, float volume_ratio);
@@ -41,5 +42,6 @@ public:
 private:
 	bool initialized_ = false;
 	int channels_ = -1;
+	//bool silenced=false;
 };
 

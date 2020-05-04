@@ -32,6 +32,7 @@ public:
 
 	static void SetSfxVolume(App* app, double value);
 	
+	static void silence(App* app);
 	//fullscreen
 	static void fullScreen(App* app);
 	

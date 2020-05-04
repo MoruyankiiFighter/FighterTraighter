@@ -58,19 +58,27 @@ void AudioManager::pauseMusic()
 	Mix_PauseMusic();
 }
 
+bool AudioManager::pausedMusic()
+{
+	return Mix_PausedMusic();
+}
+
 void AudioManager::resumeMusic()
 {
+	//silenced = false;
 	Mix_ResumeMusic();
 }
 
 void AudioManager::resumeAll()
 {
+	//silenced = false;
 	Mix_Resume(-1);
 }
 
 void AudioManager::stopMusic()
 {
-	Mix_HaltMusic();
+	//silenced = true;
+	Mix_PauseMusic();
 }
 
 //void AudioManager::setGeneralVolume(float MaxVolume, float volume_ratio)

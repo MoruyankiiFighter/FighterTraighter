@@ -80,8 +80,13 @@ tuple<Entity*, Entity*, Entity*, Entity*> SoundSlider = UIFactory::createSlider(
 		Vector2D(250, 5),
 		500, 10, SetSfxVolume, "Sound Volume", 60, "", 60);
 
+tuple<Entity*, Entity*> silenceVolume = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	Vector2D(0, 350), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
+	Vector2D(100, 30),
+	200, 60, 0, nullptr, silence, "SILENCE", 60, TextComponent::TextAlignment::Center);
+
 	tuple<Entity*, Entity*> applyButton = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, 350), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
+		Vector2D(0, 400), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
 		Vector2D(100, 30), 
 		200, 60, 0,	nullptr, applySettings, "APPLY", 60, TextComponent::TextAlignment::Center);
 
@@ -97,7 +102,7 @@ tuple<Entity*, Entity*, Entity*, Entity*> SoundSlider = UIFactory::createSlider(
 		std::get<3>(SoundSlider)->getComponent<TextComponent>(ecs::TextComponent));
 
 	Entity* nav = entManager_.addEntity();
-	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 8);
+	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 9);
 	ctrl->SetElementInPos(std::get<0>(back)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrl->SetElementInPos(std::get<0>(controls)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	ctrl->SetElementInPos(std::get<0>(fullscreen)->getComponent<UIElement>(ecs::UIElement), 0, 2);	
@@ -105,7 +110,9 @@ tuple<Entity*, Entity*, Entity*, Entity*> SoundSlider = UIFactory::createSlider(
 	ctrl->SetElementInPos(std::get<0>(brightSlider)->getComponent<UIElement>(ecs::UIElement), 0, 4);
 	ctrl->SetElementInPos(std::get<0>(MusicSlider)->getComponent<UIElement>(ecs::UIElement), 0, 5);
 	ctrl->SetElementInPos(std::get<0>(SoundSlider)->getComponent<UIElement>(ecs::UIElement), 0, 6);
-	ctrl->SetElementInPos(std::get<0>(applyButton)->getComponent<UIElement>(ecs::UIElement), 0, 7);
+	ctrl->SetElementInPos(std::get<0>(silenceVolume)->getComponent<UIElement>(ecs::UIElement), 0, 7);
+	ctrl->SetElementInPos(std::get<0>(applyButton)->getComponent<UIElement>(ecs::UIElement), 0, 8);
+
 }
 
 void OptionsMenu::handleInput()
@@ -143,6 +150,14 @@ void OptionsMenu::SetVolume(App* app, double value)
 void OptionsMenu::SetSfxVolume(App* app, double value)
 {
 	app->getAudioMngr()->setSFXVolume((int)value);
+}
+
+void OptionsMenu::silence(App* app)
+{
+	AudioManager* audioMng = app->getAudioMngr();
+	if (!audioMng->pausedMusic())
+		audioMng->stopMusic();
+	else audioMng->resumeMusic();
 }
 
 /*
