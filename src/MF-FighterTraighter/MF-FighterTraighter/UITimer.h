@@ -33,7 +33,6 @@ public:
 	void stopTimer();
 	bool isTimerStopped();
 	void resumeTimer();
-
 	virtual ~UITimer() {}
 protected:
 	void setText();

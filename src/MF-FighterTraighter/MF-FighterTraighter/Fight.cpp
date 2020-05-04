@@ -72,17 +72,22 @@ void Fight::init()
 	Entity* timerab1 = entManager_.addEntity();
 	timerab1->addComponent<UITransform>(Vector2D(30, 600), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab1->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab1->addComponent<UITimer>(UITimer::Seconds, true);
+	timerab1->addComponent<UITimer>(UITimer::Seconds);
 	Entity* timerab2 = entManager_.addEntity();
 	timerab2->addComponent<UITransform>(Vector2D(130, 600), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab2->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab2->addComponent<UITimer>(UITimer::Seconds, true);
+	timerab2->addComponent<UITimer>(UITimer::Seconds);
 	Entity* timerspl1 = entManager_.addEntity();
-	timerspl1->addComponent<AbilitiesTimerFunction>(timerab1->getComponent<UITimer>(ecs::UITimer), timerab2->getComponent<UITimer>(ecs::UITimer), player1);
+	timerspl1->addComponent<AbilitiesTimerFunction>(app_->getGameManager()->getPlayerInfo(1).hid, timerab1->getComponent<UITimer>(ecs::UITimer), timerab2->getComponent<UITimer>(ecs::UITimer), player1);
 	
 	//Player 2
-	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, { SDL_SCANCODE_J, SDL_SCANCODE_L, SDL_SCANCODE_I, SDL_SCANCODE_K, SDL_SCANCODE_U, SDL_SCANCODE_O, SDL_SCANCODE_N, SDL_SCANCODE_M,
-		SDL_SCANCODE_0, SDL_SCANCODE_H, SDL_SCANCODE_8, SDL_SCANCODE_9 }, world, true, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
+	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, app_->getGameManager()->getPlayerInfo(2).hid, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
+	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(app_->getGameManager()->getPlayerInfo(1).ability1Index, player2), 0);
+	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::MegatonGrip, player2), 1);
+	vector<std::string>abilitiesP2;
+	abilitiesP2.push_back("SeismicShock");
+	abilitiesP2.push_back("MegatonGrip");
+	entManager_.setHandler(player2, ecs::Player2);
 	//Abilities player 2
 	Entity* imageability1p2 = entManager_.addEntity();
 	imageability1p2->addComponent<UITransform>(Vector2D(1080, 650), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
@@ -103,19 +108,12 @@ void Fight::init()
 	Entity* timerab2p2 = entManager_.addEntity();
 	timerab2p2->addComponent<UITransform>(Vector2D(1130, 600), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab2p2->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab2p2->addComponent<UITimer>(UITimer::Seconds)->setCountdown(player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(1));
+	timerab2p2->addComponent<UITimer>(UITimer::Seconds)->setCountdown(player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(1));
 
 	//player1->addComponent
 	
-	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player2), 1);
-	//Player 2
-	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, app_->getGameManager()->getPlayerInfo(2).hid, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
-	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(app_->getGameManager()->getPlayerInfo(1).ability1Index, player2), 0);
-	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::MegatonGrip, player2), 1);
-	vector<std::string>abilitiesP2;
-	abilitiesP2.push_back("SeismicShock");
-	abilitiesP2.push_back("MegatonGrip");
-	entManager_.setHandler(player2, ecs::Player2);
+	//player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player2), 1);
+	
 
 
 	Entity* timer = entManager_.addEntity();

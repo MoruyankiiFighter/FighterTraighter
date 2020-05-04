@@ -2,10 +2,10 @@
 #include "PlayerAttacks.h"
 
 void AbilitiesTimerFunction::update(){
-	if (pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(0) == 0) {
+	if (pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(0) <= 0) {
 		updateTimerAb(0, 10000);
 	}
-	else if (pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(1) == 0) {
+	if (pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(1) <= 0) {
 		updateTimerAb(1, 17000);
 	}
 }

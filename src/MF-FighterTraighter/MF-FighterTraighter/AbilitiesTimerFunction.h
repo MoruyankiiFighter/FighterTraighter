@@ -6,10 +6,11 @@
 class AbilitiesTimerFunction:public Component
 {
 public:
-	AbilitiesTimerFunction(UITimer* timer1, UITimer* timer2, Entity* pl) : Component(ecs::AbilitiesTimerFunction) {
+	AbilitiesTimerFunction(HID* hid, UITimer* timer1, UITimer* timer2, Entity* pl) : Component(ecs::AbilitiesTimerFunction) {
 		timer1_ = timer1;
 		timer2_ = timer2;
 		pl_ = pl;
+		inputSt_ = hid;
 	};
 	~AbilitiesTimerFunction() {};
 	void update() override;
@@ -18,5 +19,6 @@ private:
 	UITimer* timer1_;
 	UITimer* timer2_;
 	Entity* pl_;
+	HID* inputSt_;
 };
 
