@@ -51,6 +51,7 @@ public:
 		FlorArtwork,
 		FlorSheet,
 
+		Ew1,
 	};
 
 	enum FontNames {

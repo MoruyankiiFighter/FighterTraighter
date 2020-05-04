@@ -12,7 +12,8 @@ class GameManager
 public:	
 enum AbilityID {
 	SeismicShock,
-	MegatonGrip
+	MegatonGrip,
+	ExplosiveWillpower
 };
 protected:
 
