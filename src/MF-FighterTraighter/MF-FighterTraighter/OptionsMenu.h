@@ -26,24 +26,12 @@ public:
 	//change the brightness
 	static void SetBright(App* app, double value);
 	
-	//add brightness if it's possible
-	static void MoreBright(App* app);
-	
-	//substract brightness if it's posible
-	static void LessBright(App* app);
-	
+
 	//changes the volume
 	static void SetVolume(App* app, double value);
 
-	static void SetMoreVolume(App* app, int value);
-
-	static void SetLessVolume(App* app, int value);
-
-
-
-	//static void SetSfxVolume(App* app, double value);
-
-
+	static void SetSfxVolume(App* app, double value);
+	
 	//fullscreen
 	static void fullScreen(App* app);
 	

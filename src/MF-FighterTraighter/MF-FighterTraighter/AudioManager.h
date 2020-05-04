@@ -20,22 +20,23 @@ public:
 	// music
 	Mix_Music* loadMusic(const std::string& fileName);
 	void playMusic(Mix_Music* music, bool loops);
+	
+    virtual int setSFXVolume( int volume);
 	virtual int setMusicVolume(int volume);
+
 	void stopMusic();
 	virtual void pauseMusic();
 	virtual void resumeMusic();
 
 	void resumeAll();
 
-	int getGeneralVolume() const;
+	//int getGeneralVolume() const;
 	int getMusicVolume() const;
-	int getChannelVolume(int channel) const;
+	int getSFXVolume() const;
 
 	//for settings
-	void setGeneralVolume(float MaxVolume, float volume_ratio);
-	void setChannelvolume(int channel, float volume_ratio);
-	void setMusicVolume(float volume_ratio);
-	void setSFXVolume(const std::string& name, float volume_ratio);
+	//void setGeneralVolume(float MaxVolume, float volume_ratio);
+	//void setChannelvolume(int channel, float volume_ratio);
 
 private:
 	bool initialized_ = false;

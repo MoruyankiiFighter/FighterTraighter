@@ -78,7 +78,7 @@ tuple<Entity*, Entity*, Entity*, Entity*> SoundSlider = UIFactory::createSlider(
 		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 250), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(250, 5),
-		500, 10, SetBright, "Sound Volume", 60, "", 60);
+		500, 10, SetSfxVolume, "Sound Volume", 60, "", 60);
 
 	tuple<Entity*, Entity*> applyButton = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 350), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
@@ -131,27 +131,6 @@ void OptionsMenu::SetBright(App* app, double value)
 	// also save to a config file
 }
 
-void OptionsMenu::MoreBright(App* app)
-{
-	/*double flag = app->getWindowManager()->getCurBrightness();
-	flag += 0.1;
-	if (flag > 1) {
-		flag = 1;
-	}
-	app->getWindowManager()->setBrightness(flag);*/
-	// also save to a config file
-}
-
-void OptionsMenu::LessBright(App* app)
-{
-	/*double flag = app->getWindowManager()->getCurBrightness();
-	flag -= 0.1;
-	if (flag < 0.4) {
-		flag = 0.4;
-	}
-	app->getWindowManager()->setBrightness(flag);*/
-	// also save to a config file
-}
 
 
 void OptionsMenu::SetVolume(App* app, double value)
@@ -159,30 +138,12 @@ void OptionsMenu::SetVolume(App* app, double value)
 	app->getAudioMngr()->setMusicVolume((int)value);
 
 }
-void OptionsMenu::SetMoreVolume(App* app, int value)
+
+
+void OptionsMenu::SetSfxVolume(App* app, double value)
 {
-	int flag = app->getAudioMngr()->getMusicVolume();
-	flag += 0.1;
-	if (flag > 1) {
-		flag = 1;
-	}
-	app->getAudioMngr()->setMusicVolume(flag);
+	app->getAudioMngr()->setSFXVolume((int)value);
 }
-void OptionsMenu::SetLessVolume(App* app, int value)
-{
-	int flag = app->getAudioMngr()->getMusicVolume();
-	flag -= 0.1;
-	if (flag < 0) {
-		flag = 0;
-	}
-	app->getAudioMngr()->setMusicVolume(flag);
-}
-/*
-void OptionsMenu::SetSFx(App* app, double value)
-{
-	app->getWindowManager()->setBrightness(value);
-	// also save to a config file
-}*/
 
 /*
 void OptionsMenu::SetVolume(App* app, double value) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER

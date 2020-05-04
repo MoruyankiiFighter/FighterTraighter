@@ -73,23 +73,29 @@ void AudioManager::stopMusic()
 	Mix_HaltMusic();
 }
 
-void AudioManager::setGeneralVolume(float MaxVolume, float volume_ratio)
+//void AudioManager::setGeneralVolume(float MaxVolume, float volume_ratio)
+//{
+//
+//	Mix_Volume(-1, MaxVolume * volume_ratio);
+//}
+
+int AudioManager::setSFXVolume( int volume)
 {
-	Mix_Volume(-1, MaxVolume * volume_ratio);
+	return Mix_Volume(-1, volume);
 }
 
-int AudioManager::getGeneralVolume() const
+/*int AudioManager::getGeneralVolume() const
 {
 	return Mix_Volume(-1, 1);
-}
+}*/
 
 int AudioManager::getMusicVolume() const
 {
 	return Mix_VolumeMusic(-1);
 }
 
-int AudioManager::getChannelVolume(int channel) const
+int AudioManager::getSFXVolume() const
 {
-	return Mix_Volume(channel, -1);
+	return Mix_Volume(-1, -1);
 }
 
