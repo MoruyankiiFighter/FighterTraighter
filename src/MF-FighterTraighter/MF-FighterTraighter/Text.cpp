@@ -12,12 +12,13 @@ Text::Text(SDL_Renderer* rend, std::string text, Font* font) : Texture(rend), te
 void Text::createText(Font* font, std::string text)
 {
 	if (text != "") {
-		SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(font->getFont(), text.c_str(), { 255, 255, 255, 255 },550);
+		SDL_Surface* surface = TTF_RenderText_Solid(font->getFont(), text.c_str(), { 255, 255, 255, 255 });
 		if (surface == nullptr) {
 			throw "Error"; // CHANGE TO PROPER EXCEPTION
 		}
 		else {
 			cleanTexture();
+
 			nCols = 1;
 			nRows = 1;
 			width = surface->w;
@@ -55,7 +56,7 @@ void Text::setFont(Font* font)
 
 void Text::render(const SDL_Rect& dest) const
 {
-	if (text_ != ""|| text_!=" ")
+	if (text_ != "")
 		Texture::render(dest);
 }
 

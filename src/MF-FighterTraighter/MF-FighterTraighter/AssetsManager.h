@@ -54,8 +54,7 @@ public:
 	};
 
 	enum FontNames {
-		Roboto_Black,
-		Arial,
+		Roboto_Black
 	};
 
 	//constructors

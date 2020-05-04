@@ -77,7 +77,6 @@ Font* AssetsManager::getFont(AssetsManager::FontNames id)
 void AssetsManager::loadFonts()
 {
 	fonts_.emplace(Roboto_Black, new Font("../../../../assets/Assets/Fonts/Roboto-Black.ttf", 20, 0.5));
-	fonts_.emplace(Arial, new Font("../../../../assets/Assets/Fonts/ARIAL.ttf", 20, 0.5));
 	// fonts_.emplace_back(new Font("Filepath", size));
 }
 
