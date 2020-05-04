@@ -50,7 +50,7 @@ void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 225);
-	createProyectile(ent, width, 150, pos, { 0, 0 }, 2, 50, { (double)orientation_ * 5, 5 }, 7, mask, ent->getState(), ent->getApp(), texture, false);
+	createProyectile(ent, width, 150, pos, { 0, 0 }, 2, 50, { (double)orientation_ * 5, 5 }, 7, mask, ent->getState(), ent->getApp(), texture, false, orientation_);
 }
 
 void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
@@ -80,14 +80,14 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 	if (orientation_ == -1) projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width1 / 2);
 
 	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 225);
-	createProyectile(ent, width1, 150, pos1, { 0, 0 }, 27, 100, { (double)orientation_ * 7500, -5000 }, 15, mask, ent->getState(), ent->getApp(), texture1, false);
+	createProyectile(ent, width1, 150, pos1, { 0, 0 }, 27, 100, { (double)orientation_ * 7500, -5000 }, 15, mask, ent->getState(), ent->getApp(), texture1, false, orientation_);
 
 	int width2 = 250;
 	int projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width2 / 2) + 150;
 	if (orientation_ == -1) projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width2 / 2) - 150;
 
 	Vector2D pos2 = Vector2D(projX2, phtr->getPosition().getY() + 225);
-	createProyectile(ent, width2, 180, pos2, { 0, 0 }, 2, 150, { (double)orientation_ * 5250, -4000 }, 12, mask, ent->getState(), ent->getApp(), texture2, false);
+	createProyectile(ent, width2, 180, pos2, { 0, 0 }, 2, 150, { (double)orientation_ * 5250, -4000 }, 12, mask, ent->getState(), ent->getApp(), texture2, false, orientation_);
 
 	//ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1,-85 }, width1, 175, 15, 27, 100, { (double)orientation_ * 7500, -5000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
 	//ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2,-85 }, width2, 180, 12, 2, 150, { (double)orientation_ * 5250, -4000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
@@ -136,7 +136,7 @@ void AbilityFactory::SeismicS1(Entity* e)	//the attack to the floor
 
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
-	createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, false);
+	createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, false, orientation_);
 }
 
 void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
@@ -151,7 +151,7 @@ void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2) - 60;
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + 150);
-	createProyectile(ent, width, 300, pos, { 0,-10 }, 0, 0, { 0,0 }, 250, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, false);
+	createProyectile(ent, width, 300, pos, { 0,-10 }, 0, 0, { 0,0 }, 250, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, false, orientation_);
 }
 
 void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
@@ -173,6 +173,7 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 	}
 	double otherWidth = otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getWidth();
 	Vector2D otherPos = otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getPosition();
+	int orientation_ = otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
 	Vector2D pos = Vector2D(otherPos.getX() + otherWidth / 2, 0);//first rock
 
 	double rocksSeparation = 240;
@@ -186,12 +187,12 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 	int time = 165;
 	bool destroyInContact = true;
 	double width = 150;
-	double height = 150;
+	double height = 150;	
 
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Ss2);
-	createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact);
-	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact);
-	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact);
+	createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact, orientation_);
+	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact, orientation_);
+	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, destroyInContact, orientation_);
 }
 
 void AbilityFactory::SeismicSC(Entity* ent)
@@ -243,14 +244,14 @@ void AbilityFactory::EW1(Entity* ent)
 	int projX1 = pT->getPosition().getX() + (pT->getWidth() * 3 / 4) + (width1 / 2) - 80;
 	if (orientation_ == -1) projX1 = pT->getPosition().getX() + (pT->getWidth() * 1 / 4) - (width1 / 2) + 80;
 	Vector2D pos1 = Vector2D(projX1, pT->getPosition().getY() + (pT->getHeight() / 2));
-	createProyectile(ent, width1, 375, pos1, { 4.5 * orientation_, 0 }, 10, 55, { 10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Player), false);
+	createProyectile(ent, width1, 375, pos1, { 4.5 * orientation_, 0 }, 10, 55, { 10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Ew1), false, orientation_);
 
 	//Patrás
 	int width2 = 100;
 	int projX2 = pT->getPosition().getX() + (pT->getWidth() * 1 / 4) - (width2 / 2) + 80;
 	if (orientation_ == -1) projX2 = pT->getPosition().getX() + (pT->getWidth() * 3 / 4) + (width2 / 2) - 80;
 	Vector2D pos2 = Vector2D(projX2, pT->getPosition().getY() + (pT->getHeight() / 2));
-	createProyectile(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, 10, 55, { -10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Player), false);
+	createProyectile(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, 10, 55, { -10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Ew1), false, -orientation_);
 
 	//Parriba
 	/*int width3 = 160;
@@ -301,7 +302,7 @@ void AbilityFactory::EW3(Entity* ent)
 //}
 
 void AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
-	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture,bool destroyInContact) {
+	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, bool destroyInContact, int orientation) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
 	if (pos.getX() >= windowWidth)  pos.setX(windowWidth);
 	else if (pos.getX() <= 0)  pos.setX(0);
@@ -309,7 +310,7 @@ void AbilityFactory::createProyectile(Entity* ent, double width, double height,V
 	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
 	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
-		currentState->BULLET, mask, 1);
+		currentState->BULLET, mask, 1)->setOrientation(orientation);
 	e->addComponent<RenderImage>(texture);
 	e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, damage, hitstun, knockBack, time, destroyInContact);
 
