@@ -28,9 +28,6 @@
     <ClCompile Include="Fight.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="FactoryMk.cpp">
-      <Filter>Source Files\Manager and factories</Filter>
-    </ClCompile>
     <ClCompile Include="Health.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -186,6 +183,9 @@
     <ClCompile Include="PunchingBagOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="CharFactory.cpp">
+      <Filter>Source Files\Manager and factories</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -214,9 +214,6 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="FactoryMk.h">
-      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="CharacterSelection.h">
       <Filter>Header files\GameState</Filter>
@@ -402,6 +399,9 @@
     <ClInclude Include="GamepadHID.h" />
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CharFactory.h">
+      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

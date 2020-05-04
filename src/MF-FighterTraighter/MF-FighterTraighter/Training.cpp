@@ -4,12 +4,12 @@
 #include "RenderImage.h"
 #include "PauseMenu.h"
 #include "SacoTimer.h"
-#include "FactoryMk.h"
 #include "PunchingBagOnHit.h"
 #include "FloorOnHit.h"
 #include "UITransform.h"
 #include "UITimer.h"
 #include "UIHealthbar.h"
+#include "CharFactory.h"
 
 Training::Training(App* app) : GameState(app)
 {
@@ -20,8 +20,8 @@ void Training::init()
 {
 	GameState::init();
 	doStep = true;
-	entManager_.setHandler(FactoryMk::addMkToGame(app_, this, 1, app_->getGameManager()->getPlayerInfo(1).hid, world, PLAYER_1, BOUNDARY | P_BAG | WALLS, 0), ecs::Player1);
-	entManager_.setHandler(FactoryMk::addMkToGame(app_, this, -1, app_->getGameManager()->getPlayerInfo(2).hid, world, PLAYER_2, BOUNDARY | P_BAG | WALLS, 1), ecs::Player2);
+	entManager_.setHandler(CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1), PLAYER_1, BOUNDARY | P_BAG | WALLS, 0), ecs::Player1);
+	entManager_.setHandler(CharFactory::addCharacterToGame(app_, this, -1, world, &app_->getGameManager()->getPlayerInfo(2), PLAYER_2, BOUNDARY | P_BAG | WALLS, 1), ecs::Player2);
 	
 	Entity* saco = entManager_.addEntity();
 	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h - 455), Vector2D(10, 10), 150, 500, 0, world, P_BAG, PLAYER_1 | PLAYER_2, 2);

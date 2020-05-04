@@ -9,12 +9,11 @@ class GameStateMachine;
 
 class GameManager
 {
-public:	
-enum AbilityID {
-	SeismicShock,
-	MegatonGrip
-};
-protected:
+public:
+	enum AbilityID {
+		SeismicShock,
+		MegatonGrip
+	};
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
 		MKWh00p,
@@ -29,10 +28,11 @@ protected:
 		AbilityID ability1Index;
 		AbilityID ability2Index;
 		HID* hid;
-		virtual ~PlayerInfo() { 
-			delete hid; 
+		virtual ~PlayerInfo() {
+			delete hid;
 		}
 	};
+protected:
 public:
 	GameManager(App* app);
 
