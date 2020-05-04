@@ -11,9 +11,24 @@
 #include "Training.h"
 #include "Entity.h"
 #include "CharacterSelection.h"
+#include "KeyboardHID.h"
+#include "GamepadHID.h"
 GameManager::GameManager(App* app) : app_(app)
 {
 	app_->getStateMachine()->pushState(new MainMenu(app_));//OJO CAMBIAR LUEGO
+
+GameManager::GameManager(App* app) : app_(app)
+{
+	app_->getStateMachine()->pushState(new MainMenu(app_));
+	// TODO: Move this elsewhere
+	player1_.hid = new KeyboardHID(app_->getInputManager());
+	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+}
+
+void GameManager::handleInput()
+{
+	player1_.hid->updateInput();
+	player2_.hid->updateInput();
 }
 
 void GameManager::pressedStart()
@@ -64,23 +79,28 @@ void GameManager::playerLost(int player)
 void GameManager::trainingEnded()
 {
 	GameStateMachine* stateMachine = app_->getStateMachine();
+	//hacerlo random y tener en cuenta la seleccion de habilidades
+	/*player1_.abilities.push_back(MegatonGrip);
+	player1_.abilities.push_back(SeismicShock);	
+	player2_.abilities.push_back(MegatonGrip);
+	player2_.abilities.push_back(SeismicShock);	//hacerlo random */
 	// Remove the current training mode
 	stateMachine->popState();
 	stateMachine->pushState(new Fight(app_));
 }
 
-void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index)
+void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
 {
 	//player1_.character = character;
-	player1_.abilities = abilities;
+	//player1_.abilities = abilities;
 	player1_.ability1Index = ability1Index;
 	player1_.ability2Index = ability2Index;
 }
 
-void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, unsigned int ability1Index, unsigned int ability2Index)
+void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
 {
 	//player2_.character = character;
-	player2_.abilities = abilities;
+	//player2_.abilities = abilities;
 	player2_.ability1Index = ability1Index;
 	player2_.ability2Index = ability2Index;
 }

@@ -124,11 +124,12 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\SDL2_ttf-2.0.15\lib\x64;..\SDL2_image-2.0.5\lib\x64;..\SDL2_mixer-2.0.4\lib\x64;..\SDL2-2.0.10\lib\x64;..\Box2D\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_image.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -138,11 +139,12 @@
     <ClCompile Include="CharacterSelectionLogic.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="GamepadInput.cpp" />
+    <ClCompile Include="GamepadHID.cpp" />
+    <ClCompile Include="HID.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="FactoryMk.cpp" />
-    <ClCompile Include="KeyboardInput.cpp" />
+    <ClCompile Include="KeyboardHID.cpp" />
     <ClCompile Include="MkWH00PData.cpp" />
     <ClCompile Include="MockingbirdData.cpp" />
     <ClCompile Include="MoveParser.cpp" />
@@ -153,7 +155,6 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CharacterSelection.cpp" />
     <ClCompile Include="Component.cpp" />
-    <ClCompile Include="Crouch.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Fight.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -161,7 +162,6 @@
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Jump.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="OptionsMenu.cpp" />
@@ -209,12 +209,12 @@
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FloorOnHit.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="GamepadInput.h" />
+    <ClInclude Include="GamepadHID.h" />
+    <ClInclude Include="HID.h" />
     <ClInclude Include="HitboxData.h" />
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IndexSlider.h" />
-    <ClInclude Include="InpuState.h" />
-    <ClInclude Include="KeyboardInput.h" />
+    <ClInclude Include="KeyboardHID.h" />
     <ClInclude Include="MkWH00PData.h" />
     <ClInclude Include="MockingbirdData.h" />
     <ClInclude Include="MoveParser.h" />
@@ -226,7 +226,6 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="CharacterSelection.h" />
     <ClInclude Include="Component.h" />
-    <ClInclude Include="Crouch.h" />
     <ClInclude Include="consts.h" />
     <ClInclude Include="ecs.h" />
     <ClInclude Include="Entity.h" />
@@ -236,7 +235,6 @@
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="Health.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Jump.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="OptionsMenu.h" />
     <ClInclude Include="Move.h" />

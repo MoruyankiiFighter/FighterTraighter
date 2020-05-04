@@ -26,7 +26,11 @@ public:
 		BackgroundFight,
 		Banner,
 		Panel,
-
+		Mg1, 
+		Mg21,
+		Mg22,
+		Ss1,
+		Ss2,
 		//resources of aisha
 		Aisha_icon,
 		AishaArtwork,

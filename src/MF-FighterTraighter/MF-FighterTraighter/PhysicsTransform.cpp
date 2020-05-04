@@ -93,6 +93,33 @@ void PhysicsTransform::resetMainFixture(const b2Vec2& center, float angle) {
 	fixturedef.density = 0.0f;
 	fixturedef.filter.categoryBits = cBits_;
 	fixturedef.filter.maskBits = mBits_;
-	fixturedef.friction = 1;
+	fixturedef.friction = 0;
+	mainFixture_ = body_->CreateFixture(&fixturedef);
+}
+
+void PhysicsTransform::changeMask(uint16 newMask) {
+	b2Filter filter;
+	filter=mainFixture_->GetFilterData();
+	//filter.categoryBits = filte;
+	filter.maskBits = newMask;
+	//filter.groupIndex = ...;
+	//f->SetFilterData(&filter);
+	mainFixture_->SetFilterData(filter);
+}
+
+void PhysicsTransform::changeFriction(float32 newFrict)
+{
+	mainFixture_->SetFriction(newFrict);
+}
+
+void PhysicsTransform::resetMainFixture2(const b2Vec2& center, float angle , float32 newFrict) {
+	b2PolygonShape shape;
+	shape.SetAsBox((col_width_ * (double)app_->METERS_PER_PIXEL) * wMult_ / 2, (col_height_ * (double)app_->METERS_PER_PIXEL) * hMult_ / 2, center, angle);
+	b2FixtureDef fixturedef;
+	fixturedef.shape = &shape;
+	fixturedef.density = 0.0f;
+	fixturedef.filter.categoryBits = cBits_;
+	fixturedef.filter.maskBits = mBits_;
+	fixturedef.friction = newFrict;
 	mainFixture_ = body_->CreateFixture(&fixturedef);
 }
