@@ -29,7 +29,7 @@ public:
 
 	static Entity* createPanel(App* app, GameState* state, Texture* texture_, Vector2D position, Vector2D anchor, Vector2D pivot, double width, double height, double rotation);
 
-	static Entity* createText(App* app, GameState* state, Vector2D pos, Vector2D anchor, Vector2D pivot, Font* font, std::string text, int fontSize, double width, double height);
+	static Entity* createText(App* app, GameState* state, Vector2D pos, Vector2D anchor, Vector2D pivot, Font* font, std::string text, int fontSize, double width, double height, int wrapLength);
 
 
 	

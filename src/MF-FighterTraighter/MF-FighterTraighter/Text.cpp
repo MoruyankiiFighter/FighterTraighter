@@ -12,7 +12,7 @@ Text::Text(SDL_Renderer* rend, std::string text, Font* font, int longText) : Tex
 void Text::createText(Font* font, std::string text)
 {
 	if (text != "") {
-		SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(font->getFont(), text.c_str(), { 255, 255, 255, 255 },longText_);
+		SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(font->getFont(), text.c_str(), { 255, 255, 255, 255 }, longText_);
 		
 		if (surface == nullptr) {
 			throw "Error  on surface"; // CHANGE TO PROPER EXCEPTION
@@ -26,7 +26,6 @@ void Text::createText(Font* font, std::string text)
 			height = surface->h;
 			fWidth = width;
 			fHeight = height;
-			//double proportion = surface->h / surface->w;
 			texture = SDL_CreateTextureFromSurface(renderer, surface);
 			SDL_FreeSurface(surface);
 		}

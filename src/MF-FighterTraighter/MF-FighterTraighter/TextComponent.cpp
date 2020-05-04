@@ -9,14 +9,13 @@ text_(nullptr), transform_(nullptr), textString_(text), textSize_(size), font_(f
 void TextComponent::init()
 {
 	transform_ = entity_->getComponent<Transform>(ecs::Transform);
-	font_->setFontSize(textSize_);
 	text_ = new Text(app_->getRenderer(), textString_, font_, longText_);
 }
 
 void TextComponent::render()
 {
 	SDL_Rect dest;
-	int destWidth = text_->getWidth();
+	int destWidth = text_->getWidth() / font_->getFontSize() * textSize_;
 	switch (alignment_)
 	{
 	case TextComponent::Left:
@@ -31,7 +30,7 @@ void TextComponent::render()
 	default:
 		break;
 	}
-	int lines = int(text_->getHeight() / textSize_ / transform_->getHMult());
+	int lines = int(text_->getHeight() / font_->getFontSize());
 
 	dest.y = transform_->getPosition().getY();
 	dest.w = destWidth;

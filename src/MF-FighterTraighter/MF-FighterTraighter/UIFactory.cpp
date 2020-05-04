@@ -69,12 +69,12 @@ Entity* UIFactory::createPanel(App* app, GameState* state, Texture* texture_, Ve
 
 	return panel;
 }
-Entity* UIFactory::createText(App* app, GameState* state, Vector2D pos, Vector2D anchor, Vector2D pivot, Font* font, std::string text, int fontSize, double width, double height)
+Entity* UIFactory::createText(App* app, GameState* state, Vector2D pos, Vector2D anchor, Vector2D pivot, Font* font, std::string text, int textSize, double width, double height, int wrapCharNumber)
 {
 	Entity* ent = state->getEntityManager().addEntity();
 
 	ent->addComponent<UITransform>(pos, anchor, pivot, Vector2D(width, height));
-	ent->addComponent<TextComponent>(text, font, fontSize, TextComponent::TextAlignment::Center);
+	ent->addComponent<TextComponent>(text, font, textSize, TextComponent::TextAlignment::Left, font->getFontSize() * wrapCharNumber * font->getWidthRatio());
 
 	return ent;
 }

@@ -192,15 +192,14 @@
     <ClCompile Include="UserData.cpp" >
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-  <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="UserData.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="PunchingBagOnHit.cpp" />
     <ClCompile Include="PunchingBagOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+  <Filter>Source Files</Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
