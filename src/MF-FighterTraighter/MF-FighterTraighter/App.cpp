@@ -66,9 +66,9 @@ void App::init()
 		throw new SDLExceptions::TTFException(TTF_GetError() + std::string("\nUnable to init TTF"));
 	}
 
-	//if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-	//	throw new SDLExceptions::SDLException("\nUnable to load audio");
-	//}
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+		throw new SDLExceptions::SDLException("\nUnable to load audio");
+	}
 
 	int e = SDL_Init(SDL_INIT_EVERYTHING);
 	if (e > 0) {
@@ -86,12 +86,15 @@ void App::init()
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
 	gameManager_.reset(new GameManager(this));
+	audioManager_.reset(new AudioManager());
+
 
 }
 
 void App::clean()
 {
 	// Reset pointers to prevent errors (especially assetsManager)
+	audioManager_.reset();
 	stateMachine_.reset();
 	inputManager_.reset();
 	// If we try to close fonts after TTF_Quit(), an error will occur
