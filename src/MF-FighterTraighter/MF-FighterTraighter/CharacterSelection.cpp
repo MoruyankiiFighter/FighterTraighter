@@ -28,6 +28,8 @@ void CharacterSelection::init()
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 5, 50), (app_->getWindowManager()->getCurResolution().w / 20) * 16,
 		(app_->getWindowManager()->getCurResolution().h / 15) * 10, 0);
 
+	Entity* text_ = UIFactory::createText(app_, this, Vector2D(app_->getWindowManager()->getCurResolution().w / 3, 0), Vector2D(app_->getWindowManager()->getCurResolution().w/2, 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "Choose your character", 60, 300, 100, 500);
+
 	//artwork of the character
 	Entity* leftP_ = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 1, 100), Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 1, 100),
