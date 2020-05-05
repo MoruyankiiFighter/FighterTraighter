@@ -22,7 +22,8 @@ public:
 
 protected:
 	LinkedGrid<UIElement*> grid_;
-	int cursorPositionX_=0, cursorPositionY_=0;
+	int cursorPositionX_ = 0; // col
+	int cursorPositionY_ = 0; // row
 
 	int findInRowFrom(int y);
 	int findInColFrom(int x);
