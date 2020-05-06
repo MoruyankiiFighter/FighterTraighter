@@ -15,18 +15,15 @@ public:
 		Disabled
 	};
 
-	UIElement(HID* owner = nullptr) : Component(ecs::UIElement), owner_(owner) {}
+	UIElement() : Component(ecs::UIElement) {}
 
 	virtual void Press() = 0;
 	virtual void Select() = 0;
 	virtual void Disable() = 0;
 	virtual void Deselect() = 0;
 
-	inline virtual void setOwner(HID* owner) { owner_ = owner; }
-
 	virtual ~UIElement() {}
 protected:
-	State Buttonstate_ = Normal;
-	HID* owner_;
+	State state_ = Normal;
 };
 

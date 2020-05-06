@@ -807,7 +807,6 @@ inline void b2Body::ApplyLinearImpulse(const b2Vec2& impulse, const b2Vec2& poin
 	// Don't accumulate velocity if the body is sleeping
 	if (m_flags & e_awakeFlag)
 	{
-		//m_linearVelocity += m_mass * impulse;
 		m_linearVelocity += m_invMass * impulse;
 		m_angularVelocity += m_invI * b2Cross(point - m_sweep.c, impulse);
 	}

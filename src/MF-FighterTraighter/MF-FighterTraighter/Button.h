@@ -8,28 +8,28 @@ class Button : public UIElement {
 
 public:
 	//constructor
-	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr, HID* owner = nullptr) : UIElement(owner), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
+	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr) : UIElement(), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
 
 	virtual void Press()
 	{
-		Buttonstate_ = Pressed;
+		state_ = Pressed;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(2, 0);
 		if (clickCallback_) clickCallback_(app_);
 	};
 	virtual void Select() 
 	{
-		if (Buttonstate_ != Selected) {
-			Buttonstate_ = Selected;
+		if (state_ != Selected) {
+			state_ = Selected;
 			entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
 		}
 	};
 	virtual void Disable() 
 	{
-		Buttonstate_ = Disabled;
+		state_ = Disabled;
 	};
 	virtual void Deselect()
 	{
-		Buttonstate_ = Normal;
+		state_ = Normal;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(0, 0);
 	};
 

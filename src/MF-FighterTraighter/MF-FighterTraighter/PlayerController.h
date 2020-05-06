@@ -1,13 +1,13 @@
 #pragma once
 #include "Component.h"
 #include "PhysicsTransform.h"
-#include "HID.h"
+#include "InpuState.h"
 
 class PlayerController :
 	public Component
 {
 public:
-	PlayerController(HID* hid, float jImpulse, double speed);
+	PlayerController(float jImpulse);
 	virtual ~PlayerController();
 
 	//methods overrided from Component
@@ -17,7 +17,6 @@ public:
 	void crouch();
 	void uncrouch();
 	float getJumpImpulse() { return jumpImpulse; }
-	double getMovSpeed() { return movSpeed; }
 	void wallLeft(bool collision) {
 		wallLeft_ = collision;
 	}
@@ -25,10 +24,9 @@ public:
 		wallRight_ = collision;
 	}
 private:
-	HID* inputSt_ = nullptr;
+	InputState* inputSt_ = nullptr;
 	PhysicsTransform* transform_ = nullptr;
+	Vector2D dir_;
 	bool wallLeft_=false, wallRight_ = false;
 	float jumpImpulse = 0;
-	double movSpeed = 1;
-	
 };

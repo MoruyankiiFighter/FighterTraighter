@@ -4,6 +4,7 @@
 #include "Texture.h"
 #include "Entity.h"
 
+
 using namespace std;
 using callBackOnEnd = void(Entity*);
 
@@ -25,7 +26,7 @@ using callBackOnEnd = void(Entity*);
 class Move {
 public:
 	//igual es mejor tener un puntero al body
-	Move() : endingFrame_(15), animaSheet_(nullptr), entity_(nullptr), generateHitbox_(nullptr){};
+	Move() : endingFrame_(15), animaSheet_(nullptr), entity_(nullptr){};
 	Move(/*string name, idMovimiento id, */int endingFrame, Texture* animSheet, callBackOnEnd* callback, Entity* entity) : 
 	/*name_(name), id_(id), */endingFrame_(endingFrame), animaSheet_(animSheet), generateHitbox_(callback), entity_(entity) {};
 	~Move() {};
@@ -40,4 +41,5 @@ private:
 	Texture* animaSheet_;
 	callBackOnEnd* generateHitbox_; //crea hitboxes con daño, posición, escala, empuje y frames de vida
 	Entity* entity_;
+	HitboxData* hitbox_ = nullptr;
 };

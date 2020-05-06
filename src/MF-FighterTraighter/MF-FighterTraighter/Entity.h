@@ -1,8 +1,6 @@
 #pragma once
 #include <vector>
-
 #include "Component.h"
-
 class Entity
 {
 
@@ -52,16 +50,11 @@ public:
 	inline App* getApp() const { return app_; }
 	//set the reference of the app
 	inline void setApp(App* app) { app_ = app; }
-
-	//return the state
-	inline GameState* getState() const { return state_; }
-	//set the reference of the state
-	inline void setState(GameState* state) { state_ = state; }
 private:
 	App* app_=nullptr;
 	std::vector<std::unique_ptr<Component>> components_;
 	std::array<Component*, ecs::_LastCmptId_> componentsArray_ = {}; // to prevent the vector from resizing, and delete automatically
-	GameState* state_ = nullptr;
+
 };
 
 template<typename T, typename ...TArgs>
@@ -73,7 +66,6 @@ inline T* Entity::addComponent(TArgs ...args)
 	componentsArray_[t->getID()] = t;
 	t->setEntity(this);
 	t->setApp(app_);
-	t->setState(state_);
 	t->init();
 	return t;
 }

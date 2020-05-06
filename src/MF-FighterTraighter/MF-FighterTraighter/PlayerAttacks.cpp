@@ -1,8 +1,8 @@
 #include "PlayerAttacks.h"
 #include "PlayerController.h"
 
-PlayerAttacks::PlayerAttacks(HID* hid, AnimationChain* highFist, AnimationChain* airHighFist, AnimationChain* lowFist, AnimationChain* airLowFist,
-	AnimationChain* highKick, AnimationChain* airHighKick, AnimationChain* lowKick, AnimationChain* airLowKick,  AnimationChain* testGB) : Component(ecs::PlayerAttacks), inputSt_(hid)
+PlayerAttacks::PlayerAttacks(AnimationChain* highFist, AnimationChain* airHighFist, AnimationChain* lowFist, AnimationChain* airLowFist,
+	AnimationChain* highKick, AnimationChain* airHighKick, AnimationChain* lowKick, AnimationChain* airLowKick,  AnimationChain* testGB) : Component(ecs::PlayerAttacks)
 {
 	attacksList.push_back(highFist);
 	attacksList.push_back(lowFist);
@@ -33,6 +33,7 @@ PlayerAttacks::~PlayerAttacks() {
 
 void PlayerAttacks::init()
 {
+	inputSt_ = entity_->getComponent<InputState>(ecs::InputState);
 }
 
 void PlayerAttacks::handleInput() {
@@ -41,72 +42,71 @@ void PlayerAttacks::handleInput() {
 	PlayerController* ctrl = entity_->getComponent<PlayerController>(ecs::PlayerController);
 	if (currState->isAbleToAttack()) {
 		if (currState->isGrounded()) {
-			if (inputSt_->ButtonPressed(HID::RightPad_Down)) {
+			if (inputSt_->getInput(4)) {
 				activeAttack_ = attacksList[0];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(0);
+				currState->goAttack();
 			}
-			else if (inputSt_->ButtonPressed(HID::RightPad_Right)) {
+			else if (inputSt_->getInput(5)) {
 				activeAttack_ = attacksList[1];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(1);
+				currState->goAttack();
 			}
-			else if (inputSt_->ButtonPressed(HID::RightPad_Left)) {
+			else if (inputSt_->getInput(6)) {
 				activeAttack_ = attacksList[2];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(2);
+				currState->goAttack();
 			}
-			else if (inputSt_->ButtonPressed(HID::RightPad_Up)) {
+			else if (inputSt_->getInput(7)) {
 				activeAttack_ = attacksList[3];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(3);
+				currState->goAttack();
 			}
-			else if (inputSt_->AxisChanged(HID::RTrigger)) {
+			else if (inputSt_->getInput(11)) {
 				activeAttack_ = attacksList[8];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(4);
-			}else if (inputSt_->ButtonPressed(HID::LeftBumper)) {
-				if (abilityList[0] != nullptr && cooldowns[0] == 0) {
-					activeAttack_ = abilityList[0];
-					tr->setSpeed(0, tr->getSpeed().getY());
-					if (currState->isCrouch()) ctrl->uncrouch();
-					currState->goCasting();
-				}
-			}
-			else if (inputSt_->ButtonPressed(HID::RightBumper)) {
-				if (abilityList[1] != nullptr && cooldowns[1] == 0) {
-					activeAttack_ = abilityList[1];
-					tr->setSpeed(0, tr->getSpeed().getY());
-					if (currState->isCrouch()) ctrl->uncrouch();
-					currState->goCasting();
-				}
+				currState->goAttack();
 			}
 		}
 		else {
-			if (inputSt_->ButtonPressed(HID::RightPad_Down)) {
+			if (inputSt_->getInput(4)) {
 				activeAttack_ = attacksList[4];
-				tr->setSpeed(tr->getSpeed().getX() * 0.65, tr->getSpeed().getY());
-				currState->goAttack(0);
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
 			}
-			else if (inputSt_->ButtonPressed(HID::RightPad_Right)) {
+			else if (inputSt_->getInput(5)) {
 				activeAttack_ = attacksList[5];
-				tr->setSpeed(tr->getSpeed().getX() * 0.65, tr->getSpeed().getY());
-				currState->goAttack(1);
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
 			}
-			else if (inputSt_->ButtonPressed(HID::RightPad_Left)) {
+			else if (inputSt_->getInput(6)) {
 				activeAttack_ = attacksList[6];
-				tr->setSpeed(tr->getSpeed().getX() * 0.65, tr->getSpeed().getY());
-				currState->goAttack(2);
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
 			}
-			else if (inputSt_->ButtonPressed(HID::RightPad_Up)) {
+			else if (inputSt_->getInput(7)) {
 				activeAttack_ = attacksList[7];
-				tr->setSpeed(tr->getSpeed().getX() * 0.65, tr->getSpeed().getY());
-				currState->goAttack(3);
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
+		}
+		if (inputSt_->getInput(8)) {
+			if (abilityList[0] != nullptr) {
+				activeAttack_ = abilityList[0];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
+			}
+		}
+		else if (inputSt_->getInput(9)) {
+			if (abilityList[1] != nullptr) {
+				activeAttack_ = abilityList[1];
+				tr->setSpeed(0, tr->getSpeed().getY());
+				currState->goAttack();
 			}
 		}
 	}
@@ -122,14 +122,6 @@ void PlayerAttacks::interruptAttack()
 {
 	if(activeAttack_ != nullptr) activeAttack_->reset();
 	activeAttack_ = nullptr;
-	app_->getStateMachine()->getCurrentState()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
-}
-
-int PlayerAttacks::getAbilityIndex()	//IN THEORY IT NEVER SHOULD RETURN -1
-{										//BUT
-	int index = -1;
-	for (int i = 0; i < abilityList.size(); ++i) {
-		if (activeAttack_ == abilityList[i]) index = i;
-	}
-	return index;
+	app_->getHitboxMng()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
+	
 }

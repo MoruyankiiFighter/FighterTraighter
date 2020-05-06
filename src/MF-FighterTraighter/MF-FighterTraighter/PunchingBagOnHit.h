@@ -1,12 +1,13 @@
 #pragma once
-#include "UserData.h"
-
-
-class PunchingBagOnHit : public UserData
+#include "OnHit.h"
+#include <iostream>
+class PunchingBagOnHit : public OnHit
 {
 public:
-	PunchingBagOnHit(Entity* e) : UserData(e) {}
+	PunchingBagOnHit() : OnHit() {}
 	~PunchingBagOnHit() {}
-	void onHit(b2Fixture* fixture) override;
+	void onHit(b2Fixture* fixture) override {
+		std::cout << "Soy un saco" << std::endl;
+	}
 };
 

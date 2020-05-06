@@ -1,7 +1,7 @@
 #include "NavigationController.h"
 #include "Button.h"
 
-NavigationController::NavigationController(size_t sizeX, size_t sizeY, HID* owner) : Component(ecs::NavigationController), grid_(sizeX, sizeY), cursorPositionX_(), cursorPositionY_(), owner_(owner)
+NavigationController::NavigationController(size_t sizeX, size_t sizeY) : Component(ecs::NavigationController), grid_(sizeX, sizeY), cursorPositionX_(), cursorPositionY_()
 {
 }
 
@@ -14,17 +14,17 @@ void NavigationController::handleInput()
 	InputManager* mngr = app_->getInputManager();
 	int oldX = cursorPositionX_, oldY = cursorPositionY_;
 	int temp;
-	if ((!owner_ && mngr->pressedUp() || owner_ && owner_->ButtonPressed(HID::LeftPad_Up)) && cursorPositionY_ > 0 && (temp = findInRowFrom(cursorPositionY_ - 1)) != -1)
+	if (mngr->pressedUp() && cursorPositionY_ > 0 && (temp = findInRowFrom(cursorPositionY_ - 1)) != -1)
 	{
 		cursorPositionY_ = temp;
 	}
-	else if ((!owner_ && mngr->pressedDown() || owner_ && owner_->ButtonPressed(HID::LeftPad_Down)) && cursorPositionY_ < grid_.GetSizeY() - 1 && (temp = findInRowFrom(cursorPositionY_ + 1)) != -1) {
+	else if (mngr->pressedDown() && cursorPositionY_ < grid_.GetSizeY() - 1 && (temp = findInRowFrom(cursorPositionY_ + 1)) != -1) {
 		cursorPositionY_ = temp;
 	}
-	if ((!owner_ && mngr->pressedLeft() || owner_ && owner_->ButtonPressed(HID::LeftPad_Left)) && cursorPositionX_ > 0 && (temp = findInColFrom(cursorPositionX_ - 1)) != -1) {
+	if (mngr->pressedLeft() && cursorPositionX_ > 0 && (temp = findInColFrom(cursorPositionX_ - 1)) != -1) {
 		cursorPositionX_ = temp;
 	}
-	else if ((!owner_ && mngr->pressedRight() || owner_ && owner_->ButtonPressed(HID::LeftPad_Right)) && cursorPositionX_ < grid_.GetSizeX() - 1 && (temp = findInColFrom(cursorPositionX_ + 1)) != -1) {
+	else if (mngr->pressedRight() && cursorPositionX_ < grid_.GetSizeX() - 1 && (temp = findInColFrom(cursorPositionX_ + 1)) != -1) {
 		cursorPositionX_ = temp;
 	}
 

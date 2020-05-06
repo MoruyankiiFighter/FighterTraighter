@@ -37,7 +37,6 @@ ControlsMenu::~ControlsMenu()
 
 void ControlsMenu::init()
 {
-	GameState::init();
 	cout << "init" << endl;
 	tuple<Entity*, Entity*> back = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(15, 10), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(7, 0), 100, 60, 0, GoBack, nullptr, "<-", 60);
@@ -148,7 +147,7 @@ void ControlsMenu::initString()
 void ControlsMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->getGameManager()->pressedStart();
+		app_->getStateMachine()->popState();
 	}
 	GameState::handleInput();
 }

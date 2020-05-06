@@ -17,7 +17,6 @@
 
 void PauseMenu::init()
 {
-	GameState::init();
 	cout << "initPausa" << endl;
 
 	Entity* logo = entManager_.addEntity();
@@ -61,7 +60,7 @@ void PauseMenu::init()
 void PauseMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
-		app_->getGameManager()->pressedStart();
+		Resume(app_);
 	}
 	else
 		GameState::handleInput();
