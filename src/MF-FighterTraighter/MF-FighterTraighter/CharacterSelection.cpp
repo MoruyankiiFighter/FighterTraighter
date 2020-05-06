@@ -28,12 +28,15 @@ void CharacterSelection::init()
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 5, 50), (app_->getWindowManager()->getCurResolution().w / 20) * 16,
 		(app_->getWindowManager()->getCurResolution().h / 15) * 10, 0);
 
-	Entity* text_ = UIFactory::createText(app_, this, Vector2D(app_->getWindowManager()->getCurResolution().w / 3, 0), Vector2D(app_->getWindowManager()->getCurResolution().w/2, 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "Choose your character", 60, 300, 100, 500);
+	Entity* text_ = UIFactory::createText(app_, this, Vector2D(app_->getWindowManager()->getCurResolution().w / 3, 0), 
+		Vector2D(app_->getWindowManager()->getCurResolution().w/2, 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0),
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "Choose your character", 60, 300, 100, 500);
 
 	//artwork of the character
 	Entity* leftP_ = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 1, 100), Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 1, 100),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 1, 100), (app_->getWindowManager()->getCurResolution().w / 30) * 6, (app_->getWindowManager()->getCurResolution().h / 15) * 10, 0);
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 1, 100), (app_->getWindowManager()->getCurResolution().w / 30) * 6, 
+		(app_->getWindowManager()->getCurResolution().h / 15) * 10, 0);
 
 	Entity* rightP_ = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 20.5, 100),
@@ -42,14 +45,16 @@ void CharacterSelection::init()
 	rightP_->getComponent<UITransform>(ecs::Transform)->setOrientation(-1);
 
 	// buttons
-	tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(60, -30),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h),
 		Vector2D(0, 100),
 		300, 100, 0,
 		nullptr, GoToFight, "Ready", 60, TextComponent::TextAlignment::Center);
 
-	tuple <Entity*, Entity*> boton2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	tuple <Entity*, Entity*> boton2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(-60, -30),
 		Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h),
 		Vector2D(300, 100),
@@ -61,7 +66,8 @@ void CharacterSelection::init()
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3,0, setFlor,nullptr);
+		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3,0,
+		setFlor,nullptr);
 
 		 Entity* mkwhoop_ = UIFactory::createButton(1,app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Ganonbot_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
@@ -88,7 +94,8 @@ void CharacterSelection::init()
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3,0, setFlor,nullptr);
+		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3,0,
+		setFlor,nullptr);
 
 		 Entity* mkwhoop = UIFactory::createButton(2,app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Ganonbot_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
@@ -160,19 +167,19 @@ void CharacterSelection::setAisha(App* app, int n)
 void CharacterSelection::setFlor(App* app, int n)
 {
 	//preguntar player
-	app->getGameManager()->setCharacter(app->getGameManager()->F10R,1);
+	app->getGameManager()->setCharacter(app->getGameManager()->F10R,n);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
 void CharacterSelection::setGanonbot(App* app, int n)
 {
-	app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p, 1);
+	app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p, n);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
 void CharacterSelection::setMockingBird(App* app, int n)
 {
-	app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird,1);
+	app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird,n);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
