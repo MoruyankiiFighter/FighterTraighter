@@ -15,7 +15,7 @@ public:
 				BulletGravity* bullet = entity_->getComponent<BulletGravity>(ecs::Bullet);
 				//phTr->setSpeed(Vector2D(0, phTr->getSpeed().getY()));
 				bullet->changeSpeed(Vector2D(0,bullet->getSpeed().getY()));
-				entity_->getComponent<PhysicsTransform>(ecs::Transform)->changeMask(entity_->getState()->NONE);
+				entity_->getComponent<PhysicsTransform>(ecs::Transform)->changeMask(entity_->getState()->BOUNDARY);
 
 			}
 			else {

@@ -29,6 +29,7 @@ void Fight::init()
 	/*floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));*/
 	//floor->addComponent<FloorOnHit>();
 	FpT->changeFriction(3);
+	addHurtbox(FpT->getMainFixture());
 	//Walls
 	Entity* wall1 = entManager_.addEntity();
 	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
