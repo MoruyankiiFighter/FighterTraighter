@@ -4,6 +4,7 @@
 namespace ecs {
 
 	using CmpIdType = std::size_t;
+	using HandlerIdType = std::size_t;
 
 	enum CmpId : CmpIdType {
 		Transform = 0,
@@ -29,17 +30,30 @@ namespace ecs {
 		UIHealthbar,
 		UIRoundRenderer,
 		PlayerData,
+		PlayerAnimation,
 		InputState,
 		KeyboardInput,
 		GamepadInput,
-		OptionsControlLogic,
+		RenderAnimation,
+		Bullet,
 		/*
 		
 		*/
 		_LastCmptId_
 	};
 
+	enum HandlerId : HandlerIdType {
+		Player1 = 0,
+		Player2,
+		Saco,
+		/*
+		
+		*/
+		_LastHndlrId_
+	};
+
 	constexpr std::size_t maxComponents = _LastCmptId_;
+	constexpr std::size_t maxHandlers = _LastHndlrId_;
 
 	// these two should be used to get a component via the field
 	// entity_

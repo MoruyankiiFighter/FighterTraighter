@@ -7,12 +7,18 @@
 //Podemos tener todos los datos en un .json o un .txt
 //Tener un método para parsear y rellenar el attackData
 
+struct AnimationData {
+	int sheetLength_;
+	bool loops_;
+	int increaseVelocity_;
+};
+
 class PlayerData : public Component {
 
 	//hacer luego getters y setters
 public:
 	//PlayerData() : Component(ecs::PlayerData) {}
-	PlayerData(std::vector<SDL_Scancode> keys, double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, Vector2D speed, double ini_health, double attack, double defense);
+	PlayerData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber);
 	virtual double* getWidth() {
 		return width_;
 	}
@@ -62,11 +68,11 @@ public:
 		defense_ = defense;
 	}
 
-	virtual Vector2D* getSpeed() {
+	virtual double* getSpeed() {
 		return speed_;
 	}
-	virtual void setSpeed(Vector2D* speed) {
-		 speed_=speed;
+	virtual void setSpeed(double speed) {
+		 *speed_ = speed;
 	}
 
 	virtual Vector2D getInitial_Position() {
@@ -153,36 +159,42 @@ public:
 	virtual void setAbility2(Ability* ability_2) {
 		ability_2_ = ability_2;
 	}
+
+	virtual int getAnimLength(int index) {
+		return animLength_[index].sheetLength_;
+	}
+	virtual bool getAnimLoops(int index) {
+		return animLength_[index].loops_;
+	}
+	virtual int getAnimVelocity(int index) {
+		return animLength_[index].increaseVelocity_;
+	}
+
+	virtual int getPlayerNumber() {
+		return playerNumber_;
+	}
 	virtual ~PlayerData() {}
 	
 protected:
-
-	//NO ME GUSTA ASÍ PERO NO SÉ CÓMO HACERLO SI NO
-	/*int width = 35;
-	int hitboxX = 20;
-	if (orientation_ == -1) hitboxX += width;
-
-	ent->getApp()->getHitboxMng()->addHitbox({ (double)orientation_ * hitboxX,-75 }, width, 75, 20, 9, 42, { (double)orientation_ * 10, -50 }, pT->getBody(), pT->getCategory(), pT->getMask());*/
+	//CallbackData to handle generated hitbox better
 	struct CallbackData {
-		Vector2D position;
-		int width;
-		int height;
-		int time;
-		int damage;
-		int hitstun;
+		Vector2D position,
+			knockBack;
+		int width,
+			height,
+			time,
+			damage,
+			hitstun;
 	};
-	//Control Keys
-	SDL_Scancode leftKey_, righKey_, jumpKey_, crouchKey_, guardKey_,
-				 normalPunchKey_, hardPunchKey_, normalKickKey_, hardKickKey_, ability1Key_, ability2Key_;
 	//Player Features
 	double* width_,
 			*height_,
 			*rotation_,
 			*jump_impulse_,
-			*health_;
+			*health_,
+			*speed_;
 	//Player Stats
-	Vector2D initial_position_,
-			 *speed_;
+	Vector2D initial_position_;
 	double 	attack_,
 			defense_;
 
@@ -213,4 +225,10 @@ protected:
 	//To generate hitboxes easily
 	PhysicsTransform* pT;
 	b2Filter mask;
+
+	//Animation data
+	std::vector<AnimationData> animLength_;
+	
+	// Either player 1 or 2 (0 or 1)
+	int playerNumber_;
 };

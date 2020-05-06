@@ -1,12 +1,8 @@
 #include "Slider.h"
 #include "Entity.h"
 
-Slider::Slider(double minValue, double maxValue, int steps) : UIElement(), transform_(nullptr), minValue_(minValue), maxValue_(maxValue), steps_(steps)
-{
-}
-
-Slider::Slider(double minValue, double maxValue, int steps, CallbackOnValueChanged* valueChanged)
-	: UIElement(), transform_(nullptr), valueChanged_(valueChanged), minValue_(minValue), maxValue_(maxValue), steps_(steps)
+Slider::Slider(double minValue, double maxValue, int steps, CallbackOnValueChanged* valueChanged, HID* owner)
+	: UIElement(owner), transform_(nullptr), valueChanged_(valueChanged), minValue_(minValue), maxValue_(maxValue), steps_(steps)
 {
 }
 
@@ -18,8 +14,8 @@ void Slider::init()
 
 void Slider::handleInput()
 {
-	if (state_ == Selected) {
-		if (app_->getInputManager()->pressedRight()) {
+	if (Buttonstate_ == Selected) {
+		if (!owner_ && app_->getInputManager()->pressedRight() || owner_ && owner_->ButtonPressed(HID::LeftPad_Right)) {
 			if (steps_ > 1) {
 				setValue(value_ + (maxValue_ - minValue_) / steps_);
 			}
@@ -27,7 +23,7 @@ void Slider::handleInput()
 				setValue(value_ + 1);
 			}
 		}
-		else if (app_->getInputManager()->pressedLeft()) {
+		else if (!owner_ && app_->getInputManager()->pressedLeft() || owner_ && owner_->ButtonPressed(HID::LeftPad_Left)) {
 			if (steps_ > 1) {
 				setValue(value_ - (maxValue_ - minValue_) / steps_);
 			}

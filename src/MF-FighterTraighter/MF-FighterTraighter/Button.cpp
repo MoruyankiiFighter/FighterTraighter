@@ -11,14 +11,13 @@ void Button::init()
 
 void Button::handleInput()
 {
-	if (state_ == Selected) {
-		InputManager* imngr = app_->getInputManager();
-		if (imngr->pressedAccept()) {
+	if (Buttonstate_ == Selected) {
+		if (!owner_ && app_->getInputManager()->pressedAccept() || owner_ && owner_->ButtonPressed(HID::RightPad_Down)) {
 			Press();
 		}
 	}
-	else if (state_ == Pressed) {
-		state_ = Selected;
+	else if (Buttonstate_ == Pressed) {
+		Buttonstate_ = Selected;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
 		if (stopClickCallback_) stopClickCallback_(app_);
 	}

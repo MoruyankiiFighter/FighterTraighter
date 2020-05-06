@@ -8,7 +8,7 @@ public:
 
 	void setRoundsWon(int rounds);
 protected:
-	uint roundsWon_;
+	unsigned int roundsWon_;
 	std::vector<Entity*> images_;
 };
 
