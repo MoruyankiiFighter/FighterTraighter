@@ -11,7 +11,7 @@ public:
 
 	void init() override;
 
-
+	
 	//callbacks
 	static void setAisha(App* app);
 	static void setFlor(App* app);

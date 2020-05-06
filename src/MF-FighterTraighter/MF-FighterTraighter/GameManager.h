@@ -51,8 +51,14 @@ public:
 	void playerLost(int player);
 	// To inform that saco has lost all its health
 	void trainingEnded();	
-	void setCharacter(CharacterID char_) {
-		player1_.character = char_;
+	void setCharacter(CharacterID char_,int n) {
+		if (n == 1) {
+			player1_.character = char_;
+		}
+		else {
+
+			player2_.character = char_;
+		}
 	}
 
 	void resetCharacters();

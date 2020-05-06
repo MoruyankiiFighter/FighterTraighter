@@ -116,20 +116,22 @@ void CharacterSelection::init()
 
 	//logic of that for changing the artwork of each player 
 	Entity* logic = entManager_.addEntity();
-	logic->addComponent<CharacterSelectionLogic>(text_j1->getComponent<TextComponent>(ecs::TextComponent), leftP_->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav->getComponent<NavigationController>(ecs::NavigationController),
+	logic->addComponent<CharacterSelectionLogic>(1,text_j1->getComponent<TextComponent>(ecs::TextComponent), leftP_->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav->getComponent<NavigationController>(ecs::NavigationController),
 		std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement),
 		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
 	Entity* logic_ = entManager_.addEntity();
-	logic_->addComponent<CharacterSelectionLogic>(text_j2->getComponent<TextComponent>(ecs::TextComponent), rightP_->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav_->getComponent<NavigationController>(ecs::NavigationController),
+	logic_->addComponent<CharacterSelectionLogic>(2,text_j2->getComponent<TextComponent>(ecs::TextComponent), rightP_->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav_->getComponent<NavigationController>(ecs::NavigationController),
 		std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement),
 		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
 }
 
 
+
 void CharacterSelection::setAisha(App* app)
 {
 	//preguntar player
-	app->getGameManager()->setCharacter(app->getGameManager()->Aisha);
+	
+	app->getGameManager()->setCharacter(app->getGameManager()->Aisha, 1);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
@@ -137,7 +139,7 @@ void CharacterSelection::setFlor(App* app)
 {
 
 	//preguntar player
-	app->getGameManager()->setCharacter(app->getGameManager()->F10R);
+	app->getGameManager()->setCharacter(app->getGameManager()->F10R,1);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
@@ -145,14 +147,14 @@ void CharacterSelection::setGanonbot(App* app)
 {
 
 	//preguntar player
-	app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p);
+	app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p, 1);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
 void CharacterSelection::setMockingBird(App* app)
 {
 	//preguntar player
-	app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird);
+	app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird,1);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
@@ -163,25 +165,25 @@ void CharacterSelection::setRandomCharacter(App* app)
 
 	switch (n) {
 	case 0:
-		app->getGameManager()->setCharacter(app->getGameManager()->F10R);
+		app->getGameManager()->setCharacter(app->getGameManager()->F10R,1);
 		break;
 	case 1:
-		app->getGameManager()->setCharacter(app->getGameManager()->Aisha);
+		app->getGameManager()->setCharacter(app->getGameManager()->Aisha,1);
 		break;
 	case 2:
-		app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p);
+		app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p,1);
 		break;
 	case 3:
-		app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird);
+		app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird,1);
 		break;
 	default:
-		app->getGameManager()->setCharacter(app->getGameManager()->None);
+		app->getGameManager()->setCharacter(app->getGameManager()->None,1);
 	}
 }
 
 void CharacterSelection::GoToFight(App* app)
 {
-	if (app->getGameManager()->getPlayerInfo(1).character != app->getGameManager()->None && app->getGameManager()->getPlayerInfo(0).character != app->getGameManager()->None) {
+	if (app->getGameManager()->getPlayerInfo(1).character != app->getGameManager()->None) {
 
 		app->getStateMachine()->pushState(new Fight(app));
 	}

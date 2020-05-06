@@ -15,6 +15,7 @@ void CharacterSelectionLogic::SetElements()
 	if (nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY())==aisha_) {
 		desc_->setText(aisha_desc_);
 		image_->setTexture(aisha_texture);
+	
 	}
 	else if (nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY())==flor_) {
 		desc_->setText(flor_desc_);
