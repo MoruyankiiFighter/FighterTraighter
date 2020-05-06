@@ -32,6 +32,10 @@ void GamepadHID::updateInput()
 	state |= inputM_->isControllerButtonHeld(gamepadID, buttons[12]) << 12;
 	//RightJoystickClick = 8192
 	state |= inputM_->isControllerButtonHeld(gamepadID, buttons[13]) << 13;
+	//LTrigger = 16384,
+	state |= (inputM_->getControllerAxis(gamepadID, axesButtons[4]) > 0 ? 1 : 0) << 14;
+	//RTrigger = 32768
+	state |= (inputM_->getControllerAxis(gamepadID, axesButtons[5]) > 0 ? 1 : 0) << 15;
 	curbuttonState = state;
 
 	lastAxesState = curAxesState;
