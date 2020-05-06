@@ -8,4 +8,30 @@ public:
 	virtual ~F10RData() {}
 	void init() override;
 private:
+	static void NP1(Entity* ent);
+	static CallbackData np1;
+
+	static void HP1(Entity* ent);
+	static CallbackData hp1;
+
+	static void NK1(Entity* ent);
+	static CallbackData nk1;
+
+	static void HK1(Entity* ent);
+	static CallbackData hk1;
+
+	static void ANP1(Entity* ent);
+	static CallbackData anp1;
+
+	static void AHP1(Entity* ent);
+	static CallbackData ahp1;
+
+	static void ANK1(Entity* ent);
+	static CallbackData ank1;
+
+	static void AHK1(Entity* ent);
+	static CallbackData ahk1;
+
+	static void GB(Entity* ent);
+	static CallbackData gb;
 };
