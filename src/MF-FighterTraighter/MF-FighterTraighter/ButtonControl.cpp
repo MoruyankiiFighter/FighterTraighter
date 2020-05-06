@@ -4,6 +4,7 @@
 #include "PauseMenu.h"
 #include "OptionsMenu.h"
 #include "consts.h"
+#include "KeyboardHID.h"
 
 void ButtonControl::init()
 {
@@ -95,12 +96,12 @@ void ButtonControl::render()
 	{
 		if (control == 0 )
 		{
-			text_->setText(SDL_GetScancodeName(app_->getInputManager()->ControlKeyboard()[index]));
+			text_->setText(SDL_GetScancodeName(dynamic_cast<KeyboardHID*>(app_->getGameManager()->getPlayerInfo(1).hid)->getkeys().at(index)));
 
 		}
 		else if(index>3)
 		{
-			text_->setText(app_->getInputManager()->ControlMando()[index-4]);
+			//text_->setText(app_->getInputManager()->ControlMando()[index-4]);
 		}
 	}
 	

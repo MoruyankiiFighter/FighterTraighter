@@ -22,6 +22,8 @@
 #include "UIFactory.h"
 
 #include "KeyboardInput.h"
+#include "KeyboardHID.h"
+#include "GamepadHID.h"
 
 
 ControlsMenu::ControlsMenu(App* app) : GameState(app)
@@ -107,7 +109,9 @@ void ControlsMenu::GoBack(App* app) {
 }
 
 void ControlsMenu::ChangeControl(App*app,int index,int control) {
-	app->getInputManager()->change(index,control);
+	//app->getInputManager()->change(index,control);
+	dynamic_cast<KeyboardHID*>(app->getGameManager()->getPlayerInfo(control + 1).hid)->changeKey(index, app->getInputManager()->lastKey());
+	
 		
 
 }
@@ -118,9 +122,9 @@ void ControlsMenu::initString()
 	std::vector < SDL_Scancode >scan=app_->getInputManager()->ControlKeyboard();
 	std::vector < std::string >button=app_->getInputManager()->ControlMando();
 
-	for (int i = 0; i < 12; i++)
+	for (int i = 0; i < 16; i++)
 	{
-		predet[i] =SDL_GetScancodeName( scan[i]);
+		predet[i] =SDL_GetScancodeName(dynamic_cast<KeyboardHID*>(app_->getGameManager()->getPlayerInfo(1).hid)->getkeys().at(i));
 	}
 	for (int i = 0; i < button.size(); i++)
 	{
@@ -130,18 +134,23 @@ void ControlsMenu::initString()
 
 	
 
-	texto[0] = "LEFT";
-	texto[1] = "RIGHT";
-	texto[2] = "UP";
-	texto[3] = "DOWN";
-	texto[4] = "HIT1";
-	texto[5] = "HIT2";
-	texto[6] = "HIT3";
-	texto[7] = "HIT4";
-	texto[8] = "AB1";
-	texto[9] = "AB2";
-	texto[10] = "BLOCK";
-	texto[11] = "GUARDBREAK";
+	texto[0] = "Start";
+	texto[1] = "Select";
+	texto[2] = "LEFT";
+	texto[3] = "UP";
+	texto[4] = "RIGHT";
+	texto[5] = "DOWN";
+	texto[6] = "NORMAL KICK";
+	texto[7] = "STRONG KICK";
+	texto[8] = "NORMAL PUNCH";
+	texto[9] = "STRONG PUNCH";
+	texto[10] = "ABILITY ONE";
+	texto[11] = "ABILITY TWO";
+	texto[12] = "CLICK LEFTJOY";
+	texto[13] = "CLICK RIGHTJOY";
+	texto[14] = "GUARD";
+	texto[15] = "GUARDBREAK";
+
 
 }
 

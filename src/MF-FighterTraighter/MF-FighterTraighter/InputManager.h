@@ -222,6 +222,7 @@ private:
 			bool usado = false;
 			if (control==0)
 			{
+				
 			
 				for (int i = 0; i < keys_.size(); i++)
 				{
