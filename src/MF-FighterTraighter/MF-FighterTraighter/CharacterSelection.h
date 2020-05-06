@@ -13,11 +13,11 @@ public:
 
 	
 	//callbacks
-	static void setAisha(App* app);
-	static void setFlor(App* app);
-	static void setGanonbot(App* app);
-	static void setMockingBird(App* app);
-	static void setRandomCharacter(App* app);
+	static void setAisha(App* app, int n);
+	static void setFlor(App* app, int n);
+	static void setGanonbot(App* app, int n);
+	static void setMockingBird(App* app, int n);
+	static void setRandomCharacter(App* app, int n);
 
 	static void GoToFight(App* app);
 

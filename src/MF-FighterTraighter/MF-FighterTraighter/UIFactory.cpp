@@ -32,6 +32,16 @@ std::tuple<Entity*, Entity*> UIFactory::createButton
 	return std::make_tuple(button, textEnt);
 }
 
+Entity* UIFactory::createButton(int n,App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position, Vector2D anchor, Vector2D pivot, double width, double height, double rotation, SetOnClick* click, SetOnClick* stop)
+{
+	Entity* button = state->getEntityManager().addEntity();
+	button->addComponent<UITransform>(position, anchor, pivot, Vector2D(width, height));
+	button->addComponent<RenderImage>(buttonTex);
+	button->addComponent<Button>(n,click, stop);
+
+	return button;
+}
+
 // create the structure of  slider (bar, buttons and the index)
 std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	(App* app, GameState* state, double min, double max, int steps, 

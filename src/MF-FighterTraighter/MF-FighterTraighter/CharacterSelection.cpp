@@ -57,33 +57,59 @@ void CharacterSelection::init()
 		0, nullptr, nullptr, "Ready", 60, TextComponent::TextAlignment::Center);
 
 	//icons of the character
-	tuple <Entity*, Entity*> flor_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Flor_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Entity* flor_ = UIFactory::createButton(1,app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Flor_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
-		nullptr, setFlor, " ", 120, TextComponent::TextAlignment::Center);
+		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3,0, setFlor,nullptr);
 
-	tuple <Entity*, Entity*> mkwhoop_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Ganonbot_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		 Entity* mkwhoop_ = UIFactory::createButton(1,app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Ganonbot_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
-		nullptr, setGanonbot, " ", 120, TextComponent::TextAlignment::Center);
+		setGanonbot,nullptr);
 
-	tuple <Entity*, Entity*> aisha_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Aisha_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Entity* aisha_ = UIFactory::createButton(1,app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Aisha_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 13, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 13, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 13, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
-		nullptr, setAisha, " ", 120, TextComponent::TextAlignment::Center);
+		setAisha, nullptr);
 
-	tuple <Entity*, Entity*> mockinbird_ = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mock_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Entity* mockinbird_ = UIFactory::createButton(1,app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mock_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
 		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
-		nullptr, setMockingBird, " ", 120, TextComponent::TextAlignment::Center);
+		setMockingBird, nullptr);
+		
+		Entity* flor = UIFactory::createButton(2,app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Flor_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3,0, setFlor,nullptr);
+
+		 Entity* mkwhoop = UIFactory::createButton(2,app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Ganonbot_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
+		setGanonbot,nullptr);
+
+		Entity* aisha = UIFactory::createButton(2,app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Aisha_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 13, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 13, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 13, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
+		setAisha, nullptr);
+
+		Entity* mockinbird = UIFactory::createButton(2,app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mock_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
+		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
+		setMockingBird, nullptr);
 
 	Entity* text_j1 = UIFactory::createText(app_, this, Vector2D(60, -30),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 4 * 3),
@@ -99,85 +125,77 @@ void CharacterSelection::init()
 	//Entitys
 	Entity* nav = entManager_.addEntity();
 	NavigationController* ctrl = nav->addComponent<NavigationController>(4, 2, app_->getGameManager()->getPlayerInfo(1).hid);
-	ctrl->SetElementInPos(std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-	ctrl->SetElementInPos(std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-	ctrl->SetElementInPos(std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), 2, 0);
-	ctrl->SetElementInPos(std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement), 3, 0);
+	ctrl->SetElementInPos(flor_->getComponent<UIElement>(ecs::UIElement), 0, 0);
+	ctrl->SetElementInPos(mkwhoop_->getComponent<UIElement>(ecs::UIElement), 1, 0);
+	ctrl->SetElementInPos(aisha_->getComponent<UIElement>(ecs::UIElement), 2, 0);
+	ctrl->SetElementInPos(mockinbird_->getComponent<UIElement>(ecs::UIElement), 3, 0);
 	ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 
 	Entity* nav_ = entManager_.addEntity();
 	NavigationController* ctrl_ = nav_->addComponent<NavigationController>(4, 2, app_->getGameManager()->getPlayerInfo(2).hid);
-	ctrl_->SetElementInPos(std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-	ctrl_->SetElementInPos(std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-	ctrl_->SetElementInPos(std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), 2, 0);
-	ctrl_->SetElementInPos(std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement), 3, 0);
+	ctrl_->SetElementInPos((flor)->getComponent<UIElement>(ecs::UIElement), 0, 0);
+	ctrl_->SetElementInPos((mkwhoop_)->getComponent<UIElement>(ecs::UIElement), 1, 0);
+	ctrl_->SetElementInPos((aisha_)->getComponent<UIElement>(ecs::UIElement), 2, 0);
+	ctrl_->SetElementInPos((mockinbird_)->getComponent<UIElement>(ecs::UIElement), 3, 0);
 	ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 
 
 	//logic of that for changing the artwork of each player 
 	Entity* logic = entManager_.addEntity();
 	logic->addComponent<CharacterSelectionLogic>(1,text_j1->getComponent<TextComponent>(ecs::TextComponent), leftP_->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav->getComponent<NavigationController>(ecs::NavigationController),
-		std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement),
+		(aisha_)->getComponent<UIElement>(ecs::UIElement), (flor_)->getComponent<UIElement>(ecs::UIElement), (mkwhoop_)->getComponent<UIElement>(ecs::UIElement), (mockinbird_)->getComponent<UIElement>(ecs::UIElement),
 		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
 	Entity* logic_ = entManager_.addEntity();
 	logic_->addComponent<CharacterSelectionLogic>(2,text_j2->getComponent<TextComponent>(ecs::TextComponent), rightP_->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav_->getComponent<NavigationController>(ecs::NavigationController),
-		std::get<0>(aisha_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(flor_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mkwhoop_)->getComponent<UIElement>(ecs::UIElement), std::get<0>(mockinbird_)->getComponent<UIElement>(ecs::UIElement),
+		(aisha)->getComponent<UIElement>(ecs::UIElement), (flor)->getComponent<UIElement>(ecs::UIElement), (mkwhoop)->getComponent<UIElement>(ecs::UIElement), (mockinbird)->getComponent<UIElement>(ecs::UIElement),
 		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
 }
 
-
-
-void CharacterSelection::setAisha(App* app)
+void CharacterSelection::setAisha(App* app, int n)
 {
-	//preguntar player
-	
-	app->getGameManager()->setCharacter(app->getGameManager()->Aisha, 1);
+	app->getGameManager()->setCharacter(app->getGameManager()->Aisha, n);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
-void CharacterSelection::setFlor(App* app)
+void CharacterSelection::setFlor(App* app, int n)
 {
-
 	//preguntar player
 	app->getGameManager()->setCharacter(app->getGameManager()->F10R,1);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
-void CharacterSelection::setGanonbot(App* app)
+void CharacterSelection::setGanonbot(App* app, int n)
 {
-
-	//preguntar player
 	app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p, 1);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
-void CharacterSelection::setMockingBird(App* app)
+void CharacterSelection::setMockingBird(App* app, int n)
 {
-	//preguntar player
 	app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird,1);
 	cout << app->getGameManager()->getPlayerInfo(1).character;
 }
 
-void CharacterSelection::setRandomCharacter(App* app)
+void CharacterSelection::setRandomCharacter(App* app, int n)
 {
 	//generar un random
-	int n = 3;
+	int n_ = 3;
 
-	switch (n) {
+	switch (n_) {
 	case 0:
-		app->getGameManager()->setCharacter(app->getGameManager()->F10R,1);
+		app->getGameManager()->setCharacter(app->getGameManager()->F10R,n);
 		break;
 	case 1:
-		app->getGameManager()->setCharacter(app->getGameManager()->Aisha,1);
+		app->getGameManager()->setCharacter(app->getGameManager()->Aisha,n);
 		break;
 	case 2:
-		app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p,1);
+		app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p,n);
 		break;
 	case 3:
-		app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird,1);
+		app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird,n);
 		break;
 	default:
-		app->getGameManager()->setCharacter(app->getGameManager()->None,1);
+		app->getGameManager()->setCharacter(app->getGameManager()->None,n);
 	}
 }
 
