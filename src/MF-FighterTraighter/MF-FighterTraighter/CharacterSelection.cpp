@@ -141,9 +141,9 @@ void CharacterSelection::init()
 	Entity* nav_ = entManager_.addEntity();
 	NavigationController* ctrl_ = nav_->addComponent<NavigationController>(4, 2, app_->getGameManager()->getPlayerInfo(2).hid);
 	ctrl_->SetElementInPos((flor)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-	ctrl_->SetElementInPos((mkwhoop_)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-	ctrl_->SetElementInPos((aisha_)->getComponent<UIElement>(ecs::UIElement), 2, 0);
-	ctrl_->SetElementInPos((mockinbird_)->getComponent<UIElement>(ecs::UIElement), 3, 0);
+	ctrl_->SetElementInPos((mkwhoop)->getComponent<UIElement>(ecs::UIElement), 1, 0);
+	ctrl_->SetElementInPos((aisha)->getComponent<UIElement>(ecs::UIElement), 2, 0);
+	ctrl_->SetElementInPos((mockinbird)->getComponent<UIElement>(ecs::UIElement), 3, 0);
 	ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 
 
