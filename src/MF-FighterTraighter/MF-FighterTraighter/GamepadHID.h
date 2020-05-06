@@ -13,6 +13,36 @@ public:
 	inline void changeAxis(int index, SDL_GameControllerAxis newAxis) {
 		axes[index] = newAxis;
 	}
+	/*inline void change(int index)
+	{
+		for (int i = 0; i < mando.size(); i++)
+		{
+			if (mando[i] == lastAxisstring() || mando[i] == lastButtonstring())
+			{
+				usado = true;
+				std::string aux = mando[i];
+				mando[i] = mando[index - 4];
+				mando[index - 4] = aux;
+				break;
+			}
+		}
+		if (!usado)
+		{
+			if (controllerEvent_)
+			{
+				mando[index] = lastButtonstring();
+
+			}
+			else
+			{
+				mando[index] = lastAxisstring();
+
+			}
+
+		}
+
+
+	}*/
 
 	virtual void updateInput() override;
 protected:
@@ -29,7 +59,26 @@ protected:
 		}
 		return input / (1 - deadZoneAmount);
 	}
-
+	void ZonaMuerta(SDL_GameControllerAxis ejeX, SDL_GameControllerAxis ejeY)
+	{
+		double stickX = inputM_->getControllerAxis(0, ejeX); // devuelve un valor entre -1.0 y 1.0
+		double stickY = inputM_->getControllerAxis(0, ejeY);; // devuelve un valor entre -1.0 y 1.0
+		//hipo^2=Cat^2+Cat^2 Pitagoras
+		const double deadzoneRadius = deadZoneAmount;
+		const double deadzoneAlCuadrado = deadzoneRadius * deadzoneRadius;
+		double cuadradocatop = stickY * stickY;
+		double cuadradocatadj = stickX * stickX;
+		//Si la deadzone al cuadrado es menor que la suma de los cuadrados al cuadrado se puede leer el input 
+		if ((cuadradocatop + cuadradocatadj) > deadzoneAlCuadrado)
+		{
+			mov = true;
+		}
+		else
+		{
+			mov = false;
+		}
+	}
+	bool mov;
 	const float deadZoneAmount = 0.2; // 0 to 1
 	int gamepadID;
 	InputManager* inputM_;

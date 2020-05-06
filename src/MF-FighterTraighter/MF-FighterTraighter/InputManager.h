@@ -274,10 +274,7 @@ private:
 			}
 			
 		};
-		std::vector<SDL_Scancode>ControlKeyboard()
-		{
-			return keys_;
-		}
+		
 		std::vector<std::string>ControlMando()
 		{
 			return mando;

@@ -119,17 +119,16 @@ void ControlsMenu::ChangeControl(App*app,int index,int control) {
 
 void ControlsMenu::initString()
 {
-	std::vector < SDL_Scancode >scan=app_->getInputManager()->ControlKeyboard();
-	std::vector < std::string >button=app_->getInputManager()->ControlMando();
+	
 
 	for (int i = 0; i < 16; i++)
 	{
 		predet[i] =SDL_GetScancodeName(dynamic_cast<KeyboardHID*>(app_->getGameManager()->getPlayerInfo(1).hid)->getkeys().at(i));
 	}
-	for (int i = 0; i < button.size(); i++)
+	/*for (int i = 0; i < button.size(); i++)
 	{
 		predetMando[i] = button[i];
-	}
+	}*/
 	
 
 	
