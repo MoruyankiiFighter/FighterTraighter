@@ -8,7 +8,7 @@ class NavigationController :
 	public Component
 {
 public:
-	NavigationController(size_t sizeX, size_t sizeY);
+	NavigationController(size_t sizeX, size_t sizeY, HID* owner = nullptr);
 	virtual ~NavigationController() {};
 
 	void init() override;
@@ -25,5 +25,6 @@ protected:
 	int findInColFrom(int x);
 
 	bool selectedFirst_ = false;
+	HID* owner_ = nullptr;
 };
 
