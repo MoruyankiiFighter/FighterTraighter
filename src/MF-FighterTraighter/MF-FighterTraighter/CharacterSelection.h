@@ -8,7 +8,7 @@ public:
 
 	//constructor
 	CharacterSelection(App* app) : GameState(app) { init(); }
-
+	virtual ~CharacterSelection() {}
 	void init() override;
 
 	

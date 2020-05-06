@@ -1,5 +1,10 @@
 #include "CharacterSelectionLogic.h"
 
+CharacterSelectionLogic::~CharacterSelectionLogic()
+{
+	
+}
+
 void CharacterSelectionLogic::init()
 {
 	desc_->setText("");
