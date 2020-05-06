@@ -14,23 +14,24 @@ public:
 
 	virtual void Press()
 	{
-		state_ = Pressed;
+		Buttonstate_ = Pressed;
+		Buttonstate_ = Pressed;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(2, 0);
 	};
 	virtual void Select()
 	{
-		if (state_ != Selected) {
-			state_ = Selected;
+		if (Buttonstate_ != Selected) {
+			Buttonstate_ = Selected;
 			entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
 		}
 	};
 	virtual void Disable()
 	{
-		state_ = Disabled;
+		Buttonstate_ = Disabled;
 	};
 	virtual void Deselect()
 	{
-		state_ = Normal;
+		Buttonstate_ = Normal;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(0, 0);
 	};
 

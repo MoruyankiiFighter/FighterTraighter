@@ -17,7 +17,7 @@ void ButtonControl::handleInput()
 	switch (b)
 	{
 	case ButtonControl::ini:
-		if (state_ == Selected) {
+		if (Buttonstate_ == Selected) {
 
 			if (imngr->isKeyDown(SDL_SCANCODE_RETURN) && control == 0) {
 				Press();
@@ -25,7 +25,7 @@ void ButtonControl::handleInput()
 
 				b = pressEnter;
 			}
-			else if (imngr->isControllerButtonUp(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A) && control == 1)
+		/**/	else if (imngr->isControllerButtonUp(0, SDL_CONTROLLER_BUTTON_A) && control == 1)
 			{
 				Press();
 				text_->setText("Press Button");
@@ -41,7 +41,7 @@ void ButtonControl::handleInput()
 		
 		break;
 	case ButtonControl::pressA:
-		if (!imngr->isControllerButtonPressed(InputManager::PLAYER1, SDL_CONTROLLER_BUTTON_A))
+		/**/	if (!imngr->isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_A))
 		{
 			b = AUP;
 
@@ -83,7 +83,7 @@ void ButtonControl::handleInput()
 		{
 			clickCallback_(app_, index, control);
 		}
-		state_ = Selected;
+		Buttonstate_ = Selected;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
 		break;
 	}			
