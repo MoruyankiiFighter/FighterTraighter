@@ -9,7 +9,7 @@ void UITimer::init()
 
 void UITimer::update()
 {
-	if (!timerStopped_) {
+	if (!timerStopped_ && !invisibleText) {
 		if (!countdown_) {
 			timerNow_ = SDL_GetTicks();
 		}

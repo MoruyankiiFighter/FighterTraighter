@@ -11,6 +11,6 @@ void AbilitiesTimerFunction::update(){
 }
 
 void AbilitiesTimerFunction::updateTimerAb(int index, int time) {
-	if (index == 0) { timer1_->resumeTimer(); timer1_->setCountdown(time); }
-	else if (index == 1) { timer2_->resumeTimer(); timer2_->setCountdown(time); }
+	if (index == 0) { timer1_->resumeTimer(); timer1_->setInvisible(false); timer1_->setCountdown(time); }
+	else if (index == 1) { timer2_->resumeTimer(); timer2_->setInvisible(false); timer2_->setCountdown(time); }
 };

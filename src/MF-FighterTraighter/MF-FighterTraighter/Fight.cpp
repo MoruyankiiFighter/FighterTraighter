@@ -73,12 +73,12 @@ void Fight::init()
 	ability2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mark2));
 	Entity* timerab1 = entManager_.addEntity();
 	timerab1->addComponent<UITransform>(Vector2D(30, imageY-50.0), Vector2D(), Vector2D(), Vector2D(200, 100));
-	timerab1->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab1->addComponent<UITimer>(UITimer::Seconds);
+	timerab1->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
+	timerab1->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
 	Entity* timerab2 = entManager_.addEntity();
 	timerab2->addComponent<UITransform>(Vector2D(180, imageY-50.0), Vector2D(), Vector2D(), Vector2D(200, 100));
-	timerab2->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab2->addComponent<UITimer>(UITimer::Seconds);
+	timerab2->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
+	timerab2->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
 	Entity* timerspl1 = entManager_.addEntity();
 	timerspl1->addComponent<AbilitiesTimerFunction>(app_->getGameManager()->getPlayerInfo(1).hid, timerab1->getComponent<UITimer>(ecs::UITimer), timerab2->getComponent<UITimer>(ecs::UITimer), player1);
 	
@@ -105,13 +105,14 @@ void Fight::init()
 	ability2p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mark2));
 	Entity* timerab1p2 = entManager_.addEntity();
 	timerab1p2->addComponent<UITransform>(Vector2D(windowWidth-400.0, imageY-50.0), Vector2D(), Vector2D(), Vector2D(200, 100));
-	timerab1p2->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab1p2->addComponent<UITimer>(UITimer::Seconds)->setCountdown(player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(0));
+	timerab1p2->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
+	timerab1p2->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
 	Entity* timerab2p2 = entManager_.addEntity();
 	timerab2p2->addComponent<UITransform>(Vector2D(windowWidth-250.0, imageY-50.0), Vector2D(), Vector2D(), Vector2D(200, 100));
-	timerab2p2->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab2p2->addComponent<UITimer>(UITimer::Seconds)->setCountdown(player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(1));
-
+	timerab2p2->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
+	timerab2p2->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
+	Entity* timerspl2 = entManager_.addEntity();
+	timerspl2->addComponent<AbilitiesTimerFunction>(app_->getGameManager()->getPlayerInfo(1).hid, timerab1p2->getComponent<UITimer>(ecs::UITimer), timerab2p2->getComponent<UITimer>(ecs::UITimer), player2);
 	//player1->addComponent
 	
 	//player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player2), 1);
