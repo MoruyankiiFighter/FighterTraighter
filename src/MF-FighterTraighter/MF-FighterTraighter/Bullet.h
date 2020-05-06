@@ -8,9 +8,9 @@ class Bullet : public Component
 public:
 	Bullet(uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
 	virtual ~Bullet() {}
-	void init() override;
+	virtual void init() override;
 	//void update() override;
-private:
+protected:
 	PhysicsTransform* transform_ = nullptr;
 	Vector2D speed_;
 	int damage_;

@@ -137,6 +137,7 @@
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletGravity.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadHID.cpp" />
     <ClCompile Include="HID.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletGravity.h" />
     <ClInclude Include="DestroyOnHit.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />

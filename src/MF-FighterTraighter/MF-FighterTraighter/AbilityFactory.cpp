@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "RenderImage.h"
 #include "PlayerAttacks.h"
+#include "BulletGravity.h"
 //#include "playerinfo"
 
 
@@ -208,8 +209,8 @@ AnimationChain* AbilityFactory::GiveExplosiveWillpower(Entity* e)
 	//vecMov.push_back(new Move(10, nullptr, EW2, e));
 	//vecMov.push_back(new Move(10, nullptr, EW3, e));
 	vecMov.push_back(new Move(25, nullptr, nullptr, e));
-	AnimationChain* MegatonGrip = new AnimationChain(vecMov);
-	return MegatonGrip;
+	AnimationChain* ExplosiveWillpower = new AnimationChain(vecMov);
+	return ExplosiveWillpower;
 }
 
 void AbilityFactory::EWC(Entity* ent)
@@ -269,6 +270,60 @@ void AbilityFactory::EW3(Entity* ent)
 {
 }
 
+AnimationChain* AbilityFactory::GiveAcidSplit(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(1, nullptr, ASC, e));
+	vecMov.push_back(new Move(40, nullptr, AS1, e));
+	//vecMov.push_back(new Move(10, nullptr, EW2, e));
+	//vecMov.push_back(new Move(10, nullptr, EW3, e));
+	//vecMov.push_back(new Move(25, nullptr, nullptr, e));
+	AnimationChain* AcidSplit = new AnimationChain(vecMov);
+	return AcidSplit;
+}
+
+void AbilityFactory::AS1(Entity* ent)
+{
+	std::cout << "Meatballs" << endl;
+	Vector2D speed(10, 0);
+	uint16 mask;
+	//CollisionFilters
+	App* app = ent->getApp();
+	Entity* otherPlayer;
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2);
+		mask = currentState->PLAYER_2 | currentState->BOUNDARY;
+	}
+	else {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
+		mask = currentState->PLAYER_1 | currentState->BOUNDARY;
+	}
+	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
+	Vector2D pos = Vector2D(phTr->getPosition().getX() + phTr->getWidth() / 2, phTr->getPosition().getY() + phTr->getHeight()/2);//first rock
+
+	
+	//pos2 = Vector2D(otherPos.getX()-150, -320);
+
+	int damage = 10;
+	int hitstun = 9;
+	Vector2D knockBack(5, 2);
+	int time = 165;
+	bool destroyInContact = true;
+	double width = 150;
+	double height = 150;
+	bool gravity = true;
+	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Ss2);
+	createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact, gravity);
+
+}
+
+void AbilityFactory::ASC(Entity* ent)
+{
+	goOnCoolodwn(ent,60 * 5);
+}
+
 ////no se usa
 //AnimationChain* AbilityFactory::Bullets(Entity* e)
 //{
@@ -302,7 +357,7 @@ void AbilityFactory::EW3(Entity* ent)
 //}
 
 void AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
-	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact) {
+	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact, bool gravity) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
 	if (pos.getX() >= windowWidth)  pos.setX(windowWidth);
 	else if (pos.getX() <= 0)  pos.setX(0);
@@ -312,9 +367,16 @@ void AbilityFactory::createProyectile(Entity* ent, double width, double height,V
 	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
 		currentState->BULLET, mask, 1)->setOrientation(orientation);
 	e->addComponent<RenderImage>(texture);
-	e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, damage, hitstun, knockBack, time, destroyInContact);
+
+	if(gravity)
+		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, damage, hitstun, knockBack, time, destroyInContact);
+
+	else
+		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, damage, hitstun, knockBack, time, destroyInContact);
 
 }
+
+
 
 void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 {
@@ -325,5 +387,7 @@ void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> AbilityFactory::abilities_map = {
 	{GameManager::AbilityID::SeismicShock, AbilityFactory::GiveSeismicShock},
 	{GameManager::AbilityID::MegatonGrip, AbilityFactory::GiveMegatonGrip},
-	{GameManager::AbilityID::ExplosiveWillpower, AbilityFactory::GiveExplosiveWillpower}
+	{GameManager::AbilityID::ExplosiveWillpower, AbilityFactory::GiveExplosiveWillpower},
+	{GameManager::AbilityID::AcidSplit, AbilityFactory::GiveAcidSplit}
+
 };

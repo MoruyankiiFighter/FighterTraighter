@@ -13,7 +13,8 @@ public:
 enum AbilityID {
 	SeismicShock,
 	MegatonGrip,
-	ExplosiveWillpower
+	ExplosiveWillpower,
+	AcidSplit
 };
 protected:
 	// TODO: Move from here to somewhere else
