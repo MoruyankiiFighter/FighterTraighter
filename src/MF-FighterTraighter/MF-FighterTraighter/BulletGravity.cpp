@@ -1,8 +1,7 @@
 #include "BulletGravity.h"
 
-BulletGravity::BulletGravity(uint16 playerNumber, Vector2D speed, int damage, int hitstun,
-	Vector2D knockBack, int time, bool destroyInContact) :
-	Bullet(playerNumber,speed,damage,hitstun,knockBack,time,destroyInContact)
+BulletGravity::BulletGravity(uint16 playernumber, HitboxData* onhit, Vector2D speed) :
+	Bullet(playernumber, onhit,speed)
 {
 
 }

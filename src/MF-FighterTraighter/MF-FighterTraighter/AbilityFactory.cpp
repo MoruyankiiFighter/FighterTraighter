@@ -6,6 +6,8 @@
 #include "RenderImage.h"
 #include "PlayerAttacks.h"
 #include "BulletGravity.h"
+#include "FallOnHit.h"
+
 //#include "playerinfo"
 
 
@@ -367,12 +369,12 @@ void AbilityFactory::createProyectile(Entity* ent, double width, double height,V
 	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
 		currentState->BULLET, mask, 1)->setOrientation(orientation);
 	e->addComponent<RenderImage>(texture);
-
+	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
 	if(gravity)
-		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, damage, hitstun, knockBack, time, destroyInContact);
+		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, destroyInContact) , Vector2D( 7,0 ));
 
 	else
-		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), speed, damage, hitstun, knockBack, time, destroyInContact);
+		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, destroyInContact));
 
 }
 

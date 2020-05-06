@@ -1,5 +1,6 @@
 #pragma once
 #include "HitboxData.h"
+#include "PhysicsTransform.h"
 class DestroyOnHit:  public HitboxData
 {
 public:

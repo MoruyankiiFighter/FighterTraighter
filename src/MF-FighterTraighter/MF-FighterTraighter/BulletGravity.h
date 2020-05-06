@@ -3,11 +3,13 @@
 class BulletGravity : public Bullet
 {
 public:
-	BulletGravity(uint16 playerNumber, Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
+	BulletGravity(uint16 playernumber, HitboxData* onhit, Vector2D speed=Vector2D(0,0));
 	virtual ~BulletGravity() {}
 	//void init() override;
 	void update() override;
 	//void update() override;
+	void changeSpeed(Vector2D newSpeed) { speed_ = newSpeed; }
+	Vector2D getSpeed() { return speed_; }
 
 };
 
