@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <iostream>
 #include "GameStateMachine.h"
+#include "RandomNumberGenerator.h"
 #include "InputManager.h"
 #include "MainMenu.h"
 #include "AssetsManager.h"
@@ -41,6 +42,10 @@ public:
 
 	inline unsigned int getFrameRate() { return frameRate_; }
 
+	inline RandomNumberGenerator* getRandGen() const {
+		return random_;
+	}
+
 	//calls update of the current state
 	void update();
 
@@ -66,6 +71,7 @@ private:
 
 
 	SDL_Renderer* renderer;
+	RandomNumberGenerator* random_;
 	std::unique_ptr<GameStateMachine> stateMachine_; //game state machine
 	std::unique_ptr<InputManager> inputManager_;//input manager
 	std::unique_ptr<AssetsManager> assetsManager_;//assets manager
