@@ -149,6 +149,7 @@
     <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="NavigationController.cpp" />
     <ClCompile Include="OptionsLogic.cpp" />
+    <ClCompile Include="Particle.cpp" />
     <ClCompile Include="PlayerAnimation.cpp" />
     <ClCompile Include="PlayerAttacks.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="RenderAnimation.cpp" />
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="LinkedGrid.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="UIHealthbar.cpp" />
     <ClCompile Include="UIRoundRenderer.cpp" />
@@ -219,6 +221,7 @@
     <ClInclude Include="NavigationController.h" />
     <ClInclude Include="OnHit.h" />
     <ClInclude Include="OptionsLogic.h" />
+    <ClInclude Include="Particle.h" />
     <ClInclude Include="PlayerAnimation.h" />
     <ClInclude Include="PlayerAttacks.h" />
     <ClInclude Include="Button.h" />
@@ -246,6 +249,7 @@
     <ClInclude Include="RenderAnimation.h" />
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="UIHealthbar.h" />
     <ClInclude Include="UIRoundRenderer.h" />

@@ -186,6 +186,8 @@
     <ClCompile Include="PunchingBagOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -403,6 +405,8 @@
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
