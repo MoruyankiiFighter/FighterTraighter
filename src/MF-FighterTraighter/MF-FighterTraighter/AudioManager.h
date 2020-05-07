@@ -4,12 +4,14 @@
 #include <string>
 #include <vector>
 #include <SDL_mixer.h>
+class App;
 
 class AudioManager
 {
+
 public:
-	AudioManager();
-	AudioManager(int channels);
+	AudioManager(App* app);
+	AudioManager(int channels, App* app);
 
 	virtual ~AudioManager();
 
@@ -27,9 +29,13 @@ public:
 	void stopMusic();
 	virtual void pauseMusic();
 	virtual bool pausedMusic();
+	void silenceMusic();
+
 	virtual void resumeMusic();
 	void resumeAll();
-
+	void resumeChannel(int channel);
+	//void playChunk(int channel,Mix_Chunk* music, bool loops);
+	//void pauseChannel(int channel);
 	//int getGeneralVolume() const;
 	int getMusicVolume() const;
 	int getSFXVolume() const;
@@ -40,8 +46,11 @@ public:
 	//void setChannelvolume(int channel, float volume_ratio);
 
 private:
+	App* app_;
 	bool initialized_ = false;
 	int channels_ = -1;
-	//bool silenced=false;
+	int volumeSFX = 128;
+	
+	bool silenced=false;
 };
 

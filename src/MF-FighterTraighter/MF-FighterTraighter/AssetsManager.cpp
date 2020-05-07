@@ -7,6 +7,7 @@ AssetsManager::AssetsManager(App* app) : app_(app)
 	loadTextures();
 	loadFonts();
 	loadMusic();
+	loadSFX();
 }
 
 Texture* AssetsManager::getTexture(AssetsManager::TextureNames id)
@@ -62,19 +63,23 @@ Mix_Music* AssetsManager::getMusic(AssetsManager::MusicNames id)
 
 void AssetsManager::loadMusic()
 {
-	size_t id = 1;
+	//size_t id = 1;
 
 	music_.emplace(MENU_PRINCIPAL, app_->getAudioMngr()->loadMusic("../../../../assets/Assets/Sounds/Songs/New Hope menu.ogg"));
+	music_.emplace(MENU_OPCIONES, app_->getAudioMngr()->loadMusic("../../../../assets/Assets/Sounds/Songs/Never Surrender.ogg"));
 	music_.emplace(FIGHT_1, app_->getAudioMngr()->loadMusic("../../../../assets/Assets/Sounds/Songs/Boss Fight.ogg"));
-
 	//music_.emplace(Nombre,app_->getAudioManager()->loadMusic("../../../../assets/Assets/Sounds/Songs/nombre de la cancion. formato"));
 
 }
-//
-//Mix_Chunk* AssetsManager::getSFX(AssetsManager::SFXNames id)
-//{	
-//	return sfx_[id];
-//}
+
+Mix_Chunk* AssetsManager::getSFX(AssetsManager::SFXNames id)
+{	
+	return sfx_[id];
+}
+void AssetsManager::loadSFX()
+{
+	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
+}
 //void AssetsManager::playMusic(const string& name, int channel)
 //{
 //}

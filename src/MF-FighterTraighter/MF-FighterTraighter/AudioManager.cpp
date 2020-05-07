@@ -1,15 +1,15 @@
 #include "AudioManager.h"
 #include <SDL_mixer.h>
 #include <SDL.h>
+#include "App.h"
+AudioManager::AudioManager(App* app) : AudioManager(8, app) { }
 
-AudioManager::AudioManager() : AudioManager(8) { }
-
-AudioManager::AudioManager(int channels) : channels_(channels)
+AudioManager::AudioManager(int channels, App* app) : channels_(channels), app_(app)
 {
 	if (SDL_Init(SDL_INIT_AUDIO) == 0)
 		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) != 0)
 			std::cout << "Audio Manager not loaded" << Mix_GetError() << std::endl;
-
+	silenced = false;
 	initialized_ = true;
 }
 
@@ -27,7 +27,7 @@ Mix_Chunk* AudioManager::loadSFX(const std::string& fileName)
 
 void AudioManager::playSFX(Mix_Chunk* sound, int loops, int channel)
 {
-	if (sound != nullptr && loops != -1)
+	if (sound != nullptr && loops != -1 && !silenced)
 		Mix_PlayChannel(channel, sound, loops);
 }
 
@@ -37,10 +37,31 @@ Mix_Music* AudioManager::loadMusic(const std::string& fileName)
 	return m;
 }
 
+
+//void AudioManager::playChunk(int channel,Mix_Chunk* music, bool loops)
+//{
+//	if (music != nullptr) {
+//		//Mix_PlayMusic(music, loops ? -1 : 0); //si loop= true se loopea(-1), en caso contrario 1 vez
+//		//Mix_PlayChannel(channel, music, loops);
+//	}
+//	else {
+//		//lanzar excepciones
+//	}
+//}
+//
+//void AudioManager::pauseChannel(int channel)
+//{
+//	Mix_Pause(channel);
+//}
+
 void AudioManager::playMusic(Mix_Music* music, bool loops)
 {
-	if (music != nullptr) {
-		Mix_PlayMusic(music, loops ? -1 : 0); //si loop= true se loopea(-1), en caso contrario 1 vez
+	
+	//silenced = false;
+	if (music != nullptr && !silenced) {
+		
+			Mix_PlayMusic(music, loops ? -1 : 0); //si loop= true se loopea(-1), en caso contrario 1 vez
+		
 	}
 	else {
 		//lanzar excepciones
@@ -63,22 +84,39 @@ bool AudioManager::pausedMusic()
 	return Mix_PausedMusic();
 }
 
+void AudioManager::silenceMusic()
+{
+	silenced = true;
+	Mix_PauseMusic();
+
+	Mix_Volume(-1, 0);
+}
+
 void AudioManager::resumeMusic()
 {
-	//silenced = false;
+	silenced = false;
 	Mix_ResumeMusic();
+	Mix_Volume(-1,volumeSFX);
 }
 
 void AudioManager::resumeAll()
 {
-	//silenced = false;
+	silenced = false;
 	Mix_Resume(-1);
+}
+
+void AudioManager::resumeChannel(int channel)
+{
+	Mix_Resume(channel);
+
 }
 
 void AudioManager::stopMusic()
 {
 	//silenced = true;
 	Mix_PauseMusic();
+
+	//Mix_HaltMusic();
 }
 
 //void AudioManager::setGeneralVolume(float MaxVolume, float volume_ratio)
@@ -89,7 +127,13 @@ void AudioManager::stopMusic()
 
 int AudioManager::setSFXVolume( int volume)
 {
-	return Mix_Volume(-1, volume);
+	volumeSFX = volume;
+	int vol = Mix_Volume(-1, volume);
+	
+	playSFX(app_->getAssetsManager()->getSFX(AssetsManager::AISHA_1), true);
+
+	return vol;
+
 }
 
 /*int AudioManager::getGeneralVolume() const

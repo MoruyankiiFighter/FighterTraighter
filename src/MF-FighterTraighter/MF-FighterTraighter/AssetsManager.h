@@ -97,8 +97,8 @@ public:
 
 
 	////sfx methods
-	//Mix_Chunk* getSFX(AssetsManager::SFXNames id);
-	////void loadSFX();
+	Mix_Chunk* getSFX(AssetsManager::SFXNames id);
+	void loadSFX();
 	////return the audio with the position id
 	////Audio* getAudio(size_t id);
 	//
@@ -117,13 +117,12 @@ public:
 	//void setMusicVolume(float volume_ratio);
 	//void setSFXVolume(const string& name, float volume_ratio);
 
-
 private:
 	std::map<TextureNames, Texture*> textures_;
 	std::map<FontNames, Font*> fonts_;
 	std::map <MusicNames, Mix_Music*> music_;	//music
 	std::map <SFXNames, Mix_Chunk*> sfx_;		//sound effects
-
+	
 	App* app_;
 };
 

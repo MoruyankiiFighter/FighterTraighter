@@ -6,6 +6,7 @@
 //callbacks para el menu de pausa
 class PauseMenu: public GameState
 {
+private:
 
 public:
 	//constructor

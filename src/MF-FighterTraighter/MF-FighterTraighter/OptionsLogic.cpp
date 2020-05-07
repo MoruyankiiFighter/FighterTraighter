@@ -10,7 +10,7 @@ void OptionsLogic::init()
 	resolutionsSlider_->setSteps(mngr->getAvailableResolutions() - 2);
 	brightnessSlider_->setValue(mngr->getCurBrightness());
 	musicSlider_->setValue(audioMng ->getMusicVolume());
-	SFXSlider_->setValue(audioMng->getMusicVolume());
+	SFXSlider_->setValue(audioMng->getSFXVolume());
 
 	SetElements();
 }

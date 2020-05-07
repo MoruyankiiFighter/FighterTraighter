@@ -156,17 +156,11 @@ void OptionsMenu::silence(App* app)
 {
 	AudioManager* audioMng = app->getAudioMngr();
 	if (!audioMng->pausedMusic())
-		audioMng->stopMusic();
+		audioMng->silenceMusic();
 	else audioMng->resumeMusic();
-	//parar tambien en futuro el sonido de efectos 
 }
 
-/*
-void OptionsMenu::SetVolume(App* app, double value) //CAMBIAR CUANDO TENGAMOS UN SOUND MANAGER/AUDIO MANAGER
-{
-	SDL_SetWindowBrightness(app->getWindowManager()->getWindow(), value);
-	// also save to a config file
-}*/
+
 
 //fullscreen
 void OptionsMenu::fullScreen(App* app) {

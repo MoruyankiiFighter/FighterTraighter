@@ -85,8 +85,8 @@ void App::init()
 	stateMachine_.reset(new GameStateMachine());
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
+	audioManager_.reset(new AudioManager(this));
 	gameManager_.reset(new GameManager(this));
-	audioManager_.reset(new AudioManager());
 
 
 }
