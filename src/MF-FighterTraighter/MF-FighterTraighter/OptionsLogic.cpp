@@ -10,8 +10,11 @@ void OptionsLogic::init()
 	resolutionsSlider_->setSteps(mngr->getAvailableResolutions() - 2);
 	brightnessSlider_->setValue(mngr->getCurBrightness());
 	musicSlider_->setValue(audioMng ->getMusicVolume());
+	//Solucion 1 Poner volumen a 0
+	audioMng->setSFXVolume(0);
 	SFXSlider_->setValue(audioMng->getSFXVolume());
-
+	//Solucion 2 poner un valor inicial del slider sin que llame al callback
+	//SFXSlider_->setinValue(audioMng->getSFXVolume());
 	SetElements();
 }
 
