@@ -3,7 +3,7 @@
 
 F10RData::F10RData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber):
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
-	animLength_ = { {4, true, 12}, {3, true, 15}, {2, true, 3}, {1, true, 15}, {2, false, 2}, {4, false, 10}, {6, false, 10}, {5, false, 8},
+	animLength_ = { {4, true, 12}, {3, true, 15}, {2, true, 3}, {1, true, 15}, {2, false, 2}, {4, false, 10}, {6, false, 10}, {5, false, 12},
 	{3, false, 7}, {4, false, 13}, {4, false, 10}, {4, false, 7}, {5, false, 15}, {2, true, 15}, {2, false, 10}, {2, true, 4}, {2, false, 10},
 	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 7}, {4, true, 15}, {3, true, 10} };
 }
@@ -76,9 +76,9 @@ void F10RData::NP1(Entity* ent)
 }
 
 PlayerData::CallbackData F10RData::np1 = PlayerData::CallbackData{
-	{ 100, -10 },
+	{ 110, -10 },
 	{ 50, 0 },
-	105,
+	125,
 	95,
 	10,
 	7,
@@ -115,7 +115,7 @@ void F10RData::HP1(Entity* ent)
 
 PlayerData::CallbackData F10RData::hp1 = PlayerData::CallbackData{
 	{ 0, 320 },
-	{ 6, 0 },
+	{ 12, 0 },
 	325,
 	70,
 	20,
@@ -124,23 +124,36 @@ PlayerData::CallbackData F10RData::hp1 = PlayerData::CallbackData{
 
 void F10RData::NK1(Entity* ent)
 {
+#ifdef _DEBUG
+	std::cout << "Kik in the Kök" << endl;
+#endif // _DEBUG
+
+	double hitbox_X = nk1.position.getX();
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	int orientation_ = pT->getOrientation();
+	if (orientation_ == -1)
+		hitbox_X += nk1.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, nk1.position.getY() }, nk1.width, nk1.height, nk1.time, pD->getAttack() * nk1.damage, nk1.hitstun,
+		{ (double)orientation_ * nk1.knockBack.getX(), nk1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 }
 
 PlayerData::CallbackData F10RData::nk1 = PlayerData::CallbackData{
-	{ 100, -150 },
-	{ 300, -360 },
-	150,
-	200,
-	20,
-	9,
-	42 };
+	{ 105, 95 },
+	{ 500, -200 },
+	100,
+	100,
+	15,
+	15,
+	31 };
 
 void F10RData::HK1(Entity* ent)
 {
 }
 
 PlayerData::CallbackData F10RData::hk1 = PlayerData::CallbackData{
-	{ 100, -150 },
+	{ 80, -150 },
 	{ 300, -360 },
 	150,
 	200,
