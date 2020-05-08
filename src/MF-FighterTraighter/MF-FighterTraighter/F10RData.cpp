@@ -155,7 +155,7 @@ void F10RData::HK1(Entity* ent)
 #endif // _DEBUG
 
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::F10RHk);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 
 	uint16 mask;
