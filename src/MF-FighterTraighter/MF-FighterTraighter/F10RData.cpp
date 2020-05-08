@@ -4,7 +4,7 @@
 F10RData::F10RData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber):
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
 	animLength_ = { {4, true, 12}, {3, true, 15}, {2, true, 3}, {1, true, 15}, {2, false, 2}, {4, false, 10}, {6, false, 10}, {5, false, 12},
-	{6, false, 14}, {4, false, 13}, {4, false, 10}, {4, false, 7}, {5, false, 15}, {2, true, 15}, {2, false, 10}, {2, true, 4}, {2, false, 10},
+	{6, false, 14}, {5, false, 10}, {4, false, 10}, {4, false, 7}, {5, false, 15}, {2, true, 15}, {2, false, 10}, {2, true, 4}, {2, false, 10},
 	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 7}, {4, true, 15}, {3, true, 10} };
 }
 
@@ -32,8 +32,8 @@ void F10RData::init()
 	hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(32, nullptr, ANP1, entity_));
-	vecMov.push_back(new Move(35, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(24, nullptr, ANP1, entity_));
+	vecMov.push_back(new Move(30, nullptr, nullptr, entity_));
 	air_normal_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -188,16 +188,29 @@ PlayerData::CallbackData F10RData::hk1 = PlayerData::CallbackData{
 
 void F10RData::ANP1(Entity* ent)
 {
+#ifdef _DEBUG
+	std::cout << "Pollen" << endl;
+#endif // _DEBUG
+
+	double hitbox_X = anp1.position.getX();
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	int orientation_ = pT->getOrientation();
+	if (orientation_ == -1)
+		hitbox_X += anp1.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, anp1.position.getY() }, anp1.width, anp1.height, anp1.time, pD->getAttack() * anp1.damage, anp1.hitstun,
+		{ (double)orientation_ * anp1.knockBack.getX(), anp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 }
 
 PlayerData::CallbackData F10RData::anp1 = PlayerData::CallbackData{
-	{ 100, -150 },
-	{ 300, -360 },
-	150,
-	200,
-	20,
-	9,
-	42 };
+	{ -100, -140 },
+	{ 500, -270 },
+	350,
+	350,
+	15,
+	5,
+	12 };
 
 void F10RData::AHP1(Entity* ent)
 {
