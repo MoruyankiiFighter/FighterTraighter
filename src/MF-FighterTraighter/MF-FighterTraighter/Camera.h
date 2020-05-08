@@ -1,25 +1,27 @@
 #pragma once
 #include "Vector2D.h"
-#include "SDL.h"
-#include "App.h"
-#include "Entity.h"
+#include "Component.h"
+#include "PhysicsTransform.h"
 
-class Camera
+class Camera:public Component
 {
 public:
-	/*inline static Camera* GetInstance() {
-		return s_Instance - (s_Instance != nullptr) ? s_Instance : new Camera();
-	}*/
-	inline SDL_Rect GetViewBox() { return m_ViewBox; }
-	inline Vector2D GetPosition() { return m_Position; }
-	inline  void SetTarget(Vector2D* target) { m_Target = target; }
-	inline void update();
-private:
-	Camera() {/* m_ViewBox = {0,0,app->getWindowManager()->getWindow,pones las dimensiones de la ventana*/ };
 
-		static Camera* s_Instance;
+	Camera(Transform*Target ) : Component(ecs::Camera),m_Target1(Target)
+	{};
+	Camera(Transform*Target, Transform* Target2) : Component(ecs::Camera),m_Target1(Target),m_Target2(Target2)
+	{};
+	void init()override
+	{
+		cam = entity_->getComponent<Transform>(ecs::Transform);
+	}
+	virtual void update()override;
+private:
+	void ControlaLimites();
+	inline void CalculaPunto();
 		SDL_Rect m_ViewBox;
-		Vector2D m_Position;
-		Vector2D* m_Target;
+		Transform* cam;
+		Transform* m_Target1;
+		Transform* m_Target2;
 };
 

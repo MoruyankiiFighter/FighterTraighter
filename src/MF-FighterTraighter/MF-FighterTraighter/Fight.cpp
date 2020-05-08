@@ -10,6 +10,7 @@
 #include "RenderAnimation.h"
 #include "Bullet.h"
 
+#include "Camera.h"
 Fight::Fight(App* app) : GameState(app)
 {
 	init();
@@ -18,10 +19,13 @@ Fight::Fight(App* app) : GameState(app)
 void Fight::init()
 {
 	GameState::init();
+
+
 	doStep = true;
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
-	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+//bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight));
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
@@ -30,12 +34,12 @@ void Fight::init()
 	//floor->addComponent<FloorOnHit>();
 	FpT->changeFriction(3);
 	//Walls
-	Entity* wall1 = entManager_.addEntity();
+	/*Entity* wall1 = entManager_.addEntity();
 	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
 	W1pT->changeFriction(0);
 	Entity* wall2 = entManager_.addEntity();
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
-	W2pT->changeFriction(0);
+	W2pT->changeFriction(0);*/
 
 	
 	//Player 1
@@ -49,6 +53,8 @@ void Fight::init()
 	abilitiesP1.push_back("SeismicShock");
 	entManager_.setHandler(player1, ecs::Player1);
 
+
+
 	//Player 2
 	Entity* player2 = FactoryMk::addMkToGame(app_, this, -1, app_->getGameManager()->getPlayerInfo(2).hid, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
 	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(app_->getGameManager()->getPlayerInfo(1).ability1Index, player2), 0);
@@ -57,6 +63,9 @@ void Fight::init()
 	abilitiesP2.push_back("SeismicShock");
 	abilitiesP2.push_back("ExplosiveWillpower");
 	entManager_.setHandler(player2, ecs::Player2);
+
+ 	bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform));
+
 
 
 	Entity* timer = entManager_.addEntity();

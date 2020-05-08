@@ -25,6 +25,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, HID*
 	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::GanonSheet));
 	e->addComponent<PlayerState>();
 	Health* h = e->addComponent<Health>(110);
+
 	//e->addComponent<PlayerOnHit>();
 	PlayerData* pdata = e->addComponent<MkWH00PData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 50, playerNumber);
 
