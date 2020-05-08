@@ -71,6 +71,9 @@ public:
 		MKBIRD_3,
 		/// SFX
 
+		PUNCH,
+		KICK
+
 	};
 	//constructors
 	AssetsManager(App* app);

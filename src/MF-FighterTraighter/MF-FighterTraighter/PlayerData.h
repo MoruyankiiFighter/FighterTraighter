@@ -185,6 +185,7 @@ protected:
 			time,
 			damage,
 			hitstun;
+		
 	};
 	//Player Features
 	double* width_,

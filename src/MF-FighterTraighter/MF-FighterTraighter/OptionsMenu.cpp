@@ -113,7 +113,6 @@ tuple<Entity*, Entity*> silenceVolume = UIFactory::createButton(app_, this, app_
 	ctrl->SetElementInPos(std::get<0>(SoundSlider)->getComponent<UIElement>(ecs::UIElement), 0, 6);
 	ctrl->SetElementInPos(std::get<0>(silenceVolume)->getComponent<UIElement>(ecs::UIElement), 0, 7);
 	ctrl->SetElementInPos(std::get<0>(applyButton)->getComponent<UIElement>(ecs::UIElement), 0, 8);
-	//initialize = true;
 }
 
 void OptionsMenu::handleInput()
