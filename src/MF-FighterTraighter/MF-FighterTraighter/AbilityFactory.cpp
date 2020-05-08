@@ -50,7 +50,7 @@ void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 225);
-	createProyectile(ent, width, 150, pos, { 0, 0 }, 2, 50, { (double)orientation_ * 5, 5 }, 7, mask, ent->getState(), ent->getApp(), texture, false);
+	createProyectile(ent, width, 150, pos, { 0, 0 }, 2, 50, { (double)orientation_ * 1, 1 }, 10, mask, ent->getState(), ent->getApp(), texture, false);
 }
 
 void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
