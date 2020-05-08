@@ -148,6 +148,7 @@ int AudioManager::getMusicVolume() const
 
 int AudioManager::getSFXVolume() const
 {
+
 	return Mix_Volume(-1, -1);
 }
 

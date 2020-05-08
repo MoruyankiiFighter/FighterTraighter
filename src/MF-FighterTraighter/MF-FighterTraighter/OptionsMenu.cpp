@@ -20,6 +20,7 @@ OptionsMenu::OptionsMenu(App* app) : GameState(app)
 {
 	cout << "OptionsMenu" << endl;
 	init();
+
 }
 
 OptionsMenu::~OptionsMenu()
@@ -35,7 +36,7 @@ void OptionsMenu::init()
 	t->setPosition(0, 0);
 	t->setWidthHeight(800, 600);
 	RenderImage* img = bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(7));*/
-
+	//initialize = false;
 	Entity* ent = entManager_.addEntity();
 	Transform* transform = ent->addComponent<Transform>();
 	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
@@ -58,7 +59,7 @@ void OptionsMenu::init()
 
 	tuple<Entity*, Entity*, Entity*, Entity*> resolutionSlider = UIFactory::createSlider(app_, this, 0, 10, 10,
 		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(0, -50), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(250, 5),
 		500, 10, setResolution, "RESOLUTION", 60, "", 60);
 
@@ -112,7 +113,7 @@ tuple<Entity*, Entity*> silenceVolume = UIFactory::createButton(app_, this, app_
 	ctrl->SetElementInPos(std::get<0>(SoundSlider)->getComponent<UIElement>(ecs::UIElement), 0, 6);
 	ctrl->SetElementInPos(std::get<0>(silenceVolume)->getComponent<UIElement>(ecs::UIElement), 0, 7);
 	ctrl->SetElementInPos(std::get<0>(applyButton)->getComponent<UIElement>(ecs::UIElement), 0, 8);
-
+	//initialize = true;
 }
 
 void OptionsMenu::handleInput()
