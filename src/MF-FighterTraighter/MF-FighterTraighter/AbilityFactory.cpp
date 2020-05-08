@@ -358,7 +358,7 @@ void AbilityFactory::ASC(Entity* ent)
 //	e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), Vector2D(10000, 0), 10, 0, Vector2D(50, 50), 1000, true);
 //}
 
-void AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
+Entity* AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
 	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact, bool gravity) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
 	if (pos.getX() >= windowWidth)  pos.setX(windowWidth);
@@ -371,13 +371,31 @@ void AbilityFactory::createProyectile(Entity* ent, double width, double height,V
 	e->addComponent<RenderImage>(texture);
 	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
 	if(gravity)
-		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, destroyInContact) , Vector2D( 7,0 ));
+		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, 
+			new HitboxData(damage, time, 0, Vector2D(0,0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, destroyInContact, true), destroyInContact), Vector2D( 7,0 ));
 
 	else
 		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, destroyInContact));
-
+	return e;
 }
 
+Entity* AbilityFactory::instanceProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
+	double windowWidth = app->getWindowManager()->getCurResolution().w;
+	if (pos.getX() >= windowWidth)  pos.setX(windowWidth);
+	else if (pos.getX() <= 0)  pos.setX(0);
+	//App* app = ent->getApp();
+	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
+	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
+		currentState->BULLET, mask, 1)->setOrientation(orientation);
+	e->addComponent<RenderImage>(texture);
+	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
+	if (gravity)
+		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData, Vector2D(7, 0));
+	else
+		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData);
+	return e;
+}
 
 
 void AbilityFactory::goOnCoolodwn(Entity* e, int cool)

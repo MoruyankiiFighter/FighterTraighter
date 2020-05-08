@@ -3,6 +3,8 @@
 #include "GameManager.h"
 #include <functional>
 #include <map>
+
+class HitboxData;
 class AbilityFactory {
 public:
 	static AnimationChain* GiveAbility(GameManager::AbilityID id, Entity* e);
@@ -35,18 +37,17 @@ public:
 
 	static void AS1(Entity* ent);
 	static void ASC(Entity* ent);
-
+	
 	//Whatever the rest of this is
 	//static AnimationChain* Bullets(Entity* e);
 	//static void Bullet1(Entity* ent);
-
+	static Entity* instanceProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
 
 private: 
 
 	//GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false
-	static void createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,
+	static Entity* createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,
 		Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact = false, bool gravity = false);
-
 	AbilityFactory() {};
 	~AbilityFactory() {};
 	static void goOnCoolodwn(Entity* e, int cool);
