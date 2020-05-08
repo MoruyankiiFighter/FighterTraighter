@@ -60,7 +60,7 @@ void OptionsMenu::init()
 		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(250, 5),
-		500, 10, setResolution, "RESOLUTION", 60, "", 60);
+		500, 10, setResolution, "NOT WORKING", 60, "", 60);
 
 	tuple<Entity*, Entity*, Entity*, Entity*> brightSlider = UIFactory::createSlider(app_, this, 0.4, 1, 6,
 		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
@@ -71,7 +71,7 @@ void OptionsMenu::init()
 	tuple<Entity*, Entity*> applyButton = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 450), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
 		Vector2D(100, 30), 
-		200, 60, 0,	nullptr, applySettings, "APPLY", 60, TextComponent::TextAlignment::Center);
+		200, 60, 0,	nullptr, applySettings, "NOTHING", 60, TextComponent::TextAlignment::Center);
 
 	Entity* logic = entManager_.addEntity();
 	logic->addComponent<OptionsLogic>(std::get<0>(resolutionSlider)->getComponent<Slider>(ecs::UIElement),
@@ -142,8 +142,7 @@ void OptionsMenu::SetVolume(App* app, double value) //CAMBIAR CUANDO TENGAMOS UN
 
 //fullscreen
 void OptionsMenu::fullScreen(App* app) {
-	bool IsFullscreen = SDL_GetWindowFlags(app->getWindowManager()->getWindow()) & SDL_WINDOW_FULLSCREEN_DESKTOP;
-	app->getWindowManager()->setFullscreen(!IsFullscreen);
+	app->getWindowManager()->setFullscreen(!app->getWindowManager()->getFullscreen());
 	// also save to a config file
 }
 

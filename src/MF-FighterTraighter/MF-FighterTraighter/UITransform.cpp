@@ -8,16 +8,18 @@ void UITransform::init()
 
 void UITransform::update()
 {
-
+/*
 	SDL_DisplayMode w = windowMngr_->getCurResolution();
 	if (windowSize_.getX() != w.w || windowSize_.getY() != w.h) {
 		WindowResized(w.w, w.h);
 	}
+*/
 }
 
 void UITransform::setAnchorPreset(PositionPreset preset)
 {
-	SDL_DisplayMode w = windowMngr_->getCurResolution();
+	//SDL_DisplayMode w = windowMngr_->getCurResolution();
+	SDL_Rect w = windowMngr_->getCurResolution();
 	switch (preset)
 	{
 	case UITransform::TopLeft:
