@@ -214,6 +214,31 @@ PlayerData::CallbackData F10RData::anp1 = PlayerData::CallbackData{
 
 void F10RData::AHP1(Entity* ent)
 {
+#ifdef _DEBUG
+	std::cout << "Downward root" << endl;
+#endif // _DEBUG
+
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::F10RHk);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	uint16 mask;
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	if (pD->getPlayerNumber() == 0) {
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		mask = currentState->PLAYER_1;
+	}
+
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ahp1.width / 2) + ahp1.position.getX();
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ahp1.width / 2) - ahp1.position.getX();
+
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + ahp1.position.getY());
+	AbilityFactory::createProyectile(ent, ahp1.width, ahp1.height, pos, { 0, -8 }, ahp1.damage, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() },
+		ahp1.time, mask, ent->getState(), ent->getApp(), texture, false);
 }
 
 PlayerData::CallbackData F10RData::ahp1 = PlayerData::CallbackData{
