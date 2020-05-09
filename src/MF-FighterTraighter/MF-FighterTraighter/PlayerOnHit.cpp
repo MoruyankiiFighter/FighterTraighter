@@ -19,6 +19,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
 		helth->LoseLife(hBox_data->damage_);
+		entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::MKWOP_1), false);
 		if (!hBox_data->guardBreaker_) {//if isnt a guardBreaker go to hitstun
 			if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
 				currState->goHitsun(hBox_data->hitstun_);

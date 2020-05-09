@@ -66,6 +66,7 @@ void MainMenu::init()
 	nav->SetElementInPos(std::get<0>(pvp)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	nav->SetElementInPos(std::get<0>(options)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 	nav->SetElementInPos(std::get<0>(exit)->getComponent<UIElement>(ecs::UIElement), 0, 3);
+	app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::MENU_PRINCIPAL), true);
 
 }
 
@@ -81,6 +82,8 @@ void MainMenu::handleInput()
 
 void MainMenu::GoArcade(App* app)
 {
+	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
+
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 	app->getStateMachine()->pushState(new Fight(app));
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
@@ -88,6 +91,8 @@ void MainMenu::GoArcade(App* app)
 
 void MainMenu::Go1v1(App* app)
 {
+	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
+
 	// TEMPORARY, TESTING
 	app->getStateMachine()->pushState(new Training(app));
 }

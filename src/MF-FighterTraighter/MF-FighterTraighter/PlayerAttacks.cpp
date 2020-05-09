@@ -22,6 +22,7 @@ PlayerAttacks::~PlayerAttacks() {
 	for (int i = 0; i < attacksList.size(); i++) {
 		delete attacksList[i];
 		attacksList[i] = nullptr;
+
 	}
 	attacksList.clear();
 
@@ -43,6 +44,7 @@ void PlayerAttacks::handleInput() {
 	if (currState->isAbleToAttack()) {
 		if (currState->isGrounded()) {
 			if (inputSt_->ButtonPressed(HID::RightPad_Down)) {
+
 				activeAttack_ = attacksList[0];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();

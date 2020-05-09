@@ -70,6 +70,8 @@ void MkWH00PData::NP1(Entity* ent)
 		hitbox_X += np1.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, np1.position.getY() }, np1.width, np1.height, np1.time, pD->getAttack() * np1.damage, np1.hitstun, { (double)orientation_ * np1.knockBack.getX(), np1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::PUNCH), false);
+
 }
 
 PlayerData::CallbackData MkWH00PData::np1 = PlayerData::CallbackData{
@@ -79,7 +81,8 @@ PlayerData::CallbackData MkWH00PData::np1 = PlayerData::CallbackData{
 	200,
 	20,
 	9,
-	42};
+	42
+};
 
 void MkWH00PData::HP1(Entity* ent)
 {
@@ -92,6 +95,8 @@ void MkWH00PData::HP1(Entity* ent)
 		hitbox_X += hp1.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, hp1.position.getY() }, hp1.width, hp1.height, hp1.time, pD->getAttack() * hp1.damage, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
+
 }
 
 PlayerData::CallbackData MkWH00PData::hp1 = PlayerData::CallbackData{
