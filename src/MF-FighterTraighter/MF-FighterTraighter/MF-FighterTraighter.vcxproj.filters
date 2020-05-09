@@ -176,7 +176,6 @@
     <ClCompile Include="MockingbirdData.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="UserData.cpp" />
     <ClCompile Include="HID.cpp" />
     <ClCompile Include="KeyboardHID.cpp" />
     <ClCompile Include="GamepadHID.cpp" />
@@ -186,9 +185,18 @@
     <ClCompile Include="PunchingBagOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="BulletGravity.cpp" />
-    <ClCompile Include="FallOnHit.cpp" />
-    <ClCompile Include="DestroyAtTime.cpp" />
+    <ClCompile Include="BulletGravity.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="UserData.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
+    <ClCompile Include="FallOnHit.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
+    <ClCompile Include="DestroyAtTime.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -347,17 +355,11 @@
     <ClInclude Include="NavigationController.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerOnHit.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="LinkedGrid.h">
       <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="ResetJumpListener.h">
       <Filter>Header files\Listeners</Filter>
-    </ClInclude>
-    <ClInclude Include="HitboxData.h">
-      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="LinkedGrid.h">
       <Filter>Header files\Types</Filter>
@@ -398,17 +400,33 @@
     <ClInclude Include="MockingbirdData.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="UserData.h" />
     <ClInclude Include="HID.h" />
-    <ClInclude Include="DestroyOnHit.h" />
     <ClInclude Include="KeyboardHID.h" />
     <ClInclude Include="GamepadHID.h" />
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="BulletGravity.h" />
-    <ClInclude Include="FallOnHit.h" />
-    <ClInclude Include="DestroyAtTime.h" />
+    <ClInclude Include="BulletGravity.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerOnHit.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="UserData.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="DestroyOnHit.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="DestroyAtTime.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="FallOnHit.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxData.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
@@ -455,6 +473,9 @@
     </Filter>
     <Filter Include="Header files\Managers and factories">
       <UniqueIdentifier>{5e0e2b7a-0be3-4397-b253-d5783acd59a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OnHit">
+      <UniqueIdentifier>{ea02945e-25a3-410c-8f90-900a403b7780}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

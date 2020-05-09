@@ -189,6 +189,7 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 	Vector2D knockBack(5, 2);
 	int time = 165;
 	bool destroyInContact = true;
+	//bool multiHit = false;
 	double width = 150;
 	double height = 150;	
 
@@ -316,6 +317,7 @@ void AbilityFactory::AS1(Entity* ent)
 	double width = 150;
 	double height = 150;
 	bool gravity = true;
+	
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Ss2);
 	createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact, gravity);
 
@@ -326,40 +328,9 @@ void AbilityFactory::ASC(Entity* ent)
 	goOnCoolodwn(ent,60 * 5);
 }
 
-////no se usa
-//AnimationChain* AbilityFactory::Bullets(Entity* e)
-//{
-//	std::vector<Move*> vecMov;
-//	//Entity* e = state->getEntityManager().addEntity();
-//	Vector2D speed = { 10000, 0 };
-//	vecMov.push_back(new Move(50, nullptr, Bullet1, e));
-//
-//	AnimationChain* Bullet = new AnimationChain(vecMov);
-//	return Bullet;
-//}
-//
-////no se usa
-//void AbilityFactory::Bullet1(Entity* ent)	//Golpes stuneantes
-//{
-//	//CollisionFilters
-//	App* app = ent->getApp();
-//	GameState* currentState = app->getStateMachine()->getCurrentState();
-//	uint16 mask;
-//	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
-//	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)  mask = currentState->PLAYER_2;
-//	else   mask = currentState->PLAYER_1;
-//
-//	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
-//	Vector2D pos = Vector2D(phTr->getPosition().getX() + phTr->getWidth(), phTr->getPosition().getY() + phTr->getHeight() / 2);
-//	//Bullet(GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false);
-//	e->addComponent<PhysicsTransform>(pos, Vector2D(0, 0), 80, 20, 0, currentState->getb2World(),
-//		currentState->BULLET, mask, 1);
-//	e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::Player));
-//	e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), Vector2D(10000, 0), 10, 0, Vector2D(50, 50), 1000, true);
-//}
 
 Entity* AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
-	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact, bool gravity) {
+	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact, bool gravity, bool multihit) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
 	if (pos.getX() >= windowWidth) 
 		pos.setX(windowWidth);
@@ -372,12 +343,24 @@ Entity* AbilityFactory::createProyectile(Entity* ent, double width, double heigh
 		currentState->BULLET, mask, 1)->setOrientation(orientation);
 	e->addComponent<RenderImage>(texture);
 	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
-	if(gravity)
-		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, 
-			new DestroyAtTime(damage, time, 0, Vector2D(0,0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true), destroyInContact), Vector2D( 7,0 ));
-
-	else
-		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, destroyInContact));
+	if (gravity) {
+		if (destroyInContact) {
+			e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e,
+				new DestroyOnHit(damage, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true), multihit), Vector2D(7, 0));
+		}
+		else {
+			e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e,
+				new DestroyAtTime(damage, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true), multihit), Vector2D(7, 0));
+		}
+	}
+	else {
+		if (destroyInContact) {
+			e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, multihit), speed);
+		}
+		else {
+			e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyAtTime(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, multihit), speed);
+		}
+	}
 	return e;
 }
 

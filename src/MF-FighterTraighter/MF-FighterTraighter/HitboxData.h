@@ -20,7 +20,7 @@ public:
 
 	//returns true if the hitbox lifetime is over
 	virtual void update() {
-		if(time_-- <= 0 && !destroy_)	//actualizamos el tiempo de vida y si ha terminado y no ha sido "destruida" antes, se apunta a la lista de hitbox a destruir
+		if(--time_ <= 0 && !destroy_)	//actualizamos el tiempo de vida y si ha terminado y no ha sido "destruida" antes, se apunta a la lista de hitbox a destruir
 		{
 			entity_->getState()->killHitbox(it_, id_);
 			destroy_ = true;

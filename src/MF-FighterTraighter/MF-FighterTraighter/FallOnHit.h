@@ -23,12 +23,12 @@ public:
 				PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 				entity_->getState()->getEntityManager().addEntity();
 				uint16 mask;
-				Entity* owner;
+				//Entity* owner;
 				if (spawnData_->id_ == 0) {
-					mask = entity_->getState()->PLAYER_1;
+					mask = entity_->getState()->PLAYER_2;
 				}
 				else {
-					mask = entity_->getState()->PLAYER_2;
+					mask = entity_->getState()->PLAYER_1;
 				}
 				AbilityFactory::instanceEntitywHitbox(spawnData_->entity_, 200, 200, pT->getPosition(), Vector2D(0, 0), mask, entity_->getState(),
 					entity_->getApp(), entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Logo), pT->getOrientation(),
