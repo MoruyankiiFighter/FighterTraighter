@@ -33,12 +33,22 @@ void AssetsManager::loadTextures()
 	textures_.emplace(CharacterSelection, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/characters_selection.png", 4, 1));
 	textures_.emplace(GanonSheet, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/characters/Ganonbot_spritesheet.png", 15, 23));
 	textures_.emplace(BackgroundFight, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/FONDO.png", 2, 1));
+
 	textures_.emplace(Mg1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mg1.png", 1, 1));
 	textures_.emplace(Mg21, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mg2-1.png", 1, 1));
 	textures_.emplace(Mg22, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mg2-2.png", 1, 1));
 	textures_.emplace(Ss1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ss1.png", 1, 1));
 	textures_.emplace(Ss2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ss2.png", 1, 1));
 	textures_.emplace(Ew1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ew1.png", 1, 1));
+
+	textures_.emplace(Pollo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/pollo.png", 1, 1));
+	textures_.emplace(Mina, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mina.png", 2, 1));
+	textures_.emplace(Hielo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hielo.png", 2, 1));
+	textures_.emplace(Poison, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/poison syrup.png", 2, 1));
+	textures_.emplace(Doping, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/doping.png", 2, 1));
+
+	textures_.emplace(Celda1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuFondo.jpg", 1, 1));
+	textures_.emplace(Celda2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuwin.jpg", 1, 1));
 	
 	
 	// textures_.emplace("key", new Texture(app_->getRenderer(), "Filepath", cols, fils));

@@ -4,8 +4,7 @@ class InventorySelection :
 	public GameState
 {
 public:
-	InventorySelection(App* app): GameState(app) {}
-
+	InventorySelection(App* app) : GameState(app) { init(); }
 	void init() override;
 
 private:
