@@ -338,7 +338,7 @@ AnimationChain* AbilityFactory::GiveShrugOff(Entity* e)
 
 void AbilityFactory::SO1(Entity* ent)
 {
-	ent->getComponent<Health>(ecs::Health)->setMultiplier(0);
+	ent->getComponent<Health>(ecs::Health)->setMultiplier(0, false);
 
 	App* app = ent->getApp();
 	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);

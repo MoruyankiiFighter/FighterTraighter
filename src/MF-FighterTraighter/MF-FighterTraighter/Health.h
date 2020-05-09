@@ -23,8 +23,21 @@ public:
 
 	int getHealth() { return health_; }
 
-	void setMultiplier(double mul) {
+	void setMultiplier(double mul, bool timed, int timer = -1) {
 		multiplier_ = mul;
+		isMultiplierTimed = timed;
+		if (timed) multiplierTimer_ = timer;
+		else timer = -1;
+	}
+
+	virtual void update() override {
+		if (multiplierTimer_ > 0) {
+			multiplierTimer_--;
+		}
+		else if (multiplierTimer_ == 0) {
+			multiplier_ = 1;
+			multiplierTimer_ = -1;
+		}
 	}
 
 private:
@@ -32,5 +45,7 @@ private:
 	int maxHealth_; //max health
 
 	double multiplier_ = 1;
+	int multiplierTimer_ = -1;
+	bool isMultiplierTimed = false;
 };
 
