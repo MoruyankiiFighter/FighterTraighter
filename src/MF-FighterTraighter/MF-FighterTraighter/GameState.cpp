@@ -90,7 +90,7 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	shape.SetAsBox(width * app_->METERS_PER_PIXEL / 2, height * app_->METERS_PER_PIXEL / 2, { float32((pos.getX() + width / 2) * app_->METERS_PER_PIXEL),float32((pos.getY() + height / 2) * app_->METERS_PER_PIXEL) }, 0);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 0.00001f;			//densidad casi 0, para que no cambie segun el ancho y el alto por ahora
+	fixturedef.density = 0.0f;			//densidad casi 0, para que no cambie segun el ancho y el alto por ahora
 	fixturedef.isSensor = true;
 	fixturedef.filter.categoryBits = cBits;
 	fixturedef.filter.maskBits = mBits & (PLAYER_1 | PLAYER_2 | P_BAG); //kk
@@ -104,6 +104,7 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 	////for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
 	HitboxData* hData = new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, e);
 	fixturedef.userData = hData;
+
 	hitboxGroups_[id].push_back(body->CreateFixture(&fixturedef));
 	hData->setIt(--hitboxGroups_[id].end());
 	//hitboxGroups_[id].back()->SetUserData(new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, this));//saving hitbox's data

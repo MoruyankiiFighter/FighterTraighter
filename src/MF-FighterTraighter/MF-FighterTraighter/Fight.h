@@ -9,6 +9,7 @@
 #include "RenderImage.h"
 #include "PauseMenu.h"
 #include "ResetJumpListener.h"
+#include "UITimer.h"
 
 class Fight : public GameState
 {

@@ -56,8 +56,18 @@ void GameManager::playerLost(int player)
 	default:
 		break;
 	}
-
-	if (currentRound_ < totalRounds_ - 1) {
+	if (((totalRounds_ / 2)  < playerLrounds_) || ((totalRounds_ / 2)  < playerRrounds_)) {
+		currentRound_ = 0;
+		playerLrounds_ = 0;
+		playerRrounds_ = 0;
+		GoBackToMain(stateMachine);
+	}
+	else {
+		stateMachine->popState();
+		stateMachine->pushState(new Training(app_));
+		++currentRound_;
+	}
+	/*if (currentRound_ < totalRounds_ - 1) {
 		// Remove the current fight mode
 		stateMachine->popState();
 		stateMachine->pushState(new Training(app_));
@@ -68,7 +78,7 @@ void GameManager::playerLost(int player)
 		playerLrounds_ = 0;
 		playerRrounds_ = 0;
 		GoBackToMain(stateMachine);
-	}
+	}*/
 
 }
 

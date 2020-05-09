@@ -9,10 +9,11 @@ class GameStateMachine;
 
 class GameManager
 {
-public:
+public:	
 	enum AbilityID {
 		SeismicShock,
-		MegatonGrip
+		MegatonGrip,
+		ExplosiveWillpower
 	};
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
@@ -59,7 +60,7 @@ public:
 protected:
 	unsigned int playerLrounds_ = 0;
 	unsigned int playerRrounds_ = 0;
-	unsigned int totalRounds_ = 100;
+	unsigned int totalRounds_ = 3;
 	unsigned int currentRound_ = 0;
 
 	PlayerInfo player1_;

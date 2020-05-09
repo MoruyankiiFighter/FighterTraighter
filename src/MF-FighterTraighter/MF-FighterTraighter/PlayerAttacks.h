@@ -40,6 +40,7 @@ public:
 		cooldowns[id] = cool;
 	}
 	int getAbilityIndex();
+	int getAbilityCooldown(int index) {  cout << cooldowns[index] <<endl; return cooldowns[index]; }
 private:
 	std::vector<AnimationChain*> attacksList;	//pointer to the attack that you can use
 	std::vector<AnimationChain*> abilityList = std::vector<AnimationChain*>(2);	//pointer to the abilities 

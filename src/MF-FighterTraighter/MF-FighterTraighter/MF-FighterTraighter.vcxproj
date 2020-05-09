@@ -133,9 +133,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbilitiesTimerFunction.cpp" />
     <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="F10RData.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -198,10 +200,12 @@
     <ClCompile Include="ControlsMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbilitiesTimerFunction.h" />
     <ClInclude Include="Ability.h" />
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="DestroyOnHit.h" />
     <ClInclude Include="EntityManager.h" />
