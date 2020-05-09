@@ -7,7 +7,7 @@
 #include "PlayerAttacks.h"
 #include "BulletGravity.h"
 #include "FallOnHit.h"
-
+#include "DestroyAtTime.h"
 //#include "playerinfo"
 
 
@@ -361,8 +361,10 @@ void AbilityFactory::ASC(Entity* ent)
 Entity* AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
 	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact, bool gravity) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
-	if (pos.getX() >= windowWidth)  pos.setX(windowWidth);
-	else if (pos.getX() <= 0)  pos.setX(0);
+	if (pos.getX() >= windowWidth) 
+		pos.setX(windowWidth);
+	else if (pos.getX() <= 0)  
+		pos.setX(0);
 	//App* app = ent->getApp();
 	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
@@ -372,17 +374,19 @@ Entity* AbilityFactory::createProyectile(Entity* ent, double width, double heigh
 	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
 	if(gravity)
 		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, 
-			new HitboxData(damage, time, 0, Vector2D(0,0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, destroyInContact, true), destroyInContact), Vector2D( 7,0 ));
+			new DestroyAtTime(damage, time, 0, Vector2D(0,0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true), destroyInContact), Vector2D( 7,0 ));
 
 	else
 		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, destroyInContact));
 	return e;
 }
 
-Entity* AbilityFactory::instanceProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
+Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
-	if (pos.getX() >= windowWidth)  pos.setX(windowWidth);
-	else if (pos.getX() <= 0)  pos.setX(0);
+	if (pos.getX() >= windowWidth)  
+		pos.setX(windowWidth);
+	else if (pos.getX() <= 0)  
+		pos.setX(0);
 	//App* app = ent->getApp();
 	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();

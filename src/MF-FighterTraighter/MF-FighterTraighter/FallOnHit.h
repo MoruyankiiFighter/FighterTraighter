@@ -7,8 +7,8 @@
 class FallOnHit : public DestroyOnHit
 {
 public:
-	FallOnHit(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, HitboxData* spawnData,bool destroyInContact = false) :
-		DestroyOnHit(damage, time, hitstun, knockback, guardbreaker, id, e, destroyInContact), spawnData_(spawnData) {}
+	FallOnHit(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, HitboxData* spawnData, bool mHit = false) :
+		DestroyOnHit(damage, time, hitstun, knockback, guardbreaker, id, e, mHit), spawnData_(spawnData) {}
 	virtual void onHit(b2Fixture* other) {
 		UserData* data = static_cast<UserData*>(other->GetUserData());
 		if (data) {
@@ -30,7 +30,7 @@ public:
 				else {
 					mask = entity_->getState()->PLAYER_2;
 				}
-				AbilityFactory::instanceProyectile(spawnData_->entity_, 200, 200, pT->getPosition(), Vector2D(0, 0), mask, entity_->getState(),
+				AbilityFactory::instanceEntitywHitbox(spawnData_->entity_, 200, 200, pT->getPosition(), Vector2D(0, 0), mask, entity_->getState(),
 					entity_->getApp(), entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Logo), pT->getOrientation(),
 					spawnData_, false);
 				DestroyOnHit::onHit(other);

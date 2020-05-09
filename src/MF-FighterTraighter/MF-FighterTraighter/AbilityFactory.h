@@ -41,7 +41,7 @@ public:
 	//Whatever the rest of this is
 	//static AnimationChain* Bullets(Entity* e);
 	//static void Bullet1(Entity* ent);
-	static Entity* instanceProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
+	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
 
 private: 
 
