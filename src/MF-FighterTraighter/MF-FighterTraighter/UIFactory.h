@@ -27,6 +27,8 @@ public:
 		std::string text = "", int fontSize = 20,
 		std::string valueText = "", int valueFontSize = 20);
 
+	 static Entity* createPanel(App* app, GameState* state, Texture* texture, Vector2D position, Vector2D anchor, Vector2D pivot, double width, double height, double rotation);
+
 
 	
 protected:
