@@ -5,6 +5,10 @@ class SkillSelection: public GameState
 {
 
 public:
+	SkillSelection(App* app) : GameState(app) { init(); }
+
+	void init() override;
+
 
 private:
 
