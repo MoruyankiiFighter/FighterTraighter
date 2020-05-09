@@ -5,7 +5,7 @@ F10RData::F10RData(double width, double height, double rotation, double jump_imp
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
 	animLength_ = { {4, true, 12}, {3, true, 15}, {2, true, 3}, {1, true, 15}, {2, false, 2}, {4, false, 10}, {6, false, 10}, {5, false, 12},
 	{6, false, 14}, {5, false, 10}, {5, false, 9}, {5, false, 10}, {6, false, 12}, {2, true, 15}, {2, false, 10}, {2, false, 4}, {2, false, 10},
-	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 7}, {4, true, 15}, {3, true, 10} };
+	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 7}, {6, false, 12}, {3, true, 10} };
 }
 
 void F10RData::init()
@@ -291,7 +291,7 @@ PlayerData::CallbackData F10RData::ank1 = PlayerData::CallbackData{
 void F10RData::AHK1(Entity* ent)
 {
 #ifdef _DEBUG
-	std::cout << "Spiked branch" << endl;
+	std::cout << "Bramble tackle" << endl;
 #endif // _DEBUG
 
 	double hitbox_X = ahk1.position.getX();
@@ -316,13 +316,26 @@ PlayerData::CallbackData F10RData::ahk1 = PlayerData::CallbackData{
 
 void F10RData::GB(Entity* ent)
 {
+#ifdef _DEBUG
+	std::cout << "Breaker flower! UAAAAA! Fear my flower power!!!!!" << endl;
+#endif // _DEBUG
+
+	double hitbox_X = gb.position.getX();
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	int orientation_ = pT->getOrientation();
+	if (orientation_ == -1)
+		hitbox_X += gb.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, gb.position.getY() }, gb.width, gb.height, gb.time, pD->getAttack() * gb.damage, gb.hitstun,
+		{ (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask(), true);
 }
 
 PlayerData::CallbackData F10RData::gb = PlayerData::CallbackData{
-	{ 100, -150 },
-	{ 300, -360 },
+	{ 100, -45 },
+	{ 0, 0 },
 	150,
-	200,
+	180,
 	20,
-	9,
-	42 };
+	0,
+	100 };

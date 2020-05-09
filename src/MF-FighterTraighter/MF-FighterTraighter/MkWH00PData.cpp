@@ -350,7 +350,7 @@ void MkWH00PData::GB(Entity* ent)
 }
 PlayerData::CallbackData MkWH00PData::gb = PlayerData::CallbackData{
 	{ 50, -75 },
-	{ 20, -50 },
+	{ 0, 0 },
 	250,
 	200,
 	15,
