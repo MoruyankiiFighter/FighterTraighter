@@ -25,7 +25,7 @@ public:
 				uint16 mask;
 				//Entity* owner;
 				if (spawnData_->id_ == 0) {
-					mask = entity_->getState()->PLAYER_1;
+					mask = entity_->getState()->PLAYER_2;
 				}
 				else {
 					mask = entity_->getState()->PLAYER_1;
