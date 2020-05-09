@@ -5,7 +5,9 @@
 bool Health::LoseLife(unsigned int damage) {
 	bool toReturn = false;
 
-	health_ -= damage;
+	health_ -= damage * multiplier_;
+	//Reset multipler for Shrug Off because this is spaghetti town yeehaw
+	multiplier_ = 1;
 
 	if (health_ > 0) {
 		toReturn = true;

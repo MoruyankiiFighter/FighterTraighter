@@ -14,7 +14,8 @@ enum AbilityID {
 	SeismicShock,
 	MegatonGrip,
 	ExplosiveWillpower,
-	AcidSplit
+	AcidSplit,
+	ShrugOff
 };
 protected:
 	// TODO: Move from here to somewhere else

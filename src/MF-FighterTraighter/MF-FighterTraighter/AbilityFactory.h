@@ -36,6 +36,12 @@ public:
 	static void AS1(Entity* ent);
 	static void ASC(Entity* ent);
 
+	//Shrug Off
+	static AnimationChain* GiveShrugOff(Entity* e);
+
+	static void SO1(Entity* ent);
+	static void SOC(Entity* ent);
+
 	//Whatever the rest of this is
 	//static AnimationChain* Bullets(Entity* e);
 	//static void Bullet1(Entity* ent);

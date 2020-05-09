@@ -31,6 +31,7 @@ public:
 		Ss1,
 		Ss2,
 		Ew1,
+		So1
 	};
 
 	enum FontNames {
