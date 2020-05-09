@@ -9,8 +9,9 @@ public:
 
 	void init() override;
 
+	static void GoToFight(App* app);
 
 private:
-
+	bool win1=false; //necesito que el gm diga quien ha ganau o perdiu
 };
 
