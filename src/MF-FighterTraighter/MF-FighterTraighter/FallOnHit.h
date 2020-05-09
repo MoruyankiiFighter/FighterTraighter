@@ -19,19 +19,19 @@ public:
 				entity_->getComponent<PhysicsTransform>(ecs::Transform)->changeMask(entity_->getState()->BOUNDARY);
 
 			}
-			else {
+			else {//the entity collision with the floor(BOUNDARY)
 				PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 				entity_->getState()->getEntityManager().addEntity();
 				uint16 mask;
 				//Entity* owner;
 				if (spawnData_->id_ == 0) {
-					mask = entity_->getState()->PLAYER_2;
+					mask = entity_->getState()->PLAYER_1;
 				}
 				else {
 					mask = entity_->getState()->PLAYER_1;
 				}
-				AbilityFactory::instanceEntitywHitbox(spawnData_->entity_, 200, 200, pT->getPosition(), Vector2D(0, 0), mask, entity_->getState(),
-					entity_->getApp(), entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Logo), pT->getOrientation(),
+				AbilityFactory::instanceEntitywHitbox(spawnData_->entity_, 200, 200, pT->getPosition(), Vector2D(0, 0), mask, spawnData_->entity_->getState(),
+					spawnData_->entity_->getApp(), spawnData_->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Logo), pT->getOrientation(),
 					spawnData_, false);
 				DestroyOnHit::onHit(other);
 				

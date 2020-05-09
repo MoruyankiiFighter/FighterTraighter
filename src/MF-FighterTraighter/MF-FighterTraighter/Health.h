@@ -9,7 +9,7 @@ public:
 	virtual ~Health() {}
 	
 	// lose damage life (life-=damage) and check if life<0 to be dead
-	bool LoseLife(unsigned int  damage);
+	bool LoseLife( double  damage);
 
 	// add cuantity
 	void GainLife(unsigned int cuantity);
@@ -24,7 +24,7 @@ public:
 	int getHealth() { return health_; }
 
 private:
-	int health_; //current health
+	double health_; //current health
 	int maxHealth_; //max health
 
 };

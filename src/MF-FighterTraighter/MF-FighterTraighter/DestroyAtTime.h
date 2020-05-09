@@ -5,7 +5,7 @@
 class DestroyAtTime : public HitboxData
 {
 public:
-	DestroyAtTime(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool mHit = false) :
+	DestroyAtTime(double damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool mHit = false) :
 		HitboxData(damage, time, hitstun, knockback, guardbreaker, id, e, mHit) {}
 	virtual void onHit(b2Fixture* other) {
 		if(!multiHit_){	//we can do sth with the damage to stop the hitbox from doing constant damage to do it at some frames

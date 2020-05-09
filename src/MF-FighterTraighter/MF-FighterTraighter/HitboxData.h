@@ -5,7 +5,7 @@
 class HitboxData :  public UserData
 {
 public:
-	HitboxData(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool mHit = false) : UserData(e),
+	HitboxData(double damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool mHit = false) : UserData(e),
 		damage_(damage), time_(time), hitstun_(hitstun), knockBack_(knockback), guardBreaker_(guardbreaker), id_(id), multiHit_(mHit){}
 	virtual ~HitboxData() {}
 	virtual void onHit(b2Fixture* other) {
@@ -30,7 +30,7 @@ public:
 	//Attributes
 	std::list<b2Fixture*>::iterator it_; 
 	unsigned int id_ = 1;
-	int damage_ = -1,
+	double damage_ = -1,
 		time_ = -1,
 		hitstun_ = -1;
 	Vector2D knockBack_; //Assuming looking to the right

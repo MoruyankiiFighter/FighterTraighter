@@ -313,14 +313,13 @@ void AbilityFactory::AS1(Entity* ent)
 	int hitstun = 9;
 	Vector2D knockBack(5, 2);
 	int time = 165;
-	bool destroyInContact = true;
+	bool destroyInContact = false;
 	double width = 150;
 	double height = 150;
 	bool gravity = true;
 	
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Ss2);
 	createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact, gravity);
-
 }
 
 void AbilityFactory::ASC(Entity* ent)
@@ -346,11 +345,11 @@ Entity* AbilityFactory::createProyectile(Entity* ent, double width, double heigh
 	if (gravity) {
 		if (destroyInContact) {
 			e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e,
-				new DestroyOnHit(damage, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true), multihit), Vector2D(7, 0));
+				new DestroyOnHit(damage, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true)), Vector2D(7, 0));
 		}
 		else {
 			e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e,
-				new DestroyAtTime(damage, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true), multihit), Vector2D(7, 0));
+				new DestroyAtTime(0.1, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true), multihit), Vector2D(7, 0));
 		}
 	}
 	else {
@@ -372,10 +371,19 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 		pos.setX(0);
 	//App* app = ent->getApp();
 	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	/*
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
 	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
 		currentState->BULLET, mask, 1)->setOrientation(orientation);
 	e->addComponent<RenderImage>(texture);
+	
+	*/
+	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
+	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
+		currentState->BULLET, mask, 1)->setOrientation(orientation);
+	e->addComponent<RenderImage>(texture);
+	uData->entity_ = e;//change to the new entity 
+
 	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
 	if (gravity)
 		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData, Vector2D(7, 0));

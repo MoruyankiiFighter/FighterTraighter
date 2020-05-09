@@ -2,7 +2,7 @@
 #include "PlayerState.h"
 #include "Entity.h"
 
-bool Health::LoseLife(unsigned int damage) {
+bool Health::LoseLife( double damage) {
 	bool toReturn = false;
 
 	health_ -= damage;
