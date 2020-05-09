@@ -31,6 +31,7 @@ public:
 		Mg22,
 		Ss1,
 		Ss2,
+		MkHk,
 		F10RHp,
 		F10RHk
 	};

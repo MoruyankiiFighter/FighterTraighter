@@ -1,4 +1,5 @@
 #include "MkWH00PData.h"
+#include "AbilityFactory.h"
 
 MkWH00PData::MkWH00PData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
@@ -172,23 +173,38 @@ PlayerData::CallbackData MkWH00PData::hk1 = PlayerData::CallbackData{
 
 void MkWH00PData::HK2(Entity* ent)
 {
-	std::cout << "Shockwave" << endl;
-	double hitbox_X2 = hk2.position.getX();
-	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+#ifdef _DEBUG
+	std::cout << "S(C)ockwave" << endl;
+#endif // _DEBUG
+
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::MkHk);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	uint16 mask;
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
-	int orientation_ = pT->getOrientation();
-	if (orientation_ == -1) {
-		hitbox_X2 += hk2.width;
+	if (pD->getPlayerNumber() == 0) {
+		mask = currentState->PLAYER_2;
 	}
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X2, hk2.position.getY() }, hk2.width, hk2.height, hk2.time, pD->getAttack() * hk2.damage, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	else {
+		mask = currentState->PLAYER_1;
+	}
+
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (hk2.width / 2) + hk2.position.getX();
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (hk2.width / 2) - hk2.position.getX();
+
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + hk2.position.getY());
+	AbilityFactory::createProyectile(ent, hk2.width, hk2.height, pos, { 0, -0.7 }, hk2.damage, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() },
+		hk1.time, mask, ent->getState(), ent->getApp(), texture, false);
 }
 
 PlayerData::CallbackData MkWH00PData::hk2 = PlayerData::CallbackData{
-	{ 100, 175 },
-	{ 750, -150 },
-	200,
-	100,
+	{ -75, 500 },
+	{ 7.5, -4.5 },
+	375,
+	55,
 	20,
 	5,
 	40 };
