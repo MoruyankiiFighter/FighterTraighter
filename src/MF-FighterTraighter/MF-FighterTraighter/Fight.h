@@ -10,6 +10,7 @@
 #include "PauseMenu.h"
 #include "FactoryMk.h"
 #include "ResetJumpListener.h"
+#include "UITimer.h"
 
 class Fight : public GameState
 {
