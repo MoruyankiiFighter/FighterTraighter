@@ -4,7 +4,7 @@
 F10RData::F10RData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber):
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
 	animLength_ = { {4, true, 12}, {3, true, 15}, {2, true, 3}, {1, true, 15}, {2, false, 2}, {4, false, 10}, {6, false, 10}, {5, false, 12},
-	{6, false, 14}, {5, false, 10}, {5, false, 9}, {4, false, 7}, {5, false, 15}, {2, true, 15}, {2, false, 10}, {2, true, 4}, {2, false, 10},
+	{6, false, 14}, {5, false, 10}, {5, false, 9}, {5, false, 10}, {5, false, 15}, {2, true, 15}, {2, false, 10}, {2, true, 4}, {2, false, 10},
 	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 7}, {4, true, 15}, {3, true, 10} };
 }
 
@@ -43,7 +43,7 @@ void F10RData::init()
 	vecMov.clear();
 
 	vecMov.push_back(new Move(27, nullptr, ANK1, entity_));
-	vecMov.push_back(new Move(39, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(30, nullptr, nullptr, entity_));
 	air_normal_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -252,13 +252,38 @@ PlayerData::CallbackData F10RData::ahp1 = PlayerData::CallbackData{
 
 void F10RData::ANK1(Entity* ent)
 {
+#ifdef _DEBUG
+	std::cout << "This one doesn't bounce actually" << endl;
+#endif // _DEBUG
+
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	uint16 mask;
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	if (pD->getPlayerNumber() == 0) {
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		mask = currentState->PLAYER_1;
+	}
+
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX();
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX();
+
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + ank1.position.getY());
+	AbilityFactory::createProyectile(ent, ank1.width, ank1.height, pos, { (double)orientation_ * 2, 0 }, ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() },
+		ank1.time, mask, ent->getState(), ent->getApp(), texture, false);
 }
 
 PlayerData::CallbackData F10RData::ank1 = PlayerData::CallbackData{
-	{ 100, -150 },
-	{ 300, -360 },
-	150,
-	200,
+	{ -50, 500 },
+	{ 3.5, -1.5 },
+	120,
+	55,
 	20,
 	9,
 	42 };
