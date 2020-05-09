@@ -20,6 +20,8 @@
 #include "UIFactory.h"
 #include "RenderAnimation.h"
 
+#include "SkillSelection.h"
+
 MainMenu::MainMenu(App* app) : GameState(app)
 {
 
@@ -81,9 +83,7 @@ void MainMenu::handleInput()
 
 void MainMenu::GoArcade(App* app)
 {
-	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
-	app->getStateMachine()->pushState(new Fight(app));
-	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
+	app->getStateMachine()->pushState(new SkillSelection(app));
 }
 
 void MainMenu::Go1v1(App* app)

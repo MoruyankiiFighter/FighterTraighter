@@ -186,6 +186,9 @@
     <ClCompile Include="PunchingBagOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="InventorySelection.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -402,6 +405,9 @@
     <ClInclude Include="GamepadHID.h" />
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InventorySelection.h">
+      <Filter>Header files\GameState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

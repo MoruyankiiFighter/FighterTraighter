@@ -9,9 +9,11 @@ public:
 
 	void init() override;
 
-	static void GoToFight(App* app);
-
+	static void GoToNextSubMenu(App* app);
+	static void Pressed1(App* app);
+	static void Pressed2(App* app);
 private:
-	bool win1=false; //necesito que el gm diga quien ha ganau o perdiu
+	bool win1=false;
+
 };
 

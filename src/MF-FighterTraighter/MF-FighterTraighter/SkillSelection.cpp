@@ -6,6 +6,7 @@
 #include "UITransform.h"
 #include "Fight.h"
 #include "NavigationController.h"
+#include "InventorySelection.h"
 
 void SkillSelection::init()
 {
@@ -32,7 +33,7 @@ void SkillSelection::init()
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 12, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 12, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 12, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5), 
-		(app_->getWindowManager()->getCurResolution().w / 6) * 2,(app_->getWindowManager()->getCurResolution().h / 15) * 2.5, 0, GoToFight, nullptr, "Continue", 25, TextComponent::TextAlignment::Center);
+		(app_->getWindowManager()->getCurResolution().w / 6) * 2,(app_->getWindowManager()->getCurResolution().h / 15) * 2.5, 0, GoToNextSubMenu, nullptr, "Continue", 25, TextComponent::TextAlignment::Center);
 	std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Center;
 	
 
@@ -46,7 +47,7 @@ void SkillSelection::init()
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 7, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 7, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
 		(app_->getWindowManager()->getCurResolution().w / 6) * 2, (app_->getWindowManager()->getCurResolution().h / 15) * 2.5, 0, 
-		GoToFight, nullptr, "Continue_", 25, TextComponent::TextAlignment::Center);
+		GoToNextSubMenu, nullptr, "Continue_", 25, TextComponent::TextAlignment::Center);
 	std::get<1>(boton2)->getComponent<UITransform>(ecs::Transform)->Center;
 	
 	if (win1) {
@@ -169,6 +170,7 @@ void SkillSelection::init()
 
 }
 
-void SkillSelection::GoToFight(App* app)
+void SkillSelection::GoToNextSubMenu(App* app)
 {
+	app->getStateMachine()->pushState(new InventorySelection(app));
 }
