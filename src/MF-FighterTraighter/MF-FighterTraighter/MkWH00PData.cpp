@@ -1,22 +1,23 @@
 #include "MkWH00PData.h"
+#include "AbilityFactory.h"
 
 MkWH00PData::MkWH00PData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
 	animLength_ = { {4, true, 12}, {4, true, 15}, {2, true, 3}, {1, true, 15}, {4, false, 2}, {12, false, 10}, {7, false, 10}, {9, false, 8},
-	{15, false, 7}, {7, false, 13}, {9, false, 10}, {10, false, 7}, {5, false, 15}, {2, true, 15}, {2, false, 10}, {3, true, 4}, {2, false, 10}, 
-	{2, false, 3}, {4, true, 12}, {2, false, 7}, {2, false, 7}, {2, true, 15}, {8, true, 10} };
+	{15, false, 7}, {7, false, 13}, {9, false, 10}, {10, false, 7}, {5, false, 15}, {2, true, 15}, {2, false, 10}, {3, false, 4}, {2, false, 10}, 
+	{2, false, 3}, {4, true, 12}, {2, false, 7}, {2, false, 7}, {2, false, 15}, {8, true, 10} };
 }
 
 void MkWH00PData::init() {
 	std::vector<Move*> vecMov;
 
 	vecMov.push_back(new Move(27, nullptr, NP1, entity_));
-	vecMov.push_back(new Move(70, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(40, nullptr, nullptr, entity_));
 	normal_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
 	vecMov.push_back(new Move(29, nullptr, HP1, entity_));
-	vecMov.push_back(new Move(46, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(33, nullptr, nullptr, entity_));
 	hard_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -28,7 +29,7 @@ void MkWH00PData::init() {
 
 	vecMov.push_back(new Move(35, nullptr, HK1, entity_));
 	vecMov.push_back(new Move(15, nullptr, HK2, entity_));
-	vecMov.push_back(new Move(60, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(45, nullptr, nullptr, entity_));
 	hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -50,7 +51,7 @@ void MkWH00PData::init() {
 	vecMov.clear();
 
 	vecMov.push_back(new Move(32, nullptr, AHK1, entity_));
-	vecMov.push_back(new Move(95, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(55, nullptr, nullptr, entity_));
 	air_hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -70,16 +71,19 @@ void MkWH00PData::NP1(Entity* ent)
 		hitbox_X += np1.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, np1.position.getY() }, np1.width, np1.height, np1.time, pD->getAttack() * np1.damage, np1.hitstun, { (double)orientation_ * np1.knockBack.getX(), np1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::PUNCH), false);
+
 }
 
 PlayerData::CallbackData MkWH00PData::np1 = PlayerData::CallbackData{
 	{ 100, -150 },
-	{ 100, -250 },
+	{ 300, -360 },
 	150,
 	200,
 	20,
 	9,
-	42};
+	42
+};
 
 void MkWH00PData::HP1(Entity* ent)
 {
@@ -92,11 +96,13 @@ void MkWH00PData::HP1(Entity* ent)
 		hitbox_X += hp1.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, hp1.position.getY() }, hp1.width, hp1.height, hp1.time, pD->getAttack() * hp1.damage, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
+
 }
 
 PlayerData::CallbackData MkWH00PData::hp1 = PlayerData::CallbackData{
 	{ 115, -85 },
-	{ 40, 1250 },
+	{ 40, 0 },
 	125,
 	150,
 	17,
@@ -172,23 +178,38 @@ PlayerData::CallbackData MkWH00PData::hk1 = PlayerData::CallbackData{
 
 void MkWH00PData::HK2(Entity* ent)
 {
-	std::cout << "Shockwave" << endl;
-	double hitbox_X2 = hk2.position.getX();
-	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+#ifdef _DEBUG
+	std::cout << "S(C)ockwave" << endl;
+#endif // _DEBUG
+
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::MkHk);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	uint16 mask;
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
-	int orientation_ = pT->getOrientation();
-	if (orientation_ == -1) {
-		hitbox_X2 += hk2.width;
+	if (pD->getPlayerNumber() == 0) {
+		mask = currentState->PLAYER_2;
 	}
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X2, hk2.position.getY() }, hk2.width, hk2.height, hk2.time, pD->getAttack() * hk2.damage, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	else {
+		mask = currentState->PLAYER_1;
+	}
+
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (hk2.width / 2) + hk2.position.getX();
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (hk2.width / 2) - hk2.position.getX();
+
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + hk2.position.getY());
+	AbilityFactory::createProyectile(ent, hk2.width, hk2.height, pos, { 0, -0.7 }, hk2.damage, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() },
+		hk1.time, mask, ent->getState(), ent->getApp(), texture, false);
 }
 
 PlayerData::CallbackData MkWH00PData::hk2 = PlayerData::CallbackData{
-	{ 100, 175 },
-	{ 750, -150 },
-	200,
-	100,
+	{ -75, 500 },
+	{ 7.5, -4.5 },
+	375,
+	55,
 	20,
 	5,
 	40 };
@@ -268,14 +289,16 @@ void MkWH00PData::ANK1(Entity* ent)
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, ank1.position.getY() }, ank1.width, ank1.height, ank1.time, pD->getAttack() * ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 }
+
 PlayerData::CallbackData MkWH00PData::ank1 = PlayerData::CallbackData{
 	{ 105, 135 },
-	{ 5, -50 },
+	{ 5, 0 },
 	145,
 	120,
 	17,
 	4,
 	15 };
+
 void MkWH00PData::ANK2(Entity* ent)
 {
 	std::cout << "STEPPY!!!" << endl;
@@ -286,16 +309,16 @@ void MkWH00PData::ANK2(Entity* ent)
 	if (orientation_ == -1)
 		hitbox_X += ank2.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X, ank2.position.getY() }, ank2.width, ank2.height, ank2.time, pD->getAttack() * ank2.damage, ank1.hitstun, { (double)orientation_ * ank2.knockBack.getX(), ank2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+		{ (double)orientation_ * hitbox_X, ank2.position.getY() }, ank2.width, ank2.height, ank2.time, pD->getAttack() * ank2.damage, ank2.hitstun, { (double)orientation_ * ank2.knockBack.getX(), ank2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 }
 PlayerData::CallbackData MkWH00PData::ank2 = PlayerData::CallbackData{
 	{ 105, 125 },
-	{ 250, 500 },
+	{ 350, 0 },
 	145,
 	135,
 	17,
 	10,
-	28 };
+	43 };
 
 void MkWH00PData::AHK1(Entity* ent)
 {
@@ -332,7 +355,7 @@ void MkWH00PData::GB(Entity* ent)
 }
 PlayerData::CallbackData MkWH00PData::gb = PlayerData::CallbackData{
 	{ 50, -75 },
-	{ 20, -50 },
+	{ 0, 0 },
 	250,
 	200,
 	15,

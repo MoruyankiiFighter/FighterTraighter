@@ -26,12 +26,15 @@ public:
 		countdown_ = true;
 		countdownAmount_ = c; 
 		resetTimer();
+		//resumeTimer();
 	}
+
+	inline void setInvisible(bool inv) { invisibleText = inv; if (!inv) { text_->setText("" + countdownAmount_); }  };
 
 	void resetTimer();
 	void stopTimer();
+	bool isTimerStopped();
 	void resumeTimer();
-
 	virtual ~UITimer() {}
 protected:
 	void setText();
@@ -43,5 +46,6 @@ protected:
 	int countdownAmount_ = 0; // amount in miliseconds
 	Format format_;
 	TextComponent* text_ = nullptr;
+	bool invisibleText;
 };
 

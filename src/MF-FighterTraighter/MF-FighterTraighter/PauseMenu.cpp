@@ -17,6 +17,8 @@
 
 void PauseMenu::init()
 {
+	app_->getAudioMngr()->stopMusic();
+
 	GameState::init();
 	cout << "initPausa" << endl;
 
@@ -56,6 +58,10 @@ void PauseMenu::init()
 	nav->SetElementInPos(std::get<0>(menu_button)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	nav->SetElementInPos(std::get<0>(controls_button)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 	nav->SetElementInPos(std::get<0>(options_button)->getComponent<UIElement>(ecs::UIElement), 0, 3);
+	app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::MENU_OPCIONES), true);
+	
+	
+
 }
 
 void PauseMenu::handleInput()
@@ -69,11 +75,15 @@ void PauseMenu::handleInput()
 
 void PauseMenu::Resume(App* app)
 {
+	app->getAudioMngr()->stopMusic();
+	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 	app->getStateMachine()->popState();
 }
 
 void PauseMenu::GoMainMenu(App* app)
 {
+	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::MENU_PRINCIPAL), true);
+
 	app->getStateMachine()->popState();
 	while (dynamic_cast<MainMenu*>(app->getStateMachine()->getCurrentState()) == nullptr) {
 		app->getStateMachine()->popState();

@@ -18,7 +18,9 @@ GameManager::GameManager(App* app) : app_(app)
 	app_->getStateMachine()->pushState(new MainMenu(app_));
 	// TODO: Move this elsewhere
 	player1_.hid = new KeyboardHID(app_->getInputManager());
+	player1_.character = F10R;
 	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+	player2_.character = MKWh00p;
 }
 
 void GameManager::handleInput()

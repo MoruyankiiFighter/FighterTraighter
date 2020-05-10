@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "RenderImage.h"
 #include "PlayerAttacks.h"
+#include "Fight.h"
 //#include "playerinfo"
 
 
@@ -319,7 +320,7 @@ void AbilityFactory::createProyectile(Entity* ent, double width, double height,V
 void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 {
 	PlayerAttacks* pl = e->getComponent<PlayerAttacks>(ecs::PlayerAttacks);
-	pl->goOnCooldown(pl->getAbilityIndex(), cool);
+	pl->goOnCooldown(pl->getAbilityIndex(), cool);	
 }
 
 std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> AbilityFactory::abilities_map = {

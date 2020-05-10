@@ -8,7 +8,7 @@ Slider::Slider(double minValue, double maxValue, int steps, CallbackOnValueChang
 
 void Slider::init()
 {
-	value_ = minValue_;
+	value_ = maxValue_;
 	transform_ = entity_->getComponent<Transform>(ecs::Transform);
 }
 
