@@ -379,7 +379,7 @@ void AbilityFactory::MP1(Entity* ent)
 	if (orientation_ == -1) projX = phTr->getPosition().getX() + (phTr->getWidth() * 3 / 4) - (phTr->getWidth() / 4);
 	Vector2D pos = Vector2D(projX, phTr->getPosition().getY() + (phTr->getHeight() / 2));
 	createProyectile(ent, width, 250, pos, { 0, 0 }, 0, 0, { 0, 0 }, 35, app->getStateMachine()->getCurrentState()->NONE,
-		app->getStateMachine()->getCurrentState(), app, app->getAssetsManager()->getTexture(AssetsManager::So1), orientation_);
+		app->getStateMachine()->getCurrentState(), app, app->getAssetsManager()->getTexture(AssetsManager::Mp1), orientation_);
 }
 
 void AbilityFactory::MPC(Entity* ent)
