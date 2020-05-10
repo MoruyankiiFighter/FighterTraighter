@@ -158,6 +158,16 @@ void CharacterSelection::init()
 		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
 }
 
+void CharacterSelection::handleInput()
+{
+	if (app_->getInputManager()->pressedStart()) {
+		app_->getGameManager()->pressedStart();
+	}
+	else
+		GameState::handleInput();
+
+}
+
 void CharacterSelection::setAisha(App* app, int n)
 {
 	app->getGameManager()->setCharacter(app->getGameManager()->Aisha, n);

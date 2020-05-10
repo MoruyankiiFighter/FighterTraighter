@@ -39,7 +39,8 @@ void GameManager::pressedStart()
 	}
 	else if (dynamic_cast<PauseMenu*>(curState)
 		|| dynamic_cast<ControlsMenu*>(curState)
-		|| dynamic_cast<OptionsMenu*>(curState)) app_->getStateMachine()->popState();
+		|| dynamic_cast<OptionsMenu*>(curState)
+		|| dynamic_cast<CharacterSelection*>(curState)) app_->getStateMachine()->popState();
 	else if (dynamic_cast<Fight*>(curState)
 		|| dynamic_cast<Training*>(curState)) app_->getStateMachine()->pushState(new PauseMenu(app_));
 }

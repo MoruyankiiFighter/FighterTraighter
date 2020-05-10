@@ -10,6 +10,7 @@ public:
 	CharacterSelection(App* app) : GameState(app) { init(); }
 	virtual ~CharacterSelection() {}
 	void init() override;
+	void handleInput() override;
 
 	
 	//callbacks
