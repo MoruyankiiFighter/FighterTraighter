@@ -10,12 +10,15 @@ class GameStateMachine;
 class GameManager
 {
 public:	
-	enum AbilityID {
-		SeismicShock,
-		MegatonGrip,
-		ExplosiveWillpower,
-		AcidSplit
-	};
+enum AbilityID {
+	SeismicShock,
+	MegatonGrip,
+	ExplosiveWillpower,
+	AcidSplit,
+	ShrugOff,
+	MorePower
+};
+protected:
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
 		MKWh00p,

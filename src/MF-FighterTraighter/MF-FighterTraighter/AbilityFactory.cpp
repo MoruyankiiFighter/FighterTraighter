@@ -8,6 +8,9 @@
 #include "BulletGravity.h"
 #include "FallOnHit.h"
 #include "DestroyAtTime.h"
+#include "Health.h"
+
+//#include "playerinfo"
 
 
 AnimationChain* AbilityFactory::GiveAbility(GameManager::AbilityID id, Entity* e) {
@@ -357,42 +360,67 @@ void AbilityFactory::ASC(Entity* ent)
 	goOnCoolodwn(ent,60 * 5);
 }
 
+AnimationChain* AbilityFactory::GiveShrugOff(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(15, nullptr, SO1, e));
+	vecMov.push_back(new Move(35, nullptr, SOC, e));
+	AnimationChain* ShrugOff = new AnimationChain(vecMov);
+	return ShrugOff;
+}
 
-//Entity* AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
-//	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact, bool gravity, bool multihit) {
-//	double windowWidth = app->getWindowManager()->getCurResolution().w;
-//	if (pos.getX() >= windowWidth) 
-//		pos.setX(windowWidth);
-//	else if (pos.getX() <= 0)  
-//		pos.setX(0);
-//	//App* app = ent->getApp();
-//	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
-//	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
-//	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
-//		currentState->BULLET, mask, 1)->setOrientation(orientation);
-//	e->addComponent<RenderImage>(texture);
-//	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
-//	if (gravity) {
-//		if (destroyInContact) {
-//			e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e,
-//				new DestroyOnHit(damage, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true)), Vector2D(7, 0));
-//		}
-//		else {
-//			e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), 
-//				new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e,
-//				new DestroyAtTime(0.1, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true), multihit), Vector2D(7, 0));
-//		}
-//	}
-//	else {
-//		if (destroyInContact) {
-//			e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, multihit), speed);
-//		}
-//		else {
-//			e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyAtTime(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, multihit), speed);
-//		}
-//	}
-//	return e;
-//}
+void AbilityFactory::SO1(Entity* ent)
+{
+	ent->getComponent<Health>(ecs::Health)->setMultiplier(0, false);
+
+	App* app = ent->getApp();
+	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = ent->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
+
+	int width = 250;
+	int projX = phTr->getPosition().getX() + (phTr->getWidth() * 1 / 4) + (phTr->getWidth() / 4);
+	if (orientation_ == -1) projX = phTr->getPosition().getX() + (phTr->getWidth() * 3 / 4) - (phTr->getWidth() / 4);
+	Vector2D pos = Vector2D(projX, phTr->getPosition().getY() + (phTr->getHeight() / 2));
+	createProyectile(ent, width, 250, pos, { 0, 0 }, 0, 0, { 0, 0 }, 35, app->getStateMachine()->getCurrentState()->NONE, 
+		app->getStateMachine()->getCurrentState(), app, app->getAssetsManager()->getTexture(AssetsManager::So1), orientation_);
+}
+
+void AbilityFactory::SOC(Entity* ent)
+{
+	goOnCoolodwn(ent, 60 * 6.5);
+}
+
+AnimationChain* AbilityFactory::GiveMorePower(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(15, nullptr, MP1, e));
+	vecMov.push_back(new Move(35, nullptr, MPC, e));
+	AnimationChain* MorePower = new AnimationChain(vecMov);
+	return MorePower;
+}
+
+void AbilityFactory::MP1(Entity* ent)
+{
+	ent->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setMultiplier(2, false);
+
+	App* app = ent->getApp();
+	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = ent->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
+
+	int width = 250;
+	int projX = phTr->getPosition().getX() + (phTr->getWidth() * 1 / 4) + (phTr->getWidth() / 4);
+	if (orientation_ == -1) projX = phTr->getPosition().getX() + (phTr->getWidth() * 3 / 4) - (phTr->getWidth() / 4);
+	Vector2D pos = Vector2D(projX, phTr->getPosition().getY() + (phTr->getHeight() / 2));
+	createProyectile(ent, width, 250, pos, { 0, 0 }, 0, 0, { 0, 0 }, 35, app->getStateMachine()->getCurrentState()->NONE,
+		app->getStateMachine()->getCurrentState(), app, app->getAssetsManager()->getTexture(AssetsManager::Mp1), orientation_);
+}
+
+void AbilityFactory::MPC(Entity* ent)
+{
+	goOnCoolodwn(ent, 60 * 6.5);
+}
+
+
 
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
@@ -427,6 +455,8 @@ std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> Abil
 	{GameManager::AbilityID::SeismicShock, AbilityFactory::GiveSeismicShock},
 	{GameManager::AbilityID::MegatonGrip, AbilityFactory::GiveMegatonGrip},
 	{GameManager::AbilityID::ExplosiveWillpower, AbilityFactory::GiveExplosiveWillpower},
-	{GameManager::AbilityID::AcidSplit, AbilityFactory::GiveAcidSplit}
+	{GameManager::AbilityID::AcidSplit, AbilityFactory::GiveAcidSplit},
+	{GameManager::AbilityID::ShrugOff, AbilityFactory::GiveShrugOff},
+	{GameManager::AbilityID::MorePower, AbilityFactory::GiveMorePower},
 
 };

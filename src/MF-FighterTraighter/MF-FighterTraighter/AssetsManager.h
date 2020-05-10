@@ -43,6 +43,8 @@ public:
 		MkHk,
 		F10RHp,
 		F10RHk
+		So1,
+		Mp1
 	};
 
 	enum FontNames {

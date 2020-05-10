@@ -5,7 +5,14 @@
 bool Health::LoseLife( double damage) {
 	bool toReturn = false;
 
-	health_ -= damage;
+	PlayerData* data = entity_->getComponent<PlayerData>(ecs::PlayerData);
+	if (data) {
+		health_ -= damage * data->geDefense();
+		if (!isMultiplierTimed) entity_->getComponent<PlayerData>(ecs::PlayerData)->setDefense(1);
+	}
+	else {
+		health_ -= damage;
+	}
 
 	if (health_ > 0) {
 		toReturn = true;
