@@ -425,6 +425,48 @@ void AbilityFactory::MPC(Entity* ent)
 	goOnCoolodwn(ent, 60 * 6.5);
 }
 
+AnimationChain* AbilityFactory::GiveHookshot(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(25, nullptr, HS1, e));
+	vecMov.push_back(new Move(20, nullptr, HSC, e));
+	AnimationChain* Hookshot = new AnimationChain(vecMov);
+	return Hookshot;
+}
+
+void AbilityFactory::HS1(Entity* ent)
+{
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Hs1);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	uint16 mask;
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	if (pD->getPlayerNumber() == 0) {
+		mask = currentState->PLAYER_2 | currentState->P_BAG;
+	}
+	else {
+		mask = currentState->PLAYER_1 | currentState->P_BAG;
+	}
+
+	int width = 145;
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2);
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
+
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 300);
+
+	DestroyOnHit* dT = new DestroyOnHit(3, 45, 40, { (double)orientation_ * -50, 0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+
+	AbilityFactory::instanceEntitywHitbox(ent, width, 145, pos, { (double)orientation_ * 10, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+}
+
+void AbilityFactory::HSC(Entity* ent)
+{
+	goOnCoolodwn(ent, 60 * 8);
+}
+
 
 
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
@@ -463,5 +505,6 @@ std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> Abil
 	{GameManager::AbilityID::AcidSplit, AbilityFactory::GiveAcidSplit},
 	{GameManager::AbilityID::ShrugOff, AbilityFactory::GiveShrugOff},
 	{GameManager::AbilityID::MorePower, AbilityFactory::GiveMorePower},
+	{GameManager::AbilityID::Hookshot, AbilityFactory::GiveHookshot},
 
 };

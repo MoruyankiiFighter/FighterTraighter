@@ -50,6 +50,12 @@ public:
 	static void MP1(Entity* ent);
 	static void MPC(Entity* ent);
 
+	//Hookshot
+	static AnimationChain* GiveHookshot(Entity* e);
+
+	static void HS1(Entity* ent);
+	static void HSC(Entity* ent);
+
 	//Whatever the rest of this is
 	//static AnimationChain* Bullets(Entity* e);
 	//static void Bullet1(Entity* ent);

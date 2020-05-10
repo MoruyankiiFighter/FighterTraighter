@@ -110,7 +110,7 @@ void F10RData::HP1(Entity* ent)
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + hp1.position.getY());
 
-	DestroyAtTime* dT = new DestroyAtTime(hp1.damage, hp1.time, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	DestroyAtTime* dT = new DestroyAtTime(hp1.damage * pD->getAttack(), hp1.time, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
 	AbilityFactory::instanceEntitywHitbox(ent, hp1.width, hp1.height, pos, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 
@@ -178,7 +178,7 @@ void F10RData::HK1(Entity* ent)
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (hk1.width / 2) - hk1.position.getX();
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + hk1.position.getY());
-	DestroyAtTime* dT = new DestroyAtTime(hk1.damage, hk1.time, hk1.hitstun, { (double)orientation_ * hk1.knockBack.getX(), hk1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	DestroyAtTime* dT = new DestroyAtTime(hk1.damage * pD->getAttack(), hk1.time, hk1.hitstun, { (double)orientation_ * hk1.knockBack.getX(), hk1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
 	AbilityFactory::instanceEntitywHitbox(ent, hk1.width, hk1.height, pos,{ 0, -8 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 	
@@ -249,7 +249,7 @@ void F10RData::AHP1(Entity* ent)
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + ahp1.position.getY());
 
-	DestroyAtTime* dT = new DestroyAtTime(ahp1.damage, ahp1.time, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	DestroyAtTime* dT = new DestroyAtTime(ahp1.damage * pD->getAttack(), ahp1.time, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
 	AbilityFactory::instanceEntitywHitbox(ent, ahp1.width, ahp1.height, pos, { (double)orientation_ * 1.4, 4 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 	
@@ -291,7 +291,7 @@ void F10RData::ANK1(Entity* ent)
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX();
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + ank1.position.getY());
-	DestroyAtTime* dT = new DestroyAtTime(ank1.damage, ank1.time, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
+	DestroyAtTime* dT = new DestroyAtTime(ank1.damage * pD->getAttack(), ank1.time, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
 	/*AbilityFactory::createProyectile(ent, ank1.width, ank1.height, pos, { (double)orientation_ * 2, 0 }, ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() },
 		ank1.time, mask, ent->getState(), ent->getApp(), texture, false);*/
 	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos, { (double)orientation_ * 2, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);

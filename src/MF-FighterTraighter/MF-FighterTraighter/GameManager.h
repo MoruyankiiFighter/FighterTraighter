@@ -16,7 +16,8 @@ enum AbilityID {
 	ExplosiveWillpower,
 	AcidSplit,
 	ShrugOff,
-	MorePower
+	MorePower,
+	Hookshot
 };
 
 	// TODO: Move from here to somewhere else

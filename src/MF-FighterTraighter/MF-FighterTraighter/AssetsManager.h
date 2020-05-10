@@ -34,17 +34,18 @@ public:
 		GanonSheet,
 		F10rSheet,
 		BackgroundFight,
+		MkHk,
+		F10RHp,
+		F10RHk,
 		Mg1, 
 		Mg21,
 		Mg22,
 		Ss1,
 		Ss2,
 		Ew1,
-		MkHk,
-		F10RHp,
-		F10RHk,
 		So1,
-		Mp1
+		Mp1,
+		Hs1
 	};
 
 	enum FontNames {
