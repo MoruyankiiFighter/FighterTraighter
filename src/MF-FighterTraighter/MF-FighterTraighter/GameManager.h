@@ -47,14 +47,7 @@ public:
 	void playerLost(int player);
 	// To inform that saco has lost all its health
 	void trainingEnded();
-	//void SetTargetCamera(Vector2D* v)
-	//{
-	//	p = v;
-	//}
-	//Vector2D& getTargetCamera()
-	//{
-	//	return p;
-	//}
+	
 	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
 	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
 	const PlayerInfo& getPlayerInfo(int player) {

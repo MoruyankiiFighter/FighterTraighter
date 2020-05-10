@@ -24,8 +24,7 @@ void Fight::init()
 	doStep = true;
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
-bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
-//bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight));
+    bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
@@ -34,12 +33,12 @@ bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsMan
 	//floor->addComponent<FloorOnHit>();
 	FpT->changeFriction(3);
 	//Walls
-	/*Entity* wall1 = entManager_.addEntity();
+	Entity* wall1 = entManager_.addEntity();
 	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
 	W1pT->changeFriction(0);
 	Entity* wall2 = entManager_.addEntity();
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
-	W2pT->changeFriction(0);*/
+	W2pT->changeFriction(0);
 
 	
 	//Player 1
@@ -64,7 +63,8 @@ bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsMan
 	abilitiesP2.push_back("ExplosiveWillpower");
 	entManager_.setHandler(player2, ecs::Player2);
 
- 	bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform));
+ 	//bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform));
+ 	bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform), player2->getComponent<Transform>(ecs::Transform));
 
 
 
