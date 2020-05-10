@@ -194,7 +194,7 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 	int hitstun = 9;
 	Vector2D knockBack(5, 2);
 	int time = 165;
-	bool destroyInContact = true;
+	//bool destroyInContact = true;
 	//bool multiHit = false;
 	double width = 150;
 	double height = 150;	
@@ -340,7 +340,7 @@ void AbilityFactory::AS1(Entity* ent)
 	int hitstun = 9;
 	Vector2D knockBack(5, 2);
 	int time = 165;
-	bool destroyInContact = false;
+	//bool destroyInContact = false;
 	double width = 150;
 	double height = 150;
 	bool gravity = true;

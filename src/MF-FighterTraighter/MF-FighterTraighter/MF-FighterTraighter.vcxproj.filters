@@ -385,9 +385,6 @@
     <ClInclude Include="MkWH00PData.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="HitboxData.h">
-      <Filter>Header files\items</Filter>
-    </ClInclude>
     <ClInclude Include="ControlsMenu.h">
       <Filter>Header files\GameState</Filter>
     </ClInclude>
@@ -477,6 +474,10 @@
     </ClInclude>
     <ClInclude Include="AudioManager.h">
       <Filter>Header files\Managers and factories</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryMk.h" />
+    <ClInclude Include="HitboxData.h">
+      <Filter>Header files\OnHits</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
