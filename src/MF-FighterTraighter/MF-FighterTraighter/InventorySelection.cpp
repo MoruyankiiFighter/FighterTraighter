@@ -47,8 +47,18 @@ void InventorySelection::init()
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 12, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
 		(app_->getWindowManager()->getCurResolution().w / 6) * 2, (app_->getWindowManager()->getCurResolution().h / 15) * 2.5, 0,nullptr, nullptr, "Continue_J1", 80, TextComponent::TextAlignment::Center);
 	std::get<1>(boton2)->getComponent<UITransform>(ecs::Transform)->Bottom;
-	/*for(int i=0, i<app_->getGameManager()->get.....abilities.size()) 
-		crear mierda
-	*/
+	
+	//habilidades j1
+	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(1).abilities.size() / 2; i++) {
+		for (int j = 0; j < app_->getGameManager()->getPlayerInfo(1).abilities.size() / 2; j++) {
+
+		}
+	}
+	
+	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(2).abilities.size() / 2; i++) {
+		for (int j = 0; j < app_->getGameManager()->getPlayerInfo(2).abilities.size() / 2; j++) {
+
+		}
+	}
 
 }

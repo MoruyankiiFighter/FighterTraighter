@@ -33,6 +33,18 @@ protected:
 		virtual ~PlayerInfo() { 
 			delete hid; 
 		}
+
+		//add a hability hab in the abilities vector
+		void addHability(AbilityID hab) {
+			abilities.push_back(hab);
+		}
+
+		void setHability1(AbilityID hab) {
+			ability1Index = hab;
+		}
+		void setHability2(AbilityID hab) {
+			ability2Index = hab;
+		}
 	};
 public:
 	GameManager(App* app);
@@ -54,6 +66,8 @@ public:
 		if (player == 1) return player1_;
 		return player2_;
 	}
+
+
 
 	virtual ~GameManager() {
 	}
