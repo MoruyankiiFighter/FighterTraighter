@@ -20,9 +20,13 @@ public:
 			if (activeAttack_->update()) {
 				activeAttack_->reset();
 				activeAttack_ = nullptr;
-				if (!isMultiplierTimed) { 
-					remainingUses_--;	//This is to prevent, in theory, that the abilities that grant the multiplier themeselves don't consume it on ending
-					if(remainingUses_ == 0) entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(1); 
+				if (!isMultiplierTimed && remainingUses_ > -1) { 
+					//This is to prevent, in theory, that the abilities that grant the multiplier themeselves don't consume it on ending
+					if (remainingUses_ == 0) {
+						entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(1);
+						remainingUses_ = -1;
+					}
+					else remainingUses_--;
 				}
 				if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isGrounded()) {
 					entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();

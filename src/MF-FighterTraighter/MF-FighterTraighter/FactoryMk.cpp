@@ -26,7 +26,7 @@ Entity* FactoryMk::addMkToGame(App* app, GameState* state, int orientation, HID*
 	e->addComponent<PlayerState>();
 	Health* h = e->addComponent<Health>(110);
 	//e->addComponent<PlayerOnHit>();
-	PlayerData* pdata = e->addComponent<MkWH00PData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 50, playerNumber);
+	PlayerData* pdata = e->addComponent<MkWH00PData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 1, playerNumber);
 
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
 	e->addComponent<PlayerAttacks>(hid, pdata->getNormal_punch(), pdata->air_normal_punch(), pdata->getHard_punch(), pdata->air_hard_punch(),
@@ -51,7 +51,7 @@ Entity* FactoryMk::addMockToGame(App* app, GameState* state, int orientation, HI
 	e->addComponent<PlayerState>();
 	Health* h = e->addComponent<Health>(100);
 	//e->addComponent<PlayerOnHit>();
-	PlayerData* p_data_ = e->addComponent<MockingbirdData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 50, playerNumber);
+	PlayerData* p_data_ = e->addComponent<MockingbirdData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 1, playerNumber);
 
 	//std::vector<AnimationChain*> chains = app_->getAssetsManager()->getMoveParser()->parseFile("../../../../assets/Assets/Config/MovesMK.txt");
 	e->addComponent<PlayerAttacks>(hid, p_data_->getNormal_punch(), p_data_->air_normal_punch(), p_data_->getHard_punch(), p_data_->air_hard_punch(),

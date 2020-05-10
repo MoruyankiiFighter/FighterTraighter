@@ -357,6 +357,36 @@ void AbilityFactory::SOC(Entity* ent)
 	goOnCoolodwn(ent, 60 * 6.5);
 }
 
+AnimationChain* AbilityFactory::GiveMorePower(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(15, nullptr, MP1, e));
+	vecMov.push_back(new Move(35, nullptr, MPC, e));
+	AnimationChain* MorePower = new AnimationChain(vecMov);
+	return MorePower;
+}
+
+void AbilityFactory::MP1(Entity* ent)
+{
+	ent->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setMultiplier(2, false);
+
+	App* app = ent->getApp();
+	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = ent->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
+
+	int width = 250;
+	int projX = phTr->getPosition().getX() + (phTr->getWidth() * 1 / 4) + (phTr->getWidth() / 4);
+	if (orientation_ == -1) projX = phTr->getPosition().getX() + (phTr->getWidth() * 3 / 4) - (phTr->getWidth() / 4);
+	Vector2D pos = Vector2D(projX, phTr->getPosition().getY() + (phTr->getHeight() / 2));
+	createProyectile(ent, width, 250, pos, { 0, 0 }, 0, 0, { 0, 0 }, 35, app->getStateMachine()->getCurrentState()->NONE,
+		app->getStateMachine()->getCurrentState(), app, app->getAssetsManager()->getTexture(AssetsManager::So1), orientation_);
+}
+
+void AbilityFactory::MPC(Entity* ent)
+{
+	goOnCoolodwn(ent, 60 * 6.5);
+}
+
 ////no se usa
 //AnimationChain* AbilityFactory::Bullets(Entity* e)
 //{
@@ -423,5 +453,6 @@ std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> Abil
 	{GameManager::AbilityID::ExplosiveWillpower, AbilityFactory::GiveExplosiveWillpower},
 	{GameManager::AbilityID::AcidSplit, AbilityFactory::GiveAcidSplit},
 	{GameManager::AbilityID::ShrugOff, AbilityFactory::GiveShrugOff},
+	{GameManager::AbilityID::MorePower, AbilityFactory::GiveMorePower},
 
 };

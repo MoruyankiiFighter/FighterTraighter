@@ -51,7 +51,7 @@ void Fight::init()
 	//	SDL_SCANCODE_1, SDL_SCANCODE_2, SDL_SCANCODE_SPACE, SDL_SCANCODE_R }, world, false, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	Entity* player1 = FactoryMk::addMkToGame(app_, this, 1, app_->getGameManager()->getPlayerInfo(1).hid, world, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::MegatonGrip, player1), 0);
-	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::ShrugOff, player1), 1);
+	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::MorePower, player1), 1);
 	vector<std::string>abilitiesP1;
 	abilitiesP1.push_back("MegatonGrip");
 	abilitiesP1.push_back("ShrugOff");

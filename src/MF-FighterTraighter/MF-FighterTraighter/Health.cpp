@@ -5,9 +5,14 @@
 bool Health::LoseLife(unsigned int damage) {
 	bool toReturn = false;
 
-	health_ -= damage * entity_->getComponent<PlayerData>(ecs::PlayerData)->geDefense();;
-	//Reset multipler for Shrug Off because this IS NO LONGER SPAGHETTI TOWN YEEEE HAW
-	if (!isMultiplierTimed) entity_->getComponent<PlayerData>(ecs::PlayerData)->setDefense(1);
+	PlayerData* data = entity_->getComponent<PlayerData>(ecs::PlayerData);
+	if (data) {
+		health_ -= damage * data->geDefense();
+		if (!isMultiplierTimed) entity_->getComponent<PlayerData>(ecs::PlayerData)->setDefense(1);
+	}
+	else {
+		health_ -= damage;
+	}
 
 	if (health_ > 0) {
 		toReturn = true;

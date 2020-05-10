@@ -195,8 +195,8 @@ protected:
 			*speed_;
 	//Player Stats
 	Vector2D initial_position_;
-	double 	attack_,
-			defense_;
+	double 	attack_ = 1,
+			defense_ = 1;
 
 	//Attacks
 	//Normal Punch 
