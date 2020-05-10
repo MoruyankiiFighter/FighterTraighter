@@ -12,7 +12,7 @@ public:
 		if(!multiHit_){	//we can do sth with the damage to stop the hitbox from doing constant damage to do it at some frames
 			entity_->getComponent<PhysicsTransform>(ecs::Transform)->changeMask(entity_->getState()->NONE);
 		}
-		//else constant damage, have fun
+		//else damaged controlled by the 
 	}
 
 	virtual void update() {

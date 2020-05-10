@@ -27,6 +27,25 @@ public:
 		}
 	}
 
+	//use this method to check if the hitbox can do damage
+	//if a hitbox is not multiHit, it does damage everytime
+	//if not,it does damage every "damage_frec" frames while the hitbox is alive
+	virtual bool doesDamage() {
+		if (multiHit_) {	//just in case
+			aux_frec = max(0, aux_frec - 1);
+			bool doDamage = aux_frec == 0;
+			if (doDamage) {
+				aux_frec = damage_frec;
+			}
+			return doDamage;
+		}
+		return !multiHit_;
+	}
+	//Establish the hitbox as a multiHit that hits every frame_time
+	virtual void enableMultiHit(int frame_time) {
+		multiHit_ = true;
+		damage_frec = frame_time;
+	}
 	//Attributes
 	std::list<b2Fixture*>::iterator it_; 
 	unsigned int id_ = 1;
@@ -38,5 +57,7 @@ public:
 	bool destroy_ = false;//if its true it means that it has to be destroyed
 	bool multiHit_ = false;	//si la hitbox es multiHit, solo se destruye cuando pasa su tiempo
 	bool proyectile_ = false; //si la hitbox es un proyectil, para no eliminarla cuando aterrizas o te interrumpen un ataque
+	int damage_frec = 0;	//frames that the hitbox is not doing damage 
+	int aux_frec = 0;		//if aux_fec == 0, a multiHit hitbox can do damage
 };
 
