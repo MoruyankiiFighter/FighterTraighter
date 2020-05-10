@@ -69,6 +69,8 @@ void PauseMenu::init()
 void PauseMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
+		app_->getAudioMngr()->stopMusic();
+		app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 		app_->getGameManager()->pressedStart();
 	}
 	else
