@@ -473,11 +473,6 @@ void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 	pl->goOnCooldown(pl->getAbilityIndex(), cool);
 }
 
-int AbilityFactory::goOnCoolodwnTimer(int cool)
-{
-	return cool;
-}
-
 std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> AbilityFactory::abilities_map = {
 	{GameManager::AbilityID::SeismicShock, AbilityFactory::GiveSeismicShock},
 	{GameManager::AbilityID::MegatonGrip, AbilityFactory::GiveMegatonGrip},

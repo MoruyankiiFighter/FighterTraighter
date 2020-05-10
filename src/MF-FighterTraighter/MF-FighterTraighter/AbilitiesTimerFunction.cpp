@@ -1,11 +1,11 @@
 #include "AbilitiesTimerFunction.h"
 #include "PlayerAttacks.h"
 
-void AbilitiesTimerFunction::init()
-{
-	timeab0 = pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(0);
-	timeab1 = pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(0);
-}
+//void AbilitiesTimerFunction::init()
+//{
+//	timeab0 = pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(0);
+//	timeab1 = pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(0);
+//}
 
 void AbilitiesTimerFunction::update(){
 	if (pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(0) <= 0) {

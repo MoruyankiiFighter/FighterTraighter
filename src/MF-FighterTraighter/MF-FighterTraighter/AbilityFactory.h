@@ -65,6 +65,5 @@ private:
 	AbilityFactory() {};
 	~AbilityFactory() {};
 	static void goOnCoolodwn(Entity* e, int cool);
-	static int goOnCoolodwnTimer(int cool);
 	static std::map<GameManager::AbilityID, std::function<AnimationChain* (Entity*)>> abilities_map;
 };
