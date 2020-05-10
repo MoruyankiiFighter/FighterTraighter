@@ -10,6 +10,18 @@ void InventorySelection::init()
 	GameState::init();
 	//crear fondo ->ser� el fndo de la pelea i guess???
 
+
+	//ESTO ES PARA DEPURAR
+	for (int i = 0; i < 10; i++) {
+		app_->getGameManager()->addHability(app_->getGameManager()->MegatonGrip,1);
+	}
+
+	for (int i = 0; i < 10; i++) {
+		app_->getGameManager()->addHability(app_->getGameManager()->MegatonGrip,2);
+	}
+	//
+
+
 	Entity* b = entManager_.addEntity();
 	b->addComponent<UITransform>(Vector2D(), Vector2D(), Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h));
 	b->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight));
@@ -100,10 +112,11 @@ void InventorySelection::init()
 				(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 			ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
 		}
+
 	}
 
 	for (int i = 0; i < 5; i++) {
-		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), i, 2);
+		ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), i, 2);
 	}
 	// inv j1
 
@@ -133,11 +146,13 @@ void InventorySelection::init()
 		ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
 
 		}
+		
 	}
-	// Navigation controller
 		for (int i = 0; i < 5; i++) {
-			ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), i, 2);
+			
+			ctrl_->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), i, 2);
 		}
+	// Navigation controller
 }
 
 void InventorySelection::SetFirstSkill(App* app, int n)
