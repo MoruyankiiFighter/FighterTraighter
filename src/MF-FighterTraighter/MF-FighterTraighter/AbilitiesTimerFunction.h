@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "UITimer.h"
 #include "Entity.h"
+#include "PlayerAttacks.h"
 
 class AbilitiesTimerFunction:public Component
 {
@@ -10,13 +11,19 @@ public:
 		timer1_ = timer1;
 		timer2_ = timer2;
 		pl_ = pl;
+		timeab0 = 0;
+		timeab1 = 0;
 	};
 	~AbilitiesTimerFunction() {};
+	void init() override;
 	void update() override;
 	void updateTimerAb(int index, int time);
+	void setTimeAb(int ind, int cool);
 private:
 	UITimer* timer1_;
 	UITimer* timer2_;
 	Entity* pl_;
+	int timeab0;
+	int timeab1;
 };
 

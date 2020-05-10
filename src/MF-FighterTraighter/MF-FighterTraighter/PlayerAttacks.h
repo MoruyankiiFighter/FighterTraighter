@@ -5,6 +5,7 @@
 #include "PlayerState.h"
 #include "PlayerData.h"
 #include "HID.h"
+#include "AbilitiesTimerFunction.h"
 //component that have all the attacks that you have
 class PlayerAttacks : public Component 
 {
@@ -55,11 +56,13 @@ public:
 	void interruptAttack();
 	inline void goOnCooldown(int id, int cool) {
 		cooldowns[id] = cool;
+		//abstimer->setTimeAb(id, cool);
+		cout << cooldowns[id] << endl;
 	}
 	int getAbilityIndex();
 	int getAbilityCooldown(int index) { 
 #ifdef _DEBUG
-		cout << cooldowns[index] <<endl; 
+		//cout << cooldowns[index] <<endl; 
 #endif 
 		return cooldowns[index];
 	}
@@ -85,5 +88,6 @@ private:
 
 	//keys to use the attacks and abilities
 	HID* inputSt_;
+	//AbilitiesTimerFunction* abstimer;
 };
 

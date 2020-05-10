@@ -470,7 +470,12 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 {
 	PlayerAttacks* pl = e->getComponent<PlayerAttacks>(ecs::PlayerAttacks);
-	pl->goOnCooldown(pl->getAbilityIndex(), cool);	
+	pl->goOnCooldown(pl->getAbilityIndex(), cool);
+}
+
+int AbilityFactory::goOnCoolodwnTimer(int cool)
+{
+	return cool;
 }
 
 std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> AbilityFactory::abilities_map = {
