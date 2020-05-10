@@ -101,6 +101,8 @@ void App::clean()
 
 	// Delete SDL's attributes
 	SDL_DestroyRenderer(renderer);
+	delete random_;
+	random_ = nullptr;
 	SDL_Quit();
 	TTF_Quit();
 }
