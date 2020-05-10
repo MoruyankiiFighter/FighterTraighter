@@ -51,6 +51,8 @@ public:
 		FlorArtwork,
 		FlorSheet,
 
+		Random_icon,
+
 		Ew1,
 	};
 
