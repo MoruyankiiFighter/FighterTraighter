@@ -25,7 +25,7 @@ AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 	vecMov.push_back(new Move(10, nullptr, MG1, e));
 	vecMov.push_back(new Move(10, nullptr, MG1, e));
 	vecMov.push_back(new Move(50, nullptr, MG2, e));
-	vecMov.push_back(new Move(100, nullptr, MGC, e));
+	vecMov.push_back(new Move(80, nullptr, MGC, e));
 	AnimationChain* MegatonGrip = new AnimationChain(vecMov);
 	return MegatonGrip;
 }
@@ -55,7 +55,7 @@ void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 225);
-	DestroyAtTime* dT = new DestroyAtTime(2, 7, 50, { (double)orientation_ * 5, 5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	DestroyAtTime* dT = new DestroyAtTime(2, 7, 50, { (double)orientation_ * 0.5, 0.5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 	instanceEntitywHitbox(ent, width, 150, pos, { 0, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 	
 }
@@ -88,14 +88,14 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 
 	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 225);
 	//createProyectile(ent, width1, 150, pos1, { 0, 0 }, 27, 100, { (double)orientation_ * 7500, -5000 }, 15, mask, ent->getState(), ent->getApp(), texture1, orientation_, false);
-	DestroyAtTime* dT = new DestroyAtTime(27, 15, 100, { (double)orientation_ * 7500, -5000 }, false, id, ent);
+	DestroyAtTime* dT = new DestroyAtTime(27, 15, 100, { (double)orientation_ * 40, -8 }, false, id, ent);
 	instanceEntitywHitbox(ent, width1, 150, pos1, { 0,0 }, mask, ent->getState(), ent->getApp(), texture1, orientation_, dT);
 	int width2 = 250;
 	int projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width2 / 2) + 150;
 	if (orientation_ == -1) projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width2 / 2) - 150;
 
 	Vector2D pos2 = Vector2D(projX2, phtr->getPosition().getY() + 225);
-	 dT = new DestroyAtTime(2, 12, 150, { (double)orientation_ * 5250, -4000 }, false, id, ent);
+	 dT = new DestroyAtTime(2, 12, 150, { (double)orientation_ * 30, -5 }, false, id, ent);
 	//createProyectile(ent, width2, 180, pos2, { 0, 0 }, 2, 150, { (double)orientation_ * 5250, -4000 }, 12, mask, ent->getState(), ent->getApp(), texture2, orientation_, false);
 	instanceEntitywHitbox(ent, width2, 180, pos2, { 0,0 }, mask, ent->getState(), ent->getApp(), texture1, orientation_, dT);
 
