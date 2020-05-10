@@ -24,17 +24,18 @@ public:
 				//entity_->getState()->getEntityManager().addEntity();
 				uint16 mask;
 				//Entity* owner;
-				if (spawnData_->id_ == 0) {
-					mask = entity_->getState()->PLAYER_2;
+				if (spawnData_ != nullptr) {
+					if (spawnData_->id_ == 0) {
+						mask = entity_->getState()->PLAYER_2;
+					}
+					else {
+						mask = entity_->getState()->PLAYER_1;
+					}
+					Entity* smoke = AbilityFactory::instanceEntitywHitbox(spawnData_->entity_, 200, 200, pT->getPosition(), Vector2D(0, 0), mask, spawnData_->entity_->getState(),
+						spawnData_->entity_->getApp(), spawnData_->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Logo), pT->getOrientation(),
+						spawnData_, false);
+					smoke->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->SetSensor(true);
 				}
-				else {
-					mask = entity_->getState()->PLAYER_1;
-				}
-				Entity* smoke = AbilityFactory::instanceEntitywHitbox(spawnData_->entity_, 200, 200, pT->getPosition(), Vector2D(0, 0), mask, spawnData_->entity_->getState(),
-					spawnData_->entity_->getApp(), spawnData_->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Logo), pT->getOrientation(),
-					spawnData_, false);
-				smoke->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->SetSensor(true);
-
 				DestroyOnHit::onHit(other);
 				
 				//estado->createHumo(x,y)
