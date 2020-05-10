@@ -270,7 +270,7 @@ void F10RData::ANK1(Entity* ent)
 {
 #ifdef _DEBUG
 	std::cout << "This one doesn't bounce actually" << endl;
-#endif // _DEBUG
+#endif 
 
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
 	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);

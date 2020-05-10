@@ -63,7 +63,9 @@ void MkWH00PData::init() {
 }
 void MkWH00PData::NP1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "Uppercut" << endl;
+#endif 
 	double hitbox_X = np1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -88,7 +90,10 @@ PlayerData::CallbackData MkWH00PData::np1 = PlayerData::CallbackData{
 
 void MkWH00PData::HP1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "Hostia" << endl;
+#endif 
+
 	double hitbox_X = hp1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -112,7 +117,10 @@ PlayerData::CallbackData MkWH00PData::hp1 = PlayerData::CallbackData{
 
 void MkWH00PData::NK1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "Rodilla 1" << endl;
+#endif 
+
 	double hitbox_X = nk1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -134,7 +142,9 @@ PlayerData::CallbackData MkWH00PData::nk1 = PlayerData::CallbackData{
 
 void MkWH00PData::NK2(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "Rodilla 2" << endl;
+#endif 
 	double hitbox_X = nk2.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -156,7 +166,9 @@ PlayerData::CallbackData MkWH00PData::nk2 = PlayerData::CallbackData{
 
 void MkWH00PData::HK1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "Falcon stomp" << endl;
+#endif 
 	double hitbox_X1 = hk1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -220,7 +232,9 @@ PlayerData::CallbackData MkWH00PData::hk2 = PlayerData::CallbackData{
 
 void MkWH00PData::ANP1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "Speeeee-" << endl;
+#endif 
 	double hitbox_X = anp1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -241,7 +255,10 @@ PlayerData::CallbackData MkWH00PData::anp1 = PlayerData::CallbackData{
 
 void MkWH00PData::ANP2(Entity* ent)
 {
+#ifdef _DEBUG
+ 
 	std::cout << "-eeeeeeen" << endl;
+#endif
 	double hitbox_X = anp2.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -262,7 +279,9 @@ PlayerData::CallbackData MkWH00PData::anp2 = PlayerData::CallbackData{
 
 void MkWH00PData::AHP1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "Get spiked son" << endl;
+#endif 
 	double hitbox_X = ahp1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -283,7 +302,9 @@ PlayerData::CallbackData MkWH00PData::ahp1 = PlayerData::CallbackData{
 
 void MkWH00PData::ANK1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "Steppy" << endl;
+#endif 
 	double hitbox_X = ank1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -305,7 +326,9 @@ PlayerData::CallbackData MkWH00PData::ank1 = PlayerData::CallbackData{
 
 void MkWH00PData::ANK2(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "STEPPY!!!" << endl;
+#endif 
 	double hitbox_X = ank2.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -326,7 +349,9 @@ PlayerData::CallbackData MkWH00PData::ank2 = PlayerData::CallbackData{
 
 void MkWH00PData::AHK1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "Dropkick" << endl;
+#endif 
 	double hitbox_X = ahk1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -347,7 +372,9 @@ PlayerData::CallbackData MkWH00PData::ahk1 = PlayerData::CallbackData{
 
 void MkWH00PData::GB(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "BreakerGuard" << endl;
+#endif 
 	double hitbox_X = gb.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);

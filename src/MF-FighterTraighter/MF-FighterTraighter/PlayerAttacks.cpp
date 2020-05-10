@@ -17,7 +17,7 @@ PlayerAttacks::PlayerAttacks(HID* hid, AnimationChain* highFist, AnimationChain*
 }
 
 PlayerAttacks::~PlayerAttacks() {
-	cout << "destruyendo ataques "<<endl;
+
 	//hay que descomentar cuando las animaciones sean diferentes
 	for (int i = 0; i < attacksList.size(); i++) {
 		delete attacksList[i];

@@ -20,7 +20,9 @@ void PauseMenu::init()
 	app_->getAudioMngr()->stopMusic();
 
 	GameState::init();
+#ifdef _DEBUG
 	cout << "initPausa" << endl;
+#endif 
 
 	Entity* logo = entManager_.addEntity();
 	Transform* transform = logo->addComponent<Transform>();
@@ -92,7 +94,9 @@ void PauseMenu::GoMainMenu(App* app)
 
 void PauseMenu::ShowMeYourMoves(App* app)
 {
+#ifdef _DEBUG
 	std::cout << "No implementado de momento" << endl;
+#endif 
 }
 
 void PauseMenu::GoOptions(App* app)

@@ -28,7 +28,10 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		}
 		
 		pT->getBody()->ApplyLinearImpulse(b2Vec2(hBox_data->knockBack_.getX(), hBox_data->knockBack_.getY()), pT->getBody()->GetWorldCenter(), true);
+#ifdef _DEBUG
+
 		cout << "Hago X:" << hBox_data->knockBack_.getX() << " Y: " << hBox_data->knockBack_.getY() << endl;
+#endif
 	}
 	else {
 		if (hBox_data->guardBreaker_) {
@@ -42,7 +45,10 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 			helth->LoseLife(hBox_data->damage_ * 0.1);
 			pT->getBody()->ApplyLinearImpulse(b2Vec2((hBox_data->knockBack_.getX() + hBox_data->knockBack_.getX()) * 0.015, 0), pT->getBody()->GetWorldCenter(), true);
 		}
+#ifdef _DEBUG
 		cout << "He bloqueado dano pero estoy en hitstun" << endl;
+#endif
+
 	}
 
 	// he died

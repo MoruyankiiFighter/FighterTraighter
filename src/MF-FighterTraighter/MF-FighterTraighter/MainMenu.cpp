@@ -22,8 +22,9 @@
 
 MainMenu::MainMenu(App* app) : GameState(app)
 {
-
+#ifdef _DEBUG
 	cout << "Menu principal" << endl;
+#endif 
 	init();
 }
 
@@ -83,10 +84,13 @@ void MainMenu::handleInput()
 void MainMenu::GoArcade(App* app)
 {
 	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
-
+#ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
+#endif 
 	app->getStateMachine()->pushState(new Fight(app));
+#ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
+#endif 
 }
 
 void MainMenu::Go1v1(App* app)

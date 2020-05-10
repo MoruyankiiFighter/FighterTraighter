@@ -32,8 +32,10 @@ AnimationChain* AbilityFactory::GiveMegatonGrip(Entity* e)
 
 void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 {
-	std::cout << "RATATATA-" << endl;
+#ifdef _DEBUG
 
+	std::cout << "RATATATA-" << endl;
+#endif
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
 	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg1);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
@@ -62,7 +64,10 @@ void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 
 void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 {
+#ifdef _DEBUG
 	std::cout << "KABOOM" << endl;
+#endif
+
 	//b2Body* body = ent->getComponent<PhysicsTransform>(ecs::Transform)->getBody();//{ 200,0 }, 50, 50, 10, 50, { 0,0 }
 	//b2Filter filter = body->GetFixtureList()->GetFilterData();
 
@@ -120,7 +125,10 @@ AnimationChain* AbilityFactory::GiveSeismicShock(Entity* e) //ability that kick 
 
 void AbilityFactory::SeismicS1(Entity* e)	//the attack to the floor
 {
+#ifdef _DEBUG
 	std::cout << "Heave to!" << endl;
+#endif
+
 	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::Ss1);
 	PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = phtr->getOrientation();
@@ -151,7 +159,10 @@ void AbilityFactory::SeismicS1(Entity* e)	//the attack to the floor
 
 void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
 {
+#ifdef _DEBUG
 	std::cout << "Rise up gamers" << endl;
+#endif
+
 	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Ss2);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = phtr->getOrientation();
@@ -168,7 +179,10 @@ void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
 
 void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 {
+#ifdef _DEBUG
 	std::cout << "Meatballs" << endl;
+#endif
+
 	Vector2D speed(0, 7);
 	uint16 mask;
 	//CollisionFilters
@@ -317,7 +331,10 @@ AnimationChain* AbilityFactory::GiveAcidSplit(Entity* e)
 
 void AbilityFactory::AS1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "Meatballs" << endl;
+#endif
+
 	Vector2D speed(10, 0);
 	uint16 mask;
 	//CollisionFilters

@@ -57,7 +57,11 @@ public:
 		cooldowns[id] = cool;
 	}
 	int getAbilityIndex();
-	int getAbilityCooldown(int index) {  cout << cooldowns[index] <<endl; return cooldowns[index]; }
+	int getAbilityCooldown(int index) { 
+#ifdef _DEBUG
+		cout << cooldowns[index] <<endl; return cooldowns[index]; 
+#endif 
+	}
 
 	void setMultiplier(double mul, bool timed, int timer = -1) {
 		entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(mul);
