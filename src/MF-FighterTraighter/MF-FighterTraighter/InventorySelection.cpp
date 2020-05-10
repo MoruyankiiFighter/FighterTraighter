@@ -8,7 +8,7 @@
 void InventorySelection::init()
 {
 	GameState::init();
-	//crear fondo ->será el fndo de la pelea i guess???
+	//crear fondo ->serï¿½ el fndo de la pelea i guess???
 
 	Entity* b = entManager_.addEntity();
 	b->addComponent<UITransform>(Vector2D(), Vector2D(), Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h));
@@ -77,5 +77,18 @@ void InventorySelection::init()
 	/*for(int i=0, i<app_->getGameManager()->get.....abilities.size()) 
 		crear mierda
 	*/
+	
+	//habilidades j1
+	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(1).abilities.size() / 2; i++) {
+		for (int j = 0; j < app_->getGameManager()->getPlayerInfo(1).abilities.size() / 2; j++) {
+
+		}
+	}
+	
+	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(2).abilities.size() / 2; i++) {
+		for (int j = 0; j < app_->getGameManager()->getPlayerInfo(2).abilities.size() / 2; j++) {
+
+		}
+	}
 
 }
