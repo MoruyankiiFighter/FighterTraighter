@@ -6,7 +6,7 @@
 #include "RenderImage.h"
 #include "PlayerAttacks.h"
 #include "BulletGravity.h"
-#include "FallOnHit.h"
+#include "Fall_SpawnOnHit.h"
 #include "DestroyAtTime.h"
 #include "Health.h"
 
@@ -348,7 +348,7 @@ void AbilityFactory::AS1(Entity* ent)
 	double height = 150;
 	bool gravity = true;
 	bool multiHit = true;
-	FallOnHit* fL = new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent,
+	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent,
 					new DestroyAtTime(0.1, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, multiHit));	
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Ss2);
 	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_ ,fL, gravity);
