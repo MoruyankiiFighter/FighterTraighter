@@ -99,10 +99,10 @@ void F10RData::HP1(Entity* ent)
 
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	if (pD->getPlayerNumber() == 0) {
-		mask = currentState->PLAYER_2;
+		mask = currentState->PLAYER_2 | currentState->P_BAG;
 	}
 	else {
-		mask = currentState->PLAYER_1;
+		mask = currentState->PLAYER_1 | currentState->P_BAG;
 	}
 
 	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (hp1.width / 2) + hp1.position.getX();
@@ -168,10 +168,10 @@ void F10RData::HK1(Entity* ent)
 
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	if (pD->getPlayerNumber() == 0) {
-		mask = currentState->PLAYER_2;
+		mask = currentState->PLAYER_2 | currentState->P_BAG;
 	}
 	else {
-		mask = currentState->PLAYER_1;
+		mask = currentState->PLAYER_1 | currentState->P_BAG;
 	}
 
 	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (hk1.width / 2) + hk1.position.getX();
@@ -238,10 +238,10 @@ void F10RData::AHP1(Entity* ent)
 
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	if (pD->getPlayerNumber() == 0) {
-		mask = currentState->PLAYER_2;
+		mask = currentState->PLAYER_2 | currentState->P_BAG;
 	}
 	else {
-		mask = currentState->PLAYER_1;
+		mask = currentState->PLAYER_1 | currentState->P_BAG;
 	}
 
 	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ahp1.width / 2) + ahp1.position.getX();
@@ -281,10 +281,10 @@ void F10RData::ANK1(Entity* ent)
 
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	if (pD->getPlayerNumber() == 0) {
-		mask = currentState->PLAYER_2;
+		mask = currentState->PLAYER_2 | currentState->P_BAG;
 	}
 	else {
-		mask = currentState->PLAYER_1;
+		mask = currentState->PLAYER_1 | currentState->P_BAG;
 	}
 
 	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX();

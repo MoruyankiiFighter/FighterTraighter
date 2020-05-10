@@ -93,18 +93,14 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 
 	Vector2D pos2 = Vector2D(projX2, phtr->getPosition().getY() + 225);
 	 dT = new DestroyAtTime(2, 12, 150, { (double)orientation_ * 5250, -4000 }, false, id, ent);
-	
-
 	//createProyectile(ent, width2, 180, pos2, { 0, 0 }, 2, 150, { (double)orientation_ * 5250, -4000 }, 12, mask, ent->getState(), ent->getApp(), texture2, orientation_, false);
 	instanceEntitywHitbox(ent, width2, 180, pos2, { 0,0 }, mask, ent->getState(), ent->getApp(), texture1, orientation_, dT);
 
-	//ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1,-85 }, width1, 175, 15, 27, 100, { (double)orientation_ * 7500, -5000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
-	//ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2,-85 }, width2, 180, 12, 2, 150, { (double)orientation_ * 5250, -4000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
 }
 
 void AbilityFactory::MGC(Entity* ent)
 {
-	goOnCoolodwn(ent, 600);
+	goOnCoolodwn(ent, 60*10);
 }
 
 AnimationChain* AbilityFactory::GiveSeismicShock(Entity* e) //ability that kick the floor and moments later 3 rocks fall on top of the other player
@@ -206,8 +202,10 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 	int id = ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber();
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Ss2);
 	DestroyOnHit* dH = new DestroyOnHit(damage,time,hitstun, knockBack, guardBreaker, id, ent);
-	DestroyOnHit* dH1(dH);
-	DestroyOnHit* dH2(dH);
+	DestroyOnHit* dH1 = new DestroyOnHit(damage, time, hitstun, knockBack, guardBreaker, id, ent);
+	DestroyOnHit* dH2 = new DestroyOnHit(damage, time, hitstun, knockBack, guardBreaker, id, ent);
+
+	
 	/*createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);
 	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);
 	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);*/
@@ -219,7 +217,7 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 
 void AbilityFactory::SeismicSC(Entity* ent)
 {
-	goOnCoolodwn(ent, 17 * 60);
+	goOnCoolodwn(ent, 10 * 60);
 }
 
 AnimationChain* AbilityFactory::GiveExplosiveWillpower(Entity* e)
@@ -405,13 +403,15 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
 	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
 		currentState->BULLET, mask, 1)->setOrientation(orientation);
+
+	
 	e->addComponent<RenderImage>(texture);
 
 	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
 	if (gravity)
 		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData, Vector2D(7, 0));
 	else
-		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData);
+		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData,speed);
 	uData->entity_ = e;//change to the new entity 
 	return e;
 }
