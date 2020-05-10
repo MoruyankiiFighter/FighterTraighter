@@ -23,13 +23,13 @@ void PlayerController::init()
 //update
 void PlayerController::update()
 {
-	
+
 }
 
 //handle input
 void PlayerController::handleInput()
 {
-	
+
 	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	InputManager* input = app_->getInputManager();
@@ -39,18 +39,22 @@ void PlayerController::handleInput()
 		else if (currState->isMoving())transform_->setSpeed(0, speed.getY());
 		if (!currState->isGuarding()) currState->goGuardingTransition(6);
 	}
-	else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0) && currState->canJump())
+	else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone) && currState->canJump())
 	{
 		//force and where you use the fore
 		transform_->getBody()->SetLinearDamping(0);//0 friction in the air
 		transform_->getBody()->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), transform_->getBody()->GetWorldCenter(), true);
 		if (currState->isCrouch()) uncrouch();
 		currState->goJumpingTrans(7);
+#ifdef _DEBUG
 		std::cout << "salto" << std::endl;
+#endif
 	}
-	else if ((inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > 0) && currState->canCrouch())
+	else if ((inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > verticalDeadzone) && currState->canCrouch())
 	{
+#ifdef _DEBUG
 		cout << "crouch" << endl;
+#endif
 		if (currState->isMoving()) transform_->setSpeed(0, speed.getY());
 		crouch();
 	}

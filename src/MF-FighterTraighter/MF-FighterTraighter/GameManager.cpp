@@ -18,7 +18,9 @@ GameManager::GameManager(App* app) : app_(app)
 	app_->getStateMachine()->pushState(new MainMenu(app_));
 	// TODO: Move this elsewhere
 	player1_.hid = new KeyboardHID(app_->getInputManager());
+	player1_.character = F10R;
 	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+	player2_.character = MKWh00p;
 }
 
 void GameManager::handleInput()
@@ -54,8 +56,18 @@ void GameManager::playerLost(int player)
 	default:
 		break;
 	}
-
-	if (currentRound_ < totalRounds_ - 1) {
+	if (((totalRounds_ / 2)  < playerLrounds_) || ((totalRounds_ / 2)  < playerRrounds_)) {
+		currentRound_ = 0;
+		playerLrounds_ = 0;
+		playerRrounds_ = 0;
+		GoBackToMain(stateMachine);
+	}
+	else {
+		stateMachine->popState();
+		stateMachine->pushState(new Training(app_));
+		++currentRound_;
+	}
+	/*if (currentRound_ < totalRounds_ - 1) {
 		// Remove the current fight mode
 		stateMachine->popState();
 		stateMachine->pushState(new Training(app_));
@@ -66,7 +78,7 @@ void GameManager::playerLost(int player)
 		playerLrounds_ = 0;
 		playerRrounds_ = 0;
 		GoBackToMain(stateMachine);
-	}
+	}*/
 
 }
 

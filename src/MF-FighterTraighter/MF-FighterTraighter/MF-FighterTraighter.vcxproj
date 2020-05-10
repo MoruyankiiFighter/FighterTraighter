@@ -133,19 +133,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbilitiesTimerFunction.cpp" />
     <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletGravity.cpp" />
     <ClCompile Include="DestroyAtTime.cpp" />
     <ClCompile Include="FallOnHit.cpp" />
+    <ClCompile Include="F10RData.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadHID.cpp" />
     <ClCompile Include="HID.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
-    <ClCompile Include="FactoryMk.cpp" />
+    <ClCompile Include="CharFactory.cpp" />
     <ClCompile Include="KeyboardHID.cpp" />
     <ClCompile Include="MkWH00PData.cpp" />
     <ClCompile Include="MockingbirdData.cpp" />
@@ -200,10 +203,12 @@
     <ClCompile Include="ControlsMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbilitiesTimerFunction.h" />
     <ClInclude Include="Ability.h" />
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletGravity.h" />
     <ClInclude Include="DestroyAtTime.h" />
@@ -211,6 +216,8 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="FactoryMk.h" />
     <ClInclude Include="FallOnHit.h" />
+    <ClInclude Include="CharFactory.h" />
+    <ClInclude Include="F10RData.h" />
     <ClInclude Include="FloorOnHit.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GamepadHID.h" />

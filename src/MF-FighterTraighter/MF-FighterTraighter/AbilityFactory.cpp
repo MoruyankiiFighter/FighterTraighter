@@ -8,7 +8,6 @@
 #include "BulletGravity.h"
 #include "FallOnHit.h"
 #include "DestroyAtTime.h"
-//#include "playerinfo"
 
 
 AnimationChain* AbilityFactory::GiveAbility(GameManager::AbilityID id, Entity* e) {
@@ -397,7 +396,7 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 {
 	PlayerAttacks* pl = e->getComponent<PlayerAttacks>(ecs::PlayerAttacks);
-	pl->goOnCooldown(pl->getAbilityIndex(), cool);
+	pl->goOnCooldown(pl->getAbilityIndex(), cool);	
 }
 
 std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> AbilityFactory::abilities_map = {

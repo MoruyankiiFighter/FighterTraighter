@@ -21,7 +21,7 @@ public:
 	inline void setMinValue(int minValue) { minValue_ = minValue; }
 	inline void setMaxValue(int maxValue) { maxValue_ = maxValue; }
 	void setValue(double newValue);
-
+	
 	//methods overrided from Component
 	void init() override;
 	void handleInput() override;
@@ -39,7 +39,13 @@ public:
 	double getMaxValue() { return maxValue_; }
 	int getSteps() { return steps_; }
 
-
+	void setinValue(double initValue) {
+		value_ = initValue;
+		if (value_ < minValue_)
+			value_ = minValue_;
+		else if (value_ > maxValue_)
+			value_ = maxValue_;
+	}
 protected:
 	Transform* transform_ = nullptr;
 

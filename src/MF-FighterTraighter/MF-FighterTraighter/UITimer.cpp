@@ -9,7 +9,7 @@ void UITimer::init()
 
 void UITimer::update()
 {
-	if (!timerStopped_) {
+	if (!timerStopped_ && !invisibleText) {
 		if (!countdown_) {
 			timerNow_ = SDL_GetTicks();
 		}
@@ -17,6 +17,7 @@ void UITimer::update()
 			timerStart_ = SDL_GetTicks();
 			if (timerNow_ - timerStart_ <= 0) {
 				timerStart_ = timerNow_;
+				stopTimer();
 			}
 		}
 		setText();
@@ -37,6 +38,11 @@ void UITimer::resetTimer()
 void UITimer::stopTimer()
 {
 	timerStopped_ = true;
+}
+
+bool UITimer::isTimerStopped()
+{
+	return timerStopped_;
 }
 
 void UITimer::resumeTimer()
