@@ -17,7 +17,8 @@ enum AbilityID {
 	AcidSplit,
 	ShrugOff,
 	MorePower,
-	Hookshot
+	Hookshot,
+	Dash
 };
 
 	// TODO: Move from here to somewhere else

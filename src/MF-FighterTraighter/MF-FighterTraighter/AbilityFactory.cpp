@@ -467,6 +467,44 @@ void AbilityFactory::HSC(Entity* ent)
 	goOnCoolodwn(ent, 60 * 8);
 }
 
+AnimationChain* AbilityFactory::GiveDash(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(0, nullptr, Dash, e));
+	vecMov.push_back(new Move(20, nullptr, DashC, e));
+	AnimationChain* Hookshot = new AnimationChain(vecMov);
+	return Hookshot;
+}
+
+void AbilityFactory::Dash(Entity* ent)
+{
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	Vector2D speed = pT->getSpeed();
+	Vector2D knockBack;
+
+	if (speed.getX() < 0) {
+		knockBack= Vector2D{ -100, 0 };
+	}
+	else if (speed.getX() > 0){
+		knockBack = Vector2D{ 100, 0 };
+	}
+	else {
+		if (pT->getOrientation() == 1) {
+			knockBack =Vector2D { 100, 0 };
+		}
+		else {
+			knockBack = Vector2D{ -100, 0 };
+		}
+	}
+	pT->getBody()->ApplyLinearImpulse(b2Vec2(knockBack.getX(), knockBack.getY()), pT->getBody()->GetWorldCenter(), true);
+
+}
+
+void AbilityFactory::DashC(Entity* ent)
+{
+	goOnCoolodwn(ent, 60 * 8);
+}
+
 
 
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
@@ -506,5 +544,6 @@ std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> Abil
 	{GameManager::AbilityID::ShrugOff, AbilityFactory::GiveShrugOff},
 	{GameManager::AbilityID::MorePower, AbilityFactory::GiveMorePower},
 	{GameManager::AbilityID::Hookshot, AbilityFactory::GiveHookshot},
+	{GameManager::AbilityID::Dash, AbilityFactory::GiveDash},
 
 };
