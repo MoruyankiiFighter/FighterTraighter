@@ -141,7 +141,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletGravity.cpp" />
     <ClCompile Include="DestroyAtTime.cpp" />
-    <ClCompile Include="FallOnHit.cpp" />
+    <ClCompile Include="Fall_SpawnOnHit.cpp" />
     <ClCompile Include="F10RData.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadHID.cpp" />
@@ -204,7 +204,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbilitiesTimerFunction.h" />
-    <ClInclude Include="Ability.h" />
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
@@ -214,8 +213,7 @@
     <ClInclude Include="DestroyAtTime.h" />
     <ClInclude Include="DestroyOnHit.h" />
     <ClInclude Include="EntityManager.h" />
-    <ClInclude Include="FactoryMk.h" />
-    <ClInclude Include="FallOnHit.h" />
+    <ClInclude Include="Fall_SpawnOnHit.h" />
     <ClInclude Include="CharFactory.h" />
     <ClInclude Include="F10RData.h" />
     <ClInclude Include="FloorOnHit.h" />

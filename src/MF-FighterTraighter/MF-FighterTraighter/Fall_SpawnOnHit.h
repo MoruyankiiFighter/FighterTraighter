@@ -4,10 +4,10 @@
 #include "BulletGravity.h"
 #include "AbilityFactory.h"
 
-class FallOnHit : public DestroyOnHit
+class Fall_SpawnOnHit : public DestroyOnHit
 {
 public:
-	FallOnHit(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, HitboxData* spawnData, bool mHit = false) :
+	Fall_SpawnOnHit(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, HitboxData* spawnData, bool mHit = false) :
 		DestroyOnHit(damage, time, hitstun, knockback, guardbreaker, id, e, mHit), spawnData_(spawnData) {}
 	virtual void onHit(b2Fixture* other) {
 		UserData* data = static_cast<UserData*>(other->GetUserData());
@@ -43,7 +43,7 @@ public:
 			}
 		}
 	}
-	virtual ~FallOnHit() {}
+	virtual ~Fall_SpawnOnHit() {}
 private:
 	HitboxData* spawnData_ = nullptr;
 };
