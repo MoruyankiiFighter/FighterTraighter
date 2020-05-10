@@ -9,46 +9,34 @@ class GameStateMachine;
 
 class GameManager
 {
-public:	
-
-enum AbilityID {
-	SeismicShock,
-	MegatonGrip,
-	ExplosiveWillpower
-};
+public:
+	enum AbilityID {
+		SeismicShock,
+		MegatonGrip,
+		ExplosiveWillpower
+	};
+protected:
+	// TODO: Move from here to somewhere else
 	enum CharacterID {
 		MKWh00p,
 		Mockingbird,
 		Aisha,
 		F10R
 	};
+
 	struct PlayerInfo {
 		CharacterID character;
 		std::vector<AbilityID> abilities;
 		AbilityID ability1Index;
 		AbilityID ability2Index;
 		HID* hid;
-		virtual ~PlayerInfo() { 
-			delete hid; 
+		virtual ~PlayerInfo() {
+			delete hid;
 		}
 
-		//add a hability hab in the abilities vector
-		void addHability(AbilityID hab) {
-			abilities.push_back(hab);
-		}
 
-		void setHability1(AbilityID hab) {
-			ability1Index = hab;
-		}
-		void setHability2(AbilityID hab) {
-			ability2Index = hab;
-		}
 	};
-protected:
-	// TODO: Move from here to somewhere else
-
 public:
-	
 	GameManager(App* app);
 
 	// To update HIDs
@@ -69,9 +57,34 @@ public:
 		return player2_;
 	}
 
+	void addHability(AbilityID hab, int player) {
+		if (player == 1){
+			player1_.abilities.push_back(hab);
+		}
+		else {
+			player2_.abilities.push_back(hab);
+		}
+	}
 
+	void setFirstHab(AbilityID hab, int player) {
+		if (player == 1) {
+			player1_.ability1Index = hab;
+		}
+		else {
+			player2_.ability1Index = hab;
+		}
+	}
 
+	void setSecondHab(AbilityID hab, int player) {
+		if (player == 1) {
+			player1_.ability2Index = hab;
+		}
+		else {
+			player2_.ability2Index = hab;
+		}
+	}
 	virtual ~GameManager() {
+
 	}
 protected:
 	unsigned int playerLrounds_ = 0;
