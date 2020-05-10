@@ -21,7 +21,7 @@ public:
 			}
 			else {//the entity collision with the floor(BOUNDARY)
 				PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
-				entity_->getState()->getEntityManager().addEntity();
+				//entity_->getState()->getEntityManager().addEntity();
 				uint16 mask;
 				//Entity* owner;
 				if (spawnData_->id_ == 0) {
@@ -30,9 +30,11 @@ public:
 				else {
 					mask = entity_->getState()->PLAYER_1;
 				}
-				AbilityFactory::instanceEntitywHitbox(spawnData_->entity_, 200, 200, pT->getPosition(), Vector2D(0, 0), mask, spawnData_->entity_->getState(),
+				Entity* smoke = AbilityFactory::instanceEntitywHitbox(spawnData_->entity_, 200, 200, pT->getPosition(), Vector2D(0, 0), mask, spawnData_->entity_->getState(),
 					spawnData_->entity_->getApp(), spawnData_->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Logo), pT->getOrientation(),
 					spawnData_, false);
+				smoke->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->SetSensor(true);
+
 				DestroyOnHit::onHit(other);
 				
 				//estado->createHumo(x,y)

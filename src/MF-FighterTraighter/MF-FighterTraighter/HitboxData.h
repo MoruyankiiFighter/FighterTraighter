@@ -5,8 +5,8 @@
 class HitboxData :  public UserData
 {
 public:
-	HitboxData(double damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool mHit = false) : UserData(e),
-		damage_(damage), time_(time), hitstun_(hitstun), knockBack_(knockback), guardBreaker_(guardbreaker), id_(id), multiHit_(mHit){}
+	HitboxData(double damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool mHit = false, bool proy = false) : UserData(e),
+		damage_(damage), time_(time), hitstun_(hitstun), knockBack_(knockback), guardBreaker_(guardbreaker), id_(id), multiHit_(mHit), proyectile_(proy){}
 	virtual ~HitboxData() {}
 	virtual void onHit(b2Fixture* other) {
 		if (!multiHit_ && !destroy_) {			
@@ -37,5 +37,6 @@ public:
 	bool guardBreaker_ = false;
 	bool destroy_ = false;//if its true it means that it has to be destroyed
 	bool multiHit_ = false;	//si la hitbox es multiHit, solo se destruye cuando pasa su tiempo
+	bool proyectile_ = false; //si la hitbox es un proyectil, para no eliminarla cuando aterrizas o te interrumpen un ataque
 };
 
