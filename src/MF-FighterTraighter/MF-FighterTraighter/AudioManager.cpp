@@ -11,6 +11,8 @@ AudioManager::AudioManager(int channels, App* app) : channels_(channels), app_(a
 			std::cout << "Audio Manager not loaded" << Mix_GetError() << std::endl;
 	silenced = false;
 	initialized_ = true;
+	Mix_VolumeMusic(startGeneralVolume);
+	Mix_Volume(-1, startSFXVolume);
 }
 
 AudioManager::~AudioManager()
@@ -130,7 +132,7 @@ int AudioManager::setSFXVolume( int volume)
 	volumeSFX = volume;
 	int vol = Mix_Volume(-1, volume);
 	
-	playSFX(app_->getAssetsManager()->getSFX(AssetsManager::AISHA_1), true);
+	playSFX(app_->getAssetsManager()->getSFX(AssetsManager::PUNCH), 0);
 
 	return vol;
 
