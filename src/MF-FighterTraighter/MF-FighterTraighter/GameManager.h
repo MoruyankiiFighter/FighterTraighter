@@ -10,13 +10,12 @@ class GameStateMachine;
 class GameManager
 {
 public:	
-enum AbilityID {
-	SeismicShock,
-	MegatonGrip,
-	ExplosiveWillpower,
-	AcidSplit
-};
-protected:
+	enum AbilityID {
+		SeismicShock,
+		MegatonGrip,
+		ExplosiveWillpower,
+		AcidSplit
+	};
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
 		MKWh00p,
@@ -35,8 +34,7 @@ protected:
 			delete hid;
 		}
 	};
-protected:
-public:
+
 	GameManager(App* app);
 
 	// To update HIDs

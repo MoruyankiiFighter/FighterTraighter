@@ -1,5 +1,6 @@
 #include "MkWH00PData.h"
 #include "AbilityFactory.h"
+#include "DestroyAtTime.h"
 
 MkWH00PData::MkWH00PData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
@@ -201,8 +202,11 @@ void MkWH00PData::HK2(Entity* ent)
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (hk2.width / 2) - hk2.position.getX();
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + hk2.position.getY());
-	AbilityFactory::createProyectile(ent, hk2.width, hk2.height, pos, { 0, -0.7 }, hk2.damage, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() },
-		hk1.time, mask, ent->getState(), ent->getApp(), texture, false);
+	DestroyAtTime* dT = new DestroyAtTime(hk2.damage, hk2.time, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
+	/*AbilityFactory::createProyectile(ent, hk2.width, hk2.height, pos, { 0, -0.7 }, hk2.damage, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() },
+		hk1.time, mask, ent->getState(), ent->getApp(), texture, false);*/
+	AbilityFactory::instanceEntitywHitbox(ent, hk2.width, hk2.height, pos, { (double)orientation_ * 2, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+
 }
 
 PlayerData::CallbackData MkWH00PData::hk2 = PlayerData::CallbackData{

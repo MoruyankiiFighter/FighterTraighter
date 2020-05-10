@@ -52,7 +52,9 @@ void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 225);
-	createProyectile(ent, width, 150, pos, { 0, 0 }, 2, 50, { (double)orientation_ * 5, 5 }, 7, mask, ent->getState(), ent->getApp(), texture, orientation_, false);
+	DestroyAtTime* dT = new DestroyAtTime(2, 7, 50, { (double)orientation_ * 5, 5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	instanceEntitywHitbox(ent, width, 150, pos, { 0, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	
 }
 
 void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
@@ -65,7 +67,7 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 	Texture* texture1 = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg21);
 	Texture* texture2 = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg22);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
-
+	int id = ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber();
 	uint16 mask;
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
 
@@ -82,14 +84,19 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 	if (orientation_ == -1) projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width1 / 2);
 
 	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 225);
-	createProyectile(ent, width1, 150, pos1, { 0, 0 }, 27, 100, { (double)orientation_ * 7500, -5000 }, 15, mask, ent->getState(), ent->getApp(), texture1, orientation_, false);
-
+	//createProyectile(ent, width1, 150, pos1, { 0, 0 }, 27, 100, { (double)orientation_ * 7500, -5000 }, 15, mask, ent->getState(), ent->getApp(), texture1, orientation_, false);
+	DestroyAtTime* dT = new DestroyAtTime(27, 15, 100, { (double)orientation_ * 7500, -5000 }, false, id, ent);
+	instanceEntitywHitbox(ent, width1, 150, pos1, { 0,0 }, mask, ent->getState(), ent->getApp(), texture1, orientation_, dT);
 	int width2 = 250;
 	int projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width2 / 2) + 150;
 	if (orientation_ == -1) projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width2 / 2) - 150;
 
 	Vector2D pos2 = Vector2D(projX2, phtr->getPosition().getY() + 225);
-	createProyectile(ent, width2, 180, pos2, { 0, 0 }, 2, 150, { (double)orientation_ * 5250, -4000 }, 12, mask, ent->getState(), ent->getApp(), texture2, orientation_, false);
+	 dT = new DestroyAtTime(2, 12, 150, { (double)orientation_ * 5250, -4000 }, false, id, ent);
+	
+
+	//createProyectile(ent, width2, 180, pos2, { 0, 0 }, 2, 150, { (double)orientation_ * 5250, -4000 }, 12, mask, ent->getState(), ent->getApp(), texture2, orientation_, false);
+	instanceEntitywHitbox(ent, width2, 180, pos2, { 0,0 }, mask, ent->getState(), ent->getApp(), texture1, orientation_, dT);
 
 	//ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX1,-85 }, width1, 175, 15, 27, 100, { (double)orientation_ * 7500, -5000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
 	//ent->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX2,-85 }, width2, 180, 12, 2, 150, { (double)orientation_ * 5250, -4000 }, body, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, filter.categoryBits, filter.maskBits);
@@ -138,7 +145,9 @@ void AbilityFactory::SeismicS1(Entity* e)	//the attack to the floor
 
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
-	createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
+	DestroyAtTime* dT = new DestroyAtTime(17, 50, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
+	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
+	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
 }
 
 void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
@@ -153,7 +162,9 @@ void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2) - 60;
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + 150);
-	createProyectile(ent, width, 300, pos, { 0,-10 }, 0, 0, { 0,0 }, 250, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, orientation_, false);
+	DestroyAtTime* dT = new DestroyAtTime(0, 250, 0, { 0,0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	//createProyectile(ent, width, 300, pos, { 0,-10 }, 0, 0, { 0,0 }, 250, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, orientation_, false);
+	instanceEntitywHitbox(ent, width, 300, pos, { 0,-10 }, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, orientation_, dT);
 }
 
 void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
@@ -191,11 +202,19 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 	//bool multiHit = false;
 	double width = 150;
 	double height = 150;	
-
+	bool guardBreaker = false;
+	int id = ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber();
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Ss2);
-	createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);
+	DestroyOnHit* dH = new DestroyOnHit(damage,time,hitstun, knockBack, guardBreaker, id, ent);
+	DestroyOnHit* dH1(dH);
+	DestroyOnHit* dH2(dH);
+	/*createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);
 	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);
-	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);
+	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);*/
+	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_, dH);
+	instanceEntitywHitbox(ent, width, height, pos1, speed, mask, currentState, app, texture, orientation_, dH1);
+	instanceEntitywHitbox(ent, width, height, pos2, speed, mask, currentState, app, texture, orientation_, dH2);
+
 }
 
 void AbilityFactory::SeismicSC(Entity* ent)
@@ -241,20 +260,31 @@ void AbilityFactory::EW1(Entity* ent)
 #endif
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = pT->getOrientation();
-
+	Texture* tex = app->getAssetsManager()->getTexture(AssetsManager::Ew1);
+	int damage = 10;
+	int time = 25;
+	int hitstun = 55;
+	Vector2D knockback = { 10.0 * orientation_, -5.0 };
+	bool guardBreaker = false;
+	int id = ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber();
+	DestroyAtTime* dT = new DestroyAtTime(damage, time, hitstun, knockback, guardBreaker, id, ent);
 	//Palante
 	int width1 = 100;
 	int projX1 = pT->getPosition().getX() + (pT->getWidth() * 3 / 4) + (width1 / 2) - 80;
 	if (orientation_ == -1) projX1 = pT->getPosition().getX() + (pT->getWidth() * 1 / 4) - (width1 / 2) + 80;
 	Vector2D pos1 = Vector2D(projX1, pT->getPosition().getY() + (pT->getHeight() / 2));
-	createProyectile(ent, width1, 375, pos1, { 4.5 * orientation_, 0 }, 10, 55, { 10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Ew1), orientation_, false);
-
+	
+	//createProyectile(ent, width1, 375, pos1, { 4.5 * orientation_, 0 }, 10, 55, { 10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Ew1), orientation_, false);
+	instanceEntitywHitbox(ent, width1, 375, pos1, { 4.5 * orientation_, 0 }, mask, currentState, app, tex, orientation_, dT);
 	//Patrás
 	int width2 = 100;
 	int projX2 = pT->getPosition().getX() + (pT->getWidth() * 1 / 4) - (width2 / 2) + 80;
 	if (orientation_ == -1) projX2 = pT->getPosition().getX() + (pT->getWidth() * 3 / 4) + (width2 / 2) - 80;
 	Vector2D pos2 = Vector2D(projX2, pT->getPosition().getY() + (pT->getHeight() / 2));
-	createProyectile(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, 10, 55, { -10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Ew1), -orientation_, false);
+	knockback = { -10.0 * orientation_, -5.0 };
+	dT = new DestroyAtTime(damage, time, hitstun, knockback, guardBreaker, id, ent);
+	//createProyectile(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, 10, 55, { -10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Ew1), -orientation_, false);
+	instanceEntitywHitbox(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, mask, currentState, app, tex, orientation_, dT);
 
 	//Parriba
 	/*int width3 = 160;
@@ -316,9 +346,12 @@ void AbilityFactory::AS1(Entity* ent)
 	double width = 150;
 	double height = 150;
 	bool gravity = true;
-	
+	bool multiHit = true;
+	FallOnHit* fL = new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent,
+					new DestroyAtTime(0.1, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, multiHit));	
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Ss2);
-	createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact, gravity);
+	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_ ,fL, gravity);
+	//createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact, gravity);
 }
 
 void AbilityFactory::ASC(Entity* ent)
@@ -327,41 +360,41 @@ void AbilityFactory::ASC(Entity* ent)
 }
 
 
-Entity* AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
-	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact, bool gravity, bool multihit) {
-	double windowWidth = app->getWindowManager()->getCurResolution().w;
-	if (pos.getX() >= windowWidth) 
-		pos.setX(windowWidth);
-	else if (pos.getX() <= 0)  
-		pos.setX(0);
-	//App* app = ent->getApp();
-	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
-	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
-		currentState->BULLET, mask, 1)->setOrientation(orientation);
-	e->addComponent<RenderImage>(texture);
-	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
-	if (gravity) {
-		if (destroyInContact) {
-			e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e,
-				new DestroyOnHit(damage, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true)), Vector2D(7, 0));
-		}
-		else {
-			e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), 
-				new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e,
-				new DestroyAtTime(0.1, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true), multihit), Vector2D(7, 0));
-		}
-	}
-	else {
-		if (destroyInContact) {
-			e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, multihit), speed);
-		}
-		else {
-			e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyAtTime(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, multihit), speed);
-		}
-	}
-	return e;
-}
+//Entity* AbilityFactory::createProyectile(Entity* ent, double width, double height,Vector2D pos, Vector2D speed, int damage,
+//	int hitstun, Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact, bool gravity, bool multihit) {
+//	double windowWidth = app->getWindowManager()->getCurResolution().w;
+//	if (pos.getX() >= windowWidth) 
+//		pos.setX(windowWidth);
+//	else if (pos.getX() <= 0)  
+//		pos.setX(0);
+//	//App* app = ent->getApp();
+//	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+//	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
+//	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
+//		currentState->BULLET, mask, 1)->setOrientation(orientation);
+//	e->addComponent<RenderImage>(texture);
+//	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
+//	if (gravity) {
+//		if (destroyInContact) {
+//			e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e,
+//				new DestroyOnHit(damage, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true)), Vector2D(7, 0));
+//		}
+//		else {
+//			e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), 
+//				new FallOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e,
+//				new DestroyAtTime(0.1, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, true), multihit), Vector2D(7, 0));
+//		}
+//	}
+//	else {
+//		if (destroyInContact) {
+//			e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, multihit), speed);
+//		}
+//		else {
+//			e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), new DestroyAtTime(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, multihit), speed);
+//		}
+//	}
+//	return e;
+//}
 
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
@@ -369,15 +402,6 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 		pos.setX(windowWidth);
 	else if (pos.getX() <= 0)  
 		pos.setX(0);
-	//App* app = ent->getApp();
-	//PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	/*
-	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
-	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
-		currentState->BULLET, mask, 1)->setOrientation(orientation);
-	e->addComponent<RenderImage>(texture);
-	
-	*/
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
 	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
 		currentState->BULLET, mask, 1)->setOrientation(orientation);
