@@ -18,7 +18,7 @@ enum AbilityID {
 	ShrugOff,
 	MorePower
 };
-protected:
+
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
 		MKWh00p,

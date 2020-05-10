@@ -381,8 +381,12 @@ void AbilityFactory::SO1(Entity* ent)
 	int projX = phTr->getPosition().getX() + (phTr->getWidth() * 1 / 4) + (phTr->getWidth() / 4);
 	if (orientation_ == -1) projX = phTr->getPosition().getX() + (phTr->getWidth() * 3 / 4) - (phTr->getWidth() / 4);
 	Vector2D pos = Vector2D(projX, phTr->getPosition().getY() + (phTr->getHeight() / 2));
-	createProyectile(ent, width, 250, pos, { 0, 0 }, 0, 0, { 0, 0 }, 35, app->getStateMachine()->getCurrentState()->NONE, 
-		app->getStateMachine()->getCurrentState(), app, app->getAssetsManager()->getTexture(AssetsManager::So1), orientation_);
+
+	DestroyAtTime* dT = new DestroyAtTime(0, 35, 0, { 0,0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	instanceEntitywHitbox(ent, width, 250, pos, { 0, 0 }, ent->getState()->NONE, ent->getState(), ent->getApp(), app->getAssetsManager()->getTexture(AssetsManager::So1), orientation_, dT);
+
+	//createProyectile(ent, width, 250, pos, { 0, 0 }, 0, 0, { 0, 0 }, 35, app->getStateMachine()->getCurrentState()->NONE, 
+		//app->getStateMachine()->getCurrentState(), app, app->getAssetsManager()->getTexture(AssetsManager::So1), orientation_);
 }
 
 void AbilityFactory::SOC(Entity* ent)
@@ -411,8 +415,9 @@ void AbilityFactory::MP1(Entity* ent)
 	int projX = phTr->getPosition().getX() + (phTr->getWidth() * 1 / 4) + (phTr->getWidth() / 4);
 	if (orientation_ == -1) projX = phTr->getPosition().getX() + (phTr->getWidth() * 3 / 4) - (phTr->getWidth() / 4);
 	Vector2D pos = Vector2D(projX, phTr->getPosition().getY() + (phTr->getHeight() / 2));
-	createProyectile(ent, width, 250, pos, { 0, 0 }, 0, 0, { 0, 0 }, 35, app->getStateMachine()->getCurrentState()->NONE,
-		app->getStateMachine()->getCurrentState(), app, app->getAssetsManager()->getTexture(AssetsManager::Mp1), orientation_);
+	DestroyAtTime* dT = new DestroyAtTime(0, 35, 0, { 0,0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	instanceEntitywHitbox(ent, width, 250, pos, { 0, 0 }, ent->getState()->NONE, ent->getState(), ent->getApp(), app->getAssetsManager()->getTexture(AssetsManager::Mp1), orientation_, dT);
+
 }
 
 void AbilityFactory::MPC(Entity* ent)

@@ -42,7 +42,7 @@ public:
 		Ew1,
 		MkHk,
 		F10RHp,
-		F10RHk
+		F10RHk,
 		So1,
 		Mp1
 	};
