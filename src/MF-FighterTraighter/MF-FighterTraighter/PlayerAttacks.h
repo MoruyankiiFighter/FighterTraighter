@@ -59,8 +59,9 @@ public:
 	int getAbilityIndex();
 	int getAbilityCooldown(int index) { 
 #ifdef _DEBUG
-		cout << cooldowns[index] <<endl; return cooldowns[index]; 
+		cout << cooldowns[index] <<endl; 
 #endif 
+		return cooldowns[index];
 	}
 
 	void setMultiplier(double mul, bool timed, int timer = -1) {
