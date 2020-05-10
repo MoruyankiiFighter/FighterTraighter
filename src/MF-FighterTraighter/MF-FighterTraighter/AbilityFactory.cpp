@@ -409,7 +409,7 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 
 	//int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, bool destroyInContact = false
 	if (gravity)
-		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData, Vector2D(7, 0));
+		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData, speed);
 	else
 		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData,speed);
 	uData->entity_ = e;//change to the new entity 
