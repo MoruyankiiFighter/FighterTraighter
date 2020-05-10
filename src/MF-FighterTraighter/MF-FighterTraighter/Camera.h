@@ -15,8 +15,7 @@ public:
 	void init()override
 	{
 		cam = entity_->getComponent<Transform>(ecs::Transform);
-		timer = entity_->getComponent<UITimer>(ecs::UITimer);
-		timer->setCountdown(5000);
+		
 
 		//1920+860*2+500
 		cam->setWidthHeight(cam->getWidth() + m_Target1->getPosition().getX()*2 + m_Target1->getWidth()/2, cam->getHeight() + m_Target1->getPosition().getY());
@@ -33,16 +32,5 @@ private:
 		Transform* cam;
 		Transform* m_Target1;
 		Transform* m_Target2;
-	
-
-		int timerStart_ = 0; // ms
-		int timerNow_ = 0; // ms
-		bool timerStopped_ = false;
-		bool countdown_; // if true, the timer will countdown from countdownAmount_ to 0
-		int countdownAmount_ = 0; // amount in miliseconds
-
-		UITimer* timer;
-
-		
 };
 

@@ -116,7 +116,6 @@ void Fight::init()
 	
 
  	//bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform));
-	bg->addComponent<UITimer>(UITimer::Seconds, true);
  	bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform), player2->getComponent<Transform>(ecs::Transform));
 
 
