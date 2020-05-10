@@ -15,6 +15,8 @@ public:
 		MegatonGrip,
 		ExplosiveWillpower
 	};
+
+
 protected:
 	// TODO: Move from here to somewhere else
 	enum CharacterID {

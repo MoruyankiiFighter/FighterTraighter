@@ -8,7 +8,11 @@ public:
 	void init() override;
 
 	static void SetFirstSkill(App* app, int n);
-	void SetSecondSkill(App* app, int n);
+	static void SetSecondSkill(App* app, int n);
+
+	static void GoToFight(App* app);
+
+
 private:
 
 };
