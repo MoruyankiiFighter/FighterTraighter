@@ -78,20 +78,76 @@ void InventorySelection::init()
 		crear mierda
 	*/
 	
-	//habilidades j1
-	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(1).abilities.size(); i++) {
-	
-		
+	//hab j1
+	Entity* nav_j1 = entManager_.addEntity();
+	NavigationController* ctrl = nav_j1->addComponent<NavigationController>(5, 3, app_->getGameManager()->getPlayerInfo(1).hid);
 
+	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(1).abilities.size(); i++) {
+		//ACCESO A J1->ACCESO A HAB->RETURN ASSET()
+		if (i < 5) { //cambiarlo por la mitad del vector
+			tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
+				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
+				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
+				(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+			ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+		}
+		else {
+			tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h/ 15) * 6.7),
+				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h/ 15) * 6.7),
+				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w  / 15)) + 40, (app_->getWindowManager()->getCurResolution().h/ 15) * 6.7),
+				(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+			ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
+		}
 	}
+
+	for (int i = 0; i < 5; i++) {
+		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), i, 2);
+	}
+	// inv j1
+
+
+	//hab j2
+	Entity* nav_j2 = entManager_.addEntity();
+	NavigationController* ctrl_ = nav_j2->addComponent<NavigationController>(5, 3, app_->getGameManager()->getPlayerInfo(2).hid);
 	
 	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(2).abilities.size() ; i++) {
-		
-	}
+	
+		if (i < 5) {
+		tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h/ 15) * 4.7),
+			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
+			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
+			(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+		ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i, 0);
 
+		}
+	
+		else {
+		tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h/ 15) * 6.7),
+			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h/ 15) * 6.7),
+			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h/ 15) * 6.7),
+			(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+		ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
+
+		}
+	}
+	// Navigation controller
+		for (int i = 0; i < 5; i++) {
+			ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), i, 2);
+		}
 }
 
-void InventorySelection::SetSkill(App* app, int n)
+void InventorySelection::SetFirstSkill(App* app, int n)
 {
+	app->getGameManager()->setFirstHab(app->getGameManager()->ExplosiveWillpower, n); //provisional
+	
+}
+
+void InventorySelection::SetSecondSkill(App* app, int n)
+{
+	app->getGameManager()->setSecondHab(app->getGameManager()->ExplosiveWillpower, n); //provisional
 	
 }
