@@ -10,20 +10,18 @@ class GameStateMachine;
 class GameManager
 {
 public:	
+
 enum AbilityID {
 	SeismicShock,
 	MegatonGrip,
 	ExplosiveWillpower
 };
-protected:
-	// TODO: Move from here to somewhere else
 	enum CharacterID {
 		MKWh00p,
 		Mockingbird,
 		Aisha,
 		F10R
 	};
-
 	struct PlayerInfo {
 		CharacterID character;
 		std::vector<AbilityID> abilities;
@@ -46,7 +44,11 @@ protected:
 			ability2Index = hab;
 		}
 	};
+protected:
+	// TODO: Move from here to somewhere else
+
 public:
+	
 	GameManager(App* app);
 
 	// To update HIDs

@@ -49,16 +49,19 @@ void InventorySelection::init()
 	std::get<1>(boton2)->getComponent<UITransform>(ecs::Transform)->Bottom;
 	
 	//habilidades j1
-	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(1).abilities.size() / 2; i++) {
-		for (int j = 0; j < app_->getGameManager()->getPlayerInfo(1).abilities.size() / 2; j++) {
+	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(1).abilities.size(); i++) {
+	
+		
 
-		}
 	}
 	
-	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(2).abilities.size() / 2; i++) {
-		for (int j = 0; j < app_->getGameManager()->getPlayerInfo(2).abilities.size() / 2; j++) {
-
-		}
+	for (int i = 0; i < app_->getGameManager()->getPlayerInfo(2).abilities.size() ; i++) {
+		
 	}
 
+}
+
+void InventorySelection::SetSkill(App* app, int n)
+{
+	
 }

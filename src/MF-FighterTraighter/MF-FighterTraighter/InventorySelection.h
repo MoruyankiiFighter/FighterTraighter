@@ -7,6 +7,7 @@ public:
 	InventorySelection(App* app) : GameState(app) { init(); }
 	void init() override;
 
+	static void SetSkill(App* app, int n);
 private:
 
 };
