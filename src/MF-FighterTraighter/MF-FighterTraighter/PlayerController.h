@@ -24,6 +24,7 @@ public:
 	void wallRight(bool collision) {
 		wallRight_ = collision;
 	}
+	
 private:
 	HID* inputSt_ = nullptr;
 	PhysicsTransform* transform_ = nullptr;

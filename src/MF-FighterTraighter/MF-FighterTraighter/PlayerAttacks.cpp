@@ -75,8 +75,7 @@ void PlayerAttacks::handleInput() {
 				currState->goAttack(4);
 			}else if (inputSt_->ButtonPressed(HID::LeftBumper)) {
 				if (abilityList[0] != nullptr && cooldowns[0] == 0) {
-					activeAttack_ = abilityList[0];
-					tr->setSpeed(0, tr->getSpeed().getY());
+					activeAttack_ = abilityList[0];					
 					if (currState->isCrouch()) ctrl->uncrouch();
 					currState->goCasting();
 				}

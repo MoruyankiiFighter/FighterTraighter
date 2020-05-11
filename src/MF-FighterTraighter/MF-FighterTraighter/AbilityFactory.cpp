@@ -10,6 +10,7 @@
 #include "DestroyAtTime.h"
 #include "Health.h"
 #include "VampiricDestroyAtTime.h"
+#include "PlayerData.h"
 
 //#include "playerinfo"
 
@@ -489,29 +490,31 @@ AnimationChain* AbilityFactory::GiveDash(Entity* e)
 {
 	std::vector<Move*> vecMov;
 	vecMov.push_back(new Move(0, nullptr, Dash, e));
-	vecMov.push_back(new Move(20, nullptr, DashC, e));
-	AnimationChain* Hookshot = new AnimationChain(vecMov);
-	return Hookshot;
+	vecMov.push_back(new Move( 0, nullptr, DashC, e));
+	AnimationChain* Dash = new AnimationChain(vecMov);
+	return Dash;
 }
 
 void AbilityFactory::Dash(Entity* ent)
 {
+	PlayerData* pD= ent->getComponent<PlayerData>(ecs::PlayerData);
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	Vector2D speed = pT->getSpeed();
 	Vector2D knockBack;
-
-	if (speed.getX() < 0) {
-		knockBack= Vector2D{ -100, 0 };
+	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber()+1).hid;
+	 
+	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
+		knockBack = Vector2D{ -50, 0 };
 	}
-	else if (speed.getX() > 0){
-		knockBack = Vector2D{ 100, 0 };
+	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
+		knockBack = Vector2D{ 50, 0 };
+
 	}
 	else {
 		if (pT->getOrientation() == 1) {
-			knockBack =Vector2D { 100, 0 };
+			knockBack =Vector2D { 50, 0 };
 		}
 		else {
-			knockBack = Vector2D{ -100, 0 };
+			knockBack = Vector2D{ -50, 0 };
 		}
 	}
 	pT->getBody()->ApplyLinearImpulse(b2Vec2(knockBack.getX(), knockBack.getY()), pT->getBody()->GetWorldCenter(), true);
