@@ -46,7 +46,7 @@ public:
 		So1,
 		Mp1,
 		Hs1,
-		As2
+		As2,
 		Vs1
 	};
 

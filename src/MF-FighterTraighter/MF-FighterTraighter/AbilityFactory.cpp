@@ -318,7 +318,6 @@ AnimationChain* AbilityFactory::GiveAcidSplit(Entity* e)
 
 void AbilityFactory::AS1(Entity* ent)
 {
-	std::cout << "Meatballs" << endl;
 	Vector2D speed(10, 0);
 	uint16 mask;
 	//CollisionFilters
@@ -375,6 +374,9 @@ AnimationChain* AbilityFactory::GiveShrugOff(Entity* e)
 
 void AbilityFactory::SO1(Entity* ent)
 {
+#if _DEBUG
+	std::cout << "Guess I won't die" << endl;
+#endif
 	ent->getComponent<Health>(ecs::Health)->setMultiplier(0, false);
 
 	App* app = ent->getApp();
@@ -409,6 +411,9 @@ AnimationChain* AbilityFactory::GiveMorePower(Entity* e)
 
 void AbilityFactory::MP1(Entity* ent)
 {
+#if _DEBUG
+	std::cout << "Guess YOU'll die" << endl;
+#endif
 	ent->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setMultiplier(2, false);
 
 	App* app = ent->getApp();
@@ -440,6 +445,9 @@ AnimationChain* AbilityFactory::GiveHookshot(Entity* e)
 
 void AbilityFactory::HS1(Entity* ent)
 {
+#if _DEBUG
+	std::cout << "Sweet sweet lollypopping" << endl;
+#endif
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
 	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Hs1);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
@@ -526,6 +534,9 @@ AnimationChain* AbilityFactory::GiveVampiricStrike(Entity* e)
 
 void AbilityFactory::VS1(Entity* ent)
 {
+#if _DEBUG
+	std::cout << "HA HA HA HO" << endl;
+#endif
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
 	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Vs1);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
