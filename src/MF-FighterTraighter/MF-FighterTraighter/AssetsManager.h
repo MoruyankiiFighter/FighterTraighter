@@ -60,6 +60,7 @@ public:
 		F10rSheet,
 
 		Random_icon,
+		RandomArtwork,
 
 		Ew1,
 		MkHk,

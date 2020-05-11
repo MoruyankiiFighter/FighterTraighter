@@ -108,7 +108,7 @@ void CharacterSelection::init()
 	Entity* logic1 = entManager_.addEntity();
 	logic1->addComponent<CharacterSelectionLogic>(1, text_j1->getComponent<TextComponent>(ecs::TextComponent), leftP->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav1->getComponent<NavigationController>(ecs::NavigationController),
 		(aishaElement1)->getComponent<UIElement>(ecs::UIElement), (florElement1)->getComponent<UIElement>(ecs::UIElement), (MKElement1)->getComponent<UIElement>(ecs::UIElement), (mockElement1)->getComponent<UIElement>(ecs::UIElement), randElement1->getComponent<UIElement>(ecs::UIElement),
-		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
+		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork), app_->getAssetsManager()->getTexture(AssetsManager::RandomArtwork));
 
 
 
@@ -151,7 +151,7 @@ void CharacterSelection::init()
 	Entity* logic2 = entManager_.addEntity();
 	logic2->addComponent<CharacterSelectionLogic>(2, text_j2->getComponent<TextComponent>(ecs::TextComponent), rightP->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav_->getComponent<NavigationController>(ecs::NavigationController),
 		(aishaElement2)->getComponent<UIElement>(ecs::UIElement), (florElement2)->getComponent<UIElement>(ecs::UIElement), (MKElement2)->getComponent<UIElement>(ecs::UIElement), (mockElement2)->getComponent<UIElement>(ecs::UIElement), randElement2->getComponent<UIElement>(ecs::UIElement),
-		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork));
+		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork), app_->getAssetsManager()->getTexture(AssetsManager::RandomArtwork));
 }
 
 void CharacterSelection::handleInput()
