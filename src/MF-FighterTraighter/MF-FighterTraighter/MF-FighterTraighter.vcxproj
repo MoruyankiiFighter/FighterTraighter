@@ -264,6 +264,7 @@
     <ClInclude Include="UITransform.h" />
     <ClInclude Include="ResetJumpListener.h" />
     <ClInclude Include="UserData.h" />
+    <ClInclude Include="VampiricDestroyAtTime.h" />
     <ClInclude Include="WindowManager.h" />
     <ClInclude Include="SacoTimer.h" />
     <ClInclude Include="SDLDebugDraw.h" />
