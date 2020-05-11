@@ -12,7 +12,7 @@ public:
 		UserData* data = static_cast<UserData*>(other->GetUserData());
 		if (data && data->entity_->getComponent<PlayerState>(ecs::PlayerState)->isGuardingStun()) {	//When the ice has hit (SPECIAL CASE)
 			hitstun_ /= 10;
-			data->entity_->getComponent<PlayerState>(ecs::PlayerState)->goGuardingStun(hitstun_ / 10);
+			data->entity_->getComponent<PlayerState>(ecs::PlayerState)->goGuardingStun(hitstun_);
 		}
 		else {
 			PhysicsTransform* phTr = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
