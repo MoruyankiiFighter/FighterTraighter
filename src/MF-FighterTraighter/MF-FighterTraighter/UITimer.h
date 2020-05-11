@@ -29,8 +29,7 @@ public:
 		//resumeTimer();
 	}
 
-	inline void setInvisible(bool inv) { invisibleText = inv;};
-
+	inline void setInvisible(bool inv) { invisibleText = inv; text_->setText("");};
 	void resetTimer();
 	void stopTimer();
 	bool isTimerStopped();

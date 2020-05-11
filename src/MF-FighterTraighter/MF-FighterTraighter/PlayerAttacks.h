@@ -56,11 +56,11 @@ public:
 	void interruptAttack();
 	inline void goOnCooldown(int id, int cool) {
 		cooldowns[id] = cool;
-		setTimeCool(cool);
-		cout << cooldowns[id] << endl;
+		setTimeCool(id ,cool);
+		activateTimer(id, true);
 	}
-	void setTimeCool(int cool);
-	int getTimeCool();
+	void setTimeCool(int ind, int cool);
+	int getTimeCool(int ind);
 	int getAbilityIndex();
 	int getAbilityCooldown(int index) { 
 #ifdef _DEBUG
@@ -68,7 +68,14 @@ public:
 #endif 
 		return cooldowns[index];
 	}
-
+	void activateTimer(int ind, bool active) {
+		if (ind == 0) activeTim0 = active;
+		if (ind == 1) activeTim1 = active;
+	};
+	bool isTimeActive(int ind) {
+		if (ind == 0) return activeTim0;
+		if (ind == 1) return activeTim1;
+	}
 	void setMultiplier(double mul, bool timed, int timer = -1) {
 		entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(mul);
 		isMultiplierTimed = timed;
@@ -87,7 +94,10 @@ private:
 	int multiplierTimer_ = -1;
 	int remainingUses_ = 0;
 	bool isMultiplierTimed = false;
-	int timeCool = 0;
+	int timeCool0 = 0;
+	int timeCool1 = 0;
+	bool activeTim0 = false;
+	bool activeTim1 = false;
 	//keys to use the attacks and abilities
 	HID* inputSt_;
 	//AbilitiesTimerFunction* abstimer;
