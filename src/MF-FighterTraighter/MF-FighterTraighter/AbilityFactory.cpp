@@ -443,13 +443,19 @@ void AbilityFactory::HS1(Entity* ent)
 
 	uint16 mask;
 	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+	int orX, desX;
 
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	orX = phtr->getPosition().getX() + (phtr->getWidth() / 2);
 	if (pD->getPlayerNumber() == 0) {
 		mask = currentState->PLAYER_2 | currentState->P_BAG;
+		PhysicsTransform* otherPlayer = currentState->getEntityManager().getHandler(ecs::Player2)->getComponent<PhysicsTransform>(ecs::Transform);
+		desX = otherPlayer->getPosition().getX() + (otherPlayer->getWidth() / 2);
 	}
 	else {
 		mask = currentState->PLAYER_1 | currentState->P_BAG;
+		PhysicsTransform* otherPlayer = currentState->getEntityManager().getHandler(ecs::Player1)->getComponent<PhysicsTransform>(ecs::Transform);
+		desX = otherPlayer->getPosition().getX() + (otherPlayer->getWidth() / 2);
 	}
 
 	int width = 145;
@@ -458,14 +464,14 @@ void AbilityFactory::HS1(Entity* ent)
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 300);
 
-	DestroyOnHit* dT = new DestroyOnHit(3, 45, 40, { (double)orientation_ * -50, 0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	DestroyOnHit* dT = new DestroyOnHit(3, 60, 40, { (double)orientation_ * (orX - desX) * 0.055, 0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
-	AbilityFactory::instanceEntitywHitbox(ent, width, 145, pos, { (double)orientation_ * 10, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	AbilityFactory::instanceEntitywHitbox(ent, width, 145, pos, { (double)orientation_ * 9, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 }
 
 void AbilityFactory::HSC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 8);
+	goOnCoolodwn(ent, 60 * 0);
 }
 
 AnimationChain* AbilityFactory::GiveDash(Entity* e)
