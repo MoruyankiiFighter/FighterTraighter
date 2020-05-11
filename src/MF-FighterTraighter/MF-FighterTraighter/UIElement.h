@@ -17,10 +17,10 @@ public:
 
 	UIElement(HID* owner = nullptr) : Component(ecs::UIElement), owner_(owner) {}
 
-	virtual void Press() = 0;
-	virtual void Select() = 0;
-	virtual void Disable() = 0;
-	virtual void Deselect() = 0;
+	virtual void Press() {};
+	virtual void Select() {};
+	virtual void Disable() {};
+	virtual void Deselect() {};
 
 	inline virtual void setOwner(HID* owner) { owner_ = owner; }
 

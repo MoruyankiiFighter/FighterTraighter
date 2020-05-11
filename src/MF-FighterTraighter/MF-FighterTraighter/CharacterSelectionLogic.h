@@ -7,9 +7,9 @@ class CharacterSelectionLogic: public Component
 {
 public:
 
-	CharacterSelectionLogic(int player,TextComponent* j_desc, RenderImage* im, string aisha_desc, string mkwhoop_desc, string flor_desc, string mock_desc, NavigationController* nav, UIElement* aisha, UIElement* flor, UIElement* mkwhoop, UIElement* mock, Texture* aishatexture, Texture* flortexture, Texture* mkwhooptexture, Texture* mocktexture  ) : Component(ecs::CharacterSelectionLogic),
+	CharacterSelectionLogic(int player,TextComponent* j_desc, RenderImage* im, string aisha_desc, string mkwhoop_desc, string flor_desc, string mock_desc, NavigationController* nav, UIElement* aisha, UIElement* flor, UIElement* mkwhoop, UIElement* mock, UIElement* random, Texture* aishatexture, Texture* flortexture, Texture* mkwhooptexture, Texture* mocktexture  ) : Component(ecs::CharacterSelectionLogic),
 		desc_(j_desc), aisha_(aisha),aisha_desc_(aisha_desc),flor_(flor), flor_desc_(flor_desc),mock_(mock),mock_desc_(mock_desc),mkwhoop_(mkwhoop),mkwhoop_desc_(mkwhoop_desc),nav_(nav),
-		aisha_texture(aishatexture), flor_texture(flortexture), mkwhoop_texture(mkwhooptexture), mock_texture(mocktexture), image_(im), n(player) { }
+		aisha_texture(aishatexture), flor_texture(flortexture), mkwhoop_texture(mkwhooptexture), mock_texture(mocktexture), image_(im), n(player), random_(random) { }
 	~CharacterSelectionLogic();
 	void init() override;
 	void update() override;
@@ -26,6 +26,7 @@ private:
 	UIElement* flor_=nullptr;
 	UIElement* mkwhoop_=nullptr;
 	UIElement* mock_=nullptr;
+	UIElement* random_=nullptr;
 
 	Texture* aisha_texture = nullptr;
 	Texture* flor_texture = nullptr;
