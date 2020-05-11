@@ -7,7 +7,6 @@
 #include "DestroyOnHit.h"
 GameState::GameState(App* app) : app_(app), entManager_(app, this), world(nullptr)
 {
-	init();
 }
 void GameState::init()
 {
