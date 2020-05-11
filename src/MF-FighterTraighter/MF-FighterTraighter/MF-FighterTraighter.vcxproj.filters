@@ -212,6 +212,9 @@
     <ClCompile Include="Fall_SpawnOnHit.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerParticleSystem.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -480,6 +483,9 @@
     </ClInclude>
     <ClInclude Include="IceDestroyOnHit.h">
       <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerParticleSystem.h">
+      <Filter>Header files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
