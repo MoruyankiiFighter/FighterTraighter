@@ -137,12 +137,14 @@ int PlayerAttacks::getAbilityIndex()	//IN THEORY IT NEVER SHOULD RETURN -1
 	return index;
 }
 
-void PlayerAttacks::setTimeCool(int cool)
+void PlayerAttacks::setTimeCool(int ind, int cool)
 {
-	timeCool = cool;
+	if (ind == 0) { timeCool0 = cool; }
+	if (ind == 1) { timeCool1 = cool; }
 }
 
-int PlayerAttacks::getTimeCool()
+int PlayerAttacks::getTimeCool(int ind)
 {
-	return timeCool;
+	if (ind == 0) { return timeCool0; }
+	if (ind == 1) { return timeCool1; }
 }

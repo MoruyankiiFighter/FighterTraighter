@@ -16,7 +16,6 @@ public:
 	//void init() override;
 	void update() override;
 	void updateTimerAb(int index, int time);
-	void setTimeAb(int ind, int cool);
 private:
 	UITimer* timer1_;
 	UITimer* timer2_;
