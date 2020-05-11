@@ -51,9 +51,11 @@ void CharacterSelection::init()
 	// TODO: give all characterElements an UITransform to use it to set the selection icon
 	// Player 1
 	Entity* leftP = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 1, 100), Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 1, 100),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 1, 100), (app_->getWindowManager()->getCurResolution().w / 30) * 6,
-		(app_->getWindowManager()->getCurResolution().h / 15) * 10, 0);
+		Vector2D(50,50),
+		Vector2D(0, 0),
+		Vector2D(0, 0), 
+		384, 720, 0);
+	
 	Entity* text_j1 = UIFactory::createText(app_, this, Vector2D(60, -30),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 4 * 3),
 		Vector2D(0, 50),
@@ -93,9 +95,10 @@ void CharacterSelection::init()
 
 	// Player 2
 	Entity* rightP = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 20.5, 100),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 19.5, 100), Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 19.5, 100),
-		(app_->getWindowManager()->getCurResolution().w / 30) * 6, (app_->getWindowManager()->getCurResolution().h / 15) * 10, 0);
+		Vector2D(-50, 50),
+		Vector2D(app_->getWindowManager()->getCurResolution().w, 0),
+		Vector2D(384, 0),
+		384, 720, 0);
 	rightP->getComponent<UITransform>(ecs::Transform)->setOrientation(-1);
 	Entity* text_j2 = UIFactory::createText(app_, this, Vector2D(-360, -30),
 		Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h / 4 * 3),
@@ -120,13 +123,13 @@ void CharacterSelection::init()
 		300, 100,
 		0, nullptr, nullptr, "Ready", 60, TextComponent::TextAlignment::Center);
 	Entity* nav_ = entManager_.addEntity();
-	NavigationController* ctrl2 = nav_->addComponent<NavigationController>(5, 2, app_->getGameManager()->getPlayerInfo(2).hid);
+	NavigationController* ctrl2 = nav_->addComponent<NavigationController>(2, 4, app_->getGameManager()->getPlayerInfo(2).hid);
 	ctrl2->SetElementInPos((florElement2)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrl2->SetElementInPos((MKElement2)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-	ctrl2->SetElementInPos((aishaElement2)->getComponent<UIElement>(ecs::UIElement), 2, 0);
-	ctrl2->SetElementInPos((mockElement2)->getComponent<UIElement>(ecs::UIElement), 3, 0);
-	ctrl2->SetElementInPos((randElement2)->getComponent<UIElement>(ecs::UIElement), 4, 0);
-	ctrl2->SetElementInPos(std::get<0>(button2)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	ctrl2->SetElementInPos((randElement2)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	ctrl2->SetElementInPos((aishaElement2)->getComponent<UIElement>(ecs::UIElement), 0, 2);
+	ctrl2->SetElementInPos((mockElement2)->getComponent<UIElement>(ecs::UIElement), 1, 2);
+	ctrl2->SetElementInPos(std::get<0>(button2)->getComponent<UIElement>(ecs::UIElement), 0, 3);
 	Entity* logic2 = entManager_.addEntity();
 	logic2->addComponent<CharacterSelectionLogic>(2, text_j2->getComponent<TextComponent>(ecs::TextComponent), rightP->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav_->getComponent<NavigationController>(ecs::NavigationController),
 		(aishaElement2)->getComponent<UIElement>(ecs::UIElement), (florElement2)->getComponent<UIElement>(ecs::UIElement), (MKElement2)->getComponent<UIElement>(ecs::UIElement), (mockElement2)->getComponent<UIElement>(ecs::UIElement), randElement2->getComponent<UIElement>(ecs::UIElement),
