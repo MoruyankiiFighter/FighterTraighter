@@ -45,7 +45,8 @@ public:
 		Ew1,
 		So1,
 		Mp1,
-		Hs1
+		Hs1,
+		As2
 	};
 
 	enum FontNames {
