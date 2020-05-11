@@ -57,7 +57,7 @@ public:
 		//resources of flor
 		Flor_icon,
 		FlorArtwork,
-		FlorSheet,
+		F10rSheet,
 
 		Random_icon,
 

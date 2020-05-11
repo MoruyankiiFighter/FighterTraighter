@@ -21,7 +21,7 @@ private:
 	UITimer* timer1_;
 	UITimer* timer2_;
 	Entity* pl_;
-	/*int timeab0;
-	int timeab1;*/
+	int timeab0;
+	int timeab1;
 };
 
