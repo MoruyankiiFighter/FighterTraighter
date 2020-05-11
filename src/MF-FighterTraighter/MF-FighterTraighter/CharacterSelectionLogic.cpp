@@ -21,22 +21,26 @@ void CharacterSelectionLogic::SetElements()
 	if (e == aisha_) {
 		desc_->setText(aisha_desc_);
 		image_->setTexture(aisha_texture);
+
 		// Not implemented
 		//app_->getGameManager()->setCharacter(app_->getGameManager()->Aisha, n);
 	}
 	else if (e == flor_) {
 		desc_->setText(flor_desc_);
 		image_->setTexture(flor_texture);
+
 		app_->getGameManager()->setCharacter(app_->getGameManager()->F10R, n);
 	}
 	else if (e == mkwhoop_) {
 		desc_->setText(mkwhoop_desc_);
 		image_->setTexture(mkwhoop_texture);
+
 		app_->getGameManager()->setCharacter(app_->getGameManager()->MKWh00p, n);
 	}
 	else if (e == mock_) {
 		desc_->setText(mock_desc_);
 		image_->setTexture(mock_texture);
+
 		app_->getGameManager()->setCharacter(app_->getGameManager()->Mockingbird, n);
 	}
 	else if (e == random_) {
@@ -47,8 +51,8 @@ void CharacterSelectionLogic::SetElements()
 		//generate a random
 		desc_->setText(" ");
 		image_->setTexture(mock_texture); //add random texture
-	
-		switch(n){
+
+		switch (n) {
 		case 0:
 			n = 1;
 			//another random cause it's Aisha case 
@@ -63,4 +67,5 @@ void CharacterSelectionLogic::SetElements()
 			app_->getGameManager()->setCharacter(app_->getGameManager()->Mockingbird, n);
 			break;
 		}
+	}
 }
