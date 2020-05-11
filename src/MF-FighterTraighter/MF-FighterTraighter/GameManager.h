@@ -18,7 +18,8 @@ enum AbilityID {
 	ShrugOff,
 	MorePower,
 	Hookshot,
-	Dash
+	Dash,
+	VampiricStrike
 };
 
 	// TODO: Move from here to somewhere else
