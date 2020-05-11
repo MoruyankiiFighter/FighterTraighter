@@ -478,6 +478,9 @@
     <ClInclude Include="VampiricDestroyAtTime.h">
       <Filter>Header files\OnHits</Filter>
     </ClInclude>
+    <ClInclude Include="IceDestroyOnHit.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

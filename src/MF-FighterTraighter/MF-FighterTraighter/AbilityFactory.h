@@ -68,6 +68,12 @@ public:
 	static void VS1(Entity* ent);
 	static void VSC(Entity* ent);
 
+	//Hail shard
+	static AnimationChain* GiveHailBall(Entity* e);
+
+	static void HB1(Entity* ent);
+	static void HBC(Entity* ent);
+
 	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
 	
 	//static Entity* createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,
