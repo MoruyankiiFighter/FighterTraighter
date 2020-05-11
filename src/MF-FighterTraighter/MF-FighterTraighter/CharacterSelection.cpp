@@ -21,11 +21,9 @@ void CharacterSelection::init()
 	background->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
 	background->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
 
-	// CenterInfo
+	// CenterPanel
 	Entity* centralP = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Panel),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 8.5, 50), Vector2D(app_->getWindowManager()->getCurResolution().w / 5, 50),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 5, 50), (app_->getWindowManager()->getCurResolution().w / 20) * 16,
-		(app_->getWindowManager()->getCurResolution().h / 15) * 10, 0);
+		Vector2D(0, -150), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), Vector2D(780, 360), 1560, 720, 0);
 	Entity* text = UIFactory::createText(app_, this, Vector2D(app_->getWindowManager()->getCurResolution().w / 3, 0),
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0),
 		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "Choose your character", 60, 300, 100, 500);
@@ -35,37 +33,17 @@ void CharacterSelection::init()
 
 
 	// Icons of all characters
-	// TODO: change to panels
-	Entity* flor = UIFactory::createButton(2, app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Flor_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 6, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
-		nullptr, nullptr);
-	Entity* mkwhoop = UIFactory::createButton(2, app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Ganonbot_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 9.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
-		nullptr, nullptr);
-	Entity* aisha = UIFactory::createButton(2, app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Aisha_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 13, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 13, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 13, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
-		nullptr, nullptr);
-	Entity* mockinbird = UIFactory::createButton(2, app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mock_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
-		nullptr, nullptr);
-	Entity* random = UIFactory::createButton(2, app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Random_icon), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 25) * 16.5, (app_->getWindowManager()->getCurResolution().h / 14) * 2),
-		(app_->getWindowManager()->getCurResolution().w / 25) * 3, (app_->getWindowManager()->getCurResolution().h / 14) * 3, 0,
-		nullptr, nullptr);
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Flor_icon),
+		Vector2D(-125, -125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0);
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Ganonbot_icon),
+		Vector2D(125, -125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0);
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Aisha_icon),
+		Vector2D(-125, 125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0);
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mock_icon),
+		Vector2D(125, 125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0);
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Random_icon),
+		Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0);
+
 
 
 
@@ -99,13 +77,13 @@ void CharacterSelection::init()
 		300, 100, 0,
 		nullptr, GoToFight, "Ready", 60, TextComponent::TextAlignment::Center);
 	Entity* nav1 = entManager_.addEntity();
-	NavigationController* ctrl1 = nav1->addComponent<NavigationController>(5, 2, app_->getGameManager()->getPlayerInfo(1).hid);
+	NavigationController* ctrl1 = nav1->addComponent<NavigationController>(2, 4, app_->getGameManager()->getPlayerInfo(1).hid);
 	ctrl1->SetElementInPos(florElement1->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrl1->SetElementInPos(MKElement1->getComponent<UIElement>(ecs::UIElement), 1, 0);
-	ctrl1->SetElementInPos(aishaElement1->getComponent<UIElement>(ecs::UIElement), 2, 0);
-	ctrl1->SetElementInPos(mockElement1->getComponent<UIElement>(ecs::UIElement), 3, 0);
-	ctrl1->SetElementInPos(randElement1->getComponent<UIElement>(ecs::UIElement), 4, 0);
-	ctrl1->SetElementInPos(std::get<0>(button1)->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	ctrl1->SetElementInPos(randElement1->getComponent<UIElement>(ecs::UIElement), 0, 1);
+	ctrl1->SetElementInPos(aishaElement1->getComponent<UIElement>(ecs::UIElement), 0, 2);
+	ctrl1->SetElementInPos(mockElement1->getComponent<UIElement>(ecs::UIElement), 1, 2);
+	ctrl1->SetElementInPos(std::get<0>(button1)->getComponent<UIElement>(ecs::UIElement), 0, 3);
 	Entity* logic1 = entManager_.addEntity();
 	logic1->addComponent<CharacterSelectionLogic>(1, text_j1->getComponent<TextComponent>(ecs::TextComponent), leftP->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav1->getComponent<NavigationController>(ecs::NavigationController),
 		(aishaElement1)->getComponent<UIElement>(ecs::UIElement), (florElement1)->getComponent<UIElement>(ecs::UIElement), (MKElement1)->getComponent<UIElement>(ecs::UIElement), (mockElement1)->getComponent<UIElement>(ecs::UIElement), randElement1->getComponent<UIElement>(ecs::UIElement),
