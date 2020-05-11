@@ -430,7 +430,7 @@ AnimationChain* AbilityFactory::GiveHookshot(Entity* e)
 {
 	std::vector<Move*> vecMov;
 	vecMov.push_back(new Move(25, nullptr, HS1, e));
-	vecMov.push_back(new Move(20, nullptr, HSC, e));
+	vecMov.push_back(new Move(25, nullptr, HSC, e));
 	AnimationChain* Hookshot = new AnimationChain(vecMov);
 	return Hookshot;
 }
@@ -471,7 +471,7 @@ void AbilityFactory::HS1(Entity* ent)
 
 void AbilityFactory::HSC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 0);
+	goOnCoolodwn(ent, 60 * 12);
 }
 
 AnimationChain* AbilityFactory::GiveDash(Entity* e)
