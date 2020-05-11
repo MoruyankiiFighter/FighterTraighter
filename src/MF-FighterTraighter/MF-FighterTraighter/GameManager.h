@@ -21,7 +21,8 @@ enum AbilityID {
 	Dash,
 	VampiricStrike,
 	HailBall,
-	ReachingStrike
+	ReachingStrike,
+	FlyingKicks
 };
 
 	// TODO: Move from here to somewhere else

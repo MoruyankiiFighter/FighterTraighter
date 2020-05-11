@@ -89,7 +89,8 @@ public:
 		/// SFX
 
 		PUNCH,
-		KICK
+		KICK,
+		DASH
 
 	};
 	//constructors

@@ -136,9 +136,6 @@
     <ClCompile Include="UITransform.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerOnHit.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="LinkedGrid.cpp">
       <Filter>Source Files\Types</Filter>
     </ClCompile>
@@ -210,6 +207,9 @@
       <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
     <ClCompile Include="Fall_SpawnOnHit.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerOnHit.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
   </ItemGroup>

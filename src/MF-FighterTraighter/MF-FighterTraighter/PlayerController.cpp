@@ -109,30 +109,13 @@ void PlayerController::crouch()
 {
 	entity_->getComponent<PlayerState>(ecs::PlayerState)->goCrouch();
 
-	//transform_->setHeight(transform_->getHeight() / 2);
 	float height = transform_->getHeight();
 	transform_->setColliderHeight(height * 0.6, Vector2D(0, height / 5));
-
-	//transform_->setColliderWidth(transform_->getWidth() / 2);
-	//double height = transform_->getHeight();
-	//double width = transform_->getWidth();
-
-	//transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY() + height);
-
-	//animaciones de agachar
 }
 
 //uncrouch
 void PlayerController::uncrouch()
 {
-	entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
-
-	//double width = transform_->getWidth();
-
-	//transform_->setPosition(transform_->getPosition().getX() + width / 2, transform_->getPosition().getY());
-	//transform_->setHeight(transform_->getHeight());
+	entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();	
 	transform_->setColliderHeight(transform_->getHeight(), Vector2D(0, 0));
-	//transform_->setColliderWidth(transform_->getWidth() / 2);
-
-	//animaciones por defecto
 }

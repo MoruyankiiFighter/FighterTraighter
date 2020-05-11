@@ -80,6 +80,14 @@ public:
 	static void RS1(Entity* ent);
 	static void RSC(Entity* ent);
 
+
+	//FlyingKicks
+	static AnimationChain* GiveFlyingKicks(Entity* e);
+
+	static void FK1(Entity* ent);
+	static void FK2(Entity* ent);
+	static void FKC(Entity* ent);
+
 	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
 	
 	//static Entity* createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,
