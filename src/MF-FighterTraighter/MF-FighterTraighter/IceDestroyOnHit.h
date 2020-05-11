@@ -1,6 +1,7 @@
 #pragma once
 #include "DestroyOnHit.h"
 #include "PlayerState.h"
+#include "PlayerParticleSystem.h"
 class IceDestroyOnHit : public DestroyOnHit
 {
 public:
@@ -13,16 +14,16 @@ public:
 			hitstun_ /= 10;
 			data->entity_->getComponent<PlayerState>(ecs::PlayerState)->goGuardingStun(hitstun_ / 10);
 		}
+		else {
+			PhysicsTransform* phTr = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
+			int orientation_ = phTr->getOrientation();
+			int width = 260;
+			int projX = (phTr->getWidth() / 4);
+			if (orientation_ == -1) projX = (phTr->getWidth() / 4);
+			Vector2D pos = Vector2D(projX, -30);
 
-		PhysicsTransform* phTr = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
-		int orientation_ = phTr->getOrientation();
-		int width = 260;
-		int projX = phTr->getPosition().getX() + (phTr->getWidth() * 1 / 4) + (phTr->getWidth() / 4);
-		if (orientation_ == -1) projX = phTr->getPosition().getX() + (phTr->getWidth() * 3 / 4) - (phTr->getWidth() / 4);
-		Vector2D pos = Vector2D(projX, phTr->getPosition().getY() + (phTr->getHeight() / 2) - 15);
-		DestroyAtTime* dT = new DestroyAtTime(0, hitstun_, 0, { 0,0 }, false, data->entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), data->entity_);
-		AbilityFactory::instanceEntitywHitbox(data->entity_, 250, 530, pos, { 0, 0 }, data->entity_->getState()->NONE, data->entity_->getState(), 
-			data->entity_->getApp(), data->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Hb2), orientation_, dT);
+			data->entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(AssetsManager::Hb2, pos, Vector2D(width, 530), hitstun_, true);
+		}
 		DestroyOnHit::onHit(other);
 	}
 	virtual ~IceDestroyOnHit() {}

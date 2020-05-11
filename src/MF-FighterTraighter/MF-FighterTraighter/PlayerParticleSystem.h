@@ -22,27 +22,32 @@ public:
 	virtual void init() override;
 
 	virtual void update() override {
-		int toRemove = 0;
-
-		for (int i = 0; i < currParticles_; ++i) {
+		for (int i = 0; i < textureNames_.size(); ++i) {
 			//Lower the timer
-			if (textureTime_[i] > -1) textureTime_[i]--;
-
-			//Render the texture;
-			if (textureTime_[i] > 0) {
-				Texture* tex = app_->getAssetsManager()->getTexture(textureNames_[i]);
-				SDL_Rect dest;
-				dest.x = phys_->getPosition().getX() + texturePos_[i].getX();
-				dest.y = phys_->getPosition().getY() + texturePos_[i].getY();
-				dest.w = textureSize_[i].getX();
-				dest.h = textureSize_[i].getY();
-				SDL_RendererFlip flip;
-				if (phys_->getOrientation == 1) flip = SDL_FLIP_NONE;
-				else flip = SDL_FLIP_HORIZONTAL;
-				tex->render(dest, flip);
+			if (textureTime_[i] > -1) {
+				textureTime_[i]--;
 			}
-			else {
-				currParticles_--;	//Timer reached -1 -> Free spot
+		}
+	}
+
+	virtual void render() {
+		for (int i = 0; i < textureNames_.size(); ++i) {
+			if (textureTime_[i] > -1) {
+				if (textureTime_[i] > 0) {
+					Texture* tex = app_->getAssetsManager()->getTexture(textureNames_[i]);
+					SDL_Rect dest = SDL_Rect();
+					dest.x = phys_->getPosition().getX() + texturePos_[i].getX();
+					dest.y = phys_->getPosition().getY() + texturePos_[i].getY();
+					dest.w = textureSize_[i].getX();
+					dest.h = textureSize_[i].getY();
+					SDL_RendererFlip flip;
+					if (phys_->getOrientation() == 1) flip = SDL_FLIP_NONE;
+					else flip = SDL_FLIP_HORIZONTAL;
+					tex->render(dest, flip);
+				}
+				else {
+					currParticles_--;	//Timer reached -1 -> Free spot
+				}
 			}
 		}
 	}
@@ -59,10 +64,16 @@ public:
 		return found;
 	}
 
+	void removeOnHitParticles() {
+		for (int i = 0; i < textureNames_.size(); ++i) {
+			if (textureCancelOnHit_[i]) textureTime_[i] = -1;
+		}
+	}
+
 	~PlayerParticleSystem() {};
 private:
 	int maxParticles_;
-	int currParticles_ = 0;
+	int currParticles_;
 
 	std::vector<AssetsManager::TextureNames> textureNames_;
 	std::vector<Vector2D> texturePos_;
