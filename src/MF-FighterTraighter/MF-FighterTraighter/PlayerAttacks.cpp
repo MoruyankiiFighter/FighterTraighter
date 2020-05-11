@@ -17,7 +17,7 @@ PlayerAttacks::PlayerAttacks(HID* hid, AnimationChain* highFist, AnimationChain*
 }
 
 PlayerAttacks::~PlayerAttacks() {
-	cout << "destruyendo ataques "<<endl;
+
 	//hay que descomentar cuando las animaciones sean diferentes
 	for (int i = 0; i < attacksList.size(); i++) {
 		delete attacksList[i];
@@ -135,4 +135,14 @@ int PlayerAttacks::getAbilityIndex()	//IN THEORY IT NEVER SHOULD RETURN -1
 		if (activeAttack_ == abilityList[i]) index = i;
 	}
 	return index;
+}
+
+void PlayerAttacks::setTimeCool(int cool)
+{
+	timeCool = cool;
+}
+
+int PlayerAttacks::getTimeCool()
+{
+	return timeCool;
 }

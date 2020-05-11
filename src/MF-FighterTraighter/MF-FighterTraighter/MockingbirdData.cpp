@@ -62,7 +62,9 @@ void MockingbirdData::init()
 
 void MockingbirdData::NP1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "stab" << endl;
+#endif 
 	double hitbox_X = np1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -85,7 +87,10 @@ PlayerData::CallbackData MockingbirdData::np1 = PlayerData::CallbackData{
 
 void MockingbirdData::HP1(Entity* ent)
 {
+#ifdef _DEBUG
+ 
 	std::cout << "pipe" << endl;
+#endif
 	double hitbox_X = hp1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -108,7 +113,9 @@ PlayerData::CallbackData MockingbirdData::hp1 = PlayerData::CallbackData{
 
 void MockingbirdData::NK1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "shoot" << endl;
+#endif 
 	double hitbox_X = nk1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -131,7 +138,9 @@ PlayerData::CallbackData MockingbirdData::nk1 = PlayerData::CallbackData{
 
 void MockingbirdData::HK1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "knees" << endl;
+#endif 
 	double hitbox_X = hk1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -154,7 +163,9 @@ PlayerData::CallbackData MockingbirdData::hk1 = PlayerData::CallbackData{
 
 void MockingbirdData::ANP1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "chop" << endl;
+#endif 
 	double hitbox_X = anp1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -177,7 +188,9 @@ PlayerData::CallbackData MockingbirdData::anp1 = PlayerData::CallbackData{
 
 void MockingbirdData::AHP1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "stab" << endl;
+#endif 
 	double hitbox_X = ahp1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -200,7 +213,9 @@ PlayerData::CallbackData MockingbirdData::ahp1 = PlayerData::CallbackData{
 
 void MockingbirdData::AHP2(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "staab" << endl;
+#endif 
 	double hitbox_X = ahp2.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -223,7 +238,9 @@ PlayerData::CallbackData MockingbirdData::ahp2 = PlayerData::CallbackData{
 
 void MockingbirdData::ANK1(Entity* ent)
 {
-	std::cout << "slash" << endl;
+#ifdef _DEBUG
+ 	std::cout << "slash" << endl;
+#endif	
 	double hitbox_X = ank1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -246,7 +263,9 @@ PlayerData::CallbackData MockingbirdData::ank1 = PlayerData::CallbackData{
 
 void MockingbirdData::AHK1(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "petard" << endl;
+#endif 
 	double hitbox_X = ahk1.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -269,7 +288,9 @@ PlayerData::CallbackData MockingbirdData::ahk1 = PlayerData::CallbackData{
 
 void MockingbirdData::GB(Entity* ent)
 {
+#ifdef _DEBUG
 	std::cout << "BreakerGuard" << endl;
+#endif 
 	double hitbox_X = gb.position.getX();
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);

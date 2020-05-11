@@ -18,7 +18,10 @@
 
 OptionsMenu::OptionsMenu(App* app) : GameState(app)
 {
+#ifdef _DEBUG
+
 	cout << "OptionsMenu" << endl;
+#endif
 	init();
 
 }

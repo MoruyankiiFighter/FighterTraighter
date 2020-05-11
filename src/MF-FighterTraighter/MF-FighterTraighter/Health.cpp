@@ -20,11 +20,9 @@ bool Health::LoseLife( double damage) {
 	else
 	{
 		health_ = 0;
-		std::cout << "memori" << endl;
 		toReturn = false;
 	}
 
-	std::cout << health_ << endl;
 	return toReturn;
 }
 
@@ -45,7 +43,9 @@ void  Health::GainLife(unsigned int life)
 	{
 		health_ = maxHealth_;
 	}
+#ifdef _DEBUG
 	std::cout << health_;
+#endif 
 
 }
 

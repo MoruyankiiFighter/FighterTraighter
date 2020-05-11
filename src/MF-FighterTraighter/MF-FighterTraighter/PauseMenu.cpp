@@ -20,7 +20,9 @@ void PauseMenu::init()
 	app_->getAudioMngr()->stopMusic();
 
 	GameState::init();
+#ifdef _DEBUG
 	cout << "initPausa" << endl;
+#endif 
 
 	Entity* logo = entManager_.addEntity();
 	Transform* transform = logo->addComponent<Transform>();
@@ -67,6 +69,8 @@ void PauseMenu::init()
 void PauseMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
+		app_->getAudioMngr()->stopMusic();
+		app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 		app_->getGameManager()->pressedStart();
 	}
 	else
@@ -92,7 +96,9 @@ void PauseMenu::GoMainMenu(App* app)
 
 void PauseMenu::ShowMeYourMoves(App* app)
 {
+#ifdef _DEBUG
 	std::cout << "No implementado de momento" << endl;
+#endif 
 }
 
 void PauseMenu::GoOptions(App* app)

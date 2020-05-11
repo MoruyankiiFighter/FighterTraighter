@@ -5,6 +5,7 @@
 #include "PlayerState.h"
 #include "PlayerData.h"
 #include "HID.h"
+#include "AbilitiesTimerFunction.h"
 //component that have all the attacks that you have
 class PlayerAttacks : public Component 
 {
@@ -55,9 +56,18 @@ public:
 	void interruptAttack();
 	inline void goOnCooldown(int id, int cool) {
 		cooldowns[id] = cool;
+		setTimeCool(cool);
+		cout << cooldowns[id] << endl;
 	}
+	void setTimeCool(int cool);
+	int getTimeCool();
 	int getAbilityIndex();
-	int getAbilityCooldown(int index) {  cout << cooldowns[index] <<endl; return cooldowns[index]; }
+	int getAbilityCooldown(int index) { 
+#ifdef _DEBUG
+		//cout << cooldowns[index] <<endl; 
+#endif 
+		return cooldowns[index];
+	}
 
 	void setMultiplier(double mul, bool timed, int timer = -1) {
 		entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(mul);
@@ -77,8 +87,9 @@ private:
 	int multiplierTimer_ = -1;
 	int remainingUses_ = 0;
 	bool isMultiplierTimed = false;
-
+	int timeCool = 0;
 	//keys to use the attacks and abilities
 	HID* inputSt_;
+	//AbilitiesTimerFunction* abstimer;
 };
 

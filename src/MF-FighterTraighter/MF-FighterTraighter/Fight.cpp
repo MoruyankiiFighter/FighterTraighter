@@ -75,7 +75,7 @@ void Fight::init()
 	timerab2->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
 	timerab2->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
 	Entity* timerspl1 = entManager_.addEntity();
-	timerspl1->addComponent<AbilitiesTimerFunction>(app_->getGameManager()->getPlayerInfo(1).hid, timerab1->getComponent<UITimer>(ecs::UITimer), timerab2->getComponent<UITimer>(ecs::UITimer), player1);
+	timerspl1->addComponent<AbilitiesTimerFunction>(timerab1->getComponent<UITimer>(ecs::UITimer), timerab2->getComponent<UITimer>(ecs::UITimer), player1);
 	
 	//Player 2
 	Entity* player2 = CharFactory::addCharacterToGame(app_, this, -1, world, &app_->getGameManager()->getPlayerInfo(2), PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
@@ -107,7 +107,7 @@ void Fight::init()
 	timerab2p2->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
 	timerab2p2->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
 	Entity* timerspl2 = entManager_.addEntity();
-	timerspl2->addComponent<AbilitiesTimerFunction>(app_->getGameManager()->getPlayerInfo(1).hid, timerab1p2->getComponent<UITimer>(ecs::UITimer), timerab2p2->getComponent<UITimer>(ecs::UITimer), player2);
+	timerspl2->addComponent<AbilitiesTimerFunction>(timerab1p2->getComponent<UITimer>(ecs::UITimer), timerab2p2->getComponent<UITimer>(ecs::UITimer), player2);
 	//player1->addComponent
 	
 	//player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player2), 1);
