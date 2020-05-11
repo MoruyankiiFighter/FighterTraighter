@@ -42,10 +42,25 @@ void CharacterSelectionLogic::SetElements()
 	else if (e == random_) {
 		// TODO: select a random character, and present the random splash art and description
 		// the selection will be done when the game is started
+		int n = 3;
 
-		// for now,
-		desc_->setText(mock_desc_);
-		image_->setTexture(mock_texture);
-		app_->getGameManager()->setCharacter(app_->getGameManager()->Mockingbird, n);
-	}
+		//generate a random
+		desc_->setText(" ");
+		image_->setTexture(mock_texture); //add random texture
+	
+		switch(n){
+		case 0:
+			n = 1;
+			//another random cause it's Aisha case 
+			break;
+		case 1:
+			app_->getGameManager()->setCharacter(app_->getGameManager()->F10R, n);
+			break;
+		case 2:
+			app_->getGameManager()->setCharacter(app_->getGameManager()->MKWh00p, n);
+			break;
+		case 3:
+			app_->getGameManager()->setCharacter(app_->getGameManager()->Mockingbird, n);
+			break;
+		}
 }
