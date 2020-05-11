@@ -11,6 +11,7 @@
 #include "Health.h"
 #include "VampiricDestroyAtTime.h"
 #include "PlayerData.h"
+#include "IceDestroyOnHit.h"
 
 //#include "playerinfo"
 
@@ -478,7 +479,11 @@ void AbilityFactory::HS1(Entity* ent)
 
 	DestroyOnHit* dT = new DestroyOnHit(3, 60, 40, { (double)orientation_ * (orX - desX) * 0.055, 0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
-	AbilityFactory::instanceEntitywHitbox(ent, width, 145, pos, { (double)orientation_ * 9, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	Entity* proj = AbilityFactory::instanceEntitywHitbox(ent, width, 145, pos, { (double)orientation_ * 9, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+
+	//TODO:
+	//Un-spaghettify
+	proj->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->SetSensor(true);
 }
 
 void AbilityFactory::HSC(Entity* ent)
@@ -531,8 +536,8 @@ AnimationChain* AbilityFactory::GiveVampiricStrike(Entity* e)
 	std::vector<Move*> vecMov;
 	vecMov.push_back(new Move(20, nullptr, VS1, e));
 	vecMov.push_back(new Move(20, nullptr, VSC, e));
-	AnimationChain* VamoiricStrike = new AnimationChain(vecMov);
-	return VamoiricStrike;
+	AnimationChain* VampiricStrike = new AnimationChain(vecMov);
+	return VampiricStrike;
 }
 
 void AbilityFactory::VS1(Entity* ent)
@@ -571,6 +576,99 @@ void AbilityFactory::VSC(Entity* ent)
 	goOnCoolodwn(ent, 60 * 8);
 }
 
+AnimationChain* AbilityFactory::GiveHailBall(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(35, nullptr, HB1, e));
+	vecMov.push_back(new Move(5, nullptr, HBC, e));
+	AnimationChain* HailBall = new AnimationChain(vecMov);
+	return HailBall;
+}
+
+void AbilityFactory::HB1(Entity* ent)
+{
+#if _DEBUG
+	std::cout << "ice shart" << endl;
+#endif
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Hb1);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	uint16 mask;
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	if (pD->getPlayerNumber() == 0) {
+		mask = currentState->PLAYER_2 | currentState->P_BAG;
+	}
+	else {
+		mask = currentState->PLAYER_1 | currentState->P_BAG;
+	}
+
+	int width = 150;
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2) - 85;
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2) + 85;
+
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 250);
+
+	IceDestroyOnHit* dT = new IceDestroyOnHit(3, 50, 150, { 0, 0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+
+	Entity* proj = AbilityFactory::instanceEntitywHitbox(ent, width, 150, pos, { (double)orientation_ * 7.5, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+
+	//TODO
+	//Un-spaghettify
+	proj->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->SetSensor(true);
+}
+
+void AbilityFactory::HBC(Entity* ent)
+{
+	goOnCoolodwn(ent, 60 * 15);
+}
+
+AnimationChain* AbilityFactory::GiveReachingStrike(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(25, nullptr, RS1, e));
+	vecMov.push_back(new Move(17, nullptr, RSC, e));
+	AnimationChain* ReachingStrike = new AnimationChain(vecMov);
+	return ReachingStrike;
+}
+
+void AbilityFactory::RS1(Entity* ent)
+{
+#if _DEBUG
+	std::cout << "Useless bullshit" << endl;
+#endif
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Hb1);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	uint16 mask;
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	if (pD->getPlayerNumber() == 0) {
+		mask = currentState->PLAYER_2 | currentState->P_BAG;
+	}
+	else {
+		mask = currentState->PLAYER_1 | currentState->P_BAG;
+	}
+
+	int width = 150;
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2) - 85;
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2) + 85;
+
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 250);
+
+	DestroyAtTime* dT = new DestroyAtTime(4, 10, 20, { (double)orientation_ * 2, -1.5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+
+	Entity* proj = AbilityFactory::instanceEntitywHitbox(ent, width, 150, pos, { 0, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+}
+
+void AbilityFactory::RSC(Entity* ent)
+{
+	goOnCoolodwn(ent, 60 * 8.5);
+}
 
 
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
@@ -612,5 +710,6 @@ std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> Abil
 	{GameManager::AbilityID::Hookshot, AbilityFactory::GiveHookshot},
 	{GameManager::AbilityID::Dash, AbilityFactory::GiveDash},
 	{GameManager::AbilityID::VampiricStrike, AbilityFactory::GiveVampiricStrike},
-
+	{GameManager::AbilityID::HailBall, AbilityFactory::GiveHailBall},
+	{GameManager::AbilityID::ReachingStrike, AbilityFactory::GiveReachingStrike}
 };
