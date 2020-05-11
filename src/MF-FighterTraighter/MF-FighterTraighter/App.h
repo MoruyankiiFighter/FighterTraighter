@@ -7,7 +7,7 @@
 #include "AssetsManager.h"
 #include "WindowManager.h"
 #include "GameManager.h"
-
+#include "AudioManager.h"
 class App
 {
 public:
@@ -41,6 +41,8 @@ public:
 
 	inline unsigned int getFrameRate() { return frameRate_; }
 
+	inline AudioManager* getAudioMngr() const { return audioManager_.get(); }
+
 	//calls update of the current state
 	void update();
 
@@ -71,6 +73,7 @@ private:
 	std::unique_ptr<AssetsManager> assetsManager_;//assets manager
 	std::unique_ptr<WindowManager> windowManager_;//window manager
 	std::unique_ptr<GameManager> gameManager_;//game manager
+	std::unique_ptr<AudioManager> audioManager_;//audio manager
 
 
 	/*static*/ bool exit;

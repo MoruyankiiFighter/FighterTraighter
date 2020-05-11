@@ -19,7 +19,8 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
 		helth->LoseLife(hBox_data->damage_);
-		if (!hBox_data->guardBreaker_) {//if isnt a guardBreaker go to hitstun
+		entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::MKWOP_1), false);
+		if (!hBox_data->guardBreaker_ && !hBox_data->multiHit_) {//if isnt a guardBreaker go to hitstun
 			if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
 				currState->goHitsun(hBox_data->hitstun_);
 			else
@@ -27,7 +28,10 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		}
 		
 		pT->getBody()->ApplyLinearImpulse(b2Vec2(hBox_data->knockBack_.getX(), hBox_data->knockBack_.getY()), pT->getBody()->GetWorldCenter(), true);
+#ifdef _DEBUG
+
 		cout << "Hago X:" << hBox_data->knockBack_.getX() << " Y: " << hBox_data->knockBack_.getY() << endl;
+#endif
 	}
 	else {
 		if (hBox_data->guardBreaker_) {
@@ -41,7 +45,10 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 			helth->LoseLife(hBox_data->damage_ * 0.1);
 			pT->getBody()->ApplyLinearImpulse(b2Vec2((hBox_data->knockBack_.getX() + hBox_data->knockBack_.getX()) * 0.015, 0), pT->getBody()->GetWorldCenter(), true);
 		}
+#ifdef _DEBUG
 		cout << "He bloqueado dano pero estoy en hitstun" << endl;
+#endif
+
 	}
 
 	// he died

@@ -2,7 +2,6 @@
 #include "Component.h"
 #include "Vector2D.h"
 #include "AnimationChain.h"
-#include "Ability.h"
 #include "PhysicsTransform.h"
 //Podemos tener todos los datos en un .json o un .txt
 //Tener un método para parsear y rellenar el attackData
@@ -146,19 +145,7 @@ public:
 		guard_breaker_ = guard_breaker;
 	}
 
-	virtual Ability* ability_1() {
-		return ability_1_;
-	}
-	virtual void setAbility1(Ability* ability_1) {
-		ability_1_ = ability_1;
-	}
-
-	virtual Ability* ability_2() {
-		return ability_2_;
-	}
-	virtual void setAbility2(Ability* ability_2) {
-		ability_2_ = ability_2;
-	}
+	
 
 	virtual int getAnimLength(int index) {
 		return animLength_[index].sheetLength_;
@@ -185,6 +172,7 @@ protected:
 			time,
 			damage,
 			hitstun;
+		
 	};
 	//Player Features
 	double* width_,
@@ -195,8 +183,8 @@ protected:
 			*speed_;
 	//Player Stats
 	Vector2D initial_position_;
-	double 	attack_,
-			defense_;
+	double 	attack_ = 1,
+			defense_ = 1;
 
 	//Attacks
 	//Normal Punch 
@@ -217,10 +205,6 @@ protected:
 	AnimationChain* air_hard_kick_;
 	//Guard Breaker
 	AnimationChain* guard_breaker_;
-
-	//Abilities
-	Ability* ability_1_;
-	Ability* ability_2_;
 
 	//To generate hitboxes easily
 	PhysicsTransform* pT;

@@ -17,8 +17,12 @@
 
 void PauseMenu::init()
 {
+	app_->getAudioMngr()->stopMusic();
+
 	GameState::init();
+#ifdef _DEBUG
 	cout << "initPausa" << endl;
+#endif 
 
 	Entity* logo = entManager_.addEntity();
 	Transform* transform = logo->addComponent<Transform>();
@@ -56,11 +60,17 @@ void PauseMenu::init()
 	nav->SetElementInPos(std::get<0>(menu_button)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	nav->SetElementInPos(std::get<0>(controls_button)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 	nav->SetElementInPos(std::get<0>(options_button)->getComponent<UIElement>(ecs::UIElement), 0, 3);
+	app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::MENU_OPCIONES), true);
+	
+	
+
 }
 
 void PauseMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
+		app_->getAudioMngr()->stopMusic();
+		app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 		app_->getGameManager()->pressedStart();
 	}
 	else
@@ -69,12 +79,16 @@ void PauseMenu::handleInput()
 
 void PauseMenu::Resume(App* app)
 {
+	app->getAudioMngr()->stopMusic();
+	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 	app->getStateMachine()->popState();
 }
 
 void PauseMenu::GoMainMenu(App* app)
 {
 	app->getGameManager()->resetCharacters();
+	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::MENU_PRINCIPAL), true);
+
 	app->getStateMachine()->popState();
 	while (dynamic_cast<MainMenu*>(app->getStateMachine()->getCurrentState()) == nullptr) {
 		app->getStateMachine()->popState();
@@ -83,7 +97,9 @@ void PauseMenu::GoMainMenu(App* app)
 
 void PauseMenu::ShowMeYourMoves(App* app)
 {
+#ifdef _DEBUG
 	std::cout << "No implementado de momento" << endl;
+#endif 
 }
 
 void PauseMenu::GoOptions(App* app)

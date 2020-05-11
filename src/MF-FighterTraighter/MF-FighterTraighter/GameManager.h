@@ -13,13 +13,11 @@ public:
 enum AbilityID {
 	SeismicShock,
 	MegatonGrip,
-	ExplosiveWillpower
+	ExplosiveWillpower,
+	AcidSplit,
+	ShrugOff,
+	MorePower
 };
-protected:
-
-	// CHANGE ME TO SOMETHING PROPER
-	
-public:
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
 		None,
@@ -35,8 +33,8 @@ public:
 		AbilityID ability1Index;
 		AbilityID ability2Index;
 		HID* hid;
-		virtual ~PlayerInfo() { 
-			delete hid; 
+		virtual ~PlayerInfo() {
+			delete hid;
 		}
 	};
 	GameManager(App* app);
@@ -75,7 +73,7 @@ public:
 protected:
 	unsigned int playerLrounds_ = 0;
 	unsigned int playerRrounds_ = 0;
-	unsigned int totalRounds_ = 100;
+	unsigned int totalRounds_ = 3;
 	unsigned int currentRound_ = 0;
 
 	PlayerInfo player1_;

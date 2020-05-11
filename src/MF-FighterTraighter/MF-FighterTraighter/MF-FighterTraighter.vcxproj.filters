@@ -28,9 +28,6 @@
     <ClCompile Include="Fight.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="FactoryMk.cpp">
-      <Filter>Source Files\Manager and factories</Filter>
-    </ClCompile>
     <ClCompile Include="Health.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -149,12 +146,6 @@
     <ClCompile Include="AbilityFactory.cpp">
       <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerData.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="MkWH00PData.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="ControlsMenu.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
@@ -176,7 +167,6 @@
     <ClCompile Include="MockingbirdData.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="UserData.cpp" />
     <ClCompile Include="HID.cpp" />
     <ClCompile Include="KeyboardHID.cpp" />
     <ClCompile Include="GamepadHID.cpp" />
@@ -199,7 +189,42 @@
     <ClCompile Include="PunchingBagOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-  <Filter>Source Files</Filter>
+    <ClCompile Include="BulletGravity.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="UserData.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
+    <ClCompile Include="DestroyAtTime.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
+    <ClCompile Include="CharFactory.cpp">
+      <Filter>Source Files\Manager and factories</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerData.cpp">
+      <Filter>Source Files\PlayerData</Filter>
+    </ClCompile>
+    <ClCompile Include="MkWH00PData.cpp">
+      <Filter>Source Files\PlayerData</Filter>
+    </ClCompile>
+    <ClCompile Include="MockingbirdData.cpp">
+      <Filter>Source Files\PlayerData</Filter>
+    </ClCompile>
+    <ClCompile Include="UserData.cpp">
+      <Filter>Source Files\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="F10RData.cpp">
+      <Filter>Source Files\PlayerData</Filter>
+    </ClCompile>
+    <ClCompile Include="AbilitiesTimerFunction.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Source Files\Manager and factories</Filter>
+    </ClCompile>
+    <ClCompile Include="Fall_SpawnOnHit.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -228,9 +253,6 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="FactoryMk.h">
-      <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
     <ClInclude Include="CharacterSelection.h">
       <Filter>Header files\GameState</Filter>
@@ -358,17 +380,11 @@
     <ClInclude Include="NavigationController.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerOnHit.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="LinkedGrid.h">
       <Filter>Header files\types</Filter>
     </ClInclude>
     <ClInclude Include="ResetJumpListener.h">
       <Filter>Header files\Listeners</Filter>
-    </ClInclude>
-    <ClInclude Include="HitboxData.h">
-      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="LinkedGrid.h">
       <Filter>Header files\Types</Filter>
@@ -379,17 +395,11 @@
     <ClInclude Include="PlayerData.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="HitboxData.h">
-      <Filter>Header files\items</Filter>
-    </ClInclude>
     <ClInclude Include="MkWH00PData.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="ControlsMenu.h">
       <Filter>Header files\GameState</Filter>
-    </ClInclude>
-    <ClInclude Include="Ability.h">
-      <Filter>Header files\Types</Filter>
     </ClInclude>
     <ClInclude Include="UITimer.h">
       <Filter>Header files\Components</Filter>
@@ -406,39 +416,77 @@
     <ClInclude Include="GameManager.h">
       <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
-    <ClInclude Include="InpuState.h">
+    <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="GamepadInput.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardInput.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterSelectionLogic.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MockingbirdData.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Bullet.h" >
-     <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="UserData.h">
-     <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="DestroyOnHit.h">
-     <Filter>Header files\Components</Filter>
-    <ClInclude Include="MockingbirdData.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="UserData.h" />
     <ClInclude Include="HID.h" />
-    <ClInclude Include="DestroyOnHit.h" />
     <ClInclude Include="KeyboardHID.h" />
     <ClInclude Include="GamepadHID.h" />
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletGravity.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerOnHit.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="UserData.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="DestroyOnHit.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="DestroyAtTime.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxData.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxData.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="CharFactory.h">
+      <Filter>Header files\Managers and factories</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>Header files\PlayerData</Filter>
+    </ClInclude>
+    <ClInclude Include="MkWH00PData.h">
+      <Filter>Header files\PlayerData</Filter>
+    </ClInclude>
+    <ClInclude Include="MockingbirdData.h">
+      <Filter>Header files\PlayerData</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardHID.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="GamepadHID.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="HID.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserData.h">
+      <Filter>Header files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="DestroyOnHit.h">
+      <Filter>Header files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="F10RData.h">
+      <Filter>Header files\PlayerData</Filter>
+    </ClInclude>
+    <ClInclude Include="AbilitiesTimerFunction.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Header files\Managers and factories</Filter>
+    </ClInclude>
+    <ClInclude Include="HitboxData.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="Fall_SpawnOnHit.h">
+      <Filter>Header files\OnHits</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -486,6 +534,15 @@
     </Filter>
     <Filter Include="Header files\Managers and factories">
       <UniqueIdentifier>{5e0e2b7a-0be3-4397-b253-d5783acd59a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OnHit">
+      <UniqueIdentifier>{ea02945e-25a3-410c-8f90-900a403b7780}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\PlayerData">
+      <UniqueIdentifier>{0042383f-0308-41be-9450-54eea99eeb0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PlayerData">
+      <UniqueIdentifier>{1272ddb6-456c-4d0b-85fd-59395543714b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
