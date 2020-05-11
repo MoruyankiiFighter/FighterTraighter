@@ -56,9 +56,11 @@ public:
 	void interruptAttack();
 	inline void goOnCooldown(int id, int cool) {
 		cooldowns[id] = cool;
-		//abstimer->setTimeAb(id, cool);
+		setTimeCool(cool);
 		cout << cooldowns[id] << endl;
 	}
+	void setTimeCool(int cool);
+	int getTimeCool();
 	int getAbilityIndex();
 	int getAbilityCooldown(int index) { 
 #ifdef _DEBUG
@@ -85,7 +87,7 @@ private:
 	int multiplierTimer_ = -1;
 	int remainingUses_ = 0;
 	bool isMultiplierTimed = false;
-
+	int timeCool = 0;
 	//keys to use the attacks and abilities
 	HID* inputSt_;
 	//AbilitiesTimerFunction* abstimer;
