@@ -7,7 +7,7 @@
 class AbilitiesTimerFunction:public Component
 {
 public:
-	AbilitiesTimerFunction(HID* hid, UITimer* timer1, UITimer* timer2, Entity* pl) : Component(ecs::AbilitiesTimerFunction) {
+	AbilitiesTimerFunction(UITimer* timer1, UITimer* timer2, Entity* pl) : Component(ecs::AbilitiesTimerFunction) {
 		timer1_ = timer1;
 		timer2_ = timer2;
 		pl_ = pl;
@@ -21,7 +21,7 @@ private:
 	UITimer* timer1_;
 	UITimer* timer2_;
 	Entity* pl_;
-	int timeab0;
-	int timeab1;
+	int timeab0 = 0;
+	int timeab1 = 0;
 };
 
