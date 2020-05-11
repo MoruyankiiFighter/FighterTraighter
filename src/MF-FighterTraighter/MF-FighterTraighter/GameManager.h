@@ -20,7 +20,7 @@ public:
 	};
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
-		None,
+		/*None,*/
 		F10R,
 		Aisha,
 		MKWh00p,

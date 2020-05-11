@@ -32,6 +32,7 @@ void AssetsManager::loadTextures()
 
 	//backgrounds
 	textures_.emplace(BackgroundFight, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/FONDO.png", 2, 1));
+
 	
 	//UI elements
 		//healthbar
@@ -70,7 +71,6 @@ void AssetsManager::loadTextures()
 	textures_.emplace(RandomRage, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/RandomRage.png", 1, 1));
 	textures_.emplace(KnifeDance, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/KnifeDance.png", 1, 1));
 
-	textures_.emplace(BackgroundFight, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/FONDO.png", 2, 1));
 
 	textures_.emplace(Mg1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mg1.png", 1, 1));
 	textures_.emplace(Mg21, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mg2-1.png", 1, 1));
@@ -202,4 +202,10 @@ void AssetsManager::UnloadAssets()
 	for (auto font = fonts_.begin(); font != fonts_.end(); ++font) {
 		delete font->second;
 	}
+	/*for (auto audio = music_.begin(); audio != music_.end(); ++audio) {
+		delete audio->second;
+	}*/
+	/*for (auto sfx = sfx_.begin(); sfx != sfx_.end(); ++sfx) {
+		delete sfx->second;
+	}*/
 }

@@ -15,6 +15,7 @@
 #include "Fight.h"
 void CharacterSelection::init()
 {
+	GameState::init();
 	// Background
 	Entity* background = entManager_.addEntity();
 	background->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
@@ -208,14 +209,12 @@ void CharacterSelection::setRandomCharacter(App* app, int n)
 		app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird, n);
 		break;
 	default:
-		app->getGameManager()->setCharacter(app->getGameManager()->None, n);
+		app->getGameManager()->setCharacter(app->getGameManager()->F10R, n);
+		break;
 	}
 }
 
 void CharacterSelection::GoToFight(App* app)
 {
-	if (app->getGameManager()->getPlayerInfo(1).character != app->getGameManager()->None) {
-
-		app->getStateMachine()->pushState(new Fight(app));
-	}
+	app->getStateMachine()->pushState(new Fight(app));
 }

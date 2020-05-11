@@ -20,11 +20,13 @@
 GameManager::GameManager(App* app) : app_(app)
 {
 	app_->getStateMachine()->pushState(new MainMenu(app_));
+	resetCharacters();
+
 	// TODO: Move this elsewhere
 	player1_.hid = new KeyboardHID(app_->getInputManager());
-	player1_.character = F10R;
+	//player1_.character = F10R;
 	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
-	player2_.character = MKWh00p;
+	//player2_.character = MKWh00p;
 }
 
 void GameManager::handleInput()
@@ -120,12 +122,13 @@ void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<
 
 void GameManager::resetCharacters()
 {
-	player1_.character = None;
-	player2_.character = None;
+	player1_.character = F10R;
+	player2_.character = F10R;
 }
 
 void GameManager::GoBackToMain(GameStateMachine* stateMachine)
 {
+	resetCharacters();
 	GameState* currState = stateMachine->getCurrentState();
 	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
 		stateMachine->popState();

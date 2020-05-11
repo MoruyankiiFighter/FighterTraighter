@@ -10,17 +10,21 @@ void CharacterSelectionLogic::init()
 	desc_->setText("");
 	curNavX = nav_->GetPosX();
 	curNavY = nav_->GetPosY();
+	SetElements();
+
 }
 
 void CharacterSelectionLogic::update()
 {
+	// If nothing changed, don't do anything
+	if (curNavX == nav_->GetPosX() && curNavY == nav_->GetPosY()) return;
 	SetElements();
+
 }
 
 void CharacterSelectionLogic::SetElements()
 {
-	// If nothing changed, don't do anything
-	if (curNavX == nav_->GetPosX() && curNavY == nav_->GetPosY()) return; 
+	
 
 	UIElement* e = nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY());
 	if (e == aisha_) {
