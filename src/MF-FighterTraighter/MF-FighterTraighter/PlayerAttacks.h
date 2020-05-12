@@ -22,7 +22,7 @@ public:
 			
 			if (activeAttack_->update()) {
 				activeAttack_->reset();
-				if (!isAbility(activeAttack_) && !isMultiplierTimed) resetOneTimeMultiplier();	//This should ONLY reset OneTimeMUltipliers, but I'm sure errors will end up popping up and making me look lika big doo doo head >:/
+				if (!isAbility(activeAttack_) && !isMultiplierTimed) resetOneTimeMultiplier();	//This should ONLY reset OneTimeMultipliers, but I'm sure errors will end up popping up and making me look lika big doo doo head >:/
 				activeAttack_ = nullptr;
 				if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isGrounded()) {
 					entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();

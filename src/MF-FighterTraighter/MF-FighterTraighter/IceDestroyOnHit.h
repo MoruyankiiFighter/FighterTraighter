@@ -16,12 +16,12 @@ public:
 		}
 		else {
 			PhysicsTransform* phTr = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
-			int orientation_ = phTr->getOrientation();
 			int width = 260;
 			int projX = (phTr->getWidth() / 4);
 			Vector2D pos = Vector2D(projX, -30);
 
-			data->entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(AssetsManager::Hb2, pos, Vector2D(width, 530), hitstun_, PlayerParticleSystem::DeletionMethod::OnHit);
+			data->entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(data->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Hb2), 
+				pos, Vector2D(width, 530), hitstun_, PlayerParticleSystem::DeletionMethod::OnHit);
 		}
 		DestroyOnHit::onHit(other);
 	}

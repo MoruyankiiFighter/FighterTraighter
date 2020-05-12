@@ -16,7 +16,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 	PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	Health* helth = entity_->getComponent<Health>(ecs::Health);
-	PlayerParticleSystem* IDKHowIFxedItXD = entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem);
+	PlayerParticleSystem* pSystem = entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem);
 	if (!currState->isProtected() /*&& !hBox_data->guardBreaker*/) {
 		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
@@ -59,6 +59,6 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		entity_->getApp()->getGameManager()->playerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
 	}
 
-	IDKHowIFxedItXD->removeDeletionMethodParticles(PlayerParticleSystem::DeletionMethod::OnHit);
+	pSystem->removeDeletionMethodParticles(PlayerParticleSystem::DeletionMethod::OnHit);
 }
 

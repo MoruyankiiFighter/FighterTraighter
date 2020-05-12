@@ -14,46 +14,50 @@ public:
 		OnDamaged
 	};
 
-	PlayerParticleSystem(int max) : Component(ecs::PlayerParticleSystem), maxParticles_(max) {};
-	void addNewParticle(AssetsManager::TextureNames name, Vector2D pos, Vector2D size, int time, DeletionMethod deletion) {
+	struct ParticleData {
+		Texture* tex_;
+		Vector2D pos_;
+		Vector2D size_;
+		int time_;
+		DeletionMethod method_;
+	};
+
+	PlayerParticleSystem(int max) : Component(ecs::PlayerParticleSystem), maxParticles_(max), currParticles_(0), phys_(nullptr) {};
+	void addNewParticle(Texture* tex, Vector2D pos, Vector2D size, int time, DeletionMethod deletion) {
 		if (currParticles_ < maxParticles_) {
 			int index = findAvailableIndex(); //Find empty spot (timer = -1)
-			textureNames_[index] = name;
-			texturePos_[index] = pos;
-			textureSize_[index] = size;
-			textureTime_[index] = time;
-			textureDeletion_[index] = deletion;
+			particles_[index].tex_ = tex;
+			particles_[index].pos_ = pos;
+			particles_[index].size_ = size;
+			particles_[index].time_ = time;
+			particles_[index].method_ = deletion;
 			currParticles_++;
 		}
 	}
 	virtual void init() override;
 
 	virtual void update() override {
-		for (int i = 0; i < textureNames_.size(); ++i) {
+		for (int i = 0; i < particles_.size(); ++i) {
 			//Lower the timer
-			if (textureTime_[i] > 0) {
-				textureTime_[i]--;
+			if (particles_[i].time_ > 0) {
+				particles_[i].time_--;
 			}
-			if (textureTime_[i] == 0) {
-				textureTime_[i] = -1;
+			if (particles_[i].time_ == 0) {
+				particles_[i].time_ = -1;
 				currParticles_--;		//Timer reached -1 -> Free spot
 			}
 		}
 	}
 
 	virtual void render() {
-		for (int i = 0; i < textureNames_.size(); ++i) {
-			if (textureTime_[i] != -1) {	//This allows particles with time = -2 to not have a time limit, and to be instead released by another method (like onHit)
-				Texture* tex = app_->getAssetsManager()->getTexture(textureNames_[i]);
+		for (int i = 0; i < particles_.size(); ++i) {
+			if (particles_[i].time_ != -1) {	//This allows particles with time = -2 to not have a time limit, and to be instead released by another method (like onHit)
 				SDL_Rect dest = SDL_Rect();
-				dest.x = phys_->getPosition().getX() + texturePos_[i].getX();
-				dest.y = phys_->getPosition().getY() + texturePos_[i].getY();
-				dest.w = textureSize_[i].getX();
-				dest.h = textureSize_[i].getY();
-				SDL_RendererFlip flip;
-				if (phys_->getOrientation() == 1) flip = SDL_FLIP_NONE;
-				else flip = SDL_FLIP_HORIZONTAL;
-				tex->render(dest, flip);
+				dest.x = phys_->getPosition().getX() + particles_[i].pos_.getX();
+				dest.y = phys_->getPosition().getY() + particles_[i].pos_.getY();
+				dest.w = particles_[i].size_.getX();
+				dest.h = particles_[i].size_.getY();
+				particles_[i].tex_->render(dest, phys_->getOrientation() == 1 ? SDL_FLIP_NONE : SDL_FLIP_HORIZONTAL);
 			}
 		}
 	}
@@ -61,8 +65,8 @@ public:
 	int findAvailableIndex() {
 		int i = 0;
 		int found = -1;
-		while (i < textureTime_.size() && found < 0) {
-			if (textureTime_[i] == -1) {
+		while (i < particles_.size() && found < 0) {
+			if (particles_[i].time_ == -1) {
 				found = i;
 			}
 			++i;
@@ -72,9 +76,9 @@ public:
 	}
 
 	void removeDeletionMethodParticles(DeletionMethod meth) {
-		for (int i = 0; i < textureNames_.size(); ++i) {
-			if (textureDeletion_[i] == meth) {
-				textureTime_[i] = -1;
+		for (int i = 0; i < particles_.size(); ++i) {
+			if (particles_[i].method_ == meth) {
+				particles_[i].time_ = -1;
 				currParticles_--;
 			}
 		}
@@ -85,11 +89,7 @@ private:
 	int maxParticles_;
 	int currParticles_;
 
-	std::vector<AssetsManager::TextureNames> textureNames_;
-	std::vector<Vector2D> texturePos_;
-	std::vector<Vector2D> textureSize_;
-	std::vector<int> textureTime_;
-	std::vector<DeletionMethod> textureDeletion_;
+	std::vector<ParticleData> particles_;
 
 	PhysicsTransform* phys_;
 };
