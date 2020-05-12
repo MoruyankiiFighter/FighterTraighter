@@ -19,10 +19,9 @@ public:
 			int orientation_ = phTr->getOrientation();
 			int width = 260;
 			int projX = (phTr->getWidth() / 4);
-			if (orientation_ == -1) projX = (phTr->getWidth() / 4);
 			Vector2D pos = Vector2D(projX, -30);
 
-			data->entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(AssetsManager::Hb2, pos, Vector2D(width, 530), hitstun_, true);
+			data->entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(AssetsManager::Hb2, pos, Vector2D(width, 530), hitstun_, PlayerParticleSystem::DeletionMethod::OnHit);
 		}
 		DestroyOnHit::onHit(other);
 	}

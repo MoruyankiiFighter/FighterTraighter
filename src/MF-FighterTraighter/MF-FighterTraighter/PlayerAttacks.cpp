@@ -123,8 +123,11 @@ void PlayerAttacks::setAbility(AnimationChain* newAbility, int index)
 
 void PlayerAttacks::interruptAttack()
 {
-	if(activeAttack_ != nullptr) activeAttack_->reset();
-	activeAttack_ = nullptr;
+	if (activeAttack_ != nullptr) {
+		activeAttack_->reset();
+		activeAttack_ = nullptr;
+		resetOneTimeMultiplier(true);
+	}
 	app_->getStateMachine()->getCurrentState()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
 }
 

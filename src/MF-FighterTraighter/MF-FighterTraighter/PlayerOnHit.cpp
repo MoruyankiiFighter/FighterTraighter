@@ -59,6 +59,6 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		entity_->getApp()->getGameManager()->playerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
 	}
 
-	IDKHowIFxedItXD->removeOnHitParticles();
+	IDKHowIFxedItXD->removeDeletionMethodParticles(PlayerParticleSystem::DeletionMethod::OnHit);
 }
 

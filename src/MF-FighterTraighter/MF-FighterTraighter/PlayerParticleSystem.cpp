@@ -10,7 +10,7 @@ void PlayerParticleSystem::init()
 	texturePos_ = std::vector<Vector2D>(maxParticles_);
 	textureSize_ = std::vector<Vector2D>(maxParticles_);
 	textureTime_ = std::vector<int>(maxParticles_);
-	textureCancelOnHit_ = std::vector<bool>(maxParticles_);
+	textureDeletion_ = std::vector<DeletionMethod>(maxParticles_);
 
 	for (int i = 0; i < textureTime_.size(); ++i) {
 		textureTime_[i] = -1;
