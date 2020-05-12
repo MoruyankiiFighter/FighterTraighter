@@ -14,7 +14,7 @@ public:
 	static void Pressed1(App* app);
 	static void Pressed2(App* app);
 private:
-	bool win1=false;
+	bool win1=true;
 
 };
 
