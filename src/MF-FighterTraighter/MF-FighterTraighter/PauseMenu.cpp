@@ -93,6 +93,7 @@ void PauseMenu::GoMainMenu(App* app)
 	while (dynamic_cast<MainMenu*>(app->getStateMachine()->getCurrentState()) == nullptr) {
 		app->getStateMachine()->popState();
 	}
+
 }
 
 void PauseMenu::ShowMeYourMoves(App* app)
