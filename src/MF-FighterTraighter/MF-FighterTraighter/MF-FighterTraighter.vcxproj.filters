@@ -179,7 +179,7 @@
     <ClCompile Include="MockingbirdData.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="UserData.cpp" >
+    <ClCompile Include="UserData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp" />
@@ -225,6 +225,7 @@
     <ClCompile Include="Fall_SpawnOnHit.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
+    <ClCompile Include="CharacterSelectionHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -488,6 +489,8 @@
     <ClInclude Include="Fall_SpawnOnHit.h">
       <Filter>Header files\OnHits</Filter>
     </ClInclude>
+    <ClInclude Include="CharacterSelectionLogic.h" />
+    <ClInclude Include="CharacterSelectionHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

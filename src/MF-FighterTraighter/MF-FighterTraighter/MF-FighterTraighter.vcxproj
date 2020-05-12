@@ -137,6 +137,7 @@
     <ClCompile Include="AbilityFactory.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="CharacterSelectionHandler.cpp" />
     <ClCompile Include="CharacterSelectionLogic.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="AbilityFactory.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="CharacterSelectionHandler.h" />
     <ClInclude Include="CharacterSelectionLogic.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Bullet.h" />

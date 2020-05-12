@@ -13,6 +13,7 @@
 #include "CharacterSelectionLogic.h"
 
 #include "Fight.h"
+#include "CharacterSelectionHandler.h"
 void CharacterSelection::init()
 {
 	GameState::init();
@@ -134,6 +135,11 @@ void CharacterSelection::init()
 	logic2->addComponent<CharacterSelectionLogic>(2, text_j2->getComponent<TextComponent>(ecs::TextComponent), rightP->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav_->getComponent<NavigationController>(ecs::NavigationController),
 		(aishaElement2)->getComponent<UIElement>(ecs::UIElement), (florElement2)->getComponent<UIElement>(ecs::UIElement), (MKElement2)->getComponent<UIElement>(ecs::UIElement), (mockElement2)->getComponent<UIElement>(ecs::UIElement), randElement2->getComponent<UIElement>(ecs::UIElement),
 		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork), app_->getAssetsManager()->getTexture(AssetsManager::RandomArtwork));
+
+	Entity* ent = entManager_.addEntity();
+	ent->addComponent<CharacterSelectionHandler>(this, logic1->getComponent<CharacterSelectionLogic>(ecs::CharacterSelectionLogic)->getChosen(), logic2->getComponent<CharacterSelectionLogic>(ecs::CharacterSelectionLogic)->getChosen());
+
+
 }
 
 void CharacterSelection::handleInput()
@@ -146,56 +152,4 @@ void CharacterSelection::handleInput()
 
 }
 
-void CharacterSelection::setAisha(App* app, int n)
-{
-	app->getGameManager()->setCharacter(app->getGameManager()->Aisha, n);
-	cout << app->getGameManager()->getPlayerInfo(1).character;
-}
 
-void CharacterSelection::setFlor(App* app, int n)
-{
-	//preguntar player
-	app->getGameManager()->setCharacter(app->getGameManager()->F10R, n);
-	cout << app->getGameManager()->getPlayerInfo(1).character;
-}
-
-void CharacterSelection::setGanonbot(App* app, int n)
-{
-	app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p, n);
-	cout << app->getGameManager()->getPlayerInfo(1).character;
-}
-
-void CharacterSelection::setMockingBird(App* app, int n)
-{
-	app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird, n);
-	cout << app->getGameManager()->getPlayerInfo(1).character;
-}
-
-void CharacterSelection::setRandomCharacter(App* app, int n)
-{
-	//generar un random
-	int n_ = 3;
-
-	switch (n_) {
-	case 0:
-		app->getGameManager()->setCharacter(app->getGameManager()->F10R, n);
-		break;
-	case 1:
-		app->getGameManager()->setCharacter(app->getGameManager()->Aisha, n);
-		break;
-	case 2:
-		app->getGameManager()->setCharacter(app->getGameManager()->MKWh00p, n);
-		break;
-	case 3:
-		app->getGameManager()->setCharacter(app->getGameManager()->Mockingbird, n);
-		break;
-	default:
-		app->getGameManager()->setCharacter(app->getGameManager()->F10R, n);
-		break;
-	}
-}
-
-void CharacterSelection::GoToFight(App* app)
-{
-	app->getStateMachine()->pushState(new Fight(app));
-}

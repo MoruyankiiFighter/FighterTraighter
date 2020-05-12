@@ -13,14 +13,7 @@ public:
 	void handleInput() override;
 
 	
-	//callbacks
-	static void setAisha(App* app, int n);
-	static void setFlor(App* app, int n);
-	static void setGanonbot(App* app, int n);
-	static void setMockingBird(App* app, int n);
-	static void setRandomCharacter(App* app, int n);
 
-	static void GoToFight(App* app);
 
 
 private:

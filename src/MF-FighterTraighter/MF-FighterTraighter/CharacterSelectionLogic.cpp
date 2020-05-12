@@ -1,6 +1,6 @@
 #include "CharacterSelectionLogic.h"
 
-CharacterSelectionLogic::~CharacterSelectionLogic()
+::~CharacterSelectionLogic()
 {
 
 }
@@ -48,15 +48,12 @@ void CharacterSelectionLogic::handleInput()
 			app_->getGameManager()->setCharacter(app_->getGameManager()->Mockingbird, playerNumber_);
 		}
 		else if (e == random_) {
-			// TODO: select a random character, and present the random splash art and description
-			// the selection will be done when the game is started
+			
 			int n = 3;
-
 			//generate a random
-			desc_->setText(" ");
-			image_->setTexture(random_texture); //add random texture
-
+			
 			switch (n) {
+			
 			case 0:
 				n = 1;
 				//another random cause it's Aisha case 

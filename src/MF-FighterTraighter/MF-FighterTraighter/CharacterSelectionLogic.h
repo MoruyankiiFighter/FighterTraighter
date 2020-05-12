@@ -17,7 +17,7 @@ public:
 	
 	void SetElements();
 
-	//returns true if the player chose a character
+	//returns true if the plCharacterSelectionLogicayer chose a character
 	inline bool getChosen() { return chose; }
 private:
 
