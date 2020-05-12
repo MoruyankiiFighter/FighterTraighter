@@ -202,4 +202,6 @@ void AssetsManager::UnloadAssets()
 	for (auto font = fonts_.begin(); font != fonts_.end(); ++font) {
 		delete font->second;
 	}
+	
+	
 }
