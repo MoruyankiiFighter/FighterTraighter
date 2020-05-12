@@ -16,7 +16,12 @@ public:
 	GameState* getCurrentState();
 
 	//push a new current state
-	void pushState(GameState* state) { states.push(state); stackSize_++; std::cout << "Stack size: " << stackSize_ << std::endl; }
+	void pushState(GameState* state) {
+		states.push(state); stackSize_++;
+#ifdef _DEBUG
+		std::cout << "Stack size: " << stackSize_ << std::endl; 
+#endif 
+	}
 	
 	//deletes the current state
 	void popState();

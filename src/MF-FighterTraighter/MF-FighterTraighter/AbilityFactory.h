@@ -3,6 +3,8 @@
 #include "GameManager.h"
 #include <functional>
 #include <map>
+
+class HitboxData;
 class AbilityFactory {
 public:
 	static AnimationChain* GiveAbility(GameManager::AbilityID id, Entity* e);
@@ -30,15 +32,48 @@ public:
 	static void EW2(Entity* ent);
 	static void EW3(Entity* ent);
 
-	//Whatever the rest of this is
-	//static AnimationChain* Bullets(Entity* e);
-	//static void Bullet1(Entity* ent);
+	//Acid Split
+	static AnimationChain* GiveAcidSplit(Entity* e);
 
-	//GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false
-	static void createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage,int hitstun,
-		Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact = false);
+	static void AS1(Entity* ent);
+	static void ASC(Entity* ent);
 
+	//Shrug Off
+	static AnimationChain* GiveShrugOff(Entity* e);
+
+	static void SO1(Entity* ent);
+	static void SOC(Entity* ent);
+
+	//More Power
+	static AnimationChain* GiveMorePower(Entity* e);
+
+	static void MP1(Entity* ent);
+	static void MPC(Entity* ent);
+
+	//Hookshot
+	static AnimationChain* GiveHookshot(Entity* e);
+
+	static void HS1(Entity* ent);
+	static void HSC(Entity* ent);
+
+	//Dash
+	static AnimationChain* GiveDash(Entity* e);
+
+	static void Dash(Entity* ent);
+	static void DashC(Entity* ent);
+
+	//Vampiric Strike
+	static AnimationChain* GiveVampiricStrike(Entity* e);
+
+	static void VS1(Entity* ent);
+	static void VSC(Entity* ent);
+
+	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
+	
+	//static Entity* createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,
+		//Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact = false, bool gravity = false, bool multihit = false);
 private: 
+
 	AbilityFactory() {};
 	~AbilityFactory() {};
 	static void goOnCoolodwn(Entity* e, int cool);

@@ -1,5 +1,6 @@
 #include "PlayerAttacks.h"
 #include "PlayerController.h"
+#include "UITimer.h"
 
 PlayerAttacks::PlayerAttacks(HID* hid, AnimationChain* highFist, AnimationChain* airHighFist, AnimationChain* lowFist, AnimationChain* airLowFist,
 	AnimationChain* highKick, AnimationChain* airHighKick, AnimationChain* lowKick, AnimationChain* airLowKick,  AnimationChain* testGB) : Component(ecs::PlayerAttacks), inputSt_(hid)
@@ -16,11 +17,12 @@ PlayerAttacks::PlayerAttacks(HID* hid, AnimationChain* highFist, AnimationChain*
 }
 
 PlayerAttacks::~PlayerAttacks() {
-	cout << "destruyendo ataques "<<endl;
+
 	//hay que descomentar cuando las animaciones sean diferentes
 	for (int i = 0; i < attacksList.size(); i++) {
 		delete attacksList[i];
 		attacksList[i] = nullptr;
+
 	}
 	attacksList.clear();
 
@@ -42,6 +44,7 @@ void PlayerAttacks::handleInput() {
 	if (currState->isAbleToAttack()) {
 		if (currState->isGrounded()) {
 			if (inputSt_->ButtonPressed(HID::RightPad_Down)) {
+
 				activeAttack_ = attacksList[0];
 				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 				else if (currState->isCrouch()) ctrl->uncrouch();
@@ -132,4 +135,14 @@ int PlayerAttacks::getAbilityIndex()	//IN THEORY IT NEVER SHOULD RETURN -1
 		if (activeAttack_ == abilityList[i]) index = i;
 	}
 	return index;
+}
+
+void PlayerAttacks::setTimeCool(int cool)
+{
+	timeCool = cool;
+}
+
+int PlayerAttacks::getTimeCool()
+{
+	return timeCool;
 }

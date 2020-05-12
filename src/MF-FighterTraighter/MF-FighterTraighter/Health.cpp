@@ -2,10 +2,17 @@
 #include "PlayerState.h"
 #include "Entity.h"
 
-bool Health::LoseLife(unsigned int damage) {
+bool Health::LoseLife( double damage) {
 	bool toReturn = false;
 
-	health_ -= damage;
+	PlayerData* data = entity_->getComponent<PlayerData>(ecs::PlayerData);
+	if (data) {
+		health_ -= damage * data->geDefense();
+		if (!isMultiplierTimed) entity_->getComponent<PlayerData>(ecs::PlayerData)->setDefense(1);
+	}
+	else {
+		health_ -= damage;
+	}
 
 	if (health_ > 0) {
 		toReturn = true;
@@ -13,11 +20,9 @@ bool Health::LoseLife(unsigned int damage) {
 	else
 	{
 		health_ = 0;
-		std::cout << "memori" << endl;
 		toReturn = false;
 	}
 
-	std::cout << health_ << endl;
 	return toReturn;
 }
 
@@ -38,7 +43,9 @@ void  Health::GainLife(unsigned int life)
 	{
 		health_ = maxHealth_;
 	}
+#ifdef _DEBUG
 	std::cout << health_;
+#endif 
 
 }
 
