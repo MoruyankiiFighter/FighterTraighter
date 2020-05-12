@@ -28,19 +28,20 @@ void InventorySelection::init()
 
 	//j1 fondo submenu
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
-		Vector2D(50, 50), Vector2D(50, 50), Vector2D(50, 50), (app_->getWindowManager()->getCurResolution().w / 2) - 100, app_->getWindowManager()->getCurResolution().h - 100, 0);
+		Vector2D(0, 0), Vector2D(50, 50), Vector2D(0, 0), (app_->getWindowManager()->getCurResolution().w / 2) - 100, app_->getWindowManager()->getCurResolution().h - 100, 0);
+	
 	//j2 fondo submenu
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 2) + 50, 0 + 50),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 2) + 50, 0 + 50),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 2) + 50, 0 + 50),
+		Vector2D(0, 0),
+		Vector2D(app_->getWindowManager()->getCurResolution().w - 430, 50),
+		Vector2D(430 + 50, 0),
 		(app_->getWindowManager()->getCurResolution().w / 2) - 100, (app_->getWindowManager()->getCurResolution().h) - 100, 0);
-
+	
 
 	// Texto central
 	Entity* text_ = entManager_.addEntity();
 	//Vector2D pos, Vector2D anchor, Vector2D pivot, Vector2D size
-	text_->addComponent<UITransform>(Vector2D(0, 0), Vector2D((app_->getWindowManager()->getCurResolution().w * 2) / 4, 0), Vector2D((app_->getWindowManager()->getCurResolution().w * 2) / 4, 0), Vector2D(app_->getWindowManager()->getCurResolution().w - (2 * 25), (app_->getWindowManager()->getCurResolution().h / 20) + (2 * 25)));
+	text_->addComponent<UITransform>(Vector2D(0, 0), Vector2D((app_->getWindowManager()->getCurResolution().w/2 ), 0), Vector2D((app_->getWindowManager()->getCurResolution().w /2), 0), Vector2D(app_->getWindowManager()->getCurResolution().w - 50, (app_->getWindowManager()->getCurResolution().h / 20) +50));
 	text_->addComponent<TextComponent>("Selecciona tus habilidades", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::TextAlignment::Center);
 
 	//ranuras j1
@@ -49,28 +50,28 @@ void InventorySelection::init()
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 1, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 1, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 1, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
-		(app_->getWindowManager()->getCurResolution().w / 12), (app_->getWindowManager()->getCurResolution().w / 12), 0, nullptr, nullptr, "Boton L", 25, TextComponent::TextAlignment::Center);
+		(160), (160), 0, nullptr, nullptr, "Boton L", 25, TextComponent::TextAlignment::Center);
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 4, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 4, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 4, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
-		(app_->getWindowManager()->getCurResolution().w / 12), (app_->getWindowManager()->getCurResolution().w / 12), 0, nullptr, nullptr, "Boton R", 25, TextComponent::TextAlignment::Center);
+		(160), (160), 0, nullptr, nullptr, "Boton R", 25, TextComponent::TextAlignment::Center);
+
 
 	//boton
 	tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 7, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 7, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 7, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
-		(app_->getWindowManager()->getCurResolution().w / 6) * 2, (app_->getWindowManager()->getCurResolution().h / 15) * 2.5, 0,
-		GoToFight, nullptr, "Continue_J2", 80, TextComponent::TextAlignment::Center);
+		Vector2D(0, -(90 + 50 + 50)),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 4) * 3, app_->getWindowManager()->getCurResolution().h),
+		Vector2D(320, 90),
+		640, 180, 0, GoToFight, nullptr, "Continue_J2", 80, TextComponent::TextAlignment::Center);
 	std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Bottom;
 
 	//j2
 	tuple <Entity*, Entity*> boton2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 12, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 12, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 12, (app_->getWindowManager()->getCurResolution().h / 2) * 1.5),
-		(app_->getWindowManager()->getCurResolution().w / 6) * 2, (app_->getWindowManager()->getCurResolution().h / 15) * 2.5, 0, GoToFight, nullptr, "Continue_J1", 80, TextComponent::TextAlignment::Center);
+		Vector2D(0, -(90 + 50 + 50)),
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, app_->getWindowManager()->getCurResolution().h),
+		Vector2D(320, 90),
+		640, 180, 0, GoToFight, nullptr, "Continue_J1", 80, TextComponent::TextAlignment::Center);
 	std::get<1>(boton2)->getComponent<UITransform>(ecs::Transform)->Bottom;
 
 	//ranuras j2
@@ -79,12 +80,12 @@ void InventorySelection::init()
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 7, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 7, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 7, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
-		(app_->getWindowManager()->getCurResolution().w / 12), (app_->getWindowManager()->getCurResolution().w / 12), 0, nullptr, nullptr, "Boton L", 25, TextComponent::TextAlignment::Center);
+		(160), (160), 0, nullptr, nullptr, "Boton L", 25, TextComponent::TextAlignment::Center);
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 10, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 10, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 12) * 10, (app_->getWindowManager()->getCurResolution().h / 12) * 1.7),
-		(app_->getWindowManager()->getCurResolution().w / 12), (app_->getWindowManager()->getCurResolution().w / 12), 0, nullptr, nullptr, "Boton R", 25, TextComponent::TextAlignment::Center);
+		(160), (160), 0, nullptr, nullptr, "Boton R", 25, TextComponent::TextAlignment::Center);
 
 	/*for(int i=0, i<app_->getGameManager()->get.....abilities.size())
 		crear mierda
