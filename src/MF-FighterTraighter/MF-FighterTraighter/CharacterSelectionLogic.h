@@ -13,8 +13,12 @@ public:
 	~CharacterSelectionLogic();
 	void init() override;
 	void update() override;
+	void handleInput() override;
 	
 	void SetElements();
+
+	//returns true if the player chose a character
+	inline bool getChosen() { return chose; }
 private:
 
 	TextComponent* desc_=nullptr;
@@ -36,5 +40,7 @@ private:
 
 	int curNavX = -1, curNavY = -1;
 	int playerNumber_;
+
+	bool chose;
 };
 

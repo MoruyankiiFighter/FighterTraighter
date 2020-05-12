@@ -13,7 +13,7 @@ public:
 	inline void changeAxis(int index, SDL_GameControllerAxis newAxis) {
 		axes[index] = newAxis;
 	}
-
+	
 	virtual void updateInput() override;
 protected:
 	float ApplyDeadZone(float input)
