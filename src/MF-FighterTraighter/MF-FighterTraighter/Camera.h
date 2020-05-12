@@ -25,10 +25,8 @@ public:
 	}
 	virtual void update()override;
 private:
-	void Shake();
 	inline void CalculaPunto();
 		SDL_Rect m_ViewBox;
-		SDL_Rect m_shake;
 		Transform* cam;
 		Transform* m_Target1;
 		Transform* m_Target2;

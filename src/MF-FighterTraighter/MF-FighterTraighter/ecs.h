@@ -38,6 +38,7 @@ namespace ecs {
 		Bullet,
 		Camera,
 		AbilitiesTimerFunction,
+		Shake,
 		/*
 		
 		*/

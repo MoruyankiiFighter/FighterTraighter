@@ -178,6 +178,7 @@
     <ClCompile Include="RenderAnimation.cpp" />
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="LinkedGrid.cpp" />
+    <ClCompile Include="Shake.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="UIHealthbar.cpp" />
     <ClCompile Include="UIRoundRenderer.cpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="RenderAnimation.h" />
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
+    <ClInclude Include="Shake.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="UIHealthbar.h" />
     <ClInclude Include="UIRoundRenderer.h" />

@@ -12,6 +12,7 @@
 #include "AbilitiesTimerFunction.h"
 
 #include "Camera.h"
+#include "Shake.h"
 Fight::Fight(App* app) : GameState(app)
 {
 	init();
@@ -26,6 +27,7 @@ void Fight::init()
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
     bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+	bg->addComponent<Shake>();
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
@@ -116,8 +118,7 @@ void Fight::init()
 	
 
  	//bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform));
- 	bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform), player2->getComponent<Transform>(ecs::Transform));
-
+ //bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform), player2->getComponent<Transform>(ecs::Transform));
 
 
 	Entity* timer = entManager_.addEntity();

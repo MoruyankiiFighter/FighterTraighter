@@ -198,6 +198,7 @@
     <ClCompile Include="AudioManager.cpp">
       <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
+    <ClCompile Include="Shake.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -435,6 +436,7 @@
     <ClInclude Include="AudioManager.h">
       <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
+    <ClInclude Include="Shake.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
