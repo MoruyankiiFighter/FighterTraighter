@@ -22,8 +22,8 @@ public:
 			
 			if (activeAttack_->update()) {
 				activeAttack_->reset();
+				if (!isAbility(activeAttack_) && !isMultiplierTimed) resetOneTimeMultiplier();	//This should ONLY reset OneTimeMUltipliers, but I'm sure errors will end up popping up and making me look lika big doo doo head >:/
 				activeAttack_ = nullptr;
-				resetOneTimeMultiplier(false);
 				if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isGrounded()) {
 					entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
 				}
@@ -68,34 +68,22 @@ public:
 		entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(mul);
 		isMultiplierTimed = timed;
 		if (timed) multiplierTimer_ = timer;
-		else {
-			timer = -1;
-			remainingUses_ = 1;
-		}
+		else timer = -1;
 	}
 
-	void resetOneTimeMultiplier(bool forceReset) {
-		if (!forceReset) {
-			if (!isMultiplierTimed && remainingUses_ > -1) {
-				//This is to prevent, in theory, that the abilities that grant the multiplier themeselves don't consume it on ending
-				if (remainingUses_ == 0) {
-					entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(1);
-					remainingUses_ = -1;
+	void resetOneTimeMultiplier() {
+		entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(1);
+		entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->removeDeletionMethodParticles(PlayerParticleSystem::DeletionMethod::OnAttack);
+	}
 
-					//TODO
-					//Must think of a more intuitive way to do this eacuse this is a mess and a half
-					entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->removeDeletionMethodParticles(PlayerParticleSystem::DeletionMethod::OnAttack);
-				}
-				else remainingUses_--;
-			}
+	bool isAbility(AnimationChain* anim) {
+		int i = 0;
+		bool is = false;
+		while (i < abilityList.size() && !is) {
+			if (abilityList[i] == anim) is = true;
+			++i;
 		}
-		else {
-			entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(1);
-			remainingUses_ = -1;
-			//TODO
-			//Must think of a more intuitive way to do this eacuse this is a mess and a half
-			entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->removeDeletionMethodParticles(PlayerParticleSystem::DeletionMethod::OnAttack);
-		}
+		return is;
 	}
 private:
 	std::vector<AnimationChain*> attacksList;	//pointer to the attack that you can use
@@ -104,7 +92,6 @@ private:
 	AnimationChain* activeAttack_ = nullptr;
 
 	int multiplierTimer_ = -1;
-	int remainingUses_ = 0;
 	bool isMultiplierTimed = false;
 	int timeCool = 0;
 	//keys to use the attacks and abilities
