@@ -87,9 +87,6 @@ void InventorySelection::init()
 		Vector2D(80, 80),
 		(160), (160), 0, nullptr, nullptr, "Boton R2", 25, TextComponent::TextAlignment::Center);
 
-	/*for(int i=0, i<app_->getGameManager()->get.....abilities.size())
-		crear mierda
-	*/
 
 	//hab j1
 	Entity* nav_j1 = entManager_.addEntity();
@@ -101,22 +98,22 @@ void InventorySelection::init()
 		tuple <Entity*, Entity*> habj1;
 
 		if (i < app_->getGameManager()->getPlayerInfo(1).abilities.size()) {
-
+			//128
 
 			if (i < 5) { //cambiarlo por la mitad del vector
 				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-					(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
+					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
+					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
+					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
 			}
 			else {
 				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-					(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
 			}
 		}
@@ -124,19 +121,19 @@ void InventorySelection::init()
 		else {
 			if (i < 5) { //cambiarlo por la mitad del vector
 				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-					(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
+					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
+					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
+					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
 			}
 
 			else {
 				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-					Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 40, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-					(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
 			}
 
@@ -161,18 +158,18 @@ void InventorySelection::init()
 
 		if (i < 5) { //cambiarlo por la mitad del vector
 			tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-				(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+				Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
+				Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
+				Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
+				(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 			ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i, 0);
 		}
 		else {
 			tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-				Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-				(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+				Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
+				Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
+				Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
+				(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 			ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
 		}
 	}
@@ -180,19 +177,19 @@ void InventorySelection::init()
 	else {
 	if (i < 5) { //cambiarlo por la mitad del vector
 		tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + i * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 4.7),
-			(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+			Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
+			Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
+			Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
+			(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 		ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i, 0);
 	}
 
 	else {
 		tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 15) + (i - 5) * (app_->getWindowManager()->getCurResolution().w / 15)) + 1000, (app_->getWindowManager()->getCurResolution().h / 15) * 6.7),
-			(app_->getWindowManager()->getCurResolution().w / 15), (app_->getWindowManager()->getCurResolution().w / 15), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+			Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
+			Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
+			Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
+			(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 		ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
 		}
 	}
