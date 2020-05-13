@@ -1,6 +1,6 @@
 #include "CharacterSelectionLogic.h"
 
-::~CharacterSelectionLogic()
+CharacterSelectionLogic::~CharacterSelectionLogic()
 {
 
 }
@@ -28,7 +28,6 @@ void CharacterSelectionLogic::handleInput()
 	if (app_->getGameManager()->getPlayerInfo(playerNumber_).hid->ButtonPressed(HID::RightPad_Down)) {
 		cout << "you chose character  " <<playerNumber_<< endl;
 	
-		chose = true;
 
 		UIElement* e = nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY());
 		if (e == aisha_) {
@@ -70,6 +69,7 @@ void CharacterSelectionLogic::handleInput()
 			}
 		}
 
+		chose = true;
 		curNavX = nav_->GetPosX();
 		curNavY = nav_->GetPosY();
 	}

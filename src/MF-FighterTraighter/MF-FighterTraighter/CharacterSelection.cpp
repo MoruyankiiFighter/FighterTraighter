@@ -30,9 +30,6 @@ void CharacterSelection::init()
 		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "Choose your character", 60, 300, 100, 500);
 
 
-
-
-
 	// Icons of all characters
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Flor_icon),
 		Vector2D(-125, -125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0);
@@ -62,6 +59,7 @@ void CharacterSelection::init()
 		Vector2D(0, 50),
 		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j1", 25,
 		100, 100, 25);
+	
 	Entity* florElement1 = entManager_.addEntity();
 	florElement1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
 	Entity* mockElement1 = entManager_.addEntity();
@@ -72,21 +70,15 @@ void CharacterSelection::init()
 	aishaElement1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
 	Entity* randElement1 = entManager_.addEntity();
 	randElement1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
-	tuple <Entity*, Entity*> button1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
-		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(60, -30),
-		Vector2D(0, app_->getWindowManager()->getCurResolution().h),
-		Vector2D(0, 100),
-		300, 100, 0,
-		nullptr, GoToFight, "Ready", 60, TextComponent::TextAlignment::Center);
+	
 	Entity* nav1 = entManager_.addEntity();
-	NavigationController* ctrl1 = nav1->addComponent<NavigationController>(2, 4, app_->getGameManager()->getPlayerInfo(1).hid);
+	NavigationController* ctrl1 = nav1->addComponent<NavigationController>(2, 3, app_->getGameManager()->getPlayerInfo(1).hid);
 	ctrl1->SetElementInPos(florElement1->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrl1->SetElementInPos(MKElement1->getComponent<UIElement>(ecs::UIElement), 1, 0);
 	ctrl1->SetElementInPos(randElement1->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	ctrl1->SetElementInPos(aishaElement1->getComponent<UIElement>(ecs::UIElement), 0, 2);
 	ctrl1->SetElementInPos(mockElement1->getComponent<UIElement>(ecs::UIElement), 1, 2);
-	ctrl1->SetElementInPos(std::get<0>(button1)->getComponent<UIElement>(ecs::UIElement), 0, 3);
+	
 	Entity* logic1 = entManager_.addEntity();
 	logic1->addComponent<CharacterSelectionLogic>(1, text_j1->getComponent<TextComponent>(ecs::TextComponent), leftP->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav1->getComponent<NavigationController>(ecs::NavigationController),
 		(aishaElement1)->getComponent<UIElement>(ecs::UIElement), (florElement1)->getComponent<UIElement>(ecs::UIElement), (MKElement1)->getComponent<UIElement>(ecs::UIElement), (mockElement1)->getComponent<UIElement>(ecs::UIElement), randElement1->getComponent<UIElement>(ecs::UIElement),
@@ -116,28 +108,28 @@ void CharacterSelection::init()
 	aishaElement2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
 	Entity* randElement2 = entManager_.addEntity();
 	randElement2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
-	tuple <Entity*, Entity*> button2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
-		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(-60, -30),
-		Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h),
-		Vector2D(300, 100),
-		300, 100,
-		0, nullptr, nullptr, "Ready", 60, TextComponent::TextAlignment::Center);
+	//tuple <Entity*, Entity*> button2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+	//	app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	//	Vector2D(-60, -30),
+	//	Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h),
+	//	Vector2D(300, 100),
+	//	300, 100,
+	//	0, nullptr, nullptr, "Ready", 60, TextComponent::TextAlignment::Center);
 	Entity* nav_ = entManager_.addEntity();
-	NavigationController* ctrl2 = nav_->addComponent<NavigationController>(2, 4, app_->getGameManager()->getPlayerInfo(2).hid);
+	NavigationController* ctrl2 = nav_->addComponent<NavigationController>(2, 3, app_->getGameManager()->getPlayerInfo(2).hid);
 	ctrl2->SetElementInPos((florElement2)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrl2->SetElementInPos((MKElement2)->getComponent<UIElement>(ecs::UIElement), 1, 0);
 	ctrl2->SetElementInPos((randElement2)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	ctrl2->SetElementInPos((aishaElement2)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 	ctrl2->SetElementInPos((mockElement2)->getComponent<UIElement>(ecs::UIElement), 1, 2);
-	ctrl2->SetElementInPos(std::get<0>(button2)->getComponent<UIElement>(ecs::UIElement), 0, 3);
+	//ctrl2->SetElementInPos(std::get<0>(button2)->getComponent<UIElement>(ecs::UIElement), 0, 3);
 	Entity* logic2 = entManager_.addEntity();
 	logic2->addComponent<CharacterSelectionLogic>(2, text_j2->getComponent<TextComponent>(ecs::TextComponent), rightP->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav_->getComponent<NavigationController>(ecs::NavigationController),
 		(aishaElement2)->getComponent<UIElement>(ecs::UIElement), (florElement2)->getComponent<UIElement>(ecs::UIElement), (MKElement2)->getComponent<UIElement>(ecs::UIElement), (mockElement2)->getComponent<UIElement>(ecs::UIElement), randElement2->getComponent<UIElement>(ecs::UIElement),
 		app_->getAssetsManager()->getTexture(AssetsManager::AishaArtwork), app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork), app_->getAssetsManager()->getTexture(AssetsManager::GanonArtwork), app_->getAssetsManager()->getTexture(AssetsManager::MockArtwork), app_->getAssetsManager()->getTexture(AssetsManager::RandomArtwork));
 
 	Entity* ent = entManager_.addEntity();
-	ent->addComponent<CharacterSelectionHandler>(this, logic1->getComponent<CharacterSelectionLogic>(ecs::CharacterSelectionLogic)->getChosen(), logic2->getComponent<CharacterSelectionLogic>(ecs::CharacterSelectionLogic)->getChosen());
+	ent->addComponent<CharacterSelectionHandler>( logic1, logic2);
 
 
 }
