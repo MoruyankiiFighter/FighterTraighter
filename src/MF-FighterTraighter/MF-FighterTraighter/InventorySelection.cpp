@@ -98,21 +98,21 @@ void InventorySelection::init()
 		tuple <Entity*, Entity*> habj1;
 
 		if (i < app_->getGameManager()->getPlayerInfo(1).abilities.size()) {
-			//128
+			//128 72
 
 			if (i < 5) { //cambiarlo por la mitad del vector
 				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
+					Vector2D(50, 60),
+					Vector2D(((128) + i * (128)) + 40, 338),
+					Vector2D(64,64),
 					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
 			}
 			else {
 				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+					Vector2D(50, 60),
+					Vector2D(((128) + (i - 5) * (128)) + 40, 482),
+					Vector2D(64, 64),
 					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
 			}
@@ -121,18 +121,18 @@ void InventorySelection::init()
 		else {
 			if (i < 5) { //cambiarlo por la mitad del vector
 				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
+					Vector2D(50, 60),
+					Vector2D(((128) + i * (128)) + 40, 338),
+					Vector2D(64, 64),
 					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
 			}
 
 			else {
 				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+					Vector2D(50, 60),
+					Vector2D(((128) + (i - 5) * (128)) + 40, 482),
+					Vector2D(64, 64),
 					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
 			}
@@ -158,17 +158,17 @@ void InventorySelection::init()
 
 		if (i < 5) { //cambiarlo por la mitad del vector
 			tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-				Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
-				Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
-				Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
+				Vector2D(50, 60),
+				Vector2D(((128) + i * (128)) + 1000, 338),
+				Vector2D(64, 64),
 				(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 			ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i, 0);
 		}
 		else {
 			tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-				Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
-				Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
-				Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
+				Vector2D(50, 60),
+				Vector2D(((128) + (i - 5) * (128)) + 1000, 482),
+				Vector2D(64, 64),
 				(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 			ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
 		}
@@ -177,18 +177,18 @@ void InventorySelection::init()
 	else {
 	if (i < 5) { //cambiarlo por la mitad del vector
 		tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
-			Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
-			Vector2D(((128) + i * (128)) + 1000, (72) * 4.7),
+			Vector2D(50, 60),
+			Vector2D(((128) + i * (128)) + 1000, 338),
+			Vector2D(64, 64),
 			(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 		ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i, 0);
 	}
 
 	else {
 		tuple <Entity*, Entity*> habj2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
-			Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
-			Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
+			Vector2D(50, 60),
+			Vector2D(((128) + (i - 5) * (128)) + 1000, 482),
+			Vector2D(64, 64),
 			(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 		ctrl_->SetElementInPos(std::get<0>(habj2)->getComponent<UIElement>(ecs::UIElement), i - 5, 1);
 		}
