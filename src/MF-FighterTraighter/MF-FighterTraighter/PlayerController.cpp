@@ -23,7 +23,6 @@ void PlayerController::init()
 //update
 void PlayerController::update()
 {
-
 }
 
 //handle input
@@ -52,10 +51,9 @@ void PlayerController::handleInput()
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > verticalDeadzone) && currState->canCrouch())
 	{
-#ifdef _DEBUG
-		cout << "crouch" << endl;
-#endif
-		if (currState->isMoving()) transform_->setSpeed(0, speed.getY());
+
+		if (currState->isMoving())
+			transform_->setSpeed(0, speed.getY());
 		crouch();
 	}
 	else if (currState->isAbletoMove() && (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0))
