@@ -113,11 +113,6 @@ void InputManager::update()
 InputManager::~InputManager()
 {
 	delete[] lastKeyboardState_;
-	for (int i = 0; i < numGamepads; i++)
-	{
-		delete connectedControllers[i];
-		delete gControllerHaptic[i];
-	};
 }
 
 void InputManager::clearState()

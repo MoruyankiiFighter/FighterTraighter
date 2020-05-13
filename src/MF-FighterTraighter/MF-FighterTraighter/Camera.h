@@ -3,6 +3,7 @@
 #include "Component.h"
 #include "PhysicsTransform.h"
 #include "UITimer.h"
+#include "Shake.h"
 
 class Camera:public Component
 {
@@ -15,7 +16,7 @@ public:
 	void init()override
 	{
 		cam = entity_->getComponent<Transform>(ecs::Transform);
-		
+		m_shake = entity_->getComponent<Shake>(ecs::Shake)->shake();
 
 		//1920+860*2+500
 		cam->setWidthHeight(cam->getWidth() + m_Target1->getPosition().getX()*2 + m_Target1->getWidth()/2, cam->getHeight() + m_Target1->getPosition().getY());
@@ -26,6 +27,7 @@ public:
 	virtual void update()override;
 private:
 	inline void CalculaPunto();
+	Vector2D* m_shake;
 		SDL_Rect m_ViewBox;
 		Transform* cam;
 		Transform* m_Target1;

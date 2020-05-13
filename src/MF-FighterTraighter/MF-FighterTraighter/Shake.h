@@ -32,22 +32,25 @@ public:
     virtual void update()override;
     void init()override
     {
-        cam = entity_->getComponent<Transform>(ecs::Transform);
+        //cam = entity_->getComponent<Transform>(ecs::Transform);
         timeStart_ = SDL_GetTicks();
         xOffset = 0;
         yOffset = 0;
+        m_shake = new Vector2D();
+        m_shake->setX(0);
+        m_shake->setY(0);
     }
+    Vector2D* shake() { return m_shake; }
 private:
     void updateShake();
     void applyScreenShake();
 
-   
-    Transform* cam;
+    Vector2D* m_shake;
+  //  Transform* cam;
     Uint32 timeStart_;
     Uint32 delta;
     float xOffset = 0;
     float yOffset = 0;
-    int shakeTimer = 0;
 
 
 };

@@ -27,6 +27,8 @@ void Shake::updateShake()
         shaking = false;
         xOffset = 0;
         yOffset = 0;
+        m_shake->setX(xOffset);
+        m_shake->setY(yOffset);
     }
     else
     {
@@ -59,5 +61,6 @@ void Shake::applyScreenShake()
         }
         yOffset = xOffset;
     }
-    cam->setPosition(xOffset, yOffset);
+    m_shake->setX(xOffset);
+    m_shake->setY(yOffset);
 }
