@@ -24,12 +24,12 @@ void Training::init()
 	entManager_.setHandler(CharFactory::addCharacterToGame(app_, this, -1, world, &app_->getGameManager()->getPlayerInfo(2), PLAYER_2, BOUNDARY | P_BAG | WALLS, 1), ecs::Player2);
 	
 	Entity* saco = entManager_.addEntity();
-	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h - 455), Vector2D(10, 10), 150, 500, 0, world, P_BAG, PLAYER_1 | PLAYER_2 | BULLET, 2);
+	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h - 655), Vector2D(10, 10), 250, 800, 0, world, P_BAG, PLAYER_1 | PLAYER_2 | BULLET, 2);
 	addHurtbox(pBpT->getMainFixture());
 	pBpT->resetUserData(new PunchingBagOnHit(saco));
 	pBpT->changeFriction(0);
 	//addHurtbox()
-	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Saco));
 	//saco->addComponent<PunchingBagOnHit>();
 	Health* sacoHealth = saco->addComponent<Health>(200);
 	//saco->addComponent<SacoTimer>(5000);
