@@ -512,18 +512,18 @@ void AbilityFactory::Dash(Entity* ent)
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
 
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
-		speed = Vector2D{ -50, 0 };
+		speed = Vector2D{ -35, 0 };
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
-		speed = Vector2D{ 50, 0 };
+		speed = Vector2D{ 35, 0 };
 
 	}
 	else {
 		if (pT->getOrientation() == 1) {
-			speed =Vector2D { 50, 0 };
+			speed =Vector2D { 35, 0 };
 		}
 		else {
-			speed = Vector2D{ -50, 0 };
+			speed = Vector2D{ -35, 0 };
 		}
 	}
 	pT->setSpeed(speed);
@@ -680,7 +680,7 @@ AnimationChain* AbilityFactory::GiveFlyingKicks(Entity* e)
 	std::vector<Move*> vecMov;
 	vecMov.push_back(new Move(15, nullptr, FK2, e)); //diagonal Dash
 	vecMov.push_back(new Move(15, nullptr, FK1, e));//attack
-	vecMov.push_back(new Move(15, nullptr, Dash, e));//horizontal Dash
+	vecMov.push_back(new Move(15, nullptr, FK3, e));//horizontal Dash
 	vecMov.push_back(new Move(15, nullptr, FK1, e));//attack	
 	vecMov.push_back(new Move(10, nullptr, FKC, e));//cooldown
 	AnimationChain* Dash = new AnimationChain(vecMov);
@@ -729,32 +729,57 @@ void AbilityFactory::FK2(Entity* ent)
 	Vector2D speed;
 	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
-		speed = Vector2D{ -50, -20 };
+		speed = Vector2D{ -35, -18 };
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
-		speed = Vector2D{ 50, -20 };
+		speed = Vector2D{ 35, -18 };
 
 	}
 	else {
 		if (pT->getOrientation() == 1) {
-			speed = Vector2D{ 50, -20 };
+			speed = Vector2D{ 35, -18 };
 		}
 		else {
-			speed = Vector2D{ -50, -20 };
+			speed = Vector2D{ -35, -18 };
+		}
+	}
+	pT->setSpeed(speed);
+	//pT->getBody()->ApplyLinearImpulse(b2Vec2(knockBack.getX(), knockBack.getY()), pT->getBody()->GetWorldCenter(), true);
+}
+
+void AbilityFactory::FK3(Entity* ent)
+{
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	Vector2D speed;
+	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
+
+	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
+		speed = Vector2D{ -35, 18 };
+	}
+	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
+		speed = Vector2D{ 35, 18 };
+
+	}
+	else {
+		if (pT->getOrientation() == 1) {
+			speed = Vector2D{ 35, 18 };
+		}
+		else {
+			speed = Vector2D{ -35, 18 };
 		}
 	}
 	pT->setSpeed(speed);
 	//pT->getBody()->ApplyLinearImpulse(b2Vec2(knockBack.getX(), knockBack.getY()), pT->getBody()->GetWorldCenter(), true);
 
-	
 }
 
 void AbilityFactory::FKC(Entity* ent)
 {
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	pT->getBody()->SetLinearDamping(0);//0 friction in the air
-	goOnCoolodwn(ent, 60 * 0);
-
+	pT->getBody()->SetLinearDamping(10);//0 friction in the air
+	goOnCoolodwn(ent, 60 * 10);
 }
 
 AnimationChain* AbilityFactory::GiveLaserLineal(Entity* e)

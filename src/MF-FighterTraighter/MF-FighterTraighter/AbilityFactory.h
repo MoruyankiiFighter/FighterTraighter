@@ -80,13 +80,14 @@ public:
 	static void RS1(Entity* ent);
 	static void RSC(Entity* ent);
 
-
 	//FlyingKicks
 	static AnimationChain* GiveFlyingKicks(Entity* e);
 
 	static void FK1(Entity* ent);
 	static void FK2(Entity* ent);
+	static void FK3(Entity* ent);
 	static void FKC(Entity* ent);
+
 	//LaserLineal
 	static AnimationChain* GiveLaserLineal(Entity* e);
 
