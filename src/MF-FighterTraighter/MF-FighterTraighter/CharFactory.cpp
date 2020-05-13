@@ -11,6 +11,7 @@
 #include "PlayerAnimation.h"
 #include "MockingbirdData.h"
 #include "F10RData.h"
+#include "PlayerParticleSystem.h"
 
 Entity* CharFactory::addCharacterToGame(App* app, GameState* state, double orientation, b2World* world, const GameManager::PlayerInfo* character, uint16 cBits, uint16 mBits, int playerNumber)
 {
@@ -60,6 +61,7 @@ Entity* CharFactory::addCharacterToGame(App* app, GameState* state, double orien
 	e->addComponent<PlayerAttacks>(character->hid, pdata->getNormal_punch(), pdata->air_normal_punch(), pdata->getHard_punch(), pdata->air_hard_punch(),
 		pdata->getNormal_kick(), pdata->air_normal_kick(), pdata->getHard_kick(), pdata->air_hard_kick(), pdata->guard_breaker());
 	e->addComponent<PlayerAnimation>();
+	e->addComponent<PlayerParticleSystem>(10);
 
 	return e;
 }

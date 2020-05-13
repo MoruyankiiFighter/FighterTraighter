@@ -37,6 +37,7 @@ namespace ecs {
 		RenderAnimation,
 		Bullet,
 		AbilitiesTimerFunction,
+		PlayerParticleSystem,
 		/*
 		
 		*/

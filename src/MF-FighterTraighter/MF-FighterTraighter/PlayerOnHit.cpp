@@ -6,6 +6,7 @@
 #include "PlayerAttacks.h"
 #include "PlayerController.h"
 #include "MkWH00PData.h"
+#include "PlayerParticleSystem.h"
 
 void PlayerOnHit::onHit(b2Fixture* fixture)
 {
@@ -15,6 +16,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 	PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	Health* helth = entity_->getComponent<Health>(ecs::Health);
+	PlayerParticleSystem* pSystem = entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem);
 	if (!currState->isProtected() /*&& !hBox_data->guardBreaker*/) {
 		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
@@ -56,5 +58,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 	if (helth->getHealth() == 0) {
 		entity_->getApp()->getGameManager()->playerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
 	}
+
+	pSystem->removeDeletionMethodParticles(PlayerParticleSystem::DeletionMethod::OnHit);
 }
 

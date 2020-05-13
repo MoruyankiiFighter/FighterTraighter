@@ -48,7 +48,11 @@ public:
 		Mp1,
 		Hs1,
 		As2,
-		Vs1
+		Vs1,
+		Vs2,
+		Hb1,
+		Hb2,
+		Ll1
 	};
 
 	enum FontNames {
@@ -88,7 +92,8 @@ public:
 		/// SFX
 
 		PUNCH,
-		KICK
+		KICK,
+		DASH
 
 	};
 	//constructors

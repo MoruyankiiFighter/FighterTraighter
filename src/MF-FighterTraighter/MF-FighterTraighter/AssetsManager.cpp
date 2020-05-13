@@ -60,8 +60,10 @@ void AssetsManager::loadTextures()
 	textures_.emplace(Hs1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hs1.png", 1, 1));
 	textures_.emplace(As2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/as2.png", 1, 1));
 	textures_.emplace(Vs1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/vs1.png", 1, 1));
-	
-	
+	textures_.emplace(Vs2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/vs2.png", 1, 1));
+	textures_.emplace(Hb1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hb1.png", 1, 1));
+	textures_.emplace(Hb2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hb2.png", 1, 1));
+	textures_.emplace(Ll1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/laserlineal-2.png", 1, 1));	
 	// textures_.emplace("key", new Texture(app_->getRenderer(), "Filepath", cols, fils));
 }
 
@@ -111,6 +113,7 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));*/
 	sfx_.emplace(PUNCH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(KICK, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/patada.wav"));
+	sfx_.emplace(DASH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/failattack.wav"));
 
 }
 //void AssetsManager::playMusic(const string& name, int channel)
