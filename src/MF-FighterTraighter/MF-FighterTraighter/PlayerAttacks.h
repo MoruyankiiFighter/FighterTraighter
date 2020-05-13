@@ -56,11 +56,14 @@ public:
 	void interruptAttack();
 	inline void goOnCooldown(int id, int cool) {
 		cooldowns[id] = cool;
-		setTimeCool(cool);
+		setTimeCool(id, cool);
+		activeTimer(id, true);
 		cout << cooldowns[id] << endl;
 	}
-	void setTimeCool(int cool);
-	int getTimeCool();
+	void setTimeCool(int ind, int cool);
+	void activeTimer(int ind, bool act);
+	bool IsTimerActive(int ind);
+	int getTimeCool(int ind);
 	int getAbilityIndex();
 	int getAbilityCooldown(int index) { 
 #ifdef _DEBUG
@@ -87,7 +90,10 @@ private:
 	int multiplierTimer_ = -1;
 	int remainingUses_ = 0;
 	bool isMultiplierTimed = false;
-	int timeCool = 0;
+	int timeCool0 = 0;
+	int timeCool1 = 0;
+	bool actTimer0 = false;
+	bool actTimer1 = false;
 	//keys to use the attacks and abilities
 	HID* inputSt_;
 	//AbilitiesTimerFunction* abstimer;

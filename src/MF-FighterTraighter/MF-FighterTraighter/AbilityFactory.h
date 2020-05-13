@@ -87,6 +87,11 @@ public:
 	static void FK1(Entity* ent);
 	static void FK2(Entity* ent);
 	static void FKC(Entity* ent);
+	//LaserLineal
+	static AnimationChain* GiveLaserLineal(Entity* e);
+
+	static void LL1(Entity* ent);
+	static void LLC(Entity* ent);
 
 	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
 	

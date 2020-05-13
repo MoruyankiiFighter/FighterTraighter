@@ -755,6 +755,48 @@ void AbilityFactory::FKC(Entity* ent)
 
 }
 
+AnimationChain* AbilityFactory::GiveLaserLineal(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(20, nullptr, LL1, e));
+	vecMov.push_back(new Move(40, nullptr, LLC, e));
+	AnimationChain* LaserLineal = new AnimationChain(vecMov);
+	return LaserLineal;
+}
+
+void AbilityFactory::LL1(Entity* ent)
+{
+#if _DEBUG
+	std::cout << "LAASERRRR-" << endl;
+#endif
+
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Ll1);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	int id = ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber();
+	uint16 mask;
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+
+	if (id == 0) {
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		mask = currentState->PLAYER_1;
+	}
+
+	int width1 = 450;
+	int projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width1 / 2);
+	if (orientation_ == -1) projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width1 / 2);
+
+	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 325);
+	DestroyAtTime* dT = new DestroyAtTime(4, 15, 100, { (double)orientation_ * 10, -3 }, false, id, ent);
+	instanceEntitywHitbox(ent, width1, 150, pos1, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+}
+
+void AbilityFactory::LLC(Entity* ent)
+{
+	goOnCoolodwn(ent, 60 * 2);
+}
 
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
@@ -796,6 +838,8 @@ std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> Abil
 	{GameManager::AbilityID::VampiricStrike, AbilityFactory::GiveVampiricStrike},
 	{GameManager::AbilityID::HailBall, AbilityFactory::GiveHailBall},
 	{GameManager::AbilityID::ReachingStrike, AbilityFactory::GiveReachingStrike},
-	{GameManager::AbilityID::FlyingKicks, AbilityFactory::GiveFlyingKicks}
+	{GameManager::AbilityID::FlyingKicks, AbilityFactory::GiveFlyingKicks},
+	{GameManager::AbilityID::LaserLineal, AbilityFactory::GiveLaserLineal}
+
 
 };

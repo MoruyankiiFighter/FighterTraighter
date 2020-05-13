@@ -136,12 +136,30 @@ int PlayerAttacks::getAbilityIndex()	//IN THEORY IT NEVER SHOULD RETURN -1
 	return index;
 }
 
-void PlayerAttacks::setTimeCool(int cool)
+void PlayerAttacks::setTimeCool(int ind, int cool)
 {
-	timeCool = cool;
+	if (ind == 0) { timeCool0 = cool; }
+	if (ind == 1) { timeCool1 = cool; }
 }
 
-int PlayerAttacks::getTimeCool()
+void PlayerAttacks::activeTimer(int ind, bool act)
 {
-	return timeCool;
+	if (ind == 0) {
+		actTimer0 = act;
+	}
+	if (ind == 1) {
+		actTimer1 = act;
+	}
+}
+
+bool PlayerAttacks::IsTimerActive(int ind)
+{
+	if (ind == 0) return actTimer0;
+	if (ind == 1) return actTimer1;
+}
+
+int PlayerAttacks::getTimeCool(int ind)
+{
+	if (ind == 0) return timeCool0;
+	if (ind == 1) return timeCool1;
 }
