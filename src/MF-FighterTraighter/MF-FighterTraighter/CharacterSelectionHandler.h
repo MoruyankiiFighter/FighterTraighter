@@ -15,6 +15,5 @@ private:
 
 	Entity* log1;
 	Entity* log2;
-	Entity* ent;
 };
 
