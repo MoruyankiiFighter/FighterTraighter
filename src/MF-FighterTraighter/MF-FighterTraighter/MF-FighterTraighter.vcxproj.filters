@@ -215,6 +215,7 @@
     <ClCompile Include="PlayerParticleSystem.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="FollowPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -487,6 +488,7 @@
     <ClInclude Include="PlayerParticleSystem.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="FollowPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
