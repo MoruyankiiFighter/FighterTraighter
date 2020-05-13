@@ -41,6 +41,6 @@ private:
 	int curNavX = -1, curNavY = -1;
 	int playerNumber_;
 
-	bool chose;
+	bool chose=false;
 };
 
