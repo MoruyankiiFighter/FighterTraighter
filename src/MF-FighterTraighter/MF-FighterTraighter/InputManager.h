@@ -169,7 +169,7 @@ private:
 	std::vector<GamePad> controllerInputs;
 	std::vector<GamePad> lastControllerInputs;
 	int numGamepads;
-
+	SDL_Haptic* gControllerHaptic;
 	// if in this frame there has been an event
 	bool mouseEvent_ = false; // click
 	bool keyboardEvent_ = false; // press
