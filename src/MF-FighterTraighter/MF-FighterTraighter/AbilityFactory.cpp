@@ -384,8 +384,8 @@ void AbilityFactory::SO1(Entity* ent)
 	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = ent->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
 
-	int width = 174;
-	int projX = phTr->getWidth() / 4 + 38;
+	int width = 120;
+	int projX = phTr->getWidth() / 4 + 130;
 	//if (orientation_ == -1) projX = phTr->getWidth() / 4 - 75;
 	Vector2D pos = Vector2D(projX, -70);
 
@@ -423,8 +423,8 @@ void AbilityFactory::MP1(Entity* ent)
 	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = ent->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
 
-	int width = 174;
-	int projX = phTr->getWidth() / 4 + 38;
+	int width = 120;
+	int projX = phTr->getWidth() / 4;
 	//if (orientation_ == -1) projX = phTr->getWidth() / 4 - 75;
 	Vector2D pos = Vector2D(projX, -70);
 
