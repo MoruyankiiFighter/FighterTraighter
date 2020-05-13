@@ -6,24 +6,24 @@ void Shake::update()
     {
         updateShake();
     }
-    else
-    {
-        cam->setPosition(xOffset, yOffset);
-
-    }
+   
 }
 
 void Shake::updateShake()
 {
-
+    if (delta==0)
+    {
+        SDL_HapticRumblePlay(app_->getInputManager()->getHaptic(0), 0.75, SHAKE_TIME_MS);
+        
+    }
     //Add passed milliseconds to timer... If timer exceeds configuration, shaking ends
     delta = SDL_GetTicks() - timeStart_;
    // shakeTimer += delta;
     if (delta > SHAKE_TIME_MS)
     {
        //Shaking ends 
-      //shakeTimer = 0;
         timeStart_ = SDL_GetTicks();
+        delta = 0;
         shaking = false;
         xOffset = 0;
         yOffset = 0;

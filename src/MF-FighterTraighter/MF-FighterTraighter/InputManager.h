@@ -136,6 +136,10 @@ public:
 	}
 
 	virtual ~InputManager();
+	SDL_Haptic* getHaptic(int id)
+	{
+		return gControllerHaptic.at(id);
+	}
 private:
 	void clearState();
 
@@ -165,11 +169,10 @@ private:
 	std::array<bool, 3> mouseState_; // true = pressed
 	Vector2D mouseMovementInFrame_;
 	std::vector<SDL_GameController*> connectedControllers;
-
+	std::vector<SDL_Haptic*>gControllerHaptic;
 	std::vector<GamePad> controllerInputs;
 	std::vector<GamePad> lastControllerInputs;
 	int numGamepads;
-	SDL_Haptic* gControllerHaptic;
 	// if in this frame there has been an event
 	bool mouseEvent_ = false; // click
 	bool keyboardEvent_ = false; // press

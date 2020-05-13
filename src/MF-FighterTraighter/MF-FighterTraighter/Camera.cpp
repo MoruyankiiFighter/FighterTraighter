@@ -1,24 +1,5 @@
 #include "Camera.h"
 
-
-/*void Camera::update()
-{
-	if (!timerStopped_) {
-		if (!countdown_) {
-			timerNow_ = SDL_GetTicks();
-		}
-		else {
-			timerStart_ = SDL_GetTicks();
-			if (timerNow_ - timerStart_ <= 0) {
-				timerStart_ = timerNow_;
-			}
-		}
-		
-	}
-}*/
-
-
-
 inline void Camera::CalculaPunto()
 {
 	if (m_Target2!=nullptr)

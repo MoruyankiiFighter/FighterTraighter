@@ -23,6 +23,10 @@ public:
 
     //Indicates if the screen is currently shaking
     bool  shaking=true;
+    bool getShake()
+    {
+        return shaking;
+    }
 
     //delta is the ms passed since last update
     virtual void update()override;

@@ -81,11 +81,7 @@ void InputManager::update()
 			for (int i = 0; i < numGamepads; i++) {
 				if (e.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(connectedControllers[i]))) {
 					controllerInputs[i].buttons[e.cbutton.button] = false;
-					if (SDL_HapticRumblePlay(gControllerHaptic, 0.75, 500) != 0)
-					{
-						
-						printf("Warning: Unable to play rumble! %s\n", SDL_GetError());
-					}
+					
 				}
 			}
 			break;
@@ -117,6 +113,11 @@ void InputManager::update()
 InputManager::~InputManager()
 {
 	delete[] lastKeyboardState_;
+	for (int i = 0; i < numGamepads; i++)
+	{
+		delete connectedControllers[i];
+		delete gControllerHaptic[i];
+	};
 }
 
 void InputManager::clearState()
@@ -147,16 +148,16 @@ void InputManager::initControllers()
 				{
 					connectedControllers.push_back(pad);
 
-					 gControllerHaptic = SDL_HapticOpenFromJoystick(SDL_GameControllerGetJoystick(pad));
+					 gControllerHaptic.push_back ( SDL_HapticOpenFromJoystick(SDL_GameControllerGetJoystick(pad)));
 				
-					if (gControllerHaptic == NULL)
+					if (gControllerHaptic.back() == NULL)
 					{
 						printf("Warning: Controller does not support haptics! SDL Error: %s\n", SDL_GetError());
 					}
 					else
 					{
 						//Get initialize rumble
-						if (SDL_HapticRumbleInit(gControllerHaptic) < 0)
+						if (SDL_HapticRumbleInit(gControllerHaptic.back()) < 0)
 						{
 							printf("Warning: Unable to initialize rumble! SDL Error: %s\n", SDL_GetError());
 						}
