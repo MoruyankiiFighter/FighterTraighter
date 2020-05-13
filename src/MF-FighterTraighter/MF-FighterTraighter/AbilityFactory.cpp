@@ -778,7 +778,7 @@ void AbilityFactory::FK3(Entity* ent)
 void AbilityFactory::FKC(Entity* ent)
 {
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	pT->getBody()->SetLinearDamping(10);//0 friction in the air
+	//pT->getBody()->SetLinearDamping(10);	//0 friction in the air
 	goOnCoolodwn(ent, 60 * 10);
 }
 
