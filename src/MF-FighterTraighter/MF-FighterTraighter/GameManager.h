@@ -19,7 +19,8 @@ enum AbilityID {
 	MorePower,
 	Hookshot,
 	Dash,
-	VampiricStrike
+	VampiricStrike,
+	LaserLineal
 };
 
 	// TODO: Move from here to somewhere else
