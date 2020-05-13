@@ -75,7 +75,8 @@ void PlayerAttacks::handleInput() {
 				currState->goAttack(4);
 			}else if (inputSt_->ButtonPressed(HID::LeftBumper)) {
 				if (abilityList[0] != nullptr && cooldowns[0] == 0) {
-					activeAttack_ = abilityList[0];					
+					activeAttack_ = abilityList[0];
+					tr->setSpeed(0, tr->getSpeed().getY());
 					if (currState->isCrouch()) ctrl->uncrouch();
 					currState->goCasting();
 				}
@@ -122,8 +123,11 @@ void PlayerAttacks::setAbility(AnimationChain* newAbility, int index)
 
 void PlayerAttacks::interruptAttack()
 {
-	if(activeAttack_ != nullptr) activeAttack_->reset();
-	activeAttack_ = nullptr;
+	if (activeAttack_ != nullptr) {
+		activeAttack_->reset();
+		activeAttack_ = nullptr;
+		resetOneTimeMultiplier();
+	}
 	app_->getStateMachine()->getCurrentState()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
 }
 

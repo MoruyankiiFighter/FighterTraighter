@@ -48,6 +48,7 @@ public:
 		Hs1,
 		As2,
 		Vs1,
+		Vs2,
 		Hb1,
 		Hb2,
 		Ll1

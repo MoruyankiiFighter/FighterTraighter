@@ -385,13 +385,15 @@ void AbilityFactory::SO1(Entity* ent)
 	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = ent->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
 
-	int width = 250;
-	int projX = phTr->getPosition().getX() + (phTr->getWidth() * 1 / 4) + (phTr->getWidth() / 4);
-	if (orientation_ == -1) projX = phTr->getPosition().getX() + (phTr->getWidth() * 3 / 4) - (phTr->getWidth() / 4);
-	Vector2D pos = Vector2D(projX, phTr->getPosition().getY() + (phTr->getHeight() / 2));
+	int width = 120;
+	int projX = phTr->getWidth() / 4 + 130;
+	//if (orientation_ == -1) projX = phTr->getWidth() / 4 - 75;
+	Vector2D pos = Vector2D(projX, -70);
 
-	DestroyAtTime* dT = new DestroyAtTime(0, 35, 0, { 0,0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
-	instanceEntitywHitbox(ent, width, 250, pos, { 0, 0 }, ent->getState()->NONE, ent->getState(), ent->getApp(), app->getAssetsManager()->getTexture(AssetsManager::So1), orientation_, dT);
+	//DestroyAtTime* dT = new DestroyAtTime(0, 35, 0, { 0,0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	//instanceEntitywHitbox(ent, width, 250, pos, { 0, 0 }, ent->getState()->NONE, ent->getState(), ent->getApp(), app->getAssetsManager()->getTexture(AssetsManager::So1), orientation_, dT);
+	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(app->getAssetsManager()->getTexture(AssetsManager::So1), 
+		pos, Vector2D(width, width), -2, PlayerParticleSystem::DeletionMethod::OnHit);
 
 	//createProyectile(ent, width, 250, pos, { 0, 0 }, 0, 0, { 0, 0 }, 35, app->getStateMachine()->getCurrentState()->NONE, 
 		//app->getStateMachine()->getCurrentState(), app, app->getAssetsManager()->getTexture(AssetsManager::So1), orientation_);
@@ -422,13 +424,13 @@ void AbilityFactory::MP1(Entity* ent)
 	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = ent->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
 
-	int width = 250;
-	int projX = phTr->getPosition().getX() + (phTr->getWidth() * 1 / 4) + (phTr->getWidth() / 4);
-	if (orientation_ == -1) projX = phTr->getPosition().getX() + (phTr->getWidth() * 3 / 4) - (phTr->getWidth() / 4);
-	Vector2D pos = Vector2D(projX, phTr->getPosition().getY() + (phTr->getHeight() / 2));
-	DestroyAtTime* dT = new DestroyAtTime(0, 35, 0, { 0,0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
-	instanceEntitywHitbox(ent, width, 250, pos, { 0, 0 }, ent->getState()->NONE, ent->getState(), ent->getApp(), app->getAssetsManager()->getTexture(AssetsManager::Mp1), orientation_, dT);
+	int width = 120;
+	int projX = phTr->getWidth() / 4;
+	//if (orientation_ == -1) projX = phTr->getWidth() / 4 - 75;
+	Vector2D pos = Vector2D(projX, -70);
 
+	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(app->getAssetsManager()->getTexture(AssetsManager::Mp1),
+		pos, Vector2D(width, width), -2, PlayerParticleSystem::DeletionMethod::OnAttack);
 }
 
 void AbilityFactory::MPC(Entity* ent)
