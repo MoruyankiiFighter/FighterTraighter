@@ -67,9 +67,32 @@ void AILogic::update()
 
 		// read the first state
 		w = worldReads_.front();
-		cout << w.otherPlayerPosition_.getX() << ", " << w.otherPlayerPosition_.getY() << endl;
+
+		if (GetCloser()) {
+			if (playerID_ == 0) movementState_ = movingRight;
+			else movementState_ = movingLeft;
+		}
+		else if (GetFurther()) {
+			if (playerID_ == 0) movementState_ = movingLeft;
+			else movementState_ = movingRight;
+		}
+		else {
+			movementState_ = idle;
+		}
 
 		worldReads_.pop();
 		timePassed = 0;
+
+		cout << movementState_ << endl;
 	}
+}
+
+bool AILogic::GetCloser()
+{
+	return abs(worldReads_.front().otherPlayerPosition_.getX() - worldReads_.front().thisPosition_.getX()) > preferredInterval_.getY();
+}
+
+bool AILogic::GetFurther()
+{
+	return abs(worldReads_.front().otherPlayerPosition_.getX() - worldReads_.front().thisPosition_.getX()) < preferredInterval_.getX();;
 }
