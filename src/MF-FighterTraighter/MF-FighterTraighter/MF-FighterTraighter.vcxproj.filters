@@ -215,6 +215,9 @@
     <ClCompile Include="MockingbirdData.cpp">
       <Filter>Source Files\PlayerData</Filter>
     </ClCompile>
+    <ClCompile Include="FollowPlayer.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -486,6 +489,9 @@
     </ClInclude>
     <ClInclude Include="PlayerData.h">
       <Filter>Header files\PlayerData</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowPlayer.h">
+      <Filter>Header files\OnHits</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

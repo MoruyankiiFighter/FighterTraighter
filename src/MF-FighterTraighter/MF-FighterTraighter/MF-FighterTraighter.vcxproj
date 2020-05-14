@@ -143,6 +143,7 @@
     <ClCompile Include="DestroyAtTime.cpp" />
     <ClCompile Include="Fall_SpawnOnHit.cpp" />
     <ClCompile Include="F10RData.cpp" />
+    <ClCompile Include="FollowPlayer.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadHID.cpp" />
     <ClCompile Include="HID.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="CharFactory.h" />
     <ClInclude Include="F10RData.h" />
     <ClInclude Include="FloorOnHit.h" />
+    <ClInclude Include="FollowPlayer.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GamepadHID.h" />
     <ClInclude Include="HID.h" />
