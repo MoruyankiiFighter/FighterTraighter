@@ -223,6 +223,7 @@
     <ClInclude Include="HID.h" />
     <ClInclude Include="HitboxData.h" />
     <ClInclude Include="AssetsExceptions.h" />
+    <ClInclude Include="AIHID.h" />
     <ClInclude Include="IceDestroyOnHit.h" />
     <ClInclude Include="IndexSlider.h" />
     <ClInclude Include="KeyboardHID.h" />

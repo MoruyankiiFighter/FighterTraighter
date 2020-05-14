@@ -161,9 +161,6 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
-    <ClCompile Include="HID.cpp" />
-    <ClCompile Include="KeyboardHID.cpp" />
-    <ClCompile Include="GamepadHID.cpp" />
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -214,6 +211,15 @@
     </ClCompile>
     <ClCompile Include="MockingbirdData.cpp">
       <Filter>Source Files\PlayerData</Filter>
+    </ClCompile>
+    <ClCompile Include="GamepadHID.cpp">
+      <Filter>Source Files\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardHID.cpp">
+      <Filter>Source Files\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="HID.cpp">
+      <Filter>Source Files\HID</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -403,9 +409,6 @@
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="HID.h" />
-    <ClInclude Include="KeyboardHID.h" />
-    <ClInclude Include="GamepadHID.h" />
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
@@ -487,6 +490,18 @@
     <ClInclude Include="PlayerData.h">
       <Filter>Header files\PlayerData</Filter>
     </ClInclude>
+    <ClInclude Include="HID.h">
+      <Filter>Header files\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="AIHID.h">
+      <Filter>Header files\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardHID.h">
+      <Filter>Header files\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="GamepadHID.h">
+      <Filter>Header files\HID</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
@@ -542,6 +557,12 @@
     </Filter>
     <Filter Include="Source Files\PlayerData">
       <UniqueIdentifier>{1272ddb6-456c-4d0b-85fd-59395543714b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\HID">
+      <UniqueIdentifier>{f28ee715-07f9-445d-930a-44f1556f71ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\HID">
+      <UniqueIdentifier>{fbd42fef-0506-4e2a-97a4-32605da5276a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
