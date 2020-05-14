@@ -12,6 +12,7 @@
 #include "VampiricDestroyAtTime.h"
 #include "PlayerData.h"
 #include "IceDestroyOnHit.h"
+#include "RenderAnimation.h"
 
 //#include "playerinfo"
 
@@ -410,11 +411,11 @@ void AbilityFactory::M1(Entity* ent)
 	
 	DestroyOnHit* dT = new DestroyOnHit(explosionDamage, time, 0, Vector2D(-(double)orientation_ * 5, -3), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent,false);
 	
-	Texture* spawntexture = app->getAssetsManager()->getTexture(AssetsManager::M1);
-	Vector2D spawnEntSize(spawntexture->getWidth(), spawntexture->getHeight());
-	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize);
-	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::M2);
-	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity);
+	Texture* spawntexture = app->getAssetsManager()->getTexture(AssetsManager::M3);
+	Vector2D spawnEntSize(spawntexture->getWidth()/2, spawntexture->getHeight());
+	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize,false,true);
+	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::M1);
+	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity, false);
 	
 }
 void AbilityFactory::MC(Entity* ent)
@@ -882,7 +883,7 @@ void AbilityFactory::LLC(Entity* ent)
 	goOnCoolodwn(ent, 60 * 2);
 }
 
-Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
+Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity,bool render) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
 	if (pos.getX() >= windowWidth)  
 		pos.setX(windowWidth);
@@ -892,8 +893,12 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
 		currentState->BULLET, mask, 1)->setOrientation(orientation);
 
-	
-	e->addComponent<RenderImage>(texture);
+	if (render) {
+		e->addComponent<RenderAnimation>(texture, 20);
+	}
+	else {
+		e->addComponent<RenderImage>(texture);
+	}
 
 	if (gravity)
 		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData, speed);
