@@ -403,10 +403,10 @@ void AbilityFactory::M1(Entity* ent)
 	int explosionDamage = 10;
 
 	Vector2D knockBack(5, 2);
-	int time = 165;
+	int time = 200;
 	
-	double width = 128;
-	double height = 64;
+	double width = 256;
+	double height = 128;
 	bool gravity = true;
 	
 	DestroyOnHit* dT = new DestroyOnHit(explosionDamage, time, 0, Vector2D(-(double)orientation_ * 5, -3), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent,false);
@@ -415,12 +415,12 @@ void AbilityFactory::M1(Entity* ent)
 	Vector2D spawnEntSize(spawntexture->getWidth()/2, spawntexture->getHeight());
 	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize,false,true);
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::M1);
-	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity, false);
+	instanceEntitywHitbox(ent, width/2, height/2, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity, false);
 	
 }
 void AbilityFactory::MC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 5);
+	goOnCoolodwn(ent, 60 * 7);
 }
 
 AnimationChain* AbilityFactory::GiveShrugOff(Entity* e)
