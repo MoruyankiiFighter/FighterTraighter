@@ -26,7 +26,6 @@ void CharacterSelectionHandler::render()
 void CharacterSelectionHandler::handleInput()
 {
 	if (j1_ && j2_) {
-
 		app_->getStateMachine()->pushState(new Fight(app_));
 	}
 }
