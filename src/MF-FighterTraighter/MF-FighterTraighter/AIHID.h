@@ -2,12 +2,12 @@
 #pragma once
 #include "HID.h"
 #include <SDL.h>
-class KeyboardHID :
+class AIHID :
 	public HID
 {
 public:
-	KeyboardHID() {}
+	AIHID() {}
 	void updateInput();
+	~AIHID() {};
 protected:
-	InputManager* inputM_;
 };
