@@ -8,6 +8,7 @@
 #include "AssetsManager.h"
 #include "WindowManager.h"
 #include "GameManager.h"
+#include "SRandBasedGenerator.h"
 
 class App
 {
@@ -42,8 +43,9 @@ public:
 
 	inline unsigned int getFrameRate() { return frameRate_; }
 
-	inline RandomNumberGenerator* getRandGen() const {
-		return random_;
+	inline SRandBasedGenerator* getRandGen() const {
+		return random_.get();
+		
 	}
 
 	//calls update of the current state
@@ -71,12 +73,12 @@ private:
 
 
 	SDL_Renderer* renderer;
-	RandomNumberGenerator* random_;
 	std::unique_ptr<GameStateMachine> stateMachine_; //game state machine
 	std::unique_ptr<InputManager> inputManager_;//input manager
 	std::unique_ptr<AssetsManager> assetsManager_;//assets manager
 	std::unique_ptr<WindowManager> windowManager_;//window manager
 	std::unique_ptr<GameManager> gameManager_;//game manager
+	std::unique_ptr<SRandBasedGenerator> random_;//random
 
 
 	/*static*/ bool exit;
