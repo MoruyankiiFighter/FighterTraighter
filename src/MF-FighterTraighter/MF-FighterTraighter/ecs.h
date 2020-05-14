@@ -38,6 +38,7 @@ namespace ecs {
 		Bullet,
 		AbilitiesTimerFunction,
 		PlayerParticleSystem,
+		AILogic,
 		/*
 		
 		*/

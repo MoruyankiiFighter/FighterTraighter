@@ -2,6 +2,7 @@
 #include "Fight.h"
 #include "OptionsMenu.h"
 #include "Training.h"
+#include "AIGameState.h"
 
 #include "InputManager.h"
 
@@ -44,7 +45,8 @@ void MainMenu::init()
 	tuple < Entity*, Entity*> arcade = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, -200), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
 		Vector2D(250, 75),
-		500, 150, 0, nullptr, GoArcade, "Arcade", 150, TextComponent::TextAlignment::Center);
+		//500, 150, 0, nullptr, GoArcade, "Arcade", 150, TextComponent::TextAlignment::Center);
+		500, 150, 0, nullptr, GoVsAI, "Arcade", 150, TextComponent::TextAlignment::Center);
 
 	tuple < Entity*, Entity*> pvp = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, -50), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
@@ -92,6 +94,19 @@ void MainMenu::GoArcade(App* app)
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 #endif 
 }
+
+
+
+
+// This shouldn't go to master
+void MainMenu::GoVsAI(App* app) {
+	app->getStateMachine()->pushState(new AIGameState(app));
+
+}
+
+
+
+
 
 void MainMenu::Go1v1(App* app)
 {

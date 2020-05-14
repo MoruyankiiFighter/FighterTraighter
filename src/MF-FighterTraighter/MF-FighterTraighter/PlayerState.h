@@ -3,38 +3,38 @@
 #include "PhysicsTransform.h"
 #include "Entity.h"
 
-enum Status {
-	Idle,
-	Moving,
-	JumpingTransition,
-	Jumping,
-	Crouching,
-	AttackingNP,
-	AttackingHP,
-	AttackingNK,
-	AttackingHK,
-	AttackingANP,
-	AttackingAHP,
-	AttackingANK,
-	AttackingAHK,
-	Hit,
-	HitAirborne,
-	Landing,
-	HitLading,
-	//KnockedTheFuckDown,
-	GuardingTransition,
-	Guarding,
-	GuardingStun,
-	GuardingLeaving,
-	Guardbreaking,
-	Casting,
-	Stunned,
-	Dead,
-};
-
 class  PlayerState : public Component
 {
 public:
+	enum Status : uint8_t {
+		Idle,
+		Moving,
+		JumpingTransition,
+		Jumping,
+		Crouching,
+		AttackingNP,
+		AttackingHP,
+		AttackingNK,
+		AttackingHK,
+		AttackingANP,
+		AttackingAHP,
+		AttackingANK,
+		AttackingAHK,
+		Hit,
+		HitAirborne,
+		Landing,
+		HitLading,
+		//KnockedTheFuckDown,
+		GuardingTransition,
+		Guarding,
+		GuardingStun,
+		GuardingLeaving,
+		Guardbreaking,
+		Casting,
+		Stunned,
+		Dead,
+	};
+
 	PlayerState() : Component(ecs::PlayerState), playerStatus_(Idle) {};
 	~PlayerState() {};
 

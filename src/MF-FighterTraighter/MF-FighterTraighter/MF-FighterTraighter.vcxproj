@@ -135,6 +135,9 @@
   <ItemGroup>
     <ClCompile Include="AbilitiesTimerFunction.cpp" />
     <ClCompile Include="AbilityFactory.cpp" />
+    <ClCompile Include="AIGameState.cpp" />
+    <ClCompile Include="AIHID.cpp" />
+    <ClCompile Include="AILogic.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AudioManager.cpp" />
@@ -206,6 +209,8 @@
   <ItemGroup>
     <ClInclude Include="AbilitiesTimerFunction.h" />
     <ClInclude Include="AbilityFactory.h" />
+    <ClInclude Include="AIGameState.h" />
+    <ClInclude Include="AILogic.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="AudioManager.h" />
