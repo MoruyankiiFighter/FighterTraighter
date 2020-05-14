@@ -365,6 +365,63 @@ void AbilityFactory::ASC(Entity* ent)
 	goOnCoolodwn(ent,60 * 5);
 }
 
+AnimationChain* AbilityFactory::GiveMina(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(1, nullptr,MC, e));
+	vecMov.push_back(new Move(40, nullptr, M1, e));
+	//vecMov.push_back(new Move(10, nullptr, EW2, e));
+	//vecMov.push_back(new Move(10, nullptr, EW3, e));
+	//vecMov.push_back(new Move(25, nullptr, nullptr, e));
+	AnimationChain* AcidSplit = new AnimationChain(vecMov);
+	return AcidSplit;
+}
+void AbilityFactory::M1(Entity* ent)
+{
+	Vector2D speed(5, 2);
+	uint16 mask;
+	//CollisionFilters
+	App* app = ent->getApp();
+	Entity* otherPlayer;
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2);
+		mask = currentState->PLAYER_2 | currentState->BOUNDARY;
+	}
+	else {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
+		mask = currentState->PLAYER_1 | currentState->BOUNDARY;
+	}
+	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
+	Vector2D pos = Vector2D(phTr->getPosition().getX() + phTr->getWidth() / 2, phTr->getPosition().getY() + phTr->getHeight() / 2);//first rock
+
+
+	int damage = 1;
+	int hitstun = 0;
+	int explosionDamage = 10;
+
+	Vector2D knockBack(5, 2);
+	int time = 165;
+	
+	double width = 128;
+	double height = 64;
+	bool gravity = true;
+	
+	DestroyOnHit* dT = new DestroyOnHit(explosionDamage, time, 0, Vector2D(-(double)orientation_ * 5, -3), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent,false);
+	
+	Texture* spawntexture = app->getAssetsManager()->getTexture(AssetsManager::M1);
+	Vector2D spawnEntSize(spawntexture->getWidth(), spawntexture->getHeight());
+	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize);
+	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::M2);
+	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity);
+	
+}
+void AbilityFactory::MC(Entity* ent)
+{
+	goOnCoolodwn(ent, 60 * 5);
+}
+
 AnimationChain* AbilityFactory::GiveShrugOff(Entity* e)
 {
 	std::vector<Move*> vecMov;
@@ -858,6 +915,7 @@ std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> Abil
 	{GameManager::AbilityID::MegatonGrip, AbilityFactory::GiveMegatonGrip},
 	{GameManager::AbilityID::ExplosiveWillpower, AbilityFactory::GiveExplosiveWillpower},
 	{GameManager::AbilityID::AcidSplit, AbilityFactory::GiveAcidSplit},
+	{GameManager::AbilityID::Mina, AbilityFactory::GiveMina},
 	{GameManager::AbilityID::ShrugOff, AbilityFactory::GiveShrugOff},
 	{GameManager::AbilityID::MorePower, AbilityFactory::GiveMorePower},
 	{GameManager::AbilityID::Hookshot, AbilityFactory::GiveHookshot},

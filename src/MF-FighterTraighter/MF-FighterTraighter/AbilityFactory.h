@@ -37,6 +37,11 @@ public:
 
 	static void AS1(Entity* ent);
 	static void ASC(Entity* ent);
+	//Mina
+	static AnimationChain* GiveMina(Entity* e);
+
+	static void M1(Entity* ent);
+	static void MC(Entity* ent);
 
 	//Shrug Off
 	static AnimationChain* GiveShrugOff(Entity* e);

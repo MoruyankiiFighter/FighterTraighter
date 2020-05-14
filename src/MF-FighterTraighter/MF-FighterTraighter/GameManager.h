@@ -15,6 +15,7 @@ enum AbilityID {
 	MegatonGrip,
 	ExplosiveWillpower,
 	AcidSplit,
+	Mina,
 	ShrugOff,
 	MorePower,
 	Hookshot,
