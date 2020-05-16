@@ -23,7 +23,8 @@ enum AbilityID {
 	HailBall,
 	ReachingStrike,
 	FlyingKicks,
-	LaserLineal
+	LaserLineal,
+	NadoKick
 };
 
 	// TODO: Move from here to somewhere else

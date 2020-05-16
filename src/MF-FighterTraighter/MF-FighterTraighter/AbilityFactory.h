@@ -95,6 +95,14 @@ public:
 	static void LL1(Entity* ent);
 	static void LLC(Entity* ent);
 
+	//Nado Kick
+	static AnimationChain* GiveNadoKick(Entity* e);
+
+	static void NK1(Entity* ent);
+	static void NK2(Entity* ent);
+	static void NK3(Entity* ent);
+	static void NKC(Entity* ent);
+
 	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
 	
 	//static Entity* createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,

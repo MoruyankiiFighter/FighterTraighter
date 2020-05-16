@@ -13,7 +13,7 @@
 #include "PlayerData.h"
 #include "IceDestroyOnHit.h"
 #include "FollowPlayer.h"
-
+#include "PlayerController.h"
 //#include "playerinfo"
 
 
@@ -679,10 +679,10 @@ void AbilityFactory::RSC(Entity* ent)
 AnimationChain* AbilityFactory::GiveFlyingKicks(Entity* e)
 {
 	std::vector<Move*> vecMov;
-	vecMov.push_back(new Move(15, nullptr, FK2, e)); //diagonal Dash
-	vecMov.push_back(new Move(30, nullptr, FK3, e));//horizontal Dash
-	vecMov.push_back(new Move(10, nullptr, FK4, e));//cooldown
-	vecMov.push_back(new Move(0, nullptr, FKC, e));//cooldown
+	vecMov.push_back(new Move(15, nullptr, FK2, e)); //diagonal up Dash
+	vecMov.push_back(new Move(30, nullptr, FK3, e));//horizontal down Dash
+	vecMov.push_back(new Move(10, nullptr, FK4, e));//shockwave
+	vecMov.push_back(new Move(10, nullptr, FKC, e));//cooldown
 	AnimationChain* Dash = new AnimationChain(vecMov);
 	return Dash;
 }
@@ -718,7 +718,7 @@ void AbilityFactory::FK1(Entity* e)
 	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);	
 }
 
-//diagonal dash
+//diagonal up dash
 void AbilityFactory::FK2(Entity* ent)
 {
 
@@ -730,9 +730,11 @@ void AbilityFactory::FK2(Entity* ent)
 	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -35, -18 };
+		pT->setOrientation(-1);
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, -18 };
+		pT->setOrientation(1);
 
 	}
 	else {
@@ -748,7 +750,7 @@ void AbilityFactory::FK2(Entity* ent)
 	FK1(ent);
 
 }
-
+//diagonal down dash
 void AbilityFactory::FK3(Entity* ent)
 {
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -759,9 +761,13 @@ void AbilityFactory::FK3(Entity* ent)
 
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -35, 18 };
+		pT->setOrientation(-1);
+
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, 18 };
+		pT->setOrientation(1);
+
 
 	}
 	else {
@@ -776,7 +782,7 @@ void AbilityFactory::FK3(Entity* ent)
 	//pT->getBody()->ApplyLinearImpulse(b2Vec2(knockBack.getX(), knockBack.getY()), pT->getBody()->GetWorldCenter(), true);
 	FK1(ent);
 }
-
+//shockwave
 void AbilityFactory::FK4(Entity* e)
 {
 	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::FK4);
@@ -811,6 +817,9 @@ void AbilityFactory::FK4(Entity* e)
 void AbilityFactory::FKC(Entity* ent)
 {
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	if (ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1))
+		pT->setOrientation(1);
+	else   pT->setOrientation(-1);
 	//pT->getBody()->SetLinearDamping(10);	//0 friction in the air
 	goOnCoolodwn(ent, 60 * 10);
 }
@@ -858,6 +867,118 @@ void AbilityFactory::LLC(Entity* ent)
 	goOnCoolodwn(ent, 60 * 2);
 }
 
+AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
+{
+	
+	//int orientation= phtr->getOrientation;
+	std::vector<Move*> vecMov;
+
+	vecMov.push_back(new Move(10, nullptr, NK3, e));
+	vecMov.push_back(new Move(10, nullptr, NK1, e));
+	vecMov.push_back(new Move(10, nullptr, NK2, e));
+	vecMov.push_back(new Move(10, nullptr, NK2, e));
+	vecMov.push_back(new Move(10, nullptr, NK2, e));
+	vecMov.push_back(new Move(10, nullptr, NK2, e));
+	//vecMov.push_back(new Move(20, nullptr, NK1, e));
+	vecMov.push_back(new Move(0, nullptr, NKC, e));
+	AnimationChain* NadoKick = new AnimationChain(vecMov);
+
+	//phtr->setOrientation(orientation);
+	return NadoKick;
+}
+
+void AbilityFactory::NK1(Entity* e)
+{
+	
+	//phtr->getBody()->SetLinearDamping(10);	
+	PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
+
+	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg1);
+	//PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = phtr->getOrientation();
+
+	App* app = e->getApp();
+	Entity* otherPlayer;
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	uint16 mask;
+	if (e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2);
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
+		mask = currentState->PLAYER_1;
+	}
+	
+	int width = 120;
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4);
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
+	int time = 10;
+	double damage = 11;
+	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
+	FollowPlayer* dT = new FollowPlayer(damage, time, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
+	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
+	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
+
+	
+}
+
+void AbilityFactory::NK2(Entity* ent)
+{
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	phtr->setOrientation(-1 * phtr->getOrientation());
+	
+	ent->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
+	NK1(ent);
+
+}
+
+void AbilityFactory::NK3(Entity* ent)
+{
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	pT->getBody()->SetLinearDamping(10);//10 friction in the air in case you have 0
+	Vector2D speed;
+	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
+	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
+		speed = Vector2D{ -35, -18 };
+		pT->setOrientation(-1);
+	}
+	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
+		speed = Vector2D{ 35, -18 };
+		pT->setOrientation(1);
+
+	}
+	else {
+		if (pT->getOrientation() == 1) {
+			speed = Vector2D{ 35, -18 };
+		}
+		else {
+			speed = Vector2D{ -35, -18 };
+		}
+	}
+	pT->setSpeed(speed);
+
+	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
+	pC->canJump(false);
+
+}
+
+void AbilityFactory::NKC(Entity* ent)
+{
+	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
+	pC->canJump(true);
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	if (ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1))
+		pT->setOrientation(1);
+	else   pT->setOrientation(-1);
+	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
+	pT->getBody()->SetLinearDamping(0);
+	goOnCoolodwn(ent,60 * 1);
+}
+
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
 	if (pos.getX() >= windowWidth)  
@@ -903,7 +1024,8 @@ std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> Abil
 	{GameManager::AbilityID::HailBall, AbilityFactory::GiveHailBall},
 	{GameManager::AbilityID::ReachingStrike, AbilityFactory::GiveReachingStrike},
 	{GameManager::AbilityID::FlyingKicks, AbilityFactory::GiveFlyingKicks},
-	{GameManager::AbilityID::LaserLineal, AbilityFactory::GiveLaserLineal}
+	{GameManager::AbilityID::LaserLineal, AbilityFactory::GiveLaserLineal},
+	{GameManager::AbilityID::NadoKick, AbilityFactory::GiveNadoKick}
 
 
 };

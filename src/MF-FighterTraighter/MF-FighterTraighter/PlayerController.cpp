@@ -38,7 +38,7 @@ void PlayerController::handleInput()
 		else if (currState->isMoving())transform_->setSpeed(0, speed.getY());
 		if (!currState->isGuarding()) currState->goGuardingTransition(6);
 	}
-	else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone) && currState->canJump())
+	else if (canJump_ && (inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone) && currState->canJump())
 	{
 		//force and where you use the fore
 		transform_->getBody()->SetLinearDamping(0);//0 friction in the air

@@ -17,6 +17,7 @@ public:
 	void crouch();
 	void uncrouch();
 	float getJumpImpulse() { return jumpImpulse; }
+	void canJump(bool jump) { canJump_ = jump; }
 	double getMovSpeed() { return movSpeed; }
 	void wallLeft(bool collision) {
 		wallLeft_ = collision;
@@ -32,4 +33,5 @@ private:
 	float jumpImpulse = 0;
 	double movSpeed = 1;
 	double verticalDeadzone = 0.3;
+	bool canJump_ = true;
 };
