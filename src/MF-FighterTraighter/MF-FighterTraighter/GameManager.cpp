@@ -18,7 +18,9 @@ GameManager::GameManager(App* app) : app_(app)
 	app_->getStateMachine()->pushState(new MainMenu(app_));
 	// TODO: Move this elsewhere
 	player1_.hid = new KeyboardHID(app_->getInputManager());
+	player1_.character = MKWh00p;
 	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+	player2_.character = F10R;
 }
 
 void GameManager::handleInput()
@@ -84,10 +86,10 @@ void GameManager::trainingEnded()
 {
 	GameStateMachine* stateMachine = app_->getStateMachine();
 	//hacerlo random y tener en cuenta la seleccion de habilidades
-	/*player1_.abilities.push_back(MegatonGrip);
+	player1_.abilities.push_back(MegatonGrip);
 	player1_.abilities.push_back(SeismicShock);	
 	player2_.abilities.push_back(MegatonGrip);
-	player2_.abilities.push_back(SeismicShock);	//hacerlo random */
+	player2_.abilities.push_back(SeismicShock);
 	// Remove the current training mode
 	stateMachine->popState();
 	stateMachine->pushState(new Fight(app_));

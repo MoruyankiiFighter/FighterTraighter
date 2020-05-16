@@ -9,7 +9,7 @@ void UITimer::init()
 
 void UITimer::update()
 {
-	if (!timerStopped_) {
+	if (!timerStopped_ && !invisibleText) {
 		if (!countdown_) {
 			timerNow_ = SDL_GetTicks();
 		}
@@ -17,6 +17,7 @@ void UITimer::update()
 			timerStart_ = SDL_GetTicks();
 			if (timerNow_ - timerStart_ <= 0) {
 				timerStart_ = timerNow_;
+				stopTimer();
 			}
 		}
 		setText();
@@ -37,6 +38,12 @@ void UITimer::resetTimer()
 void UITimer::stopTimer()
 {
 	timerStopped_ = true;
+	setInvisible(true);
+}
+
+bool UITimer::isTimerStopped()
+{
+	return timerStopped_;
 }
 
 void UITimer::resumeTimer()
@@ -47,35 +54,40 @@ void UITimer::resumeTimer()
 void UITimer::setText()
 {
 	string text;
-	switch (format_)
-	{
-	case UITimer::Miliseconds:
-		text_->setText(to_string(timerNow_ - timerStart_));
-		break;
-	case UITimer::Seconds:
-		text_->setText(to_string((timerNow_ - timerStart_) / 1000));
-		break;
-	case UITimer::Minutes:
-		text = to_string((timerNow_ - timerStart_) / 60000) + ":";
-		if ((((timerNow_ - timerStart_) / 1000) % 60) < 10) {
-			text += "0";
+	if (!invisibleText) {
+		switch (format_)
+		{
+		case UITimer::Miliseconds:
+			text_->setText(to_string(timerNow_ - timerStart_));
+			break;
+		case UITimer::Seconds:
+			text_->setText(to_string((timerNow_ - timerStart_) / 1000));
+			break;
+		case UITimer::Minutes:
+			text = to_string((timerNow_ - timerStart_) / 60000) + ":";
+			if ((((timerNow_ - timerStart_) / 1000) % 60) < 10) {
+				text += "0";
+			}
+			text += to_string(((timerNow_ - timerStart_) / 1000) % 60);
+			text_->setText(text);
+			break;
+		case UITimer::Clock:
+			text = to_string((timerNow_ - timerStart_) / 3600000) + ":";
+			if ((((timerNow_ - timerStart_) / 60000) % 60) < 10) {
+				text += "0";
+			}
+			text += to_string(((timerNow_ - timerStart_) / 60000) % 60) + ":";
+			if ((((timerNow_ - timerStart_) / 1000) % 60) < 10) {
+				text += "0";
+			}
+			text += to_string(((timerNow_ - timerStart_) / 1000) % 60);
+			text_->setText(text);
+			break;
+		default:
+			break;
 		}
-		text += to_string(((timerNow_ - timerStart_) / 1000) % 60);
-		text_->setText(text);
-		break;
-	case UITimer::Clock:
-		text = to_string((timerNow_ - timerStart_) / 3600000) + ":";
-		if ((((timerNow_ - timerStart_) / 60000) % 60) < 10) {
-			text += "0";
-		}
-		text += to_string(((timerNow_ - timerStart_) / 60000) % 60) + ":";
-		if ((((timerNow_ - timerStart_) / 1000) % 60) < 10) {
-			text += "0";
-		}
-		text += to_string(((timerNow_ - timerStart_) / 1000) % 60);
-		text_->setText(text);
-		break;
-	default:
-		break;
+	}
+	else {
+		text_->setText("");
 	}
 }

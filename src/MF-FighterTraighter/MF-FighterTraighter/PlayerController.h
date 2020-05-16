@@ -16,19 +16,16 @@ public:
 	void update() override;
 	void crouch();
 	void uncrouch();
+	void jump();
 	float getJumpImpulse() { return jumpImpulse; }
+	void canJump(bool jump) { canJump_ = jump; }
 	double getMovSpeed() { return movSpeed; }
-	void wallLeft(bool collision) {
-		wallLeft_ = collision;
-	}
-	void wallRight(bool collision) {
-		wallRight_ = collision;
-	}
+
 private:
 	HID* inputSt_ = nullptr;
 	PhysicsTransform* transform_ = nullptr;
-	bool wallLeft_=false, wallRight_ = false;
 	float jumpImpulse = 0;
 	double movSpeed = 1;
-	
+	double verticalDeadzone = 0.3;
+	bool canJump_ = true;
 };

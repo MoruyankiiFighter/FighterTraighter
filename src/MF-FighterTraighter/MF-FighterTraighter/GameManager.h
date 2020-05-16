@@ -13,9 +13,21 @@ public:
 enum AbilityID {
 	SeismicShock,
 	MegatonGrip,
-	ExplosiveWillpower
+	ExplosiveWillpower,
+	AcidSplit,
+	Mina,
+	ShrugOff,
+	MorePower,
+	Hookshot,
+	Dash,
+	VampiricStrike,
+	HailBall,
+	ReachingStrike,
+	FlyingKicks,
+	LaserLineal,
+	NadoKick
 };
-protected:
+
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
 		MKWh00p,
@@ -30,11 +42,11 @@ protected:
 		AbilityID ability1Index;
 		AbilityID ability2Index;
 		HID* hid;
-		virtual ~PlayerInfo() { 
-			delete hid; 
+		virtual ~PlayerInfo() {
+			delete hid;
 		}
 	};
-public:
+
 	GameManager(App* app);
 
 	// To update HIDs

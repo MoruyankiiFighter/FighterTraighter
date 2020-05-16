@@ -33,19 +33,24 @@ void WindowManager::setFullscreen(bool fullscreen)
 		}
 	}
 	else if (!getFullscreen()) {
-		SDL_SetWindowDisplayMode(window, &supportedResolutions_[currentResolution_]);
-		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+		//SDL_SetWindowDisplayMode(window, nullptr/*, &supportedResolutions_[currentResolution_]*/);
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+		SDL_GetWindowSize(window, &windowWidth_, &windowHeight_);
+		SDL_RenderSetLogicalSize(app_->getRenderer(), 1920/*supportedResolutions_[currentResolution_].w*/, 1080/*supportedResolutions_[currentResolution_].h*/);
 	}
+
 }
 
 // Sets the current window resolution, if on fullscreen
 void WindowManager::setResolution(int resIndex)
 {
 	if (getFullscreen()) {
-		SDL_SetWindowFullscreen(window, 0);
-		SDL_SetWindowDisplayMode(window, &supportedResolutions_[resIndex]);
-		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+		SDL_RenderSetLogicalSize(app_->getRenderer(), 1920/*supportedResolutions_[currentResolution_].w*/, 1080/*supportedResolutions_[currentResolution_].h*/);
+		//SDL_SetWindowFullscreen(window, 0);
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+		//SDL_SetWindowDisplayMode(window, nullptr/*, &supportedResolutions_[resIndex]*/);
 		currentResolution_ = resIndex;
+		SDL_GetWindowSize(window, &windowWidth_, &windowHeight_);	
 	}
 }
 

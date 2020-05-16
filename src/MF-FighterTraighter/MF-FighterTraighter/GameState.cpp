@@ -4,6 +4,7 @@
 #include "OnHit.h"
 #include "ResetJumpListener.h"
 #include "HitboxData.h"
+#include "DestroyOnHit.h"
 GameState::GameState(App* app) : app_(app), entManager_(app, this), world(nullptr)
 {
 }
@@ -51,14 +52,10 @@ void GameState::UpdateHitboxes()
 	for (unsigned int i = 0; i < 2; i++) {
 		for (auto it = hitboxGroups_[i].begin(); it != hitboxGroups_[i].end(); ++it) {
 			HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
-			if (hB->time_-- <= 0) {//checks if the hitbox "dies"
-				if (!hB->destroy_) {
-					//hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, i));
-					//hB->destroy_ = true;
-					hB->onHit(nullptr);
-				}
-			}
-			else {	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
+
+			hB->update();
+
+			if(!hB->destroy_){	// if the hitbox doesnt "die", it checks overlaps with the main hitboxes
 				
 				for (b2Fixture* mainHB : mainHurtboxes) {
 					//checks overlaps considering masks
@@ -112,6 +109,7 @@ void GameState::addHitbox(Vector2D pos, int width, int height, int time, int dam
 
 void GameState::addHitbox( uint16 id, HitboxData* hitbox, b2Fixture* fixture)
 {
+	hitbox->proyectile_ = true;
 	HitboxData* hData = hitbox;
 	hitboxGroups_[id].push_back(fixture);
 	hData->setIt(--hitboxGroups_[id].end());
@@ -151,7 +149,7 @@ void GameState::resetGroup(int group) {
 
 	for (auto it = hitboxGroups_[group].begin(); it != hitboxGroups_[group].end(); ++it) {
 		HitboxData* hB = static_cast<HitboxData*>((*it)->GetUserData());
-		if (!hB->destroy_) {
+		if (!hB->destroy_ && !hB->proyectile_) {
 			hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, group));
 			hB->destroy_ = true;
 		}

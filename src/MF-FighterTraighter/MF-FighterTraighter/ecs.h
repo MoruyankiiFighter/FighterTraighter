@@ -36,6 +36,8 @@ namespace ecs {
 		GamepadInput,
 		RenderAnimation,
 		Bullet,
+		AbilitiesTimerFunction,
+		PlayerParticleSystem,
 		/*
 		
 		*/
