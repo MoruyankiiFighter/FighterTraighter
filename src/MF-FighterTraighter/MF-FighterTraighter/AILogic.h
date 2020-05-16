@@ -11,7 +11,12 @@ public:
 		idle,
 		movingLeft,
 		movingRight,
+		//We should not separate states tbh
+		attacking,
+		blocking,
+		crouching,
 	};
+
 
 protected:
 	// Size: (49 + nProjectiles * 24) bytes

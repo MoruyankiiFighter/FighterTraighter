@@ -78,6 +78,7 @@ void AILogic::update()
 		}
 		else {
 			movementState_ = idle;
+			//movementState_ = crouching;
 		}
 
 		worldReads_.pop();

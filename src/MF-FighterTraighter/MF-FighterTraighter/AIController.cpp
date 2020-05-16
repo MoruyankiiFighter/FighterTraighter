@@ -15,7 +15,6 @@ void AIController::handleInput()
 {
 	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
-	InputManager* input = app_->getInputManager();
 	/*
 	if (inputSt_->AxisInput(HID::LTrigger) > 0)
 	{
@@ -24,12 +23,12 @@ void AIController::handleInput()
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone))
 	{
 		TryJumping(currState);
-	}
-	else if ((inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > verticalDeadzone))
+	}*/
+	if (logic->getMovingState() == AILogic::crouching)
 	{
 		TryCrouching(currState, speed);
-	}*/
-	if (logic->getMovingState() == AILogic::movingLeft)
+	}
+	else if (logic->getMovingState() == AILogic::movingLeft)
 	{
 		TryMovingLeft(currState, speed);
 	}
@@ -44,8 +43,8 @@ void AIController::handleInput()
 	}
 	/*if (!inputSt_->AxisInput(HID::LTrigger) > 0) {
 		TryStopGuarding(currState);
-	}
-	if (!(inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > 0)) {
-		TryStopCrouch(currState);
 	}*/
+	if (logic->getMovingState() != AILogic::crouching) {
+		TryStopCrouch(currState);
+	}
 }
