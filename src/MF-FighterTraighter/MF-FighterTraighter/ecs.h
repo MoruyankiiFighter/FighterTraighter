@@ -22,6 +22,8 @@ namespace ecs {
 		CreatorBody,
 		HitboxMng,
 		OptionsLogic,
+		CharacterSelectionLogic,
+		CharacterSelectionHandler,
 		NavigationController,
 		PlayerState,
 		OnHit,

@@ -32,6 +32,16 @@ std::tuple<Entity*, Entity*> UIFactory::createButton
 	return std::make_tuple(button, textEnt);
 }
 
+Entity* UIFactory::createButton(int n,App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position, Vector2D anchor, Vector2D pivot, double width, double height, double rotation, SetOnClick* click, SetOnClick* stop)
+{
+	Entity* button = state->getEntityManager().addEntity();
+	button->addComponent<UITransform>(position, anchor, pivot, Vector2D(width, height));
+	button->addComponent<RenderImage>(buttonTex);
+	button->addComponent<Button>(n,click, stop);
+
+	return button;
+}
+
 // create the structure of  slider (bar, buttons and the index)
 std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	(App* app, GameState* state, double min, double max, int steps, 
@@ -60,4 +70,21 @@ std::tuple<Entity*, Entity*, Entity*, Entity*> UIFactory::createSlider
 	ValueText_->addComponent<TextComponent>(valueText, font, valueFontSize);
 
 	return std::make_tuple(slider, reg_, text_, ValueText_);
+}
+Entity* UIFactory::createPanel(App* app, GameState* state, Texture* texture_, Vector2D position, Vector2D anchor, Vector2D pivot, double width, double height, double rotation)
+{
+	Entity* panel = state->getEntityManager().addEntity();
+	panel->addComponent<UITransform>(position, anchor, pivot, Vector2D(width, height));
+	panel->addComponent<RenderImage>(texture_);
+
+	return panel;
+}
+Entity* UIFactory::createText(App* app, GameState* state, Vector2D pos, Vector2D anchor, Vector2D pivot, Font* font, std::string text, int textSize, double width, double height, int wrapCharNumber)
+{
+	Entity* ent = state->getEntityManager().addEntity();
+
+	ent->addComponent<UITransform>(pos, anchor, pivot, Vector2D(width, height));
+	ent->addComponent<TextComponent>(text, font, textSize, TextComponent::TextAlignment::Left, font->getFontSize() * wrapCharNumber * font->getWidthRatio());
+
+	return ent;
 }
