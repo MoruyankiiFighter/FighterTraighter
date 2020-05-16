@@ -11,8 +11,18 @@ Text::Text(SDL_Renderer* rend, std::string text, Font* font, int longText) : Tex
 
 void Text::createText(Font* font, std::string text)
 {
+	SDL_Surface* surface;
+	if (text.size() == 1) {
+		std::string textaux = "  "+text;
+		
+		surface = TTF_RenderText_Blended_Wrapped(font->getFont(), textaux.c_str(), { 255, 255, 255, 255 }, longText_);
+
+	}
+	else {
+		surface = TTF_RenderText_Blended_Wrapped(font->getFont(), text.c_str(), { 255, 255, 255, 255 }, longText_);
+	}
 	if (text != "") {
-		SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(font->getFont(), text.c_str(), { 255, 255, 255, 255 }, longText_);
+		
 		
 		if (surface == nullptr) {
 			throw "Error  on surface"; // CHANGE TO PROPER EXCEPTION

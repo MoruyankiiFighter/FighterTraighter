@@ -43,7 +43,7 @@ void MainMenu::init()
 	tuple < Entity*, Entity*> arcade = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, -200), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
 		Vector2D(250, 75),
-		500, 150, 0, nullptr, GoArcade, "Arcade", 150, TextComponent::TextAlignment::Center);
+		500, 150, 0, nullptr, GoArcade, "ARCADE", 150, TextComponent::TextAlignment::Center);
 
 	tuple < Entity*, Entity*> pvp = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, -50), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
@@ -88,8 +88,8 @@ void MainMenu::GoArcade(App* app)
 #endif 
 		
 
-	app->getStateMachine()->pushState(new CharacterSelection(app));
-	//app->getStateMachine()->pushState(new Fight(app));
+	//app->getStateMachine()->pushState(new CharacterSelection(app));
+	app->getStateMachine()->pushState(new Fight(app));
 #ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 #endif 
