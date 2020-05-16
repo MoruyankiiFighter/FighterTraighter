@@ -10,21 +10,23 @@ class GameStateMachine;
 class GameManager
 {
 public:	
-	enum AbilityID {
-		SeismicShock,
-		MegatonGrip,
-		ExplosiveWillpower,
-		AcidSplit,
-		ShrugOff,
-		MorePower,
-		Hookshot,
-		Dash,
-		VampiricStrike,
-		HailBall,
-		ReachingStrike,
-		FlyingKicks,
-		LaserLineal
-	};
+enum AbilityID {
+	SeismicShock,
+	MegatonGrip,
+	ExplosiveWillpower,
+	AcidSplit,
+	Mina,
+	ShrugOff,
+	MorePower,
+	Hookshot,
+	Dash,
+	VampiricStrike,
+	HailBall,
+	ReachingStrike,
+	FlyingKicks,
+	LaserLineal,
+	NadoKick
+};
 
 	// TODO: Move from here to somewhere else
 	enum CharacterID {

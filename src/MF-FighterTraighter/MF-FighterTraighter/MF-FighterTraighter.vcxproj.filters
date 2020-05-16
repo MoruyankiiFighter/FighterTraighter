@@ -170,6 +170,8 @@
     <ClCompile Include="PunchingBagOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="RandomNumberGenerator.cpp" />
+    <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="BulletGravity.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -412,6 +414,8 @@
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="RandomNumberGenerator.h" />
+    <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="BulletGravity.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>

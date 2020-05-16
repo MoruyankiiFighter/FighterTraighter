@@ -40,7 +40,7 @@ void PlayerController::handleInput()
 		if (!currState->isGuarding()) 
 			currState->goGuardingTransition(6);
 	}
-	else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone) && currState->canJump())
+	else if (canJump_ && (inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone) && currState->canJump())
 	{
 		jump();
 #ifdef _DEBUG
