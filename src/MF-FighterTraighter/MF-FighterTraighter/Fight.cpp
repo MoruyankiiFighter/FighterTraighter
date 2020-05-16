@@ -35,20 +35,16 @@ void Fight::init()
 	Entity* wall1 = entManager_.addEntity();
 	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
 	W1pT->changeFriction(0);
+
 	Entity* wall2 = entManager_.addEntity();
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
 	W2pT->changeFriction(0);
 
 	
 	//Player 1
-	//Entity* player1 = FactoryMk::addMockToGame(app_, this, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X,
-	//	SDL_SCANCODE_1, SDL_SCANCODE_2, SDL_SCANCODE_SPACE, SDL_SCANCODE_R }, world, false, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	Entity* player1 = CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1), PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::FlyingKicks, player1), 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Dash, player1), 1);
-	vector<std::string>abilitiesP1;
-	abilitiesP1.push_back("MegatonGrip");
-	abilitiesP1.push_back("ShrugOff");
 	entManager_.setHandler(player1, ecs::Player1);
 
 	int imageY = app_->getWindowManager()->getCurResolution().h-350 ;
@@ -81,9 +77,6 @@ void Fight::init()
 	Entity* player2 = CharFactory::addCharacterToGame(app_, this, -1, world, &app_->getGameManager()->getPlayerInfo(2), PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
 	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::VampiricStrike, player2), 0);
 	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::HailBall, player2), 1);
-	vector<std::string>abilitiesP2;
-	abilitiesP2.push_back("SeismicShock");
-	abilitiesP2.push_back("ShrugOff");
 	entManager_.setHandler(player2, ecs::Player2);
 	//Abilities player 2
 	Entity* imageability1p2 = entManager_.addEntity();
