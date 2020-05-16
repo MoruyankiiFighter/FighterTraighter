@@ -12,7 +12,9 @@
 #include "VampiricDestroyAtTime.h"
 #include "PlayerData.h"
 #include "IceDestroyOnHit.h"
-
+#include "RenderAnimation.h"
+#include "FollowPlayer.h"
+#include "PlayerController.h"
 //#include "playerinfo"
 
 
@@ -365,6 +367,63 @@ void AbilityFactory::ASC(Entity* ent)
 	goOnCoolodwn(ent,60 * 5);
 }
 
+AnimationChain* AbilityFactory::GiveMina(Entity* e)
+{
+	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(1, nullptr,MC, e));
+	vecMov.push_back(new Move(40, nullptr, M1, e));
+	//vecMov.push_back(new Move(10, nullptr, EW2, e));
+	//vecMov.push_back(new Move(10, nullptr, EW3, e));
+	//vecMov.push_back(new Move(25, nullptr, nullptr, e));
+	AnimationChain* AcidSplit = new AnimationChain(vecMov);
+	return AcidSplit;
+}
+void AbilityFactory::M1(Entity* ent)
+{
+	Vector2D speed(5, 2);
+	uint16 mask;
+	//CollisionFilters
+	App* app = ent->getApp();
+	Entity* otherPlayer;
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2);
+		mask = currentState->PLAYER_2 | currentState->BOUNDARY;
+	}
+	else {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
+		mask = currentState->PLAYER_1 | currentState->BOUNDARY;
+	}
+	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = otherPlayer->getComponent<PhysicsTransform>(ecs::Transform)->getOrientation();
+	Vector2D pos = Vector2D(phTr->getPosition().getX() + phTr->getWidth() / 2, phTr->getPosition().getY() + phTr->getHeight() / 2);//first rock
+
+
+	int damage = 1;
+	int hitstun = 0;
+	int explosionDamage = 10;
+
+	Vector2D knockBack(5, 2);
+	int time = 200;
+	
+	double width = 256;
+	double height = 128;
+	bool gravity = true;
+	
+	DestroyOnHit* dT = new DestroyOnHit(explosionDamage, time, 0, Vector2D(-(double)orientation_ * 5, -3), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent,false);
+	
+	Texture* spawntexture = app->getAssetsManager()->getTexture(AssetsManager::M3);
+	Vector2D spawnEntSize(spawntexture->getWidth()/2, spawntexture->getHeight());
+	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize,false,true);
+	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::M1);
+	instanceEntitywHitbox(ent, width/2, height/2, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity, false);
+	
+}
+void AbilityFactory::MC(Entity* ent)
+{
+	goOnCoolodwn(ent, 60 * 7);
+}
+
 AnimationChain* AbilityFactory::GiveShrugOff(Entity* e)
 {
 	std::vector<Move*> vecMov;
@@ -678,10 +737,9 @@ void AbilityFactory::RSC(Entity* ent)
 AnimationChain* AbilityFactory::GiveFlyingKicks(Entity* e)
 {
 	std::vector<Move*> vecMov;
-	vecMov.push_back(new Move(15, nullptr, FK2, e)); //diagonal Dash
-	vecMov.push_back(new Move(15, nullptr, FK1, e));//attack
-	vecMov.push_back(new Move(15, nullptr, FK3, e));//horizontal Dash
-	vecMov.push_back(new Move(15, nullptr, FK1, e));//attack	
+	vecMov.push_back(new Move(15, nullptr, FK2, e)); //diagonal up Dash
+	vecMov.push_back(new Move(30, nullptr, FK3, e));//horizontal down Dash
+	vecMov.push_back(new Move(10, nullptr, FK4, e));//shockwave
 	vecMov.push_back(new Move(10, nullptr, FKC, e));//cooldown
 	AnimationChain* Dash = new AnimationChain(vecMov);
 	return Dash;
@@ -708,17 +766,17 @@ void AbilityFactory::FK1(Entity* e)
 	}
 
 	int width = 120;
-	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2);
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) ;
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
 
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
-	DestroyAtTime* dT = new DestroyAtTime(17, 15, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
+	FollowPlayer* dT = new FollowPlayer(17, 15, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
-	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
+	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);	
 }
 
-//diagonal dash
+//diagonal up dash
 void AbilityFactory::FK2(Entity* ent)
 {
 
@@ -730,9 +788,11 @@ void AbilityFactory::FK2(Entity* ent)
 	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -35, -18 };
+		pT->setOrientation(-1);
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, -18 };
+		pT->setOrientation(1);
 
 	}
 	else {
@@ -745,8 +805,10 @@ void AbilityFactory::FK2(Entity* ent)
 	}
 	pT->setSpeed(speed);
 	//pT->getBody()->ApplyLinearImpulse(b2Vec2(knockBack.getX(), knockBack.getY()), pT->getBody()->GetWorldCenter(), true);
-}
+	FK1(ent);
 
+}
+//diagonal down dash
 void AbilityFactory::FK3(Entity* ent)
 {
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
@@ -757,9 +819,13 @@ void AbilityFactory::FK3(Entity* ent)
 
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -35, 18 };
+		pT->setOrientation(-1);
+
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, 18 };
+		pT->setOrientation(1);
+
 
 	}
 	else {
@@ -772,12 +838,46 @@ void AbilityFactory::FK3(Entity* ent)
 	}
 	pT->setSpeed(speed);
 	//pT->getBody()->ApplyLinearImpulse(b2Vec2(knockBack.getX(), knockBack.getY()), pT->getBody()->GetWorldCenter(), true);
+	FK1(ent);
+}
+//shockwave
+void AbilityFactory::FK4(Entity* e)
+{
+	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::FK4);
+	PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = phtr->getOrientation();
 
+	App* app = e->getApp();
+	Entity* otherPlayer;
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	uint16 mask;
+	if (e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2);
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
+		mask = currentState->PLAYER_1;
+	}
+
+	int width = 240;
+	int height = 100;
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4 + (width / 2) - 85);
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
+
+	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight()-50 );
+	FollowPlayer* dT = new FollowPlayer(5, 20, 200, { (double)orientation_ * 5, -5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
+	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
+	instanceEntitywHitbox(e, width, height, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
 }
 
 void AbilityFactory::FKC(Entity* ent)
 {
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	if (ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1))
+		pT->setOrientation(1);
+	else   pT->setOrientation(-1);
 	//pT->getBody()->SetLinearDamping(10);	//0 friction in the air
 	goOnCoolodwn(ent, 60 * 10);
 }
@@ -825,7 +925,119 @@ void AbilityFactory::LLC(Entity* ent)
 	goOnCoolodwn(ent, 60 * 2);
 }
 
-Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity) {
+AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
+{
+	
+	//int orientation= phtr->getOrientation;
+	std::vector<Move*> vecMov;
+
+	vecMov.push_back(new Move(10, nullptr, NK3, e));
+	vecMov.push_back(new Move(10, nullptr, NK1, e));
+	vecMov.push_back(new Move(10, nullptr, NK2, e));
+	vecMov.push_back(new Move(10, nullptr, NK2, e));
+	vecMov.push_back(new Move(10, nullptr, NK2, e));
+	vecMov.push_back(new Move(10, nullptr, NK2, e));
+	//vecMov.push_back(new Move(20, nullptr, NK1, e));
+	vecMov.push_back(new Move(0, nullptr, NKC, e));
+	AnimationChain* NadoKick = new AnimationChain(vecMov);
+
+	//phtr->setOrientation(orientation);
+	return NadoKick;
+}
+
+void AbilityFactory::NK1(Entity* e)
+{
+	
+	//phtr->getBody()->SetLinearDamping(10);	
+	PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
+
+	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg1);
+	//PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = phtr->getOrientation();
+
+	App* app = e->getApp();
+	Entity* otherPlayer;
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	uint16 mask;
+	if (e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2);
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
+		mask = currentState->PLAYER_1;
+	}
+	
+	int width = 120;
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4);
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
+	int time = 10;
+	double damage = 11;
+	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
+	FollowPlayer* dT = new FollowPlayer(damage, time, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
+	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
+	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
+
+	
+}
+
+void AbilityFactory::NK2(Entity* ent)
+{
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	phtr->setOrientation(-1 * phtr->getOrientation());
+	
+	ent->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
+	NK1(ent);
+
+}
+
+void AbilityFactory::NK3(Entity* ent)
+{
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	pT->getBody()->SetLinearDamping(10);//10 friction in the air in case you have 0
+	Vector2D speed;
+	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
+	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
+		speed = Vector2D{ -35, -18 };
+		pT->setOrientation(-1);
+	}
+	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
+		speed = Vector2D{ 35, -18 };
+		pT->setOrientation(1);
+
+	}
+	else {
+		if (pT->getOrientation() == 1) {
+			speed = Vector2D{ 35, -18 };
+		}
+		else {
+			speed = Vector2D{ -35, -18 };
+		}
+	}
+	pT->setSpeed(speed);
+
+	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
+	pC->canJump(false);
+
+}
+
+void AbilityFactory::NKC(Entity* ent)
+{
+	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
+	pC->canJump(true);
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	if (ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1))
+		pT->setOrientation(1);
+	else   pT->setOrientation(-1);
+	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
+	pT->getBody()->SetLinearDamping(0);
+	goOnCoolodwn(ent,60 * 1);
+}
+
+Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity,bool render) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
 	if (pos.getX() >= windowWidth)  
 		pos.setX(windowWidth);
@@ -835,8 +1047,12 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
 		currentState->BULLET, mask, 1)->setOrientation(orientation);
 
-	
-	e->addComponent<RenderImage>(texture);
+	if (render) {
+		e->addComponent<RenderAnimation>(texture, 20);
+	}
+	else {
+		e->addComponent<RenderImage>(texture);
+	}
 
 	if (gravity)
 		e->addComponent<BulletGravity>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData, speed);
@@ -844,6 +1060,10 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData,speed);
 	uData->entity_ = e;//change to the new entity 
 	return e;
+
+
+
+	
 }
 
 
@@ -858,6 +1078,7 @@ std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> Abil
 	{GameManager::AbilityID::MegatonGrip, AbilityFactory::GiveMegatonGrip},
 	{GameManager::AbilityID::ExplosiveWillpower, AbilityFactory::GiveExplosiveWillpower},
 	{GameManager::AbilityID::AcidSplit, AbilityFactory::GiveAcidSplit},
+	{GameManager::AbilityID::Mina, AbilityFactory::GiveMina},
 	{GameManager::AbilityID::ShrugOff, AbilityFactory::GiveShrugOff},
 	{GameManager::AbilityID::MorePower, AbilityFactory::GiveMorePower},
 	{GameManager::AbilityID::Hookshot, AbilityFactory::GiveHookshot},
@@ -866,7 +1087,8 @@ std::map<GameManager::AbilityID, std::function<AnimationChain * (Entity*)>> Abil
 	{GameManager::AbilityID::HailBall, AbilityFactory::GiveHailBall},
 	{GameManager::AbilityID::ReachingStrike, AbilityFactory::GiveReachingStrike},
 	{GameManager::AbilityID::FlyingKicks, AbilityFactory::GiveFlyingKicks},
-	{GameManager::AbilityID::LaserLineal, AbilityFactory::GiveLaserLineal}
+	{GameManager::AbilityID::LaserLineal, AbilityFactory::GiveLaserLineal},
+	{GameManager::AbilityID::NadoKick, AbilityFactory::GiveNadoKick}
 
 
 };
