@@ -15,6 +15,7 @@ enum AbilityID {
 	MegatonGrip,
 	ExplosiveWillpower,
 	AcidSplit,
+	Mina,
 	ShrugOff,
 	MorePower,
 	Hookshot,
@@ -23,7 +24,8 @@ enum AbilityID {
 	HailBall,
 	ReachingStrike,
 	FlyingKicks,
-	LaserLineal
+	LaserLineal,
+	NadoKick
 };
 
 	// TODO: Move from here to somewhere else

@@ -52,7 +52,8 @@ public:
 	virtual void changeMask(uint16 newMask);
 	virtual void changeFriction(float32 newFrict);
 	virtual void resetMainFixture2(const b2Vec2& center, float angle, float32 newFrict);
-
+	
+	
 
 	b2Body* getBody() { return body_; }
 	b2Fixture* getMainFixture() { return mainFixture_; }
