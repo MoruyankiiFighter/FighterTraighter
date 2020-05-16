@@ -16,6 +16,7 @@ public:
 	void update() override;
 	void crouch();
 	void uncrouch();
+	void jump();
 	float getJumpImpulse() { return jumpImpulse; }
 	double getMovSpeed() { return movSpeed; }
 	void wallLeft(bool collision) {

@@ -40,11 +40,7 @@ void PlayerController::handleInput()
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone) && currState->canJump())
 	{
-		//force and where you use the fore
-		transform_->getBody()->SetLinearDamping(0);//0 friction in the air
-		transform_->getBody()->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), transform_->getBody()->GetWorldCenter(), true);
-		if (currState->isCrouch()) uncrouch();
-		currState->goJumpingTrans(7);
+		jump();
 #ifdef _DEBUG
 		std::cout << "salto" << std::endl;
 #endif
@@ -116,4 +112,20 @@ void PlayerController::uncrouch()
 {
 	entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();	
 	transform_->setColliderHeight(transform_->getHeight(), Vector2D(0, 0));
+}
+
+void PlayerController::jump(){
+	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
+	transform_->getBody()->SetLinearDamping(0);//0 friction in the air
+	transform_->getBody()->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), transform_->getBody()->GetWorldCenter(), true);
+	//uncrouch if the player is crouching and go to the jump transition state
+	if (currState->isCrouch())
+		uncrouch();
+	currState->goJumpingTrans(7);
+	//control the x speed of the jump with the input 
+	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) 
+		transform_->setSpeed(Vector2D(-movSpeed, transform_->getSpeed().getY()));
+	
+	else if((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0))
+		transform_->setSpeed(Vector2D(movSpeed, transform_->getSpeed().getY()));
 }
