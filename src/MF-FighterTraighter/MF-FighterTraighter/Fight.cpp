@@ -65,11 +65,11 @@ void Fight::init()
 	Entity* timerab1 = entManager_.addEntity();
 	timerab1->addComponent<UITransform>(Vector2D(30, imageY-50.0), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab1->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab1->addComponent<UITimer>(UITimer::Seconds)->setInvisible(false);
+	timerab1->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
 	Entity* timerab2 = entManager_.addEntity();
 	timerab2->addComponent<UITransform>(Vector2D(180, imageY-50.0), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab2->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timerab2->addComponent<UITimer>(UITimer::Seconds)->setInvisible(false);
+	timerab2->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
 	Entity* timerspl1 = entManager_.addEntity();
 	timerspl1->addComponent<AbilitiesTimerFunction>(timerab1->getComponent<UITimer>(ecs::UITimer), timerab2->getComponent<UITimer>(ecs::UITimer), player1);
 	

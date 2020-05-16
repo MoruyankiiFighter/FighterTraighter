@@ -594,9 +594,7 @@ void AbilityFactory::Dash(Entity* ent)
 void AbilityFactory::DashC(Entity* ent)
 {
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-
-	
-	goOnCoolodwn(ent, 60 * 8);
+	goOnCoolodwn(ent, 60 * 15);
 }
 
 AnimationChain* AbilityFactory::GiveVampiricStrike(Entity* e)
