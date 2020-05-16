@@ -100,9 +100,6 @@
     <ClCompile Include="MoveParser.cpp">
       <Filter>Source Files\Types</Filter>
     </ClCompile>
-    <ClCompile Include="SacoTimer.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Text.cpp">
       <Filter>Source Files\Types</Filter>
     </ClCompile>
@@ -234,6 +231,9 @@
     <ClCompile Include="FollowPlayer.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
+    <ClCompile Include="SacoManager.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -343,9 +343,6 @@
     </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Header files\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="SacoTimer.h">
-      <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="SDLDebugDraw.h">
       <Filter>Header files\Types</Filter>
@@ -512,6 +509,9 @@
     </ClInclude>
     <ClInclude Include="FollowPlayer.h">
       <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="SacoManager.h">
+      <Filter>Header files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

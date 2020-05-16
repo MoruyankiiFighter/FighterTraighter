@@ -193,7 +193,7 @@
     <ClCompile Include="UITransform.cpp" />
     <ClCompile Include="UserData.cpp" />
     <ClCompile Include="WindowManager.cpp" />
-    <ClCompile Include="SacoTimer.cpp" />
+    <ClCompile Include="SacoManager.cpp" />
     <ClCompile Include="SDLDebugDraw.cpp" />
     <ClCompile Include="SkillSelection.cpp" />
     <ClCompile Include="Slider.cpp" />
@@ -279,7 +279,7 @@
     <ClInclude Include="UserData.h" />
     <ClInclude Include="VampiricDestroyAtTime.h" />
     <ClInclude Include="WindowManager.h" />
-    <ClInclude Include="SacoTimer.h" />
+    <ClInclude Include="SacoManager.h" />
     <ClInclude Include="SDLDebugDraw.h" />
     <ClInclude Include="SDLExceptions.h" />
     <ClInclude Include="SkillSelection.h" />

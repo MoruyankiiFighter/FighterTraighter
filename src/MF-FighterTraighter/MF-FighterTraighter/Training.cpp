@@ -3,7 +3,7 @@
 #include "PlayerController.h"
 #include "RenderImage.h"
 #include "PauseMenu.h"
-#include "SacoTimer.h"
+#include "SacoManager.h"
 #include "PunchingBagOnHit.h"
 #include "FloorOnHit.h"
 #include "UITransform.h"
@@ -54,7 +54,7 @@ void Training::init()
 	pBpT->changeFriction(0);
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Saco));
 	Health* sacoHealth = saco->addComponent<Health>(200);
-	saco->addComponent<SacoTimer>(35000);
+	saco->addComponent<SacoManager>(35000);
 	entManager_.setHandler(saco, ecs::Saco);
 	
 	Entity* timer = entManager_.addEntity();
