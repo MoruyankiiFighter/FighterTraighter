@@ -229,6 +229,8 @@
     </ClCompile>
     <ClCompile Include="AIGameState.cpp">
       <Filter>Source Files\GameState</Filter>
+    <ClCompile Include="FollowPlayer.cpp">
+      <Filter>Source Files\OnHit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -516,6 +518,8 @@
     </ClInclude>
     <ClInclude Include="AIGameState.h">
       <Filter>Header files\GameState</Filter>
+    <ClInclude Include="FollowPlayer.h">
+      <Filter>Header files\OnHits</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
