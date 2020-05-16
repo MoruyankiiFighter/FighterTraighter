@@ -77,8 +77,9 @@ void AILogic::update()
 			else movementState_ = movingRight;
 		}
 		else {
-			movementState_ = idle;
-			//movementState_ = crouching;
+			if(app_->getRandGen()->nextInt(0, 50) != 0) {
+				movementState_ = idle;
+			}else movementState_ = crouching;
 		}
 
 		worldReads_.pop();

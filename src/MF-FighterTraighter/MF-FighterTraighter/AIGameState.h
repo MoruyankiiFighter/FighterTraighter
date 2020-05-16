@@ -8,6 +8,7 @@ public:
 	AIGameState(App* app): GameState(app) { init(); }
 	void init() override;
 	void handleInput() override;
+	virtual ~AIGameState() {};
 protected:
 };
 

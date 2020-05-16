@@ -34,6 +34,8 @@ public:
 	void update() override;
 
 	inline AIStates getMovingState() { return movementState_; }
+
+	virtual ~AILogic() {};
 protected:
 	bool GetCloser();
 	bool GetFurther();

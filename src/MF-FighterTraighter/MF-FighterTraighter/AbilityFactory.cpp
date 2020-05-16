@@ -1019,14 +1019,14 @@ void AbilityFactory::NK3(Entity* ent)
 	}
 	pT->setSpeed(speed);
 
-	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
+	PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
 	pC->canJump(false);
 
 }
 
 void AbilityFactory::NKC(Entity* ent)
 {
-	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
+	PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
 	pC->canJump(true);
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	if (ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1))
