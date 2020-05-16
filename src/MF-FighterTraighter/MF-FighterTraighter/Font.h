@@ -25,6 +25,7 @@ public:
 	void Loadfont(std::string path, int size, double widthRatio);
 	inline TTF_Font* getFont() const { return font; }
 	inline double getWidthRatio() const { return widthRatio_; }
+	inline int getFontSize() const { return fontSize_; }
 
 	// Deletes this font
 	void ClearFont();

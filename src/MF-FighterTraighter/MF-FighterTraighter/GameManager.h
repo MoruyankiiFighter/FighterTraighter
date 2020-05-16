@@ -9,12 +9,14 @@ class GameStateMachine;
 
 class GameManager
 {
+
 public:	
 enum AbilityID {
 	SeismicShock,
 	MegatonGrip,
 	ExplosiveWillpower,
 	AcidSplit,
+	Mina,
 	ShrugOff,
 	MorePower,
 	Hookshot,
@@ -23,15 +25,17 @@ enum AbilityID {
 	HailBall,
 	ReachingStrike,
 	FlyingKicks,
-	LaserLineal
+	LaserLineal,
+	NadoKick
 };
 
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
-		MKWh00p,
-		Mockingbird,
+		/*None,*/
+		F10R,
 		Aisha,
-		F10R
+		MKWh00p,
+		Mockingbird
 	};
 
 	struct PlayerInfo {
@@ -44,7 +48,6 @@ enum AbilityID {
 			delete hid;
 		}
 	};
-
 	GameManager(App* app);
 
 	// To update HIDs
@@ -57,6 +60,17 @@ enum AbilityID {
 	void playerLost(int player);
 	// To inform that saco has lost all its health
 	void trainingEnded();
+	void setCharacter(CharacterID char_, int n) {
+		if (n == 1) {
+			player1_.character = char_;
+		}
+		else {
+
+			player2_.character = char_;
+		}
+	}
+
+	void resetCharacters();
 
 	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
 	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);

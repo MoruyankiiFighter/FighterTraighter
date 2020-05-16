@@ -10,6 +10,7 @@
 #include "UITimer.h"
 #include "UIHealthbar.h"
 #include "CharFactory.h"
+#include "RenderAnimation.h"
 
 Training::Training(App* app) : GameState(app)
 {
@@ -20,9 +21,32 @@ void Training::init()
 {
 	GameState::init();
 	doStep = true;
+
+	Entity* bg = entManager_.addEntity();
+	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+
+	//Floor
+	Entity* floor = entManager_.addEntity();
+	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0, 0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, 2);
+	FpT->changeFriction(3);
+	addHurtbox(FpT->getMainFixture());
+
+	//Walls
+	Entity* wall1 = entManager_.addEntity();
+	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
+	W1pT->changeFriction(0);
+
+	Entity* wall2 = entManager_.addEntity();
+	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
+	W2pT->changeFriction(0);
+
+	//Player1
 	entManager_.setHandler(CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1), PLAYER_1, BOUNDARY | P_BAG | WALLS, 0), ecs::Player1);
+	//Player2
 	entManager_.setHandler(CharFactory::addCharacterToGame(app_, this, -1, world, &app_->getGameManager()->getPlayerInfo(2), PLAYER_2, BOUNDARY | P_BAG | WALLS, 1), ecs::Player2);
 	
+	//Saco
 	Entity* saco = entManager_.addEntity();
 	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h - 655), Vector2D(10, 10), 250, 800, 0, world, P_BAG, PLAYER_1 | PLAYER_2 | BULLET, 2);
 	addHurtbox(pBpT->getMainFixture());
@@ -30,15 +54,14 @@ void Training::init()
 	pBpT->changeFriction(0);
 	//addHurtbox()
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Saco));
-	//saco->addComponent<PunchingBagOnHit>();
 	Health* sacoHealth = saco->addComponent<Health>(200);
-	//saco->addComponent<SacoTimer>(5000);
+	saco->addComponent<SacoTimer>(35000);
 	entManager_.setHandler(saco, ecs::Saco);
 	
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
 	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timer->addComponent<UITimer>(UITimer::Minutes);
+	timer->addComponent<UITimer>(UITimer::Seconds)->setCountdown(35000);
 
 	Entity* healthbarBack = entManager_.addEntity();
 	healthbarBack->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(850, 20), Vector2D(1700, 40));
@@ -57,21 +80,6 @@ void Training::init()
 	Entity* character2 = entManager_.addEntity();
 	character2->addComponent<UITransform>(Vector2D(-100, 70), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(70, 70), Vector2D(140, 140));
 	character2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection))->setFrame(2, 0);
-
-	Entity* floor = entManager_.addEntity();
-	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0, 0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, 2);
-	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
-	//floor->addComponent<FloorOnHit>();
-
-	//Walls
-	Entity* wall1 = entManager_.addEntity();
-	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
-	W1pT->changeFriction(0);
-
-	Entity* wall2 = entManager_.addEntity();
-	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
-	W2pT->changeFriction(0);
-
 }
 
 void Training::handleInput()

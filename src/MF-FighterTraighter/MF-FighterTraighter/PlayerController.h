@@ -17,8 +17,11 @@ public:
 
 	void jump() override;
 	float getJumpImpulse() { return jumpImpulse; }
-	double getMovSpeed() { return movSpeed; }	
+	void canJump(bool jump) { canJump_ = jump; }
+	double getMovSpeed() { return movSpeed; }
+
 private:
 	HID* inputSt_ = nullptr;
 	double verticalDeadzone = 0.3;
+	bool canJump_ = true;
 };

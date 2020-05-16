@@ -5,6 +5,7 @@
 #include <map>
 
 class HitboxData;
+class RenderImage;
 class AbilityFactory {
 public:
 	static AnimationChain* GiveAbility(GameManager::AbilityID id, Entity* e);
@@ -37,6 +38,11 @@ public:
 
 	static void AS1(Entity* ent);
 	static void ASC(Entity* ent);
+	//Mina
+	static AnimationChain* GiveMina(Entity* e);
+
+	static void M1(Entity* ent);
+	static void MC(Entity* ent);
 
 	//Shrug Off
 	static AnimationChain* GiveShrugOff(Entity* e);
@@ -86,6 +92,7 @@ public:
 	static void FK1(Entity* ent);
 	static void FK2(Entity* ent);
 	static void FK3(Entity* ent);
+	static void FK4(Entity* ent);
 	static void FKC(Entity* ent);
 
 	//LaserLineal
@@ -94,7 +101,15 @@ public:
 	static void LL1(Entity* ent);
 	static void LLC(Entity* ent);
 
-	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
+	//Nado Kick
+	static AnimationChain* GiveNadoKick(Entity* e);
+
+	static void NK1(Entity* ent);
+	static void NK2(Entity* ent);
+	static void NK3(Entity* ent);
+	static void NKC(Entity* ent);
+
+	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false, bool render=false);
 	
 	//static Entity* createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,
 		//Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact = false, bool gravity = false, bool multihit = false);

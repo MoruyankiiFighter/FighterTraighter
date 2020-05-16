@@ -164,9 +164,24 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="CharacterSelectionLogic.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MockingbirdData.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="UserData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="UserData.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="PunchingBagOnHit.cpp" />
     <ClCompile Include="PunchingBagOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="RandomNumberGenerator.cpp" />
+    <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="BulletGravity.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -203,6 +218,7 @@
     <ClCompile Include="Fall_SpawnOnHit.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
+    <ClCompile Include="CharacterSelectionHandler.cpp" />
     <ClCompile Include="PlayerOnHit.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
@@ -430,6 +446,8 @@
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="RandomNumberGenerator.h" />
+    <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="BulletGravity.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
@@ -484,6 +502,8 @@
     <ClInclude Include="Fall_SpawnOnHit.h">
       <Filter>Header files\OnHits</Filter>
     </ClInclude>
+    <ClInclude Include="CharacterSelectionLogic.h" />
+    <ClInclude Include="CharacterSelectionHandler.h" />
     <ClInclude Include="VampiricDestroyAtTime.h">
       <Filter>Header files\OnHits</Filter>
     </ClInclude>
