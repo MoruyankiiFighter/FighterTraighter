@@ -557,7 +557,7 @@ AnimationChain* AbilityFactory::GiveDash(Entity* e)
 	std::vector<Move*> vecMov;
 	vecMov.push_back(new Move(0, nullptr, Dash, e));
 
-	vecMov.push_back(new Move( 0, nullptr, DashC, e));
+	vecMov.push_back(new Move( 10, nullptr, DashC, e));
 	AnimationChain* Dash = new AnimationChain(vecMov);
 	return Dash;
 }
@@ -566,6 +566,8 @@ void AbilityFactory::Dash(Entity* ent)
 {
 	PlayerData* pD= ent->getComponent<PlayerData>(ecs::PlayerData);
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	//ent->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
+
 	Vector2D speed;
 	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber()+1).hid;
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
@@ -575,7 +577,6 @@ void AbilityFactory::Dash(Entity* ent)
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, 0 };
-
 	}
 	else {
 		if (pT->getOrientation() == 1) {
@@ -592,6 +593,9 @@ void AbilityFactory::Dash(Entity* ent)
 
 void AbilityFactory::DashC(Entity* ent)
 {
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	
 	goOnCoolodwn(ent, 60 * 8);
 }
 
@@ -737,12 +741,12 @@ void AbilityFactory::RSC(Entity* ent)
 AnimationChain* AbilityFactory::GiveFlyingKicks(Entity* e)
 {
 	std::vector<Move*> vecMov;
-	vecMov.push_back(new Move(15, nullptr, FK2, e)); //diagonal up Dash
+	vecMov.push_back(new Move(5, nullptr, FK2, e)); //diagonal up Dash
 	vecMov.push_back(new Move(30, nullptr, FK3, e));//horizontal down Dash
 	vecMov.push_back(new Move(10, nullptr, FK4, e));//shockwave
 	vecMov.push_back(new Move(10, nullptr, FKC, e));//cooldown
-	AnimationChain* Dash = new AnimationChain(vecMov);
-	return Dash;
+	AnimationChain* FlyingKicks = new AnimationChain(vecMov);
+	return FlyingKicks;
 }
 
 //attack
@@ -1034,7 +1038,7 @@ void AbilityFactory::NKC(Entity* ent)
 	else   pT->setOrientation(-1);
 	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
 	pT->getBody()->SetLinearDamping(0);
-	goOnCoolodwn(ent,60 * 1);
+	goOnCoolodwn(ent,60 * 10);
 }
 
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity,bool render) {
