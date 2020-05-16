@@ -6,7 +6,7 @@ class CharacterSelectionHandler :
 {
 public:
 	
-	CharacterSelectionHandler(Entity* j1, Entity* j2): Component(ecs::CharacterSelectionHandler), log1(j1), log2(j2){}
+	CharacterSelectionHandler(Entity* j1, Entity* j2): Component(ecs::CharacterSelectionHandler), log1(j1), log2(j2), ent(nullptr){}
 	~CharacterSelectionHandler() { delete ent; }
 	void init() override;
 	void update() override;
