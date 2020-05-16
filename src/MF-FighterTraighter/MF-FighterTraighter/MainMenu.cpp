@@ -2,7 +2,7 @@
 #include "Fight.h"
 #include "OptionsMenu.h"
 #include "Training.h"
-
+#include "CharacterSelection.h"
 #include "InputManager.h"
 
 #include "Entity.h"
@@ -22,8 +22,9 @@
 
 MainMenu::MainMenu(App* app) : GameState(app)
 {
-
+#ifdef _DEBUG
 	cout << "Menu principal" << endl;
+#endif 
 	init();
 }
 
@@ -38,7 +39,6 @@ void MainMenu::init()
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
 	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
-
 
 	tuple < Entity*, Entity*> arcade = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, -200), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
@@ -83,10 +83,13 @@ void MainMenu::handleInput()
 void MainMenu::GoArcade(App* app)
 {
 	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
-
+#ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
-	app->getStateMachine()->pushState(new Fight(app));
+#endif 
+	app->getStateMachine()->pushState(new CharacterSelection(app));
+#ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
+#endif 
 }
 
 void MainMenu::Go1v1(App* app)

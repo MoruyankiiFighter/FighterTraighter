@@ -7,10 +7,15 @@ AudioManager::AudioManager(App* app) : AudioManager(8, app) { }
 AudioManager::AudioManager(int channels, App* app) : channels_(channels), app_(app)
 {
 	if (SDL_Init(SDL_INIT_AUDIO) == 0)
-		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) != 0)
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) != 0) {
+#ifdef _DEBUG
 			std::cout << "Audio Manager not loaded" << Mix_GetError() << std::endl;
+#endif 
+		}
 	silenced = false;
 	initialized_ = true;
+	Mix_VolumeMusic(startGeneralVolume);
+	Mix_Volume(-1, startSFXVolume);
 }
 
 AudioManager::~AudioManager()
@@ -130,7 +135,7 @@ int AudioManager::setSFXVolume( int volume)
 	volumeSFX = volume;
 	int vol = Mix_Volume(-1, volume);
 	
-	playSFX(app_->getAssetsManager()->getSFX(AssetsManager::AISHA_1), true);
+	playSFX(app_->getAssetsManager()->getSFX(AssetsManager::PUNCH), 0);
 
 	return vol;
 

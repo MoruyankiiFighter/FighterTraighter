@@ -18,7 +18,10 @@
 
 OptionsMenu::OptionsMenu(App* app) : GameState(app)
 {
+#ifdef _DEBUG
+
 	cout << "OptionsMenu" << endl;
+#endif
 	init();
 
 }
@@ -69,13 +72,13 @@ void OptionsMenu::init()
 		Vector2D(250, 5),
 		500, 10, SetBright, "BRIGHTNESS", 60, "", 60);
 
-	tuple<Entity*, Entity*, Entity*, Entity*> MusicSlider = UIFactory::createSlider(app_, this, 0, 128, 10,
+	tuple<Entity*, Entity*, Entity*, Entity*> MusicSlider = UIFactory::createSlider(app_, this, 0, 50, 10,
 		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 150), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(250, 5),
 		500, 10, SetVolume, "Music Volume", 60, "", 60);
 
-tuple<Entity*, Entity*, Entity*, Entity*> SoundSlider = UIFactory::createSlider(app_, this, 0, 128, 10,
+tuple<Entity*, Entity*, Entity*, Entity*> SoundSlider = UIFactory::createSlider(app_, this, 0, 50, 10,
 		app_->getAssetsManager()->getTexture(AssetsManager::SliderRegulator), app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 250), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(250, 5),

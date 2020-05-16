@@ -22,6 +22,8 @@ namespace ecs {
 		CreatorBody,
 		HitboxMng,
 		OptionsLogic,
+		CharacterSelectionLogic,
+		CharacterSelectionHandler,
 		NavigationController,
 		PlayerState,
 		OnHit,
@@ -39,6 +41,7 @@ namespace ecs {
 		Camera,
 		AbilitiesTimerFunction,
 		Shake,
+		PlayerParticleSystem,
 		/*
 		
 		*/

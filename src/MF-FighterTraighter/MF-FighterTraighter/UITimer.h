@@ -29,7 +29,7 @@ public:
 		//resumeTimer();
 	}
 
-	inline void setInvisible(bool inv) { invisibleText = inv; if (!inv) { text_->setText("" + countdownAmount_); }  };
+	inline void setInvisible(bool inv) { invisibleText = inv;};
 
 	void resetTimer();
 	void stopTimer();

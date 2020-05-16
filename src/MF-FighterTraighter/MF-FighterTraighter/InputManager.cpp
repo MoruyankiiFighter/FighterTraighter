@@ -59,7 +59,9 @@ void InputManager::update()
 
 			break;
 		case SDL_CONTROLLERDEVICEADDED:
+#ifdef _DEBUG
 			std::cout << "DEVICEADDED cdevice.which = " << e.cdevice.which << std::endl;
+#endif 
 			break;
 
 			// If a controller button is pressed
@@ -160,6 +162,8 @@ void InputManager::initControllers()
 				}
 				else
 					std::cout << "SDL_GetError() = " << SDL_GetError() << std::endl;
+#endif 
+				}
 			}
 			SDL_GameControllerEventState(SDL_ENABLE);
 

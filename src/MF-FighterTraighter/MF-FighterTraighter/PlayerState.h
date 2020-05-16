@@ -116,6 +116,7 @@ public:
 
 	//ABILITIES
 	void goCasting() {
+		
 		playerStatus_ = Casting;
 		holdingFrames_ = -1;
 	}

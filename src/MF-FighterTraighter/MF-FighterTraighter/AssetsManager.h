@@ -13,6 +13,7 @@ class AssetsManager
 public:
 	enum TextureNames {
 		Player,
+		Saco,
 		Button,
 		Logo,
 		Controller,
@@ -31,18 +32,54 @@ public:
 		ExplosiveWillpower,
 		RandomRage,
 		KnifeDance,
-		GanonSheet,
-		F10rSheet,
 		BackgroundFight,
+		Banner,
+		Panel,
 		Mg1, 
 		Mg21,
 		Mg22,
 		Ss1,
 		Ss2,
-		Ew1,
+		//resources of aisha
+		Aisha_icon,
+		AishaArtwork,
+		AishaSheet,
+		
+		//resources of mkwhoop
+		Ganonbot_icon,
+		GanonArtwork,
+		GanonSheet,
 		MkHk,
+		
+		//resources of mockingbird
+		Mock_icon,
+		MockArtwork,
+		MockSheet,
+
+		//resources of flor
+		Flor_icon,
+		FlorArtwork,
+		F10rSheet,
 		F10RHp,
-		F10RHk
+		F10RHk,
+
+		Random_icon,
+		RandomArtwork,
+
+		Ew1,
+		So1,
+		Mp1,
+		Hs1,
+		As2,
+		M1,
+		M2,
+		M3,
+		Vs1,
+		Vs2,
+		Hb1,
+		Hb2,
+		Ll1,
+		FK4
 	};
 
 	enum FontNames {
@@ -82,7 +119,8 @@ public:
 		/// SFX
 
 		PUNCH,
-		KICK
+		KICK,
+		DASH
 
 	};
 	//constructors
