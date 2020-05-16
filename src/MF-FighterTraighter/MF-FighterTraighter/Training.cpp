@@ -52,7 +52,6 @@ void Training::init()
 	addHurtbox(pBpT->getMainFixture());
 	pBpT->resetUserData(new PunchingBagOnHit(saco));
 	pBpT->changeFriction(0);
-	//addHurtbox()
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Saco));
 	Health* sacoHealth = saco->addComponent<Health>(200);
 	saco->addComponent<SacoTimer>(5000);

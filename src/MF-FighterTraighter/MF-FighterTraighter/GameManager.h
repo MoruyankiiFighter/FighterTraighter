@@ -10,21 +10,21 @@ class GameStateMachine;
 class GameManager
 {
 public:	
-enum AbilityID {
-	SeismicShock,
-	MegatonGrip,
-	ExplosiveWillpower,
-	AcidSplit,
-	ShrugOff,
-	MorePower,
-	Hookshot,
-	Dash,
-	VampiricStrike,
-	HailBall,
-	ReachingStrike,
-	FlyingKicks,
-	LaserLineal
-};
+	enum AbilityID {
+		SeismicShock,
+		MegatonGrip,
+		ExplosiveWillpower,
+		AcidSplit,
+		ShrugOff,
+		MorePower,
+		Hookshot,
+		Dash,
+		VampiricStrike,
+		HailBall,
+		ReachingStrike,
+		FlyingKicks,
+		LaserLineal
+	};
 
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
@@ -43,6 +43,10 @@ enum AbilityID {
 		virtual ~PlayerInfo() {
 			delete hid;
 		}
+	};
+	
+	struct PunchingBagInfo {
+
 	};
 
 	GameManager(App* app);

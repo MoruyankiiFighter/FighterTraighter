@@ -11,7 +11,7 @@ public:
 	~SacoTimer() {};
 	
 	//method overrided from Component
-	virtual void init() override { startTime_ = SDL_GetTicks(); };
+	virtual void init() override;
 	virtual void update() override;
 private:
 	int timeLimit_;
