@@ -86,6 +86,7 @@ void App::init()
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
 	audioManager_.reset(new AudioManager(this));
+	//audioManager_->silenceMusic();
 	gameManager_.reset(new GameManager(this));
 
 
