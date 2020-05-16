@@ -92,6 +92,7 @@ public:
 	static void FK1(Entity* ent);
 	static void FK2(Entity* ent);
 	static void FK3(Entity* ent);
+	static void FK4(Entity* ent);
 	static void FKC(Entity* ent);
 
 	//LaserLineal
