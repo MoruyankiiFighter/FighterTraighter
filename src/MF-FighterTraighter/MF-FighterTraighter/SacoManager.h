@@ -16,6 +16,9 @@ public:
 	//destructor
 	~SacoManager() {};
 	
+	int getTimeLimit() {
+		return timeLimit_;
+	}
 	//method overrided from Component
 	virtual void init() override;
 	virtual void update() override;

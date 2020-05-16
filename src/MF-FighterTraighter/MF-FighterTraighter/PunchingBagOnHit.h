@@ -7,6 +7,8 @@ class PunchingBagOnHit : public UserData
 public:
 	PunchingBagOnHit(Entity* e) : UserData(e) {}
 	~PunchingBagOnHit() {}
-	void onHit(b2Fixture* fixture) override;
+	void onHit(b2Fixture* other) override;
+private:
+	int winner;
 };
 

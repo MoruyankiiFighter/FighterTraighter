@@ -54,13 +54,13 @@ void Training::init()
 	pBpT->changeFriction(0);
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Saco));
 	Health* sacoHealth = saco->addComponent<Health>(200);
-	saco->addComponent<SacoManager>(35000);
+	SacoManager* sM = saco->addComponent<SacoManager>(3000);
 	entManager_.setHandler(saco, ecs::Saco);
 	
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
 	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timer->addComponent<UITimer>(UITimer::Seconds)->setCountdown(35000);
+	timer->addComponent<UITimer>(UITimer::Seconds)->setCountdown(sM->getTimeLimit());
 
 	Entity* healthbarBack = entManager_.addEntity();
 	healthbarBack->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(850, 20), Vector2D(1700, 40));

@@ -11,24 +11,40 @@ class GameManager
 {
 
 public:	
-enum AbilityID {
-	SeismicShock,
-	MegatonGrip,
-	ExplosiveWillpower,
-	AcidSplit,
-	Mina,
-	ShrugOff,
-	MorePower,
-	Hookshot,
-	Dash,
-	VampiricStrike,
-	HailBall,
-	ReachingStrike,
-	FlyingKicks,
-	LaserLineal,
-	NadoKick
-};
+	enum AbilityID {
+	//------level 1------//
+		ShrugOff,		
+		ReachingStrike,
+		MorePower,
+	//------level 2------//
+		AcidSplit,
+		Dash,
+		VampiricStrike,
+		LaserLineal,
+	//------level 3------//
+		Mina,
+		Hookshot,	
+		HailBall,		
+	//------level 4------//
+		ExplosiveWillpower,
+		FlyingKicks,		
+		NadoKick,
+	//------level 5------//
+		MegatonGrip,
+		SeismicShock,
+	//---to know the number of abilities---//
+		_last_ability,
+	};
 
+	//To choose between various abilities levels
+	enum AbilityFlags {		
+		level1_flag = ShrugOff,
+		level2_flag = AcidSplit,
+		level3_flag = Mina,
+		level4_flag = ExplosiveWillpower,
+		level5_flag = MegatonGrip,
+		max_level_flag = _last_ability
+	};
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
 		/*None,*/
@@ -59,7 +75,7 @@ enum AbilityID {
 	// Maybe there's something better than an int?
 	void playerLost(int player);
 	// To inform that saco has lost all its health
-	void trainingEnded();
+	void trainingEnded(int winner);
 	void setCharacter(CharacterID char_, int n) {
 		if (n == 1) {
 			player1_.character = char_;

@@ -94,14 +94,27 @@ void GameManager::playerLost(int player)
 
 }
 
-void GameManager::trainingEnded()
+void GameManager::trainingEnded(int winner)
 {
 	GameStateMachine* stateMachine = app_->getStateMachine();
-	//hacerlo random y tener en cuenta la seleccion de habilidades
-	player1_.abilities.push_back(MegatonGrip);
-	player1_.abilities.push_back(SeismicShock);	
-	player2_.abilities.push_back(MegatonGrip);
-	player2_.abilities.push_back(SeismicShock);
+	PlayerInfo *pWin = nullptr, 
+				*pLose = nullptr;
+	if (winner == 0) {
+		pWin = &player1_;
+		pLose = &player2_;
+	}
+	else {
+		pWin = &player2_;
+		pLose = &player1_;
+	}
+	
+	//the wining player chooses 1 and gets other random
+	//por ahora tiene las dos random, habría usar el estado de selección de habilidades aquí
+	pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	//the losing player, gets random lvl sth 
+	pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
 	// Remove the current training mode
 	stateMachine->popState();
 	stateMachine->pushState(new Fight(app_));
