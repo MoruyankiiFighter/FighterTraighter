@@ -25,7 +25,7 @@ void CharacterSelectionLogic::update()
 
 void CharacterSelectionLogic::handleInput()
 {
-	if (app_->getGameManager()->getPlayerInfo(playerNumber_).hid->ButtonPressed(HID::RightPad_Down)) {
+	if (app_->getGameManager()->getPlayerInfo(playerNumber_).hid->ButtonPressed(HID::RightPad_Down)&&!chose) {
 		cout << "you chose character  " <<playerNumber_<< endl;
 	
 
@@ -84,34 +84,36 @@ void CharacterSelectionLogic::SetElements()
 {
 
 	UIElement* e = nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY());
-	if (e == aisha_) {
-		desc_->setText(aisha_desc_);
-		image_->setTexture(aisha_texture);
-	}
-	else if (e == flor_) {
-		desc_->setText(flor_desc_);
-		image_->setTexture(flor_texture);
-	}
-	else if (e == mkwhoop_) {
-		desc_->setText(mkwhoop_desc_);
-		image_->setTexture(mkwhoop_texture);
+	if (!chose) {
+		if (e == aisha_) {
+			desc_->setText(aisha_desc_);
+			image_->setTexture(aisha_texture);
+		}
+		else if (e == flor_) {
+			desc_->setText(flor_desc_);
+			image_->setTexture(flor_texture);
+		}
+		else if (e == mkwhoop_) {
+			desc_->setText(mkwhoop_desc_);
+			image_->setTexture(mkwhoop_texture);
 
-	}
-	else if (e == mock_) {
-		desc_->setText(mock_desc_);
-		image_->setTexture(mock_texture);
-	}
-	else if (e == random_) {
-		// TODO: select a random character, and present the random splash art and description
-		// the selection will be done when the game is started
-		int n = 3;
+		}
+		else if (e == mock_) {
+			desc_->setText(mock_desc_);
+			image_->setTexture(mock_texture);
+		}
+		else if (e == random_) {
+			// TODO: select a random character, and present the random splash art and description
+			// the selection will be done when the game is started
+			int n = 3;
 
-		//generate a random
-		desc_->setText(" ");
-		image_->setTexture(random_texture); //add random texture
+			//generate a random
+			desc_->setText(" ");
+			image_->setTexture(random_texture); //add random texture
 
+		}
+
+		curNavX = nav_->GetPosX();
+		curNavY = nav_->GetPosY();
 	}
-
-	curNavX = nav_->GetPosX();
-	curNavY = nav_->GetPosY();
 }
