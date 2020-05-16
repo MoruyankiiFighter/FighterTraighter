@@ -5,8 +5,6 @@ void SacoManager::init() {
 
 	transform_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 
-	startTime_ = SDL_GetTicks();
-
 	PunchingBagInteraction rndInter = (PunchingBagInteraction)app_->getRandGen()->nextInt(0,_last_interaction);
 	
 	switch (rndInter)
@@ -20,6 +18,8 @@ void SacoManager::init() {
 	default:
 		break;
 	}
+
+	startTime_ = SDL_GetTicks();
 }
 
 //updates the punchingBag time limit
