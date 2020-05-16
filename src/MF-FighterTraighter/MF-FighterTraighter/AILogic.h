@@ -15,6 +15,7 @@ public:
 		attacking,
 		blocking,
 		crouching,
+		jumping
 	};
 
 

@@ -11,6 +11,8 @@ public:
 	void init() override;
 	void handleInput() override;
 
+	virtual void jump() override;
+
 protected:
 	AILogic* logic = nullptr;
 };

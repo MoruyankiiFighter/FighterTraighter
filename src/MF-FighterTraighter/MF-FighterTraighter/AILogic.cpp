@@ -68,7 +68,10 @@ void AILogic::update()
 		// read the first state
 		w = worldReads_.front();
 
-		if (GetCloser()) {
+		if (otherPlayer_->getComponent<PlayerState>(ecs::PlayerState)->isAttacking()) {
+			movementState_ = blocking;
+		}
+		else if (GetCloser()) {
 			if (playerID_ == 0) movementState_ = movingRight;
 			else movementState_ = movingLeft;
 		}
@@ -77,9 +80,10 @@ void AILogic::update()
 			else movementState_ = movingRight;
 		}
 		else {
-			if(app_->getRandGen()->nextInt(0, 50) != 0) {
-				movementState_ = idle;
-			}else movementState_ = crouching;
+			int randN = app_->getRandGen()->nextInt(0, 50);
+			if(randN < 39) movementState_ = idle;
+			else if (randN < 49) movementState_ = crouching;
+			//else movementState_ = jumping;
 		}
 
 		worldReads_.pop();

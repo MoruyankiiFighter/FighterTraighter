@@ -37,7 +37,7 @@ void AIGameState::init()
 
 	Entity* AI = entManager_.addEntity();
 	AI->addComponent<PhysicsTransform>(Vector2D(1400, 0), Vector2D(), 250, 500, 0, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0);
-	AI->addComponent<AILogic>(ecs::Player2, 0, Vector2D(400, 450));
+	AI->addComponent<AILogic>(ecs::Player2, 5, Vector2D(400, 550));
 	AI->addComponent<PlayerState>();
 	AI->addComponent<AIController>(-7, 4.5);
 	//PlayerData* pdata = AI->addComponent<F10RData>();
@@ -51,6 +51,5 @@ void AIGameState::handleInput()
 	if (app_->getInputManager()->pressedStart()) {
 		app_->Exit();
 	}
-	else
-		GameState::handleInput();
+	else GameState::handleInput();
 }
