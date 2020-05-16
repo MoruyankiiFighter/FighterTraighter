@@ -5,6 +5,7 @@
 #include <map>
 
 class HitboxData;
+class RenderImage;
 class AbilityFactory {
 public:
 	static AnimationChain* GiveAbility(GameManager::AbilityID id, Entity* e);
@@ -37,6 +38,11 @@ public:
 
 	static void AS1(Entity* ent);
 	static void ASC(Entity* ent);
+	//Mina
+	static AnimationChain* GiveMina(Entity* e);
+
+	static void M1(Entity* ent);
+	static void MC(Entity* ent);
 
 	//Shrug Off
 	static AnimationChain* GiveShrugOff(Entity* e);
@@ -103,7 +109,7 @@ public:
 	static void NK3(Entity* ent);
 	static void NKC(Entity* ent);
 
-	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
+	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false, bool render=false);
 	
 	//static Entity* createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,
 		//Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact = false, bool gravity = false, bool multihit = false);

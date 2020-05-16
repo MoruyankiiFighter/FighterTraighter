@@ -13,6 +13,7 @@ class AssetsManager
 public:
 	enum TextureNames {
 		Player,
+		Saco,
 		Button,
 		Logo,
 		Controller,
@@ -47,6 +48,9 @@ public:
 		Mp1,
 		Hs1,
 		As2,
+		M1,
+		M2,
+		M3,
 		Vs1,
 		Vs2,
 		Hb1,
