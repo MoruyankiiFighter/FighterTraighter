@@ -96,10 +96,10 @@ void GameManager::trainingEnded()
 {
 	GameStateMachine* stateMachine = app_->getStateMachine();
 	//hacerlo random y tener en cuenta la seleccion de habilidades
-	/*player1_.abilities.push_back(MegatonGrip);
+	player1_.abilities.push_back(MegatonGrip);
 	player1_.abilities.push_back(SeismicShock);	
 	player2_.abilities.push_back(MegatonGrip);
-	player2_.abilities.push_back(SeismicShock);	//hacerlo random */
+	player2_.abilities.push_back(SeismicShock);
 	// Remove the current training mode
 	stateMachine->popState();
 	stateMachine->pushState(new Fight(app_));

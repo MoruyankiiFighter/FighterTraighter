@@ -18,11 +18,14 @@ public:
 	void uncrouch();
 	void jump();
 	float getJumpImpulse() { return jumpImpulse; }
-	double getMovSpeed() { return movSpeed; }	
+	void canJump(bool jump) { canJump_ = jump; }
+	double getMovSpeed() { return movSpeed; }
+
 private:
 	HID* inputSt_ = nullptr;
 	PhysicsTransform* transform_ = nullptr;
 	float jumpImpulse = 0;
 	double movSpeed = 1;
 	double verticalDeadzone = 0.3;
+	bool canJump_ = true;
 };

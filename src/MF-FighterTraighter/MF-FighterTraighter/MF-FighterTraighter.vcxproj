@@ -181,9 +181,11 @@
     <ClCompile Include="PlayerOnHit.cpp" />
     <ClCompile Include="PlayerParticleSystem.cpp" />
     <ClCompile Include="PunchingBagOnHit.cpp" />
+    <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="RenderAnimation.cpp" />
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="LinkedGrid.cpp" />
+    <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="UIHealthbar.cpp" />
     <ClCompile Include="UIRoundRenderer.cpp" />
@@ -263,9 +265,11 @@
     <ClInclude Include="PlayerParticleSystem.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PunchingBagOnHit.h" />
+    <ClInclude Include="RandomNumberGenerator.h" />
     <ClInclude Include="RenderAnimation.h" />
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
+    <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="UIHealthbar.h" />
     <ClInclude Include="UIRoundRenderer.h" />
