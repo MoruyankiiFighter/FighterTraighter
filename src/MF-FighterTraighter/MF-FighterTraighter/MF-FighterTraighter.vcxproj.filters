@@ -136,9 +136,6 @@
     <ClCompile Include="UITransform.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerOnHit.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="LinkedGrid.cpp">
       <Filter>Source Files\Types</Filter>
     </ClCompile>
@@ -163,9 +160,6 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files\Manager and factories</Filter>
-    </ClCompile>
-    <ClCompile Include="MockingbirdData.cpp">
-      <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="HID.cpp" />
     <ClCompile Include="KeyboardHID.cpp" />
@@ -226,6 +220,18 @@
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
     <ClCompile Include="CharacterSelectionHandler.cpp" />
+    <ClCompile Include="PlayerOnHit.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerParticleSystem.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MockingbirdData.cpp">
+      <Filter>Source Files\PlayerData</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowPlayer.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -393,12 +399,6 @@
     <ClInclude Include="AbilityFactory.h">
       <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerData.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MkWH00PData.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="ControlsMenu.h">
       <Filter>Header files\GameState</Filter>
     </ClInclude>
@@ -491,6 +491,24 @@
     </ClInclude>
     <ClInclude Include="CharacterSelectionLogic.h" />
     <ClInclude Include="CharacterSelectionHandler.h" />
+    <ClInclude Include="VampiricDestroyAtTime.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="IceDestroyOnHit.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerParticleSystem.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MkWH00PData.h">
+      <Filter>Header files\PlayerData</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>Header files\PlayerData</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowPlayer.h">
+      <Filter>Header files\OnHits</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

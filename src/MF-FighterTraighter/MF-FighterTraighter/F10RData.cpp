@@ -1,6 +1,7 @@
 ﻿#include "F10RData.h"
 #include "AbilityFactory.h"
 #include "DestroyAtTime.h"
+#include "PlayerParticleSystem.h"
 F10RData::F10RData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber):
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
 	animLength_ = { {4, true, 12}, {3, true, 15}, {2, true, 3}, {1, true, 15}, {2, false, 2}, {4, false, 10}, {6, false, 10}, {5, false, 12},
@@ -90,37 +91,26 @@ void F10RData::HP1(Entity* ent)
 	std::cout << "Do it for the vine" << endl;
 #endif // _DEBUG
 
-	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::F10RHp);
-	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
-
-	uint16 mask;
-	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
-
+	double hitbox_X = np1.position.getX();
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
-	if (pD->getPlayerNumber() == 0) {
-		mask = currentState->PLAYER_2 | currentState->P_BAG;
-	}
-	else {
-		mask = currentState->PLAYER_1 | currentState->P_BAG;
-	}
+	int orientation_ = pT->getOrientation();
+	if (orientation_ == -1) hitbox_X += hp1.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, hp1.position.getY() }, hp1.width, hp1.height, hp1.time, pD->getAttack() * hp1.damage, hp1.hitstun,
+		{ (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 
-	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (hp1.width / 2) + hp1.position.getX();
-	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (hp1.width / 2) - hp1.position.getX();
+	int partX = pT->getWidth() * 3 / 4 - 20;
+	if(orientation_ == -1) partX = pT->getWidth() / 4 - hp1.width + 20;
+	Vector2D pos = Vector2D(partX, 285);
 
-	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + hp1.position.getY());
-
-	DestroyAtTime* dT = new DestroyAtTime(hp1.damage, hp1.time, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
-
-	AbilityFactory::instanceEntitywHitbox(ent, hp1.width, hp1.height, pos, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
-
-	//AbilityFactory::createProyectile(ent, hp1.width, hp1.height, pos, { 0, 0 }, hp1.damage, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, 
-		//hp1.time, mask, ent->getState(), ent->getApp(), texture, false);
+	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::F10RHp),
+		pos, Vector2D(hp1.width, hp1.height), hp1.time, PlayerParticleSystem::DeletionMethod::OnHit);
 }
 
 PlayerData::CallbackData F10RData::hp1 = PlayerData::CallbackData{
-	{ 0, 320 },
-	{ 12, 0 },
+	{ 0, 35 },
+	{ 350, -175 },
 	325,
 	70,
 	20,
@@ -178,7 +168,7 @@ void F10RData::HK1(Entity* ent)
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (hk1.width / 2) - hk1.position.getX();
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + hk1.position.getY());
-	DestroyAtTime* dT = new DestroyAtTime(hk1.damage, hk1.time, hk1.hitstun, { (double)orientation_ * hk1.knockBack.getX(), hk1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	DestroyAtTime* dT = new DestroyAtTime(hk1.damage * pD->getAttack(), hk1.time, hk1.hitstun, { (double)orientation_ * hk1.knockBack.getX(), hk1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
 	AbilityFactory::instanceEntitywHitbox(ent, hk1.width, hk1.height, pos,{ 0, -8 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 	
@@ -249,7 +239,7 @@ void F10RData::AHP1(Entity* ent)
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + ahp1.position.getY());
 
-	DestroyAtTime* dT = new DestroyAtTime(ahp1.damage, ahp1.time, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	DestroyAtTime* dT = new DestroyAtTime(ahp1.damage * pD->getAttack(), ahp1.time, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
 	AbilityFactory::instanceEntitywHitbox(ent, ahp1.width, ahp1.height, pos, { (double)orientation_ * 1.4, 4 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 	
@@ -291,7 +281,7 @@ void F10RData::ANK1(Entity* ent)
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX();
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + ank1.position.getY());
-	DestroyAtTime* dT = new DestroyAtTime(ank1.damage, ank1.time, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
+	DestroyAtTime* dT = new DestroyAtTime(ank1.damage * pD->getAttack(), ank1.time, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
 	/*AbilityFactory::createProyectile(ent, ank1.width, ank1.height, pos, { (double)orientation_ * 2, 0 }, ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() },
 		ank1.time, mask, ent->getState(), ent->getApp(), texture, false);*/
 	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos, { (double)orientation_ * 2, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);

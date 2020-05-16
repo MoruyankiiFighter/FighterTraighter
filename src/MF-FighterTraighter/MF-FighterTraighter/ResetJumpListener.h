@@ -25,8 +25,6 @@ public:
 				&& contact->GetFixtureB()->GetFilterData().categoryBits == 1	//if it collides with boundary (floor)
 				&& currState->isAirborne()
 				&& contact->GetFixtureA()->GetBody()->GetLinearVelocity().y >= 0) {
-					//PhysicsTransform* Pt1 = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
-
 					data->entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 					currState->goLanding(11 + (currState->getHoldingFrames()) * 0.8);
 
@@ -47,7 +45,6 @@ public:
 					&& contact->GetFixtureA()->GetFilterData().categoryBits == 1	//if it collides with boundary (floor)
 					&& currState->isAirborne()
 					&& contact->GetFixtureB()->GetBody()->GetLinearVelocity().y >= 0) {
-					PhysicsTransform* Pt1 = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
 					data->entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
 					currState->goLanding(11 + (currState->getHoldingFrames()) * 0.8);
 

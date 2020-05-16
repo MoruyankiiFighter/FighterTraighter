@@ -13,6 +13,7 @@ class AssetsManager
 public:
 	enum TextureNames {
 		Player,
+		Saco,
 		Button,
 		Logo,
 		Controller,
@@ -48,6 +49,7 @@ public:
 		Ganonbot_icon,
 		GanonArtwork,
 		GanonSheet,
+		MkHk,
 		
 		//resources of mockingbird
 		Mock_icon,
@@ -58,16 +60,22 @@ public:
 		Flor_icon,
 		FlorArtwork,
 		F10rSheet,
+		F10RHp,
+		F10RHk,
 
 		Random_icon,
 		RandomArtwork,
 
 		Ew1,
-		MkHk,
-		F10RHp,
-		F10RHk,
 		So1,
-		Mp1
+		Mp1,
+		Hs1,
+		As2,
+		Vs1,
+		Vs2,
+		Hb1,
+		Hb2,
+		Ll1
 	};
 
 	enum FontNames {
@@ -107,7 +115,8 @@ public:
 		/// SFX
 
 		PUNCH,
-		KICK
+		KICK,
+		DASH
 
 	};
 	//constructors

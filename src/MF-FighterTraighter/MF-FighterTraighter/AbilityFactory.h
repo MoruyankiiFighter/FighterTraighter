@@ -50,18 +50,56 @@ public:
 	static void MP1(Entity* ent);
 	static void MPC(Entity* ent);
 
-	//Whatever the rest of this is
-	//static AnimationChain* Bullets(Entity* e);
-	//static void Bullet1(Entity* ent);
+	//Hookshot
+	static AnimationChain* GiveHookshot(Entity* e);
+
+	static void HS1(Entity* ent);
+	static void HSC(Entity* ent);
+
+	//Dash
+	static AnimationChain* GiveDash(Entity* e);
+
+	static void Dash(Entity* ent);
+	static void DashC(Entity* ent);
+
+	//Vampiric Strike
+	static AnimationChain* GiveVampiricStrike(Entity* e);
+
+	static void VS1(Entity* ent);
+	static void VSC(Entity* ent);
+
+	//Hail Shard
+	static AnimationChain* GiveHailBall(Entity* e);
+
+	static void HB1(Entity* ent);
+	static void HBC(Entity* ent);
+
+	//Reaching Strike
+	static AnimationChain* GiveReachingStrike(Entity* e);
+
+	static void RS1(Entity* ent);
+	static void RSC(Entity* ent);
+
+	//FlyingKicks
+	static AnimationChain* GiveFlyingKicks(Entity* e);
+
+	static void FK1(Entity* ent);
+	static void FK2(Entity* ent);
+	static void FK3(Entity* ent);
+	static void FKC(Entity* ent);
+
+	//LaserLineal
+	static AnimationChain* GiveLaserLineal(Entity* e);
+
+	static void LL1(Entity* ent);
+	static void LLC(Entity* ent);
+
 	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false);
 	
 	//static Entity* createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,
 		//Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact = false, bool gravity = false, bool multihit = false);
 private: 
 
-	//GameState* state, uint16 playerNumber,Vector2D speed, int damage, int hitstun, Vector2D knockBack, int time, bool destroyInContact = false
-	//static Entity* createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,
-		//Vector2D knockBack, int time, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, bool destroyInContact = false, bool gravity = false,  bool multihit=false);
 	AbilityFactory() {};
 	~AbilityFactory() {};
 	static void goOnCoolodwn(Entity* e, int cool);
