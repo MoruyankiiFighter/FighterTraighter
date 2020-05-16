@@ -40,7 +40,7 @@ void PlayerAttacks::init()
 void PlayerAttacks::handleInput() {
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	Transform* tr = entity_->getComponent<Transform>(ecs::Transform);
-	PlayerController* ctrl = entity_->getComponent<PlayerController>(ecs::PlayerController);
+	PlayerController* ctrl = entity_->getComponent<PlayerController>(ecs::CharacterController);
 	if (currState->isAbleToAttack()) {
 		if (currState->isGrounded()) {
 			if (inputSt_->ButtonPressed(HID::RightPad_Down)) {

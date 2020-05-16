@@ -8,7 +8,7 @@ namespace ecs {
 
 	enum CmpId : CmpIdType {
 		Transform = 0,
-		PlayerController,
+		CharacterController,
 		Health,
 		RenderImage,
 		Jump,

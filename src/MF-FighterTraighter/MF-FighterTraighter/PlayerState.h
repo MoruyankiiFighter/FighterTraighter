@@ -3,7 +3,7 @@
 #include "PhysicsTransform.h"
 #include "Entity.h"
 
-class  PlayerState : public Component
+class PlayerState : public Component
 {
 public:
 	enum Status : uint8_t {

@@ -6,12 +6,14 @@
 class AILogic :
 	public Component
 {
+public:
 	enum AIStates {
 		idle,
 		movingLeft,
 		movingRight,
 	};
 
+protected:
 	// Size: (49 + nProjectiles * 24) bytes
 	struct WorldInformation {
 		PlayerState::Status otherPlayerStatus_; // 1 byte
@@ -26,6 +28,7 @@ public:
 	void init() override;
 	void update() override;
 
+	inline AIStates getMovingState() { return movementState_; }
 protected:
 	bool GetCloser();
 	bool GetFurther();

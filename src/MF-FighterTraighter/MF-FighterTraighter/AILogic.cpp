@@ -82,8 +82,6 @@ void AILogic::update()
 
 		worldReads_.pop();
 		timePassed = 0;
-
-		cout << movementState_ << endl;
 	}
 }
 

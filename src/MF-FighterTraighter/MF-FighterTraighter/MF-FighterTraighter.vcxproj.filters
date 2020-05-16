@@ -229,8 +229,15 @@
     </ClCompile>
     <ClCompile Include="AIGameState.cpp">
       <Filter>Source Files\GameState</Filter>
+    </ClCompile>
     <ClCompile Include="FollowPlayer.cpp">
       <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterController.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="AIController.cpp">
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -518,8 +525,15 @@
     </ClInclude>
     <ClInclude Include="AIGameState.h">
       <Filter>Header files\GameState</Filter>
+    </ClInclude>
     <ClInclude Include="FollowPlayer.h">
       <Filter>Header files\OnHits</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterController.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AIController.h">
+      <Filter>Header files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

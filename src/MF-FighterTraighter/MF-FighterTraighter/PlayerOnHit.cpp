@@ -19,7 +19,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 	PlayerParticleSystem* pSystem = entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem);
 	if (!currState->isProtected() /*&& !hBox_data->guardBreaker*/) {
 		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
-		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
+		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::CharacterController)->uncrouch();
 		if (!hBox_data->guardBreaker_ && hBox_data->doesDamage()) {
 			helth->LoseLife(hBox_data->damage_);
 			entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::MKWOP_1), false);

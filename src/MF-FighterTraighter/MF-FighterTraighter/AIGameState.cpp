@@ -5,14 +5,15 @@
 #include "PlayerAttacks.h"
 #include "F10RData.h"
 #include "AIHID.h"
+#include "AIController.h"
 
 void AIGameState::init()
 {
 	GameState::init();
 	doStep = true;
 
-	delete app_->getGameManager()->getPlayerInfo(2).hid;
-	*app_->getGameManager()->getPlayerInfo(2).hid = AIHID();
+	//delete app_->getGameManager()->getPlayerInfo(2).hid;
+	//*app_->getGameManager()->getPlayerInfo(2).hid = AIHID();
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
@@ -36,11 +37,12 @@ void AIGameState::init()
 
 	Entity* AI = entManager_.addEntity();
 	AI->addComponent<PhysicsTransform>(Vector2D(1400, 0), Vector2D(), 250, 500, 0, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0);
-	AI->addComponent<AILogic>(ecs::Player2, 0, Vector2D(400, 600));
+	AI->addComponent<AILogic>(ecs::Player2, 0, Vector2D(400, 450));
 	AI->addComponent<PlayerState>();
-	PlayerData* pdata = AI->addComponent<F10RData>();
-	AI->addComponent<PlayerAttacks>(&app_->getGameManager()->getPlayerInfo(2).hid, pdata->getNormal_punch(), pdata->air_normal_punch(), pdata->getHard_punch(), pdata->air_hard_punch(),
-		pdata->getNormal_kick(), pdata->air_normal_kick(), pdata->getHard_kick(), pdata->air_hard_kick(), pdata->guard_breaker());
+	AI->addComponent<AIController>(-7, 4.5);
+	//PlayerData* pdata = AI->addComponent<F10RData>();
+	//AI->addComponent<PlayerAttacks>(&app_->getGameManager()->getPlayerInfo(2).hid, pdata->getNormal_punch(), pdata->air_normal_punch(), pdata->getHard_punch(), pdata->air_hard_punch(),
+		//pdata->getNormal_kick(), pdata->air_normal_kick(), pdata->getHard_kick(), pdata->air_hard_kick(), pdata->guard_breaker());
 	entManager_.setHandler(AI, ecs::Player2);
 }
 
