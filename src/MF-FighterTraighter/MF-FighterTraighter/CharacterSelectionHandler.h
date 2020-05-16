@@ -7,10 +7,12 @@ class CharacterSelectionHandler :
 public:
 	
 	CharacterSelectionHandler(Entity* j1, Entity* j2): Component(ecs::CharacterSelectionHandler), log1(j1), log2(j2){}
+	~CharacterSelectionHandler() { delete ent; }
 	void init() override;
 	void update() override;
 	void render() override;
 	void handleInput() override;
+
 private:
 	bool j1_ = false, j2_ = false;
 
