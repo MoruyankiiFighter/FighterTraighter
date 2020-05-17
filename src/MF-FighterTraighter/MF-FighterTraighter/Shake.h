@@ -22,10 +22,14 @@ public:
     bool shakeDirection = false;
 
     //Indicates if the screen is currently shaking
-    bool  shaking=true;
+    bool  shaking=false;
     bool getShake()
     {
         return shaking;
+    }
+    void playShake()
+    {
+        shaking = true;
     }
 
     //delta is the ms passed since last update

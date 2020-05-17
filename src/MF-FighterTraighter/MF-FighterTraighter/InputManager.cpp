@@ -161,6 +161,8 @@ void InputManager::initControllers()
 					}
 				}
 				else
+#ifdef _DEBUG
+
 					std::cout << "SDL_GetError() = " << SDL_GetError() << std::endl;
 #endif 
 				}
@@ -181,4 +183,3 @@ void InputManager::initControllers()
 		}
 	}
 	///
-}

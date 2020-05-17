@@ -28,6 +28,7 @@ void Fight::init()
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
     bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
 	bg->addComponent<Shake>();
+	entManager_.setHandler(bg, ecs::Camara);
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
