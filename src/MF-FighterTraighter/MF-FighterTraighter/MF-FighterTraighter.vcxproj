@@ -156,6 +156,7 @@
     <ClCompile Include="LastHit_Wins.cpp" />
     <ClCompile Include="MkWH00PData.cpp" />
     <ClCompile Include="MockingbirdData.cpp" />
+    <ClCompile Include="MoreDamage_Wins.cpp" />
     <ClCompile Include="MoveParser.cpp" />
     <ClCompile Include="NavigationController.cpp" />
     <ClCompile Include="OptionsLogic.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="LastHit_Wins.h" />
     <ClInclude Include="MkWH00PData.h" />
     <ClInclude Include="MockingbirdData.h" />
+    <ClInclude Include="MoreDamage_Wins.h" />
     <ClInclude Include="MoveParser.h" />
     <ClInclude Include="NavigationController.h" />
     <ClInclude Include="OnHit.h" />

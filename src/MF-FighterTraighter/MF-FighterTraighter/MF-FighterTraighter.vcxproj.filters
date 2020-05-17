@@ -176,9 +176,6 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="UserData.cpp" />
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="PunchingBagOnHit.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="BulletGravity.cpp">
@@ -233,7 +230,12 @@
     <ClCompile Include="PlayerOnHit.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
-    <ClCompile Include="LastHit_Wins.cpp" />
+    <ClCompile Include="LastHit_Wins.cpp">
+      <Filter>Source Files\OnHit\PunchingBag</Filter>
+    </ClCompile>
+    <ClCompile Include="MoreDamage_Wins.cpp">
+      <Filter>Source Files\OnHit\PunchingBag</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -513,7 +515,12 @@
     <ClInclude Include="PunchingBagOnHit.h">
       <Filter>Header files\OnHits\PunchingBag</Filter>
     </ClInclude>
-    <ClInclude Include="LastHit_Wins.h" />
+    <ClInclude Include="LastHit_Wins.h">
+      <Filter>Header files\OnHits\PunchingBag</Filter>
+    </ClInclude>
+    <ClInclude Include="MoreDamage_Wins.h">
+      <Filter>Header files\OnHits\PunchingBag</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

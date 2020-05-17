@@ -1037,6 +1037,7 @@ void AbilityFactory::NKC(Entity* ent)
 	goOnCoolodwn(ent,60 * 1);
 }
 
+//creates a kinematic entity with a "bullet" behaviour
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity,bool render) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
 	if (pos.getX() >= windowWidth)  
@@ -1060,10 +1061,6 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 		e->addComponent<Bullet>(ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), uData,speed);
 	uData->entity_ = e;//change to the new entity 
 	return e;
-
-
-
-	
 }
 
 

@@ -94,8 +94,11 @@ void GameManager::playerLost(int player)
 
 }
 
+//winner = 0; player1 wins
+//winner = 1; player2 wins
 void GameManager::trainingEnded(int winner)
 {
+	cout << "Player " << winner + 1 << " wins the training!" << endl;
 	GameStateMachine* stateMachine = app_->getStateMachine();
 	PlayerInfo *pWin = nullptr, 
 				*pLose = nullptr;
