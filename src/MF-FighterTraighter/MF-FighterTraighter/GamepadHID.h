@@ -7,42 +7,40 @@ class GamepadHID :
 public:
 	GamepadHID(InputManager* input, int id) : inputM_(input), gamepadID(id) {}
 
+	std::vector<std::string>& getControl()
+	{
+		return mando;
+	}
 	inline void changeButton(int index, SDL_GameControllerButton newButton) {
 		buttons[index] = newButton;
 	}
 	inline void changeAxis(int index, SDL_GameControllerAxis newAxis) {
 		axes[index] = newAxis;
 	}
-	/*inline void change(int index)
+	inline void change(int index)
 	{
+		bool usado = false;
+		std::string l = inputM_->lastcontrol();
 		for (int i = 0; i < mando.size(); i++)
 		{
-			if (mando[i] == lastAxisstring() || mando[i] == lastButtonstring())
+			if (mando[i] == l)
 			{
 				usado = true;
 				std::string aux = mando[i];
-				mando[i] = mando[index - 4];
-				mando[index - 4] = aux;
+				mando[i] = mando[index];
+				mando[index ] = aux;
 				break;
 			}
 		}
 		if (!usado)
 		{
-			if (controllerEvent_)
-			{
-				mando[index] = lastButtonstring();
-
-			}
-			else
-			{
-				mando[index] = lastAxisstring();
-
-			}
+			
+				mando[index] = inputM_->lastcontrol();
 
 		}
+		
 
-
-	}*/
+	}
 
 	virtual void updateInput() override;
 protected:
@@ -89,5 +87,8 @@ protected:
 		SDL_CONTROLLER_BUTTON_RIGHTSHOULDER, SDL_CONTROLLER_BUTTON_LEFTSTICK, SDL_CONTROLLER_BUTTON_RIGHTSTICK };
 	std::vector<SDL_GameControllerAxis> axesButtons = { SDL_CONTROLLER_AXIS_LEFTX, SDL_CONTROLLER_AXIS_LEFTY,
 		SDL_CONTROLLER_AXIS_RIGHTX, SDL_CONTROLLER_AXIS_RIGHTY, SDL_CONTROLLER_AXIS_TRIGGERLEFT, SDL_CONTROLLER_AXIS_TRIGGERRIGHT };
+	std::vector<std::string>mando = {
+	"Start","Back","dpleft","dpup","dpright","dpdown","x","y","b","a","leftshoulder","rightshoulder","leftstick","rightstick","lefttrigger","righttrigger"
+	};
 };
 

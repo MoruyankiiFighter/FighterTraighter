@@ -19,8 +19,8 @@ public:
 		RightBumper = 2048,
 		LeftJoystickClick = 4096,
 		RightJoystickClick = 8192,
-		//LTrigger = 16384,
-		//RTrigger = 32768
+		LeftTrigger = 16384,
+		RightTrigger = 32768
 	};
 
 	enum AxesID {
@@ -28,8 +28,6 @@ public:
 		LJoyY,
 		RJoyX,
 		RJoyY,
-		LTrigger,
-		RTrigger,
 		/*
 		
 		*/

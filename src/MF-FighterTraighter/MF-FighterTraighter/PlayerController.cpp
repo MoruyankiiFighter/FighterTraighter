@@ -33,7 +33,7 @@ void PlayerController::handleInput()
 	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	InputManager* input = app_->getInputManager();
-	if (inputSt_->AxisInput(HID::LTrigger) > 0 && currState->canGuard())
+	if (inputSt_->ButtonPressed(HID::LeftTrigger)  && currState->canGuard())
 	{
 		if (currState->isCrouch()) uncrouch();
 		else if (currState->isMoving())transform_->setSpeed(0, speed.getY());
@@ -90,7 +90,7 @@ void PlayerController::handleInput()
 			else { currState->goJumping(); };
 		}
 	}
-	if (!inputSt_->AxisInput(HID::LTrigger) > 0) {
+	if (!inputSt_->ButtonPressed(HID::LeftTrigger)) {
 		if (currState->isGuarding())
 		{
 			currState->goGuardingLeaving(14);

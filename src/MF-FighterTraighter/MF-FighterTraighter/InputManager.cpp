@@ -73,6 +73,12 @@ void InputManager::update()
 				if (e.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(connectedControllers[i]))) {
 					// So the relevant state can be updated
 					controllerInputs[i].buttons[e.cbutton.button] = true;
+					if (last)
+					{
+						lstButton = SDL_GameControllerGetStringForButton((SDL_GameControllerButton)e.cbutton.button);
+
+
+					}
 
 				}
 			}
@@ -84,6 +90,7 @@ void InputManager::update()
 			for (int i = 0; i < numGamepads; i++) {
 				if (e.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(connectedControllers[i]))) {
 					controllerInputs[i].buttons[e.cbutton.button] = false;
+					
 				}
 			}
 			break;
@@ -96,6 +103,11 @@ void InputManager::update()
 					if (abs(controllerInputs[i].axis[e.caxis.axis] - e.caxis.value) > 15000)
 					{
 						axisEvent_ = true;
+						if (last && e.caxis.axis>3)
+						{
+							lstButton = SDL_GameControllerGetStringForAxis((SDL_GameControllerAxis)e.caxis.axis);
+
+						}
 					}
 
 					controllerInputs[i].axis[e.caxis.axis] = e.caxis.value;

@@ -5,6 +5,7 @@
 #include "OptionsMenu.h"
 #include "consts.h"
 #include "KeyboardHID.h"
+#include "GamepadHID.h"
 
 void ButtonControl::init()
 {
@@ -26,7 +27,7 @@ void ButtonControl::handleInput()
 
 				b = pressEnter;
 			}
-		/**/	else if (imngr->isControllerButtonUp(0, SDL_CONTROLLER_BUTTON_A) && control == 1)
+		/**/else if (imngr->isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_A) && control == 1)
 			{
 				Press();
 				text_->setText("Press Button");
@@ -42,23 +43,16 @@ void ButtonControl::handleInput()
 		
 		break;
 	case ButtonControl::pressA:
-		/**/	if (!imngr->isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_A))
+		if (imngr->isControllerButtonUp(0, SDL_CONTROLLER_BUTTON_A))
 		{
+			imngr->readKey();
 			b = AUP;
 
 		}
 		break;
 	case ButtonControl::AUP:
-		if (imngr->axisEvent())
-		{
-			texto = imngr->lastAxisstring();
-
-		}
-		else if (imngr->controllerEvent() )
-		{
-			texto = imngr->lastButtonstring();
-			
-		}
+		
+		texto = imngr->lastcontrol();
 		if (texto != "")
 		{
 			b = leeInput;
@@ -68,7 +62,7 @@ void ButtonControl::handleInput()
 	case ButtonControl::ENTERUP:
 		if (imngr->keyboardEvent())
 		{
-			texto = imngr->lastKeystring();
+			texto =SDL_GetScancodeName( imngr->lastKey());
 			if (texto!="")
 			{
 				b = leeInput;
@@ -86,6 +80,7 @@ void ButtonControl::handleInput()
 		}
 		Buttonstate_ = Selected;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
+		imngr->stopreadKey();
 		break;
 	}			
 }
@@ -99,9 +94,9 @@ void ButtonControl::render()
 			text_->setText(SDL_GetScancodeName(dynamic_cast<KeyboardHID*>(app_->getGameManager()->getPlayerInfo(1).hid)->getkeys().at(index)));
 
 		}
-		else if(index>3)
+		else 
 		{
-			//text_->setText(app_->getInputManager()->ControlMando()[index-4]);
+			text_->setText(dynamic_cast<GamepadHID*>(app_->getGameManager()->getPlayerInfo(2).hid)->getControl().at(index));
 		}
 	}
 	

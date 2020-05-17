@@ -4,6 +4,7 @@
 #include "Vector2D.h"
 #include <memory>
 #include <vector>
+#include <string>
 #include <SDL_gamecontroller.h>
 #include <iostream>
 class App;
@@ -23,11 +24,11 @@ public:
 	InputManager(App* app);
 	InputManager(InputManager&) = delete;
 	InputManager& operator= (InputManager&) = delete;
-	
+
 	void update();
 
-	
-	
+
+
 	// Keyboard
 	inline bool isKeyUp(SDL_Scancode code) {
 		return keyboardState_[code] == 0;
@@ -75,6 +76,20 @@ public:
 
 	// Controller
 
+	bool isControllerPressed(int controllerID, std::string* button)
+	{
+		std::string a = button->c_str();
+		if (a == "lefttrigger" || a == "righttrigger")
+		{
+			return getControllerAxis(controllerID, SDL_GameControllerGetAxisFromString(button->c_str())) > 0.2 ? true : false;
+		}
+		else
+		{
+			return isControllerButtonHeld(controllerID, SDL_GameControllerGetButtonFromString(button->c_str()));
+		}
+
+
+	}
 	bool isControllerButtonPressed(int controllerID, SDL_GameControllerButton button)
 	{
 		// SMELLS A LOT
@@ -133,13 +148,13 @@ public:
 		return KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_B);
 	}
 	inline bool pressedStart() {
-		return KeyPressed(SDL_SCANCODE_ESCAPE) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START) 
+		return KeyPressed(SDL_SCANCODE_ESCAPE) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START)
 			|| isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START);
 	}
 
-	
 
-	
+
+
 
 
 	virtual ~InputManager();
@@ -163,6 +178,8 @@ private:
 			mouseState_[Right] = state;
 		}
 	};
+	bool last=false;
+	std::string lstButton;
 	SDL_Event e;
 	App* app_;
 	const Uint8* keyboardState_;
@@ -178,134 +195,29 @@ private:
 	int numGamepads;
 
 
-	
+
 	// if in this frame there has been an event
 	bool mouseEvent_ = false; // click
 	bool keyboardEvent_ = false; // press
 	bool controllerEvent_ = false; // button
 	bool axisEvent_ = false; //axis
-	std::vector<SDL_Scancode> keys_ = { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X,
-		SDL_SCANCODE_SPACE, SDL_SCANCODE_R, SDL_SCANCODE_1, SDL_SCANCODE_2,};
-	
-	std::vector<std::string>mando= {
-	"a","b","x","y","leftshoulder","rightshoulder","lefttrigger","rigthtrigger"
-	};
-		
-	
-	public:
-		SDL_Scancode lastKey()
-		{
-			return e.key.keysym.scancode;
-		}
-		SDL_GameControllerAxis lastAxis()
-		{
-			return RepairGamePadAxis();
-		}
-		SDL_GameControllerButton lastButton()
-		{
-			return RepairGamePadButton();
-		}
-		std::string lastKeystring()
-		{
-			return SDL_GetScancodeName(e.key.keysym.scancode);
-		}
-		std::string lastAxisstring()
-		{
-			return SDL_GameControllerGetStringForAxis(lastAxis());
-		}
-		std::string lastButtonstring()
-		{
-			return SDL_GameControllerGetStringForButton(lastButton());
-		}
-		void change(int index, int control) 
-		{
-			bool usado = false;
-			if (control==0)
-			{
-				
-			
-				for (int i = 0; i < keys_.size(); i++)
-				{
-					if (keys_[i]==lastKey())
-					{
-						usado = true;
-						SDL_Scancode aux= keys_[i];
-						keys_[i] = keys_[index];
-						keys_[index] = aux;
-						break;
-					}
-				}
-				if (!usado)
-				{
-					keys_[index] = lastKey();
 
-				}
 
-			}
-			else if(index>3)
-			{
-				for (int i = 0; i < mando.size(); i++)
-				{
-					if (mando[i] == lastAxisstring() || mando[i] == lastButtonstring())
-					{
-						usado = true;
-						std::string aux = mando[i];
-						mando[i] = mando[index-4];
-						mando[index-4] = aux;
-						break;
-					}
-				}
-				if (!usado)
-				{
-					if (controllerEvent_)
-					{
-						mando[index] = lastButtonstring();
 
-					}
-					else
-					{
-						mando[index] = lastAxisstring();
+public:
 
-					}
+	void readKey() { last = true; }
+	void stopreadKey() { last = false; lstButton = ""; }
+	SDL_Scancode lastKey()
+	{
+		return e.key.keysym.scancode;
+	}
+	std::string lastcontrol()
+	{
+			 
+			return lstButton;
+	}
 
-				}
-				
 
-			}
-			
-		};
-		
-		std::vector<std::string>ControlMando()
-		{
-			return mando;
-		}
-	
-		//hell code to repair the gamepad
-		SDL_GameControllerButton RepairGamePadButton()
-		{
-			switch ((SDL_GameControllerButton)e.cbutton.button)
-			{
-			case SDL_CONTROLLER_BUTTON_BACK:
-				return SDL_CONTROLLER_BUTTON_LEFTSHOULDER;
-				break;
-			case SDL_CONTROLLER_BUTTON_GUIDE:
-				return SDL_CONTROLLER_BUTTON_RIGHTSHOULDER;
-				break;
-			default: 
-				return (SDL_GameControllerButton)e.cbutton.button;
-			}
 
-		}
-		SDL_GameControllerAxis RepairGamePadAxis()
-		{
-			switch ((SDL_GameControllerAxis)e.caxis.axis)
-			{
-			case SDL_CONTROLLER_AXIS_RIGHTX:
-				return SDL_CONTROLLER_AXIS_TRIGGERLEFT;
-				break;
-			default: 
-				return (SDL_GameControllerAxis)e.caxis.axis;
-			}
-
-		}
 };
