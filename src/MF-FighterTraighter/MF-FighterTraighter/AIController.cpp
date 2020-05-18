@@ -15,7 +15,9 @@ void AIController::handleInput()
 {
 	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
-	
+	std::cout << currState->getState() << endl;
+
+
 	if (logic->getMovingState() == AILogic::blocking)
 	{
 		TryGuarding(currState, speed);
@@ -51,6 +53,7 @@ void AIController::handleInput()
 
 void AIController::jump()
 {
+	TryStopCrouch(entity_->getComponent<PlayerState>(ecs::PlayerState));
 	transform_->getBody()->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), transform_->getBody()->GetWorldCenter(), true);
 	transform_->getBody()->SetLinearDamping(0);
 	entity_->getComponent<PlayerState>(ecs::PlayerState)->goJumpingTrans(7);

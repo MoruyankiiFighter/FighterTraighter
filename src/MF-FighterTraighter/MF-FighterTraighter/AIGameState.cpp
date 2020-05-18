@@ -38,26 +38,8 @@ void AIGameState::init()
 		PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	entManager_.setHandler(player1, ecs::Player1);
 
-
-	Entity* AI = entManager_.addEntity();
-	PhysicsTransform* pT = AI->addComponent<PhysicsTransform>(Vector2D(1400, 700), Vector2D(), 500, 500, 0, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0);
-	pT->resetUserData(new PlayerOnHit(AI));
-	pT->setOrientation(-1);
-	pT->setColliderWidth(pT->getWidth() / 2);
-	pT->getBody()->SetLinearDamping(10);	//friction
-	addHurtbox(pT->getMainFixture());
-	int orientation = pT->getOrientation();
-	AI->addComponent<AILogic>(ecs::Player2, 5, Vector2D(400, 550));
-	AI->addComponent<PlayerState>();
-	AI->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::F10rSheet));
-	AIController* aC = AI->addComponent<AIController>(-7, 4.5);
-	PlayerData* pdata = AI->addComponent<F10RData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), -7, Vector2D(-orientation * 100.0 + 200, 10), 4.5, 100, 1, 1, 1);
-	AI->addComponent<AIAttacks>(pdata->getNormal_punch(), pdata->air_normal_punch(), pdata->getHard_punch(), pdata->air_hard_punch(),
-		pdata->getNormal_kick(), pdata->air_normal_kick(), pdata->getHard_kick(), pdata->air_hard_kick(), pdata->guard_breaker());
-	AI->addComponent<PlayerParticleSystem>(10);
-	pT->resetUserData(new PlayerOnHit(AI));
-	AI->addComponent<Health>(100);
-	AI->addComponent<PlayerAnimation>();
+	Entity* AI = CharFactory::addAICharacterToGame(app_, this, -1, world, GameManager::F10R, 5, Vector2D(400, 550),
+		PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
 	entManager_.setHandler(AI, ecs::Player2);
 }
 
