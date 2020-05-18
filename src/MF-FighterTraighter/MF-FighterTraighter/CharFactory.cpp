@@ -18,7 +18,7 @@
 Entity* CharFactory::addCharacterToGame(App* app, GameState* state, double orientation, b2World* world, const GameManager::PlayerInfo* character, uint16 cBits, uint16 mBits, int playerNumber)
 {
 	Entity* e = state->getEntityManager().addEntity();
-	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100.0 + 960, 700), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
+	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 250.0 + 960, 700), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
 	pT->resetUserData(new PlayerOnHit(e));
 	pT->setOrientation(orientation);
 	pT->setColliderWidth(pT->getWidth() / 2);
@@ -71,7 +71,7 @@ Entity* CharFactory::addCharacterToGame(App* app, GameState* state, double orien
 Entity* CharFactory::addAICharacterToGame(App* app, GameState* state, double orientation, b2World* world, GameManager::CharacterID character, int reactionTime, Vector2D confortRange, uint16 cBits, uint16 mBits, int playerNumber)
 {
 	Entity* e = state->getEntityManager().addEntity();
-	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 100.0 + 960, 700), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
+	PhysicsTransform* pT = e->addComponent<PhysicsTransform>(Vector2D(-orientation * 250.0 + 960, 700), Vector2D(0, 0), 500, 500, 0, world, cBits, mBits, 0);
 	pT->resetUserData(new PlayerOnHit(e));
 	pT->setOrientation(orientation);
 	pT->setColliderWidth(pT->getWidth() / 2);

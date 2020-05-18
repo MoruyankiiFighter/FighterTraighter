@@ -34,13 +34,17 @@ void AIGameState::init()
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
 	W2pT->changeFriction(0);
 
-	Entity* player1 = CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1),
-		PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
-	entManager_.setHandler(player1, ecs::Player1);
+	//Entity* player1 = CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1),
+	//	PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
+	//entManager_.setHandler(player1, ecs::Player1);
 
-	Entity* AI = CharFactory::addAICharacterToGame(app_, this, -1, world, GameManager::F10R, 5, Vector2D(400, 550),
+	Entity* AI1 = CharFactory::addAICharacterToGame(app_, this, 1, world, GameManager::F10R, 5, Vector2D(350, 450),
+		PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
+	entManager_.setHandler(AI1, ecs::Player1);
+
+	Entity* AI2 = CharFactory::addAICharacterToGame(app_, this, -1, world, GameManager::F10R, 5, Vector2D(350, 450),
 		PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
-	entManager_.setHandler(AI, ecs::Player2);
+	entManager_.setHandler(AI2, ecs::Player2);
 }
 
 void AIGameState::handleInput()

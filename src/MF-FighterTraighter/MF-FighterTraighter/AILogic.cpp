@@ -3,13 +3,18 @@
 
 void AILogic::init()
 {
-	ecs::HandlerId id = ecs::Player1;
-	if (playerID_ == ecs::Player1) id = ecs::Player2;
-	otherPlayer_ = state_->getEntityManager().getHandler(id);
+
 }
 
 void AILogic::update()
 {
+	if (otherPlayer_ == nullptr) {
+		ecs::HandlerId id;
+		if (playerID_ == ecs::Player1) id = ecs::Player2;
+		else if (playerID_ == ecs::Player2) id = ecs::Player1;
+		otherPlayer_ = state_->getEntityManager().getHandler(id);
+	}
+
 	//// Auxiliary variables
 	//WorldInformation w;
 

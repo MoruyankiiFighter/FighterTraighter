@@ -15,8 +15,6 @@ void AIController::handleInput()
 {
 	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
-	std::cout << currState->getState() << endl;
-
 
 	if (logic->getMovingState() == AILogic::blocking)
 	{
