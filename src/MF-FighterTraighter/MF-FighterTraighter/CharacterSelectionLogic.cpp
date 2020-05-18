@@ -52,7 +52,7 @@ void CharacterSelectionLogic::handleInput()
 		}
 		else if (e == random_->getComponent<UIElement>(ecs::UIElement)) {
 
-			int n = app_->getRandGen()->nextInt(1, 4);
+			int n = app_->getRandGen()->nextInt(1, 3); // use this to enable/disable characters
 
 			switch (n) {
 			case 0:
