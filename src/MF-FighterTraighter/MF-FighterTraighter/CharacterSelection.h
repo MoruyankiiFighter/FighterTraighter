@@ -11,11 +11,6 @@ public:
 	virtual ~CharacterSelection() {}
 	void init() override;
 	void handleInput() override;
-
-	
-
-
-
 private:
 	
 	string mkwhoop_desc= "MKW00P: Tiene un playstyle lento pero poderoso, con golpes contundentes y de alto empuje. Tiene una vida alta.";

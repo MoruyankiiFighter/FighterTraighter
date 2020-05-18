@@ -3,7 +3,7 @@
 #include "PlayerController.h"
 #include "RenderImage.h"
 #include "PauseMenu.h"
-#include "SacoTimer.h"
+#include "SacoManager.h"
 #include "PunchingBagOnHit.h"
 #include "FloorOnHit.h"
 #include "UITransform.h"
@@ -50,18 +50,16 @@ void Training::init()
 	Entity* saco = entManager_.addEntity();
 	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h - 655), Vector2D(10, 10), 250, 800, 0, world, P_BAG, PLAYER_1 | PLAYER_2 | BULLET, 2);
 	addHurtbox(pBpT->getMainFixture());
-	pBpT->resetUserData(new PunchingBagOnHit(saco));
 	pBpT->changeFriction(0);
-	//addHurtbox()
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Saco));
 	Health* sacoHealth = saco->addComponent<Health>(200);
-	saco->addComponent<SacoTimer>(35000);
+	SacoManager* sM = saco->addComponent<SacoManager>(35000);
 	entManager_.setHandler(saco, ecs::Saco);
 	
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
 	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timer->addComponent<UITimer>(UITimer::Seconds)->setCountdown(35000);
+	timer->addComponent<UITimer>(UITimer::Seconds)->setCountdown(sM->getTimeLimit());
 
 	Entity* healthbarBack = entManager_.addEntity();
 	healthbarBack->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(850, 20), Vector2D(1700, 40));
