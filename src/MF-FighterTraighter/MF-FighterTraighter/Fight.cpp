@@ -54,6 +54,7 @@ void Fight::init()
 	const GameManager::PlayerInfo& p1_info = app_->getGameManager()->getPlayerInfo(1);
 	
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
+		//->setAbility(AbilityFactory::GiveAbility((GameManager::AbilityID::KnockDown), player1), 0);//use it to test the ability u want
 		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability1Index], player1), 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
 		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability2Index], player1), 1);

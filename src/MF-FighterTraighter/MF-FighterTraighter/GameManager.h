@@ -24,7 +24,8 @@ public:
 	//------level 3------//
 		Mina,
 		Hookshot,	
-		HailBall,		
+		HailBall,
+		KnockDown,
 	//------level 4------//
 		ExplosiveWillpower,
 		FlyingKicks,		
