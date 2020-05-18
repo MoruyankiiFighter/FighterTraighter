@@ -10,9 +10,13 @@ void CharacterSelectionLogic::init()
 	desc_->setText("");
 	curNavX = nav_->GetPosX();
 	curNavY = nav_->GetPosY();
+	aisha_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(false);
+	flor_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(false);
+	mkwhoop_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(false);
+	mock_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(false);
+	random_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(false);
 	SetElements();
 	chose = false;
-
 }
 
 void CharacterSelectionLogic::update()
@@ -25,34 +29,32 @@ void CharacterSelectionLogic::update()
 
 void CharacterSelectionLogic::handleInput()
 {
-	if (app_->getGameManager()->getPlayerInfo(playerNumber_).hid->ButtonPressed(HID::RightPad_Down)&&!chose) {
-		cout << "you chose character  " <<playerNumber_<< endl;
-	
+	if (app_->getGameManager()->getPlayerInfo(playerNumber_).hid->ButtonPressed(HID::RightPad_Down) && !chose) {
+		cout << "you chose character  " << playerNumber_ << endl;
+
 
 		UIElement* e = nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY());
-		if (e == aisha_) {
-			
+		if (e == aisha_->getComponent<UIElement>(ecs::UIElement)) {
+
 			// Not implemented
 			//app_->getGameManager()->setCharacter(app_->getGameManager()->Aisha, n);
 		}
-		else if (e == flor_) {
-		
+		else if (e == flor_->getComponent<UIElement>(ecs::UIElement)) {
+
 			app_->getGameManager()->setCharacter(app_->getGameManager()->F10R, playerNumber_);
 		}
-		else if (e == mkwhoop_) {
-		
+		else if (e == mkwhoop_->getComponent<UIElement>(ecs::UIElement)) {
+
 			app_->getGameManager()->setCharacter(app_->getGameManager()->MKWh00p, playerNumber_);
 		}
-		else if (e == mock_) {
+		else if (e == mock_->getComponent<UIElement>(ecs::UIElement)) {
 			app_->getGameManager()->setCharacter(app_->getGameManager()->Mockingbird, playerNumber_);
 		}
-		else if (e == random_) {
-			
-			int n = 3;
-			//generate a random
-			
+		else if (e == random_->getComponent<UIElement>(ecs::UIElement)) {
+
+			int n = app_->getRandGen()->nextInt(1, 4);
+
 			switch (n) {
-			
 			case 0:
 				n = 1;
 				//another random cause it's Aisha case 
@@ -74,7 +76,7 @@ void CharacterSelectionLogic::handleInput()
 		curNavY = nav_->GetPosY();
 	}
 
-	if (app_->getGameManager()->getPlayerInfo(playerNumber_).hid->ButtonPressed(HID::RightPad_Right)&& chose) {
+	if (app_->getGameManager()->getPlayerInfo(playerNumber_).hid->ButtonPressed(HID::RightPad_Right) && chose) {
 		cout << "you quit your character";
 		chose = false;
 	}
@@ -82,35 +84,40 @@ void CharacterSelectionLogic::handleInput()
 
 void CharacterSelectionLogic::SetElements()
 {
-
 	UIElement* e = nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY());
 	if (!chose) {
-		if (e == aisha_) {
+
+		aisha_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(false);
+		flor_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(false);
+		mkwhoop_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(false);
+		mock_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(false);
+		random_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(false);
+
+		if (e == aisha_->getComponent<UIElement>(ecs::UIElement)) {
 			desc_->setText(aisha_desc_);
 			image_->setTexture(aisha_texture);
+			aisha_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(true);
 		}
-		else if (e == flor_) {
+		else if (e == flor_->getComponent<UIElement>(ecs::UIElement)) {
 			desc_->setText(flor_desc_);
 			image_->setTexture(flor_texture);
+			flor_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(true);
 		}
-		else if (e == mkwhoop_) {
+		else if (e == mkwhoop_->getComponent<UIElement>(ecs::UIElement)) {
 			desc_->setText(mkwhoop_desc_);
 			image_->setTexture(mkwhoop_texture);
-
+			mkwhoop_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(true);
 		}
-		else if (e == mock_) {
+		else if (e == mock_->getComponent<UIElement>(ecs::UIElement)) {
 			desc_->setText(mock_desc_);
 			image_->setTexture(mock_texture);
+			mock_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(true);
 		}
-		else if (e == random_) {
-			// TODO: select a random character, and present the random splash art and description
-			// the selection will be done when the game is started
-			int n = 3;
-
-			//generate a random
+		else if (e == random_->getComponent<UIElement>(ecs::UIElement)) {
+			//generate a random (generated in handleinput)
 			desc_->setText(" ");
 			image_->setTexture(random_texture); //add random texture
-
+			random_->getComponent<RenderImage>(ecs::RenderImage)->setRendered(true);
 		}
 
 		curNavX = nav_->GetPosX();
