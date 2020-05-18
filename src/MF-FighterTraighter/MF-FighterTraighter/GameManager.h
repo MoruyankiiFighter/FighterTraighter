@@ -16,6 +16,7 @@ public:
 		ShrugOff,		
 		ReachingStrike,
 		MorePower,
+		Pollo,
 	//------level 2------//
 		AcidSplit,
 		Dash,

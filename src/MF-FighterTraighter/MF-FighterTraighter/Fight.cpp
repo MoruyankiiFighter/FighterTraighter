@@ -52,11 +52,15 @@ void Fight::init()
 	Entity* player1 = CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1), PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	//Giving abilites
 	const GameManager::PlayerInfo& p1_info = app_->getGameManager()->getPlayerInfo(1);
-	
+	//////HABILIDAD A CHOLON
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
-		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability1Index], player1), 0);
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Pollo, player1), 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
-		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability2Index], player1), 1);
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Mina, player1), 0);
+	//player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
+	//	->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability1Index], player1), 0);
+	//player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
+		//->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability2Index], player1), 1);
 	entManager_.setHandler(player1, ecs::Player1);
 
 	int imageY = app_->getWindowManager()->getCurResolution().h-350 ;
@@ -89,9 +93,11 @@ void Fight::init()
 	Entity* player2 = CharFactory::addCharacterToGame(app_, this, -1, world, &app_->getGameManager()->getPlayerInfo(2), PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
 	//Giving abilites
 	const GameManager::PlayerInfo& p2_info = app_->getGameManager()->getPlayerInfo(2);
-
+	//////HABILIDAD A CHOLON
 	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
-		->setAbility(AbilityFactory::GiveAbility(p2_info.abilities[p2_info.ability1Index], player2), 0);
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Pollo, player2), 0);
+	//player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
+		//->setAbility(AbilityFactory::GiveAbility(p2_info.abilities[p2_info.ability1Index], player2), 0);
 	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
 		->setAbility(AbilityFactory::GiveAbility(p2_info.abilities[p2_info.ability2Index], player2), 1);
 	entManager_.setHandler(player2, ecs::Player2);

@@ -74,6 +74,7 @@ public:
 		M1,
 		M2,
 		M3,
+		PO1,
 		Vs1,
 		Vs2,
 		Hb1,
@@ -120,7 +121,9 @@ public:
 
 		PUNCH,
 		KICK,
-		DASH
+		DASH,
+		POLLO,
+		MINA,
 
 	};
 	//constructors
