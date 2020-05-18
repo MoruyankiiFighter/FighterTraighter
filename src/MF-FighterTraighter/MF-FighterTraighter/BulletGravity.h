@@ -8,7 +8,7 @@ public:
 	//void init() override;
 	void update() override;
 	//void update() override;
-	void changeSpeed(Vector2D newSpeed) { speed_ = newSpeed; }
+	void changeSpeed(const Vector2D& newSpeed) { speed_ = newSpeed; }
 	Vector2D getSpeed() { return speed_; }
 
 };

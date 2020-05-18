@@ -10,7 +10,10 @@
 #include "Bullet.h"
 #include "CharFactory.h"
 #include "AbilitiesTimerFunction.h"
+#include "FightController.h"
 
+#include "Camera.h"
+#include "Shake.h"
 Fight::Fight(App* app) : GameState(app)
 {
 	init();
@@ -19,10 +22,14 @@ Fight::Fight(App* app) : GameState(app)
 void Fight::init()
 {
 	GameState::init();
+
+
 	doStep = true;
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
-	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+    bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+	bg->addComponent<Shake>();
+	entManager_.setHandler(bg, ecs::Camara);
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
@@ -35,20 +42,21 @@ void Fight::init()
 	Entity* wall1 = entManager_.addEntity();
 	PhysicsTransform* W1pT = wall1->addComponent<PhysicsTransform>(Vector2D(-50, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
 	W1pT->changeFriction(0);
+
 	Entity* wall2 = entManager_.addEntity();
 	PhysicsTransform* W2pT = wall2->addComponent<PhysicsTransform>(Vector2D(1970, 540), Vector2D(0, 0), 100, 1080, 0, world, WALLS, EVERYTHING, 2);
 	W2pT->changeFriction(0);
 
-	
+	//app_->getGameManager()->getPlayerInfo(1).abilities.at(0), player1)
 	//Player 1
-	//Entity* player1 = FactoryMk::addMockToGame(app_, this, 1, { SDL_SCANCODE_LEFT, SDL_SCANCODE_RIGHT, SDL_SCANCODE_UP, SDL_SCANCODE_DOWN, SDL_SCANCODE_Q, SDL_SCANCODE_E, SDL_SCANCODE_Z, SDL_SCANCODE_X,
-	//	SDL_SCANCODE_1, SDL_SCANCODE_2, SDL_SCANCODE_SPACE, SDL_SCANCODE_R }, world, false, PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	Entity* player1 = CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1), PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
-	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::LaserLineal, player1), 0);
-	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Mina, player1), 1);
-	vector<std::string>abilitiesP1;
-	abilitiesP1.push_back("MegatonGrip");
-	abilitiesP1.push_back("ShrugOff");
+	//Giving abilites
+	const GameManager::PlayerInfo& p1_info = app_->getGameManager()->getPlayerInfo(1);
+	
+	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
+		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability1Index], player1), 0);
+	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
+		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability2Index], player1), 1);
 	entManager_.setHandler(player1, ecs::Player1);
 
 	int imageY = app_->getWindowManager()->getCurResolution().h-350 ;
@@ -79,11 +87,13 @@ void Fight::init()
 	
 	//Player 2
 	Entity* player2 = CharFactory::addCharacterToGame(app_, this, -1, world, &app_->getGameManager()->getPlayerInfo(2), PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
-	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::VampiricStrike, player2), 0);
-	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::HailBall, player2), 1);
-	vector<std::string>abilitiesP2;
-	abilitiesP2.push_back("SeismicShock");
-	abilitiesP2.push_back("ShrugOff");
+	//Giving abilites
+	const GameManager::PlayerInfo& p2_info = app_->getGameManager()->getPlayerInfo(2);
+
+	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
+		->setAbility(AbilityFactory::GiveAbility(p2_info.abilities[p2_info.ability1Index], player2), 0);
+	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
+		->setAbility(AbilityFactory::GiveAbility(p2_info.abilities[p2_info.ability2Index], player2), 1);
 	entManager_.setHandler(player2, ecs::Player2);
 	//Abilities player 2
 	Entity* imageability1p2 = entManager_.addEntity();
@@ -112,6 +122,9 @@ void Fight::init()
 	
 	//player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player2), 1);
 	
+
+ 	//bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform));
+ bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform), player2->getComponent<Transform>(ecs::Transform));
 
 
 	Entity* timer = entManager_.addEntity();
@@ -142,7 +155,7 @@ void Fight::init()
 	std::vector<Entity*> leftCounter;
 	std::vector<Entity*> rightCounter;
 	// Make a factory or something
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < app_->getGameManager()->getTotalRounds() / 2 + 1; ++i) {
 		Entity* roundCounter1 = entManager_.addEntity();
 		roundCounter1->addComponent<UITransform>(Vector2D(-173 - i * 40, 93), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(18, 18), Vector2D(36, 36));
 		roundCounter1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RoundCounter));
@@ -152,10 +165,12 @@ void Fight::init()
 		roundCounter2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RoundCounter));
 		rightCounter.push_back(roundCounter2);
 	}
-	// Should be like a manager, or something
+
 	Entity* gameController = entManager_.addEntity();
-	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(3);
-	gameController->addComponent<UIRoundRenderer>(rightCounter);
+	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(1));
+	gameController->addComponent<UIRoundRenderer>(rightCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(2));
+	gameController->addComponent<FightController>(300);
+	entManager_.setHandler(gameController, ecs::Controller);
 }
 
 void Fight::handleInput()
