@@ -32,17 +32,40 @@ public:
 		ExplosiveWillpower,
 		RandomRage,
 		KnifeDance,
-		GanonSheet,
-		F10rSheet,
 		BackgroundFight,
-		MkHk,
-		F10RHp,
-		F10RHk,
+		Banner,
+		Panel,
 		Mg1, 
 		Mg21,
 		Mg22,
 		Ss1,
 		Ss2,
+		//resources of aisha
+		Aisha_icon,
+		AishaArtwork,
+		AishaSheet,
+		
+		//resources of mkwhoop
+		Ganonbot_icon,
+		GanonArtwork,
+		GanonSheet,
+		MkHk,
+		
+		//resources of mockingbird
+		Mock_icon,
+		MockArtwork,
+		MockSheet,
+
+		//resources of flor
+		Flor_icon,
+		FlorArtwork,
+		F10rSheet,
+		F10RHp,
+		F10RHk,
+
+		Random_icon,
+		RandomArtwork,
+		SelectionSquare,
 		Ew1,
 		So1,
 		Mp1,

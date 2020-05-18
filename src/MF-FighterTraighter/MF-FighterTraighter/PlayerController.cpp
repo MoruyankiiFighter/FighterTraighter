@@ -31,46 +31,49 @@ void PlayerController::handleInput()
 	Vector2D speed(transform_->getSpeed());
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	InputManager* input = app_->getInputManager();
-	if (inputSt_->AxisInput(HID::LTrigger) > 0 && currState->canGuard())
+	if (!disabled_)
 	{
-		if (currState->isCrouch()) 
-			uncrouch();
-		else if (currState->isMoving())	
-			transform_->setSpeed(0, speed.getY());
-		if (!currState->isGuarding()) 
-			currState->goGuardingTransition(6);
-	}
-	else if (canJump_ && (inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone) && currState->canJump())
-	{
-		jump();
+		if (inputSt_->AxisInput(HID::LTrigger) > 0 && currState->canGuard())
+		{
+			if (currState->isCrouch())
+				uncrouch();
+			else if (currState->isMoving())
+				transform_->setSpeed(0, speed.getY());
+			if (!currState->isGuarding())
+				currState->goGuardingTransition(6);
+		}
+		else if (canJump_ && (inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone) && currState->canJump())
+		{
+			jump();
 #ifdef _DEBUG
-		std::cout << "salto" << std::endl;
+			std::cout << "salto" << std::endl;
 #endif
-	}
-	else if ((inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > verticalDeadzone) && currState->canCrouch())
-	{
+		}
+		else if ((inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > verticalDeadzone) && currState->canCrouch())
+		{
 
-		if (currState->isMoving())
-			transform_->setSpeed(0, speed.getY());
-		crouch();
-	}
-	else if (currState->isAbletoMove() && (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0))
-	{
-		speed = Vector2D(-movSpeed, speed.getY());
-		transform_->setSpeed(speed);
-		if (currState->isGrounded()) 
-			currState->goMoving();
-		else 
-			currState->goJumping();
-	}
-	else if (currState->isAbletoMove() && (inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0))
-	{
-		speed = Vector2D(movSpeed, speed.getY());
-		transform_->setSpeed(speed);
-		if (currState->isGrounded()) 
-			currState->goMoving();
-		else
-			currState->goJumping();
+			if (currState->isMoving())
+				transform_->setSpeed(0, speed.getY());
+			crouch();
+		}
+		else if (currState->isAbletoMove() && (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0))
+		{
+			speed = Vector2D(-movSpeed, speed.getY());
+			transform_->setSpeed(speed);
+			if (currState->isGrounded())
+				currState->goMoving();
+			else
+				currState->goJumping();
+		}
+		else if (currState->isAbletoMove() && (inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0))
+		{
+			speed = Vector2D(movSpeed, speed.getY());
+			transform_->setSpeed(speed);
+			if (currState->isGrounded())
+				currState->goMoving();
+			else
+				currState->goJumping();
+		}
 	}
 
 	// If these keys aren't active
@@ -106,12 +109,12 @@ void PlayerController::crouch()
 //uncrouch
 void PlayerController::uncrouch()
 {
-	entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();	
+	entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
 	transform_->setColliderHeight(transform_->getHeight(), Vector2D(0, 0));
 }
 
 //Jump depending on the player input
-void PlayerController::jump(){
+void PlayerController::jump() {
 	//uncrouch if the player is crouching and go to the jump transition state
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	if (currState->isCrouch())

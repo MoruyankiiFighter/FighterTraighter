@@ -9,31 +9,49 @@ class GameStateMachine;
 
 class GameManager
 {
-public:	
-enum AbilityID {
-	SeismicShock,
-	MegatonGrip,
-	ExplosiveWillpower,
-	AcidSplit,
-	Mina,
-	ShrugOff,
-	MorePower,
-	Hookshot,
-	Dash,
-	VampiricStrike,
-	HailBall,
-	ReachingStrike,
-	FlyingKicks,
-	LaserLineal,
-	NadoKick
-};
 
+public:	
+	enum AbilityID {
+	//------level 1------//
+		ShrugOff,		
+		ReachingStrike,
+		MorePower,
+	//------level 2------//
+		AcidSplit,
+		Dash,
+		VampiricStrike,
+		LaserLineal,
+	//------level 3------//
+		Mina,
+		Hookshot,	
+		HailBall,		
+	//------level 4------//
+		ExplosiveWillpower,
+		FlyingKicks,		
+		NadoKick,
+	//------level 5------//
+		MegatonGrip,
+		SeismicShock,
+	//---to know the number of abilities---//
+		_last_ability,
+	};
+
+	//To choose between various abilities levels
+	enum AbilityFlags {		
+		level1_flag = ShrugOff,
+		level2_flag = AcidSplit,
+		level3_flag = Mina,
+		level4_flag = ExplosiveWillpower,
+		level5_flag = MegatonGrip,
+		max_level_flag = _last_ability
+	};
 	// TODO: Move from here to somewhere else
 	enum CharacterID {
-		MKWh00p,
-		Mockingbird,
+		/*None,*/
+		F10R,
 		Aisha,
-		F10R
+		MKWh00p,
+		Mockingbird
 	};
 
 	struct PlayerInfo {
@@ -46,7 +64,6 @@ enum AbilityID {
 			delete hid;
 		}
 	};
-
 	GameManager(App* app);
 
 	// To update HIDs
@@ -57,8 +74,20 @@ enum AbilityID {
 	// To inform that player (0 or 1) lost a round, or that it's a draw (-1)
 	// Maybe there's something better than an int?
 	void playerLost(int player);
+	void ResetRounds();
 	// To inform that saco has lost all its health
-	void trainingEnded();
+	void trainingEnded(int winner);
+	void setCharacter(CharacterID char_, int n) {
+		if (n == 1) {
+			player1_.character = char_;
+		}
+		else {
+
+			player2_.character = char_;
+		}
+	}
+
+	void resetCharacters();
 
 	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
 	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
@@ -67,8 +96,17 @@ enum AbilityID {
 		return player2_;
 	}
 
+
 	virtual ~GameManager() {
 	}
+	inline unsigned int getPlayerRounds(int player) {
+		if (player == 1) return playerLrounds_;
+		return playerRrounds_;
+	}
+	inline unsigned int getTotalRounds() { return totalRounds_; }
+
+	void GoBackToMain();
+
 protected:
 	unsigned int playerLrounds_ = 0;
 	unsigned int playerRrounds_ = 0;
@@ -78,8 +116,8 @@ protected:
 	PlayerInfo player1_;
 	PlayerInfo player2_;
 
-	App* app_;
+	Vector2D p;
 
-	void GoBackToMain(GameStateMachine* stateMachine);
+	App* app_;
 };
 

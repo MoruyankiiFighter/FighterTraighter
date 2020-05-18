@@ -53,7 +53,9 @@ public:
 		cooldowns[id] = cool;
 		setTimeCool(id, cool);
 		activeTimer(id, true);
+#ifdef _DEBUG
 		cout << cooldowns[id] << endl;
+#endif // _DEBUG
 	}
 	void setTimeCool(int ind, int cool);
 	void activeTimer(int ind, bool act);
@@ -88,6 +90,7 @@ public:
 		}
 		return is;
 	}
+	inline void setDisabled(bool d) { disabled_ = d; }
 private:
 	std::vector<AnimationChain*> attacksList;	//pointer to the attack that you can use
 	std::vector<AnimationChain*> abilityList = std::vector<AnimationChain*>(2);	//pointer to the abilities 
@@ -103,5 +106,6 @@ private:
 	//keys to use the attacks and abilities
 	HID* inputSt_;
 	//AbilitiesTimerFunction* abstimer;
+	bool disabled_ = false;
 };
 
