@@ -26,7 +26,7 @@ public:
 				->getComponent<PhysicsTransform>(ecs::Transform);
 		}
 		
-			pt->setSpeed(ptPlayer->getSpeed());
+		pt->setSpeed(ptPlayer->getSpeed());
 
 		
 		DestroyAtTime::update();

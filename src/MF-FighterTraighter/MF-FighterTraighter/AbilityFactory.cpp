@@ -931,12 +931,17 @@ AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
 	//int orientation= phtr->getOrientation;
 	std::vector<Move*> vecMov;
 
-	vecMov.push_back(new Move(10, nullptr, NK3, e));
+	//vecMov.push_back(new Move(10, nullptr, NK3, e));
 	vecMov.push_back(new Move(10, nullptr, NK1, e));
-	vecMov.push_back(new Move(10, nullptr, NK2, e));
-	vecMov.push_back(new Move(10, nullptr, NK2, e));
-	vecMov.push_back(new Move(10, nullptr, NK2, e));
-	vecMov.push_back(new Move(10, nullptr, NK2, e));
+	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
+	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
+	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
+	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
+	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
+	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
+	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
+	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
+
 	//vecMov.push_back(new Move(20, nullptr, NK1, e));
 	vecMov.push_back(new Move(0, nullptr, NKC, e));
 	AnimationChain* NadoKick = new AnimationChain(vecMov);
@@ -969,13 +974,14 @@ void AbilityFactory::NK1(Entity* e)
 	}
 	
 	int width = 120;
-	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4);
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2) ;
+
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
 	int time = 10;
 	double damage = 11;
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
-	FollowPlayer* dT = new FollowPlayer(damage, time, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
+	FollowPlayer* dT = new FollowPlayer(damage, time, 50, { (double)orientation_ * 25, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
 
