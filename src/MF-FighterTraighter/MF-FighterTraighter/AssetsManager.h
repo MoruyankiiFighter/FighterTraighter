@@ -70,9 +70,28 @@ public:
 		F10RHp,
 		F10RHk,
 
+		//resources random
 		Random_icon,
 		RandomArtwork,
 
+		//Ability icons
+		S_Sock_ico,
+		M_Grip_ico,
+		Ex_Will_ico,
+		Acid_ico,
+		Mina_ico,
+		ShrugOff_ico,
+		MorePower_ico,
+		Hook_ico,
+		Dash_ico,
+		Vampiric_ico,
+		HailBall_ico,
+		Reach_ico,
+		FlyingKicks_ico,
+		L_Lineal_ico,
+		Nado_ico,
+
+		//Ability sprites
 		Ew1,
 		So1,
 		Mp1,
