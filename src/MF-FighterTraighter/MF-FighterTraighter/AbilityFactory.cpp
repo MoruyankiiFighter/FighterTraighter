@@ -380,7 +380,7 @@ AnimationChain* AbilityFactory::GiveMina(Entity* e)
 }
 void AbilityFactory::M1(Entity* ent)
 {
-	Vector2D speed(5, 2);
+	Vector2D speed(15, 2);
 	uint16 mask;
 	//CollisionFilters
 	App* app = ent->getApp();
@@ -416,7 +416,7 @@ void AbilityFactory::M1(Entity* ent)
 	Vector2D spawnEntSize(spawntexture->getWidth()/2, spawntexture->getHeight());
 	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize,false,true);
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::M1);
-	instanceEntitywHitbox(ent, width/2, height/2, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity, false);
+	instanceEntitywHitbox(ent, width/2, height, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity, false);
 	
 }
 void AbilityFactory::MC(Entity* ent)
