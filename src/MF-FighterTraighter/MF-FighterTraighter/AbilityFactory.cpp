@@ -380,7 +380,7 @@ AnimationChain* AbilityFactory::GiveMina(Entity* e)
 }
 void AbilityFactory::M1(Entity* ent)
 {
-	Vector2D speed(5, 2);
+	Vector2D speed(15, 2);
 	uint16 mask;
 	//CollisionFilters
 	App* app = ent->getApp();
@@ -416,7 +416,7 @@ void AbilityFactory::M1(Entity* ent)
 	Vector2D spawnEntSize(spawntexture->getWidth()/2, spawntexture->getHeight());
 	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize,false,true);
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::M1);
-	instanceEntitywHitbox(ent, width/2, height/2, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity, false);
+	instanceEntitywHitbox(ent, width/2, height, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity, false);
 	
 }
 void AbilityFactory::MC(Entity* ent)
@@ -911,13 +911,13 @@ void AbilityFactory::LL1(Entity* ent)
 		mask = currentState->PLAYER_1;
 	}
 
-	int width1 = 450;
+	int width1 = 750;
 	int projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width1 / 2);
 	if (orientation_ == -1) projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width1 / 2);
 
-	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 325);
-	DestroyAtTime* dT = new DestroyAtTime(4, 15, 100, { (double)orientation_ * 10, -3 }, false, id, ent);
-	instanceEntitywHitbox(ent, width1, 150, pos1, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 265);
+	DestroyAtTime* dT = new DestroyAtTime(4, 15, 100, { (double)orientation_ * 10, -1 }, false, id, ent);
+	instanceEntitywHitbox(ent, width1, 75, pos1, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 }
 
 void AbilityFactory::LLC(Entity* ent)
