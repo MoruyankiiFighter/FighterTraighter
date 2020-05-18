@@ -13,10 +13,7 @@
 #include "CharacterSelection.h"
 #include "KeyboardHID.h"
 #include "GamepadHID.h"
-//GameManager::GameManager(App* app) : app_(app)
-//{
-//	app_->getStateMachine()->pushState(new MainMenu(app_));//OJO CAMBIAR LUEGO
-//}
+
 GameManager::GameManager(App* app) : app_(app)
 {
 	app_->getStateMachine()->pushState(new MainMenu(app_));
@@ -26,8 +23,8 @@ GameManager::GameManager(App* app) : app_(app)
 	player1_.hid = new KeyboardHID(app_->getInputManager());
 	//player1_.character = F10R;
 	player1_.character = MKWh00p;
-	//	player2_.hid = new KeyboardHID(app_->getInputManager());
 
+	//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
 	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
 	player2_.character = F10R;
 }
@@ -60,19 +57,17 @@ void GameManager::playerLost(int player)
 	case -1:
 		break;
 	case 0:
-		++playerLrounds_;
+		++playerRrounds_;
 		break;
 	case 1:
-		++playerRrounds_;
+		++playerLrounds_;
 		break;
 	default:
 		break;
 	}
-	if (((totalRounds_ / 2)  < playerLrounds_) || ((totalRounds_ / 2)  < playerRrounds_)) {
-		currentRound_ = 0;
-		playerLrounds_ = 0;
-		playerRrounds_ = 0;
-		GoBackToMain(stateMachine);
+	if (((totalRounds_ / 2) < playerLrounds_) || ((totalRounds_ / 2) < playerRrounds_)) {
+		ResetRounds();
+		GoBackToMain();
 	}
 	else {
 		stateMachine->popState();
@@ -94,6 +89,13 @@ void GameManager::playerLost(int player)
 
 }
 
+void GameManager::ResetRounds()
+{
+	currentRound_ = 0;
+	playerLrounds_ = 0;
+	playerRrounds_ = 0;
+}
+
 //winner = 0; player1 wins
 //winner = 1; player2 wins
 void GameManager::trainingEnded(int winner)
@@ -112,7 +114,7 @@ void GameManager::trainingEnded(int winner)
 	}
 	
 	//the wining player chooses 1 and gets other random
-	//por ahora tiene las dos random, habría usar el estado de selección de habilidades aquí
+	//por ahora tiene las dos random, habrï¿½a usar el estado de selecciï¿½n de habilidades aquï¿½
 	pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
 	pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
 	//the losing player, gets random lvl sth 
@@ -145,12 +147,13 @@ void GameManager::resetCharacters()
 	player2_.character = F10R;
 }
 
-void GameManager::GoBackToMain(GameStateMachine* stateMachine)
+void GameManager::GoBackToMain()
 {
 	resetCharacters();
-	GameState* currState = stateMachine->getCurrentState();
+	ResetRounds();
+	GameState* currState = app_->getStateMachine()->getCurrentState();
 	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
-		stateMachine->popState();
-		currState = stateMachine->getCurrentState();
+		app_->getStateMachine()->popState();
+		currState = app_->getStateMachine()->getCurrentState();
 	}
 }

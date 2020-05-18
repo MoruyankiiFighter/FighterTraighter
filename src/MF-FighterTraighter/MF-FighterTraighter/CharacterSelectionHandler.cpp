@@ -1,7 +1,7 @@
 #include "CharacterSelectionHandler.h"
 #include "Entity.h"
 #include "UITransform.h"
-#include "Fight.h"
+#include "Training.h"
 
 void CharacterSelectionHandler::init()
 {
@@ -25,7 +25,8 @@ void CharacterSelectionHandler::render()
 
 void CharacterSelectionHandler::handleInput()
 {
+	// TODO: make this timer a real timer, more reliable
 	if ((j1_ && j2_)&& SDL_GetTicks()%50==0) {
-		app_->getStateMachine()->pushState(new Fight(app_));
+		app_->getStateMachine()->pushState(new Training(app_));
 	}
 }

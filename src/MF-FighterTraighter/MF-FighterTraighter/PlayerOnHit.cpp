@@ -56,7 +56,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 
 	// he died
 	if (helth->getHealth() == 0) {
-		entity_->getApp()->getGameManager()->playerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
+		entity_->getState()->getEntityManager().getHandler(ecs::Controller)->getComponent<FightController>(ecs::FightController)->PlayerLost(entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber());
 	}
 
 	pSystem->removeDeletionMethodParticles(PlayerParticleSystem::DeletionMethod::OnHit);

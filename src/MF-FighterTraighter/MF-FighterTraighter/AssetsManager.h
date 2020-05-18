@@ -65,7 +65,7 @@ public:
 
 		Random_icon,
 		RandomArtwork,
-
+		SelectionSquare,
 		Ew1,
 		So1,
 		Mp1,

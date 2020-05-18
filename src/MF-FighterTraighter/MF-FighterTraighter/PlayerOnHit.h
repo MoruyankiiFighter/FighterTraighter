@@ -1,5 +1,6 @@
 #pragma once
 #include "UserData.h"
+#include "FightController.h"
 class PlayerOnHit : public UserData
 {
 public:

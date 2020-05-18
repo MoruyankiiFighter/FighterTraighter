@@ -10,7 +10,10 @@
 #include "Bullet.h"
 #include "CharFactory.h"
 #include "AbilitiesTimerFunction.h"
+#include "FightController.h"
 
+#include "Camera.h"
+#include "Shake.h"
 Fight::Fight(App* app) : GameState(app)
 {
 	init();
@@ -19,10 +22,14 @@ Fight::Fight(App* app) : GameState(app)
 void Fight::init()
 {
 	GameState::init();
+
+
 	doStep = true;
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
-	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+    bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+	bg->addComponent<Shake>();
+	entManager_.setHandler(bg, ecs::Camara);
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
@@ -116,6 +123,9 @@ void Fight::init()
 	//player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player2), 1);
 	
 
+ 	//bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform));
+ bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform), player2->getComponent<Transform>(ecs::Transform));
+
 
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 75), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
@@ -145,7 +155,7 @@ void Fight::init()
 	std::vector<Entity*> leftCounter;
 	std::vector<Entity*> rightCounter;
 	// Make a factory or something
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < app_->getGameManager()->getTotalRounds() / 2 + 1; ++i) {
 		Entity* roundCounter1 = entManager_.addEntity();
 		roundCounter1->addComponent<UITransform>(Vector2D(-173 - i * 40, 93), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(18, 18), Vector2D(36, 36));
 		roundCounter1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RoundCounter));
@@ -155,10 +165,12 @@ void Fight::init()
 		roundCounter2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RoundCounter));
 		rightCounter.push_back(roundCounter2);
 	}
-	// Should be like a manager, or something
+
 	Entity* gameController = entManager_.addEntity();
-	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(3);
-	gameController->addComponent<UIRoundRenderer>(rightCounter);
+	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(1));
+	gameController->addComponent<UIRoundRenderer>(rightCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(2));
+	gameController->addComponent<FightController>(300);
+	entManager_.setHandler(gameController, ecs::Controller);
 }
 
 void Fight::handleInput()
