@@ -53,7 +53,7 @@ void Training::init()
 	pBpT->changeFriction(0);
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Saco));
 	Health* sacoHealth = saco->addComponent<Health>(200);
-	SacoManager* sM = saco->addComponent<SacoManager>(3000);
+	SacoManager* sM = saco->addComponent<SacoManager>(35000);
 	entManager_.setHandler(saco, ecs::Saco);
 	
 	Entity* timer = entManager_.addEntity();
