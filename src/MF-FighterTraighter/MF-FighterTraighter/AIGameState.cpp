@@ -40,8 +40,11 @@ void AIGameState::init()
 
 
 	Entity* AI = entManager_.addEntity();
-	PhysicsTransform* pT = AI->addComponent<PhysicsTransform>(Vector2D(1400, 500), Vector2D(), 250, 500, 0, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0);
+	PhysicsTransform* pT = AI->addComponent<PhysicsTransform>(Vector2D(1400, 500), Vector2D(), 500, 500, 0, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0);
 	pT->setOrientation(-1);
+	pT->setColliderWidth(pT->getWidth() / 2);
+	pT->getBody()->SetLinearDamping(10);	//friction
+	app_->getStateMachine()->getCurrentState()->addHurtbox(pT->getMainFixture());
 	int orientation = pT->getOrientation();
 	AI->addComponent<AILogic>(ecs::Player2, 5, Vector2D(400, 550));
 	AI->addComponent<PlayerState>();
