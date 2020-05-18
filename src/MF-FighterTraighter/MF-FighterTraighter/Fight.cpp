@@ -150,7 +150,7 @@ void Fight::init()
 	Entity* gameController = entManager_.addEntity();
 	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(1));
 	gameController->addComponent<UIRoundRenderer>(rightCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(2));
-	gameController->addComponent<FightController>(100);
+	gameController->addComponent<FightController>(300);
 	entManager_.setHandler(gameController, ecs::Controller);
 }
 
