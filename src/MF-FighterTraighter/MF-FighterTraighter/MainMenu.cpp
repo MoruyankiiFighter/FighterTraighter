@@ -88,8 +88,8 @@ void MainMenu::GoArcade(App* app)
 #endif 
 		
 
-	//app->getStateMachine()->pushState(new CharacterSelection(app));
-	app->getStateMachine()->pushState(new Fight(app));
+	app->getStateMachine()->pushState(new CharacterSelection(app));
+	//app->getStateMachine()->pushState(new Fight(app));
 #ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 #endif 
