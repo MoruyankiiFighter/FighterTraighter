@@ -35,9 +35,8 @@ void AIAttacks::handleInput()
 			if (logic_->getMovingState() == AILogic::attacking) {
 				int randAtt = app_->getRandGen()->nextInt(0, 4);
 				activeAttack_ = attacksList[randAtt + 4];
-				if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
-				else if (currState->isCrouch()) ctrl->uncrouch();
-				currState->goAttack(randAtt + 4);
+				tr->setSpeed(tr->getSpeed().getX() * 0.65, tr->getSpeed().getY());
+				currState->goAttack(randAtt);
 			}
 		}
 	}

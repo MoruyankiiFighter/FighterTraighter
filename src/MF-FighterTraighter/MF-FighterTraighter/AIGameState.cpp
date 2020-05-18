@@ -40,7 +40,7 @@ void AIGameState::init()
 
 
 	Entity* AI = entManager_.addEntity();
-	PhysicsTransform* pT = AI->addComponent<PhysicsTransform>(Vector2D(1400, 500), Vector2D(), 500, 500, 0, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0);
+	PhysicsTransform* pT = AI->addComponent<PhysicsTransform>(Vector2D(1400, 700), Vector2D(), 500, 500, 0, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0);
 	pT->setOrientation(-1);
 	pT->setColliderWidth(pT->getWidth() / 2);
 	pT->getBody()->SetLinearDamping(10);	//friction
@@ -48,7 +48,7 @@ void AIGameState::init()
 	int orientation = pT->getOrientation();
 	AI->addComponent<AILogic>(ecs::Player2, 5, Vector2D(400, 550));
 	AI->addComponent<PlayerState>();
-	AI->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::GanonSheet));
+	AI->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::F10rSheet));
 	AIController* aC = AI->addComponent<AIController>(-7, 4.5);
 	PlayerData* pdata = AI->addComponent<F10RData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), -7, Vector2D(-orientation * 100.0 + 200, 10), 4.5, 100, 1, 1, 1);
 	AI->addComponent<AIAttacks>(pdata->getNormal_punch(), pdata->air_normal_punch(), pdata->getHard_punch(), pdata->air_hard_punch(),

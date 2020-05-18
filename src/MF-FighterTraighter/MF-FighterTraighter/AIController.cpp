@@ -52,5 +52,6 @@ void AIController::handleInput()
 void AIController::jump()
 {
 	transform_->getBody()->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), transform_->getBody()->GetWorldCenter(), true);
-	entity_->getComponent<PlayerState>(ecs::PlayerState)->goJumpingTrans(6);
+	transform_->getBody()->SetLinearDamping(0);
+	entity_->getComponent<PlayerState>(ecs::PlayerState)->goJumpingTrans(7);
 }

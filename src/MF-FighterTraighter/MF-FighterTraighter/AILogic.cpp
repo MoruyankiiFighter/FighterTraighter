@@ -84,7 +84,7 @@ void AILogic::update()
 			int randN = app_->getRandGen()->nextInt(0, 50);
 			if (randN < 29) movementState_ = idle;
 			else if (randN < 39) movementState_ = attacking;
-			//else if (randN < 44) movementState_ = crouching;
+			else if (randN < 44) movementState_ = crouching;
 			else movementState_ = jumping;
 		}
 
