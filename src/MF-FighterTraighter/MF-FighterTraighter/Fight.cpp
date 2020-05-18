@@ -10,6 +10,7 @@
 #include "Bullet.h"
 #include "CharFactory.h"
 #include "AbilitiesTimerFunction.h"
+#include "FightController.h"
 
 Fight::Fight(App* app) : GameState(app)
 {
@@ -145,10 +146,12 @@ void Fight::init()
 		roundCounter2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RoundCounter));
 		rightCounter.push_back(roundCounter2);
 	}
-	// Should be like a manager, or something
+
 	Entity* gameController = entManager_.addEntity();
 	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(1));
 	gameController->addComponent<UIRoundRenderer>(rightCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(2));
+	gameController->addComponent<FightController>(100);
+	entManager_.setHandler(gameController, ecs::Controller);
 }
 
 void Fight::handleInput()

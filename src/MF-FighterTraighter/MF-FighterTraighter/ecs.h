@@ -40,6 +40,7 @@ namespace ecs {
 		Bullet,
 		AbilitiesTimerFunction,
 		PlayerParticleSystem,
+		FightController,
 		/*
 		
 		*/
@@ -50,6 +51,7 @@ namespace ecs {
 		Player1 = 0,
 		Player2,
 		Saco,
+		Controller,
 		/*
 		
 		*/

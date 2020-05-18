@@ -234,6 +234,7 @@
     <ClCompile Include="FollowPlayer.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
+    <ClCompile Include="FightController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -513,6 +514,7 @@
     <ClInclude Include="FollowPlayer.h">
       <Filter>Header files\OnHits</Filter>
     </ClInclude>
+    <ClInclude Include="FightController.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
