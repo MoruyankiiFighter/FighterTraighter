@@ -1,12 +1,6 @@
-/*
-    Theme Name: Vesperr
-    Theme URL: https://bootstrapmade.com/vesperr-free-bootstrap-template/
-    Author: BootstrapMade.com
-    Author URL: https://bootstrapmade.com
-*/
 
 @import url('font-awesome.css');
-/* ==== overwrite bootstrap standard ==== */
+
 @import url('overwrite.css');
 
 /* =======================================
@@ -160,7 +154,7 @@ blockquote {
 }
 
 section.dark .heading h3{
-	color:#fff;
+	color:#3a3a3a;
 	text-shadow: 0 1px 0 #3a3a3a;
 	border-bottom:3px double #eee;
 	width:auto;
@@ -316,7 +310,7 @@ nav select {
 
 
 section#intro {
-	background: #000 url(../img/bg/bg-1.jpg) 50% 0 no-repeat;
+	background: #000 url(../img/FONDO.gif) 50% 0 no-repeat;
 	position:relative;
 	width:100%;
 	height:auto;
@@ -412,7 +406,14 @@ ul.social-profile li a:hover {
 /* =======================================
 3. Section: Services
 ======================================== */
-
+section#proyecto {
+	background: #000 url(../img/f10r.png) 50% 0 no-repeat;
+	position:relative;
+	width:100%;
+	height:auto;
+	margin:0;
+	padding:240px 0 120px;
+}
 .box {
   min-height: 20px;
   padding: 19px;
@@ -741,7 +742,7 @@ ul.the-icons {
 
 /* ================= services ============================ */
 section#services {
-	background: url(../img/bg/bg-1.jpg) 50% 0 no-repeat;
+	background: url(../img/FONDO.gif) 50% 0 no-repeat;
 	width:100%;
 	height:auto;
 	margin:0;
@@ -952,6 +953,11 @@ ul.project-detail li label{
 
 
 /* ============== contact ==================== */
+.contacto{
+	margin: auto;
+	margin-left: 400px;
+	display:block;
+}
 ul.contact-list{
 	list-style:none;
 	margin:0;
@@ -976,6 +982,7 @@ ul.contact-list li input.form_input,ul.contact-list li textarea.form_textarea {
 
 ul.contact-list li.last{
 	margin-bottom:0;
+	color: #cfa377
 }
 
 ul.contact-list li label{
@@ -1019,7 +1026,7 @@ ul.contact-list li label{
 /* ================= bottom ========================== */
 
 section#bottom {
-	background: url(../img/bg/bg-1.jpg) 50% 0 no-repeat;
+	background: url(../img/FONDO.gif) 50% 0 no-repeat;
 	width:100%;
 	height:auto;
 	margin:0;

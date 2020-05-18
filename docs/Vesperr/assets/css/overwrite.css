@@ -203,7 +203,7 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {
-  border-color: rgba(82, 168, 236, 0.8);
+  border-color: #cfa377;
   outline: 0;
   outline: thin dotted \9;
   /* IE6-9 */
@@ -845,9 +845,9 @@ button.close {
 .btn-primary {
   color: #ffffff;
   text-shadow: none;
-  background: #00a1f1;
+  background: #cfa377;
   border-color: none;
-  *background-color: #00a1f1;
+  *background-color: #cfa377;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -858,13 +858,13 @@ button.close {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #009cea;
-  *background-color: #009cea;
+  background-color: #cfa377;
+  *background-color: #cfa377;
 }
 
 .btn-primary:active,
 .btn-primary.active {
-  background-color: #009cea \9;
+  background-color: #cfa377 \9;
 }
 
 
@@ -961,10 +961,10 @@ button.close {
 .btn-info {
   color: #ffffff;
   text-shadow: none;
-  background: #60c1de;
+  background: #cfa377;
   border-color: none;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #2f96b4;
+  *background-color: #cfa377;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
@@ -1291,7 +1291,7 @@ input[type="submit"].btn.btn-mini {
 
 .progress-info.progress-striped .bar,
 .progress-striped .bar-info {
-  background-color: #60c1de;
+  background-color: #cfa377;
   background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
