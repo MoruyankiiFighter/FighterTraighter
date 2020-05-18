@@ -6,6 +6,10 @@
 #include "F10RData.h"
 #include "AIHID.h"
 #include "AIController.h"
+#include "AIAttacks.h"
+#include "PlayerOnHit.h"
+#include "Health.h"
+#include "PlayerAnimation.h"
 
 void AIGameState::init()
 {
@@ -36,13 +40,20 @@ void AIGameState::init()
 
 
 	Entity* AI = entManager_.addEntity();
-	AI->addComponent<PhysicsTransform>(Vector2D(1400, 0), Vector2D(), 250, 500, 0, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0);
+	PhysicsTransform* pT = AI->addComponent<PhysicsTransform>(Vector2D(1400, 500), Vector2D(), 250, 500, 0, world, PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 0);
+	pT->setOrientation(-1);
+	int orientation = pT->getOrientation();
 	AI->addComponent<AILogic>(ecs::Player2, 5, Vector2D(400, 550));
 	AI->addComponent<PlayerState>();
-	AI->addComponent<AIController>(-7, 4.5);
-	//PlayerData* pdata = AI->addComponent<F10RData>();
-	//AI->addComponent<PlayerAttacks>(&app_->getGameManager()->getPlayerInfo(2).hid, pdata->getNormal_punch(), pdata->air_normal_punch(), pdata->getHard_punch(), pdata->air_hard_punch(),
-		//pdata->getNormal_kick(), pdata->air_normal_kick(), pdata->getHard_kick(), pdata->air_hard_kick(), pdata->guard_breaker());
+	AI->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::GanonSheet));
+	AIController* aC = AI->addComponent<AIController>(-7, 4.5);
+	PlayerData* pdata = AI->addComponent<F10RData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), -7, Vector2D(-orientation * 100.0 + 200, 10), 4.5, 100, 1, 1, 1);
+	AI->addComponent<AIAttacks>(pdata->getNormal_punch(), pdata->air_normal_punch(), pdata->getHard_punch(), pdata->air_hard_punch(),
+		pdata->getNormal_kick(), pdata->air_normal_kick(), pdata->getHard_kick(), pdata->air_hard_kick(), pdata->guard_breaker());
+	AI->addComponent<PlayerParticleSystem>(10);
+	pT->resetUserData(new PlayerOnHit(AI));
+	AI->addComponent<Health>(100);
+	AI->addComponent<PlayerAnimation>();
 	entManager_.setHandler(AI, ecs::Player2);
 }
 

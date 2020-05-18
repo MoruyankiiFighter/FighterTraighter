@@ -2,7 +2,7 @@
 #include "Component.h"
 #include "UITimer.h"
 #include "Entity.h"
-#include "PlayerAttacks.h"
+#include "CharacterAttacks.h"
 
 class AbilitiesTimerFunction:public Component
 {

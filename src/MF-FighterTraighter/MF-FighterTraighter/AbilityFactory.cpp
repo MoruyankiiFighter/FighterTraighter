@@ -477,7 +477,7 @@ void AbilityFactory::MP1(Entity* ent)
 #if _DEBUG
 	std::cout << "Guess YOU'll die" << endl;
 #endif
-	ent->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setMultiplier(2, false);
+	ent->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->setMultiplier(2, false);
 
 	App* app = ent->getApp();
 	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
@@ -1069,7 +1069,7 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 
 void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 {
-	PlayerAttacks* pl = e->getComponent<PlayerAttacks>(ecs::PlayerAttacks);
+	PlayerAttacks* pl = e->getComponent<PlayerAttacks>(ecs::CharacterAttacks);
 	pl->goOnCooldown(pl->getAbilityIndex(), cool);	
 }
 

@@ -16,7 +16,7 @@ namespace ecs {
 		SacoTimer,
 		PunchingBagCollision,
 		Crouch,
-		PlayerAttacks,
+		CharacterAttacks,
 		VerticalSlider,
 		IndexSlider,
 		CreatorBody,
