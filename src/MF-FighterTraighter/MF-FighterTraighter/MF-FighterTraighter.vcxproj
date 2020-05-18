@@ -141,6 +141,7 @@
     <ClCompile Include="CharacterSelectionLogic.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="BulletGravity.cpp" />
     <ClCompile Include="DestroyAtTime.cpp" />
     <ClCompile Include="Fall_SpawnOnHit.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="RenderAnimation.cpp" />
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="LinkedGrid.cpp" />
+    <ClCompile Include="Shake.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="UIHealthbar.cpp" />
@@ -218,6 +220,7 @@
     <ClInclude Include="CharacterSelectionLogic.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="BulletGravity.h" />
     <ClInclude Include="DestroyAtTime.h" />
     <ClInclude Include="DestroyOnHit.h" />
@@ -272,9 +275,7 @@
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
-    <ClInclude Include="UIElement.h" />
     <ClInclude Include="UIHealthbar.h" />
-    <ClInclude Include="UIRoundRenderer.h" />
     <ClInclude Include="UITimer.h" />
     <ClInclude Include="UITransform.h" />
     <ClInclude Include="ResetJumpListener.h" />

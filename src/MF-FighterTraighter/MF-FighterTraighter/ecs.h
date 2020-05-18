@@ -38,7 +38,9 @@ namespace ecs {
 		GamepadInput,
 		RenderAnimation,
 		Bullet,
+		Camera,
 		AbilitiesTimerFunction,
+		Shake,
 		PlayerParticleSystem,
 		FightController,
 		/*
@@ -52,6 +54,7 @@ namespace ecs {
 		Player2,
 		Saco,
 		Controller,
+		Camara,
 		/*
 		
 		*/

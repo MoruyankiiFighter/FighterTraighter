@@ -40,6 +40,7 @@ public:
 	//sets the speed transforming pixels/s in m/s
 	virtual void setSpeed(double x, double y) {
 		body_->SetLinearVelocity({ (float32)x,(float32)y}); 
+		
 	}
 
 	virtual void setWidth(double width);

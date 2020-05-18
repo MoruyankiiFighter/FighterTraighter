@@ -80,6 +80,7 @@ enum AbilityID {
 		return player2_;
 	}
 
+
 	virtual ~GameManager() {
 	}
 	inline unsigned int getPlayerRounds(int player) {
@@ -98,6 +99,8 @@ protected:
 
 	PlayerInfo player1_;
 	PlayerInfo player2_;
+
+	Vector2D p;
 
 	App* app_;
 };

@@ -183,6 +183,7 @@
     <ClCompile Include="PunchingBagOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="BulletGravity.cpp">
@@ -218,6 +219,7 @@
     <ClCompile Include="AudioManager.cpp">
       <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
+    <ClCompile Include="Shake.cpp" />
     <ClCompile Include="Fall_SpawnOnHit.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
@@ -485,9 +487,11 @@
     <ClInclude Include="AbilitiesTimerFunction.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="AudioManager.h">
       <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
+    <ClInclude Include="Shake.h" />
     <ClInclude Include="HitboxData.h">
       <Filter>Header files\OnHits</Filter>
     </ClInclude>

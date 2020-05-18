@@ -12,6 +12,8 @@
 #include "AbilitiesTimerFunction.h"
 #include "FightController.h"
 
+#include "Camera.h"
+#include "Shake.h"
 Fight::Fight(App* app) : GameState(app)
 {
 	init();
@@ -20,10 +22,14 @@ Fight::Fight(App* app) : GameState(app)
 void Fight::init()
 {
 	GameState::init();
+
+
 	doStep = true;
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
-	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+    bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+	bg->addComponent<Shake>();
+	entManager_.setHandler(bg, ecs::Camara);
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
@@ -106,6 +112,9 @@ void Fight::init()
 	
 	//player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveMegatonGrip(player2), 1);
 	
+
+ 	//bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform));
+ bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform), player2->getComponent<Transform>(ecs::Transform));
 
 
 	Entity* timer = entManager_.addEntity();
