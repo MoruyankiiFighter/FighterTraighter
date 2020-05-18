@@ -14,27 +14,31 @@ void NavigationController::handleInput()
 	InputManager* mngr = app_->getInputManager();
 	int oldX = cursorPositionX_, oldY = cursorPositionY_;
 	int temp;
-	if ((!owner_ && mngr->pressedUp() || owner_ && owner_->ButtonPressed(HID::LeftPad_Up)) && cursorPositionY_ > 0 && (temp = findInRowFrom(cursorPositionY_ - 1)) != -1)
-	{
-		cursorPositionY_ = temp;
-	}
-	else if ((!owner_ && mngr->pressedDown() || owner_ && owner_->ButtonPressed(HID::LeftPad_Down)) && cursorPositionY_ < grid_.GetSizeY() - 1 && (temp = findInRowFrom(cursorPositionY_ + 1)) != -1) {
-		cursorPositionY_ = temp;
-	}
-	if ((!owner_ && mngr->pressedLeft() || owner_ && owner_->ButtonPressed(HID::LeftPad_Left)) && cursorPositionX_ > 0 && (temp = findInColFrom(cursorPositionX_ - 1)) != -1) {
-		cursorPositionX_ = temp;
-	}
-	else if ((!owner_ && mngr->pressedRight() || owner_ && owner_->ButtonPressed(HID::LeftPad_Right)) && cursorPositionX_ < grid_.GetSizeX() - 1 && (temp = findInColFrom(cursorPositionX_ + 1)) != -1) {
-		cursorPositionX_ = temp;
-	}
 
-	if (cursorPositionX_ != oldX || cursorPositionY_ != oldY) // If the cursor moved
-	{
-		UIElement* ent = grid_.GetItem(oldX, oldY);
-		ent->Deselect();
-		ent = grid_.GetItem(cursorPositionX_, cursorPositionY_);
-		ent->Select();
-	}
+
+		if ((!owner_ && mngr->pressedUp() || owner_ && owner_->ButtonPressed(HID::LeftPad_Up)) && cursorPositionY_ > 0 && (temp = findInRowFrom(cursorPositionY_ - 1)) != -1)
+		{
+			cursorPositionY_ = temp;
+		}
+		else if ((!owner_ && mngr->pressedDown() || owner_ && owner_->ButtonPressed(HID::LeftPad_Down)) && cursorPositionY_ < grid_.GetSizeY() - 1 && (temp = findInRowFrom(cursorPositionY_ + 1)) != -1) {
+			cursorPositionY_ = temp;
+		}
+		if ((!owner_ && mngr->pressedLeft() || owner_ && owner_->ButtonPressed(HID::LeftPad_Left)) && cursorPositionX_ > 0 && (temp = findInColFrom(cursorPositionX_ - 1)) != -1) {
+			cursorPositionX_ = temp;
+		}
+		else if ((!owner_ && mngr->pressedRight() || owner_ && owner_->ButtonPressed(HID::LeftPad_Right)) && cursorPositionX_ < grid_.GetSizeX() - 1 && (temp = findInColFrom(cursorPositionX_ + 1)) != -1) {
+			cursorPositionX_ = temp;
+		}
+
+		if (cursorPositionX_ != oldX || cursorPositionY_ != oldY) // If the cursor moved
+		{
+			UIElement* ent = grid_.GetItem(oldX, oldY);
+			ent->Deselect();
+			ent = grid_.GetItem(cursorPositionX_, cursorPositionY_);
+			ent->Select();
+		}
+	
+	
 }
 
 void NavigationController::SetElementInPos(UIElement* ent, size_t x, size_t y)

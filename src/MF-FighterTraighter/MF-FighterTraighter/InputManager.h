@@ -126,30 +126,30 @@ public:
 	}
 
 	inline bool pressedUp() {
-		return KeyPressed(SDL_SCANCODE_UP) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_UP)
-			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) < -0.8f);
+		return( !last && ( KeyPressed(SDL_SCANCODE_UP) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_UP)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) < -0.8f)));
 	}
 	inline bool pressedLeft() {
-		return KeyPressed(SDL_SCANCODE_LEFT) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_LEFT)
-			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTX) < -0.8f);
+		return(!last && ( KeyPressed(SDL_SCANCODE_LEFT) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_LEFT)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTX) < -0.8f)));
 	}
 	inline bool pressedDown() {
-		return KeyPressed(SDL_SCANCODE_DOWN) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_DOWN)
-			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) > 0.8f);
+		return (!last && (KeyPressed(SDL_SCANCODE_DOWN) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_DOWN)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) > 0.8f)));
 	}
 	inline bool pressedRight() {
-		return KeyPressed(SDL_SCANCODE_RIGHT) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
-			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTX) > 0.8f);
+		return (!last &&( KeyPressed(SDL_SCANCODE_RIGHT) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTX) > 0.8f)));
 	}
 	inline bool pressedAccept() {
-		return KeyPressed(SDL_SCANCODE_RETURN) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_A);
+		return (!last &&( KeyPressed(SDL_SCANCODE_RETURN) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_A)));
 	}
 	inline bool pressedCancel() {
-		return KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_B);
+		return (!last && (KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_B)));
 	}
 	inline bool pressedStart() {
-		return KeyPressed(SDL_SCANCODE_ESCAPE) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START)
-			|| isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START);
+		return (!last && (KeyPressed(SDL_SCANCODE_ESCAPE) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START)
+			|| isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START)));
 	}
 
 
@@ -208,6 +208,7 @@ public:
 
 	void readKey() { last = true; }
 	void stopreadKey() { last = false; lstButton = ""; }
+	bool reading() { return last; }
 	SDL_Scancode lastKey()
 	{
 		return e.key.keysym.scancode;

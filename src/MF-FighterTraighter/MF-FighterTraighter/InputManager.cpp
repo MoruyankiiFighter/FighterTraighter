@@ -120,7 +120,6 @@ void InputManager::update()
 		
 	}
 	
-
 	// After mouse has updated its position, update the mouse movement
 	mouseMovementInFrame_ = mousePos_ - tempMousePos;
 }

@@ -38,6 +38,8 @@ void ButtonControl::handleInput()
 	case ButtonControl::pressEnter:
 		if (imngr->isKeyUp(SDL_GetScancodeFromName("Return")))
 		{
+			imngr->readKey();
+
 			b = ENTERUP;
 		}
 		

@@ -15,7 +15,6 @@ public:
 	virtual void Press()
 	{
 		Buttonstate_ = Pressed;
-		Buttonstate_ = Pressed;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(2, 0);
 	};
 	virtual void Select()

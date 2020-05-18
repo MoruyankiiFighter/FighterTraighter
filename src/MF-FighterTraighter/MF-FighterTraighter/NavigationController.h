@@ -26,5 +26,6 @@ protected:
 
 	bool selectedFirst_ = false;
 	HID* owner_ = nullptr;
+	bool navegate = false;
 };
 
