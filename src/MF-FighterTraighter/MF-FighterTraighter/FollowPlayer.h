@@ -25,13 +25,27 @@ public:
 			ptPlayer = entity_->getApp()->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2)
 				->getComponent<PhysicsTransform>(ecs::Transform);
 		}
-		
-		pt->setSpeed(ptPlayer->getSpeed());
+		if (oldPos.getX() != ptPlayer->getPosition().getX()) {
+			pt->setSpeed(ptPlayer->getSpeed());
+			cout << oldPos.getX() << "------------------" << ptPlayer->getPosition().getX() << endl;
+
+			//oldPos = pt->getPosition();
+		}
+		else {
+			pt->setSpeed(Vector2D(0, 0));
+		}
+		/*else {
+			cout << oldPos.getX() << "------------------" << pt->getPosition().getX() << endl;
+		}*/
+		oldPos = ptPlayer->getPosition();
+
 
 		
 		DestroyAtTime::update();
 
 	}
 	virtual ~FollowPlayer() {}
+protected: 
+	Vector2D oldPos= Vector2D(0, 0);
 };
 
