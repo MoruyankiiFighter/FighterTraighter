@@ -58,6 +58,7 @@ enum AbilityID {
 	// To inform that player (0 or 1) lost a round, or that it's a draw (-1)
 	// Maybe there's something better than an int?
 	void playerLost(int player);
+	void ResetRounds();
 	// To inform that saco has lost all its health
 	void trainingEnded();
 	void setCharacter(CharacterID char_, int n) {
@@ -81,6 +82,14 @@ enum AbilityID {
 
 	virtual ~GameManager() {
 	}
+	inline unsigned int getPlayerRounds(int player) {
+		if (player == 1) return playerLrounds_;
+		return playerRrounds_;
+	}
+	inline unsigned int getTotalRounds() { return totalRounds_; }
+
+	void GoBackToMain();
+
 protected:
 	unsigned int playerLrounds_ = 0;
 	unsigned int playerRrounds_ = 0;
@@ -91,7 +100,5 @@ protected:
 	PlayerInfo player2_;
 
 	App* app_;
-
-	void GoBackToMain(GameStateMachine* stateMachine);
 };
 

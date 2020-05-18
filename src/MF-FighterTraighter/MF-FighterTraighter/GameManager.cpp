@@ -13,10 +13,7 @@
 #include "CharacterSelection.h"
 #include "KeyboardHID.h"
 #include "GamepadHID.h"
-//GameManager::GameManager(App* app) : app_(app)
-//{
-//	app_->getStateMachine()->pushState(new MainMenu(app_));//OJO CAMBIAR LUEGO
-//}
+
 GameManager::GameManager(App* app) : app_(app)
 {
 	app_->getStateMachine()->pushState(new MainMenu(app_));
@@ -60,19 +57,17 @@ void GameManager::playerLost(int player)
 	case -1:
 		break;
 	case 0:
-		++playerLrounds_;
+		++playerRrounds_;
 		break;
 	case 1:
-		++playerRrounds_;
+		++playerLrounds_;
 		break;
 	default:
 		break;
 	}
-	if (((totalRounds_ / 2)  < playerLrounds_) || ((totalRounds_ / 2)  < playerRrounds_)) {
-		currentRound_ = 0;
-		playerLrounds_ = 0;
-		playerRrounds_ = 0;
-		GoBackToMain(stateMachine);
+	if (((totalRounds_ / 2) < playerLrounds_) || ((totalRounds_ / 2) < playerRrounds_)) {
+		ResetRounds();
+		GoBackToMain();
 	}
 	else {
 		stateMachine->popState();
@@ -92,6 +87,13 @@ void GameManager::playerLost(int player)
 		GoBackToMain(stateMachine);
 	}*/
 
+}
+
+void GameManager::ResetRounds()
+{
+	currentRound_ = 0;
+	playerLrounds_ = 0;
+	playerRrounds_ = 0;
 }
 
 void GameManager::trainingEnded()
@@ -129,12 +131,13 @@ void GameManager::resetCharacters()
 	player2_.character = F10R;
 }
 
-void GameManager::GoBackToMain(GameStateMachine* stateMachine)
+void GameManager::GoBackToMain()
 {
 	resetCharacters();
-	GameState* currState = stateMachine->getCurrentState();
+	ResetRounds();
+	GameState* currState = app_->getStateMachine()->getCurrentState();
 	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
-		stateMachine->popState();
-		currState = stateMachine->getCurrentState();
+		app_->getStateMachine()->popState();
+		currState = app_->getStateMachine()->getCurrentState();
 	}
 }

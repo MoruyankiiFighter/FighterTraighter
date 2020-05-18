@@ -135,7 +135,7 @@ void Fight::init()
 	std::vector<Entity*> leftCounter;
 	std::vector<Entity*> rightCounter;
 	// Make a factory or something
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < app_->getGameManager()->getTotalRounds() / 2 + 1; ++i) {
 		Entity* roundCounter1 = entManager_.addEntity();
 		roundCounter1->addComponent<UITransform>(Vector2D(-173 - i * 40, 93), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(18, 18), Vector2D(36, 36));
 		roundCounter1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RoundCounter));
@@ -147,8 +147,8 @@ void Fight::init()
 	}
 	// Should be like a manager, or something
 	Entity* gameController = entManager_.addEntity();
-	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(3);
-	gameController->addComponent<UIRoundRenderer>(rightCounter);
+	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(1));
+	gameController->addComponent<UIRoundRenderer>(rightCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(2));
 }
 
 void Fight::handleInput()
