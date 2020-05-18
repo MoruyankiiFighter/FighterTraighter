@@ -11,7 +11,7 @@
 void SkillSelection::init()
 {
 	GameState::init();
-	//crear fondo ->será el fndo de la pelea i guess???
+	//crear fondo ->serï¿½ el fndo de la pelea i guess???
 
 	Entity* b = entManager_.addEntity();
 	b->addComponent<UITransform>(Vector2D(), Vector2D(), Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h));

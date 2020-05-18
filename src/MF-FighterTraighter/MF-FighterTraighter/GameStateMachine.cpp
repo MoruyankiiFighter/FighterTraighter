@@ -26,5 +26,8 @@ void GameStateMachine::popState()
 	GameState* state = states.top();
 	toDelete.push(state);
 	states.pop();
-	stackSize_--; std::cout << "Stack size: " << stackSize_ << std::endl;
+	stackSize_--;
+#ifdef _DEBUG
+	std::cout << "Stack size: " << stackSize_ << std::endl;
+#endif 	
 }
