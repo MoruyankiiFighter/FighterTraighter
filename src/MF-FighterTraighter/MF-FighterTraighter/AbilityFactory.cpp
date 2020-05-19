@@ -15,7 +15,6 @@
 #include "RenderAnimation.h"
 #include "FollowPlayer.h"
 #include "PlayerController.h"
-//#include "playerinfo"
 
 
 AnimationChain* AbilityFactory::GiveAbility(GameManager::AbilityID id, Entity* e) {
@@ -290,22 +289,13 @@ void AbilityFactory::EW1(Entity* ent)
 	knockback = { -10.0 * orientation_, -5.0 };
 	dT = new DestroyAtTime(damage, time, hitstun, knockback, guardBreaker, id, ent);
 	//createProyectile(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, 10, 55, { -10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Ew1), -orientation_, false);
-	instanceEntitywHitbox(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, mask, currentState, app, tex, orientation_, dT);
+	instanceEntitywHitbox(ent, width2, 375, pos2, { 4.5 * -orientation_, 0 }, mask, currentState, app, tex, -orientation_, dT);
 
 	//Parriba
 	/*int width3 = 160;
 	int projX3 = pT->getPosition().getX() + (pT->getWidth() * 2 / 4);
 	Vector2D pos3 = Vector2D(projX3, pT->getPosition().getY() + 75);
 	createProyectile(ent, width3, 60, pos3, { 0, -5.0 }, 20, 55, { 0, -10.0}, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Player), false);*/
-}
-
-void AbilityFactory::EW2(Entity* ent)
-{
-	///<bbgzccvfAFG
-}
-
-void AbilityFactory::EW3(Entity* ent)
-{
 }
 
 AnimationChain* AbilityFactory::GiveAcidSplit(Entity* e)
