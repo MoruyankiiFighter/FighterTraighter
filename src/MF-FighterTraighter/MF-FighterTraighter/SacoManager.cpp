@@ -32,11 +32,11 @@ void SacoManager::init() {
 
 //updates the punchingBag time limit
 void SacoManager::update() {
-	//if (timerOn) {
+	if (timerOn) {
 		currTime_ = SDL_GetTicks() - startTime_;
 		if (currTime_ > timeLimit_) {
 			int winner = (static_cast<PunchingBagOnHit*>(entity_->getComponent<PhysicsTransform>(ecs::Transform)->getUserData()))->timeout_Winner();
 			entity_->getState()->getEntityManager().getHandler(ecs::Controller)->getComponent<TrainingController>(ecs::TrainingController)->PlayerWins(winner);
 		}
-	//}
+	}
 }

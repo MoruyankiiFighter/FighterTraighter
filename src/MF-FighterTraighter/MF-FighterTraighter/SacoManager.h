@@ -23,10 +23,10 @@ public:
 		return infoText;
 	}
 
-	//void startTimer() {
-	//	timerOn = true;
-	//	startTime_ = SDL_GetTicks();
-	//}
+	void startTimer() {
+		timerOn = true;
+		startTime_ = SDL_GetTicks();
+	}
 	//method overrided from Component
 	virtual void init() override;
 	virtual void update() override;
@@ -36,6 +36,6 @@ private:
 	int timeLimit_;
 	int startTime_=0;
 	int currTime_ = 0;
-	//bool timerOn = false;
+	bool timerOn = false;
 };
 

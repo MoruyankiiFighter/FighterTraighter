@@ -8,9 +8,11 @@
 
 //Gets the info from the onHit of the punching bag and shows it 
 void TrainingController::init() {	
-	string startInfoTxt = state_->getEntityManager().getHandler(ecs::Saco)->getComponent<SacoManager>(ecs::SacoManager)->getInfoText();
+	SacoManager* sM = state_->getEntityManager().getHandler(ecs::Saco)->getComponent<SacoManager>(ecs::SacoManager);
+	string startInfoTxt = sM->getInfoText();
 	displayMessage(startInfoTxt);
 	disablePlayers(true);
+	sM->startTimer();
 }
 
 
