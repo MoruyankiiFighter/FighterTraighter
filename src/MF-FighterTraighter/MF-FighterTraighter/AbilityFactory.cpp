@@ -62,7 +62,8 @@ void AbilityFactory::MG1(Entity* ent)	//Golpes stuneantes
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 225);
 	DestroyAtTime* dT = new DestroyAtTime(2, 7, 50, { (double)orientation_ * 0.5, 0.5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 	instanceEntitywHitbox(ent, width, 150, pos, { 0, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
-	
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::PUNCH), false);
+
 }
 
 void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
@@ -103,6 +104,7 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 	 dT = new DestroyAtTime(2, 12, 150, { (double)orientation_ * 30, -5 }, false, id, ent);
 	//createProyectile(ent, width2, 180, pos2, { 0, 0 }, 2, 150, { (double)orientation_ * 5250, -4000 }, 12, mask, ent->getState(), ent->getApp(), texture2, orientation_, false);
 	instanceEntitywHitbox(ent, width2, 180, pos2, { 0,0 }, mask, ent->getState(), ent->getApp(), texture1, orientation_, dT);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
 
 }
 
@@ -214,9 +216,6 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 	DestroyOnHit* dH2 = new DestroyOnHit(damage, time, hitstun, knockBack, guardBreaker, id, ent);
 
 	
-	/*createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);
-	createProyectile(ent, width, height, pos1, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);
-	createProyectile(ent, width, height, pos2, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact);*/
 	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_, dH);
 	instanceEntitywHitbox(ent, width, height, pos1, speed, mask, currentState, app, texture, orientation_, dH1);
 	instanceEntitywHitbox(ent, width, height, pos2, speed, mask, currentState, app, texture, orientation_, dH2);
@@ -235,14 +234,14 @@ AnimationChain* AbilityFactory::GiveExplosiveWillpower(Entity* e)
 	vecMov.push_back(new Move(40, nullptr, EW1, e));
 	//vecMov.push_back(new Move(10, nullptr, EW2, e));
 	//vecMov.push_back(new Move(10, nullptr, EW3, e));
-	//vecMov.push_back(new Move(25, nullptr, nullptr, e));
+	vecMov.push_back(new Move(25, nullptr, nullptr, e));
 	AnimationChain* ExplosiveWillpower = new AnimationChain(vecMov);
 	return ExplosiveWillpower;
 }
 
 void AbilityFactory::EWC(Entity* ent)
 {
-	goOnCoolodwn(ent, 0 * 60);
+	goOnCoolodwn(ent, 10 * 60);
 }
 
 void AbilityFactory::EW1(Entity* ent)
@@ -348,8 +347,8 @@ void AbilityFactory::AS1(Entity* ent)
 	Vector2D knockBack(5, 2);
 	int time = 165;
 	//bool destroyInContact = false;
-	double width = 150;
-	double height = 150;
+	double width = 80;
+	double height = 80;
 	bool gravity = true;
 	bool multiHit = true;
 	DestroyAtTime* dT = new DestroyAtTime(0.1, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, multiHit);
@@ -357,7 +356,7 @@ void AbilityFactory::AS1(Entity* ent)
 	Texture* spawntexture = app->getAssetsManager()->getTexture(AssetsManager::As2);
 	Vector2D spawnEntSize(spawntexture->getWidth() * 3, spawntexture->getHeight());
 	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize);	
-	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::Ss2);
+	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::AS1);
 	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_ ,fL, gravity);
 	//createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact, gravity);
 }
