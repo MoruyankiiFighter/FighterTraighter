@@ -52,24 +52,28 @@ void Fight::init()
 	//Abilities player 1
 	Entity* imageability1 = entManager_.addEntity();
 	imageability1->addComponent<UITransform>(Vector2D(80, imageY), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
-	imageability1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SeismicShock));
+	imageability1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico));
 	Entity* ability1 = entManager_.addEntity();
 	ability1->addComponent<UITransform>(Vector2D(80, imageY), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
 	ability1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mark1));
+	
 	Entity* imageability2 = entManager_.addEntity();
 	imageability2->addComponent<UITransform>(Vector2D(230, imageY), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
-	imageability2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::ExplosiveWillpower));
+	imageability2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico));
 	Entity* ability2 = entManager_.addEntity();
 	ability2->addComponent<UITransform>(Vector2D(230, imageY), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
 	ability2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mark2));
+	
 	Entity* timerab1 = entManager_.addEntity();
 	timerab1->addComponent<UITransform>(Vector2D(30, imageY-50.0), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab1->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
 	timerab1->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
+	
 	Entity* timerab2 = entManager_.addEntity();
 	timerab2->addComponent<UITransform>(Vector2D(180, imageY-50.0), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab2->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
 	timerab2->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
+	
 	Entity* timerspl1 = entManager_.addEntity();
 	timerspl1->addComponent<AbilitiesTimerFunction>(timerab1->getComponent<UITimer>(ecs::UITimer), timerab2->getComponent<UITimer>(ecs::UITimer), player1);
 	
@@ -78,27 +82,34 @@ void Fight::init()
 	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::VampiricStrike, player2), 0);
 	player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::HailBall, player2), 1);
 	entManager_.setHandler(player2, ecs::Player2);
+	
 	//Abilities player 2
 	Entity* imageability1p2 = entManager_.addEntity();
 	imageability1p2->addComponent<UITransform>(Vector2D(windowWidth-350.0, imageY), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
-	imageability1p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RandomRage));
+	imageability1p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico));
+	
 	Entity* ability1p2 = entManager_.addEntity();
 	ability1p2->addComponent<UITransform>(Vector2D(windowWidth-350.0, imageY), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
 	ability1p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mark1));
+	
 	Entity* imageability2p2 = entManager_.addEntity();
 	imageability2p2->addComponent<UITransform>(Vector2D(windowWidth-200.0, imageY), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
-	imageability2p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::KnifeDance));
+	imageability2p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico));
+	
 	Entity* ability2p2 = entManager_.addEntity();
 	ability2p2->addComponent<UITransform>(Vector2D(windowWidth-200.0, imageY), Vector2D(0, 0), Vector2D(0, 0), Vector2D(100, 100));
 	ability2p2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Mark2));
+	
 	Entity* timerab1p2 = entManager_.addEntity();
 	timerab1p2->addComponent<UITransform>(Vector2D(windowWidth-400.0, imageY-50.0), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab1p2->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
 	timerab1p2->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
+	
 	Entity* timerab2p2 = entManager_.addEntity();
 	timerab2p2->addComponent<UITransform>(Vector2D(windowWidth-250.0, imageY-50.0), Vector2D(), Vector2D(), Vector2D(200, 100));
 	timerab2p2->addComponent<TextComponent>("", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
 	timerab2p2->addComponent<UITimer>(UITimer::Seconds)->setInvisible(true);
+	
 	Entity* timerspl2 = entManager_.addEntity();
 	timerspl2->addComponent<AbilitiesTimerFunction>(timerab1p2->getComponent<UITimer>(ecs::UITimer), timerab2p2->getComponent<UITimer>(ecs::UITimer), player2);
 	//player1->addComponent
@@ -118,6 +129,7 @@ void Fight::init()
 	Entity* healthbar1 = entManager_.addEntity();
 	healthbar1->addComponent<UITransform>(Vector2D(460, 50), Vector2D(0, 0), Vector2D(365, 20), Vector2D(730, 40));
 	healthbar1->addComponent<UIHealthbar>(player1->getComponent<Health>(ecs::Health), app_->getAssetsManager()->getTexture(AssetsManager::Healthbar), true);
+
 	Entity* character1 = entManager_.addEntity();
 	character1->addComponent<UITransform>(Vector2D(70, 70), Vector2D(), Vector2D(70, 70), Vector2D(140, 140));
 	character1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection))->setFrame(2, 0);

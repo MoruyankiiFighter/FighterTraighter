@@ -55,14 +55,14 @@ void SkillSelection::init()
 	if (win1) {
 		// Fija ganador
 
-		tuple<Entity*, Entity*> hf_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hf_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Vampiric_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(0,-100),
 			Vector2D((app_->getWindowManager()->getCurResolution().w / 4), (app_->getWindowManager()->getCurResolution().h / 2)),
 			Vector2D(80,80),
 			(160), (160), 0, nullptr, nullptr, "fijawin", 0, TextComponent::TextAlignment::Center);
 
 		// fija perdedor
-		tuple<Entity*, Entity*> hop_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hop_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::M_Grip_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(0, -100),
 			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4) * 3), (app_->getWindowManager()->getCurResolution().h / 2)),
 			Vector2D(80, 80),
@@ -70,13 +70,13 @@ void SkillSelection::init()
 
 		// Opcionales ganador
 
-		tuple<Entity*, Entity*> hop_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Hielo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hop_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(0, 0),
 			Vector2D((app_->getWindowManager()->getCurResolution().w / 4)-200, (app_->getWindowManager()->getCurResolution().h / 2)-300),
 			Vector2D(80, 80),
 			(160), (160), 0, nullptr, nullptr, "opwin", 0, TextComponent::TextAlignment::Center);
 	
-		tuple<Entity*, Entity*> hop_win2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Poison), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hop_win2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(0, 0),
 			Vector2D((app_->getWindowManager()->getCurResolution().w / 4) + 200, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
 			Vector2D(80, 80),
@@ -84,7 +84,7 @@ void SkillSelection::init()
 
 		//opcional perdedor
 
-		tuple<Entity*, Entity*> hf_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mina), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hf_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(0, 0),
 			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4)*3), (app_->getWindowManager()->getCurResolution().h / 2)-300),
 			Vector2D(80, 80),
@@ -117,34 +117,34 @@ void SkillSelection::init()
 		//gana player 2
 
 		   // Fija ganador j2
-		tuple<Entity*, Entity*> hf_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Hielo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hf_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(0, -100),
 			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4) * 3), (app_->getWindowManager()->getCurResolution().h / 2)),
 			Vector2D(80, 80),
 			(160), (160), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 		
 		// Fija perdedor j1
-		tuple<Entity*, Entity*> hf_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Pollo), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hf_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(0, -100),
 			Vector2D((app_->getWindowManager()->getCurResolution().w / 4), (app_->getWindowManager()->getCurResolution().h / 2)),
 			Vector2D(80, 80),
 			(160), (160), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 
 		// Opcionales ganador j2
-		tuple<Entity*, Entity*> hop_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Poison), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hop_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(0,0),
 			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4) * 3)-200, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
 			Vector2D(80, 80),
 			(160), (160), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 
-		tuple<Entity*, Entity*> hop_win2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mina), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hop_win2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(0,0),
 			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4) * 3)+200, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
 			Vector2D(80, 80),
 			(160), (160), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
 
 		// Opcionales perdedor j1
-		tuple<Entity*, Entity*> hop_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Doping), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+		tuple<Entity*, Entity*> hop_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 			Vector2D(0, 0),
 			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4)), (app_->getWindowManager()->getCurResolution().h / 2) - 300),
 			Vector2D(80, 80),

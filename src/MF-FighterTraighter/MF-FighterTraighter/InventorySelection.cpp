@@ -4,6 +4,7 @@
 #include "RenderImage.h"
 #include "UITransform.h"
 #include "Fight.h"
+#include "InventoryLogic.h"
 #include "NavigationController.h"
 void InventorySelection::init()
 {
@@ -12,7 +13,7 @@ void InventorySelection::init()
 
 
 	//ESTO ES PARA DEPURAR
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 10; i++) {
 		app_->getGameManager()->addHability(app_->getGameManager()->MegatonGrip, 1);
 	}
 
@@ -45,18 +46,25 @@ void InventorySelection::init()
 	text_->addComponent<TextComponent>("Selecciona tus habilidades", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::TextAlignment::Center);
 
 	//ranuras j1
-
+/*
 	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 0),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 4) - 200, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
 		Vector2D(80, 80),
 		(160), (160), 0, nullptr, nullptr, "Boton L1", 25, TextComponent::TextAlignment::Center);
-	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	*//*UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 0),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 4) + 200, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
 		Vector2D(80, 80),
-		(160), (160), 0, nullptr, nullptr, "Boton R1", 25, TextComponent::TextAlignment::Center);
-
+		(160), (160), 0, nullptr, nullptr, "Boton R1", 25, TextComponent::TextAlignment::Center);*/
+	
+	Entity* left_j1 = entManager_.addEntity();
+	left_j1->addComponent<UITransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 4- 200, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
+	left_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	
+	Entity* right_j1 = entManager_.addEntity();
+	right_j1->addComponent<UITransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
+	right_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 
 	//boton
 	tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
@@ -76,16 +84,13 @@ void InventorySelection::init()
 
 	//ranuras j2
 
-	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, 0),
-		Vector2D(((app_->getWindowManager()->getCurResolution().w / 4) * 3) - 200, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
-		Vector2D(80, 80),
-		(160), (160), 0, nullptr, nullptr, "Boton L2", 25, TextComponent::TextAlignment::Center);
-	UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, 0),
-		Vector2D(((app_->getWindowManager()->getCurResolution().w / 4) * 3) + 200, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
-		Vector2D(80, 80),
-		(160), (160), 0, nullptr, nullptr, "Boton R2", 25, TextComponent::TextAlignment::Center);
+	Entity* left_j2 = entManager_.addEntity();
+	left_j2->addComponent<UITransform>(Vector2D(3*app_->getWindowManager()->getCurResolution().w / 4 - 200, 200), Vector2D((3*app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3*app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
+	left_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+
+	Entity* right_j2 = entManager_.addEntity();
+	right_j2->addComponent<UITransform>(Vector2D(3*app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((3*app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3*app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
+	right_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 
 
 	//hab j1
@@ -220,6 +225,11 @@ void InventorySelection::init()
 	for (int i = 0; i < 5; i++) {
 		ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), i, 2);
 	}
+
+	Entity* logicJ1 = entManager_.addEntity();
+	logicJ1->addComponent<InventoryLogic>(ctrl, 1, nullptr, nullptr);
+
+
 	// inv j1
 
 
@@ -348,21 +358,8 @@ void InventorySelection::init()
 			ctrl_->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), i, 2);
 	}
 	// Navigation controller
-}
 
-void InventorySelection::SetFirstSkill(App* app, int n)
-{
-	//comprobar que la hab asignada sea diferente a la segunda pra evitar hab repetidas
-	app->getGameManager()->setFirstHab(app->getGameManager()->ExplosiveWillpower, n); //provisional
-	
-}
 
-void InventorySelection::SetSecondSkill(App* app, int n)
-{
-
-	//comprobar que la hab asignada sea diferente a la primera para evitar hab repetidas
-	app->getGameManager()->setSecondHab(app->getGameManager()->ExplosiveWillpower, n); //provisional
-	
 }
 
 void InventorySelection::GoToFight(App* app)
