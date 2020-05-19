@@ -15,7 +15,7 @@ void TextComponent::init()
 void TextComponent::render()
 {
 	SDL_Rect dest;
-	int destWidth = text_->getWidth() / font_->getFontSize() * textSize_;
+	int destWidth = text_->getWidth() * 1.0 / font_->getFontSize() * textSize_;
 	switch (alignment_)
 	{
 	case TextComponent::Left:

@@ -10,7 +10,7 @@ public:
     Shake(uint32 shakeTime,int shakeOffset) : Component(ecs::Shake) ,SHAKE_TIME_MS(shakeTime),SHAKE_OFFSET(shakeOffset){};
     Shake(uint32 shakeTime) : Component(ecs::Shake) ,SHAKE_TIME_MS(shakeTime),SHAKE_OFFSET(20){};
     Shake() : Component(ecs::Shake) ,SHAKE_TIME_MS(2000),SHAKE_OFFSET(20){};
-   
+	~Shake() {}
 
     //Shaking will take 200ms
     uint32 SHAKE_TIME_MS ;
