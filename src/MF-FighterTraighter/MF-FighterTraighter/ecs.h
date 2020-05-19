@@ -13,7 +13,7 @@ namespace ecs {
 		RenderImage,
 		Jump,
 		TextComponent,
-		SacoTimer,
+		SacoManager,
 		PunchingBagCollision,
 		Crouch,
 		PlayerAttacks,
@@ -43,6 +43,7 @@ namespace ecs {
 		Shake,
 		PlayerParticleSystem,
 		FightController,
+		TrainingController,
 		/*
 		
 		*/

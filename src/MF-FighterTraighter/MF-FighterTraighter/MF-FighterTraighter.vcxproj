@@ -190,6 +190,7 @@
     <ClCompile Include="LinkedGrid.cpp" />
     <ClCompile Include="Shake.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
+    <ClCompile Include="TrainingController.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="UIHealthbar.cpp" />
     <ClCompile Include="UIRoundRenderer.cpp" />
@@ -278,6 +279,7 @@
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
+    <ClInclude Include="TrainingController.h" />
     <ClInclude Include="UIHealthbar.h" />
     <ClInclude Include="UITimer.h" />
     <ClInclude Include="UITransform.h" />
