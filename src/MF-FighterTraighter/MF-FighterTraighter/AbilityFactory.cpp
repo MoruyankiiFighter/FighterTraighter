@@ -235,7 +235,7 @@ AnimationChain* AbilityFactory::GiveExplosiveWillpower(Entity* e)
 	vecMov.push_back(new Move(40, nullptr, EW1, e));
 	//vecMov.push_back(new Move(10, nullptr, EW2, e));
 	//vecMov.push_back(new Move(10, nullptr, EW3, e));
-	vecMov.push_back(new Move(25, nullptr, nullptr, e));
+	//vecMov.push_back(new Move(25, nullptr, nullptr, e));
 	AnimationChain* ExplosiveWillpower = new AnimationChain(vecMov);
 	return ExplosiveWillpower;
 }
@@ -290,7 +290,7 @@ void AbilityFactory::EW1(Entity* ent)
 	knockback = { -10.0 * orientation_, -5.0 };
 	dT = new DestroyAtTime(damage, time, hitstun, knockback, guardBreaker, id, ent);
 	//createProyectile(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, 10, 55, { -10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Ew1), -orientation_, false);
-	instanceEntitywHitbox(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, mask, currentState, app, tex, orientation_, dT);
+	instanceEntitywHitbox(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, mask, currentState, app, tex, -orientation_, dT);
 
 	//Parriba
 	/*int width3 = 160;
