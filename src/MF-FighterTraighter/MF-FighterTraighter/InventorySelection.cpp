@@ -13,12 +13,14 @@ void InventorySelection::init()
 
 
 	//ESTO ES PARA DEPURAR
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 5; i++) {
 		app_->getGameManager()->addHability(app_->getGameManager()->MegatonGrip, 1);
+		app_->getGameManager()->addHability(app_->getGameManager()->SeismicShock, 1);
 	}
 
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < 5; i++) {
 		app_->getGameManager()->addHability(app_->getGameManager()->MegatonGrip, 2);
+		app_->getGameManager()->addHability(app_->getGameManager()->AcidSplit, 2);
 	}
 	//
 
