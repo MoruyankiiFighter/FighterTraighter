@@ -227,7 +227,7 @@ void InventorySelection::init()
 	}
 
 	Entity* logicJ1 = entManager_.addEntity();
-	logicJ1->addComponent<InventoryLogic>(ctrl, 1, nullptr, nullptr);
+	logicJ1->addComponent<InventoryLogic>(ctrl, 1, left_j1->getComponent<RenderImage>(ecs::RenderImage), right_j1->getComponent<RenderImage>(ecs::RenderImage));
 
 
 	// inv j1
@@ -359,6 +359,8 @@ void InventorySelection::init()
 	}
 	// Navigation controller
 
+	//Entity* logicJ2 = entManager_.addEntity();
+	//logicJ2->addComponent<InventoryLogic>(ctrl_, 2, left_j2->getComponent<RenderImage>(ecs::RenderImage), right_j2->getComponent<RenderImage>(ecs::RenderImage));
 
 }
 
