@@ -2,14 +2,11 @@
 #include <SDL.h>
 #include <iostream>
 #include "GameStateMachine.h"
-#include "RandomNumberGenerator.h"
 #include "InputManager.h"
 #include "MainMenu.h"
 #include "AssetsManager.h"
 #include "WindowManager.h"
 #include "GameManager.h"
-#include "SRandBasedGenerator.h"
-
 #include "AudioManager.h"
 class App
 {
@@ -44,10 +41,6 @@ public:
 
 	inline unsigned int getFrameRate() { return frameRate_; }
 
-	inline SRandBasedGenerator* getRandGen() const {
-		return random_.get();
-		
-	}
 	inline AudioManager* getAudioMngr() const { return audioManager_.get(); }
 
 	//calls update of the current state
@@ -80,7 +73,6 @@ private:
 	std::unique_ptr<AssetsManager> assetsManager_;//assets manager
 	std::unique_ptr<WindowManager> windowManager_;//window manager
 	std::unique_ptr<GameManager> gameManager_;//game manager
-	std::unique_ptr<SRandBasedGenerator> random_;//random
 	std::unique_ptr<AudioManager> audioManager_;//audio manager
 
 

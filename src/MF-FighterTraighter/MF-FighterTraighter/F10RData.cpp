@@ -1,7 +1,6 @@
 ﻿#include "F10RData.h"
 #include "AbilityFactory.h"
 #include "DestroyAtTime.h"
-#include "PlayerParticleSystem.h"
 F10RData::F10RData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber):
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
 	animLength_ = { {4, true, 12}, {3, true, 15}, {2, true, 3}, {1, true, 15}, {2, false, 2}, {4, false, 10}, {6, false, 10}, {5, false, 12},
@@ -91,26 +90,37 @@ void F10RData::HP1(Entity* ent)
 	std::cout << "Do it for the vine" << endl;
 #endif // _DEBUG
 
-	double hitbox_X = np1.position.getX();
-	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::F10RHp);
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+
+	uint16 mask;
+	int orientation_ = ent->getComponent<Transform>(ecs::Transform)->getOrientation();
+
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
-	int orientation_ = pT->getOrientation();
-	if (orientation_ == -1) hitbox_X += hp1.width;
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X, hp1.position.getY() }, hp1.width, hp1.height, hp1.time, pD->getAttack() * hp1.damage, hp1.hitstun,
-		{ (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	if (pD->getPlayerNumber() == 0) {
+		mask = currentState->PLAYER_2 | currentState->P_BAG;
+	}
+	else {
+		mask = currentState->PLAYER_1 | currentState->P_BAG;
+	}
 
-	int partX = pT->getWidth() * 3 / 4 - 20;
-	if(orientation_ == -1) partX = pT->getWidth() / 4 - hp1.width + 20;
-	Vector2D pos = Vector2D(partX, 285);
+	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (hp1.width / 2) + hp1.position.getX();
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (hp1.width / 2) - hp1.position.getX();
 
-	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::F10RHp),
-		pos, Vector2D(hp1.width, hp1.height), hp1.time, PlayerParticleSystem::DeletionMethod::OnHit);
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + hp1.position.getY());
+
+	DestroyAtTime* dT = new DestroyAtTime(hp1.damage * pD->getAttack(), hp1.time, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+
+	AbilityFactory::instanceEntitywHitbox(ent, hp1.width, hp1.height, pos, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+
+	//AbilityFactory::createProyectile(ent, hp1.width, hp1.height, pos, { 0, 0 }, hp1.damage, hp1.hitstun, { (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, 
+		//hp1.time, mask, ent->getState(), ent->getApp(), texture, false);
 }
 
 PlayerData::CallbackData F10RData::hp1 = PlayerData::CallbackData{
-	{ 0, 35 },
-	{ 350, -175 },
+	{ 0, 320 },
+	{ 12, 0 },
 	325,
 	70,
 	20,

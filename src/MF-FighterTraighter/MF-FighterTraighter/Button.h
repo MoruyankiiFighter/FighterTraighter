@@ -3,21 +3,18 @@
 #include "UIElement.h"
 
 using CallBackOnClick = void(App* app);
-using SetOnClick = void(App * app, int n);
+
 class Button : public UIElement {
 
 public:
 	//constructor
 	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr, HID* owner = nullptr) : UIElement(owner), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
-	Button(int player, SetOnClick* start = nullptr, SetOnClick* stop = nullptr, HID* owner = nullptr) : UIElement(owner),start_(start), stop_(stop), player_(player)  {};
 
 	virtual void Press()
 	{
 		Buttonstate_ = Pressed;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(2, 0);
 		if (clickCallback_) clickCallback_(app_);
-		else if (start_) start_(app_, player_);
-
 	};
 	virtual void Select() 
 	{
@@ -52,7 +49,4 @@ public:
 private:
 	CallBackOnClick* clickCallback_ = nullptr;
 	CallBackOnClick* stopClickCallback_ = nullptr;
-	SetOnClick* start_ = nullptr;
-	SetOnClick* stop_ = nullptr;
-	int player_ = -1;
 };

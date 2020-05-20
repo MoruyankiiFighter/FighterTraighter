@@ -86,9 +86,7 @@ void App::init()
 	inputManager_.reset(new InputManager(this));
 	assetsManager_.reset(new AssetsManager(this));
 	audioManager_.reset(new AudioManager(this));
-	//audioManager_->silenceMusic();
 	gameManager_.reset(new GameManager(this));
-	random_.reset(new SRandBasedGenerator());
 
 
 }
@@ -103,11 +101,9 @@ void App::clean()
 	assetsManager_.reset();
 	windowManager_.reset();
 	gameManager_.reset();
-	random_.reset();
 
 	// Delete SDL's attributes
 	SDL_DestroyRenderer(renderer);
-
 	SDL_Quit();
 	TTF_Quit();
 }

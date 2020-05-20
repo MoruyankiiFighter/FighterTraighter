@@ -123,13 +123,8 @@ void PlayerAttacks::setAbility(AnimationChain* newAbility, int index)
 
 void PlayerAttacks::interruptAttack()
 {
-	PlayerState* pS = entity_->getComponent<PlayerState>(ecs::PlayerState);
-
-	if (pS->getState() == pS->isHitstun() && activeAttack_ != nullptr) {
-		activeAttack_->reset();
-		activeAttack_ = nullptr;
-		resetOneTimeMultiplier();
-	}
+	if(activeAttack_ != nullptr) activeAttack_->reset();
+	activeAttack_ = nullptr;
 	app_->getStateMachine()->getCurrentState()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits)>>2);
 }
 
@@ -142,30 +137,12 @@ int PlayerAttacks::getAbilityIndex()	//IN THEORY IT NEVER SHOULD RETURN -1
 	return index;
 }
 
-void PlayerAttacks::setTimeCool(int ind, int cool)
+void PlayerAttacks::setTimeCool(int cool)
 {
-	if (ind == 0) { timeCool0 = cool; }
-	if (ind == 1) { timeCool1 = cool; }
+	timeCool = cool;
 }
 
-void PlayerAttacks::activeTimer(int ind, bool act)
+int PlayerAttacks::getTimeCool()
 {
-	if (ind == 0) {
-		actTimer0 = act;
-	}
-	if (ind == 1) {
-		actTimer1 = act;
-	}
-}
-
-bool PlayerAttacks::IsTimerActive(int ind)
-{
-	if (ind == 0) return actTimer0;
-	if (ind == 1) return actTimer1;
-}
-
-int PlayerAttacks::getTimeCool(int ind)
-{
-	if (ind == 0) return timeCool0;
-	if (ind == 1) return timeCool1;
+	return timeCool;
 }

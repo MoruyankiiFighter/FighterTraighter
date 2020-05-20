@@ -15,26 +15,10 @@ public:
 			if (data->entity_ == data->entity_->getState()->getEntityManager().getHandler(ecs::Player1)) {
 				Health* playerHealth = data->entity_->getState()->getEntityManager().getHandler(ecs::Player2)->getComponent<Health>(ecs::Health);
 				playerHealth->GainLife((playerHealth->getMaxHealth() - playerHealth->getHealth()) * healAmount_);
-
-				PhysicsTransform* phTr = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
-				int width = 250;
-				int projX = (phTr->getWidth() / 4);
-				Vector2D pos = Vector2D(projX, 0);
-
-				data->entity_->getState()->getEntityManager().getHandler(ecs::Player2)->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(data->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Vs2), 
-					pos, Vector2D(width, 500), 35, PlayerParticleSystem::DeletionMethod::None);
 			}
 			else {
 				Health* playerHealth = data->entity_->getState()->getEntityManager().getHandler(ecs::Player1)->getComponent<Health>(ecs::Health);
 				playerHealth->GainLife((playerHealth->getMaxHealth() - playerHealth->getHealth()) * healAmount_);
-
-				PhysicsTransform* phTr = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
-				int width = 250;
-				int projX = (phTr->getWidth() / 4);
-				Vector2D pos = Vector2D(projX, 0);
-
-				data->entity_->getState()->getEntityManager().getHandler(ecs::Player1)->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(data->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Vs2),
-					pos, Vector2D(width, 500), 35, PlayerParticleSystem::DeletionMethod::None);
 			}
 		}
 	}

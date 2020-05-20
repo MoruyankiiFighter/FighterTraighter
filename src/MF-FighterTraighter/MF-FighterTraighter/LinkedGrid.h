@@ -14,6 +14,7 @@ public:
 	}
 	T GetItem(size_t x, size_t y) const
 	{
+		if ((grid_[y])[x] == nullptr) throw new std::out_of_range("Position out of range");
 		return (grid_[y])[x];
 	}
 	void SetItemInPos(T item, size_t x, size_t y) 

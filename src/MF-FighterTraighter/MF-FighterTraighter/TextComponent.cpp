@@ -1,21 +1,22 @@
 #include "TextComponent.h"
 #include "Entity.h"
 
-TextComponent::TextComponent(std::string text, Font* font, int size, TextAlignment alignment, int wrapLength) : Component(ecs::TextComponent),
-text_(nullptr), transform_(nullptr), textString_(text), textSize_(size), font_(font), alignment_(alignment), longText_(wrapLength)
+TextComponent::TextComponent(std::string text, Font* font, int size, TextAlignment alignment) : Component(ecs::TextComponent),
+text_(nullptr), transform_(nullptr), textString_(text), textSize_(size), font_(font), alignment_(alignment)
 {
 }
 
 void TextComponent::init()
 {
 	transform_ = entity_->getComponent<Transform>(ecs::Transform);
-	text_ = new Text(app_->getRenderer(), textString_, font_, longText_);
+	font_->setFontSize(textSize_);
+	text_ = new Text(app_->getRenderer(), textString_, font_);
 }
 
 void TextComponent::render()
 {
 	SDL_Rect dest;
-	int destWidth = text_->getWidth() * 1.0 / font_->getFontSize() * textSize_;
+	int destWidth = textString_.length() * transform_->getWMult() * textSize_ * font_->getWidthRatio();
 	switch (alignment_)
 	{
 	case TextComponent::Left:
@@ -30,11 +31,9 @@ void TextComponent::render()
 	default:
 		break;
 	}
-	int lines = int(text_->getHeight() / font_->getFontSize());
-
 	dest.y = transform_->getPosition().getY();
 	dest.w = destWidth;
-	dest.h = textSize_ * transform_->getHMult() * lines;
+	dest.h = textSize_ * transform_->getHMult();
 	text_->render(dest);
 }
 

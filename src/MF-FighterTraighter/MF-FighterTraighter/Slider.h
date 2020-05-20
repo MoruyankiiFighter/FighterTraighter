@@ -2,8 +2,6 @@
 #include "Component.h"
 #include "Transform.h"
 #include "UIElement.h"
-#include "Entity.h"
-#include "RenderImage.h"
 
 using CallbackOnValueChanged = void(App * app, double value);
 
@@ -31,9 +29,9 @@ public:
 	void render() override;
 
 	virtual void Press() {};
-	virtual void Select() { if (Buttonstate_ != Selected) Buttonstate_ = Selected; entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0); };
+	virtual void Select() { if (Buttonstate_ != Selected) Buttonstate_ = Selected; };
 	virtual void Disable() { Buttonstate_ = Disabled; };
-	virtual void Deselect() { Buttonstate_ = Normal; entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(0, 0); };
+	virtual void Deselect() { Buttonstate_ = Normal; };
 
 	//different get 
 	double getValue() { return value_; }

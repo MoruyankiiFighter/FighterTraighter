@@ -6,8 +6,6 @@
 #include "PlayerData.h"
 #include "HID.h"
 #include "AbilitiesTimerFunction.h"
-#include "PlayerParticleSystem.h"
-
 //component that have all the attacks that you have
 class PlayerAttacks : public Component 
 {
@@ -22,8 +20,15 @@ public:
 			
 			if (activeAttack_->update()) {
 				activeAttack_->reset();
-				if (!isAbility(activeAttack_) && !isMultiplierTimed) resetOneTimeMultiplier();	//This should ONLY reset OneTimeMultipliers, but I'm sure errors will end up popping up and making me look lika big doo doo head >:/
 				activeAttack_ = nullptr;
+				if (!isMultiplierTimed && remainingUses_ > -1) { 
+					//This is to prevent, in theory, that the abilities that grant the multiplier themeselves don't consume it on ending
+					if (remainingUses_ == 0) {
+						entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(1);
+						remainingUses_ = -1;
+					}
+					else remainingUses_--;
+				}
 				if (entity_->getComponent<PlayerState>(ecs::PlayerState)->isGrounded()) {
 					entity_->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
 				}
@@ -51,16 +56,11 @@ public:
 	void interruptAttack();
 	inline void goOnCooldown(int id, int cool) {
 		cooldowns[id] = cool;
-		setTimeCool(id, cool);
-		activeTimer(id, true);
-#ifdef _DEBUG
+		setTimeCool(cool);
 		cout << cooldowns[id] << endl;
-#endif // _DEBUG
 	}
-	void setTimeCool(int ind, int cool);
-	void activeTimer(int ind, bool act);
-	bool IsTimerActive(int ind);
-	int getTimeCool(int ind);
+	void setTimeCool(int cool);
+	int getTimeCool();
 	int getAbilityIndex();
 	int getAbilityCooldown(int index) { 
 #ifdef _DEBUG
@@ -73,24 +73,11 @@ public:
 		entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(mul);
 		isMultiplierTimed = timed;
 		if (timed) multiplierTimer_ = timer;
-		else timer = -1;
-	}
-
-	void resetOneTimeMultiplier() {
-		entity_->getComponent<PlayerData>(ecs::PlayerData)->setAttack(1);
-		entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->removeDeletionMethodParticles(PlayerParticleSystem::DeletionMethod::OnAttack);
-	}
-
-	bool isAbility(AnimationChain* anim) {
-		int i = 0;
-		bool is = false;
-		while (i < abilityList.size() && !is) {
-			if (abilityList[i] == anim) is = true;
-			++i;
+		else {
+			timer = -1;
+			remainingUses_ = 1;
 		}
-		return is;
 	}
-	inline void setDisabled(bool d) { disabled_ = d; }
 private:
 	std::vector<AnimationChain*> attacksList;	//pointer to the attack that you can use
 	std::vector<AnimationChain*> abilityList = std::vector<AnimationChain*>(2);	//pointer to the abilities 
@@ -98,14 +85,11 @@ private:
 	AnimationChain* activeAttack_ = nullptr;
 
 	int multiplierTimer_ = -1;
+	int remainingUses_ = 0;
 	bool isMultiplierTimed = false;
-	int timeCool0 = 0;
-	int timeCool1 = 0;
-	bool actTimer0 = false;
-	bool actTimer1 = false;
+	int timeCool = 0;
 	//keys to use the attacks and abilities
 	HID* inputSt_;
 	//AbilitiesTimerFunction* abstimer;
-	bool disabled_ = false;
 };
 

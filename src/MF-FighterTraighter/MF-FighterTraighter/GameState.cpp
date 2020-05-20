@@ -59,7 +59,7 @@ void GameState::UpdateHitboxes()
 				
 				for (b2Fixture* mainHB : mainHurtboxes) {
 					//checks overlaps considering masks
-					if (!hB->destroy_ && (mainHB->GetFilterData().maskBits & (*it)->GetFilterData().categoryBits) != 0
+					if ((mainHB->GetFilterData().maskBits & (*it)->GetFilterData().categoryBits) != 0
 						&& (mainHB->GetFilterData().categoryBits & (*it)->GetFilterData().maskBits) != 0
 						&& b2TestOverlap((*it)->GetAABB(0), mainHB->GetAABB(0))) {
 						//does both objects onHits if they hit each other

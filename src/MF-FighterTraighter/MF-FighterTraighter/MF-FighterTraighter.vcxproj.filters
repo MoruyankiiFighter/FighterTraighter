@@ -100,6 +100,9 @@
     <ClCompile Include="MoveParser.cpp">
       <Filter>Source Files\Types</Filter>
     </ClCompile>
+    <ClCompile Include="SacoTimer.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
     <ClCompile Include="Text.cpp">
       <Filter>Source Files\Types</Filter>
     </ClCompile>
@@ -133,6 +136,9 @@
     <ClCompile Include="UITransform.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerOnHit.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
     <ClCompile Include="LinkedGrid.cpp">
       <Filter>Source Files\Types</Filter>
     </ClCompile>
@@ -158,30 +164,21 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
+    <ClCompile Include="MockingbirdData.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
     <ClCompile Include="HID.cpp" />
     <ClCompile Include="KeyboardHID.cpp" />
     <ClCompile Include="GamepadHID.cpp" />
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="CharacterSelectionLogic.cpp">
+    <ClCompile Include="PunchingBagOnHit.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="ButtonControl.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="MockingbirdData.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="UserData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="UserData.cpp" />
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="RandomNumberGenerator.cpp" />
-    <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="BulletGravity.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -215,34 +212,9 @@
     <ClCompile Include="AudioManager.cpp">
       <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
-    <ClCompile Include="Shake.cpp" />
     <ClCompile Include="Fall_SpawnOnHit.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
-    <ClCompile Include="CharacterSelectionHandler.cpp" />
-    <ClCompile Include="PlayerParticleSystem.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="MockingbirdData.cpp">
-      <Filter>Source Files\PlayerData</Filter>
-    </ClCompile>
-    <ClCompile Include="FollowPlayer.cpp">
-      <Filter>Source Files\OnHit</Filter>
-    </ClCompile>
-    <ClCompile Include="SacoManager.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerOnHit.cpp">
-      <Filter>Source Files\OnHit</Filter>
-    </ClCompile>
-    <ClCompile Include="LastHit_Wins.cpp">
-      <Filter>Source Files\OnHit\PunchingBag</Filter>
-    </ClCompile>
-    <ClCompile Include="MoreDamage_Wins.cpp">
-      <Filter>Source Files\OnHit\PunchingBag</Filter>
-    </ClCompile>
-    <ClCompile Include="FightController.cpp" />
-    <ClCompile Include="TrainingController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -353,6 +325,9 @@
     <ClInclude Include="Font.h">
       <Filter>Header files\Types</Filter>
     </ClInclude>
+    <ClInclude Include="SacoTimer.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
     <ClInclude Include="SDLDebugDraw.h">
       <Filter>Header files\Types</Filter>
     </ClInclude>
@@ -377,7 +352,13 @@
     <ClInclude Include="OnHit.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="PunchingBagOnHit.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
     <ClInclude Include="FloorOnHit.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElement.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="NavigationController.h">
@@ -401,6 +382,12 @@
     <ClInclude Include="AbilityFactory.h">
       <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MkWH00PData.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
     <ClInclude Include="ControlsMenu.h">
       <Filter>Header files\GameState</Filter>
     </ClInclude>
@@ -411,6 +398,9 @@
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="UIHealthbar.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="UIRoundRenderer.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
@@ -428,8 +418,6 @@
     <ClInclude Include="ButtonControl.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="RandomNumberGenerator.h" />
-    <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="BulletGravity.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
@@ -484,7 +472,6 @@
     <ClInclude Include="AbilitiesTimerFunction.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="AudioManager.h">
       <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
@@ -494,40 +481,9 @@
     <ClInclude Include="Fall_SpawnOnHit.h">
       <Filter>Header files\OnHits</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterSelectionLogic.h" />
-    <ClInclude Include="CharacterSelectionHandler.h" />
     <ClInclude Include="VampiricDestroyAtTime.h">
       <Filter>Header files\OnHits</Filter>
     </ClInclude>
-    <ClInclude Include="IceDestroyOnHit.h">
-      <Filter>Header files\OnHits</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerParticleSystem.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="MkWH00PData.h">
-      <Filter>Header files\PlayerData</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerData.h">
-      <Filter>Header files\PlayerData</Filter>
-    </ClInclude>
-    <ClInclude Include="FollowPlayer.h">
-      <Filter>Header files\OnHits</Filter>
-    </ClInclude>
-    <ClInclude Include="SacoManager.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PunchingBagOnHit.h">
-      <Filter>Header files\OnHits\PunchingBag</Filter>
-    </ClInclude>
-    <ClInclude Include="LastHit_Wins.h">
-      <Filter>Header files\OnHits\PunchingBag</Filter>
-    </ClInclude>
-    <ClInclude Include="MoreDamage_Wins.h">
-      <Filter>Header files\OnHits\PunchingBag</Filter>
-    </ClInclude>
-    <ClInclude Include="FightController.h" />
-    <ClInclude Include="TrainingController.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
@@ -583,12 +539,6 @@
     </Filter>
     <Filter Include="Source Files\PlayerData">
       <UniqueIdentifier>{1272ddb6-456c-4d0b-85fd-59395543714b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header files\OnHits\PunchingBag">
-      <UniqueIdentifier>{a197126d-5fe0-48a2-821e-7b60de2e416b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\OnHit\PunchingBag">
-      <UniqueIdentifier>{b41915dd-22f5-4e19-9996-2a1ac6dc375d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

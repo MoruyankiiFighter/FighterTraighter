@@ -18,9 +18,9 @@ public:
 
 	//Callbacks for the buttons
 	//1 player mode vs AI
-	static void GoPvP(App* app);
+	static void GoArcade(App* app);
 	//1vs1 mode
-	static void GoVsAI(App* app);
+	static void Go1v1(App* app);
 	//options state to change resolution, volume or brightness
 	static void GoOptions(App* app);
 	//quit the game

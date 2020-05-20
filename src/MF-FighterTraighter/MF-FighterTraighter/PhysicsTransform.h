@@ -40,7 +40,6 @@ public:
 	//sets the speed transforming pixels/s in m/s
 	virtual void setSpeed(double x, double y) {
 		body_->SetLinearVelocity({ (float32)x,(float32)y}); 
-		
 	}
 
 	virtual void setWidth(double width);
@@ -53,16 +52,12 @@ public:
 	virtual void changeMask(uint16 newMask);
 	virtual void changeFriction(float32 newFrict);
 	virtual void resetMainFixture2(const b2Vec2& center, float angle, float32 newFrict);
-	
-	
+
 
 	b2Body* getBody() { return body_; }
 	b2Fixture* getMainFixture() { return mainFixture_; }
 	uint16 getCategory() { return cBits_; }
 	uint16 getMask() { return mBits_; }
-	UserData* getUserData() {
-		return static_cast<UserData*>(mainFixture_->GetUserData());
-	}
 	void resetUserData(UserData* newData);
 	void resetMainFixture(const b2Vec2& center, float angle);
 
