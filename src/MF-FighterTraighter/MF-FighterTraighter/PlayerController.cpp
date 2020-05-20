@@ -33,7 +33,7 @@ void PlayerController::handleInput()
 	InputManager* input = app_->getInputManager();
 	if (!disabled_)
 	{
-		if (inputSt_->AxisInput(HID::LTrigger) > 0 && currState->canGuard())
+		if (inputSt_->ButtonDown(HID::LeftTrigger) > 0 && currState->canGuard())
 		{
 			if (currState->isCrouch())
 				uncrouch();
@@ -87,7 +87,7 @@ void PlayerController::handleInput()
 			else { currState->goJumping(); };
 		}
 	}
-	if (!inputSt_->AxisInput(HID::LTrigger) > 0) {
+	if (!inputSt_->ButtonDown(HID::LeftTrigger) > 0) {
 		if (currState->isGuarding())
 			currState->goGuardingLeaving(14);
 	}
