@@ -128,4 +128,6 @@ void PlayerController::jump() {
 		transform_->setSpeed(Vector2D(movSpeed, transform_->getSpeed().getY()));
 	transform_->getBody()->SetLinearDamping(0);//0 friction in the air
 	transform_->getBody()->ApplyLinearImpulse(b2Vec2(0, jumpImpulse), transform_->getBody()->GetWorldCenter(), true);
+	entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::SALTO), false);
+
 }

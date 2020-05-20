@@ -155,63 +155,19 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));*/
+	sfx_.emplace(SALTO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/salto.wav"));
+
+
 	sfx_.emplace(PUNCH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
+	sfx_.emplace(GANCHO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/gancho.wav"));
 	sfx_.emplace(KICK, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/patada.wav"));
 	sfx_.emplace(DASH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/failattack.wav"));
 	sfx_.emplace(POLLO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/pollo.wav"));
 	sfx_.emplace(MINA, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/mina.wav"));
+	sfx_.emplace(HIELO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hielo.wav"));
+	sfx_.emplace(LASER, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/laser3.wav"));
 
 }
-//void AssetsManager::playMusic(const string& name, int channel)
-//{
-//}
-//
-//void AssetsManager::resumeAll()
-//{
-//}
-//
-//void AssetsManager::resumeMusic()
-//{
-//}
-//
-//void AssetsManager::pauseMusic()
-//{
-//}
-//
-//void AssetsManager::stopMusic()
-//{
-//}
-//
-//int AssetsManager::getGeneralVolume() const
-//{
-//	return 0;
-//}
-//
-//int AssetsManager::getMusicVolume() const
-//{
-//	return 0;
-//}
-//
-//int AssetsManager::getChannelVolume(int channel) const
-//{
-//	return 0;
-//}
-//
-//void AssetsManager::setGeneralVolume(float volume_ratio)
-//{
-//}
-//
-//void AssetsManager::setChannelvolume(int channel, float volume_ratio)
-//{
-//}
-//
-//void AssetsManager::setMusicVolume(float volume_ratio)
-//{
-//}
-//
-//void AssetsManager::setSFXVolume(const string& name, float volume_ratio)
-//{
-//}
 
 AssetsManager::~AssetsManager()
 {

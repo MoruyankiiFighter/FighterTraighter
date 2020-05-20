@@ -969,11 +969,13 @@ void AbilityFactory::LL1(Entity* ent)
 	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 265);
 	DestroyAtTime* dT = new DestroyAtTime(4, 15, 100, { (double)orientation_ * 10, -1 }, false, id, ent);
 	instanceEntitywHitbox(ent, width1, 75, pos1, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::LASER), false);
+
 }
 
 void AbilityFactory::LLC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 2);
+	goOnCoolodwn(ent, 60 * 8);
 }
 
 AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
@@ -981,10 +983,10 @@ AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
 	
 	//int orientation= phtr->getOrientation;
 	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(0, nullptr, NKC, e));//cd
 
 	vecMov.push_back(new Move(10, nullptr, NK3, e));
 	vecMov.push_back(new Move(10, nullptr, NK1, e));
-	vecMov.push_back(new Move(0, nullptr, NKC, e));//cd
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip

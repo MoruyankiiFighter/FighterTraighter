@@ -14,7 +14,7 @@ public:
 			hitstun_ /= 10;
 			data->entity_->getComponent<PlayerState>(ecs::PlayerState)->goGuardingStun(hitstun_);
 		}
-		else {
+		else if(data){
 			PhysicsTransform* phTr = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
 			int width = 260;
 			int projX = (phTr->getWidth() / 4);
@@ -23,6 +23,8 @@ public:
 			data->entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(data->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Hb2), 
 				pos, Vector2D(width, 530), hitstun_, PlayerParticleSystem::DeletionMethod::OnHit);
 		}
+		//entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::HIELO), false);
+
 		DestroyOnHit::onHit(other);
 	}
 	virtual ~IceDestroyOnHit() {}

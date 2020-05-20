@@ -243,6 +243,8 @@ void MkWH00PData::ANP1(Entity* ent)
 		hitbox_X += anp1.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, anp1.position.getY() }, anp1.width, anp1.height, anp1.time, pD->getAttack() * anp1.damage, anp1.hitstun, { (double)orientation_ * anp1.knockBack.getX(), anp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::GANCHO), false);
+	
 }
 PlayerData::CallbackData MkWH00PData::anp1 = PlayerData::CallbackData{
 	{ -200, -50 },

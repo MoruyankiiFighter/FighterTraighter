@@ -120,12 +120,18 @@ public:
 		MKBIRD_2,
 		MKBIRD_3,
 		/// SFX
+		SALTO,
 
+		
 		PUNCH,
+		GANCHO,
 		KICK,
 		DASH,
 		POLLO,
 		MINA,
+		HIELO,
+		LASER,
+
 
 	};
 	//constructors
