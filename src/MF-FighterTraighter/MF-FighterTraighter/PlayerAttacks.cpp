@@ -137,6 +137,7 @@ void PlayerAttacks::interruptAttack()
 	PlayerState* pS = entity_->getComponent<PlayerState>(ecs::PlayerState);
 
 	if ( activeAttack_ != nullptr) {
+		activeAttack_->reset();
 		activeAttack_ = nullptr;
 		resetOneTimeMultiplier();
 	}
