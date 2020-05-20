@@ -3,7 +3,6 @@
 #include "Transform.h"
 #include "PauseMenu.h"
 #include "OptionsMenu.h"
-#include "consts.h"
 
 void Button::init()
 {

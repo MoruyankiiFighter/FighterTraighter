@@ -176,7 +176,6 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="UserData.cpp" />
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="PunchingBagOnHit.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="RandomNumberGenerator.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
@@ -246,9 +245,6 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="ecs.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="consts.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="AssetsManager.h">
@@ -377,9 +373,6 @@
     <ClInclude Include="FloorOnHit.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="UIElement.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="NavigationController.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
@@ -411,9 +404,6 @@
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="UIHealthbar.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="UIRoundRenderer.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
@@ -488,7 +478,6 @@
     <ClInclude Include="AudioManager.h">
       <Filter>Header files\Managers and factories</Filter>
     </ClInclude>
-    <ClInclude Include="Shake.h" />
     <ClInclude Include="HitboxData.h">
       <Filter>Header files\OnHits</Filter>
     </ClInclude>

@@ -1,5 +1,4 @@
 #include "App.h"
-#include "consts.h"
 #include "SDLExceptions.h"
 #include "PauseMenu.h"
 #include "Fight.h"

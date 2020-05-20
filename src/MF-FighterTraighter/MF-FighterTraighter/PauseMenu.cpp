@@ -11,7 +11,6 @@
 #include "NavigationController.h"
 
 #include "App.h"
-#include "consts.h"
 
 #include "UIFactory.h"
 
@@ -24,11 +23,11 @@ void PauseMenu::init()
 	cout << "initPausa" << endl;
 #endif 
 
-	Entity* logo = entManager_.addEntity();
-	Transform* transform = logo->addComponent<Transform>();
-	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
-	transform->setPosition(app_->getWindowManager()->getCurResolution().w / 2, POS_Y_LOGO);
-	RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Logo));
+	//Entity* logo = entManager_.addEntity();
+	//Transform* transform = logo->addComponent<Transform>();
+	//transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
+	//transform->setPosition(app_->getWindowManager()->getCurResolution().w / 2, POS_Y_LOGO);
+	//RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Logo));
 
 	std::tuple<Entity*, Entity*> continue_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
 		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(100, -150),

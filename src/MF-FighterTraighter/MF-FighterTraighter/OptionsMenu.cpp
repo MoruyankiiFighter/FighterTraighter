@@ -13,8 +13,9 @@
 #include "NavigationController.h"
 #include "ControlsMenu.h"
 #include "App.h"
-#include "consts.h"
 #include <cmath>
+#include "RenderAnimation.h"
+#include "UITransform.h"
 
 OptionsMenu::OptionsMenu(App* app) : GameState(app)
 {
@@ -34,17 +35,14 @@ OptionsMenu::~OptionsMenu()
 void OptionsMenu::init()
 {
 	GameState::init();
-	/*Entity* bg = entManager_.addEntity();
-	Transform* t = bg->addComponent<Transform>();
-	t->setPosition(0, 0);
-	t->setWidthHeight(800, 600);
-	RenderImage* img = bg->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(7));*/
-	//initialize = false;
-	Entity* ent = entManager_.addEntity();
-	Transform* transform = ent->addComponent<Transform>();
-	transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
-	transform->setPosition(app_->getWindowManager()->getCurResolution().w / 4, POS_Y_LOGO / 2);
-	RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Logo));
+
+	Entity* bg = entManager_.addEntity();
+	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+
+	//Entity* ent = entManager_.addEntity();
+	//Transform* transform = ent->addComponent<UITransform>();
+	//RenderImage* img = ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Logo));
 
 	tuple<Entity*, Entity*> back = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, 20), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0),
