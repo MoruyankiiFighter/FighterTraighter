@@ -132,12 +132,17 @@ void Fight::init()
  	//bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform));
 	 bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform), player2->getComponent<Transform>(ecs::Transform));
 
-
+	 //Timer Ent
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 75), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
 	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timer->addComponent<UITimer>(UITimer::Minutes);
+	timer->addComponent<UITimer>(UITimer::Minutes)->setCountdown(250000); //4minutes timer
 
+	/* Timer Entity
+		Entity * timer = entManager_.addEntity();
+	timer->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
+	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
+	timer->addComponent<UITimer>(UITimer::Seconds)->setCountdown(sM->getTimeLimit());*/
 	Entity* healthbarBack1 = entManager_.addEntity();
 	healthbarBack1->addComponent<UITransform>(Vector2D(460, 50), Vector2D(0, 0), Vector2D(365, 20), Vector2D(730, 40));
 	healthbarBack1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::HealthbarBack));
@@ -175,7 +180,7 @@ void Fight::init()
 	Entity* gameController = entManager_.addEntity();
 	gameController->addComponent<UIRoundRenderer>(leftCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(1));
 	gameController->addComponent<UIRoundRenderer>(rightCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(2));
-	gameController->addComponent<FightController>(300);
+	gameController->addComponent<FightController>(240, 300);
 	entManager_.setHandler(gameController, ecs::Controller);
 }
 

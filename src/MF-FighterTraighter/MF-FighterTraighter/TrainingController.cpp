@@ -12,7 +12,7 @@ void TrainingController::init() {
 	string startInfoTxt = sM->getInfoText();
 	displayMessage(startInfoTxt);
 	disablePlayers(true);
-	sM->startTimer();
+	
 }
 
 
@@ -27,6 +27,7 @@ void TrainingController::update()
 			app_->getStateMachine()->getCurrentState()->getEntityManager().removeEntity(msgEnt);
 			showInitialMessage = false;
 			disablePlayers(false);
+			state_->getEntityManager().getHandler(ecs::Saco)->getComponent<SacoManager>(ecs::SacoManager)->startTimer();
 		}
 	}
 	if (playerWins_ != -1) {	//end message timer

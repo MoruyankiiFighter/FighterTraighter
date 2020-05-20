@@ -40,3 +40,13 @@ void SacoManager::update() {
 		}
 	}
 }
+
+void SacoManager::startTimer() {
+	timerOn = true;
+	startTime_ = SDL_GetTicks();
+	//instanciar el timer en pantalla
+	Entity* timer = state_->getEntityManager().addEntity();
+	timer->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
+	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
+	timer->addComponent<UITimer>(UITimer::Seconds)->setCountdown(timeLimit_);
+}
