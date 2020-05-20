@@ -160,6 +160,13 @@ public:
 	virtual int getPlayerNumber() {
 		return playerNumber_;
 	}
+
+	virtual void setDmgSound(Mix_Chunk* sound) {
+		damageSound_ = sound;
+	}
+	virtual Mix_Chunk* getDmgSound() {
+		return damageSound_;
+	}
 	virtual ~PlayerData() {}
 	
 protected:
@@ -215,4 +222,6 @@ protected:
 	
 	// Either player 1 or 2 (0 or 1)
 	int playerNumber_;
+
+	Mix_Chunk* damageSound_;
 };
