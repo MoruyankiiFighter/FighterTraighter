@@ -341,10 +341,10 @@ void AbilityFactory::AS1(Entity* ent)
 	double height = 80;
 	bool gravity = true;
 	bool multiHit = true;
-	DestroyAtTime* dT = new DestroyAtTime(0.1, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, multiHit);
-	dT->enableMultiHit(5);
+	DestroyAtTime* dT = new DestroyAtTime(2, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, multiHit);
+	dT->enableMultiHit(40);
 	Texture* spawntexture = app->getAssetsManager()->getTexture(AssetsManager::As2);
-	Vector2D spawnEntSize(spawntexture->getWidth() * 3, spawntexture->getHeight());
+	Vector2D spawnEntSize(spawntexture->getWidth() * 3.0, spawntexture->getHeight());
 	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize);	
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::AS1);
 	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_ ,fL, gravity);
@@ -364,8 +364,8 @@ AnimationChain* AbilityFactory::GiveMina(Entity* e)
 	//vecMov.push_back(new Move(10, nullptr, EW2, e));
 	//vecMov.push_back(new Move(10, nullptr, EW3, e));
 	//vecMov.push_back(new Move(25, nullptr, nullptr, e));
-	AnimationChain* AcidSplit = new AnimationChain(vecMov);
-	return AcidSplit;
+	AnimationChain* Mina = new AnimationChain(vecMov);
+	return Mina;
 }
 void AbilityFactory::M1(Entity* ent)
 {
@@ -1045,7 +1045,8 @@ void AbilityFactory::NK2(Entity* ent)
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	phtr->setOrientation(-1 * phtr->getOrientation());
 	
-	ent->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
+	PlayerState* pS = ent->getComponent<PlayerState>(ecs::PlayerState);
+	if (pS->isCasting() || pS->isAbletoMove()) pS->goIdle();
 	NK1(ent);
 
 }
@@ -1090,7 +1091,8 @@ void AbilityFactory::NKF(Entity* ent)
 	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
 		 pT->setOrientation(1);
 	else   pT->setOrientation(-1);
-	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
+
+	//ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
 }
 
 void AbilityFactory::NKC(Entity* ent)
