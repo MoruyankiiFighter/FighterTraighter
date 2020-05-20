@@ -15,7 +15,6 @@
 #include "RenderAnimation.h"
 #include "FollowPlayer.h"
 #include "PlayerController.h"
-//#include "playerinfo"
 
 
 AnimationChain* AbilityFactory::GiveAbility(GameManager::AbilityID id, Entity* e) {
@@ -289,22 +288,13 @@ void AbilityFactory::EW1(Entity* ent)
 	knockback = { -10.0 * orientation_, -5.0 };
 	dT = new DestroyAtTime(damage, time, hitstun, knockback, guardBreaker, id, ent);
 	//createProyectile(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, 10, 55, { -10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Ew1), -orientation_, false);
-	instanceEntitywHitbox(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, mask, currentState, app, tex, -orientation_, dT);
+	instanceEntitywHitbox(ent, width2, 375, pos2, { 4.5 * -orientation_, 0 }, mask, currentState, app, tex, -orientation_, dT);
 
 	//Parriba
 	/*int width3 = 160;
 	int projX3 = pT->getPosition().getX() + (pT->getWidth() * 2 / 4);
 	Vector2D pos3 = Vector2D(projX3, pT->getPosition().getY() + 75);
 	createProyectile(ent, width3, 60, pos3, { 0, -5.0 }, 20, 55, { 0, -10.0}, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Player), false);*/
-}
-
-void AbilityFactory::EW2(Entity* ent)
-{
-	///<bbgzccvfAFG
-}
-
-void AbilityFactory::EW3(Entity* ent)
-{
 }
 
 AnimationChain* AbilityFactory::GiveAcidSplit(Entity* e)
@@ -763,7 +753,7 @@ void AbilityFactory::RS1(Entity* ent)
 	std::cout << "Useless bullshit" << endl;
 #endif
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Hb1);
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Rs1);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 
 	uint16 mask;
@@ -777,7 +767,9 @@ void AbilityFactory::RS1(Entity* ent)
 		mask = currentState->PLAYER_1 ;
 	}
 
-	int width = 150;
+	int width = 350;
+	int height = 250;
+	Vector2D speedd(15, 0);
 	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2) - 85;
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2) + 85;
 
@@ -785,12 +777,12 @@ void AbilityFactory::RS1(Entity* ent)
 
 	DestroyAtTime* dT = new DestroyAtTime(4, 10, 20, { (double)orientation_ * 2, -1.5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
-	Entity* proj = AbilityFactory::instanceEntitywHitbox(ent, width, 150, pos, { 0, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	Entity* proj = AbilityFactory::instanceEntitywHitbox(ent, width, height, pos, speedd, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 }
 
 void AbilityFactory::RSC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 8.5);
+	goOnCoolodwn(ent, 60 * 3);
 }
 
 AnimationChain* AbilityFactory::GiveFlyingKicks(Entity* e)

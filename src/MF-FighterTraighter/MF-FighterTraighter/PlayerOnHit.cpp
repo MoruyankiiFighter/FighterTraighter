@@ -19,8 +19,8 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 	Health* helth = entity_->getComponent<Health>(ecs::Health);
 	PlayerParticleSystem* pSystem = entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem);
 	if (!currState->isProtected() /*&& !hBox_data->guardBreaker*/) {
-		if (currState->isAttacking()) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
-		if (currState->isCrouch()) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
+		if (currState->isAttacking() && !hBox_data->multiHit_) entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
+		if (currState->isCrouch() && !hBox_data->multiHit_) entity_->getComponent<PlayerController>(ecs::PlayerController)->uncrouch();
 		if (!hBox_data->guardBreaker_ && hBox_data->doesDamage()) {
 			helth->LoseLife(hBox_data->damage_);
 			//pD->getPlayerNumber()

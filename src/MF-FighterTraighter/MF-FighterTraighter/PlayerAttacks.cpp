@@ -126,7 +126,6 @@ void PlayerAttacks::setAbility(AnimationChain* newAbility, int index)
 
 void PlayerAttacks::interruptAttack()
 {
-	PlayerState* pS = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	PlayerController* pC = entity_->getComponent<PlayerController>(ecs::PlayerController);
 	pC->canJump(true);
 	PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
@@ -135,18 +134,9 @@ void PlayerAttacks::interruptAttack()
 	else   pT->setOrientation(-1);
 	//pT->getBody()->SetLinearDamping(0);
 
-	/*
-	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
-	pC->canJump(true);
-	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
-		 pT->setOrientation(1);
-	else   pT->setOrientation(-1);
-	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();*/
-
+	PlayerState* pS = entity_->getComponent<PlayerState>(ecs::PlayerState);
 
 	if ( activeAttack_ != nullptr) {
-		activeAttack_->reset();
 		activeAttack_ = nullptr;
 		resetOneTimeMultiplier();
 	}

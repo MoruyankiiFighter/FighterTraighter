@@ -56,7 +56,7 @@ void Fight::init()
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
 		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::MegatonGrip, player1), 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
-		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::NadoKick, player1), 1);
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::HailBall, player1), 1);
 	//player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
 	//	->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability1Index], player1), 0);
 	//player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)

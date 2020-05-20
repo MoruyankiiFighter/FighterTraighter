@@ -40,6 +40,7 @@ public:
 		Mg22,
 		Ss1,
 		Ss2,
+		Rs1,
 		//resources of aisha
 		Aisha_icon,
 		AishaArtwork,
