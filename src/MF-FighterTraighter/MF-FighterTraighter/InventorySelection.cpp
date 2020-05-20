@@ -6,6 +6,7 @@
 #include "Fight.h"
 #include "InventoryLogic.h"
 #include "NavigationController.h"
+#include "InventoryHandler.h"
 void InventorySelection::init()
 {
 	GameState::init();
@@ -73,7 +74,7 @@ void InventorySelection::init()
 		Vector2D(0, -(90 + 50 + 50)),
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 4) * 3, app_->getWindowManager()->getCurResolution().h),
 		Vector2D(320, 90),
-		640, 180, 0, GoToFight, nullptr, "Continue_J2", 80, TextComponent::TextAlignment::Center);
+		640, 180, 0, nullptr, nullptr, "Continue_J2", 80, TextComponent::TextAlignment::Center);
 	std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Bottom;
 
 	//j2
@@ -81,7 +82,7 @@ void InventorySelection::init()
 		Vector2D(0, -(90 + 50 + 50)),
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, app_->getWindowManager()->getCurResolution().h),
 		Vector2D(320, 90),
-		640, 180, 0, GoToFight, nullptr, "Continue_J1", 80, TextComponent::TextAlignment::Center);
+		640, 180, 0, nullptr, nullptr, "Continue_J1", 80, TextComponent::TextAlignment::Center);
 	std::get<1>(boton2)->getComponent<UITransform>(ecs::Transform)->Bottom;
 
 	//ranuras j2
@@ -361,12 +362,11 @@ void InventorySelection::init()
 	}
 	// Navigation controller
 
-	//Entity* logicJ2 = entManager_.addEntity();
-	//logicJ2->addComponent<InventoryLogic>(ctrl_, 2, left_j2->getComponent<RenderImage>(ecs::RenderImage), right_j2->getComponent<RenderImage>(ecs::RenderImage));
+	Entity* logicJ2 = entManager_.addEntity();
+	logicJ2->addComponent<InventoryLogic>(ctrl_, 2, left_j2->getComponent<RenderImage>(ecs::RenderImage), right_j2->getComponent<RenderImage>(ecs::RenderImage));
 
+	Entity* ent = entManager_.addEntity();
+	ent->addComponent<InventoryHandler>(logicJ1, logicJ2);
 }
 
-void InventorySelection::GoToFight(App* app)
-{
-	app->getStateMachine()->pushState(new Fight(app));
-}
+

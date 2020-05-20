@@ -154,7 +154,7 @@ void InventoryLogic::handleInput()
 	}
 	else 
 	{
-		if (nav_->GetPosY() > 1 && app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Right) && !pressed) {
+		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Right) && !pressed) {
 			pressed = true;
 			cout << "waiting for fight";
 		}

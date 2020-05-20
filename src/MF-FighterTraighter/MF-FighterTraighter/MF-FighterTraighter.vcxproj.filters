@@ -77,6 +77,7 @@
     <ClCompile Include="VerticalSlider.cpp" />
     <ClCompile Include="ControlsMenu.cpp" />
     <ClCompile Include="InventoryLogic.cpp" />
+    <ClCompile Include="InventoryHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbilitiesTimerFunction.h" />
@@ -166,5 +167,6 @@
     <ClInclude Include="VerticalSlider.h" />
     <ClInclude Include="ControlsMenu.h" />
     <ClInclude Include="InventoryLogic.h" />
+    <ClInclude Include="InventoryHandler.h" />
   </ItemGroup>
 </Project>
