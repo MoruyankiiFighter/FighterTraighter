@@ -54,7 +54,7 @@ void Fight::init()
 	const GameManager::PlayerInfo& p1_info = app_->getGameManager()->getPlayerInfo(1);
 	//////HABILIDAD A CHOLON
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
-		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::AcidSplit, player1), 0);
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::ReachingStrike, player1), 0);
 	player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
 		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::NadoKick, player1), 1);
 	//player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
