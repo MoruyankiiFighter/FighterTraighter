@@ -992,6 +992,7 @@ AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
 
 	vecMov.push_back(new Move(10, nullptr, NK3, e));
 	vecMov.push_back(new Move(10, nullptr, NK1, e));
+	vecMov.push_back(new Move(0, nullptr, NKC, e));//cd
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
@@ -1000,9 +1001,9 @@ AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
+	vecMov.push_back(new Move(5, nullptr, NKF, e));//right side
 
 	//vecMov.push_back(new Move(20, nullptr, NK1, e));
-	vecMov.push_back(new Move(0, nullptr, NKC, e));
 	AnimationChain* NadoKick = new AnimationChain(vecMov);
 
 	//phtr->setOrientation(orientation);
@@ -1089,8 +1090,8 @@ void AbilityFactory::NK3(Entity* ent)
 
 }
 
-void AbilityFactory::NKC(Entity* ent)
-{
+void AbilityFactory::NKF(Entity* ent)
+{	
 	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
 	pC->canJump(true);
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
@@ -1098,7 +1099,17 @@ void AbilityFactory::NKC(Entity* ent)
 		 pT->setOrientation(1);
 	else   pT->setOrientation(-1);
 	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
-	pT->getBody()->SetLinearDamping(0);
+}
+
+void AbilityFactory::NKC(Entity* ent)
+{
+	/*PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
+	pC->canJump(true);
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
+		 pT->setOrientation(1);
+	else   pT->setOrientation(-1);
+	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();*/
 	goOnCoolodwn(ent,60 * 10);
 }
 
