@@ -13,6 +13,7 @@
 #include "App.h"
 
 #include "UIFactory.h"
+#include "RenderAnimation.h"
 
 void PauseMenu::init()
 {
@@ -28,6 +29,13 @@ void PauseMenu::init()
 	//transform->setWidthHeight(WIDTH_LOGO, HEIGHT_LOGO);
 	//transform->setPosition(app_->getWindowManager()->getCurResolution().w / 2, POS_Y_LOGO);
 	//RenderImage* img = logo->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Logo));
+
+	// Background
+	Entity* background = entManager_.addEntity();
+	background->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+	background->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+
+	UIFactory::createText(app_, this, Vector2D(), Vector2D(), Vector2D(), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "Player 1 paused the game!", 80, TextComponent::Left, 500, 300, 9000);
 
 	std::tuple<Entity*, Entity*> continue_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
 		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(100, -150),
@@ -60,8 +68,8 @@ void PauseMenu::init()
 	nav->SetElementInPos(std::get<0>(controls_button)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 	nav->SetElementInPos(std::get<0>(options_button)->getComponent<UIElement>(ecs::UIElement), 0, 3);
 	app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::MENU_OPCIONES), true);
-	
-	
+
+
 
 }
 
