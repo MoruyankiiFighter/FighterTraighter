@@ -142,7 +142,13 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(MKWOP_2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/clonk.wav"));
 	sfx_.emplace(MKWOP_3, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/piribi.wav"));
 	sfx_.emplace(MKWOP_4, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/robotau.wav"));
-	sfx_.emplace(MKWOP_5, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/robotay.wav"));
+	sfx_.emplace(FLOR_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/F10R/zombidolor.mp3"));
+	sfx_.emplace(FLOR_2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/F10R/zombihola.wav"));
+	sfx_.emplace(FLOR_3, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/F10R/Zombiquejido.wav"));
+	sfx_.emplace(MKBIRD_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/Mockingbird/ouch.wav"));
+	sfx_.emplace(MKBIRD_2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/Mockingbird/pain.wav"));
+	sfx_.emplace(MKBIRD_3, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/Mockingbird/yeow.wav"));
+
 	/*sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));

@@ -24,8 +24,8 @@ GameManager::GameManager(App* app) : app_(app)
 	//player1_.character = F10R;
 	player1_.character = MKWh00p;
 
-	//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
-	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+	player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
+	//player2_.hid = new GamepadHID(app_->getInputManager(), 0);
 	player2_.character = F10R;
 }
 
@@ -131,6 +131,7 @@ void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<
 	//player1_.abilities = abilities;
 	player1_.ability1Index = ability1Index;
 	player1_.ability2Index = ability2Index;
+	//player1_.onHitSound = onHit;
 }
 
 void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
@@ -139,6 +140,8 @@ void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<
 	//player2_.abilities = abilities;
 	player2_.ability1Index = ability1Index;
 	player2_.ability2Index = ability2Index;
+	//player2_.onHitSound = onHit;
+
 }
 
 void GameManager::resetCharacters()
