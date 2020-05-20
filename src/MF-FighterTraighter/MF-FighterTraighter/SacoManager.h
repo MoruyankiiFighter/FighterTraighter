@@ -1,6 +1,10 @@
 #pragma once
 #include "Component.h"
 #include "PhysicsTransform.h"
+#include "UITransform.h"
+#include "TextComponent.h"
+#include "UITimer.h"
+
 class SacoManager : public Component
 {
 public:
@@ -23,10 +27,7 @@ public:
 		return infoText;
 	}
 
-	void startTimer() {
-		timerOn = true;
-		startTime_ = SDL_GetTicks();
-	}
+	void startTimer();
 	//method overrided from Component
 	virtual void init() override;
 	virtual void update() override;
