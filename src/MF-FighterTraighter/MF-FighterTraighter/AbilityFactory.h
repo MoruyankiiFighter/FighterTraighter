@@ -30,8 +30,6 @@ public:
 
 	static void EWC(Entity* ent);
 	static void EW1(Entity* ent);
-	static void EW2(Entity* ent);
-	static void EW3(Entity* ent);
 
 	//Acid Split
 	static AnimationChain* GiveAcidSplit(Entity* e);

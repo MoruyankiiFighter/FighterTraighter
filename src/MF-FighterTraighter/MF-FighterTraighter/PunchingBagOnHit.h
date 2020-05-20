@@ -5,11 +5,12 @@
 class PunchingBagOnHit : public UserData
 {
 public:
-	PunchingBagOnHit(Entity* e) : UserData(e) {}
+	PunchingBagOnHit(Entity* e, string infoM) : UserData(e), infoMessage(infoM) {}
 	~PunchingBagOnHit() {}
 	//Decide the player who is the winner when its a draw
-	virtual int timeout_Winner() { return 0; }
-private:
-	int winner;
+	virtual int timeout_Winner() = 0;
+	virtual string getInfoMessage() { return infoMessage; };
+protected:
+	string infoMessage = "";
 };
 

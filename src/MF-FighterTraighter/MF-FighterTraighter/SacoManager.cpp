@@ -1,33 +1,42 @@
 #include "SacoManager.h"
 #include "LastHit_Wins.h"
 #include "MoreDamage_Wins.h"
+#include "TrainingController.h"
+
 void SacoManager::init() {
 
 	transform_ = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 
 	PunchingBagInteraction rndInter = (PunchingBagInteraction)app_->getRandGen()->nextInt(0,_last_interaction);
-	
+	PunchingBagOnHit* pb = nullptr;
 	switch (rndInter)
 	{
 	case LAST_HIT:
-		transform_->resetUserData(new LastHit_Wins(entity_));
+		pb = new LastHit_Wins(entity_, "¡Da el ultimo golpe!");
+		transform_->resetUserData(pb);
+		infoText = "¡Da el ultimo golpe!";
 		break;
 	case MORE_DAMAGE:
-		transform_->resetUserData(new MoreDamage_Wins(entity_));	//este seria diferente
+		pb = new MoreDamage_Wins(entity_, "¡Daña el saco!");
+		transform_->resetUserData(pb);	//este seria diferente
+		infoText = "¡Daña el saco!";
 		break;
 	default:
+		pb = nullptr;
 		break;
 	}
 
-	startTime_ = SDL_GetTicks();
+	//entity_->getState()->getEntityManager().getHandler(ecs::Controller)->getComponent<TrainingController>(ecs::TrainingController)->setIniText(pb->getInfoMessage());
+	
 }
 
 //updates the punchingBag time limit
 void SacoManager::update() {
-	currTime_ = SDL_GetTicks() - startTime_;
-	if (currTime_ > timeLimit_) { 
-		std::cout << "Tiempo acabado" << endl; 
-		int winner = (static_cast<PunchingBagOnHit*>(entity_->getComponent<PhysicsTransform>(ecs::Transform)->getUserData()))->timeout_Winner();
-		app_->getGameManager()->trainingEnded(winner);
+	if (timerOn) {
+		currTime_ = SDL_GetTicks() - startTime_;
+		if (currTime_ > timeLimit_) {
+			int winner = (static_cast<PunchingBagOnHit*>(entity_->getComponent<PhysicsTransform>(ecs::Transform)->getUserData()))->timeout_Winner();
+			entity_->getState()->getEntityManager().getHandler(ecs::Controller)->getComponent<TrainingController>(ecs::TrainingController)->PlayerWins(winner);
+		}
 	}
 }
