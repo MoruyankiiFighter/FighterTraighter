@@ -473,7 +473,7 @@ void AbilityFactory::PO1(Entity* ent)
 	DestroyOnHit* dT = new DestroyOnHit(explosionDamage, time, 0, Vector2D(-(double)orientation_ * 5, -3), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, false);
 
 	Texture* pollotexture = app->getAssetsManager()->getTexture(AssetsManager::PO1);
-	Entity* hitConPollo = AbilityFactory::instanceEntitywHitbox(ent, width, height, pos, { -(double)orientation_ * 10, 1 },
+	AbilityFactory::instanceEntitywHitbox(ent, width, height, pos, { -(double)orientation_ * 10, 1 },
 			mask, ent->getState(), ent->getApp(), pollotexture, orientation_, dT,false,true);
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::POLLO), false);
 }
@@ -1094,8 +1094,8 @@ void AbilityFactory::NKC(Entity* ent)
 	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
 	pC->canJump(true);
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	if (ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1))
-		pT->setOrientation(1);
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
+		 pT->setOrientation(1);
 	else   pT->setOrientation(-1);
 	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
 	pT->getBody()->SetLinearDamping(0);

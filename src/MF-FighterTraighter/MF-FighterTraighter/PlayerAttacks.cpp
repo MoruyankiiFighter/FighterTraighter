@@ -126,7 +126,9 @@ void PlayerAttacks::setAbility(AnimationChain* newAbility, int index)
 
 void PlayerAttacks::interruptAttack()
 {
-	if (activeAttack_ != nullptr) {
+	PlayerState* pS = entity_->getComponent<PlayerState>(ecs::PlayerState);
+
+	if (pS->getState() == pS->isHitstun() && activeAttack_ != nullptr) {
 		activeAttack_->reset();
 		activeAttack_ = nullptr;
 		resetOneTimeMultiplier();
