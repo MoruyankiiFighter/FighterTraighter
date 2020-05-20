@@ -11,11 +11,14 @@ public:
 	void init() override;
 	void update() override;
 	void handleInput() override;
+
+	inline bool getPressed() { return pressed; }
 private:
 	RenderImage* left_;
 	RenderImage* right_;
 	NavigationController* nav_;
 	int player_;
 	GameManager::AbilityID curr;
+	bool pressed = false;
 };
 

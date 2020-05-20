@@ -12,24 +12,25 @@ void InventoryLogic::init()
 
 void InventoryLogic::update()
 {
+	if (!pressed) {
+		if (nav_->GetPosY() == 0) {
+			if (app_->getGameManager()->getPlayerInfo(player_).abilities.size() > nav_->GetPosX()) { //revisar esta comprobacion
+				curr = app_->getGameManager()->getPlayerInfo(player_).abilities[nav_->GetPosX()]; //0 a 5
+			}
+		}
+		else if (nav_->GetPosY() == 1) {
 
-	if (nav_->GetPosY() == 0) {
-		if (app_->getGameManager()->getPlayerInfo(player_).abilities.size() >nav_->GetPosX() )
-			curr = app_->getGameManager()->getPlayerInfo(player_).abilities[nav_->GetPosX()]; //0 a 5
-		
+			if (app_->getGameManager()->getPlayerInfo(player_).abilities.size() > 2* nav_->GetPosX()) {//revisar esta comprobacion
+				curr = app_->getGameManager()->getPlayerInfo(player_).abilities[(nav_->GetPosX() + 5)]; //5 a 10
+			}
+		}
 	}
-	else if (nav_->GetPosY() == 1) {
-
-		if (app_->getGameManager()->getPlayerInfo(player_).abilities.size() > nav_->GetPosX() + (nav_->GetPosY()*nav_->GetPosX())-1)
-		curr = app_->getGameManager()->getPlayerInfo(player_).abilities[(nav_->GetPosX()+5)]; //5 a 10
-	}
-
 }
 
 void InventoryLogic::handleInput()
 {
 	if (nav_->GetPosY() != 2) {
-		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Right)&& app_->getGameManager()->getPlayerInfo(player_).ability2Index!=curr) {
+		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Right) && app_->getGameManager()->getPlayerInfo(player_).ability2Index != curr && !pressed) {
 			app_->getGameManager()->setFirstHab(curr, player_);
 
 			cout << "hab1 equipada ";
@@ -90,7 +91,7 @@ void InventoryLogic::handleInput()
 				}
 			}
 		}
-		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Down) && app_->getGameManager()->getPlayerInfo(player_).ability1Index != curr) {
+		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Down) && app_->getGameManager()->getPlayerInfo(player_).ability1Index != curr && !pressed) {
 			app_->getGameManager()->setSecondHab(curr, player_);
 			cout << "hab2 equipada ";
 			if (right_ != nullptr) {
@@ -149,6 +150,18 @@ void InventoryLogic::handleInput()
 					break;
 				}
 			}
+		}
+	}
+	else 
+	{
+		if (nav_->GetPosY() > 1 && app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Right) && !pressed) {
+			pressed = true;
+			cout << "waiting for fight";
+		}
+		
+		else if (pressed && app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Down)) {
+			pressed = false;
+			cout << "Canceled";
 		}
 	}
 }
