@@ -217,7 +217,7 @@ void MkWH00PData::HK2(Entity* ent)
 	DestroyAtTime* dT = new DestroyAtTime(hk2.damage, hk2.time, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
 	/*AbilityFactory::createProyectile(ent, hk2.width, hk2.height, pos, { 0, -0.7 }, hk2.damage, hk2.hitstun, { (double)orientation_ * hk2.knockBack.getX(), hk2.knockBack.getY() },
 		hk1.time, mask, ent->getState(), ent->getApp(), texture, false);*/
-	AbilityFactory::instanceEntitywHitbox(ent, hk2.width, hk2.height, pos, { (double)orientation_ * 2, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	AbilityFactory::instanceEntitywHitbox(ent, hk2.width, hk2.height, pos, { 0, -0.5 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 
 }
 

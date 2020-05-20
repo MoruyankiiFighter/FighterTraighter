@@ -4,17 +4,19 @@ Text::Text(SDL_Renderer* rend) : Texture(rend)
 {
 }
 
-Text::Text(SDL_Renderer* rend, std::string text, Font* font) : Texture(rend), text_(text), font_(font)
+Text::Text(SDL_Renderer* rend, std::string text, Font* font, int longText) : Texture(rend), text_(text), font_(font), longText_(longText)
 {
 	createText(font, text);
 }
 
 void Text::createText(Font* font, std::string text)
 {
+	SDL_Surface* surface;
+	surface = TTF_RenderText_Blended_Wrapped(font->getFont(), text.c_str(), { 255, 255, 255, 255 }, longText_);
 	if (text != "") {
-		SDL_Surface* surface = TTF_RenderText_Solid(font->getFont(), text.c_str(), { 255, 255, 255, 255 });
+
 		if (surface == nullptr) {
-			throw "Error"; // CHANGE TO PROPER EXCEPTION
+			throw "Error  on surface"; // CHANGE TO PROPER EXCEPTION
 		}
 		else {
 			cleanTexture();
@@ -25,7 +27,6 @@ void Text::createText(Font* font, std::string text)
 			height = surface->h;
 			fWidth = width;
 			fHeight = height;
-
 			texture = SDL_CreateTextureFromSurface(renderer, surface);
 			SDL_FreeSurface(surface);
 		}

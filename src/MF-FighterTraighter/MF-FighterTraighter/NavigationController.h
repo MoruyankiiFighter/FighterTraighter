@@ -17,9 +17,13 @@ public:
 	void SetElementInPos(UIElement* ent, size_t x, size_t y);
 	UIElement* GetElementInPos(size_t x, size_t y);
 
+	int GetPosX() { return cursorPositionX_; }
+	int GetPosY() { return cursorPositionY_; }
+
 protected:
 	LinkedGrid<UIElement*> grid_;
-	int cursorPositionX_, cursorPositionY_;
+	int cursorPositionX_ = 0; // col
+	int cursorPositionY_ = 0; // row
 
 	int findInRowFrom(int y);
 	int findInColFrom(int x);

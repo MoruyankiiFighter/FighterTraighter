@@ -14,10 +14,3 @@ void Bullet::init()
 	entity_->getState()->addHitbox(playerNumber_,onHit_,transform_->getMainFixture());
 
 }
-
-//void Bullet::update()
-//{
-//}
-
-
-

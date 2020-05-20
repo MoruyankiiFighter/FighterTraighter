@@ -2,11 +2,11 @@
 #include "Texture.h"
 #include "Font.h"
 class Text :
-	protected Texture
+	public Texture
 {
 public:
 	Text(SDL_Renderer* rend);
-	Text(SDL_Renderer* rend, std::string text, Font* font);
+	Text(SDL_Renderer* rend, std::string text, Font* font,int longText);
 	void createText(Font* font, std::string text);
 
 	Text(const Text&) = delete;
@@ -21,5 +21,6 @@ public:
 protected:
 	std::string text_ = "";
 	Font* font_ = nullptr;
+	int longText_ = 10;
 };
 

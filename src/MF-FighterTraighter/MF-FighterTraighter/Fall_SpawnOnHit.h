@@ -13,8 +13,8 @@
 class Fall_SpawnOnHit : public DestroyOnHit
 {
 public:
-	Fall_SpawnOnHit(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, HitboxData* spawnData, Texture* spawnTexture, const Vector2D& sentSize, bool mHit = false) :
-		DestroyOnHit(damage, time, hitstun, knockback, guardbreaker, id, e, mHit), spawnData_(spawnData), spawnTex_(spawnTexture), spawnEntSize_(sentSize) {}
+	Fall_SpawnOnHit(int damage, int time, int hitstun, Vector2D knockback, bool guardbreaker, int id, Entity* e, HitboxData* spawnData, Texture* spawnTexture, const Vector2D& sentSize, bool mHit = false, bool render = false) :
+		DestroyOnHit(damage, time, hitstun, knockback, guardbreaker, id, e, mHit), spawnData_(spawnData), spawnTex_(spawnTexture), spawnEntSize_(sentSize), render_(render) {}
 	virtual void onHit(b2Fixture* other) {
 		UserData* data = static_cast<UserData*>(other->GetUserData());
 		if (data) {
@@ -25,7 +25,7 @@ public:
 				entity_->getComponent<PhysicsTransform>(ecs::Transform)->changeMask(entity_->getState()->BOUNDARY);
 
 			}
-			else {	//the entity collision with the floor(BOUNDARY)
+			else {	//collision with the floor(BOUNDARY)
 				PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 				uint16 mask;
 				if (spawnData_ != nullptr) {
@@ -39,7 +39,7 @@ public:
 					newPos.set(newPos.getX() + (0.5 * pT->getWidth()), newPos.getY() + (0.75 * pT->getHeight()));	//put the new entity on the ground
 					Entity* smoke = AbilityFactory::instanceEntitywHitbox(spawnData_->entity_, spawnEntSize_.getX(), spawnEntSize_.getY(), newPos, Vector2D(0, 0), mask, spawnData_->entity_->getState(),
 						spawnData_->entity_->getApp(), spawnTex_, pT->getOrientation(),
-						spawnData_, false);
+						spawnData_, false, render_);
 					smoke->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->SetSensor(true);
 				}
 				DestroyOnHit::onHit(other);
@@ -52,5 +52,6 @@ private:
 	HitboxData* spawnData_ = nullptr;
 	Texture* spawnTex_ = nullptr;
 	Vector2D spawnEntSize_ = Vector2D(0,0);
+	bool render_ = false;
 };
 
