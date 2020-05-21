@@ -131,6 +131,9 @@ public:
 		MINA,
 		HIELO,
 		LASER,
+		ATAQUE,
+		ATAQUE2,
+		BOTON
 
 
 	};

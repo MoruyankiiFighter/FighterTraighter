@@ -49,6 +49,8 @@ void NavigationController::handleInput()
 		ent->Deselect();
 		ent = grid_.GetItem(cursorPositionX_, cursorPositionY_);
 		ent->Select();
+		entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::BOTON), false);
+
 	}
 }
 
