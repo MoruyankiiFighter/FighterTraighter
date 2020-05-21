@@ -15,16 +15,16 @@ void AbilitiesTimerFunction::update(){
 		updateTimerAb(1, 17000);
 	}*/
 	//int auxtimeab0 = pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(0);
-	if (pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(0) > 0 && pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->IsTimerActive(0)) {
-		updateTimerAb(0, (pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getTimeCool(0) / 60) * 1000);
-		pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->activeTimer(0, false);
+	if (pl_->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->getAbilityCooldown(0) > 0 && pl_->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->IsTimerActive(0)) {
+		updateTimerAb(0, (pl_->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->getTimeCool(0) / 60) * 1000);
+		pl_->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->activeTimer(0, false);
 	}
 
 	//int auxtimeab1 = pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(1);
 
-	if (pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getAbilityCooldown(1) > 0 && pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->IsTimerActive(1)) {
-		updateTimerAb(1, (pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->getTimeCool(1) / 60) * 1000);
-		pl_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->activeTimer(1, false);
+	if (pl_->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->getAbilityCooldown(1) > 0 && pl_->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->IsTimerActive(1)) {
+		updateTimerAb(1, (pl_->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->getTimeCool(1) / 60) * 1000);
+		pl_->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->activeTimer(1, false);
 	}
 	
 	

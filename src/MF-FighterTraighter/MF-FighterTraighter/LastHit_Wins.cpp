@@ -2,6 +2,7 @@
 #include "Health.h"
 #include "HitboxData.h"
 #include "Bullet.h"
+#include "TrainingController.h"
 
 //The punching bag can only be hit by other players or projectiles 
 //created by them
@@ -18,7 +19,7 @@ void LastHit_Wins::onHit(b2Fixture* other)
 	h->LoseLife(other_data->damage_);
 	// Punching Bag dies
 	if (h->getHealth() == 0) {
-		entity_->getApp()->getGameManager()->trainingEnded(last_hit);
+		entity_->getState()->getEntityManager().getHandler(ecs::Controller)->getComponent<TrainingController>(ecs::TrainingController)->PlayerWins(last_hit);
 	}
 }
 

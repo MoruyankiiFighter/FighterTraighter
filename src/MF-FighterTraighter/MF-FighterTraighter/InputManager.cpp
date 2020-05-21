@@ -42,8 +42,14 @@ void InputManager::update()
 			break;
 		case SDL_KEYDOWN:
 			keyboardEvent_ = true;
+			if (read)
+			{
+				lstKey = e.key.keysym.scancode;
+
+			}
 			break;
 		case SDL_KEYUP:
+			
 			keyboardEvent_ = true;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
@@ -73,6 +79,10 @@ void InputManager::update()
 				if (e.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(connectedControllers[i]))) {
 					// So the relevant state can be updated
 					controllerInputs[i].buttons[e.cbutton.button] = true;
+					if (read)
+					{
+						lstButton = SDL_GameControllerGetStringForButton((SDL_GameControllerButton)e.cbutton.button);
+					}
 				}
 			}
 			break;
@@ -96,6 +106,11 @@ void InputManager::update()
 					if (abs(controllerInputs[i].axis[e.caxis.axis] - e.caxis.value) > 15000)
 					{
 						axisEvent_ = true;
+						if (read && e.caxis.axis > 3)
+						{
+							lstButton = SDL_GameControllerGetStringForAxis((SDL_GameControllerAxis)e.caxis.axis);
+
+						}
 						
 					}
 					

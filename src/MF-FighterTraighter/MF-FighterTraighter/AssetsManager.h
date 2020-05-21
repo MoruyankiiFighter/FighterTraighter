@@ -40,6 +40,7 @@ public:
 		Mg22,
 		Ss1,
 		Ss2,
+		Rs1,
 		//resources of aisha
 		Aisha_icon,
 		AishaArtwork,
@@ -74,12 +75,14 @@ public:
 		M1,
 		M2,
 		M3,
+		PO1,
 		Vs1,
 		Vs2,
 		Hb1,
 		Hb2,
 		Ll1,
-		FK4
+		FK4,
+		AS1
 	};
 
 	enum FontNames {
@@ -120,7 +123,9 @@ public:
 
 		PUNCH,
 		KICK,
-		DASH
+		DASH,
+		POLLO,
+		MINA,
 
 	};
 	//constructors

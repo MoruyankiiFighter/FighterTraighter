@@ -1,6 +1,10 @@
 #pragma once
 #include "Component.h"
 #include "PhysicsTransform.h"
+#include "UITransform.h"
+#include "TextComponent.h"
+#include "UITimer.h"
+
 class SacoManager : public Component
 {
 public:
@@ -11,7 +15,7 @@ public:
 		_last_interaction
 	};
 	//constructor
-	SacoManager(int timeLimit) : Component(ecs::SacoTimer), timeLimit_(timeLimit) {};
+	SacoManager(int timeLimit) : Component(ecs::SacoManager), timeLimit_(timeLimit) {};
 	
 	//destructor
 	~SacoManager() {};
@@ -19,13 +23,20 @@ public:
 	int getTimeLimit() {
 		return timeLimit_;
 	}
+	string getInfoText() {
+		return infoText;
+	}
+
+	void startTimer();
 	//method overrided from Component
 	virtual void init() override;
 	virtual void update() override;
 private:
 	PhysicsTransform* transform_ = nullptr;
+	string infoText = "";
 	int timeLimit_;
 	int startTime_=0;
 	int currTime_ = 0;
+	bool timerOn = false;
 };
 

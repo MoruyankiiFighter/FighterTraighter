@@ -11,6 +11,9 @@
 #include "UIHealthbar.h"
 #include "CharFactory.h"
 #include "RenderAnimation.h"
+#include "TrainingController.h"
+#include "Shake.h"
+#include "Camera.h"
 
 Training::Training(App* app) : GameState(app)
 {
@@ -22,9 +25,12 @@ void Training::init()
 	GameState::init();
 	doStep = true;
 
+
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
 	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+	bg->addComponent<Shake>();
+	entManager_.setHandler(bg, ecs::Camara);
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
@@ -42,9 +48,11 @@ void Training::init()
 	W2pT->changeFriction(0);
 
 	//Player1
-	entManager_.setHandler(CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1), PLAYER_1, BOUNDARY | P_BAG | WALLS, 0), ecs::Player1);
+	Entity* player1 = CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1), PLAYER_1, BOUNDARY | P_BAG | WALLS, 0);
+	entManager_.setHandler(player1, ecs::Player1);
 	//Player2
-	entManager_.setHandler(CharFactory::addCharacterToGame(app_, this, -1, world, &app_->getGameManager()->getPlayerInfo(2), PLAYER_2, BOUNDARY | P_BAG | WALLS, 1), ecs::Player2);
+	Entity* player2 = CharFactory::addCharacterToGame(app_, this, -1, world, &app_->getGameManager()->getPlayerInfo(2), PLAYER_2, BOUNDARY | P_BAG | WALLS, 1);
+	entManager_.setHandler(player2, ecs::Player2);
 	
 	//Saco
 	Entity* saco = entManager_.addEntity();
@@ -53,13 +61,12 @@ void Training::init()
 	pBpT->changeFriction(0);
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Saco));
 	Health* sacoHealth = saco->addComponent<Health>(200);
-	SacoManager* sM = saco->addComponent<SacoManager>(35000);
+	SacoManager* sM = saco->addComponent<SacoManager>(3000);
 	entManager_.setHandler(saco, ecs::Saco);
 	
-	Entity* timer = entManager_.addEntity();
-	timer->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
-	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timer->addComponent<UITimer>(UITimer::Seconds)->setCountdown(sM->getTimeLimit());
+	bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform), player2->getComponent<Transform>(ecs::Transform));
+
+	//Timer Entity
 
 	Entity* healthbarBack = entManager_.addEntity();
 	healthbarBack->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(850, 20), Vector2D(1700, 40));
@@ -78,6 +85,10 @@ void Training::init()
 	Entity* character2 = entManager_.addEntity();
 	character2->addComponent<UITransform>(Vector2D(-100, 70), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(70, 70), Vector2D(140, 140));
 	character2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection))->setFrame(2, 0);
+
+	Entity* gameController = entManager_.addEntity();
+	gameController->addComponent<TrainingController>(300,300);
+	entManager_.setHandler(gameController, ecs::Controller);
 }
 
 void Training::handleInput()

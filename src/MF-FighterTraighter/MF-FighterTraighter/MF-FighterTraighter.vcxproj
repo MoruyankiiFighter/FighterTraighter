@@ -135,8 +135,16 @@
   <ItemGroup>
     <ClCompile Include="AbilitiesTimerFunction.cpp" />
     <ClCompile Include="AbilityFactory.cpp" />
+    <ClCompile Include="AIAttacks.cpp" />
+    <ClCompile Include="AIController.cpp" />
+    <ClCompile Include="AIGameState.cpp" />
+    <ClCompile Include="AIHID.cpp" />
+    <ClCompile Include="AILogic.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="ButtonControl.cpp" />
+    <ClCompile Include="CharacterAttacks.cpp" />
+    <ClCompile Include="CharacterController.cpp" />
     <ClCompile Include="CharacterSelectionHandler.cpp" />
     <ClCompile Include="CharacterSelectionLogic.cpp" />
     <ClCompile Include="AudioManager.cpp" />
@@ -190,6 +198,7 @@
     <ClCompile Include="LinkedGrid.cpp" />
     <ClCompile Include="Shake.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
+    <ClCompile Include="TrainingController.cpp" />
     <ClCompile Include="UIElement.cpp" />
     <ClCompile Include="UIHealthbar.cpp" />
     <ClCompile Include="UIRoundRenderer.cpp" />
@@ -215,8 +224,16 @@
   <ItemGroup>
     <ClInclude Include="AbilitiesTimerFunction.h" />
     <ClInclude Include="AbilityFactory.h" />
+    <ClInclude Include="AIAttacks.h" />
+    <ClInclude Include="AIController.h" />
+    <ClInclude Include="AIGameState.h" />
+    <ClInclude Include="AIHID.h" />
+    <ClInclude Include="AILogic.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="ButtonControl.h" />
+    <ClInclude Include="CharacterAttacks.h" />
+    <ClInclude Include="CharacterController.h" />
     <ClInclude Include="CharacterSelectionHandler.h" />
     <ClInclude Include="CharacterSelectionLogic.h" />
     <ClInclude Include="AudioManager.h" />
@@ -276,7 +293,9 @@
     <ClInclude Include="RenderAnimation.h" />
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
+    <ClInclude Include="Shake.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
+    <ClInclude Include="TrainingController.h" />
     <ClInclude Include="UIHealthbar.h" />
     <ClInclude Include="UITimer.h" />
     <ClInclude Include="UITransform.h" />

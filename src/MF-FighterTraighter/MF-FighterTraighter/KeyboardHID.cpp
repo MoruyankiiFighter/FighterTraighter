@@ -84,21 +84,21 @@ void KeyboardHID::updateInput()
 	else {
 		axes[3] = 0;
 	}
-	//LTrigger,
-	if (inputM_->isKeyDown(keys_[22])) {
-		axes[4] = 1;
-		Xstate |= 1 << 4;
-	}
-	else {
-		axes[4] = 0;
-	}
-	//RTrigger,
-	if (inputM_->isKeyDown(keys_[23])) {
-		axes[5] = 1;
-		Xstate |= 1 << 5;
-	}
-	else {
-		axes[5] = 0;
-	}
+	////LTrigger,
+	//if (inputM_->isKeyDown(keys_[22])) {
+	//	axes[4] = 1;
+	//	Xstate |= 1 << 4;
+	//}
+	//else {
+	//	axes[4] = 0;
+	//}
+	////RTrigger,
+	//if (inputM_->isKeyDown(keys_[23])) {
+	//	axes[5] = 1;
+	//	Xstate |= 1 << 5;
+	//}
+	//else {
+	//	axes[5] = 0;
+	//}
 	curAxesState = Xstate;
 }

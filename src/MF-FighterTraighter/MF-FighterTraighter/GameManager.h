@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "HID.h"
+#include <SDL_mixer.h>
 
 class Entity;
 class App;
@@ -16,6 +17,7 @@ public:
 		ShrugOff,		
 		ReachingStrike,
 		MorePower,
+		Pollo,
 	//------level 2------//
 		AcidSplit,
 		Dash,
@@ -24,7 +26,8 @@ public:
 	//------level 3------//
 		Mina,
 		Hookshot,	
-		HailBall,		
+		HailBall,
+		KnockDown,
 	//------level 4------//
 		ExplosiveWillpower,
 		FlyingKicks,		
@@ -63,6 +66,9 @@ public:
 		virtual ~PlayerInfo() {
 			delete hid;
 		}
+		//entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::MKWOP_1), false);
+		Mix_Chunk* onHitSound;
+
 	};
 	GameManager(App* app);
 
@@ -88,9 +94,15 @@ public:
 	}
 
 	void resetCharacters();
-
-	void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
-	void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
+	void setPlayer1Sound(Mix_Chunk* onHit) {
+		player1_.onHitSound = onHit;
+	}
+	void setPlayer2Sound(Mix_Chunk* onHit) {
+		player2_.onHitSound = onHit;
+	}
+	//void setPlayer1
+	//void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
+	//void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
 	const PlayerInfo& getPlayerInfo(int player) {
 		if (player == 1) return player1_;
 		return player2_;

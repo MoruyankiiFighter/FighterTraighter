@@ -91,12 +91,16 @@ void AssetsManager::loadTextures()
 	textures_.emplace(M1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mina1.png", 1, 1));
 	textures_.emplace(M2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mina2.png", 1, 1));
 	textures_.emplace(M3, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/minafinal.png", 2, 1));
+	textures_.emplace(PO1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/pollo.png", 1, 1));
 	textures_.emplace(Vs1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/vs1.png", 1, 1));
 	textures_.emplace(Vs2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/vs2.png", 1, 1));
 	textures_.emplace(Hb1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hb1.png", 1, 1));
 	textures_.emplace(Hb2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hb2.png", 1, 1));
 	textures_.emplace(Ll1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/laserlineal-2.png", 1, 1));
 	textures_.emplace(FK4, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/FK4.png", 1, 1));
+	textures_.emplace(AS1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/acidPotion.png", 1, 1));
+	textures_.emplace(Rs1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ReachingStrike.png", 1, 1));
+
 	// textures_.emplace("key", new Texture(app_->getRenderer(), "Filepath", cols, fils));
 	textures_.emplace(SelectionSquare, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/recuadro.png", 1, 1));
 }
@@ -139,7 +143,13 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(MKWOP_2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/clonk.wav"));
 	sfx_.emplace(MKWOP_3, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/piribi.wav"));
 	sfx_.emplace(MKWOP_4, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/robotau.wav"));
-	sfx_.emplace(MKWOP_5, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/robotay.wav"));
+	sfx_.emplace(FLOR_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/F10R/zombidolor.mp3"));
+	sfx_.emplace(FLOR_2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/F10R/zombihola.wav"));
+	sfx_.emplace(FLOR_3, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/F10R/Zombiquejido.wav"));
+	sfx_.emplace(MKBIRD_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/Mockingbird/ouch.wav"));
+	sfx_.emplace(MKBIRD_2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/Mockingbird/pain.wav"));
+	sfx_.emplace(MKBIRD_3, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/Mockingbird/yeow.wav"));
+
 	/*sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
@@ -148,6 +158,8 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(PUNCH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(KICK, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/patada.wav"));
 	sfx_.emplace(DASH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/failattack.wav"));
+	sfx_.emplace(POLLO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/pollo.wav"));
+	sfx_.emplace(MINA, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/mina.wav"));
 
 }
 //void AssetsManager::playMusic(const string& name, int channel)

@@ -27,16 +27,12 @@ public:
 		}
 		if (oldPos.getX() != ptPlayer->getPosition().getX()) {
 			pt->setSpeed(ptPlayer->getSpeed());
-			cout << oldPos.getX() << "------------------" << ptPlayer->getPosition().getX() << endl;
 
-			//oldPos = pt->getPosition();
 		}
 		else {
 			pt->setSpeed(Vector2D(0, 0));
 		}
-		/*else {
-			cout << oldPos.getX() << "------------------" << pt->getPosition().getX() << endl;
-		}*/
+		
 		oldPos = ptPlayer->getPosition();
 
 

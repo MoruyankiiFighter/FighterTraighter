@@ -2,6 +2,7 @@
 #include "Health.h"
 #include "HitboxData.h"
 #include "Bullet.h"
+#include "TrainingController.h"
 
 void MoreDamage_Wins::onHit(b2Fixture* other)
 {
@@ -21,8 +22,11 @@ void MoreDamage_Wins::onHit(b2Fixture* other)
 	h->LoseLife(other_data->damage_);
 	// Punching Bag dies
 	if (h->getHealth() == 0) {
+		// he died
+		
+		entity_->getState()->getEntityManager().getHandler(ecs::Controller)->getComponent<TrainingController>(ecs::TrainingController)->PlayerWins(computeWinner());
 
-		entity_->getApp()->getGameManager()->trainingEnded(computeWinner());
+		//entity_->getApp()->getGameManager()->trainingEnded(computeWinner());
 	}
 }
 

@@ -125,21 +125,24 @@ void GameManager::trainingEnded(int winner)
 	stateMachine->pushState(new Fight(app_));
 }
 
-void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
-{
-	//player1_.character = character;
-	//player1_.abilities = abilities;
-	player1_.ability1Index = ability1Index;
-	player1_.ability2Index = ability2Index;
-}
-
-void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
-{
-	//player2_.character = character;
-	//player2_.abilities = abilities;
-	player2_.ability1Index = ability1Index;
-	player2_.ability2Index = ability2Index;
-}
+//void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
+//{
+//	//player1_.character = character;
+//	//player1_.abilities = abilities;
+//	player1_.ability1Index = ability1Index;
+//	player1_.ability2Index = ability2Index;
+//	//player1_.onHitSound = onHit;
+//}
+//
+//void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
+//{
+//	//player2_.character = character;
+//	//player2_.abilities = abilities;
+//	player2_.ability1Index = ability1Index;
+//	player2_.ability2Index = ability2Index;
+//	//player2_.onHitSound = onHit;
+//
+//}
 
 void GameManager::resetCharacters()
 {
