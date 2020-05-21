@@ -109,7 +109,7 @@ void CharacterSelectionLogic::SetElements()
 
 			//generate a random
 			desc_->setText(" ");
-			image_->setTexture(random_texture); //add random texture
+			image_->setTexture(random_texture); 
 
 		}
 

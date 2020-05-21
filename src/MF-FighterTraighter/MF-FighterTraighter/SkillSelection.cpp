@@ -174,6 +174,7 @@ void SkillSelection::init()
 
 void SkillSelection::GoToNextSubMenu(App* app)
 {
+	app->getStateMachine()->popState();
 	app->getStateMachine()->pushState(new InventorySelection(app));
 }
 

@@ -24,6 +24,7 @@ void InventoryLogic::update()
 				curr = app_->getGameManager()->getPlayerInfo(player_).abilities[(nav_->GetPosX() + 5)]; //5 a 10
 			}
 		}
+		cout << player_ << " " << nav_->GetPosX() << " " << nav_->GetPosY()<<endl;
 	}
 }
 
