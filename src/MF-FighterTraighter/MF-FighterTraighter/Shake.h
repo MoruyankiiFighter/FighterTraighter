@@ -49,7 +49,7 @@ private:
     void updateShake();
     void applyScreenShake();
 
-    Vector2D* m_shake;
+    Vector2D* m_shake=nullptr;
   //  Transform* cam;
     Uint32 timeStart_=0;
     Uint32 delta=0;

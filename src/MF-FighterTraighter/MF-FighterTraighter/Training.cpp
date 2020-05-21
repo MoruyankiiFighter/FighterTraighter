@@ -56,7 +56,7 @@ void Training::init()
 	
 	//Saco
 	Entity* saco = entManager_.addEntity();
-	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h - 655), Vector2D(10, 10), 250, 800, 0, world, P_BAG, PLAYER_1 | PLAYER_2 | BULLET, 2);
+	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, (double)app_->getWindowManager()->getCurResolution().h - 655), Vector2D(10, 10), 250, 800, 0, world, P_BAG, PLAYER_1 | PLAYER_2 | BULLET, 2);
 	addHurtbox(pBpT->getMainFixture());
 	pBpT->changeFriction(0);
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Saco));
