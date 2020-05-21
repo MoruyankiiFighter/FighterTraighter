@@ -62,7 +62,7 @@ void CharacterController::TryCrouching(PlayerState* currState, Vector2D& speed)
 
 void CharacterController::TryJumping(PlayerState* currState)
 {
-	if (currState->canJump())
+	if (currState->canJump() && canJump_)
 	{
 		jump();
 	}

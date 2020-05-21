@@ -158,6 +158,9 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
+    <ClCompile Include="HID.cpp" />
+    <ClCompile Include="KeyboardHID.cpp" />
+    <ClCompile Include="GamepadHID.cpp" />
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -220,24 +223,6 @@
     <ClCompile Include="MockingbirdData.cpp">
       <Filter>Source Files\PlayerData</Filter>
     </ClCompile>
-    <ClCompile Include="GamepadHID.cpp">
-      <Filter>Source Files\HID</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyboardHID.cpp">
-      <Filter>Source Files\HID</Filter>
-    </ClCompile>
-    <ClCompile Include="HID.cpp">
-      <Filter>Source Files\HID</Filter>
-    </ClCompile>
-    <ClCompile Include="AIHID.cpp">
-      <Filter>Source Files\HID</Filter>
-    </ClCompile>
-    <ClCompile Include="AILogic.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="AIGameState.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
     <ClCompile Include="FollowPlayer.cpp">
       <Filter>Source Files\OnHit</Filter>
     </ClCompile>
@@ -255,6 +240,13 @@
     </ClCompile>
     <ClCompile Include="FightController.cpp" />
     <ClCompile Include="TrainingController.cpp" />
+    <ClCompile Include="CharacterAttacks.cpp" />
+    <ClCompile Include="CharacterController.cpp" />
+    <ClCompile Include="AIAttacks.cpp" />
+    <ClCompile Include="AIController.cpp" />
+    <ClCompile Include="AIGameState.cpp" />
+    <ClCompile Include="AIHID.cpp" />
+    <ClCompile Include="AILogic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -431,6 +423,9 @@
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="HID.h" />
+    <ClInclude Include="KeyboardHID.h" />
+    <ClInclude Include="GamepadHID.h" />
     <ClInclude Include="Bullet.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
@@ -468,6 +463,15 @@
     </ClInclude>
     <ClInclude Include="MockingbirdData.h">
       <Filter>Header files\PlayerData</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardHID.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="GamepadHID.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="HID.h">
+      <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="UserData.h">
       <Filter>Header files\Types</Filter>
@@ -508,33 +512,6 @@
     <ClInclude Include="PlayerData.h">
       <Filter>Header files\PlayerData</Filter>
     </ClInclude>
-    <ClInclude Include="HID.h">
-      <Filter>Header files\HID</Filter>
-    </ClInclude>
-    <ClInclude Include="AIHID.h">
-      <Filter>Header files\HID</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardHID.h">
-      <Filter>Header files\HID</Filter>
-    </ClInclude>
-    <ClInclude Include="GamepadHID.h">
-      <Filter>Header files\HID</Filter>
-    </ClInclude>
-    <ClInclude Include="GamepadHID.h">
-      <Filter>Header files\HID</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardHID.h">
-      <Filter>Header files\HID</Filter>
-    </ClInclude>
-    <ClInclude Include="HID.h">
-      <Filter>Header files\HID</Filter>
-    </ClInclude>
-    <ClInclude Include="AILogic.h">
-      <Filter>Header files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="AIGameState.h">
-      <Filter>Header files\GameState</Filter>
-    </ClInclude>
     <ClInclude Include="FollowPlayer.h">
       <Filter>Header files\OnHits</Filter>
     </ClInclude>
@@ -552,6 +529,13 @@
     </ClInclude>
     <ClInclude Include="FightController.h" />
     <ClInclude Include="TrainingController.h" />
+    <ClInclude Include="CharacterAttacks.h" />
+    <ClInclude Include="CharacterController.h" />
+    <ClInclude Include="AIAttacks.h" />
+    <ClInclude Include="AIController.h" />
+    <ClInclude Include="AIGameState.h" />
+    <ClInclude Include="AIHID.h" />
+    <ClInclude Include="AILogic.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

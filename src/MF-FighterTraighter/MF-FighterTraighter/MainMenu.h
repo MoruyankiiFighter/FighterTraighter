@@ -25,8 +25,4 @@ public:
 	static void GoOptions(App* app);
 	//quit the game
 	static void Leave(App* app);
-
-
-
-	static void GoVsAI(App* app);
 };

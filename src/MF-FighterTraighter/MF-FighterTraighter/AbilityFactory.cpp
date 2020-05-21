@@ -1091,7 +1091,7 @@ void AbilityFactory::NKC(Entity* ent)
 	else   pT->setOrientation(-1);
 	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
 	pT->getBody()->SetLinearDamping(0);
-	goOnCoolodwn(ent,60 * 10);
+	goOnCoolodwn(ent, 60 * 10);
 }
 
 AnimationChain* AbilityFactory::GiveKnockDown(Entity* e)

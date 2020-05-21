@@ -45,13 +45,13 @@ public:
 		}
 	};
 	virtual void handleInput() {};
+
 	void setAbility(AnimationChain* newAbility, int index);
 	void interruptAttack();
 	inline void goOnCooldown(int id, int cool) {
 		cooldowns[id] = cool;
 		setTimeCool(id, cool);
 		activeTimer(id, true);
-		cout << cooldowns[id] << endl;
 	}
 	void setTimeCool(int ind, int cool);
 	void activeTimer(int ind, bool act);
@@ -86,6 +86,9 @@ public:
 		}
 		return is;
 	}
+
+	inline void setDisabled(bool d) { disabled_ = d; }
+
 protected:
 	std::vector<AnimationChain*> attacksList;	//pointer to the attack that you can use
 	std::vector<AnimationChain*> abilityList = std::vector<AnimationChain*>(2);	//pointer to the abilities 
@@ -98,4 +101,6 @@ protected:
 	int timeCool1 = 0;
 	bool actTimer0 = false;
 	bool actTimer1 = false;
+
+	bool disabled_ = false;
 };

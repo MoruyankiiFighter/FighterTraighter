@@ -14,15 +14,8 @@ public:
 
 	void handleInput() override;
 
-
 	void jump() override;
-	float getJumpImpulse() { return jumpImpulse; }
-	void canJump(bool jump) { canJump_ = jump; }
-	double getMovSpeed() { return movSpeed; }
-	inline void setDisabled(bool d) { disabled_ = d; }
 private:
 	HID* inputSt_ = nullptr;
 	double verticalDeadzone = 0.3;
-	bool canJump_ = true;
-	bool disabled_ = false;
 };
