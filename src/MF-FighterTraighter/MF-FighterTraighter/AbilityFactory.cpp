@@ -524,7 +524,7 @@ void AbilityFactory::MP1(Entity* ent)
 #if _DEBUG
 	std::cout << "Guess YOU'll die" << endl;
 #endif
-	ent->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setMultiplier(2, false);
+	ent->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->setMultiplier(2, false);
 
 	App* app = ent->getApp();
 	PhysicsTransform* phTr = ent->getComponent<PhysicsTransform>(ecs::Transform);
@@ -1076,14 +1076,14 @@ void AbilityFactory::NK3(Entity* ent)
 	}
 	pT->setSpeed(speed);
 
-	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
+	PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
 	pC->canJump(false);
 
 }
 
 void AbilityFactory::NKC(Entity* ent)
 {
-	PlayerController* pC = ent->getComponent<PlayerController>(ecs::PlayerController);
+	PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
 	pC->canJump(true);
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
@@ -1091,7 +1091,7 @@ void AbilityFactory::NKC(Entity* ent)
 	else   pT->setOrientation(-1);
 	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
 	pT->getBody()->SetLinearDamping(0);
-	goOnCoolodwn(ent,60 * 10);
+	goOnCoolodwn(ent, 60 * 10);
 }
 
 AnimationChain* AbilityFactory::GiveKnockDown(Entity* e)
@@ -1213,7 +1213,7 @@ Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double 
 
 void AbilityFactory::goOnCoolodwn(Entity* e, int cool)
 {
-	PlayerAttacks* pl = e->getComponent<PlayerAttacks>(ecs::PlayerAttacks);
+	PlayerAttacks* pl = e->getComponent<PlayerAttacks>(ecs::CharacterAttacks);
 	pl->goOnCooldown(pl->getAbilityIndex(), cool);	
 }
 

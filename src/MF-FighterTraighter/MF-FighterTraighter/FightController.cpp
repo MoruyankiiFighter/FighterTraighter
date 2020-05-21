@@ -63,10 +63,10 @@ void FightController::PlayerLost(int playerNumber)
 
 
 void FightController::disablePlayers(bool mode) {
-	state_->getEntityManager().getHandler(ecs::Player1)->getComponent<PlayerController>(ecs::PlayerController)->setDisabled(mode);
-	state_->getEntityManager().getHandler(ecs::Player1)->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setDisabled(mode);
-	state_->getEntityManager().getHandler(ecs::Player2)->getComponent<PlayerController>(ecs::PlayerController)->setDisabled(mode);
-	state_->getEntityManager().getHandler(ecs::Player2)->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setDisabled(mode);
+	state_->getEntityManager().getHandler(ecs::Player1)->getComponent<CharacterController>(ecs::CharacterController)->setDisabled(mode);
+	state_->getEntityManager().getHandler(ecs::Player1)->getComponent<CharacterAttacks>(ecs::CharacterAttacks)->setDisabled(mode);
+	state_->getEntityManager().getHandler(ecs::Player2)->getComponent<CharacterController>(ecs::CharacterController)->setDisabled(mode);
+	state_->getEntityManager().getHandler(ecs::Player2)->getComponent<CharacterAttacks>(ecs::CharacterAttacks)->setDisabled(mode);
 }
 
 void FightController::displayMessage(string msg) {

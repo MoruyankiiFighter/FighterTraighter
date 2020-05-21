@@ -8,7 +8,7 @@ namespace ecs {
 
 	enum CmpId : CmpIdType {
 		Transform = 0,
-		PlayerController,
+		CharacterController,
 		Health,
 		RenderImage,
 		Jump,
@@ -16,7 +16,7 @@ namespace ecs {
 		SacoManager,
 		PunchingBagCollision,
 		Crouch,
-		PlayerAttacks,
+		CharacterAttacks,
 		VerticalSlider,
 		IndexSlider,
 		CreatorBody,
@@ -42,6 +42,7 @@ namespace ecs {
 		AbilitiesTimerFunction,
 		Shake,
 		PlayerParticleSystem,
+		AILogic,
 		FightController,
 		TrainingController,
 		/*
