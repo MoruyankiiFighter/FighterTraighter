@@ -168,7 +168,6 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="UserData.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletGravity.cpp">
       <Filter>Source Files\Component</Filter>
@@ -227,7 +226,6 @@
     <ClCompile Include="MoreDamage_Wins.cpp">
       <Filter>Source Files\OnHit\PunchingBag</Filter>
     </ClCompile>
-    <ClCompile Include="ButtonControl.cpp" />
     <ClCompile Include="AIAttacks.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -278,6 +276,12 @@
     </ClCompile>
     <ClCompile Include="SRandBasedGenerator.cpp">
       <Filter>Source Files\Manager and factories</Filter>
+    </ClCompile>
+    <ClCompile Include="UserData.cpp">
+      <Filter>Source Files\OnHit</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonControl.cpp">
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="UserData.cpp">
       <Filter>Source Files\OnHit</Filter>
@@ -554,7 +558,6 @@
     <ClInclude Include="MoreDamage_Wins.h">
       <Filter>Header files\OnHits\PunchingBag</Filter>
     </ClInclude>
-    <ClInclude Include="ButtonControl.h" />
     <ClInclude Include="AIAttacks.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
@@ -608,6 +611,9 @@
     </ClInclude>
     <ClInclude Include="RandomNumberGenerator.h">
       <Filter>Header files\Managers and factories</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonControl.h">
+      <Filter>Header files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
