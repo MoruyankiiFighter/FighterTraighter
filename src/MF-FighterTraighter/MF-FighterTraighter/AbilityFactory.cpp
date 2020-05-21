@@ -346,7 +346,7 @@ void AbilityFactory::AS1(Entity* ent)
 	Vector2D spawnEntSize(spawntexture->getWidth() * 3, spawntexture->getHeight());
 	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize);	
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::AS1);
-	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_ ,fL, gravity);
+	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity);
 	//createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact, gravity);
 }
 
@@ -405,11 +405,12 @@ void AbilityFactory::M1(Entity* ent)
 	
 	Texture* spawntexture = app->getAssetsManager()->getTexture(AssetsManager::M3);
 	Vector2D spawnEntSize(spawntexture->getWidth()/2, spawntexture->getHeight());
-	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize,false,true);
+	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize, false, true);
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::M1);
 	instanceEntitywHitbox(ent, width/2, height, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity, false);
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::MINA), false);
 }
+
 void AbilityFactory::MC(Entity* ent)
 {
 	goOnCoolodwn(ent, 60 * 7);
@@ -447,27 +448,26 @@ void AbilityFactory::PO1(Entity* ent)
 	Vector2D pos = Vector2D(phTr->getPosition().getX() + phTr->getWidth() / 2, phTr->getPosition().getY() + phTr->getHeight() / 4);
 	Vector2D speed(orientation_ * 8.5, 1);
 
-	int damage = 1;
+	int damage = 0;
 	int hitstun = 0;
-	int explosionDamage = 0;
 
 	Vector2D knockBack(orientation_ * 3.5, 2);
-	int time = 90;
+	int time = 50;
 
 	double width = 64;
 	double height = 64;
 	bool gravity = true;
 
-	DestroyOnHit* dT = new DestroyOnHit(explosionDamage, time, 0, Vector2D(orientation_ * 5, -3), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, false);
+	DestroyOnHit* dT = new DestroyOnHit(damage, time, 0, Vector2D(orientation_ * 5, -3), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, false);
 
 	Texture* pollotexture = app->getAssetsManager()->getTexture(AssetsManager::PO1);
-	AbilityFactory::instanceEntitywHitbox(ent, width, height, pos, { (double)orientation_ * 10, 1 },
-			mask, ent->getState(), ent->getApp(), pollotexture, orientation_, dT, false, true);
+	AbilityFactory::instanceEntitywHitbox(ent, width, height, pos, { (double)orientation_ * 10, 1 }, mask, ent->getState(), ent->getApp(), pollotexture, orientation_, dT);
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::POLLO), false);
 }
+
 void AbilityFactory::POC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 4);
+	goOnCoolodwn(ent, 60 * 7);
 }
 
 AnimationChain* AbilityFactory::GiveShrugOff(Entity* e)

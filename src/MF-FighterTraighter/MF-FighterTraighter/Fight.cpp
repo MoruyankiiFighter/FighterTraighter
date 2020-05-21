@@ -54,7 +54,7 @@ void Fight::init()
 	const GameManager::PlayerInfo& p1_info = app_->getGameManager()->getPlayerInfo(1);
 	//////HABILIDAD A CHOLON
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
-		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Hookshot, player1), 0);
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Pollo, player1), 0);
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
 		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::HailBall, player1), 1);
 	//player1->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
@@ -95,7 +95,7 @@ void Fight::init()
 	const GameManager::PlayerInfo& p2_info = app_->getGameManager()->getPlayerInfo(2);
 	//////HABILIDAD A CHOLON
 	player2->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
-		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Hookshot, player2), 0);
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Mina, player2), 0);
 	//player2->getComponent<PlayerAttacks>(ecs::PlayerAttacks)
 		//->setAbility(AbilityFactory::GiveAbility(p2_info.abilities[p2_info.ability1Index], player2), 0);
 	player2->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
