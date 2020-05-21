@@ -85,7 +85,7 @@ void MainMenu::handleInput()
 
 void MainMenu::GoArcade(App* app)
 {
-	app->getStateMachine()->pushState(new InventorySelection(app));
+	app->getStateMachine()->pushState(new SkillSelection(app));
 	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 #ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
