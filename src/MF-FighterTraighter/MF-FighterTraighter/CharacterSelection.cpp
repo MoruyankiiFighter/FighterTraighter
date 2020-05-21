@@ -46,7 +46,6 @@ void CharacterSelection::init()
 
 
 
-	// TODO: give all characterElements an UITransform to use it to set the selection icon
 	// Player 1
 	Entity* leftP = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
 		Vector2D(50,50),

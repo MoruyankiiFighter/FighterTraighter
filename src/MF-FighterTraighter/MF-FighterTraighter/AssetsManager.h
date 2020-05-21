@@ -16,6 +16,7 @@ public:
 		Saco,
 		Button,
 		Logo,
+		Tint,
 		Controller,
 		Slidebar,
 		SliderRegulator,
