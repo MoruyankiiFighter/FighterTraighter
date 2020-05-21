@@ -10,7 +10,7 @@ const double HEIGHT_LOGO=150;
 //buttons
 const double WIDTH_BUTTON=250;
 const double HEIGHT_BUTTON=150;
-const double POS_X_BUTTONS = 900 - 150;
+const double POS_X_BUTTONS = 900.0 - 150.0;
 //arcade button
 const double POS_Y_ARCADE=250;
 

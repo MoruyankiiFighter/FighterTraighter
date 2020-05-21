@@ -133,7 +133,7 @@ public:
 	bool canJump() { return playerStatus_ == Idle || playerStatus_ == Crouching || playerStatus_ == Moving; }
 
 	//LANDING
-	void goLanding(int frames) {
+	void goLanding(double frames) {
 		playerStatus_ = Landing;
 		holdingFrames_ = frames;
 		Vector2D speed(0,0);
@@ -212,7 +212,7 @@ public:
 	}
 
 	//Holding frames
-	int getHoldingFrames() {
+	double getHoldingFrames() {
 		return holdingFrames_;
 	}
 
@@ -241,5 +241,5 @@ public:
 
 private:
 	Status playerStatus_;
-	int holdingFrames_ = -1;
+	double holdingFrames_ = -1;
 };

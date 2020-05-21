@@ -180,11 +180,11 @@ void Fight::init()
 	// Make a factory or something
 	for (int i = 0; i < app_->getGameManager()->getTotalRounds() / 2 + 1; ++i) {
 		Entity* roundCounter1 = entManager_.addEntity();
-		roundCounter1->addComponent<UITransform>(Vector2D(-173 - i * 40, 93), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(18, 18), Vector2D(36, 36));
+		roundCounter1->addComponent<UITransform>(Vector2D(-173.0 - i * 40.0, 93), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(18, 18), Vector2D(36, 36));
 		roundCounter1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RoundCounter));
 		leftCounter.push_back(roundCounter1);
 		Entity* roundCounter2 = entManager_.addEntity();
-		roundCounter2->addComponent<UITransform>(Vector2D(173 + i * 40, 93), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(18, 18), Vector2D(36, 36));
+		roundCounter2->addComponent<UITransform>(Vector2D(173.0 + i * 40.0, 93), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(18, 18), Vector2D(36, 36));
 		roundCounter2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::RoundCounter));
 		rightCounter.push_back(roundCounter2);
 	}

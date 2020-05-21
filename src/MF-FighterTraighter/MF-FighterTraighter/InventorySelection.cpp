@@ -18,46 +18,46 @@ void InventorySelection::init()
 
 	//j1 fondo submenu
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
-		Vector2D(0, 0), Vector2D(50, 50), Vector2D(0, 0), (app_->getWindowManager()->getCurResolution().w / 2) - 100, app_->getWindowManager()->getCurResolution().h - 100, 0);
+		Vector2D(0, 0), Vector2D(50, 50), Vector2D(0, 0), (app_->getWindowManager()->getCurResolution().w / 2.0) - 100.0, app_->getWindowManager()->getCurResolution().h - 100.0, 0);
 	
 	//j2 fondo submenu
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
 		Vector2D(0, 0),
-		Vector2D(app_->getWindowManager()->getCurResolution().w - 430, 50),
-		Vector2D(430 + 50, 0),
-		(app_->getWindowManager()->getCurResolution().w / 2) - 100, (app_->getWindowManager()->getCurResolution().h) - 100, 0);
+		Vector2D((double)app_->getWindowManager()->getCurResolution().w - 430, 50),
+		Vector2D(430.0 + 50.0, 0),
+		double(app_->getWindowManager()->getCurResolution().w / 2) - 100, double(app_->getWindowManager()->getCurResolution().h) - 100, 0);
 	
 
 	// Texto central
 	Entity* text_ = entManager_.addEntity();
 	//Vector2D pos, Vector2D anchor, Vector2D pivot, Vector2D size
-	text_->addComponent<UITransform>(Vector2D(0, 0), Vector2D((app_->getWindowManager()->getCurResolution().w/2 ), 0), Vector2D((app_->getWindowManager()->getCurResolution().w /2), 0), Vector2D(app_->getWindowManager()->getCurResolution().w - 50, (app_->getWindowManager()->getCurResolution().h / 20) +50));
+	text_->addComponent<UITransform>(Vector2D(0, 0), Vector2D((app_->getWindowManager()->getCurResolution().w/2 ), 0), Vector2D((app_->getWindowManager()->getCurResolution().w /2), 0), Vector2D((double)app_->getWindowManager()->getCurResolution().w - 50, ((double)app_->getWindowManager()->getCurResolution().h / 20) +50));
 	text_->addComponent<TextComponent>("Selecciona tus habilidades", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::TextAlignment::Center);
 
 	//ranuras j1
 
 	Entity* left_j1 = entManager_.addEntity();
-	left_j1->addComponent<UITransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 4- 200, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
+	left_j1->addComponent<UITransform>(Vector2D((double)app_->getWindowManager()->getCurResolution().w / 4- 200, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
 	left_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	
 	Entity* right_j1 = entManager_.addEntity();
-	right_j1->addComponent<UITransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
+	right_j1->addComponent<UITransform>(Vector2D((double)app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
 	right_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 
 	//ranuras j2
 	Entity* left_j2 = entManager_.addEntity();
-	left_j2->addComponent<UITransform>(Vector2D(3 * app_->getWindowManager()->getCurResolution().w / 4 - 200, 200), Vector2D((3 * app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3 * app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
+	left_j2->addComponent<UITransform>(Vector2D(3 * (double)app_->getWindowManager()->getCurResolution().w / 4 - 200, 200), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
 	left_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 
 	Entity* right_j2 = entManager_.addEntity();
-	right_j2->addComponent<UITransform>(Vector2D(3 * app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((3 * app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3 * app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
+	right_j2->addComponent<UITransform>(Vector2D(3 * (double)app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
 	right_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 
 
 	//boton
 	tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(0, -(90 + 50 + 50)),
-		Vector2D((app_->getWindowManager()->getCurResolution().w / 4) * 3, app_->getWindowManager()->getCurResolution().h),
+		Vector2D(((double)app_->getWindowManager()->getCurResolution().w / 4) * 3, app_->getWindowManager()->getCurResolution().h),
 		Vector2D(320, 90),
 		640, 180, 0, nullptr, nullptr, "Continue_J2", 80, TextComponent::TextAlignment::Center);
 	std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Bottom;
@@ -76,7 +76,7 @@ void InventorySelection::init()
 
 	NavigationController* ctrl = nav_j1->addComponent<NavigationController>(5, 3, app_->getGameManager()->getPlayerInfo(1).hid);
 
-	for (int i = 0; i < 10; i++) {
+	for (double i = 0; i < 10; i++) {
 
 		tuple <Entity*, Entity*> habj1;
 
@@ -201,7 +201,7 @@ void InventorySelection::init()
 	Entity* nav_j2 = entManager_.addEntity();
 	NavigationController* ctrl_ = nav_j2->addComponent<NavigationController>(5, 3, app_->getGameManager()->getPlayerInfo(2).hid);
 
-	for (int i = 0; i < 10; i++) {
+	for (double i = 0; i < 10; i++) {
 
 		Entity* habj2 = entManager_.addEntity();
 		if (i < app_->getGameManager()->getPlayerInfo(2).abilities.size()) {

@@ -24,7 +24,7 @@ public:
 				data->entity_->getState()->getEntityManager().getHandler(ecs::Player2)->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(data->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Vs2), 
 					pos, Vector2D(width, 500), 35, PlayerParticleSystem::DeletionMethod::None);
 			}
-			else {
+			else if(data){
 				Health* playerHealth = data->entity_->getState()->getEntityManager().getHandler(ecs::Player1)->getComponent<Health>(ecs::Health);
 				playerHealth->GainLife((playerHealth->getMaxHealth() - playerHealth->getHealth()) * healAmount_);
 
