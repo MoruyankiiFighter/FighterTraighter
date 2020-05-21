@@ -292,6 +292,7 @@
     <ClInclude Include="RenderAnimation.h" />
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
+    <ClInclude Include="Shake.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="TrainingController.h" />
     <ClInclude Include="UIHealthbar.h" />
