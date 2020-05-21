@@ -13,7 +13,7 @@ namespace ecs {
 		RenderImage,
 		Jump,
 		TextComponent,
-		SacoTimer,
+		SacoManager,
 		PunchingBagCollision,
 		Crouch,
 		CharacterAttacks,
@@ -38,9 +38,13 @@ namespace ecs {
 		GamepadInput,
 		RenderAnimation,
 		Bullet,
+		Camera,
 		AbilitiesTimerFunction,
+		Shake,
 		PlayerParticleSystem,
 		AILogic,
+		FightController,
+		TrainingController,
 		/*
 		
 		*/
@@ -51,6 +55,8 @@ namespace ecs {
 		Player1 = 0,
 		Player2,
 		Saco,
+		Controller,
+		Camara,
 		/*
 		
 		*/

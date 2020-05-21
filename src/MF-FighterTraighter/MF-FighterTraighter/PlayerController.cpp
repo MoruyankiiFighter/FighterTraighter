@@ -21,25 +21,28 @@ void PlayerController::handleInput()
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	InputManager* input = app_->getInputManager();
 
-	if (inputSt_->AxisInput(HID::LTrigger) > 0)
+	if (!disabled_)
 	{
-		TryGuarding(currState, speed);
-	}
-	else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone))
-	{
-		TryJumping(currState);
-	}
-	else if ((inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > verticalDeadzone))
-	{
-		TryCrouching(currState, speed);
-	}
-	else if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0)
-	{
-		TryMovingLeft(currState, speed);
-	}
-	else if (inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)
-	{
-		TryMovingRight(currState, speed);
+		if (inputSt_->AxisInput(HID::LTrigger) > 0)
+		{
+			TryGuarding(currState, speed);
+		}
+		else if ((inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < -verticalDeadzone))
+		{
+			TryJumping(currState);
+		}
+		else if ((inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > verticalDeadzone))
+		{
+			TryCrouching(currState, speed);
+		}
+		else if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0)
+		{
+			TryMovingLeft(currState, speed);
+		}
+		else if (inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)
+		{
+			TryMovingRight(currState, speed);
+		}
 	}
 
 	// If these keys aren't active
@@ -55,7 +58,6 @@ void PlayerController::handleInput()
 		TryStopCrouch(currState);
 	}
 }
-
 
 
 

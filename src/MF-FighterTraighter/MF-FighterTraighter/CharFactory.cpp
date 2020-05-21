@@ -35,17 +35,32 @@ Entity* CharFactory::addCharacterToGame(App* app, GameState* state, double orien
 	case(GameManager::MKWh00p):
 		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::GanonSheet));
 		h = e->addComponent<Health>(110);
-		pdata = e->addComponent<MkWH00PData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100.0 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 1, playerNumber);
+		pdata = e->addComponent<MkWH00PData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100.0 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 1, playerNumber);	
+		if(pdata->getPlayerNumber()==0)
+			app->getGameManager()->setPlayer1Sound(app->getAssetsManager()->getSFX(AssetsManager::MKWOP_1));
+		else 		
+			app->getGameManager()->setPlayer2Sound(app->getAssetsManager()->getSFX(AssetsManager::MKWOP_1));
+
 		break;
 	case(GameManager::Mockingbird):
-		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::GanonSheet));
+		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::GanonSheet)); 
 		h = e->addComponent<Health>(100);
 		pdata = e->addComponent<MockingbirdData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100.0 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 1, playerNumber);
+		if (pdata->getPlayerNumber() == 0)
+			 app->getGameManager()->setPlayer1Sound(app->getAssetsManager()->getSFX(AssetsManager::MKBIRD_1));
+		else
+			app->getGameManager()->setPlayer2Sound(app->getAssetsManager()->getSFX(AssetsManager::MKBIRD_1));
+
 		break;
 	case(GameManager::F10R):
 		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::F10rSheet));
 		h = e->addComponent<Health>(100);
 		pdata = e->addComponent<F10RData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100.0 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 1, playerNumber);
+		if (pdata->getPlayerNumber() == 0)
+			app->getGameManager()->setPlayer1Sound(app->getAssetsManager()->getSFX(AssetsManager::FLOR_1));
+		else
+			app->getGameManager()->setPlayer2Sound(app->getAssetsManager()->getSFX(AssetsManager::FLOR_1));
+
 		break;
 	case(GameManager::Aisha):
 		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::GanonSheet));

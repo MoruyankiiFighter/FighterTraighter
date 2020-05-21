@@ -1,12 +1,16 @@
 #pragma once
 #include "UserData.h"
 
-
+//The punchingBag only has Datas that are subClasses of this
 class PunchingBagOnHit : public UserData
 {
 public:
-	PunchingBagOnHit(Entity* e) : UserData(e) {}
+	PunchingBagOnHit(Entity* e, string infoM) : UserData(e), infoMessage(infoM) {}
 	~PunchingBagOnHit() {}
-	void onHit(b2Fixture* fixture) override;
+	//Decide the player who is the winner when its a draw
+	virtual int timeout_Winner() = 0;
+	virtual string getInfoMessage() { return infoMessage; };
+protected:
+	string infoMessage = "";
 };
 
