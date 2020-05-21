@@ -14,17 +14,32 @@ void NavigationController::handleInput()
 	InputManager* mngr = app_->getInputManager();
 	int oldX = cursorPositionX_, oldY = cursorPositionY_;
 	int temp;
-	if ((!owner_ && mngr->pressedUp() || owner_ && owner_->ButtonPressed(HID::LeftPad_Up)) && cursorPositionY_ > 0 && (temp = findInRowFrom(--cursorPositionY_)) != -1)
+	if ((!owner_ && mngr->pressedUp() ||
+		owner_ && (owner_->ButtonPressed(HID::LeftPad_Up) ||
+		((owner_->AxisChanged(HID::LJoyY)) && owner_->AxisInput(HID::LJoyY) < 0))) 
+			&& cursorPositionY_ > 0 && (temp = findInRowFrom(--cursorPositionY_)) != -1)
 	{
 		cursorPositionX_ = temp;
 	}
-	else if ((!owner_ && mngr->pressedDown() || owner_ && owner_->ButtonPressed(HID::LeftPad_Down)) && cursorPositionY_ < grid_.GetSizeY() - 1 && (temp = findInRowFrom(++cursorPositionY_)) != -1) {
+	else if ((!owner_ && mngr->pressedDown() ||
+		owner_ && (owner_->ButtonPressed(HID::LeftPad_Down) ||
+		((owner_->AxisChanged(HID::LJoyY)) && owner_->AxisInput(HID::LJoyY) > 0))) 
+			&& cursorPositionY_ < grid_.GetSizeY() - 1 && (temp = findInRowFrom(++cursorPositionY_)) != -1) 
+	{
 		cursorPositionX_ = temp;
 	}
-	if ((!owner_ && mngr->pressedLeft() || owner_ && owner_->ButtonPressed(HID::LeftPad_Left)) && cursorPositionX_ > 0 && (temp = findInColFrom(--cursorPositionX_)) != -1) {
+	if ((!owner_ && mngr->pressedLeft() ||
+		owner_ && (owner_->ButtonPressed(HID::LeftPad_Left) ||
+		((owner_->AxisChanged(HID::LJoyX)) && owner_->AxisInput(HID::LJoyX) < 0))) 
+			&& cursorPositionX_ > 0 && (temp = findInColFrom(--cursorPositionX_)) != -1) 
+	{
 		cursorPositionY_ = temp;
 	}
-	else if ((!owner_ && mngr->pressedRight() || owner_ && owner_->ButtonPressed(HID::LeftPad_Right)) && cursorPositionX_ < grid_.GetSizeX() - 1 && (temp = findInColFrom(++cursorPositionX_)) != -1) {
+	else if ((!owner_ && mngr->pressedRight() ||
+		owner_ && (owner_->ButtonPressed(HID::LeftPad_Right) ||
+		((owner_->AxisChanged(HID::LJoyX)) && owner_->AxisInput(HID::LJoyX) > 0)))
+			&& cursorPositionX_ < grid_.GetSizeX() - 1 && (temp = findInColFrom(++cursorPositionX_)) != -1) 
+	{
 		cursorPositionY_ = temp;
 	}
 

@@ -42,11 +42,7 @@ public:
 		Doping,
 		Banner,
 		Panel,
-		Mg1, 
-		Mg21,
-		Mg22,
-		Ss1,
-		Ss2,
+		SelectionSquare,
 		//resources of aisha
 		Aisha_icon,
 		AishaArtwork,
@@ -92,6 +88,13 @@ public:
 		Nado_ico,
 
 		//Ability sprites
+
+		Mg1, 
+		Mg21,
+		Mg22,
+		Ss1,
+		Ss2,
+		Rs1,
 		Ew1,
 		So1,
 		Mp1,
@@ -100,12 +103,14 @@ public:
 		M1,
 		M2,
 		M3,
+		PO1,
 		Vs1,
 		Vs2,
 		Hb1,
 		Hb2,
 		Ll1,
-		FK4
+		FK4,
+		AS1
 	};
 
 	enum FontNames {
@@ -146,7 +151,9 @@ public:
 
 		PUNCH,
 		KICK,
-		DASH
+		DASH,
+		POLLO,
+		MINA,
 
 	};
 	//constructors

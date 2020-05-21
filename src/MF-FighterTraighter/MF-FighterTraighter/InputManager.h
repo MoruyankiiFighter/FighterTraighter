@@ -73,6 +73,20 @@ public:
 
 	// Controller
 
+	bool isControllerPressed(int controllerID, std::string* button)
+	{
+		std::string a = button->c_str();
+		if (a == "lefttrigger" || a == "righttrigger")
+		{
+			return getControllerAxis(controllerID, SDL_GameControllerGetAxisFromString(button->c_str())) > 0.2 ? true : false;
+		}
+		else
+		{
+			return isControllerButtonHeld(controllerID, SDL_GameControllerGetButtonFromString(button->c_str()));
+		}
+
+
+	}
 	bool isControllerButtonPressed(int controllerID, SDL_GameControllerButton button)
 	{
 		// SMELLS A LOT
@@ -109,33 +123,50 @@ public:
 	}
 
 	inline bool pressedUp() {
-		return KeyPressed(SDL_SCANCODE_UP) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_UP)
-			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) < -0.8f);
+		return(!read && (KeyPressed(SDL_SCANCODE_UP) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_UP)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) < -0.8f)));
 	}
 	inline bool pressedLeft() {
-		return KeyPressed(SDL_SCANCODE_LEFT) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_LEFT)
-			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTX) < -0.8f);
+		return(!read && (KeyPressed(SDL_SCANCODE_LEFT) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_LEFT)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTX) < -0.8f)));
 	}
 	inline bool pressedDown() {
-		return KeyPressed(SDL_SCANCODE_DOWN) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_DOWN)
-			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) > 0.8f);
+		return (!read && (KeyPressed(SDL_SCANCODE_DOWN) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_DOWN)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTY) > 0.8f)));
 	}
 	inline bool pressedRight() {
-		return KeyPressed(SDL_SCANCODE_RIGHT) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
-			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTX) > 0.8f);
+		return (!read && (KeyPressed(SDL_SCANCODE_RIGHT) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_DPAD_RIGHT)
+			|| (axisEvent() && getControllerAxis(0, SDL_CONTROLLER_AXIS_LEFTX) > 0.8f)));
 	}
 	inline bool pressedAccept() {
-		return KeyPressed(SDL_SCANCODE_RETURN) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_A);
+		return (!read && (KeyPressed(SDL_SCANCODE_RETURN) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_A)));
 	}
 	inline bool pressedCancel() {
-		return KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_B);
+		return (!read && (KeyPressed(SDL_SCANCODE_X) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_B)));
 	}
 	inline bool pressedStart() {
-		return KeyPressed(SDL_SCANCODE_ESCAPE) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START) 
-			|| isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START);
+		return (!read && (KeyPressed(SDL_SCANCODE_ESCAPE) || isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START)
+			|| isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_START)));
+	}
+
+	void readKey() { read = true; }
+	void stopreadKey() { read = false; lstButton = ""; }
+	bool reading() { return read; }
+	SDL_Scancode lastKey()
+	{
+		return lstKey;
+	}
+	std::string lastcontrol()
+	{
+
+		return lstButton;
 	}
 
 	virtual ~InputManager();
+	SDL_Haptic* getHaptic(int id)
+	{
+		return gControllerHaptic.at(id);
+	}
 private:
 	void clearState();
 
@@ -165,14 +196,16 @@ private:
 	std::array<bool, 3> mouseState_; // true = pressed
 	Vector2D mouseMovementInFrame_;
 	std::vector<SDL_GameController*> connectedControllers;
-
+	std::vector<SDL_Haptic*>gControllerHaptic;
 	std::vector<GamePad> controllerInputs;
 	std::vector<GamePad> lastControllerInputs;
 	int numGamepads;
-
 	// if in this frame there has been an event
 	bool mouseEvent_ = false; // click
 	bool keyboardEvent_ = false; // press
 	bool controllerEvent_ = false; // button
 	bool axisEvent_ = false; //axis
+	bool read = false;
+	std::string lstButton;
+	SDL_Scancode lstKey;
 };

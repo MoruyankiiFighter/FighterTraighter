@@ -8,6 +8,7 @@
 
 SRandBasedGenerator::SRandBasedGenerator() :
 	seed_(std::time(0)) {
+	init();
 }
 
 SRandBasedGenerator::SRandBasedGenerator(unsigned seed) :

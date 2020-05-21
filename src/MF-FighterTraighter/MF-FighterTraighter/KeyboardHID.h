@@ -8,14 +8,27 @@ public:
 	KeyboardHID(InputManager* input) : inputM_(input) {}
 
 	inline void changeKey(int index, SDL_Scancode newKey) {
-		keys_[index] = newKey;
-	}
-	inline void changeKey(std::vector<SDL_Scancode> newKeys, int start = 0, int end = 10) {
-		int indexNew = 0;
-		for (int i = start; i < end; ++i) {
-			keys_[i] = newKeys[indexNew];
-			indexNew++;
+		bool usado = false;
+		for (int i = 0; i < keys_.size(); i++)
+		{
+			if (keys_[i] == newKey)
+			{
+				usado = true;
+				SDL_Scancode aux = keys_[i];
+				keys_[i] = keys_[index];
+				keys_[index] = aux;
+				break;
+			}
 		}
+		if (!usado)
+		{
+			keys_[index] = newKey;
+
+		}
+	}
+	std::vector<SDL_Scancode>& getkeys()
+	{
+		return keys_;
 	}
 	void updateInput();
 protected:

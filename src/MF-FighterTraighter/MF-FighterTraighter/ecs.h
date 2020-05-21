@@ -8,16 +8,17 @@ namespace ecs {
 
 	enum CmpId : CmpIdType {
 		Transform = 0,
-		PlayerController,
+		CharacterController,
 		Health,
 		RenderImage,
 		RenderAnimation,
 		TextComponent,
 		Jump,
 		SacoTimer,
+		SacoManager,
 		PunchingBagCollision,
 		Crouch,
-		PlayerAttacks,
+		CharacterAttacks,
 		VerticalSlider,
 		IndexSlider,
 		CreatorBody,
@@ -39,8 +40,13 @@ namespace ecs {
 		KeyboardInput,
 		GamepadInput,
 		Bullet,
+		Camera,
 		AbilitiesTimerFunction,
+		Shake,
 		PlayerParticleSystem,
+		AILogic,
+		FightController,
+		TrainingController,
 		/*
 		
 		*/
@@ -51,6 +57,8 @@ namespace ecs {
 		Player1 = 0,
 		Player2,
 		Saco,
+		Controller,
+		Camara,
 		/*
 		
 		*/

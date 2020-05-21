@@ -30,19 +30,24 @@ public:
 
 	static void EWC(Entity* ent);
 	static void EW1(Entity* ent);
-	static void EW2(Entity* ent);
-	static void EW3(Entity* ent);
 
 	//Acid Split
 	static AnimationChain* GiveAcidSplit(Entity* e);
 
 	static void AS1(Entity* ent);
 	static void ASC(Entity* ent);
+
 	//Mina
 	static AnimationChain* GiveMina(Entity* e);
 
 	static void M1(Entity* ent);
 	static void MC(Entity* ent);
+
+	//Pollo
+	static AnimationChain* GivePollo(Entity* e);
+
+	static void PO1(Entity* ent);
+	static void POC(Entity* ent);
 
 	//Shrug Off
 	static AnimationChain* GiveShrugOff(Entity* e);
@@ -108,6 +113,14 @@ public:
 	static void NK2(Entity* ent);
 	static void NK3(Entity* ent);
 	static void NKC(Entity* ent);
+
+
+	//Knock Down
+	static AnimationChain* GiveKnockDown(Entity* e);
+
+	static void KD1(Entity* ent);
+	static void KD2(Entity* ent);
+	static void KDC(Entity* ent);
 
 	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false, bool render=false);
 	

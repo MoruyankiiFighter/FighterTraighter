@@ -1,5 +1,6 @@
 #include "RenderAnimation.h"
 #include "Entity.h"
+#include "PhysicsTransform.h"
 
 void RenderAnimation::init()
 {
@@ -25,5 +26,7 @@ void RenderAnimation::render()
 	dest.y = tr_->getPosition().getY();
 	dest.w = tr_->getWidth() * tr_->getWMult();
 	dest.h = tr_->getHeight() * tr_->getHMult();
-	tex_->render(dest, 0, curFrame_);
+
+	if (tr_->getOrientation() == 1) tex_->render(dest, 0, curFrame_, tr_->getRotation());
+	else tex_->render(dest, 0, curFrame_, tr_->getRotation(), SDL_FLIP_HORIZONTAL);
 }

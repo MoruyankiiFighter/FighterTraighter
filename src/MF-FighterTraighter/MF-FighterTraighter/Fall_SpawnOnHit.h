@@ -25,7 +25,7 @@ public:
 				entity_->getComponent<PhysicsTransform>(ecs::Transform)->changeMask(entity_->getState()->BOUNDARY);
 
 			}
-			else {	//the entity collision with the floor(BOUNDARY)
+			else {	//collision with the floor(BOUNDARY)
 				PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 				uint16 mask;
 				if (spawnData_ != nullptr) {
