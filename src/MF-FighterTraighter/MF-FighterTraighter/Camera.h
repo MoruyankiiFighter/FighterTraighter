@@ -24,7 +24,9 @@ public:
 		//m_ViewBox.h= app_->getWindowManager()->getCurResolution().h +500;
 		
 	}
-	~Camera() { delete m_shake; };
+	~Camera() {
+		delete m_shake;
+	};
 	virtual void update()override;
 private:
 	inline void CalculaPunto();

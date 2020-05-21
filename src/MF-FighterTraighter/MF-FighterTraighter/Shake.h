@@ -10,7 +10,7 @@ public:
     Shake(uint32 shakeTime,float shakeOffset) : Component(ecs::Shake) ,SHAKE_TIME_MS(shakeTime),SHAKE_OFFSET(shakeOffset){};
     Shake(uint32 shakeTime) : Component(ecs::Shake) ,SHAKE_TIME_MS(shakeTime),SHAKE_OFFSET(20.0){};
     Shake() : Component(ecs::Shake) ,SHAKE_TIME_MS(2000),SHAKE_OFFSET(20.0){};
-	~Shake() {}
+	~Shake() {  }
 
     //Shaking will take 200ms
     uint32 SHAKE_TIME_MS ;
@@ -49,7 +49,7 @@ private:
     void updateShake();
     void applyScreenShake();
 
-    Vector2D* m_shake=new Vector2D(0,0);
+    Vector2D* m_shake;
   //  Transform* cam;
     Uint32 timeStart_=0;
     Uint32 delta=0;
