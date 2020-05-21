@@ -34,7 +34,7 @@ protected:
 	float jumpImpulse = 0;
 	double movSpeed = 1;
 
-	bool canJump_ = false;
+	bool canJump_ = true;
 	bool disabled_ = false;
 };
 
