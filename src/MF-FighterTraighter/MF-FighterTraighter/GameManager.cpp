@@ -20,8 +20,8 @@ GameManager::GameManager(App* app) : app_(app)
 	resetCharacters();
 
 	// TODO: Move this elsewhere
-	//player1_.hid = new KeyboardHID(app_->getInputManager());
-	player1_.hid = new GamepadHID(app_->getInputManager(),0);
+	player1_.hid = new KeyboardHID(app_->getInputManager());
+	//player1_.hid = new GamepadHID(app_->getInputManager(),0);
 	
 	//player1_.character = F10R;
 	player1_.character = MKWh00p;

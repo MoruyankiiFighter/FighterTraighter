@@ -1,5 +1,6 @@
 #include "InventoryLogic.h"
 #include "Entity.h"
+#include "UITransform.h"
 InventoryLogic::InventoryLogic(NavigationController* nav, int player, RenderImage* left, RenderImage* right):
 	Component(ecs::InventoryLogic), nav_(nav), player_(player), left_(left), right_(right)
 {
@@ -8,6 +9,10 @@ InventoryLogic::InventoryLogic(NavigationController* nav, int player, RenderImag
 void InventoryLogic::init()
 {
 	pressed = false;
+	ent = new Entity();
+	ent->addComponent<Transform>(Vector2D(), Vector2D(), 100, 100, 0);
+	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
+
 }
 
 void InventoryLogic::update()
@@ -24,7 +29,17 @@ void InventoryLogic::update()
 				curr = app_->getGameManager()->getPlayerInfo(player_).abilities[(nav_->GetPosX() + 5)]; //5 a 10
 			}
 		}
-		cout << player_ << " " << nav_->GetPosX() << " " << nav_->GetPosY()<<endl;
+
+		ent->getComponent<Transform>(ecs::Transform)->setPosition
+		(nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY())->getEntity()->getComponent<UITransform>(ecs::Transform)->getPosition());
+		cout << ent->getComponent<Transform>(ecs::Transform)->getPosition().getX()<<endl;
+	}
+}
+
+void InventoryLogic::render()
+{
+	if (!pressed&& nav_->GetPosY()<2) {
+		ent->render();
 	}
 }
 

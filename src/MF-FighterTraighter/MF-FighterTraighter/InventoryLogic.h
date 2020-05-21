@@ -7,13 +7,16 @@ class InventoryLogic :
 {
 public:
 	InventoryLogic(NavigationController* nav, int player, RenderImage* left, RenderImage* right);
-
+	~InventoryLogic() { delete ent; }
 	void init() override;
 	void update() override;
+	void render() override;
 	void handleInput() override;
 
 	inline bool getPressed() { return pressed; }
 private:
+	Entity* ent;
+
 	RenderImage* left_;
 	RenderImage* right_;
 	NavigationController* nav_;
