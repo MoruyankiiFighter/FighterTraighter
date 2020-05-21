@@ -23,7 +23,7 @@ void PlayerController::handleInput()
 
 	if (!disabled_)
 	{
-		if (inputSt_->AxisInput(HID::LTrigger) > 0)
+		if (inputSt_->ButtonDown(HID::LeftTrigger) > 0)
 		{
 			TryGuarding(currState, speed);
 		}
@@ -51,7 +51,7 @@ void PlayerController::handleInput()
 		!(inputSt_->ButtonDown(HID::LeftPad_Up) || inputSt_->AxisInput(HID::LJoyY) < 0)) {
 		TryStopMoving(currState, speed);
 	}
-	if (!inputSt_->AxisInput(HID::LTrigger) > 0) {
+	if (!inputSt_->ButtonDown(HID::LeftTrigger) > 0) {
 		TryStopGuarding(currState);
 	}
 	if (!(inputSt_->ButtonDown(HID::LeftPad_Down) || inputSt_->AxisInput(HID::LJoyY) > 0)) {

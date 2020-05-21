@@ -142,6 +142,7 @@
     <ClCompile Include="AILogic.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="ButtonControl.cpp" />
     <ClCompile Include="CharacterAttacks.cpp" />
     <ClCompile Include="CharacterController.cpp" />
     <ClCompile Include="CharacterSelectionHandler.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="AILogic.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="ButtonControl.h" />
     <ClInclude Include="CharacterAttacks.h" />
     <ClInclude Include="CharacterController.h" />
     <ClInclude Include="CharacterSelectionHandler.h" />

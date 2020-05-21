@@ -41,7 +41,7 @@ void PlayerAttacks::handleInput() {
 					else if (currState->isCrouch()) ctrl->uncrouch();
 					currState->goAttack(3);
 				}
-				else if (inputSt_->AxisChanged(HID::RTrigger)) {
+				else if (inputSt_->ButtonPressed(HID::RightTrigger)) {
 					activeAttack_ = attacksList[8];
 					if (currState->isMoving()) tr->setSpeed(0, tr->getSpeed().getY());
 					else if (currState->isCrouch()) ctrl->uncrouch();
