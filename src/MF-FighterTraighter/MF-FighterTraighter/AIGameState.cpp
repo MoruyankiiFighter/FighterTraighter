@@ -42,7 +42,7 @@ void AIGameState::init()
 	//	PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	//entManager_.setHandler(AI1, ecs::Player1);
 
-	Entity* AI2 = CharFactory::addAICharacterToGame(app_, this, -1, world, GameManager::F10R, 500, Vector2D(350, 450),
+	Entity* AI2 = CharFactory::addAICharacterToGame(app_, this, -1, world, GameManager::F10R, 5, Vector2D(350, 450),
 		PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
 	entManager_.setHandler(AI2, ecs::Player2);
 }
