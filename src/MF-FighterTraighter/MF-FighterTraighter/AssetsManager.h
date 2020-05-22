@@ -70,22 +70,25 @@ public:
 		Random_icon,
 		RandomArtwork,
 
+		_abilityIcon_start,
 		//Ability icons
-		S_Sock_ico,
-		M_Grip_ico,
-		Ex_Will_ico,
-		Acid_ico,
-		Mina_ico,
 		ShrugOff_ico,
+		Reach_ico,
 		MorePower_ico,
-		Hook_ico,
+		//falta pollo
+		Acid_ico,
 		Dash_ico,
 		Vampiric_ico,
-		HailBall_ico,
-		Reach_ico,
-		FlyingKicks_ico,
 		L_Lineal_ico,
+		Mina_ico,
+		Hook_ico,
+		HailBall_ico,
+		//falta knockdown
+		Ex_Will_ico,
+		FlyingKicks_ico,
 		Nado_ico,
+		M_Grip_ico,
+		S_Sock_ico,
 
 		//Ability sprites
 

@@ -59,7 +59,8 @@ public:
 
 	struct PlayerInfo {
 		CharacterID character;
-		std::vector<AbilityID> abilities;
+		std::vector<AbilityID> abilities; //habilidades que tiene cada personaje en una ronda
+		std::vector<AbilityID> abilitiesInventory; //habilidades totales que tiene cada personaje disponible para elegir
 		AbilityID ability1Index;
 		AbilityID ability2Index;
 		HID* hid;

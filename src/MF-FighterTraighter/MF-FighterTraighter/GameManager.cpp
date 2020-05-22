@@ -13,6 +13,9 @@
 #include "CharacterSelection.h"
 #include "KeyboardHID.h"
 #include "GamepadHID.h"
+#include "InventorySelection.h"
+#include "AbilitySelection.h"
+#include "SkillSelection.h"
 
 GameManager::GameManager(App* app) : app_(app)
 {
@@ -117,14 +120,14 @@ void GameManager::trainingEnded(int winner)
 	
 	//the wining player chooses 1 and gets other random
 	//por ahora tiene las dos random, habr�a usar el estado de selecci�n de habilidades aqu�
-	pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
-	pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	pWin->abilitiesInventory.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	pWin->abilitiesInventory.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
 	//the losing player, gets random lvl sth 
-	pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
-	pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	pLose->abilitiesInventory.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	pLose->abilitiesInventory.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
 	// Remove the current training mode
 	stateMachine->popState();
-	stateMachine->pushState(new Fight(app_));
+	stateMachine->pushState(new SkillSelection(app_));
 }
 
 //void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)

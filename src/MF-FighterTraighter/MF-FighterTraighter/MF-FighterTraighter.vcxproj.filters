@@ -295,6 +295,7 @@
     <ClCompile Include="InventorySelection.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
+    <ClCompile Include="AbilitySelection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -633,6 +634,7 @@
     <ClInclude Include="InventorySelection.h">
       <Filter>Header files\GameState</Filter>
     </ClInclude>
+    <ClInclude Include="AbilitySelection.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
