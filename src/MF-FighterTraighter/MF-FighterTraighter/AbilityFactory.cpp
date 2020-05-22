@@ -1186,10 +1186,10 @@ void AbilityFactory::KDC(Entity* e) {
 //creates a kinematic entity with a "bullet" behaviour
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity,bool render) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;
-	if (pos.getX() >= windowWidth)  
+	/*if (pos.getX() >= windowWidth)  
 		pos.setX(windowWidth);
 	else if (pos.getX() <= 0)  
-		pos.setX(0);
+		pos.setX(0);*/
 	Entity* e = ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().addEntity();
 	e->addComponent<PhysicsTransform>(pos, speed, width, height, 0, currentState->getb2World(),
 		currentState->BULLET, mask, 1)->setOrientation(orientation);
