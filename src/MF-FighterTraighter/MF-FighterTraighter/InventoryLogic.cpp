@@ -32,7 +32,7 @@ void InventoryLogic::update()
 
 		ent->getComponent<Transform>(ecs::Transform)->setPosition
 		(nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY())->getEntity()->getComponent<UITransform>(ecs::Transform)->getPosition());
-		cout << ent->getComponent<Transform>(ecs::Transform)->getPosition().getX()<<endl;
+		//cout << ent->getComponent<Transform>(ecs::Transform)->getPosition().getX()<<endl;
 	}
 }
 

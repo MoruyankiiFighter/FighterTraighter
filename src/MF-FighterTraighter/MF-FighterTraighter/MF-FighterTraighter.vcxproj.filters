@@ -297,6 +297,7 @@
     </ClCompile>
     <ClCompile Include="AbilitySelection.cpp" />
     <ClCompile Include="SkillSelectionLogic.cpp" />
+    <ClCompile Include="SkillSelectionHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -637,6 +638,7 @@
     </ClInclude>
     <ClInclude Include="AbilitySelection.h" />
     <ClInclude Include="SkillSelectionLogic.h" />
+    <ClInclude Include="SkillSelectionHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

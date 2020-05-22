@@ -1,5 +1,4 @@
 #include "SkillSelection.h"
-#include "SkillSelection.h"
 #include "UIFactory.h"
 #include "Entity.h"
 #include "RenderImage.h"
@@ -7,37 +6,102 @@
 #include "Fight.h"
 #include "NavigationController.h"
 #include "InventorySelection.h"
+//#include "GameManager.h"
 
 void SkillSelection::init()
 {
 	GameState::init();
 	//crear fondo ->ser� el fndo de la pelea i guess???
 
-	//generate abilities
-
+	
+	//Background
 	Entity* b = entManager_.addEntity();
 	b->addComponent<UITransform>(Vector2D(), Vector2D(), Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h));
 	b->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight));
 
-	vector<GameManager::AbilityID> hab;
-	
+
+	//GameStateMachine* stateMachine = app_->getStateMachine();
+	//GameManager::PlayerInfo *pWin = nullptr,
+	//						*pLose = nullptr;
+	int loser = 0;
+	if (winner_ == 0) 
+		loser = 1;
+	//	pWin = &player1_;
+	//	pLose = &player2_;
+	//}
+	//else {
+	//	pWin = &player2_;
+	//	pLose = &player1_;
+	//}
+
+	////the wining player chooses 1 and gets other random
+	////por ahora tiene las dos random, habr�a usar el estado de selecci�n de habilidades aqu�
+	//pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	//pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	////the losing player, gets random lvl sth 
+	//pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	//pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+
+	//GameManager::AbilityID
+
+
+	//generate abilities
+	//vector<GameManager::AbilityID> hab;
+	//player 1 abilities
 	GameManager::AbilityID abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
-	AssetsManager::TextureNames abrand = (AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + abi1);
-	Entity* ab1 = entManager_.addEntity();
-	ab1->addComponent<UITransform>(Vector2D(400, 600), Vector2D(), Vector2D(), Vector2D(300, 300));
-	ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
-	hab.push_back(abi1);
-	GameManager::AbilityID abi2;
-	do {
-		abi2 =(GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
-	} while (abi1 == abi2);
-	hab.push_back(abi2);
+	//El jugador que gana obtiene 3 habilidades aleatorias, 2 de ellas las tiene que elegir, la otra es aleatoria
+	Entity* nav_j1 = entManager_.addEntity();
+	//NavigationController* ctrl = nav_j1->addComponent<NavigationController>(2, 2, app_->getGameManager()->getPlayerInfo(1).hid);
+
+	for (int i = 0; i < 3; i++) {
+		do {
+			//nueva habilidad
+			abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
+		} while (checkAbility(abi1, winner_));//comprobamos que es adecuada
+		AssetsManager::TextureNames abrand = (AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + abi1 + 1);
+		Entity* ab1 = entManager_.addEntity();
+		if (i < 2) {
+			ab1->addComponent<UIElement>();
+			ab1->addComponent<UITransform>(
+				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
+				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
+				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
+				Vector2D(128, 128));
+			ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+			//ctrl->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+		}
+		else {
+			ab1->addComponent<UIElement>();
+			ab1->addComponent<UITransform>(
+				Vector2D(((128) + (i - 2) * (128)) + 40, (72) * 6.7),
+				Vector2D(((128) + (i - 2) * (128)) + 40, (72) * 6.7),
+				Vector2D(((128) + (i - 2) * (128)) + 40, (72) * 6.7),
+				Vector2D(128, 128));
+			ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+			//ctrl->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i - 2, 1);
+		}
+	}
+	//El jugador que pierde obtiene 2 habilidades aleatorias y no elige
+	for (int i = 0; i < 2; i++) {
+		do {
+			//nueva habilidad
+			abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
+		} while (checkAbility(abi1, loser));//comprobamos que es adecuada
+		AssetsManager::TextureNames abrand = (AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + abi1 + 1);
+		Entity* ab1 = entManager_.addEntity();
+		ab1->addComponent<UIElement>();
+		ab1->addComponent<UITransform>(
+			Vector2D((800 ) + 40,  500 + 200 * i),
+			Vector2D(((128) + (i) * (256)) + 40, (72) * 4.7 ),
+			Vector2D(((128) + (i) * (256)) + 40, (72) * 4.7 ),
+			Vector2D(128, 128));
+		ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+	}
+
+	//hab.push_back(abi2);
 
 
-	AssetsManager::TextureNames abrand2 = (AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + abi2);
-	Entity* ab2 = entManager_.addEntity();
-	ab2->addComponent<UITransform>(Vector2D(800, 600), Vector2D(), Vector2D(), Vector2D(300, 300));
-	ab2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand2));
+	
 
 
 	////entities
@@ -213,4 +277,41 @@ void SkillSelection::Pressed1(App* app)
 
 void SkillSelection::Pressed2(App* app)
 {
+}
+
+//introduce la habilidad en el vector de habilidades generadas segun el jugador
+//y sus habilidades ya disponibles
+bool SkillSelection::checkAbility(GameManager::AbilityID newAb, int player) {
+
+	std::vector<GameManager::AbilityID> aux = app_->getGameManager()->getPlayerInfo(player).abilities;
+	if (player == 0) {	//player1
+		//player1 generated abilities
+		for (int i = 0; i < generatedAbs_1.size(); i++) {
+			if (newAb == generatedAbs_1[i])
+				return true;
+		}
+
+		//player1 abilities
+		for (int i = 0; i < aux.size(); i++) {
+			if (newAb == aux[i])
+				return true;
+		}
+		generatedAbs_1.push_back(newAb);
+		return false;
+	}
+	else {
+		for (int i = 0; i < generatedAbs_2.size(); i++) {
+			if (newAb == generatedAbs_2[i])
+				return true;
+		}
+
+		//player2 abilities
+		for (int i = 0; i < aux.size(); i++) {
+			if (newAb == aux[i])
+				return true;
+		}	
+		generatedAbs_2.push_back(newAb);
+		return false;
+	}
+	
 }

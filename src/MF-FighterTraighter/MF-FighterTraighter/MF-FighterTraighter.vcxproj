@@ -201,6 +201,7 @@
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="LinkedGrid.cpp" />
     <ClCompile Include="Shake.cpp" />
+    <ClCompile Include="SkillSelectionHandler.cpp" />
     <ClCompile Include="SkillSelectionLogic.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="TrainingController.cpp" />
@@ -304,6 +305,7 @@
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="Shake.h" />
+    <ClInclude Include="SkillSelectionHandler.h" />
     <ClInclude Include="SkillSelectionLogic.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="TrainingController.h" />

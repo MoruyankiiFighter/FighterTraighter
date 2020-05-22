@@ -110,7 +110,7 @@ public:
 	}
 
 	void addHability(AbilityID hab, int player) {
-		if (player == 1){
+		if (player == 0){
 			player1_.abilities.push_back(hab);
 		}
 		else {
@@ -119,7 +119,7 @@ public:
 	}
 
 	void setFirstHab(AbilityID hab, int player) {
-		if (player == 1) {
+		if (player == 0) {
 			player1_.ability1Index = hab;
 		}
 		else {
@@ -128,7 +128,7 @@ public:
 	}
 
 	void setSecondHab(AbilityID hab, int player) {
-		if (player == 1) {
+		if (player == 0) {
 			player1_.ability2Index = hab;
 		}
 		else {

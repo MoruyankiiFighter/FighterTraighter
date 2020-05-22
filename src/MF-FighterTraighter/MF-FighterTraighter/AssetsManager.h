@@ -73,17 +73,17 @@ public:
 		_abilityIcon_start,
 		//Ability icons
 		ShrugOff_ico,
-		Reach_ico,
-		MorePower_ico,
-		//falta pollo
+		Reach_ico,	//no existe esta creada con otra textura
+		MorePower_ico, //igual que el de arriba
+		Chicken_ico,	//es la textura n oel icono
 		Acid_ico,
-		Dash_ico,
+		Dash_ico,			//tp esta metido todavia
 		Vampiric_ico,
 		L_Lineal_ico,
 		Mina_ico,
 		Hook_ico,
 		HailBall_ico,
-		//falta knockdown
+		Knockdown_ico,// ya esta pero es el de hailball
 		Ex_Will_ico,
 		FlyingKicks_ico,
 		Nado_ico,

@@ -13,12 +13,16 @@ public:
 	void render() override;
 	void handleInput() override;
 
+	inline bool getPressed() { return pressed; }
 private:
+	Entity* ent;
+
 	int player_;
 	NavigationController* nav_;
-	GameManager::AbilityID curr;
+	int curr;
 	GameManager::AbilityID op;
 	vector<GameManager::AbilityID> v_;
 	bool eq;
+	bool pressed;
 };
 
