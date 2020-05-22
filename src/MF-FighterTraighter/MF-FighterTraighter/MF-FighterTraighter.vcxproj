@@ -142,6 +142,7 @@
     <ClCompile Include="AILogic.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="AudioOptionsLogic.cpp" />
     <ClCompile Include="ButtonControl.cpp" />
     <ClCompile Include="CharacterAttacks.cpp" />
     <ClCompile Include="CharacterController.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="FollowPlayer.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamepadHID.cpp" />
+    <ClCompile Include="GraphicsOptionsLogic.cpp" />
     <ClCompile Include="HID.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
@@ -234,6 +236,7 @@
     <ClInclude Include="AILogic.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="AudioOptionsLogic.h" />
     <ClInclude Include="ButtonControl.h" />
     <ClInclude Include="CharacterAttacks.h" />
     <ClInclude Include="CharacterController.h" />
@@ -254,6 +257,7 @@
     <ClInclude Include="FollowPlayer.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GamepadHID.h" />
+    <ClInclude Include="GraphicsOptionsLogic.h" />
     <ClInclude Include="HID.h" />
     <ClInclude Include="HitboxData.h" />
     <ClInclude Include="AssetsExceptions.h" />

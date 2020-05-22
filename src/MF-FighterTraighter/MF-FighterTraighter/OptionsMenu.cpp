@@ -10,6 +10,8 @@
 #include "VerticalSlider.h"
 #include "IndexSlider.h"
 #include "OptionsLogic.h"
+#include "GraphicsOptionsLogic.h"
+#include "AudioOptionsLogic.h"
 #include "NavigationController.h"
 #include "ControlsMenu.h"
 #include "App.h"
@@ -93,7 +95,7 @@ void OptionsMenu::init()
 		Vector2D(leftOffset, buttonInitPos),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(0, buttonHeight / 2),
-		420, buttonHeight, 0, GoControlsCallback, nullptr, "Graphics", textSize);
+		420, buttonHeight, 0, nullptr, nullptr, "Graphics", textSize);
 	std::get<1>(graphics)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, buttonInitPos + textOffset);
 
 
@@ -103,7 +105,7 @@ void OptionsMenu::init()
 		Vector2D(leftOffset, buttonInitPos + buttonSeparation),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(0, buttonHeight / 2),
-		300, buttonHeight, 0, GoControlsCallback, nullptr, "Audio", textSize);
+		300, buttonHeight, 0, nullptr, nullptr, "Audio", textSize);
 	std::get<1>(audio)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, buttonInitPos + buttonSeparation + textOffset);
 
 
@@ -178,7 +180,7 @@ void OptionsMenu::init()
 
 	// Navigation
 	Entity* navGraphics = entManager_.addEntity();
-	NavigationController* ctrlGraphics = navMain->addComponent<NavigationController>(1, 3);
+	NavigationController* ctrlGraphics = navGraphics->addComponent<NavigationController>(1, 3);
 	ctrlGraphics->SetElementInPos(std::get<0>(fullscreen)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrlGraphics->SetElementInPos(std::get<0>(resolutionSlider)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	ctrlGraphics->SetElementInPos(std::get<0>(brightSlider)->getComponent<UIElement>(ecs::UIElement), 0, 2);
@@ -193,7 +195,7 @@ void OptionsMenu::init()
 		Vector2D(-leftOffset, buttonInitPos),
 		Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(500, 5),
-		500, 10, SetVolume, "Music Volume", rightTextSize, "50", rightTextSize);
+		500, 10, SetVolume, "Music volume", rightTextSize, "50", rightTextSize);
 	std::get<2>(musicSlider)->getComponent<TextComponent>(ecs::TextComponent)->setAlignment(TextComponent::Right);
 	std::get<3>(musicSlider)->getComponent<UITransform>(ecs::Transform)->setPosition(-500 - leftOffset - 35, buttonInitPos - rightTextSize / 2);
 	std::get<3>(musicSlider)->getComponent<TextComponent>(ecs::TextComponent)->setAlignment(TextComponent::Right);
@@ -206,7 +208,7 @@ void OptionsMenu::init()
 		Vector2D(-leftOffset, buttonInitPos + rightButtonSeparation),
 		Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(500, 5),
-		500, 10, SetSfxVolume, "Sound Volume", rightTextSize, "50", rightTextSize);
+		500, 10, SetSfxVolume, "Sound volume", rightTextSize, "50", rightTextSize);
 	std::get<2>(soundSlider)->getComponent<TextComponent>(ecs::TextComponent)->setAlignment(TextComponent::Right);
 	std::get<3>(soundSlider)->getComponent<UITransform>(ecs::Transform)->setPosition(-500 - leftOffset - 35, buttonInitPos + rightButtonSeparation - rightTextSize / 2);
 	std::get<3>(soundSlider)->getComponent<TextComponent>(ecs::TextComponent)->setAlignment(TextComponent::Right);
@@ -225,7 +227,7 @@ void OptionsMenu::init()
 
 	//// Navigation
 	Entity* navAudio = entManager_.addEntity();
-	NavigationController* ctrlAudio = navMain->addComponent<NavigationController>(1, 3);
+	NavigationController* ctrlAudio = navAudio->addComponent<NavigationController>(1, 3);
 	ctrlAudio->SetElementInPos(std::get<0>(musicSlider)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrlAudio->SetElementInPos(std::get<0>(soundSlider)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	ctrlAudio->SetElementInPos(std::get<0>(silenceVolume)->getComponent<UIElement>(ecs::UIElement), 0, 2);
@@ -234,27 +236,14 @@ void OptionsMenu::init()
 
 
 	// Logic
-	//Entity* logic = entManager_.addEntity();
-	//logic->addComponent<OptionsLogic>
-	//	(std::get<0>(resolutionSlider)->getComponent<Slider>(ecs::UIElement),
-	//		std::get<3>(resolutionSlider)->getComponent<TextComponent>(ecs::TextComponent),
-	//		std::get<0>(brightSlider)->getComponent<Slider>(ecs::UIElement),
-	//		std::get<3>(brightSlider)->getComponent<TextComponent>(ecs::TextComponent),
-	//		std::get<0>(MusicSlider)->getComponent<Slider>(ecs::UIElement),
-	//		std::get<3>(MusicSlider)->getComponent<TextComponent>(ecs::TextComponent),
-	//		std::get<0>(SoundSlider)->getComponent<Slider>(ecs::UIElement),
-	//		std::get<3>(SoundSlider)->getComponent<TextComponent>(ecs::TextComponent));
+	Entity* logic = entManager_.addEntity();
+	logic->addComponent<GraphicsOptionsLogic>(ctrlGraphics, fullscreen, resolutionSlider, brightSlider);
+	logic->addComponent<AudioOptionsLogic>(ctrlAudio, musicSlider, soundSlider, silenceVolume);
+	logic->addComponent<OptionsLogic>(navMain->getComponent<NavigationController>(ecs::NavigationController),
+		std::get<0>(graphics)->getComponent<UIElement>(ecs::UIElement),
+		std::get<0>(audio)->getComponent<UIElement>(ecs::UIElement),
+		std::get<0>(controls)->getComponent<UIElement>(ecs::UIElement));
 }
-
-void OptionsMenu::handleInput()
-{
-	if (app_->getInputManager()->pressedStart()) {
-		app_->getGameManager()->pressedStart();
-	}
-	else
-		GameState::handleInput();
-}
-
 
 void OptionsMenu::GoBackCallback(App* app) {
 	app->getStateMachine()->popState();

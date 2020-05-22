@@ -12,8 +12,6 @@ public:
 
 	//method overrided from GameState where the objects are created from the different factories
 	void init() override;
-	void handleInput() override;
-
 
 	//callbacks of the Entitys
 	
