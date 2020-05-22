@@ -107,63 +107,8 @@ void InventorySelection::init()
 			}
 
 
-			switch (app_->getGameManager()->getPlayerInfo(1).abilities[i])
-			{
-			case GameManager::MegatonGrip:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::M_Grip_ico));
-				break;
-
-			case GameManager::SeismicShock:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico));
-				break;
-
-			case GameManager::ExplosiveWillpower:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico));
-				break;
-
-			case GameManager::AcidSplit:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico));
-				break;
-
-			case GameManager::Mina:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico));
-				break;
-
-			case GameManager::ShrugOff:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::ShrugOff_ico));
-				break;
-
-			case GameManager::MorePower:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::MorePower_ico));
-				break;
-			case GameManager::Hookshot:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Hook_ico));
-				break;
-			case GameManager::Dash:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico));
-				break;
-			case GameManager::VampiricStrike:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Vampiric_ico));
-				break;
-			case GameManager::HailBall:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico));
-				break;
-			case GameManager::ReachingStrike:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Reach_ico));
-				break;
-			case GameManager::FlyingKicks:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::FlyingKicks_ico));
-				break;
-			case GameManager::LaserLineal:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::L_Lineal_ico));
-				break;
-			case GameManager::NadoKick:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Nado_ico));
-				break;
-
-			default:
-				break;
-			}
+			habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()
+				->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(1).abilities[i] + 1)));
 
 		}
 
@@ -200,7 +145,7 @@ void InventorySelection::init()
 	//hab j2
 	Entity* nav_j2 = entManager_.addEntity();
 	NavigationController* ctrl_ = nav_j2->addComponent<NavigationController>(5, 3, app_->getGameManager()->getPlayerInfo(2).hid);
-
+	//esto sería un for hasta abilities size para que no pete
 	for (double i = 0; i < 10; i++) {
 
 		Entity* habj2 = entManager_.addEntity();
@@ -232,64 +177,8 @@ void InventorySelection::init()
 
 			}
 
-			switch (app_->getGameManager()->getPlayerInfo(2).abilities[i])
-			{
-			case GameManager::MegatonGrip:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::M_Grip_ico));
-				break;
-
-			case GameManager::SeismicShock:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico));
-				break;
-
-			case GameManager::ExplosiveWillpower:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico));
-				break;
-
-			case GameManager::AcidSplit:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico));
-				break;
-
-			case GameManager::Mina:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico));
-				break;
-
-			case GameManager::ShrugOff:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::ShrugOff_ico));
-				break;
-
-			case GameManager::MorePower:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::MorePower_ico));
-				break;
-			case GameManager::Hookshot:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Hook_ico));
-				break;
-			case GameManager::Dash:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico));
-				break;
-			case GameManager::VampiricStrike:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Vampiric_ico));
-				break;
-			case GameManager::HailBall:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico));
-				break;
-			case GameManager::ReachingStrike:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Reach_ico));
-				break;
-			case GameManager::FlyingKicks:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::FlyingKicks_ico));
-				break;
-			case GameManager::LaserLineal:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::L_Lineal_ico));
-				break;
-			case GameManager::NadoKick:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Nado_ico));
-				break;
-
-			default:
-				break;
-			}
-
+			habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()
+				->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[i] + 1))); //no vas a poder acceder
 		}
 
 		else {

@@ -45,127 +45,24 @@ void InventoryLogic::render()
 
 void InventoryLogic::handleInput()
 {
+	ab1_index = app_->getGameManager()->getPlayerInfo(player_).ability1Index;
+	ab2_index = app_->getGameManager()->getPlayerInfo(player_).ability2Index;
 	if (nav_->GetPosY() != 2) {
-		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::LeftBumper) && app_->getGameManager()->getPlayerInfo(player_).ability2Index != curr && !pressed) {
+		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::LeftBumper) &&  ab2_index != curr && !pressed) {
 			app_->getGameManager()->setFirstHab(curr, player_);
 
 			cout << "hab1 equipada ";
 			if (left_ != nullptr) {
-				switch (curr)
-				{
-				case GameManager::MegatonGrip:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::M_Grip_ico));
-					break;
-
-				case GameManager::SeismicShock:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico));
-					break;
-
-				case GameManager::ExplosiveWillpower:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico));
-					break;
-
-				case GameManager::AcidSplit:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico));
-					break;
-
-				case GameManager::Mina:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico));
-					break;
-
-				case GameManager::ShrugOff:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::ShrugOff_ico));
-					break;
-
-				case GameManager::MorePower:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::MorePower_ico));
-					break;
-				case GameManager::Hookshot:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Hook_ico));
-					break;
-				case GameManager::Dash:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico));
-					break;
-				case GameManager::VampiricStrike:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Vampiric_ico));
-					break;
-				case GameManager::HailBall:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico));
-					break;
-				case GameManager::ReachingStrike:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Reach_ico));
-					break;
-				case GameManager::FlyingKicks:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::FlyingKicks_ico));
-					break;
-				case GameManager::LaserLineal:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::L_Lineal_ico));
-					break;
-				case GameManager::NadoKick:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Nado_ico));
-					break;
-				}
+				left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[ab1_index] + 1)));
 			}
 		}
-		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightBumper) && app_->getGameManager()->getPlayerInfo(player_).ability1Index != curr && !pressed) {
+		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightBumper) && ab1_index != curr && !pressed) {
 			app_->getGameManager()->setSecondHab(curr, player_);
 			cout << "hab2 equipada ";
 			if (right_ != nullptr) {
-				switch (curr)
-				{
-				case GameManager::MegatonGrip:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::M_Grip_ico));
-					break;
-
-				case GameManager::SeismicShock:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico));
-					break;
-
-				case GameManager::ExplosiveWillpower:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico));
-					break;
-
-				case GameManager::AcidSplit:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico));
-					break;
-
-				case GameManager::Mina:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico));
-					break;
-
-				case GameManager::ShrugOff:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::ShrugOff_ico));
-					break;
-
-				case GameManager::MorePower:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::MorePower_ico));
-					break;
-				case GameManager::Hookshot:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Hook_ico));
-					break;
-				case GameManager::Dash:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico));
-					break;
-				case GameManager::VampiricStrike:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Vampiric_ico));
-					break;
-				case GameManager::HailBall:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico));
-					break;
-				case GameManager::ReachingStrike:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Reach_ico));
-					break;
-				case GameManager::FlyingKicks:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::FlyingKicks_ico));
-					break;
-				case GameManager::LaserLineal:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::L_Lineal_ico));
-					break;
-				case GameManager::NadoKick:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Nado_ico));
-					break;
-				}
+				right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[ab2_index] + 1)));
 			}
+					
 		}
 	}
 	else 

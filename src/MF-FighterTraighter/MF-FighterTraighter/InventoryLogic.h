@@ -23,5 +23,8 @@ private:
 	int player_;
 	GameManager::AbilityID curr;
 	bool pressed = false;
+
+	int ab1_index = 0,
+		ab2_index = 0;
 };
 

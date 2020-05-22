@@ -109,7 +109,7 @@ void GameManager::trainingEnded(int winner)
 	cout << "Player " << winner + 1 << " wins the training!" << endl;
 	// Remove the current training mode
 	stateMachine->popState();
-	stateMachine->pushState(new SkillSelection(app_, winner));
+	stateMachine->pushState(new SkillSelection(app_, winner + 1));
 }
 
 //void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)

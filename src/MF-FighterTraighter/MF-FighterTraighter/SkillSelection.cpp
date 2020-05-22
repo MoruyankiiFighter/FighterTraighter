@@ -23,9 +23,9 @@ void SkillSelection::init()
 	//GameStateMachine* stateMachine = app_->getStateMachine();
 	//GameManager::PlayerInfo *pWin = nullptr,
 	//						*pLose = nullptr;
-	int loser = 0;
-	if (winner_ == 0) 
-		loser = 1;
+	int loser = 1;
+	if (winner_ == 1) 
+		loser = 2;
 	//	pWin = &player1_;
 	//	pLose = &player2_;
 	//}
@@ -69,6 +69,9 @@ void SkillSelection::init()
 				Vector2D(128, 128));
 			ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
 			//ctrl->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+			//						esto aqui no
+			//			app_->getGameManager()->addHability(abi1, winner_);
+
 		}
 		else {
 			ab1->addComponent<UIElement>();
@@ -78,6 +81,8 @@ void SkillSelection::init()
 				Vector2D(((128) + (i - 2) * (128)) + 40, (72) * 6.7),
 				Vector2D(128, 128));
 			ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+			app_->getGameManager()->addHability(abi1, winner_);
+
 			//ctrl->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i - 2, 1);
 		}
 	}
@@ -96,6 +101,8 @@ void SkillSelection::init()
 			Vector2D(((128) + (i) * (256)) + 40, (72) * 4.7 ),
 			Vector2D(128, 128));
 		ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+		app_->getGameManager()->addHability(abi1, loser);
+
 	}
 
 	//hab.push_back(abi2);
