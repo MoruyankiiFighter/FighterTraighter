@@ -120,11 +120,11 @@ void GameManager::trainingEnded(int winner)
 	
 	//the wining player chooses 1 and gets other random
 	//por ahora tiene las dos random, habr�a usar el estado de selecci�n de habilidades aqu�
-	pWin->abilitiesInventory.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
-	pWin->abilitiesInventory.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
 	//the losing player, gets random lvl sth 
-	pLose->abilitiesInventory.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
-	pLose->abilitiesInventory.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
 	// Remove the current training mode
 	stateMachine->popState();
 	stateMachine->pushState(new SkillSelection(app_));
