@@ -56,9 +56,18 @@ void MainMenu::init()
 
 
 
+	// Position variables
+	const double leftOffset = 100;
+	const double buttonInitPos = -160;
+	const double buttonSeparation = 115;
+	const double textOffset = 5;
+	const double textSize = 85;
+
+
+
 	// Logo
 	Entity* logo = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Logo),
-		Vector2D(100, 160),
+		Vector2D(leftOffset, 160),
 		Vector2D(0, 0),
 		Vector2D(0, 91 * 1.5 / 2),
 		320 * 1.5, 91 * 1.5, 0);
@@ -67,40 +76,40 @@ void MainMenu::init()
 
 	// 1v1 button
 	tuple < Entity*, Entity*> pvp = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(100, -160),
+		Vector2D(leftOffset, buttonInitPos),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 
 		Vector2D(0, 50),
-		340, 100, 0, nullptr, GoPvP, "Versus", 85, TextComponent::TextAlignment::Left);
-	std::get<1>(pvp)->getComponent<UITransform>(ecs::Transform)->setPosition(135, -155);
+		340, 100, 0, nullptr, GoPvP, "Versus", textSize, TextComponent::TextAlignment::Left);
+	std::get<1>(pvp)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, buttonInitPos + textOffset);
 
 
 	// vsAI button
 	tuple < Entity*, Entity*> arcade = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(100, -45),
+		Vector2D(leftOffset, buttonInitPos + buttonSeparation),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(0, 50),
-		340, 100, 0, nullptr, GoVsAI, "Arcade", 85, TextComponent::TextAlignment::Left);
-	std::get<1>(arcade)->getComponent<UITransform>(ecs::Transform)->setPosition(135, -40);
+		340, 100, 0, nullptr, GoVsAI, "Arcade", textSize, TextComponent::TextAlignment::Left);
+	std::get<1>(arcade)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, -40);
 
 
 
 	// Options button
 	tuple < Entity*, Entity*> options = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(100, 70),
+		Vector2D(leftOffset, buttonInitPos + 2 * buttonSeparation),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(0, 50),
-		370, 100, 0, nullptr, GoOptions, "Options", 85, TextComponent::TextAlignment::Left);
-	std::get<1>(options)->getComponent<UITransform>(ecs::Transform)->setPosition(135, 75);
+		370, 100, 0, nullptr, GoOptions, "Options", textSize, TextComponent::TextAlignment::Left);
+	std::get<1>(options)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, buttonInitPos + 2 * buttonSeparation + textOffset);
 
 
 
 	// Exit button
 	tuple < Entity*, Entity*> exit = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(100, 185),
+		Vector2D(leftOffset, buttonInitPos + 3 * buttonSeparation),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(0, 50),
-		300, 100, 0, nullptr, Leave, "Leave", 85, TextComponent::TextAlignment::Left);
-	std::get<1>(exit)->getComponent<UITransform>(ecs::Transform)->setPosition(135, 190);
+		300, 100, 0, nullptr, Leave, "Leave", textSize, TextComponent::TextAlignment::Left);
+	std::get<1>(exit)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, buttonInitPos + 3 * buttonSeparation + textOffset);
 
 
 	// Navigation

@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "Slider.h"
 #include "TextComponent.h"
+#include "NavigationController.h"
 
 class OptionsLogic :
 	public Component
@@ -15,6 +16,10 @@ public:
 	void SetElements();
 	void update() override;
 protected:
+	NavigationController* mainNav;
+	NavigationController* graphicsNav;
+	NavigationController* audioNav;
+
 	Slider* resolutionsSlider_;
 	TextComponent* resolutionsText_;
 	Slider* brightnessSlider_;
