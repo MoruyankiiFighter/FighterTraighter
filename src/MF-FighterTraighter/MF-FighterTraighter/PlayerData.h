@@ -14,10 +14,11 @@ struct AnimationData {
 
 class PlayerData : public Component {
 
-	//hacer luego getters y setters
+	
 public:
-	//PlayerData() : Component(ecs::PlayerData) {}
-	PlayerData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber);
+	
+	PlayerData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, 
+		double speed, double ini_health, double attack, double defense, int playerNumber);
 	virtual double* getWidth() {
 		return width_;
 	}
@@ -188,26 +189,26 @@ protected:
 
 	//Attacks
 	//Normal Punch 
-	AnimationChain* normal_punch_;
+	AnimationChain* normal_punch_=nullptr;
 	//Hard Punch
-	AnimationChain* hard_punch_;
+	AnimationChain* hard_punch_ = nullptr;
 	//Normal Kick
-	AnimationChain* normal_kick_;
+	AnimationChain* normal_kick_ = nullptr;
 	//Hard Kick
-	AnimationChain* hard_kick_;
+	AnimationChain* hard_kick_ = nullptr;
 	//Air Normal Punch 
-	AnimationChain* air_normal_punch_;
+	AnimationChain* air_normal_punch_ = nullptr;
 	//Air Hard Punch 
-	AnimationChain* air_hard_punch_;
+	AnimationChain* air_hard_punch_ = nullptr;
 	//Air Normal Kick
-	AnimationChain* air_normal_kick_;
+	AnimationChain* air_normal_kick_ = nullptr;
 	//Air Hard Kick
-	AnimationChain* air_hard_kick_;
+	AnimationChain* air_hard_kick_ = nullptr;
 	//Guard Breaker
-	AnimationChain* guard_breaker_;
+	AnimationChain* guard_breaker_ = nullptr;
 
 	//To generate hitboxes easily
-	PhysicsTransform* pT;
+	PhysicsTransform* pT = nullptr;
 	b2Filter mask;
 
 	//Animation data

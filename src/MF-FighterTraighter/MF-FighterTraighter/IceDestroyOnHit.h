@@ -14,7 +14,7 @@ public:
 			hitstun_ /= 10;
 			data->entity_->getComponent<PlayerState>(ecs::PlayerState)->goGuardingStun(hitstun_);
 		}
-		else {
+		else if(data){
 			PhysicsTransform* phTr = data->entity_->getComponent<PhysicsTransform>(ecs::Transform);
 			int width = 260;
 			int projX = (phTr->getWidth() / 4);

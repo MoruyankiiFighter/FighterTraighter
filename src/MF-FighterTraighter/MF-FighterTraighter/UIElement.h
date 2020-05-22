@@ -22,6 +22,7 @@ public:
 	virtual void Disable() {};
 	virtual void Deselect() {};
 
+	Entity* getEntity() { return this->entity_; }
 	inline virtual void setOwner(HID* owner) { owner_ = owner; }
 
 	virtual ~UIElement() {}

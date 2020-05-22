@@ -28,7 +28,7 @@ void PhysicsTransform::resetUserData(UserData* newData) {
 
 void PhysicsTransform::init() {
 	b2BodyDef bodydef;
-	bodydef.position.Set(position_.getX() * app_->METERS_PER_PIXEL, position_.getY() * app_->METERS_PER_PIXEL);
+	bodydef.position.Set((float32)position_.getX() * app_->METERS_PER_PIXEL,(float32) position_.getY() * app_->METERS_PER_PIXEL);
 	if (dynamic_ == 0)
 		bodydef.type = b2_dynamicBody;	//makes the dynamic body if it is dynamic
 	else if (dynamic_ == 1) bodydef.type = b2_kinematicBody;
@@ -87,7 +87,7 @@ void PhysicsTransform::moveCollider(const Vector2D& move) {
 
 void PhysicsTransform::resetMainFixture(const b2Vec2& center, float angle) {
 	b2PolygonShape shape;
-	shape.SetAsBox((col_width_ * (double)app_->METERS_PER_PIXEL) * wMult_ / 2, (col_height_ * (double)app_->METERS_PER_PIXEL) * hMult_ / 2, center, angle);
+	shape.SetAsBox((col_width_ * (float32)app_->METERS_PER_PIXEL) * wMult_ / 2, (col_height_ * (float32)app_->METERS_PER_PIXEL) * hMult_ / 2, center, angle);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0f;
@@ -114,7 +114,7 @@ void PhysicsTransform::changeFriction(float32 newFrict)
 
 void PhysicsTransform::resetMainFixture2(const b2Vec2& center, float angle , float32 newFrict) {
 	b2PolygonShape shape;
-	shape.SetAsBox((col_width_ * (double)app_->METERS_PER_PIXEL) * wMult_ / 2, (col_height_ * (double)app_->METERS_PER_PIXEL) * hMult_ / 2, center, angle);
+	shape.SetAsBox((col_width_ * (float32)app_->METERS_PER_PIXEL) * wMult_ / 2, (col_height_ * (float32)app_->METERS_PER_PIXEL) * hMult_ / 2, center, angle);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
 	fixturedef.density = 0.0f;

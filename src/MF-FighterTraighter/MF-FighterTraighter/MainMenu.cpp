@@ -1,4 +1,5 @@
 #include "MainMenu.h"
+#include "InventorySelection.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
 #include "Training.h"
@@ -20,6 +21,8 @@
 #include "UIFactory.h"
 #include "RenderAnimation.h"
 #include "UITransform.h"
+
+#include "SkillSelection.h"
 
 MainMenu::MainMenu(App* app) : GameState(app)
 {
@@ -138,13 +141,14 @@ void MainMenu::handleInput()
 
 void MainMenu::GoPvP(App* app)
 {
+	//app->getStateMachine()->pushState(new SkillSelection(app));
 	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 #ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 #endif 
 		
 
-	app->getStateMachine()->pushState(new CharacterSelection(app));
+	 app->getStateMachine()->pushState(new CharacterSelection(app));
 	//app->getStateMachine()->pushState(new Fight(app));
 #ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;

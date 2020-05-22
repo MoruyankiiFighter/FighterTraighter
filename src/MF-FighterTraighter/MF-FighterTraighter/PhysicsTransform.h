@@ -15,7 +15,7 @@ public:
 	
 	// get returns the position in pixels
 	virtual Vector2D getPosition() const {
-		Vector2D pos{(((float)(body_->GetTransform().p.x)) * app_->PIXELS_PER_METER) - width_ * wMult_ / 2, (((float)(body_->GetTransform().p.y)) * app_->PIXELS_PER_METER) - height_ * hMult_ / 2 };
+		Vector2D pos{(((double)(body_->GetTransform().p.x)) * app_->PIXELS_PER_METER) - width_ * wMult_ / 2, (((double)(body_->GetTransform().p.y)) * app_->PIXELS_PER_METER) - height_ * hMult_ / 2 };
 		return  pos;
 	}
 	// set transforms the position in pixels in meters
@@ -30,7 +30,7 @@ public:
 	//<---se puede transformar tb en pixeles la velocidad, pero como lo estamos usando, mejor poner los valores en m/s y nos ahorramos un par de operaciones->
 	//gets the speed in m/s
 	virtual Vector2D getSpeed() const { 
-		return Vector2D((float)body_->GetLinearVelocity().x, (float)body_->GetLinearVelocity().y);
+		return Vector2D((double)body_->GetLinearVelocity().x, (double)body_->GetLinearVelocity().y);
 	}
 
 	//sets the speed in m/s
@@ -70,7 +70,7 @@ private:
 	b2Body* body_;
 	uint16 cBits_, mBits_;
 	b2Fixture* mainFixture_;
-	float col_width_,
+	double col_width_,
 		 col_height_;
 	int dynamic_;
 	b2World* world_ = nullptr;

@@ -161,6 +161,9 @@
     <ClCompile Include="HID.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="InventoryHandler.cpp" />
+    <ClCompile Include="InventoryLogic.cpp" />
+    <ClCompile Include="InventorySelection.cpp" />
     <ClCompile Include="CharFactory.cpp" />
     <ClCompile Include="KeyboardHID.cpp" />
     <ClCompile Include="LastHit_Wins.cpp" />
@@ -256,6 +259,9 @@
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IceDestroyOnHit.h" />
     <ClInclude Include="IndexSlider.h" />
+    <ClInclude Include="InventoryHandler.h" />
+    <ClInclude Include="InventoryLogic.h" />
+    <ClInclude Include="InventorySelection.h" />
     <ClInclude Include="KeyboardHID.h" />
     <ClInclude Include="LastHit_Wins.h" />
     <ClInclude Include="MkWH00PData.h" />

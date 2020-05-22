@@ -17,6 +17,8 @@ public:
 	void SetElementInPos(UIElement* ent, size_t x, size_t y);
 	UIElement* GetElementInPos(size_t x, size_t y);
 
+	void SetCursorInPos(size_t x, size_t y) { cursorPositionX_ = x; cursorPositionY_ = y; }
+
 	int GetPosX() { return cursorPositionX_; }
 	int GetPosY() { return cursorPositionY_; }
 

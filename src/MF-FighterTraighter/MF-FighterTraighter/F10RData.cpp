@@ -72,7 +72,7 @@ void F10RData::NP1(Entity* ent)
 	if (orientation_ == -1)
 		hitbox_X += np1.width;
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X, np1.position.getY() }, np1.width, np1.height, np1.time, pD->getAttack() * np1.damage, np1.hitstun, 
+		{ (double)orientation_ * hitbox_X, np1.position.getY() }, np1.width, np1.height, np1.time, pD->getAttack()* np1.damage, np1.hitstun, 
 		{ (double)orientation_ * np1.knockBack.getX(), np1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 }
 
@@ -100,7 +100,7 @@ void F10RData::HP1(Entity* ent)
 		{ (double)orientation_ * hitbox_X, hp1.position.getY() }, hp1.width, hp1.height, hp1.time, pD->getAttack() * hp1.damage, hp1.hitstun,
 		{ (double)orientation_ * hp1.knockBack.getX(), hp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 
-	int partX = pT->getWidth() * 3 / 4 - 20;
+	double partX = pT->getWidth() * 3 / 4 - 20;
 	if(orientation_ == -1) partX = pT->getWidth() / 4 - hp1.width + 20;
 	Vector2D pos = Vector2D(partX, 285);
 
@@ -164,7 +164,7 @@ void F10RData::HK1(Entity* ent)
 		mask = currentState->PLAYER_1 | currentState->P_BAG;
 	}
 
-	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (hk1.width / 2) + hk1.position.getX();
+	double projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (hk1.width / 2) + hk1.position.getX();
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (hk1.width / 2) - hk1.position.getX();
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + hk1.position.getY());
@@ -234,7 +234,7 @@ void F10RData::AHP1(Entity* ent)
 		mask = currentState->PLAYER_1 | currentState->P_BAG;
 	}
 
-	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ahp1.width / 2) + ahp1.position.getX();
+	double projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ahp1.width / 2) + ahp1.position.getX();
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ahp1.width / 2) - ahp1.position.getX();
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + ahp1.position.getY());
@@ -277,7 +277,7 @@ void F10RData::ANK1(Entity* ent)
 		mask = currentState->PLAYER_1 | currentState->P_BAG;
 	}
 
-	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX();
+	double projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX();
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX();
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + ank1.position.getY());
