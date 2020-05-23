@@ -23,6 +23,8 @@ public:
 			data->entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(data->entity_->getApp()->getAssetsManager()->getTexture(AssetsManager::Hb2), 
 				pos, Vector2D(width, 530), hitstun_, PlayerParticleSystem::DeletionMethod::OnHit);
 		}
+		//entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::HIELO), false);
+
 		DestroyOnHit::onHit(other);
 	}
 	virtual ~IceDestroyOnHit() {}
