@@ -108,6 +108,8 @@ void F10RData::HP1(Entity* ent)
 
 	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::F10RHp),
 		pos, Vector2D(hp1.width, hp1.height), hp1.time, PlayerParticleSystem::DeletionMethod::OnHit);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::FLOORATTACK), false);
+
 }
 
 PlayerData::CallbackData F10RData::hp1 = PlayerData::CallbackData{
@@ -176,6 +178,7 @@ void F10RData::HK1(Entity* ent)
 
 	AbilityFactory::instanceEntitywHitbox(ent, hk1.width, hk1.height, pos,{ 0, -8 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 	
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::FLOORATTACK2), false);
 
 
 //AbilityFactory::createProyectile(ent, hk1.width, hk1.height, pos, { 0, -8 }, hk1.damage, hk1.hitstun, { (double)orientation_ * hk1.knockBack.getX(), hk1.knockBack.getY() },
