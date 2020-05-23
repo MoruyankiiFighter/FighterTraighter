@@ -217,7 +217,7 @@ void MkWH00PData::HK2(Entity* ent)
 		mask = currentState->PLAYER_1;
 	}
 
-	int projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (hk2.width / 2) + hk2.position.getX();
+	double projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (hk2.width / 2) + hk2.position.getX();
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (hk2.width / 2) - hk2.position.getX();
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + hk2.position.getY());

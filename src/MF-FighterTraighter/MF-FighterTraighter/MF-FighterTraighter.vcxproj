@@ -135,8 +135,17 @@
   <ItemGroup>
     <ClCompile Include="AbilitiesTimerFunction.cpp" />
     <ClCompile Include="AbilityFactory.cpp" />
+    <ClCompile Include="AbilitySelection.cpp" />
+    <ClCompile Include="AIAttacks.cpp" />
+    <ClCompile Include="AIController.cpp" />
+    <ClCompile Include="AIGameState.cpp" />
+    <ClCompile Include="AIHID.cpp" />
+    <ClCompile Include="AILogic.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="ButtonControl.cpp" />
+    <ClCompile Include="CharacterAttacks.cpp" />
+    <ClCompile Include="CharacterController.cpp" />
     <ClCompile Include="CharacterSelectionHandler.cpp" />
     <ClCompile Include="CharacterSelectionLogic.cpp" />
     <ClCompile Include="AudioManager.cpp" />
@@ -153,6 +162,9 @@
     <ClCompile Include="HID.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="InventoryHandler.cpp" />
+    <ClCompile Include="InventoryLogic.cpp" />
+    <ClCompile Include="InventorySelection.cpp" />
     <ClCompile Include="CharFactory.cpp" />
     <ClCompile Include="KeyboardHID.cpp" />
     <ClCompile Include="LastHit_Wins.cpp" />
@@ -189,6 +201,8 @@
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="LinkedGrid.cpp" />
     <ClCompile Include="Shake.cpp" />
+    <ClCompile Include="SkillSelectionHandler.cpp" />
+    <ClCompile Include="SkillSelectionLogic.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="TrainingController.cpp" />
     <ClCompile Include="UIElement.cpp" />
@@ -216,8 +230,17 @@
   <ItemGroup>
     <ClInclude Include="AbilitiesTimerFunction.h" />
     <ClInclude Include="AbilityFactory.h" />
+    <ClInclude Include="AbilitySelection.h" />
+    <ClInclude Include="AIAttacks.h" />
+    <ClInclude Include="AIController.h" />
+    <ClInclude Include="AIGameState.h" />
+    <ClInclude Include="AIHID.h" />
+    <ClInclude Include="AILogic.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="ButtonControl.h" />
+    <ClInclude Include="CharacterAttacks.h" />
+    <ClInclude Include="CharacterController.h" />
     <ClInclude Include="CharacterSelectionHandler.h" />
     <ClInclude Include="CharacterSelectionLogic.h" />
     <ClInclude Include="AudioManager.h" />
@@ -240,6 +263,9 @@
     <ClInclude Include="AssetsExceptions.h" />
     <ClInclude Include="IceDestroyOnHit.h" />
     <ClInclude Include="IndexSlider.h" />
+    <ClInclude Include="InventoryHandler.h" />
+    <ClInclude Include="InventoryLogic.h" />
+    <ClInclude Include="InventorySelection.h" />
     <ClInclude Include="KeyboardHID.h" />
     <ClInclude Include="LastHit_Wins.h" />
     <ClInclude Include="MkWH00PData.h" />
@@ -278,6 +304,9 @@
     <ClInclude Include="RenderAnimation.h" />
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
+    <ClInclude Include="Shake.h" />
+    <ClInclude Include="SkillSelectionHandler.h" />
+    <ClInclude Include="SkillSelectionLogic.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="TrainingController.h" />
     <ClInclude Include="UIHealthbar.h" />

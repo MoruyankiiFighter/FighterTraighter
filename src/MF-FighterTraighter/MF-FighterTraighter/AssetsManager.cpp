@@ -17,11 +17,12 @@ Texture* AssetsManager::getTexture(AssetsManager::TextureNames id)
 
 void AssetsManager::loadTextures()
 {
-	textures_.emplace(Player, new Texture(app_->getRenderer(), "../../../../assets/Assets/personaje.png", 1, 1));
+	textures_.emplace(EmptyHability, new Texture(app_->getRenderer(), "../../../../assets/Assets/personaje.png", 1, 1));
 	textures_.emplace(Saco, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/characters/saco.png", 1, 1));
 	textures_.emplace(Button, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/buttons.png", 3, 1));
 	textures_.emplace(Logo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/logo.png", 1, 1));
 	textures_.emplace(Controller, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/controller.png", 1, 1));
+	textures_.emplace(saco2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/characters/sacoNoSombra.png", 1, 1));
 	
 	textures_.emplace(Slidebar, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/slidebar.png", 1, 1));
 	textures_.emplace(SliderRegulator, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/regulador.png", 2, 1));
@@ -33,6 +34,8 @@ void AssetsManager::loadTextures()
 
 	//backgrounds
 	textures_.emplace(BackgroundFight, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/FONDO.png", 2, 1));
+	textures_.emplace(floor, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/floortemp.png", 1, 1));
+	//textures_.emplace(floor2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/floortemp2.png", 1, 1));
 
 	
 	//UI elements
@@ -58,6 +61,7 @@ void AssetsManager::loadTextures()
 	textures_.emplace(Ganonbot_icon, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/ganonbot-icon.png", 2, 1)); 
 	textures_.emplace(GanonArtwork, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/ganonbot.png", 1, 1)); 
 	textures_.emplace(GanonSheet, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/characters/Ganonbot_spritesheet.png", 15, 23));
+
 	textures_.emplace(MkHk, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/attacks/MkWH00PHk.png", 1, 1));
 	
 	//mockingbird resources
@@ -65,27 +69,51 @@ void AssetsManager::loadTextures()
 	textures_.emplace(MockArtwork, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/mock.png", 1, 1));  
 
 	textures_.emplace(Random_icon, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/Random-icon.png", 2, 1));
+	textures_.emplace(RandomArtwork, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/random.png", 1, 1));
 	
 	textures_.emplace(Panel, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/panel.png", 1, 1)); 
 	
+
+	//ability icons
+	textures_.emplace(ShrugOff_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/so1.png", 1, 1));
+	textures_.emplace(Reach_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/so1.png", 1, 1));
+	textures_.emplace(MorePower_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/so1.png", 1, 1));
+	textures_.emplace(Chicken_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/pollo.png", 1, 1));
+	textures_.emplace(Acid_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/poison syrup.png", 2, 1));
+	textures_.emplace(Dash_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/poison syrup.png", 2, 1));
+	textures_.emplace(Vampiric_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/Vampiric_ico.png", 1, 1));
+	textures_.emplace(L_Lineal_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/LaserLineal_ico.png", 1, 1));
+	textures_.emplace(Mina_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/mina.png", 2, 1));
+	textures_.emplace(Hook_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/Ganchoicon.png", 1, 1));
+	textures_.emplace(HailBall_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/hielo.png", 2, 1));
+	textures_.emplace(Knockdown_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/hielo.png", 2, 1));
+	textures_.emplace(Ex_Will_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/ExplosiveWillPower.png", 1, 1));
+	textures_.emplace(FlyingKicks_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/PatadasVoladoras.png", 1, 1));
+	textures_.emplace(Nado_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/NadoKick_ico.png", 1, 1));
+	textures_.emplace(M_Grip_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/MegatonGrip.png", 1, 1));
+	textures_.emplace(S_Sock_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/Seismicshock.png", 1, 1));
+
+	//creo que hasta aqui los iconos
+	textures_.emplace(RandomRage, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/RandomRage.png", 1, 1));
+	textures_.emplace(KnifeDance, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/KnifeDance.png", 1, 1));
+	textures_.emplace(Doping, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/doping.png", 2, 1));
+
 	textures_.emplace(Mark1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/marco1.png", 1, 1));
 	textures_.emplace(Mark2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/marco2.png", 1, 1));
-	textures_.emplace(SeismicShock, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/Seismicshock.png", 1, 1));
-	textures_.emplace(ExplosiveWillpower, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ExplosiveWillpower.png", 1, 1));
-	textures_.emplace(RandomRage, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/RandomRage.png", 1, 1));
-	textures_.emplace(KnifeDance, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/KnifeDance.png", 1, 1));
-
 	textures_.emplace(Mg1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mg1.png", 1, 1));
 	textures_.emplace(Mg21, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mg2-1.png", 1, 1));
 	textures_.emplace(Mg22, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mg2-2.png", 1, 1));
 	textures_.emplace(Ss1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ss1.png", 1, 1));
 	textures_.emplace(Ss2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ss2.png", 1, 1));
 	textures_.emplace(Ew1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ew1.png", 1, 1));
+
+	textures_.emplace(Pollo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/pollo.png", 1, 1));
+	
+	textures_.emplace(Celda1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuFondo.jpg", 1, 1));
+	textures_.emplace(Celda2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/submenuwin.jpg", 1, 1));
 	textures_.emplace(So1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/so1.png", 1, 1));
 	textures_.emplace(Mp1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mp1.png", 1, 1));
-
-	textures_.emplace(RandomArtwork, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/random.png", 1, 1));
-	
+		
 	textures_.emplace(Hs1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hs1.png", 1, 1));
 	textures_.emplace(As2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/as2.png", 1, 1));
 	textures_.emplace(M1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mina1.png", 1, 1));

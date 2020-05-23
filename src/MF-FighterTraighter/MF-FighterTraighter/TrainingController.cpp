@@ -12,7 +12,7 @@ void TrainingController::init() {
 	string startInfoTxt = sM->getInfoText();
 	displayMessage(startInfoTxt);
 	disablePlayers(true);
-	sM->startTimer();
+	
 }
 
 
@@ -27,6 +27,7 @@ void TrainingController::update()
 			app_->getStateMachine()->getCurrentState()->getEntityManager().removeEntity(msgEnt);
 			showInitialMessage = false;
 			disablePlayers(false);
+			state_->getEntityManager().getHandler(ecs::Saco)->getComponent<SacoManager>(ecs::SacoManager)->startTimer();
 		}
 	}
 	if (playerWins_ != -1) {	//end message timer
@@ -54,10 +55,10 @@ void TrainingController::PlayerWins(int playerNumber)
 
 
 void TrainingController::disablePlayers(bool mode) {
-	state_->getEntityManager().getHandler(ecs::Player1)->getComponent<PlayerController>(ecs::PlayerController)->setDisabled(mode);
-	state_->getEntityManager().getHandler(ecs::Player1)->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setDisabled(mode);
-	state_->getEntityManager().getHandler(ecs::Player2)->getComponent<PlayerController>(ecs::PlayerController)->setDisabled(mode);
-	state_->getEntityManager().getHandler(ecs::Player2)->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->setDisabled(mode);
+	state_->getEntityManager().getHandler(ecs::Player1)->getComponent<CharacterController>(ecs::CharacterController)->setDisabled(mode);
+	state_->getEntityManager().getHandler(ecs::Player1)->getComponent<CharacterAttacks>(ecs::CharacterAttacks)->setDisabled(mode);
+	state_->getEntityManager().getHandler(ecs::Player2)->getComponent<CharacterController>(ecs::CharacterController)->setDisabled(mode);
+	state_->getEntityManager().getHandler(ecs::Player2)->getComponent<CharacterAttacks>(ecs::CharacterAttacks)->setDisabled(mode);
 }
 
 void TrainingController::displayMessage(string msg) {

@@ -34,7 +34,8 @@ void Training::init()
 
 	//Floor
 	Entity* floor = entManager_.addEntity();
-	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1100), Vector2D(0, 0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, 2);
+	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1200), Vector2D(0, 0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, 2);
+	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::TextureNames::floor));
 	FpT->changeFriction(3);
 	addHurtbox(FpT->getMainFixture());
 
@@ -56,20 +57,17 @@ void Training::init()
 	
 	//Saco
 	Entity* saco = entManager_.addEntity();
-	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h - 655), Vector2D(10, 10), 250, 800, 0, world, P_BAG, PLAYER_1 | PLAYER_2 | BULLET, 2);
+	PhysicsTransform* pBpT = saco->addComponent<PhysicsTransform>(Vector2D(app_->getWindowManager()->getCurResolution().w / 2, (double)app_->getWindowManager()->getCurResolution().h - 575), Vector2D(10, 10), 250, 900, 0, world, P_BAG, PLAYER_1 | PLAYER_2 | BULLET, 2);
 	addHurtbox(pBpT->getMainFixture());
 	pBpT->changeFriction(0);
-	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Saco));
+	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::saco2));
 	Health* sacoHealth = saco->addComponent<Health>(200);
-	SacoManager* sM = saco->addComponent<SacoManager>(30000);
+	SacoManager* sM = saco->addComponent<SacoManager>(3000);
 	entManager_.setHandler(saco, ecs::Saco);
 	
 	bg->addComponent<Camera>(player1->getComponent<Transform>(ecs::Transform), player2->getComponent<Transform>(ecs::Transform));
 
-	Entity* timer = entManager_.addEntity();
-	timer->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
-	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timer->addComponent<UITimer>(UITimer::Seconds)->setCountdown(sM->getTimeLimit());
+	//Timer Entity
 
 	Entity* healthbarBack = entManager_.addEntity();
 	healthbarBack->addComponent<UITransform>(Vector2D(0, 40), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(850, 20), Vector2D(1700, 40));
@@ -90,7 +88,7 @@ void Training::init()
 	character2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection))->setFrame(2, 0);
 
 	Entity* gameController = entManager_.addEntity();
-	gameController->addComponent<TrainingController>(300,300);
+	gameController->addComponent<TrainingController>(60,60);
 	entManager_.setHandler(gameController, ecs::Controller);
 }
 

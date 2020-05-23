@@ -1,7 +1,9 @@
 #include "MainMenu.h"
+#include "InventorySelection.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
 #include "Training.h"
+#include "AIGameState.h"
 #include "CharacterSelection.h"
 #include "InputManager.h"
 
@@ -19,6 +21,8 @@
 #include "consts.h"
 #include "UIFactory.h"
 #include "RenderAnimation.h"
+
+#include "SkillSelection.h"
 
 MainMenu::MainMenu(App* app) : GameState(app)
 {
@@ -66,8 +70,8 @@ void MainMenu::init()
 	nav->SetElementInPos(std::get<0>(arcade)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	nav->SetElementInPos(std::get<0>(options)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 	nav->SetElementInPos(std::get<0>(exit)->getComponent<UIElement>(ecs::UIElement), 0, 3);
-	app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::MENU_PRINCIPAL), true);
 
+	app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::MENU_PRINCIPAL), true);
 }
 
 void MainMenu::handleInput()
@@ -82,25 +86,26 @@ void MainMenu::handleInput()
 
 void MainMenu::GoPvP(App* app)
 {
+	//app->getStateMachine()->pushState(new SkillSelection(app));
 	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 #ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 #endif 
 		
 
-	app->getStateMachine()->pushState(new CharacterSelection(app));
+	 app->getStateMachine()->pushState(new CharacterSelection(app));
 	//app->getStateMachine()->pushState(new Fight(app));
 #ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 #endif 
 }
 
+
 void MainMenu::GoVsAI(App* app)
 {
 	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 
-	// TEMPORARY, TESTING
-	app->getStateMachine()->pushState(new CharacterSelection(app));
+	app->getStateMachine()->pushState(new AIGameState(app));
 }
 
 void MainMenu::GoOptions(App* app)

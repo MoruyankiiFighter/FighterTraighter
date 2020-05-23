@@ -12,7 +12,7 @@ class AssetsManager
 {
 public:
 	enum TextureNames {
-		Player,
+		EmptyHability,
 		Saco,
 		Button,
 		Logo,
@@ -33,14 +33,20 @@ public:
 		RandomRage,
 		KnifeDance,
 		BackgroundFight,
+		Celda1,
+		Celda2,
+		Pollo,
+		Mina,
+		Hielo,
+		Poison,
+		Doping,
 		Banner,
 		Panel,
-		Mg1, 
-		Mg21,
-		Mg22,
-		Ss1,
-		Ss2,
-		Rs1,
+		SelectionSquare,
+		floor,
+		//floor2,
+		saco2,
+
 		//resources of aisha
 		Aisha_icon,
 		AishaArtwork,
@@ -64,9 +70,38 @@ public:
 		F10RHp,
 		F10RHk,
 
+		//resources random
 		Random_icon,
 		RandomArtwork,
-		SelectionSquare,
+
+		_abilityIcon_start,
+		//Ability icons
+		ShrugOff_ico,
+		Reach_ico,	//no existe esta creada con otra textura
+		MorePower_ico, //igual que el de arriba
+		Chicken_ico,	//es la textura n oel icono
+		Acid_ico,
+		Dash_ico,			//tp esta metido todavia
+		Vampiric_ico,
+		L_Lineal_ico,
+		Mina_ico,
+		Hook_ico,
+		HailBall_ico,
+		Knockdown_ico,// ya esta pero es el de hailball
+		Ex_Will_ico,
+		FlyingKicks_ico,
+		Nado_ico,
+		M_Grip_ico,
+		S_Sock_ico,
+
+		//Ability sprites
+
+		Mg1, 
+		Mg21,
+		Mg22,
+		Ss1,
+		Ss2,
+		Rs1,
 		Ew1,
 		So1,
 		Mp1,

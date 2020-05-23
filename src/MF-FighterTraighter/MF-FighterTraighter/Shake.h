@@ -7,16 +7,16 @@ class Shake :public Component
    
 public:
 
-    Shake(uint32 shakeTime,int shakeOffset) : Component(ecs::Shake) ,SHAKE_TIME_MS(shakeTime),SHAKE_OFFSET(shakeOffset){};
-    Shake(uint32 shakeTime) : Component(ecs::Shake) ,SHAKE_TIME_MS(shakeTime),SHAKE_OFFSET(20){};
-    Shake() : Component(ecs::Shake) ,SHAKE_TIME_MS(2000),SHAKE_OFFSET(20){};
-	~Shake() {}
+    Shake(uint32 shakeTime,float shakeOffset) : Component(ecs::Shake) ,SHAKE_TIME_MS(shakeTime),SHAKE_OFFSET(shakeOffset){};
+    Shake(uint32 shakeTime) : Component(ecs::Shake) ,SHAKE_TIME_MS(shakeTime),SHAKE_OFFSET(20.0){};
+    Shake() : Component(ecs::Shake) ,SHAKE_TIME_MS(2000),SHAKE_OFFSET(20.0){};
+	~Shake() {  }
 
     //Shaking will take 200ms
     uint32 SHAKE_TIME_MS ;
 
     //The screen will be moved 20 pixels forth and back
-    int SHAKE_OFFSET ;
+    float SHAKE_OFFSET ;
 
     //Indicates the shake move direction
     bool shakeDirection = false;
@@ -49,10 +49,10 @@ private:
     void updateShake();
     void applyScreenShake();
 
-    Vector2D* m_shake;
+    Vector2D* m_shake=nullptr;
   //  Transform* cam;
-    Uint32 timeStart_;
-    Uint32 delta;
+    Uint32 timeStart_=0;
+    Uint32 delta=0;
     float xOffset = 0;
     float yOffset = 0;
 

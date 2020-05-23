@@ -1,7 +1,7 @@
 #pragma once
 #include "Box2D/Box2D.h"
 #include "PlayerState.h"
-#include "PlayerAttacks.h"
+#include "CharacterAttacks.h"
 #include "PlayerController.h"
 #include "HitboxData.h"
 //Handles collisions
@@ -25,7 +25,7 @@ public:
 				&& contact->GetFixtureB()->GetFilterData().categoryBits == 1	//if it collides with boundary (floor)
 				&& currState->isAirborne()
 				&& contact->GetFixtureA()->GetBody()->GetLinearVelocity().y >= 0) {
-					data->entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
+					data->entity_->getComponent<CharacterAttacks>(ecs::CharacterAttacks)->interruptAttack();
 					currState->goLanding(11 + (currState->getHoldingFrames()) * 0.8);
 
 				}
@@ -45,7 +45,7 @@ public:
 					&& contact->GetFixtureA()->GetFilterData().categoryBits == 1	//if it collides with boundary (floor)
 					&& currState->isAirborne()
 					&& contact->GetFixtureB()->GetBody()->GetLinearVelocity().y >= 0) {
-					data->entity_->getComponent<PlayerAttacks>(ecs::PlayerAttacks)->interruptAttack();
+					data->entity_->getComponent<CharacterAttacks>(ecs::CharacterAttacks)->interruptAttack();
 					currState->goLanding(11 + (currState->getHoldingFrames()) * 0.8);
 
 				}

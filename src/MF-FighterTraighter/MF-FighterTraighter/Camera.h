@@ -19,19 +19,21 @@ public:
 		m_shake = entity_->getComponent<Shake>(ecs::Shake)->shake();
 
 		//1920+860*2+500
-		cam->setWidthHeight(cam->getWidth() + m_Target1->getPosition().getX()*2 + m_Target1->getWidth()/2, cam->getHeight() + m_Target1->getPosition().getY());
+		cam->setWidthHeight(cam->getWidth() + m_Target1->getPosition().getX()*2 + m_Target2->getWidth(), cam->getHeight() + m_Target1->getPosition().getY());
 		//m_ViewBox.w = app_->getWindowManager()->getCurResolution().w;
 		//m_ViewBox.h= app_->getWindowManager()->getCurResolution().h +500;
 		
 	}
-	~Camera() { delete m_shake; };
+	~Camera() {
+		delete m_shake;
+	};
 	virtual void update()override;
 private:
 	inline void CalculaPunto();
-	Vector2D* m_shake;
+	Vector2D* m_shake=nullptr;
 		SDL_Rect m_ViewBox;
-		Transform* cam;
-		Transform* m_Target1;
-		Transform* m_Target2;
+		Transform* cam=nullptr;
+		Transform* m_Target1=nullptr;
+		Transform* m_Target2=nullptr;
 };
 

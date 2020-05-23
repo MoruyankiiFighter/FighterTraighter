@@ -20,6 +20,9 @@
 #include "consts.h"
 #include "UIFactory.h"
 
+#include "KeyboardHID.h"
+#include "GamepadHID.h"
+
 ControlsMenu::ControlsMenu(App* app) : GameState(app)
 {
 #ifdef _DEBUG
@@ -37,90 +40,103 @@ void ControlsMenu::init()
 {
 	GameState::init();
 #ifdef _DEBUG
- 	cout << "init" << endl;
+	cout << "init" << endl;
 #endif	
 	tuple<Entity*, Entity*> back = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(15, 10), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(7, 0), 100, 60, 0, GoBack, nullptr, "<-", 60);
-
-	Entity* keyboard = entManager_.addEntity();
-	keyboard->addComponent<Transform>(Vector2D(100, 60), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	keyboard->addComponent<TextComponent>("KeyBoard", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 40);
-
-	Entity* controller = entManager_.addEntity();
-	controller->addComponent<Transform>(Vector2D(900, 60), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	controller->addComponent<TextComponent>("Controller", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 40);
-
-	Entity* movement = entManager_.addEntity();
-	movement->addComponent<Transform>(Vector2D(100, 100), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	movement->addComponent<TextComponent>("Movement-> Arrows", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-	
-	Entity* movementC = entManager_.addEntity();
-	movementC->addComponent<Transform>(Vector2D(850, 100), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	movementC->addComponent<TextComponent>(" ->Joystick", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-
-	Entity* punch = entManager_.addEntity();
-	punch->addComponent<Transform>(Vector2D(100, 140), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	punch->addComponent<TextComponent>("Punch-> Q", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-
-	Entity* punchC = entManager_.addEntity();
-	punchC->addComponent<Transform>(Vector2D(850, 140), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	punchC->addComponent<TextComponent>(" -> A", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-
-	Entity* kick = entManager_.addEntity();
-	kick->addComponent<Transform>(Vector2D(100, 180), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	kick->addComponent<TextComponent>("Kick-> W", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-	
-	Entity* kickC = entManager_.addEntity();
-	kickC->addComponent<Transform>(Vector2D(850, 180), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	kickC->addComponent<TextComponent>(" -> X", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-
-	Entity* grab = entManager_.addEntity();
-	grab->addComponent<Transform>(Vector2D(100, 220), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	grab->addComponent<TextComponent>("Grab-> E", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-	
-	Entity* grabC = entManager_.addEntity();
-	grabC->addComponent<Transform>(Vector2D(850, 220), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	grabC->addComponent<TextComponent>(" -> B", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-
-	Entity* block = entManager_.addEntity();
-	block->addComponent<Transform>(Vector2D(100, 260), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	block->addComponent<TextComponent>("Block-> D", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-	
-	Entity* blockC = entManager_.addEntity();
-	blockC->addComponent<Transform>(Vector2D(850, 260), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	blockC->addComponent<TextComponent>(" -> Y", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-
-	Entity* habilityOne = entManager_.addEntity();
-	habilityOne->addComponent<Transform>(Vector2D(100, 300), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	habilityOne->addComponent<TextComponent>("Hability One-> R", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-	
-	Entity* habilityOneC = entManager_.addEntity();
-	habilityOneC->addComponent<Transform>(Vector2D(850, 300), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	habilityOneC->addComponent<TextComponent>(" -> RB", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-
-	Entity* habilityTwo = entManager_.addEntity();
-	habilityTwo->addComponent<Transform>(Vector2D(100, 340), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	habilityTwo->addComponent<TextComponent>("Hability Two -> F", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-	
-	Entity* habilityTwoC = entManager_.addEntity();
-	habilityTwoC->addComponent<Transform>(Vector2D(850, 340), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	habilityTwoC->addComponent<TextComponent>(" -> LB", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-
-	Entity* pause = entManager_.addEntity();
-	pause->addComponent<Transform>(Vector2D(100, 380), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	pause->addComponent<TextComponent>("Pause Game -> Esc", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
-	
-	Entity* pauseC = entManager_.addEntity();
-	pauseC->addComponent<Transform>(Vector2D(850, 380), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
-	pauseC->addComponent<TextComponent>(" -> Start", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 30);
+	initString();
 
 	Entity* nav = entManager_.addEntity();
-	NavigationController* ctrl = nav->addComponent<NavigationController>(1, 1);
+	NavigationController* ctrl = nav->addComponent<NavigationController>(2, 17);
 	ctrl->SetElementInPos(std::get<0>(back)->getComponent<UIElement>(ecs::UIElement), 0, 0);
+	ctrl->SetElementInPos(std::get<0>(back)->getComponent<UIElement>(ecs::UIElement), 1, 0);
+
+
+	for (int i = 0; i < 16; i++)
+	{
+		std::tuple<Entity*, Entity*> Key = UIFactory::createButtonControl(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+			app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(400, i * 45.0 - 350),
+			Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
+			Vector2D(0, 50),
+			250, 50, 0, ChangeControl, predet[i], 50, TextComponent::Center, i, 0);
+		ctrl->SetElementInPos(std::get<0>(Key)->getComponent<UIElement>(ecs::UIElement), 0, i + 1);
+
+		std::tuple<Entity*, Entity*> Button = UIFactory::createButtonControl(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+			app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), Vector2D(700, i * 45.0 - 350),
+			Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
+			Vector2D(0, 50),
+			250, 50, 0, ChangeControl, predetMando[i], 50, TextComponent::Center, i, 1);
+		ctrl->SetElementInPos(std::get<0>(Button)->getComponent<UIElement>(ecs::UIElement), 1, i + 1);
+	}
+	Entity* keyboard = entManager_.addEntity();
+	keyboard->addComponent<Transform>(Vector2D(410, 60), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 400, 400, 0);
+	keyboard->addComponent<TextComponent>("KeyBoard", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 60);
+
+	Entity* controller = entManager_.addEntity();
+	controller->addComponent<Transform>(Vector2D(675, 60), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 400, 400, 0);
+	controller->addComponent<TextComponent>("Controller", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 60);
+
+
+	for (int i = 0; i < 16; i++)
+	{
+		Entity* text = entManager_.addEntity();
+		text->addComponent<Transform>(Vector2D(60, 145.0 + i * 45), Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 50, 50, 0);
+		text->addComponent<TextComponent>(texto[i], app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 50);
+	}
 }
 
 void ControlsMenu::GoBack(App* app) {
 	app->getStateMachine()->popState();
+
+}
+
+void ControlsMenu::ChangeControl(App* app, int index, int control) {
+	if (control == 0)
+	{
+		dynamic_cast<KeyboardHID*>(app->getGameManager()->getPlayerInfo(control + 1).hid)->changeKey(index, app->getInputManager()->lastKey());
+
+	}
+	else
+	{
+		dynamic_cast<GamepadHID*>(app->getGameManager()->getPlayerInfo(control + 1).hid)->change(index);
+
+	}
+
+
+
+}
+//left, right, up, down, hit1, hit2, hit3, hit4, ab1, ab2, block, guardbreak
+
+void ControlsMenu::initString()
+{
+
+
+	for (int i = 0; i < 16; i++)
+	{
+		predet[i] = SDL_GetScancodeName(dynamic_cast<KeyboardHID*>(app_->getGameManager()->getPlayerInfo(1).hid)->getkeys().at(i));
+	}
+	for (int i = 0; i < 16; i++)
+	{
+		predetMando[i] = dynamic_cast<GamepadHID*>(app_->getGameManager()->getPlayerInfo(2).hid)->getControl().at(i);
+	}
+	texto[0] = "Start";
+	texto[1] = "Select";
+	texto[2] = "LEFT";
+	texto[3] = "UP";
+	texto[4] = "RIGHT";
+	texto[5] = "DOWN";
+	texto[6] = "NORMAL KICK";
+	texto[7] = "STRONG KICK";
+	texto[8] = "NORMAL PUNCH";
+	texto[9] = "STRONG PUNCH";
+	texto[10] = "ABILITY ONE";
+	texto[11] = "ABILITY TWO";
+	texto[12] = "CLICK LEFTJOY";
+	texto[13] = "CLICK RIGHTJOY";
+	texto[14] = "GUARD";
+	texto[15] = "GUARDBREAK";
+
+
 }
 
 void ControlsMenu::handleInput()
