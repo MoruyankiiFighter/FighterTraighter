@@ -1183,6 +1183,13 @@ void AbilityFactory::KDC(Entity* e) {
 }
 
 
+void AbilityFactory::RandomRage(Entity* e)
+{
+	App* app = e->getApp();
+
+	GiveAbility((GameManager::AbilityID)app->getRandGen()->nextInt(0,abilities_map.size()), e);
+}
+
 //creates a kinematic entity with a "bullet" behaviour
 Entity* AbilityFactory::instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity,bool render) {
 	double windowWidth = app->getWindowManager()->getCurResolution().w;

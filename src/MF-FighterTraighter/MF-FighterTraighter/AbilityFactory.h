@@ -122,6 +122,10 @@ public:
 	static void KD2(Entity* ent);
 	static void KDC(Entity* ent);
 
+
+	//Random Rage
+	static void RandomRage(Entity* ent);
+
 	static Entity* instanceEntitywHitbox(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, uint16 mask, GameState* currentState, App* app, Texture* texture, int orientation, HitboxData* uData, bool gravity = false, bool render=false);
 	
 	//static Entity* createProyectile(Entity* ent, double width, double height, Vector2D pos, Vector2D speed, int damage, int hitstun,
