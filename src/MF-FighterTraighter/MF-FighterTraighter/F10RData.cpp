@@ -251,7 +251,7 @@ void F10RData::AHP1(Entity* ent)
 	DestroyAtTime* dT = new DestroyAtTime(ahp1.damage * pD->getAttack(), ahp1.time, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
 	AbilityFactory::instanceEntitywHitbox(ent, ahp1.width, ahp1.height, pos, { (double)orientation_ * 1.4, 4 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
-	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::NORMALPUNCH), false);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::FLOR_2), false);
 
 	//AbilityFactory::createProyectile(ent, ahp1.width, ahp1.height, pos, { (double)orientation_* 1.4, 4 }, ahp1.damage, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() },
 		//ahp1.time, mask, ent->getState(), ent->getApp(), texture, false);
