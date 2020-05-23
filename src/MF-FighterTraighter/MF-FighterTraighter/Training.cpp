@@ -120,7 +120,7 @@ void Training::init()
 
 	// Controller
 	Entity* gameController = entManager_.addEntity();
-	gameController->addComponent<TrainingController>(300,300);
+	gameController->addComponent<TrainingController>(60,60);
 	entManager_.setHandler(gameController, ecs::Controller);
 }
 

@@ -13,8 +13,6 @@ struct AnimationData {
 };
 
 class PlayerData : public Component {
-
-	
 public:
 	
 	PlayerData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, 
@@ -109,7 +107,6 @@ public:
 	virtual void setHard_kick(AnimationChain* hard_kick) {
 		hard_kick_ = hard_kick;
 	}
-
 	
 	virtual AnimationChain* air_normal_punch() {
 		return air_normal_punch_;
@@ -146,8 +143,6 @@ public:
 		guard_breaker_ = guard_breaker;
 	}
 
-	
-
 	virtual int getAnimLength(int index) {
 		return animLength_[index].sheetLength_;
 	}
@@ -160,6 +155,13 @@ public:
 
 	virtual int getPlayerNumber() {
 		return playerNumber_;
+	}
+
+	virtual void setDmgSound(Mix_Chunk* sound) {
+		damageSound_ = sound;
+	}
+	virtual Mix_Chunk* getDmgSound() {
+		return damageSound_;
 	}
 	virtual ~PlayerData() {}
 	
@@ -216,4 +218,6 @@ protected:
 	
 	// Either player 1 or 2 (0 or 1)
 	int playerNumber_;
+
+	Mix_Chunk* damageSound_;
 };

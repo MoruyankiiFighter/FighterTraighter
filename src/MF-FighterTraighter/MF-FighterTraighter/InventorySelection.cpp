@@ -16,6 +16,7 @@ void InventorySelection::init()
 	b->addComponent<UITransform>(Vector2D(), Vector2D(), Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h));
 	b->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight));
 
+
 	//j1 fondo submenu
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
 		Vector2D(0, 0), Vector2D(50, 50), Vector2D(0, 0), (app_->getWindowManager()->getCurResolution().w / 2.0) - 100.0, app_->getWindowManager()->getCurResolution().h - 100.0, 0);
@@ -32,26 +33,32 @@ void InventorySelection::init()
 	Entity* text_ = entManager_.addEntity();
 	//Vector2D pos, Vector2D anchor, Vector2D pivot, Vector2D size
 	text_->addComponent<UITransform>(Vector2D(0, 0), Vector2D((app_->getWindowManager()->getCurResolution().w/2 ), 0), Vector2D((app_->getWindowManager()->getCurResolution().w /2), 0), Vector2D((double)app_->getWindowManager()->getCurResolution().w - 50, ((double)app_->getWindowManager()->getCurResolution().h / 20) +50));
-	text_->addComponent<TextComponent>("Selecciona tus habilidades", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::TextAlignment::Center);
+	text_->addComponent<TextComponent>("Prepare for the fight!", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::TextAlignment::Center);
 
 	//ranuras j1
 
 	Entity* left_j1 = entManager_.addEntity();
+
+	left_j1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
 	left_j1->addComponent<UITransform>(Vector2D((double)app_->getWindowManager()->getCurResolution().w / 4- 200, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
-	left_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	left_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 	
 	Entity* right_j1 = entManager_.addEntity();
+
+	right_j1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
 	right_j1->addComponent<UITransform>(Vector2D((double)app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
-	right_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	right_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 
 	//ranuras j2
 	Entity* left_j2 = entManager_.addEntity();
+	left_j2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
 	left_j2->addComponent<UITransform>(Vector2D(3 * (double)app_->getWindowManager()->getCurResolution().w / 4 - 200, 200), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
-	left_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	left_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 
 	Entity* right_j2 = entManager_.addEntity();
+	right_j2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
 	right_j2->addComponent<UITransform>(Vector2D(3 * (double)app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
-	right_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	right_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 
 
 	//boton
@@ -78,11 +85,10 @@ void InventorySelection::init()
 
 	for (double i = 0; i < 10; i++) {
 
-		tuple <Entity*, Entity*> habj1;
-
+		
+			Entity* habj1 = entManager_.addEntity();
 		if (i < app_->getGameManager()->getPlayerInfo(1).abilities.size()) {
 			//128
-			Entity* habj1 = entManager_.addEntity();
 			if (i < 5) { 
 				habj1->addComponent<UIElement>();
 				habj1->addComponent<UITransform>(
@@ -90,7 +96,7 @@ void InventorySelection::init()
 					Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
 					Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
 					Vector2D(128, 128));
-				habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				ctrl->SetElementInPos((habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
 			}
 
@@ -101,89 +107,40 @@ void InventorySelection::init()
 					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
 					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
 					Vector2D(128, 128));
-				habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				
 				ctrl->SetElementInPos((habj1)->getComponent<UIElement>(ecs::UIElement), (i - 5), 1);
 			}
 
 
-			switch (app_->getGameManager()->getPlayerInfo(1).abilities[i])
-			{
-			case GameManager::MegatonGrip:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::M_Grip_ico));
-				break;
-
-			case GameManager::SeismicShock:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico));
-				break;
-
-			case GameManager::ExplosiveWillpower:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico));
-				break;
-
-			case GameManager::AcidSplit:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico));
-				break;
-
-			case GameManager::Mina:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico));
-				break;
-
-			case GameManager::ShrugOff:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::ShrugOff_ico));
-				break;
-
-			case GameManager::MorePower:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::MorePower_ico));
-				break;
-			case GameManager::Hookshot:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Hook_ico));
-				break;
-			case GameManager::Dash:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico));
-				break;
-			case GameManager::VampiricStrike:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Vampiric_ico));
-				break;
-			case GameManager::HailBall:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico));
-				break;
-			case GameManager::ReachingStrike:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Reach_ico));
-				break;
-			case GameManager::FlyingKicks:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::FlyingKicks_ico));
-				break;
-			case GameManager::LaserLineal:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::L_Lineal_ico));
-				break;
-			case GameManager::NadoKick:
-				habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Nado_ico));
-				break;
-
-			default:
-				break;
-			}
+			habj1->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()
+				->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(1).abilities[i] + 1)));
 
 		}
 
 		else {
-			if (i < 5) { //cambiarlo por la mitad del vector
-				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
-					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+			if (i < 5) {
+
+			habj1->addComponent<UIElement>();
+			habj1->addComponent<UITransform>(
+				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
+				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
+				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
+				Vector2D(128, 128));
+			habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
+			ctrl->SetElementInPos((habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
 			}
 
 			else {
-				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
-					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), (i - 5), 1);
+			habj1->addComponent<UIElement>();
+			habj1->addComponent<UITransform>(
+				Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+				Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+				Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+				Vector2D(128, 128));
+			habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
+
+			ctrl->SetElementInPos((habj1)->getComponent<UIElement>(ecs::UIElement), (i - 5), 1);
 			}
 
 		}
@@ -200,7 +157,7 @@ void InventorySelection::init()
 	//hab j2
 	Entity* nav_j2 = entManager_.addEntity();
 	NavigationController* ctrl_ = nav_j2->addComponent<NavigationController>(5, 3, app_->getGameManager()->getPlayerInfo(2).hid);
-
+	//esto sería un for hasta abilities size para que no pete
 	for (double i = 0; i < 10; i++) {
 
 		Entity* habj2 = entManager_.addEntity();
@@ -215,7 +172,7 @@ void InventorySelection::init()
 					Vector2D(((128) + (i) * (128)) + 1000, (72) * 4.7),
 					Vector2D(((128) + (i) * (128)) + 1000, (72) * 4.7),
 					Vector2D(128, 128));
-				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				ctrl_->SetElementInPos((habj2)->getComponent<UIElement>(ecs::UIElement), i, 0);
 
 			}
@@ -227,69 +184,13 @@ void InventorySelection::init()
 					Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
 					Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
 					Vector2D(128, 128));
-				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				ctrl_->SetElementInPos((habj2)->getComponent<UIElement>(ecs::UIElement), (i - 5), 1);
 
 			}
 
-			switch (app_->getGameManager()->getPlayerInfo(2).abilities[i])
-			{
-			case GameManager::MegatonGrip:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::M_Grip_ico));
-				break;
-
-			case GameManager::SeismicShock:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico));
-				break;
-
-			case GameManager::ExplosiveWillpower:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico));
-				break;
-
-			case GameManager::AcidSplit:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico));
-				break;
-
-			case GameManager::Mina:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico));
-				break;
-
-			case GameManager::ShrugOff:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::ShrugOff_ico));
-				break;
-
-			case GameManager::MorePower:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::MorePower_ico));
-				break;
-			case GameManager::Hookshot:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Hook_ico));
-				break;
-			case GameManager::Dash:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico));
-				break;
-			case GameManager::VampiricStrike:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Vampiric_ico));
-				break;
-			case GameManager::HailBall:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico));
-				break;
-			case GameManager::ReachingStrike:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Reach_ico));
-				break;
-			case GameManager::FlyingKicks:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::FlyingKicks_ico));
-				break;
-			case GameManager::LaserLineal:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::L_Lineal_ico));
-				break;
-			case GameManager::NadoKick:
-				habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Nado_ico));
-				break;
-
-			default:
-				break;
-			}
-
+			habj2->getComponent<RenderImage>(ecs::RenderImage)->setTexture(app_->getAssetsManager()
+				->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[i] + 1))); //no vas a poder acceder
 		}
 
 		else {
@@ -300,7 +201,7 @@ void InventorySelection::init()
 					Vector2D(((128) + (i) * (128)) + 1000, (72) * 4.7),
 					Vector2D(((128) + (i) * (128)) + 1000, (72) * 4.7),
 					Vector2D(128, 128));
-				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				ctrl_->SetElementInPos((habj2)->getComponent<UIElement>(ecs::UIElement), i, 0);
 
 			}
@@ -312,7 +213,7 @@ void InventorySelection::init()
 					Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
 					Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
 					Vector2D(128, 128));
-				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				ctrl_->SetElementInPos((habj2)->getComponent<UIElement>(ecs::UIElement), (i - 5), 1);
 			}
 			

@@ -47,6 +47,7 @@ void NavigationController::handleInput()
 		if (newX != cursorPositionX_ || newY != cursorPositionY_) // If the cursor moved
 		{
 			ChangeSelectedItem(newX, newY);
+			entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::BOTON), false);
 		}
 	}
 }

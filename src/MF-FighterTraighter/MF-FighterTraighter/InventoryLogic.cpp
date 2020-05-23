@@ -6,11 +6,19 @@ InventoryLogic::InventoryLogic(NavigationController* nav, int player, RenderImag
 {
 }
 
+//Por defecto las dos primeras habilidades escogidas
 void InventoryLogic::init()
 {
 	pressed = false;
+	abs_size = app_->getGameManager()->getPlayerInfo(player_).abilities.size();
+	ab1_index = 0;
+	ab2_index = 1;
+	app_->getGameManager()->setFirstHab(ab1_index, player_);
+	app_->getGameManager()->setSecondHab(ab2_index, player_);
+	left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
+	right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
 	ent = new Entity();
-	ent->addComponent<Transform>(Vector2D(), Vector2D(), 100, 100, 0);
+	ent->addComponent<Transform>(Vector2D(), Vector2D(), 150, 150, 45);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 
 }
@@ -18,21 +26,20 @@ void InventoryLogic::init()
 void InventoryLogic::update()
 {
 	if (!pressed) {
-		if (nav_->GetPosY() == 0) {
-			if (app_->getGameManager()->getPlayerInfo(player_).abilities.size() > nav_->GetPosX()) { //revisar esta comprobacion
-				curr = app_->getGameManager()->getPlayerInfo(player_).abilities[nav_->GetPosX()]; //0 a 5
-			}
-		}
-		else if (nav_->GetPosY() == 1) {
+		//if (nav_->GetPosY() == 0) {
+		//	if (app_->getGameManager()->getPlayerInfo(player_).abilities.size() > nav_->GetPosX()) { //revisar esta comprobacion
+		//		curr = app_->getGameManager()->getPlayerInfo(player_).abilities[nav_->GetPosX()]; //0 a 5
+		//	}
+		//}
+		//else if (nav_->GetPosY() == 1) {
 
-			if (app_->getGameManager()->getPlayerInfo(player_).abilities.size() > 5+ nav_->GetPosX()) {//revisar esta comprobacion
-				curr = app_->getGameManager()->getPlayerInfo(player_).abilities[(nav_->GetPosX() + 5)]; //5 a 10
-			}
-		}
+		//	if (app_->getGameManager()->getPlayerInfo(player_).abilities.size() > 5+ nav_->GetPosX()) {//revisar esta comprobacion
+		//		curr = app_->getGameManager()->getPlayerInfo(player_).abilities[(nav_->GetPosX() + 5)]; //5 a 10
+		//	}
+		//}
 
 		ent->getComponent<Transform>(ecs::Transform)->setPosition
 		(nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY())->getEntity()->getComponent<UITransform>(ecs::Transform)->getPosition());
-		cout << ent->getComponent<Transform>(ecs::Transform)->getPosition().getX()<<endl;
 	}
 }
 
@@ -45,127 +52,47 @@ void InventoryLogic::render()
 
 void InventoryLogic::handleInput()
 {
-	if (nav_->GetPosY() != 2) {
-		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::LeftBumper) && app_->getGameManager()->getPlayerInfo(player_).ability2Index != curr && !pressed) {
-			app_->getGameManager()->setFirstHab(curr, player_);
-
-			cout << "hab1 equipada ";
-			if (left_ != nullptr) {
-				switch (curr)
-				{
-				case GameManager::MegatonGrip:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::M_Grip_ico));
-					break;
-
-				case GameManager::SeismicShock:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico));
-					break;
-
-				case GameManager::ExplosiveWillpower:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico));
-					break;
-
-				case GameManager::AcidSplit:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico));
-					break;
-
-				case GameManager::Mina:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico));
-					break;
-
-				case GameManager::ShrugOff:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::ShrugOff_ico));
-					break;
-
-				case GameManager::MorePower:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::MorePower_ico));
-					break;
-				case GameManager::Hookshot:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Hook_ico));
-					break;
-				case GameManager::Dash:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico));
-					break;
-				case GameManager::VampiricStrike:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Vampiric_ico));
-					break;
-				case GameManager::HailBall:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico));
-					break;
-				case GameManager::ReachingStrike:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Reach_ico));
-					break;
-				case GameManager::FlyingKicks:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::FlyingKicks_ico));
-					break;
-				case GameManager::LaserLineal:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::L_Lineal_ico));
-					break;
-				case GameManager::NadoKick:
-					left_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Nado_ico));
-					break;
+	/*ab1_index = app_->getGameManager()->getPlayerInfo(player_).ability1Index;
+	ab2_index = app_->getGameManager()->getPlayerInfo(player_).ability2Index;*/
+	int posY = nav_->GetPosY();
+	if ( posY != 2) {//leftBumper
+		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::LeftBumper) && !pressed) {
+			int indX = nav_->GetPosX();
+			//app_->getGameManager()->setFirstHab(curr, player_);
+			if (posY > 0) {
+				indX += 5;
+			}
+			//cout << "Hab " << indX << endl;
+			if (indX < abs_size) {
+				if (indX == ab2_index) {
+					swapIndex();
 				}
+				else {
+					ab1_index = indX;
+					left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
+					app_->getGameManager()->setFirstHab(ab1_index, player_);
+				}
+				
 			}
 		}
-		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightBumper) && app_->getGameManager()->getPlayerInfo(player_).ability1Index != curr && !pressed) {
-			app_->getGameManager()->setSecondHab(curr, player_);
-			cout << "hab2 equipada ";
-			if (right_ != nullptr) {
-				switch (curr)
-				{
-				case GameManager::MegatonGrip:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::M_Grip_ico));
-					break;
-
-				case GameManager::SeismicShock:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico));
-					break;
-
-				case GameManager::ExplosiveWillpower:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico));
-					break;
-
-				case GameManager::AcidSplit:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico));
-					break;
-
-				case GameManager::Mina:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico));
-					break;
-
-				case GameManager::ShrugOff:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::ShrugOff_ico));
-					break;
-
-				case GameManager::MorePower:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::MorePower_ico));
-					break;
-				case GameManager::Hookshot:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Hook_ico));
-					break;
-				case GameManager::Dash:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico));
-					break;
-				case GameManager::VampiricStrike:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Vampiric_ico));
-					break;
-				case GameManager::HailBall:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico));
-					break;
-				case GameManager::ReachingStrike:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Reach_ico));
-					break;
-				case GameManager::FlyingKicks:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::FlyingKicks_ico));
-					break;
-				case GameManager::LaserLineal:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::L_Lineal_ico));
-					break;
-				case GameManager::NadoKick:
-					right_->setTexture(app_->getAssetsManager()->getTexture(AssetsManager::Nado_ico));
-					break;
-				}
+		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightBumper) && !pressed) {
+			int indX = nav_->GetPosX();
+			if (posY > 0) {
+				indX += 5;
 			}
+			
+			if ( indX < abs_size) {
+				if (indX == ab1_index) {
+					swapIndex();
+				}
+				else {
+					ab2_index = indX;
+					right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
+					app_->getGameManager()->setSecondHab(ab2_index, player_);
+				}
+				
+
+			}			
 		}
 	}
 	else 
@@ -180,4 +107,18 @@ void InventoryLogic::handleInput()
 			cout << "Canceled";
 		}
 	}
+}
+
+
+void InventoryLogic::swapIndex() {
+	int aux = ab1_index;
+	ab1_index = ab2_index;
+	ab2_index = aux;
+
+	app_->getGameManager()->setFirstHab(ab1_index, player_);
+	app_->getGameManager()->setSecondHab(ab2_index, player_);
+
+	//actualizar texturas
+	left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
+	right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
 }
