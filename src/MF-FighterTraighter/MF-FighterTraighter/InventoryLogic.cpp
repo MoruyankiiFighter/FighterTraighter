@@ -70,8 +70,9 @@ void InventoryLogic::handleInput()
 				else {
 					ab1_index = indX;
 					left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
+					app_->getGameManager()->setFirstHab(ab1_index, player_);
 				}
-				app_->getGameManager()->setFirstHab(ab1_index, player_);
+				
 			}
 		}
 		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightBumper) && !pressed) {
@@ -81,13 +82,15 @@ void InventoryLogic::handleInput()
 			}
 			
 			if ( indX < abs_size) {
-				if (indX == ab1_index)
+				if (indX == ab1_index) {
 					swapIndex();
+				}
 				else {
 					ab2_index = indX;
 					right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
+					app_->getGameManager()->setSecondHab(ab2_index, player_);
 				}
-				app_->getGameManager()->setSecondHab(ab2_index, player_);
+				
 
 			}			
 		}
@@ -111,6 +114,10 @@ void InventoryLogic::swapIndex() {
 	int aux = ab1_index;
 	ab1_index = ab2_index;
 	ab2_index = aux;
+
+	app_->getGameManager()->setFirstHab(ab1_index, player_);
+	app_->getGameManager()->setSecondHab(ab2_index, player_);
+
 	//actualizar texturas
 	left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
 	right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
