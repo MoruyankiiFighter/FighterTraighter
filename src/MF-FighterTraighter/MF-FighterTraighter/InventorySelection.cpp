@@ -40,23 +40,24 @@ void InventorySelection::init()
 
 	left_j1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
 	left_j1->addComponent<UITransform>(Vector2D((double)app_->getWindowManager()->getCurResolution().w / 4- 200, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
-	left_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	left_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 	
 	Entity* right_j1 = entManager_.addEntity();
+
 	right_j1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
 	right_j1->addComponent<UITransform>(Vector2D((double)app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
-	right_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	right_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 
 	//ranuras j2
 	Entity* left_j2 = entManager_.addEntity();
 	left_j2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
 	left_j2->addComponent<UITransform>(Vector2D(3 * (double)app_->getWindowManager()->getCurResolution().w / 4 - 200, 200), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
-	left_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	left_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 
 	Entity* right_j2 = entManager_.addEntity();
 	right_j2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
 	right_j2->addComponent<UITransform>(Vector2D(3 * (double)app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
-	right_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+	right_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 
 
 	//boton
@@ -83,11 +84,10 @@ void InventorySelection::init()
 
 	for (double i = 0; i < 10; i++) {
 
-		tuple <Entity*, Entity*> habj1;
-
+		
+			Entity* habj1 = entManager_.addEntity();
 		if (i < app_->getGameManager()->getPlayerInfo(1).abilities.size()) {
 			//128
-			Entity* habj1 = entManager_.addEntity();
 			if (i < 5) { 
 				habj1->addComponent<UIElement>();
 				habj1->addComponent<UITransform>(
@@ -95,7 +95,7 @@ void InventorySelection::init()
 					Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
 					Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
 					Vector2D(128, 128));
-				habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				ctrl->SetElementInPos((habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
 			}
 
@@ -106,7 +106,7 @@ void InventorySelection::init()
 					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
 					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
 					Vector2D(128, 128));
-				habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				
 				ctrl->SetElementInPos((habj1)->getComponent<UIElement>(ecs::UIElement), (i - 5), 1);
 			}
@@ -118,22 +118,28 @@ void InventorySelection::init()
 		}
 
 		else {
-			if (i < 5) { //cambiarlo por la mitad del vector
-				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
-					Vector2D(((128) + i * (128)) + 40, (72) * 4.7),
-					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+			if (i < 5) {
+
+			habj1->addComponent<UIElement>();
+			habj1->addComponent<UITransform>(
+				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
+				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
+				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
+				Vector2D(128, 128));
+			habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
+			ctrl->SetElementInPos((habj1)->getComponent<UIElement>(ecs::UIElement), i, 0);
 			}
 
 			else {
-				tuple <Entity*, Entity*> habj1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Player), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
-					Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
-					(128), (128), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-				ctrl->SetElementInPos(std::get<0>(habj1)->getComponent<UIElement>(ecs::UIElement), (i - 5), 1);
+			habj1->addComponent<UIElement>();
+			habj1->addComponent<UITransform>(
+				Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+				Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+				Vector2D(((128) + (i - 5) * (128)) + 40, (72) * 6.7),
+				Vector2D(128, 128));
+			habj1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
+
+			ctrl->SetElementInPos((habj1)->getComponent<UIElement>(ecs::UIElement), (i - 5), 1);
 			}
 
 		}
@@ -165,7 +171,7 @@ void InventorySelection::init()
 					Vector2D(((128) + (i) * (128)) + 1000, (72) * 4.7),
 					Vector2D(((128) + (i) * (128)) + 1000, (72) * 4.7),
 					Vector2D(128, 128));
-				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				ctrl_->SetElementInPos((habj2)->getComponent<UIElement>(ecs::UIElement), i, 0);
 
 			}
@@ -177,7 +183,7 @@ void InventorySelection::init()
 					Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
 					Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
 					Vector2D(128, 128));
-				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				ctrl_->SetElementInPos((habj2)->getComponent<UIElement>(ecs::UIElement), (i - 5), 1);
 
 			}
@@ -194,7 +200,7 @@ void InventorySelection::init()
 					Vector2D(((128) + (i) * (128)) + 1000, (72) * 4.7),
 					Vector2D(((128) + (i) * (128)) + 1000, (72) * 4.7),
 					Vector2D(128, 128));
-				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				ctrl_->SetElementInPos((habj2)->getComponent<UIElement>(ecs::UIElement), i, 0);
 
 			}
@@ -206,7 +212,7 @@ void InventorySelection::init()
 					Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
 					Vector2D(((128) + (i - 5) * (128)) + 1000, (72) * 6.7),
 					Vector2D(128, 128));
-				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
+				habj2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::EmptyHability));
 				ctrl_->SetElementInPos((habj2)->getComponent<UIElement>(ecs::UIElement), (i - 5), 1);
 			}
 			
@@ -219,10 +225,10 @@ void InventorySelection::init()
 	// Navigation controller
 
 	Entity* logicJ1 = entManager_.addEntity();
-	logicJ1->addComponent<InventoryLogic>(ctrl_, 1, left_j1->getComponent<RenderImage>(ecs::RenderImage), right_j1->getComponent<RenderImage>(ecs::RenderImage));
+	logicJ1->addComponent<InventoryLogic>(ctrl, 1, left_j1->getComponent<RenderImage>(ecs::RenderImage), right_j1->getComponent<RenderImage>(ecs::RenderImage));
 
 	Entity* logicJ2 = entManager_.addEntity();
-	logicJ2->addComponent<InventoryLogic>(ctrl, 2, left_j2->getComponent<RenderImage>(ecs::RenderImage), right_j2->getComponent<RenderImage>(ecs::RenderImage));
+	logicJ2->addComponent<InventoryLogic>(ctrl_, 2, left_j2->getComponent<RenderImage>(ecs::RenderImage), right_j2->getComponent<RenderImage>(ecs::RenderImage));
 
 	Entity* ent = entManager_.addEntity();
 	ent->addComponent<InventoryHandler>(logicJ1, logicJ2);

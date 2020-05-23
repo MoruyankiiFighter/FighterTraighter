@@ -18,7 +18,7 @@ void InventoryLogic::init()
 	left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
 	right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
 	ent = new Entity();
-	ent->addComponent<Transform>(Vector2D(), Vector2D(), 100, 100, 0);
+	ent->addComponent<Transform>(Vector2D(), Vector2D(), 150, 150, 45);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 
 }
@@ -40,7 +40,6 @@ void InventoryLogic::update()
 
 		ent->getComponent<Transform>(ecs::Transform)->setPosition
 		(nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY())->getEntity()->getComponent<UITransform>(ecs::Transform)->getPosition());
-		//cout << ent->getComponent<Transform>(ecs::Transform)->getPosition().getX()<<endl;
 	}
 }
 
@@ -68,7 +67,7 @@ void InventoryLogic::handleInput()
 				ab1_index = indX;
 				app_->getGameManager()->setFirstHab(ab1_index, player_);
 				if (left_ != nullptr) {
-					left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[ab1_index] + 1)));
+					left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
 				}
 			}
 		}
@@ -82,7 +81,7 @@ void InventoryLogic::handleInput()
 				ab2_index = indX;
 				app_->getGameManager()->setSecondHab(indX, player_);
 				if (right_ != nullptr) {
-					right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[ab2_index] + 1)));
+					right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index]+1)));
 				}
 			}			
 		}

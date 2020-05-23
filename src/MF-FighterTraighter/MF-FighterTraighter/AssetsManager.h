@@ -12,7 +12,7 @@ class AssetsManager
 {
 public:
 	enum TextureNames {
-		Player,
+		EmptyHability,
 		Saco,
 		Button,
 		Logo,

@@ -220,7 +220,7 @@ void F10RData::AHP1(Entity* ent)
 #endif // _DEBUG
 
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::EmptyHability);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 
 	uint16 mask;
@@ -263,7 +263,7 @@ void F10RData::ANK1(Entity* ent)
 #endif 
 
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::EmptyHability);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 
 	uint16 mask;
