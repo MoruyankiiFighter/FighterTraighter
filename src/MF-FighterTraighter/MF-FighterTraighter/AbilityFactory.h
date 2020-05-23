@@ -112,6 +112,7 @@ public:
 	static void NK1(Entity* ent);
 	static void NK2(Entity* ent);
 	static void NK3(Entity* ent);
+	static void NKF(Entity* ent);
 	static void NKC(Entity* ent);
 
 

@@ -171,9 +171,11 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(MKWOP_2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/clonk.wav"));
 	sfx_.emplace(MKWOP_3, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/piribi.wav"));
 	sfx_.emplace(MKWOP_4, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/MKW00P/robotau.wav"));
+
 	sfx_.emplace(FLOR_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/F10R/zombidolor.mp3"));
-	sfx_.emplace(FLOR_2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/F10R/zombihola.wav"));
-	sfx_.emplace(FLOR_3, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/F10R/Zombiquejido.wav"));
+	sfx_.emplace(FLOR_2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/florAttack3.wav"));
+	sfx_.emplace(FLOR_3, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/florAttack2.ogg"));
+
 	sfx_.emplace(MKBIRD_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/Mockingbird/ouch.wav"));
 	sfx_.emplace(MKBIRD_2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/Mockingbird/pain.wav"));
 	sfx_.emplace(MKBIRD_3, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/Taunts/Mockingbird/yeow.wav"));
@@ -183,63 +185,29 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));*/
+	sfx_.emplace(SALTO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/salto.wav"));
+
+
 	sfx_.emplace(PUNCH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
+	sfx_.emplace(GANCHO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/gancho.wav"));
 	sfx_.emplace(KICK, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/patada.wav"));
 	sfx_.emplace(DASH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/failattack.wav"));
 	sfx_.emplace(POLLO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/pollo.wav"));
 	sfx_.emplace(MINA, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/mina.wav"));
+	sfx_.emplace(HIELO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hielo.wav"));
+	sfx_.emplace(LASER, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/laser3.wav"));
+	sfx_.emplace(BOTON, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/boton.wav"));
+	sfx_.emplace(ATAQUE2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/ataque.wav"));
+	sfx_.emplace(ATAQUE, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/ataque2.wav"));
+	sfx_.emplace(PLACAJE, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/placaje.wav")); 
+	sfx_.emplace(FLOORATTACK, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/floorAttack.wav"));
+	sfx_.emplace(FLOORATTACK2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/floorAttack2.wav"));
+	sfx_.emplace(PUNCH2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/normalpunch.wav"));
+	sfx_.emplace(HIT, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hit.wav"));
+	sfx_.emplace(HIT2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hit2.wav"));
+	sfx_.emplace(NORMALPUNCH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/flykick.wav"));
 
 }
-//void AssetsManager::playMusic(const string& name, int channel)
-//{
-//}
-//
-//void AssetsManager::resumeAll()
-//{
-//}
-//
-//void AssetsManager::resumeMusic()
-//{
-//}
-//
-//void AssetsManager::pauseMusic()
-//{
-//}
-//
-//void AssetsManager::stopMusic()
-//{
-//}
-//
-//int AssetsManager::getGeneralVolume() const
-//{
-//	return 0;
-//}
-//
-//int AssetsManager::getMusicVolume() const
-//{
-//	return 0;
-//}
-//
-//int AssetsManager::getChannelVolume(int channel) const
-//{
-//	return 0;
-//}
-//
-//void AssetsManager::setGeneralVolume(float volume_ratio)
-//{
-//}
-//
-//void AssetsManager::setChannelvolume(int channel, float volume_ratio)
-//{
-//}
-//
-//void AssetsManager::setMusicVolume(float volume_ratio)
-//{
-//}
-//
-//void AssetsManager::setSFXVolume(const string& name, float volume_ratio)
-//{
-//}
 
 AssetsManager::~AssetsManager()
 {

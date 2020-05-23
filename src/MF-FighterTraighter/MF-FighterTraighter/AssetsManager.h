@@ -155,12 +155,28 @@ public:
 		MKBIRD_2,
 		MKBIRD_3,
 		/// SFX
+		SALTO,
 
+		
 		PUNCH,
+		GANCHO,
 		KICK,
 		DASH,
 		POLLO,
 		MINA,
+		HIELO,
+		LASER,
+		ATAQUE,
+		ATAQUE2,
+		BOTON,
+		PLACAJE,
+		FLOORATTACK,
+		FLOORATTACK2,
+		PUNCH2,
+		HIT,
+		HIT2,
+		NORMALPUNCH
+
 
 	};
 	//constructors

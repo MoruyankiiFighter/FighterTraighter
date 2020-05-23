@@ -26,13 +26,7 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 				helth->LoseLife(hBox_data->damage_);
 				//pD->getPlayerNumber()
 				//entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::MKWOP_1), false);
-				if (pD->getPlayerNumber() == 0) {
-					entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getGameManager()->getPlayerInfo(1).onHitSound, false);
-				}
-				else {
-					entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getGameManager()->getPlayerInfo(2).onHitSound, false);
-				}
-
+				entity_->getApp()->getAudioMngr()->playSFX(pD->getDmgSound(), false);
 				if (!hBox_data->guardBreaker_ && !hBox_data->multiHit_) {//if isnt a guardBreaker go to hitstun
 					if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
 						currState->goHitsun(hBox_data->hitstun_);
