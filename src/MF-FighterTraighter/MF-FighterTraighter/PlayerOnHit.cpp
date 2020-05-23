@@ -18,28 +18,30 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 	PlayerData* pD = entity_->getComponent<PlayerData>(ecs::PlayerData);
 	Health* helth = entity_->getComponent<Health>(ecs::Health);
 	PlayerParticleSystem* pSystem = entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem);
-	if (!currState->isProtected() /*&& !hBox_data->guardBreaker*/) {
-		if (currState->isAttacking() && !hBox_data->multiHit_) entity_->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->interruptAttack();
-		if (currState->isCrouch() && !hBox_data->multiHit_) entity_->getComponent<PlayerController>(ecs::CharacterController)->uncrouch();
-		if (!hBox_data->guardBreaker_ && hBox_data->doesDamage()) {
-			helth->LoseLife(hBox_data->damage_);
-			//pD->getPlayerNumber()
-			//entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::MKWOP_1), false);
-			if (pD->getPlayerNumber() == 0) {
-				entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getGameManager()->getPlayerInfo(1).onHitSound, false);
-			}
-			else {
-				entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getGameManager()->getPlayerInfo(2).onHitSound, false);
-			}
-			
-			if (!hBox_data->guardBreaker_ && !hBox_data->multiHit_) {//if isnt a guardBreaker go to hitstun
-				if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
-					currState->goHitsun(hBox_data->hitstun_);
-				else
-					currState->goHitstunAirborne();
-			}
+	if (!currState->isProtected()) {
+		if (!hBox_data->guardBreaker_) {
+			if (currState->isAttacking() && !hBox_data->multiHit_) entity_->getComponent<PlayerAttacks>(ecs::CharacterAttacks)->interruptAttack();
+			if (currState->isCrouch() && !hBox_data->multiHit_) entity_->getComponent<PlayerController>(ecs::CharacterController)->uncrouch();
+			if (hBox_data->doesDamage()) {
+				helth->LoseLife(hBox_data->damage_);
+				//pD->getPlayerNumber()
+				//entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::MKWOP_1), false);
+				if (pD->getPlayerNumber() == 0) {
+					entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getGameManager()->getPlayerInfo(1).onHitSound, false);
+				}
+				else {
+					entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getGameManager()->getPlayerInfo(2).onHitSound, false);
+				}
 
-			pT->getBody()->ApplyLinearImpulse(b2Vec2(hBox_data->knockBack_.getX(), hBox_data->knockBack_.getY()), pT->getBody()->GetWorldCenter(), true);
+				if (!hBox_data->guardBreaker_ && !hBox_data->multiHit_) {//if isnt a guardBreaker go to hitstun
+					if (hBox_data->knockBack_.getY() >= 0)	//vertical knockback, goes to airborne hitstun
+						currState->goHitsun(hBox_data->hitstun_);
+					else
+						currState->goHitstunAirborne();
+				}
+
+				pT->getBody()->ApplyLinearImpulse(b2Vec2(hBox_data->knockBack_.getX(), hBox_data->knockBack_.getY()), pT->getBody()->GetWorldCenter(), true);
+			}
 		}
 #ifdef _DEBUG
 		cout << "Hago X:" << hBox_data->knockBack_.getX() << " Y: " << hBox_data->knockBack_.getY() << endl;
