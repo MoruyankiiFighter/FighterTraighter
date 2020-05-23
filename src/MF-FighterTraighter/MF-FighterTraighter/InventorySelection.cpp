@@ -16,6 +16,7 @@ void InventorySelection::init()
 	b->addComponent<UITransform>(Vector2D(), Vector2D(), Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h));
 	b->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight));
 
+
 	//j1 fondo submenu
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
 		Vector2D(0, 0), Vector2D(50, 50), Vector2D(0, 0), (app_->getWindowManager()->getCurResolution().w / 2.0) - 100.0, app_->getWindowManager()->getCurResolution().h - 100.0, 0);
@@ -32,7 +33,7 @@ void InventorySelection::init()
 	Entity* text_ = entManager_.addEntity();
 	//Vector2D pos, Vector2D anchor, Vector2D pivot, Vector2D size
 	text_->addComponent<UITransform>(Vector2D(0, 0), Vector2D((app_->getWindowManager()->getCurResolution().w/2 ), 0), Vector2D((app_->getWindowManager()->getCurResolution().w /2), 0), Vector2D((double)app_->getWindowManager()->getCurResolution().w - 50, ((double)app_->getWindowManager()->getCurResolution().h / 20) +50));
-	text_->addComponent<TextComponent>("Selecciona tus habilidades", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::TextAlignment::Center);
+	text_->addComponent<TextComponent>("Prepare for the fight!", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::TextAlignment::Center);
 
 	//ranuras j1
 

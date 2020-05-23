@@ -110,17 +110,12 @@ void SkillSelection::init()
 			}
 		}
 	}
-	//// boton de salir 
-	//tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-	//		Vector2D(0, 0),
-	//		Vector2D((app_->getWindowManager()->getCurResolution().w /2), app_->getWindowManager()->getCurResolution().h - 200),
-	//		Vector2D(320, 90),
-	//		640, 180, 0, GoToNextSubMenu, nullptr, "Continue winner", 80, TextComponent::TextAlignment::Center);
-	//	std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Bottom;
-	//	
-	//	nav->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 2);
-	//	nav->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 1, 2);
-
+	Entity* text = UIFactory::createText(app_, this, 
+		Vector2D(0, 0),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 2), app_->getWindowManager()->getCurResolution().h - 200),
+		Vector2D(320, 90),
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), ("Player " + to_string(winner_) + " chooses!"),
+		60, 300, 100, 500);
 
 	Entity* log = entManager_.addEntity();
 
