@@ -19,7 +19,7 @@ public:
 		m_shake = entity_->getComponent<Shake>(ecs::Shake)->shake();
 
 		//1920+860*2+500
-		cam->setWidthHeight(cam->getWidth() + m_Target1->getPosition().getX()*2 + m_Target1->getWidth()/2, cam->getHeight() + m_Target1->getPosition().getY());
+		cam->setWidthHeight(cam->getWidth() + m_Target1->getPosition().getX()*2 + m_Target2->getWidth(), cam->getHeight() + m_Target1->getPosition().getY());
 		//m_ViewBox.w = app_->getWindowManager()->getCurResolution().w;
 		//m_ViewBox.h= app_->getWindowManager()->getCurResolution().h +500;
 		
