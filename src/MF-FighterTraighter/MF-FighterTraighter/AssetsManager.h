@@ -44,6 +44,10 @@ public:
 		Banner,
 		Panel,
 		SelectionSquare,
+		floor,
+		//floor2,
+		saco2,
+
 		//resources of aisha
 		Aisha_icon,
 		AishaArtwork,

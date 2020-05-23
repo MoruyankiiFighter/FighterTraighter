@@ -23,6 +23,7 @@ void AssetsManager::loadTextures()
 	textures_.emplace(Logo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/logo.png", 1, 1));
 	textures_.emplace(Tint, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/Tint.png", 1, 1));
 	textures_.emplace(Controller, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/controller.png", 1, 1));
+	textures_.emplace(saco2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/characters/sacoNoSombra.png", 1, 1));
 	
 	textures_.emplace(Slidebar, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/slidebar.png", 1, 1));
 	textures_.emplace(SliderRegulator, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/regulador.png", 2, 1));
@@ -34,6 +35,8 @@ void AssetsManager::loadTextures()
 
 	//backgrounds
 	textures_.emplace(BackgroundFight, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/FONDO.png", 2, 1));
+	textures_.emplace(floor, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/floortemp.png", 1, 1));
+	//textures_.emplace(floor2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/floortemp2.png", 1, 1));
 
 	
 	//UI elements
