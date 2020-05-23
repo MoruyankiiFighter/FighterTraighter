@@ -13,6 +13,8 @@ void InventoryLogic::init()
 	abs_size = app_->getGameManager()->getPlayerInfo(player_).abilities.size();
 	ab1_index = 0;
 	ab2_index = 1;
+	app_->getGameManager()->setFirstHab(ab1_index, player_);
+	app_->getGameManager()->setSecondHab(ab2_index, player_);
 	left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
 	right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
 	ent = new Entity();
@@ -61,9 +63,10 @@ void InventoryLogic::handleInput()
 			if (posY > 0) {
 				indX += 5;
 			}
-			cout << "Hab " << indX << endl;
+			//cout << "Hab " << indX << endl;
 			if (indX < abs_size && indX != ab2_index) {
-				app_->getGameManager()->setFirstHab(indX, player_);
+				ab1_index = indX;
+				app_->getGameManager()->setFirstHab(ab1_index, player_);
 				if (left_ != nullptr) {
 					left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[ab1_index] + 1)));
 				}
@@ -74,18 +77,19 @@ void InventoryLogic::handleInput()
 			if (posY > 0) {
 				indX += 5;
 			}
-			cout << "Hab " << indX << endl;
+			//cout << "Hab " << indX << endl;
 			if ( indX < abs_size && indX != ab1_index) {
+				ab2_index = indX;
 				app_->getGameManager()->setSecondHab(indX, player_);
-				if (left_ != nullptr) {
-					left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[ab1_index] + 1)));
+				if (right_ != nullptr) {
+					right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[ab2_index] + 1)));
 				}
 			}			
 		}
 	}
 	else 
 	{
-		/*if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Down) && !pressed) {
+		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Down) && !pressed) {
 			pressed = true;
 			cout << "waiting for fight";
 		}
@@ -93,6 +97,6 @@ void InventoryLogic::handleInput()
 		else if (pressed && app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Right)) {
 			pressed = false;
 			cout << "Canceled";
-		}*/
+		}
 	}
 }
