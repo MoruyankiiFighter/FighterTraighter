@@ -220,7 +220,7 @@ void F10RData::AHP1(Entity* ent)
 #endif // _DEBUG
 
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::F10RHk);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 
 	uint16 mask;
@@ -263,7 +263,7 @@ void F10RData::ANK1(Entity* ent)
 #endif 
 
 	GameState* currentState = ent->getApp()->getStateMachine()->getCurrentState();
-	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::Player);
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::F10RHp);
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 
 	uint16 mask;
@@ -277,14 +277,26 @@ void F10RData::ANK1(Entity* ent)
 		mask = currentState->PLAYER_1 | currentState->P_BAG;
 	}
 
-	double projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX();
-	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX();
+	double projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX();
+	if (orientation_ == -1) projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX();
+	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + ank1.position.getY());
 
-	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + ank1.position.getY());
-	DestroyAtTime* dT = new DestroyAtTime(ank1.damage * pD->getAttack(), ank1.time, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
+	double projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX() - 70;
+	if (orientation_ == -1) projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX() + 70;
+	Vector2D pos2 = Vector2D(projX2, phtr->getPosition().getY() + ank1.position.getY() - 100);
+
+	double projX3 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX() - 140;
+	if (orientation_ == -1) projX3 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX() + 140;
+	Vector2D pos3 = Vector2D(projX3, phtr->getPosition().getY() + ank1.position.getY() - 200);
+
+	DestroyAtTime* dT1 = new DestroyAtTime(ank1.damage * pD->getAttack(), ank1.time, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
+	DestroyAtTime* dT2 = new DestroyAtTime(ank1.damage * pD->getAttack(), ank1.time, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
+	DestroyAtTime* dT3 = new DestroyAtTime(ank1.damage * pD->getAttack(), ank1.time, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
 	/*AbilityFactory::createProyectile(ent, ank1.width, ank1.height, pos, { (double)orientation_ * 2, 0 }, ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() },
 		ank1.time, mask, ent->getState(), ent->getApp(), texture, false);*/
-	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos, { (double)orientation_ * 2, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos1, { (double)orientation_ * 2, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT1);
+	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos2, { (double)orientation_ * 2.5, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT2);
+	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos3, { (double)orientation_ * 3, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT3);
 }
 
 PlayerData::CallbackData F10RData::ank1 = PlayerData::CallbackData{
