@@ -115,7 +115,7 @@ void SkillSelection::init()
 		Vector2D((app_->getWindowManager()->getCurResolution().w / 2), app_->getWindowManager()->getCurResolution().h - 200),
 		Vector2D(320, 90),
 		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), ("Player " + to_string(winner_) + " chooses!"),
-		60, 300, 100, 500);
+		60, TextComponent::Center, 300, 100, 500);
 
 	Entity* log = entManager_.addEntity();
 

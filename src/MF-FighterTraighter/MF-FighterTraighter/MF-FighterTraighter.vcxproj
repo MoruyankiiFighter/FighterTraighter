@@ -202,6 +202,7 @@
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="LinkedGrid.cpp" />
     <ClCompile Include="Shake.cpp" />
+    <ClCompile Include="SkillSelectionLogic.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="TrainingController.cpp" />
     <ClCompile Include="UIElement.cpp" />
@@ -304,6 +305,7 @@
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="Shake.h" />
+    <ClInclude Include="SkillSelectionLogic.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="TrainingController.h" />
     <ClInclude Include="UIHealthbar.h" />
