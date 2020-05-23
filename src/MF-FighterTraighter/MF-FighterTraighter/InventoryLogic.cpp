@@ -64,12 +64,15 @@ void InventoryLogic::handleInput()
 				indX += 5;
 			}
 			//cout << "Hab " << indX << endl;
-			if (indX < abs_size && indX != ab2_index) {
-				ab1_index = indX;
-				app_->getGameManager()->setFirstHab(ab1_index, player_);
-				if (left_ != nullptr) {
-					left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[ab1_index] + 1)));
+			if (indX < abs_size) {
+				if (indX == ab2_index) {
+					swapIndex();
 				}
+				else {
+					ab1_index = indX;
+					left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
+				}
+				app_->getGameManager()->setFirstHab(ab1_index, player_);
 			}
 		}
 		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightBumper) && !pressed) {
@@ -77,13 +80,16 @@ void InventoryLogic::handleInput()
 			if (posY > 0) {
 				indX += 5;
 			}
-			//cout << "Hab " << indX << endl;
-			if ( indX < abs_size && indX != ab1_index) {
-				ab2_index = indX;
-				app_->getGameManager()->setSecondHab(indX, player_);
-				if (right_ != nullptr) {
-					right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(2).abilities[ab2_index] + 1)));
+			
+			if ( indX < abs_size) {
+				if (indX == ab1_index)
+					swapIndex();
+				else {
+					ab2_index = indX;
+					right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
 				}
+				app_->getGameManager()->setSecondHab(ab2_index, player_);
+
 			}			
 		}
 	}
@@ -99,4 +105,14 @@ void InventoryLogic::handleInput()
 			cout << "Canceled";
 		}
 	}
+}
+
+
+void InventoryLogic::swapIndex() {
+	int aux = ab1_index;
+	ab1_index = ab2_index;
+	ab2_index = aux;
+	//actualizar texturas
+	left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
+	right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
 }

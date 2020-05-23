@@ -104,7 +104,12 @@ void GameManager::trainingEnded(int winner)
 void GameManager::resetCharacters()
 {
 	player1_.character = F10R;
+	player1_.abilities.clear();
+	player1_.ability1Index = player1_.ability2Index = 0;
+
 	player2_.character = F10R;
+	player2_.abilities.clear();
+	player2_.ability1Index = player2_.ability2Index = 0;
 }
 
 void GameManager::GoBackToMain()

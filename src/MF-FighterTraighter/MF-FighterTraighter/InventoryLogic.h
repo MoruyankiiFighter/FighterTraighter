@@ -27,5 +27,7 @@ private:
 	int abs_size = 0,
 		ab1_index = 0,
 		ab2_index = 0;
+
+	void swapIndex();
 };
 

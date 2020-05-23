@@ -49,7 +49,7 @@ void SkillSelection::init()
 	GameManager::AbilityID abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
 	//El jugador que gana obtiene 3 habilidades aleatorias, 2 de ellas las tiene que elegir, la otra es aleatoria
 	Entity* nav_j1 = entManager_.addEntity();
-	NavigationController* nav = nav_j1->addComponent<NavigationController>(2, 3, app_->getGameManager()->getPlayerInfo(winner_).hid);
+	NavigationController* nav = nav_j1->addComponent<NavigationController>(2, 2, app_->getGameManager()->getPlayerInfo(winner_).hid);
 
 	for (int i = 0; i < 3; i++) {
 		do {
@@ -110,16 +110,16 @@ void SkillSelection::init()
 			}
 		}
 	}
-	// boton de salir 
-	tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0, 0),
-			Vector2D((app_->getWindowManager()->getCurResolution().w /2), app_->getWindowManager()->getCurResolution().h - 200),
-			Vector2D(320, 90),
-			640, 180, 0, GoToNextSubMenu, nullptr, "Continue winner", 80, TextComponent::TextAlignment::Center);
-		std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Bottom;
-		
-		nav->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 2);
-		nav->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 1, 2);
+	//// boton de salir 
+	//tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+	//		Vector2D(0, 0),
+	//		Vector2D((app_->getWindowManager()->getCurResolution().w /2), app_->getWindowManager()->getCurResolution().h - 200),
+	//		Vector2D(320, 90),
+	//		640, 180, 0, GoToNextSubMenu, nullptr, "Continue winner", 80, TextComponent::TextAlignment::Center);
+	//	std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Bottom;
+	//	
+	//	nav->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 2);
+	//	nav->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 1, 2);
 
 
 	Entity* log = entManager_.addEntity();
