@@ -18,7 +18,7 @@ void InventoryLogic::init()
 	left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
 	right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
 	ent = new Entity();
-	ent->addComponent<Transform>(Vector2D(), Vector2D(), 100, 100, 0);
+	ent->addComponent<Transform>(Vector2D(), Vector2D(), 150, 150, 45);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 
 }
@@ -40,7 +40,6 @@ void InventoryLogic::update()
 
 		ent->getComponent<Transform>(ecs::Transform)->setPosition
 		(nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY())->getEntity()->getComponent<UITransform>(ecs::Transform)->getPosition());
-		//cout << ent->getComponent<Transform>(ecs::Transform)->getPosition().getX()<<endl;
 	}
 }
 

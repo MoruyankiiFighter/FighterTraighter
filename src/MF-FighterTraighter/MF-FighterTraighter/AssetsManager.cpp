@@ -17,7 +17,7 @@ Texture* AssetsManager::getTexture(AssetsManager::TextureNames id)
 
 void AssetsManager::loadTextures()
 {
-	textures_.emplace(Player, new Texture(app_->getRenderer(), "../../../../assets/Assets/personaje.png", 1, 1));
+	textures_.emplace(EmptyHability, new Texture(app_->getRenderer(), "../../../../assets/Assets/personaje.png", 1, 1));
 	textures_.emplace(Saco, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/characters/saco.png", 1, 1));
 	textures_.emplace(Button, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/buttons.png", 3, 1));
 	textures_.emplace(Logo, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/UI/logo.png", 1, 1));
