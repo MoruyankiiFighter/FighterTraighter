@@ -26,33 +26,31 @@ void SkillSelection::init()
 	int loser = 1;
 	if (winner_ == 1) 
 		loser = 2;
-	//	pWin = &player1_;
-	//	pLose = &player2_;
-	//}
-	//else {
-	//	pWin = &player2_;
-	//	pLose = &player1_;
-	//}
+	
 
-	////the wining player chooses 1 and gets other random
-	////por ahora tiene las dos random, habr�a usar el estado de selecci�n de habilidades aqu�
-	//pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
-	//pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
-	////the losing player, gets random lvl sth 
-	//pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
-	//pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	////j1 fondo submenu
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
+		Vector2D(0, 0), 
+		Vector2D(50, 50), 
+		Vector2D(0, 0), 
+		(app_->getWindowManager()->getCurResolution().w / 2)-100, app_->getWindowManager()->getCurResolution().h-100, 0);
+	
+	////j2 fondo submenu
+	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
+		Vector2D(0, 0),
+		Vector2D(app_->getWindowManager()->getCurResolution().w-430, 50),
+		Vector2D(430+50,0),
+		(app_->getWindowManager()->getCurResolution().w / 2)-100, (app_->getWindowManager()->getCurResolution().h)-100, 0);
+	
 
-	//GameManager::AbilityID
 
 
-	//generate abilities
-	//vector<GameManager::AbilityID> hab;
-	//player 1 abilities
 	GameManager::AbilityID abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
 	//El jugador que gana obtiene 3 habilidades aleatorias, 2 de ellas las tiene que elegir, la otra es aleatoria
 	Entity* nav_j1 = entManager_.addEntity();
-	//NavigationController* ctrl = nav_j1->addComponent<NavigationController>(2, 2, app_->getGameManager()->getPlayerInfo(1).hid);
+	NavigationController* ctrl = nav_j1->addComponent<NavigationController>(2, 2, app_->getGameManager()->getPlayerInfo(winner_).hid);
 
+	
 	for (int i = 0; i < 3; i++) {
 		do {
 			//nueva habilidad
@@ -68,9 +66,8 @@ void SkillSelection::init()
 				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
 				Vector2D(128, 128));
 			ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
-			//ctrl->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
-			//						esto aqui no
-			//			app_->getGameManager()->addHability(abi1, winner_);
+			
+			app_->getGameManager()->addHability(abi1, winner_);
 
 		}
 		else {
@@ -116,17 +113,7 @@ void SkillSelection::init()
 	//b->addComponent<UITransform>(Vector2D(), Vector2D(), Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h));
 	//b->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight));
 
-	////j1 fondo submenu
-	//UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
-	//	Vector2D(0, 0), Vector2D(50, 50), Vector2D(0, 0), (app_->getWindowManager()->getCurResolution().w / 2)-100, app_->getWindowManager()->getCurResolution().h-100, 0);
-	////j2 fondo submenu
-	//UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
-	//	Vector2D(0, 0),
-	//	Vector2D(app_->getWindowManager()->getCurResolution().w-430, 50),
-	//	Vector2D(430+50,0),
-	//	(app_->getWindowManager()->getCurResolution().w / 2)-100, (app_->getWindowManager()->getCurResolution().h)-100, 0);
-	//
-
+	
 	//// Texto central
 	//Entity* text_ = entManager_.addEntity();
 	////Vector2D pos, Vector2D anchor, Vector2D pivot, Vector2D size
