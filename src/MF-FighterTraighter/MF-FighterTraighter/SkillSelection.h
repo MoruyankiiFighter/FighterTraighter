@@ -17,13 +17,10 @@ public:
 	static void Pressed1(App* app);
 	static void Pressed2(App* app);
 private:
-	bool win1=true;
 	int winner_;
 
-	GameManager::AbilityID	op1_,
-							op2_;
-	std::vector<GameManager::AbilityID>	generatedAbs_1,
-										generatedAbs_2;
+	GameManager::AbilityID	op1_, op2_;
+	std::vector<GameManager::AbilityID>	generatedAbs_1, generatedAbs_2;
 	bool checkAbility(GameManager::AbilityID newAb, int player);
 };
 

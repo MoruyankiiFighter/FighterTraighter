@@ -6,6 +6,7 @@
 #include "Fight.h"
 #include "NavigationController.h"
 #include "InventorySelection.h"
+#include "SkillSelectionLogic.h"
 //#include "GameManager.h"
 
 void SkillSelection::init()
@@ -48,56 +49,40 @@ void SkillSelection::init()
 	GameManager::AbilityID abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
 	//El jugador que gana obtiene 3 habilidades aleatorias, 2 de ellas las tiene que elegir, la otra es aleatoria
 	Entity* nav_j1 = entManager_.addEntity();
+	NavigationController* nav = nav_j1->addComponent<NavigationController>(3, 1, app_->getGameManager()->getPlayerInfo(winner_).hid);
 
-	
-	NavigationController* nav = nav_j1->addComponent<NavigationController>(3, 1);
 	for (int i = 0; i < 3; i++) {
 		do {
 			//nueva habilidad
 			abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
-		} while (checkAbility(abi1, winner_));//comprobamos que es adecuada
+		} while (checkAbility(abi1, winner_));
+
 		AssetsManager::TextureNames abrand = (AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + abi1 + 1);
-		/*Entity* ab1 = entManager_.addEntity();*/
-		tuple < Entity*, Entity*> ab1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(abrand), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7), Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
-			Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
-			128, 128, 0, nullptr, GoToNextSubMenu, "", 150, TextComponent::TextAlignment::Center);
-		/*if (i < 2) {*/
-			/*ab1->addComponent<UIElement>();
-			ab1->addComponent<UITransform>(
-				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
-				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
-				Vector2D(((128) + (i) * (128)) + 40, (72) * 4.7),
-				Vector2D(128, 128));
-		ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
-			
-			app_->getGameManager()->addHability(abi1, winner_);
-			ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));*/
-			//ctrl->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
-			//						esto aqui no
-			//			app_->getGameManager()->addHability(abi1, winner_);
-
-		//}
-		//else {
-		//	ab1->addComponent<UIElement>();
-		//	ab1->addComponent<UITransform>(
-		//		Vector2D(((128) + (i - 2) * (128)) + 40, (72) * 6.7),
-		//		Vector2D(((128) + (i - 2) * (128)) + 40, (72) * 6.7),
-		//		Vector2D(((128) + (i - 2) * (128)) + 40, (72) * 6.7),
-		//		Vector2D(128, 128));
-		//	ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
-		//	app_->getGameManager()->addHability(abi1, winner_);
-
-		//	//ctrl->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i - 2, 1);
-		//}
 		
-		//NavigationController* ctrl = nav_j1->addComponent<NavigationController>(2, 2, app_->getGameManager()->getPlayerInfo(1).hid);
-		/*if (i >= 2) {
-			nav->SetElementInPos(ab1->getComponent<UIElement>(ecs::UIElement), i, 1);
-		}
-		else*/ nav->SetElementInPos(std::get<0>(ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+
+		Entity* ab1 = entManager_.addEntity();
+		ab1->addComponent<UIElement>();
+		ab1->addComponent<UITransform>(Vector2D(i* 200, -100),
+			Vector2D((app_->getWindowManager()->getCurResolution().w / 8), (app_->getWindowManager()->getCurResolution().h / 2)),
+			Vector2D(80, 80),
+			Vector2D(160, 160));
+
+		ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+		nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+		
+	}
+
+	Entity* log = entManager_.addEntity();
+
+	if (winner_ == 1) {
+		log->addComponent<SkillSelectionLogic>(nav, winner_, generatedAbs_1);
+	}
+	else {
+		log->addComponent<SkillSelectionLogic>(nav, winner_, generatedAbs_2);
 
 	}
+	
+
 	//El jugador que pierde obtiene 2 habilidades aleatorias y no elige
 	for (int i = 0; i < 2; i++) {
 		do {
@@ -293,7 +278,7 @@ void SkillSelection::Pressed2(App* app)
 bool SkillSelection::checkAbility(GameManager::AbilityID newAb, int player) {
 
 	std::vector<GameManager::AbilityID> aux = app_->getGameManager()->getPlayerInfo(player).abilities;
-	if (player == 0) {	//player1
+	if (player == 1) {	//player1
 		//player1 generated abilities
 		for (int i = 0; i < generatedAbs_1.size(); i++) {
 			if (newAb == generatedAbs_1[i])

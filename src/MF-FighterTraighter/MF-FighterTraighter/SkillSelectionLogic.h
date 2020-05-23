@@ -5,8 +5,7 @@ class SkillSelectionLogic :
 	public Component
 {
 public:
-	SkillSelectionLogic(NavigationController* nav, int player);
-	SkillSelectionLogic(NavigationController* nav, int player, const vector<GameManager::AbilityID>& v);
+	SkillSelectionLogic(NavigationController* nav, int player, vector<GameManager::AbilityID> v);
 	~SkillSelectionLogic();
 	void init() override;
 	void update() override;
