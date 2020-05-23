@@ -169,6 +169,7 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(BOTON, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/boton.wav"));
 	sfx_.emplace(ATAQUE2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/ataque.wav"));
 	sfx_.emplace(ATAQUE, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/ataque2.wav"));
+	sfx_.emplace(PLACAJE, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/placaje.wav"));
 
 }
 

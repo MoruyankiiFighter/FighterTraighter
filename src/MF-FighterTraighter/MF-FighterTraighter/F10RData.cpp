@@ -74,6 +74,8 @@ void F10RData::NP1(Entity* ent)
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, np1.position.getY() }, np1.width, np1.height, np1.time, pD->getAttack() * np1.damage, np1.hitstun, 
 		{ (double)orientation_ * np1.knockBack.getX(), np1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::PUNCH), false);
+
 }
 
 PlayerData::CallbackData F10RData::np1 = PlayerData::CallbackData{
@@ -132,6 +134,8 @@ void F10RData::NK1(Entity* ent)
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, nk1.position.getY() }, nk1.width, nk1.height, nk1.time, pD->getAttack() * nk1.damage, nk1.hitstun,
 		{ (double)orientation_ * nk1.knockBack.getX(), nk1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
+
 }
 
 PlayerData::CallbackData F10RData::nk1 = PlayerData::CallbackData{
@@ -202,6 +206,7 @@ void F10RData::ANP1(Entity* ent)
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, anp1.position.getY() }, anp1.width, anp1.height, anp1.time, pD->getAttack() * anp1.damage, anp1.hitstun,
 		{ (double)orientation_ * anp1.knockBack.getX(), anp1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::ATAQUE), false);
 
 }
 
@@ -312,6 +317,8 @@ void F10RData::AHK1(Entity* ent)
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, ahk1.position.getY() }, ahk1.width, ahk1.height, ahk1.time, pD->getAttack() * ahk1.damage, ahk1.hitstun,
 		{ (double)orientation_ * ahk1.knockBack.getX(), ahk1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
+
 }
 
 PlayerData::CallbackData F10RData::ahk1 = PlayerData::CallbackData{

@@ -133,7 +133,8 @@ public:
 		LASER,
 		ATAQUE,
 		ATAQUE2,
-		BOTON
+		BOTON,
+		PLACAJE
 
 
 	};
