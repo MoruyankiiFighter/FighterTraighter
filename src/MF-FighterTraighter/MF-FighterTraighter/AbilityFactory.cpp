@@ -109,7 +109,7 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 
 void AbilityFactory::MGC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60*10);
+	goOnCoolodwn(ent, 60*21);
 }
 
 AnimationChain* AbilityFactory::GiveSeismicShock(Entity* e) //ability that kick the floor and moments later 3 rocks fall on top of the other player
@@ -150,7 +150,7 @@ void AbilityFactory::SeismicS1(Entity* e)	//the attack to the floor
 
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
-	DestroyAtTime* dT = new DestroyAtTime(17, 50, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
+	DestroyAtTime* dT = new DestroyAtTime(20, 50, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
 }
@@ -223,7 +223,7 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 
 void AbilityFactory::SeismicSC(Entity* ent)
 {
-	goOnCoolodwn(ent, 10 * 60);
+	goOnCoolodwn(ent, 22 * 60);
 }
 
 AnimationChain* AbilityFactory::GiveExplosiveWillpower(Entity* e)
@@ -240,7 +240,7 @@ AnimationChain* AbilityFactory::GiveExplosiveWillpower(Entity* e)
 
 void AbilityFactory::EWC(Entity* ent)
 {
-	goOnCoolodwn(ent, 10 * 60);
+	goOnCoolodwn(ent, 14 * 60);
 }
 
 void AbilityFactory::EW1(Entity* ent)
@@ -929,7 +929,7 @@ void AbilityFactory::FKC(Entity* ent)
 		pT->setOrientation(1);
 	else   pT->setOrientation(-1);
 	//pT->getBody()->SetLinearDamping(10);	//0 friction in the air
-	goOnCoolodwn(ent, 60 * 10);
+	goOnCoolodwn(ent, 60 * 20);
 }
 
 AnimationChain* AbilityFactory::GiveLaserLineal(Entity* e)
@@ -1090,7 +1090,7 @@ void AbilityFactory::NKC(Entity* ent)
 	else   pT->setOrientation(-1);
 	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
 	pT->getBody()->SetLinearDamping(0);
-	goOnCoolodwn(ent, 60 * 10);
+	goOnCoolodwn(ent, 60 * 18);
 }
 
 AnimationChain* AbilityFactory::GiveKnockDown(Entity* e)
