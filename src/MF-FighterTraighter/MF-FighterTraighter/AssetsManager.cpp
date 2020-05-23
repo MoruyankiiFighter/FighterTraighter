@@ -172,6 +172,10 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(PLACAJE, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/placaje.wav")); 
 	sfx_.emplace(FLOORATTACK, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/floorAttack.wav"));
 	sfx_.emplace(FLOORATTACK2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/floorAttack2.wav"));
+	sfx_.emplace(PUNCH2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/normalpunch.wav"));
+	sfx_.emplace(HIT, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hit.wav"));
+	sfx_.emplace(HIT2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hit2.wav"));
+	sfx_.emplace(NORMALPUNCH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/flykick.wav"));
 
 }
 

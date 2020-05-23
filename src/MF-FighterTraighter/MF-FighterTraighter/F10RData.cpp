@@ -74,7 +74,7 @@ void F10RData::NP1(Entity* ent)
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, np1.position.getY() }, np1.width, np1.height, np1.time, pD->getAttack() * np1.damage, np1.hitstun, 
 		{ (double)orientation_ * np1.knockBack.getX(), np1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
-	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::PUNCH), false);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::HIT2), false);
 
 }
 
@@ -108,7 +108,7 @@ void F10RData::HP1(Entity* ent)
 
 	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::F10RHp),
 		pos, Vector2D(hp1.width, hp1.height), hp1.time, PlayerParticleSystem::DeletionMethod::OnHit);
-	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::FLOORATTACK), false);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::HIT), false);
 
 }
 
@@ -178,7 +178,7 @@ void F10RData::HK1(Entity* ent)
 
 	AbilityFactory::instanceEntitywHitbox(ent, hk1.width, hk1.height, pos,{ 0, -8 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 	
-	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::FLOORATTACK2), false);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::PUNCH2), false);
 
 
 //AbilityFactory::createProyectile(ent, hk1.width, hk1.height, pos, { 0, -8 }, hk1.damage, hk1.hitstun, { (double)orientation_ * hk1.knockBack.getX(), hk1.knockBack.getY() },
@@ -251,7 +251,8 @@ void F10RData::AHP1(Entity* ent)
 	DestroyAtTime* dT = new DestroyAtTime(ahp1.damage * pD->getAttack(), ahp1.time, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
 	AbilityFactory::instanceEntitywHitbox(ent, ahp1.width, ahp1.height, pos, { (double)orientation_ * 1.4, 4 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
-	
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::NORMALPUNCH), false);
+
 	//AbilityFactory::createProyectile(ent, ahp1.width, ahp1.height, pos, { (double)orientation_* 1.4, 4 }, ahp1.damage, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() },
 		//ahp1.time, mask, ent->getState(), ent->getApp(), texture, false);
 }
@@ -294,6 +295,8 @@ void F10RData::ANK1(Entity* ent)
 	/*AbilityFactory::createProyectile(ent, ank1.width, ank1.height, pos, { (double)orientation_ * 2, 0 }, ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() },
 		ank1.time, mask, ent->getState(), ent->getApp(), texture, false);*/
 	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos, { (double)orientation_ * 2, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::NORMALPUNCH), false);
+
 }
 
 PlayerData::CallbackData F10RData::ank1 = PlayerData::CallbackData{
