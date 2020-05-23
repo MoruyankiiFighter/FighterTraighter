@@ -59,9 +59,9 @@ public:
 
 	struct PlayerInfo {
 		CharacterID character;
-		std::vector<AbilityID> abilities;
-		AbilityID ability1Index;
-		AbilityID ability2Index;
+		std::vector<AbilityID> abilities; //habilidades que tiene cada personaje en una ronda
+		int ability1Index;
+		int ability2Index;
 		HID* hid;
 		virtual ~PlayerInfo() {
 			delete hid;
@@ -117,7 +117,7 @@ public:
 		}
 	}
 
-	void setFirstHab(AbilityID hab, int player) {
+	void setFirstHab(int hab, int player) {
 		if (player == 1) {
 			player1_.ability1Index = hab;
 		}
@@ -126,7 +126,7 @@ public:
 		}
 	}
 
-	void setSecondHab(AbilityID hab, int player) {
+	void setSecondHab(int hab, int player) {
 		if (player == 1) {
 			player1_.ability2Index = hab;
 		}

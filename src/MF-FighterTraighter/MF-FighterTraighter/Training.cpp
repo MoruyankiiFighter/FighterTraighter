@@ -88,7 +88,7 @@ void Training::init()
 	character2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection))->setFrame(2, 0);
 
 	Entity* gameController = entManager_.addEntity();
-	gameController->addComponent<TrainingController>(300,300);
+	gameController->addComponent<TrainingController>(60,60);
 	entManager_.setHandler(gameController, ecs::Controller);
 }
 
