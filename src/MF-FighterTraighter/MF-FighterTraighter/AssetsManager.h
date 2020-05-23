@@ -47,6 +47,7 @@ public:
 		floor,
 		//floor2,
 		saco2,
+		CollageCharacters,
 
 		//resources of aisha
 		Aisha_icon,

@@ -59,6 +59,16 @@ void MainMenu::init()
 
 
 
+	// Image
+	Entity* image = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::CollageCharacters),
+		Vector2D(-50, 0),
+		Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(900, 900 / 2),
+		900, 900, 0);
+
+
+
+
 	// Position variables
 	const double leftOffset = 100;
 	const double buttonInitPos = -160;

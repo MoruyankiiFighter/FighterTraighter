@@ -73,7 +73,7 @@ void AssetsManager::loadTextures()
 	textures_.emplace(RandomArtwork, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/random.png", 1, 1));
 	
 	textures_.emplace(Panel, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/panel.png", 1, 1)); 
-	
+	textures_.emplace(CollageCharacters, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/imagenMenu.png", 1, 1));
 
 	//ability icons
 	textures_.emplace(S_Sock_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/Seismicshock.png", 1, 1));
