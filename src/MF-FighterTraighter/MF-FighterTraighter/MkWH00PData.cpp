@@ -6,7 +6,7 @@ MkWH00PData::MkWH00PData(double width, double height, double rotation, double ju
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
 	animLength_ = { {4, true, 12}, {4, true, 15}, {2, true, 3}, {1, true, 15}, {4, false, 2}, {12, false, 10}, {7, false, 10}, {9, false, 8},
 	{15, false, 7}, {7, false, 13}, {9, false, 10}, {10, false, 7}, {5, false, 15}, {2, true, 15}, {2, false, 10}, {3, false, 4}, {2, false, 10}, 
-	{2, false, 3}, {4, true, 12}, {2, false, 7}, {2, false, 7}, {2, false, 15}, {8, true, 10} };
+	{2, false, 3}, {4, true, 12}, {2, false, 7}, {2, false, 7}, {8, false, 8}, {8, true, 10} };
 }
 
 void MkWH00PData::init() {
@@ -404,10 +404,10 @@ void MkWH00PData::GB(Entity* ent)
 		{ (double)orientation_ * hitbox_X, gb.position.getY() }, gb.width, gb.height, gb.time, pD->getAttack() * gb.damage, gb.hitstun, { (double)orientation_ * gb.knockBack.getX(), gb.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask(), true);
 }
 PlayerData::CallbackData MkWH00PData::gb = PlayerData::CallbackData{
-	{ 50, -75 },
+	{ 70, -140 },
 	{ 0, 0 },
-	250,
-	200,
+	170,
+	170,
 	15,
 	0,
 	100};
