@@ -49,7 +49,7 @@ void SkillSelection::init()
 	GameManager::AbilityID abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
 	//El jugador que gana obtiene 3 habilidades aleatorias, 2 de ellas las tiene que elegir, la otra es aleatoria
 	Entity* nav_j1 = entManager_.addEntity();
-	NavigationController* nav = nav_j1->addComponent<NavigationController>(3, 1, app_->getGameManager()->getPlayerInfo(winner_).hid);
+	NavigationController* nav = nav_j1->addComponent<NavigationController>(2, 3, app_->getGameManager()->getPlayerInfo(winner_).hid);
 
 	for (int i = 0; i < 3; i++) {
 		do {
@@ -62,15 +62,63 @@ void SkillSelection::init()
 
 		Entity* ab1 = entManager_.addEntity();
 		ab1->addComponent<UIElement>();
-		ab1->addComponent<UITransform>(Vector2D(i* 200, -100),
-			Vector2D((app_->getWindowManager()->getCurResolution().w / 8), (app_->getWindowManager()->getCurResolution().h / 2)),
-			Vector2D(80, 80),
-			Vector2D(160, 160));
+		//pos,ancla,pivot, tamano
+		if (winner_ == 1) {
+			if (i < 2) {
+				ab1->addComponent<UITransform>(
+					Vector2D(0, 0),
+					Vector2D((i * 300)+300, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
+					Vector2D(80, 80),
+					Vector2D(160, 160));
 
-		ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
-		nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
-		
+				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+			}
+			else {
+				ab1->addComponent<UITransform>(
+					Vector2D(0, 0),
+					Vector2D(app_->getWindowManager()->getCurResolution().w / 4, (app_->getWindowManager()->getCurResolution().h / 2)),
+					Vector2D(80, 80),
+					Vector2D(160, 160));
+
+				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i-1, 1);
+			}
+		}
+		else {
+			if (i < 2) {
+				ab1->addComponent<UITransform>(
+					Vector2D(50,0),
+					Vector2D((app_->getWindowManager()->getCurResolution().w/2)+(i*300)+300, (app_->getWindowManager()->getCurResolution().h / 2)-300),
+					Vector2D(80, 80),
+					Vector2D(160, 160));
+
+				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+			}
+			else {
+				ab1->addComponent<UITransform>(
+					Vector2D(0,0),
+					Vector2D((app_->getWindowManager()->getCurResolution().w / 4)*3, (app_->getWindowManager()->getCurResolution().h / 2)),
+					Vector2D(80, 80),
+					Vector2D(160, 160));
+
+				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i-1, 1);
+			}
+		}
 	}
+	// boton de salir 
+	tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
+			Vector2D(0, 0),
+			Vector2D((app_->getWindowManager()->getCurResolution().w /2), app_->getWindowManager()->getCurResolution().h - 200),
+			Vector2D(320, 90),
+			640, 180, 0, GoToNextSubMenu, nullptr, "Continue winner", 80, TextComponent::TextAlignment::Center);
+		std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Bottom;
+		
+		nav->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 2);
+		nav->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 1, 2);
+
 
 	Entity* log = entManager_.addEntity();
 
@@ -82,7 +130,8 @@ void SkillSelection::init()
 
 	}
 	
-
+	//Entity* nav_j2 = entManager_.addEntity();
+	//NavigationController* nav2 = nav_j2->addComponent<NavigationController>(1, 3, app_->getGameManager()->getPlayerInfo(loser).hid);
 	//El jugador que pierde obtiene 2 habilidades aleatorias y no elige
 	for (int i = 0; i < 2; i++) {
 		do {
@@ -91,17 +140,32 @@ void SkillSelection::init()
 		} while (checkAbility(abi1, loser));//comprobamos que es adecuada
 		AssetsManager::TextureNames abrand = (AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + abi1 + 1);
 		Entity* ab1 = entManager_.addEntity();
-		ab1->addComponent<UIElement>();
-		ab1->addComponent<UITransform>(
-			Vector2D((800 ) + 40,  500 + 200 * i),
-			Vector2D(((128) + (i) * (256)) + 40, (72) * 4.7 ),
-			Vector2D(((128) + (i) * (256)) + 40, (72) * 4.7 ),
-			Vector2D(128, 128));
-		ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
-		app_->getGameManager()->addHability(abi1, loser);
+		if (winner_ == 1) {
+			
+			ab1->addComponent<UIElement>();
+			ab1->addComponent<UITransform>(
+				Vector2D(0, 0),
+				Vector2D((app_->getWindowManager()->getCurResolution().w / 4) * 3, (app_->getWindowManager()->getCurResolution().h / 2)+(300*(i-1))),
+				Vector2D(80, 80),
+				Vector2D(160, 160));
+			ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+			app_->getGameManager()->addHability(abi1, loser);
+			//nav2->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), 0, i);
+		}
+		else {
+			ab1->addComponent<UIElement>();
+			ab1->addComponent<UITransform>(
+				Vector2D(0, 0),
+				Vector2D((app_->getWindowManager()->getCurResolution().w / 4), (app_->getWindowManager()->getCurResolution().h / 2) + (300 * (i - 1))),
+				Vector2D(80, 80),
+				Vector2D(160, 160));
+			ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+			app_->getGameManager()->addHability(abi1, loser);
+			//nav2->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), 0, i);
+		}
 
 	}
-
+	//boton no necesario?
 	//hab.push_back(abi2);
 
 
@@ -127,7 +191,7 @@ void SkillSelection::init()
 	//	Vector2D(0, -190),
 	//	Vector2D((app_->getWindowManager()->getCurResolution().w /4)*3, app_->getWindowManager()->getCurResolution().h),
 	//	Vector2D(320, 90),
-	//	640, 180, 0, GoToNextSubMenu, nullptr, "Continue_J2", 80, TextComponent::TextAlignment::Center);
+	//	640, 180, 0, GoToNextSubMenu, nullptr, "Continue winner", 80, TextComponent::TextAlignment::Center);
 	//std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Bottom;
 
 	////j2
