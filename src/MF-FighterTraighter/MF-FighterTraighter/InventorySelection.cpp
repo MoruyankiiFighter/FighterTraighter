@@ -37,19 +37,24 @@ void InventorySelection::init()
 	//ranuras j1
 
 	Entity* left_j1 = entManager_.addEntity();
+
+	left_j1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
 	left_j1->addComponent<UITransform>(Vector2D((double)app_->getWindowManager()->getCurResolution().w / 4- 200, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
 	left_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 	
 	Entity* right_j1 = entManager_.addEntity();
+	right_j1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
 	right_j1->addComponent<UITransform>(Vector2D((double)app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((app_->getWindowManager()->getCurResolution().w / 4),100), Vector2D((app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
 	right_j1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 
 	//ranuras j2
 	Entity* left_j2 = entManager_.addEntity();
+	left_j2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
 	left_j2->addComponent<UITransform>(Vector2D(3 * (double)app_->getWindowManager()->getCurResolution().w / 4 - 200, 200), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
 	left_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 
 	Entity* right_j2 = entManager_.addEntity();
+	right_j2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
 	right_j2->addComponent<UITransform>(Vector2D(3 * (double)app_->getWindowManager()->getCurResolution().w / 4 + 100, 200), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D((3 * (double)app_->getWindowManager()->getCurResolution().w / 4), 100), Vector2D(100, 100));
 	right_j2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));
 
@@ -214,10 +219,10 @@ void InventorySelection::init()
 	// Navigation controller
 
 	Entity* logicJ1 = entManager_.addEntity();
-	logicJ1->addComponent<InventoryLogic>(ctrl, 1, left_j1->getComponent<RenderImage>(ecs::RenderImage), right_j1->getComponent<RenderImage>(ecs::RenderImage));
+	logicJ1->addComponent<InventoryLogic>(ctrl_, 1, left_j1->getComponent<RenderImage>(ecs::RenderImage), right_j1->getComponent<RenderImage>(ecs::RenderImage));
 
 	Entity* logicJ2 = entManager_.addEntity();
-	logicJ2->addComponent<InventoryLogic>(ctrl_, 2, left_j2->getComponent<RenderImage>(ecs::RenderImage), right_j2->getComponent<RenderImage>(ecs::RenderImage));
+	logicJ2->addComponent<InventoryLogic>(ctrl, 2, left_j2->getComponent<RenderImage>(ecs::RenderImage), right_j2->getComponent<RenderImage>(ecs::RenderImage));
 
 	Entity* ent = entManager_.addEntity();
 	ent->addComponent<InventoryHandler>(logicJ1, logicJ2);

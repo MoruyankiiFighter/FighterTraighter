@@ -29,8 +29,8 @@ GameManager::GameManager(App* app) : app_(app)
 	//player1_.character = F10R;
 	player1_.character = MKWh00p;
 	
-	//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
-	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+	player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
+	//player2_.hid = new GamepadHID(app_->getInputManager(), 0);
 	player2_.character = F10R;
 }
 
@@ -79,18 +79,6 @@ void GameManager::playerLost(int player)
 		stateMachine->pushState(new Training(app_));
 		++currentRound_;
 	}
-	/*if (currentRound_ < totalRounds_ - 1) {
-		// Remove the current fight mode
-		stateMachine->popState();
-		stateMachine->pushState(new Training(app_));
-		++currentRound_;
-	}
-	else {
-		currentRound_ = 0;
-		playerLrounds_ = 0;
-		playerRrounds_ = 0;
-		GoBackToMain(stateMachine);
-	}*/
 
 }
 
@@ -112,24 +100,6 @@ void GameManager::trainingEnded(int winner)
 	stateMachine->pushState(new SkillSelection(app_, winner + 1));
 }
 
-//void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
-//{
-//	//player1_.character = character;
-//	//player1_.abilities = abilities;
-//	player1_.ability1Index = ability1Index;
-//	player1_.ability2Index = ability2Index;
-//	//player1_.onHitSound = onHit;
-//}
-//
-//void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
-//{
-//	//player2_.character = character;
-//	//player2_.abilities = abilities;
-//	player2_.ability1Index = ability1Index;
-//	player2_.ability2Index = ability2Index;
-//	//player2_.onHitSound = onHit;
-//
-//}
 
 void GameManager::resetCharacters()
 {
