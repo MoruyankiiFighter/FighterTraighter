@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="AbilitiesTimerFunction.cpp" />
     <ClCompile Include="AbilityFactory.cpp" />
+    <ClCompile Include="AbilitySelection.cpp" />
     <ClCompile Include="AIAttacks.cpp" />
     <ClCompile Include="AIController.cpp" />
     <ClCompile Include="AIGameState.cpp" />
@@ -200,6 +201,8 @@
     <ClCompile Include="RenderImage.cpp" />
     <ClCompile Include="LinkedGrid.cpp" />
     <ClCompile Include="Shake.cpp" />
+    <ClCompile Include="SkillSelectionHandler.cpp" />
+    <ClCompile Include="SkillSelectionLogic.cpp" />
     <ClCompile Include="SRandBasedGenerator.cpp" />
     <ClCompile Include="TrainingController.cpp" />
     <ClCompile Include="UIElement.cpp" />
@@ -227,6 +230,7 @@
   <ItemGroup>
     <ClInclude Include="AbilitiesTimerFunction.h" />
     <ClInclude Include="AbilityFactory.h" />
+    <ClInclude Include="AbilitySelection.h" />
     <ClInclude Include="AIAttacks.h" />
     <ClInclude Include="AIController.h" />
     <ClInclude Include="AIGameState.h" />
@@ -301,6 +305,8 @@
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
     <ClInclude Include="Shake.h" />
+    <ClInclude Include="SkillSelectionHandler.h" />
+    <ClInclude Include="SkillSelectionLogic.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="TrainingController.h" />
     <ClInclude Include="UIHealthbar.h" />

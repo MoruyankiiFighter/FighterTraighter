@@ -23,5 +23,11 @@ private:
 	int player_;
 	GameManager::AbilityID curr;
 	bool pressed = false;
+
+	int abs_size = 0,
+		ab1_index = 0,
+		ab2_index = 0;
+
+	void swapIndex();
 };
 
