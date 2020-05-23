@@ -83,6 +83,7 @@ void SkillSelection::init()
 
 				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
 				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i-1, 1);
+				app_->getGameManager()->addHability(abi1, winner_);
 			}
 		}
 		else {
@@ -105,6 +106,7 @@ void SkillSelection::init()
 
 				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
 				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i-1, 1);
+				app_->getGameManager()->addHability(abi1, winner_);
 			}
 		}
 	}
@@ -326,7 +328,10 @@ void SkillSelection::init()
 
 void SkillSelection::GoToNextSubMenu(App* app)
 {
-	app->getStateMachine()->pushState(new InventorySelection(app));
+	//app->getGameManager()->addHability(op_, winner);
+	//app->getStateMachine()->popState();
+	//no esta del todo bien
+	//app->getStateMachine()->pushState(new InventorySelection(app));
 }
 
 void SkillSelection::Pressed1(App* app)

@@ -2,7 +2,9 @@
 #include "Entity.h"
 #include "RenderImage.h"
 #include "UITransform.h"
-SkillSelectionLogic::SkillSelectionLogic(NavigationController* nav, int player, vector<GameManager::AbilityID> v):Component(ecs::OptionsLogic), nav_(nav), player_(player), v_(v)
+#include "InventorySelection.h"
+
+SkillSelectionLogic::SkillSelectionLogic(NavigationController* nav, int player, vector<GameManager::AbilityID> v):Component(ecs::OptionsLogic), nav_(nav), player_(player), v_(v), op(op)
 {
 	
 }
@@ -43,8 +45,12 @@ void SkillSelectionLogic::handleInput()
 	if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Down)) {
 		// estamos en la fila 0 y escogemos la habilidad opcional
 		if (nav_->GetPosY() == 0) {
+
 			op = v_[nav_->GetPosX()];
-			pressed = true; // por ahora
+			app_->getGameManager()->addHability(op, player_);
+			app_->getStateMachine()->pushState(new InventorySelection(app_));
+
+			//pressed = true; // por ahora
 		}
 	}
 	if (nav_->GetPosY() == 2 && app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Down) && !pressed) {

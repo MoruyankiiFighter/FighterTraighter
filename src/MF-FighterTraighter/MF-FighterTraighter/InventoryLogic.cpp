@@ -13,8 +13,8 @@ void InventoryLogic::init()
 	abs_size = app_->getGameManager()->getPlayerInfo(player_).abilities.size();
 	ab1_index = 0;
 	ab2_index = 1;
-	//left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
-	//right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
+	left_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab1_index] + 1)));
+	right_->setTexture(app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + app_->getGameManager()->getPlayerInfo(player_).abilities[ab2_index] + 1)));
 	ent = new Entity();
 	ent->addComponent<Transform>(Vector2D(), Vector2D(), 100, 100, 0);
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));

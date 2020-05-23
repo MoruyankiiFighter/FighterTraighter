@@ -19,7 +19,7 @@ public:
 private:
 	int winner_;
 
-	GameManager::AbilityID	op1_, op2_;
+	GameManager::AbilityID	op_;
 	std::vector<GameManager::AbilityID>	generatedAbs_1, generatedAbs_2;
 	bool checkAbility(GameManager::AbilityID newAb, int player);
 };

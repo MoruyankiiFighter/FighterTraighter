@@ -13,6 +13,7 @@ public:
 	void handleInput() override;
 
 	inline bool getPressed() { return pressed; }
+
 private:
 	Entity* ent;
 
