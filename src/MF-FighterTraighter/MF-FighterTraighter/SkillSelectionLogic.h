@@ -18,9 +18,12 @@ private:
 
 	int player_;
 	NavigationController* nav_;
-	int curr;
+	
 	GameManager::AbilityID op;
+
 	vector<GameManager::AbilityID> v_;
+
+
 	bool eq;
 	bool pressed;
 };
