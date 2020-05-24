@@ -93,17 +93,18 @@ void Fight::init()
 
 
 	// Visual abilities player1
-	Entity* imageability1 = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico),
+	Entity* imageability1 = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + p1_info.abilities[p1_info.ability1Index] + 1)),
 		Vector2D(ability1X, abilityIconY),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h),
 		Vector2D(abilityIconSize / 2, abilityIconSize / 2),
 		abilityIconSize, abilityIconSize, 0);
 
-	Entity* ability1 = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + p1_info.abilities[p1_info.ability1Index] + 1)),
+	Entity* ability1 = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mark1),
 		Vector2D(ability1X, abilityIconY),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h),
 		Vector2D(abilityIconSize / 2, abilityIconSize / 2),
 		abilityIconSize, abilityIconSize, 0);
+
 
 	Entity* imageability2 = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + p1_info.abilities[p1_info.ability2Index] + 1)),
 		Vector2D(ability2X, abilityIconY),
