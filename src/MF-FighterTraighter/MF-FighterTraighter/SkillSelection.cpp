@@ -218,3 +218,11 @@ bool SkillSelection::checkAbility(GameManager::AbilityID newAb, int player) {
 	}
 	
 }
+
+void SkillSelection::handleInput() {	
+	if (app_->getInputManager()->pressedStart()) {
+		app_->getGameManager()->pressedStart();
+	}
+	else
+		GameState::handleInput();
+}

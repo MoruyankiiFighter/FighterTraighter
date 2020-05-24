@@ -11,7 +11,6 @@
 #include "CharFactory.h"
 #include "AbilitiesTimerFunction.h"
 #include "FightController.h"
-#include "Entity.h"
 
 #include "Camera.h"
 #include "Shake.h"
@@ -65,19 +64,24 @@ void Fight::init()
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
 		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::HailBall, player1), 1);*/
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
-		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability1Index], player1), 0);
+		->setAbility(AbilityFactory::GiveAbility(/*p1_info.abilities[p1_info.ability1Index]*/ GameManager::AbilityID::KnockDown, player1), 0);
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
 		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability2Index], player1), 1);
 	entManager_.setHandler(player1, ecs::Player1);
 
-
-
-	// Player 2
+	//Player 2
 	Entity* player2 = CharFactory::addCharacterToGame(app_, this, -1, world, &app_->getGameManager()->getPlayerInfo(2), PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
-	// Giving abilites
+	//Giving abilites
 	const GameManager::PlayerInfo& p2_info = app_->getGameManager()->getPlayerInfo(2);
+	//////HABILIDAD A CHOLON
+	/*player2->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Mina, player2), 0);
 	player2->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
-		->setAbility(AbilityFactory::GiveAbility(p2_info.abilities[p2_info.ability1Index], player2), 0);
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::HailBall, player2), 1);
+	*/
+
+	player2->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
+		->setAbility(AbilityFactory::GiveAbility(/*p2_info.abilities[p2_info.ability1Index]*/ GameManager::AbilityID::KnockDown, player2), 0);
 	player2->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
 		->setAbility(AbilityFactory::GiveAbility(p2_info.abilities[p2_info.ability2Index], player2), 1);
 	entManager_.setHandler(player2, ecs::Player2);
@@ -94,17 +98,18 @@ void Fight::init()
 
 
 	// Visual abilities player1
-	Entity* imageability1 = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::S_Sock_ico),
+	Entity* imageability1 = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + p1_info.abilities[p1_info.ability1Index] + 1)),
 		Vector2D(ability1X, abilityIconY),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h),
 		Vector2D(abilityIconSize / 2, abilityIconSize / 2),
 		abilityIconSize, abilityIconSize, 0);
 
-	Entity* ability1 = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + p1_info.abilities[p1_info.ability1Index] + 1)),
+	Entity* ability1 = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mark1),
 		Vector2D(ability1X, abilityIconY),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h),
 		Vector2D(abilityIconSize / 2, abilityIconSize / 2),
 		abilityIconSize, abilityIconSize, 0);
+
 
 	Entity* imageability2 = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture((AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + p1_info.abilities[p1_info.ability2Index] + 1)),
 		Vector2D(ability2X, abilityIconY),

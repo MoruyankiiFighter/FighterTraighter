@@ -153,6 +153,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="BulletGravity.cpp" />
     <ClCompile Include="DestroyAtTime.cpp" />
+    <ClCompile Include="EndMenu.cpp" />
     <ClCompile Include="Fall_SpawnOnHit.cpp" />
     <ClCompile Include="F10RData.cpp" />
     <ClCompile Include="FightController.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="BulletGravity.h" />
     <ClInclude Include="DestroyAtTime.h" />
     <ClInclude Include="DestroyOnHit.h" />
+    <ClInclude Include="EndMenu.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Fall_SpawnOnHit.h" />
     <ClInclude Include="CharFactory.h" />
