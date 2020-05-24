@@ -39,6 +39,10 @@ void CharacterAttacks::setAbility(AnimationChain* newAbility, int index)
 
 void CharacterAttacks::interruptAttack()
 {
+	PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
+	if (entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)
+		pT->setOrientation(1);
+	else   pT->setOrientation(-1);
 	if (activeAttack_ != nullptr) {
 		activeAttack_->reset();
 		activeAttack_ = nullptr;
