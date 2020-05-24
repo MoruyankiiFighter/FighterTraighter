@@ -1,27 +1,16 @@
 #include "EndMenu.h"
-#include "InventorySelection.h"
-#include "Fight.h"
-#include "OptionsMenu.h"
-#include "Training.h"
-#include "AIGameState.h"
-#include "CharacterSelection.h"
+
 #include "InputManager.h"
 
 #include "Entity.h"
-
 #include "RenderImage.h"
-#include "Transform.h"
-#include "Button.h"
 #include "TextComponent.h"
 #include "NavigationController.h"
-
 #include "Font.h"
-
 #include "App.h"
 #include "UIFactory.h"
 #include "RenderAnimation.h"
 #include "UITransform.h"
-
 #include "SkillSelection.h"
 
 EndMenu::EndMenu(App* app, int playerWin) : GameState(app), winner(playerWin)
