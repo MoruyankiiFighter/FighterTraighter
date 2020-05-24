@@ -35,9 +35,37 @@ Section
 	
     # set the installation directory as the destination for the following actions
     SetOutPath $INSTDIR
-	 
-	# specify file to go in output path
-	File test.txt
+
+
+	# specify files to go in output path
+	
+	File "..\src\MF-FighterTraighter\x64\Release\MF-FighterTraighter.exe"
+	File "..\src\MF-FighterTraighter\x64\Release\MF-FighterTraighter.iobj"
+	File "..\src\MF-FighterTraighter\x64\Release\MF-FighterTraighter.ipdb"
+	File "..\src\MF-FighterTraighter\x64\Release\MF-FighterTraighter.pdb"
+	
+	File "..\src\MF-FighterTraighter\x64\Release\libFLAC-8.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libfreetype-6.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libjpeg-9.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libmodplug-1.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libmpg123-0.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libogg-0.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libopus-0.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libopusfile-0.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libpng16-16.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libtiff-5.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libvorbis-0.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libvorbisfile-3.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\libwebp-7.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\SDL2.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\SDL2_image.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\SDL2_mixer.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\SDL2_ttf.dll"
+	File "..\src\MF-FighterTraighter\x64\Release\zlib1.dll"
+
+	
+	# end of files
+ 
  
     # create the uninstaller
     WriteUninstaller "$INSTDIR\uninstall $FTName.exe"
@@ -57,8 +85,35 @@ Section "Uninstall"
     # second, remove the link from the start menu
     Delete "$SMPROGRAMS\$FTName.lnk"
 	
-	# now delete installed file
-	Delete $INSTDIR\test.txt
+	
+	# now delete installed files
+	
+	Delete $INSTDIR\MF-FighterTraighter.exe
+	Delete $INSTDIR\MF-FighterTraighter.iobj
+	Delete $INSTDIR\MF-FighterTraighter.ipdb
+	Delete $INSTDIR\MF-FighterTraighter.pdb
+	
+	Delete $INSTDIR\libFLAC-8.dll
+	Delete $INSTDIR\libfreetype-6.dll
+	Delete $INSTDIR\libjpeg-9.dll
+	Delete $INSTDIR\libmodplug-1.dll
+	Delete $INSTDIR\libmpg123-0.dll
+	Delete $INSTDIR\libogg-0.dll
+	Delete $INSTDIR\libopus-0.dll
+	Delete $INSTDIR\libopusfile-0.dll
+	Delete $INSTDIR\libpng16-16.dll
+	Delete $INSTDIR\libtiff-5.dll
+	Delete $INSTDIR\libvorbis-0.dll
+	Delete $INSTDIR\libvorbisfile-3.dll
+	Delete $INSTDIR\libwebp-7.dll
+	Delete $INSTDIR\SDL2.dll
+	Delete $INSTDIR\SDL2_image.dll
+	Delete $INSTDIR\SDL2_mixer.dll
+	Delete $INSTDIR\SDL2_ttf.dll
+	Delete $INSTDIR\zlib1.dll
+	
+	#end of files
+ 
  
 	# Delete the directory
     RMDir $INSTDIR
