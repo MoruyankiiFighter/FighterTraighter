@@ -236,3 +236,13 @@ void InventorySelection::init()
 }
 
 
+
+void InventorySelection::handleInput()
+{
+	if (app_->getInputManager()->pressedStart()) {
+		app_->getGameManager()->pressedStart();
+	}
+	else
+		GameState::handleInput();
+
+}

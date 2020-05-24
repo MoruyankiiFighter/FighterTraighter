@@ -16,6 +16,8 @@
 #include "InventorySelection.h"
 #include "AbilitySelection.h"
 #include "SkillSelection.h"
+#include "EndMenu.h"
+#include "InventorySelection.h"
 
 GameManager::GameManager(App* app) : app_(app)
 {
@@ -69,7 +71,10 @@ void GameManager::pressedStart()
 		|| dynamic_cast<OptionsMenu*>(curState)
 		|| dynamic_cast<CharacterSelection*>(curState)) app_->getStateMachine()->popState();
 	else if (dynamic_cast<Fight*>(curState)
-		|| dynamic_cast<Training*>(curState)) app_->getStateMachine()->pushState(new PauseMenu(app_));
+		|| dynamic_cast<Training*>(curState)
+		|| dynamic_cast<SkillSelection*>(curState)
+		|| dynamic_cast<InventorySelection*>(curState))
+		app_->getStateMachine()->pushState(new PauseMenu(app_));
 }
 
 void GameManager::playerLost(int player)
@@ -89,8 +94,13 @@ void GameManager::playerLost(int player)
 		break;
 	}
 	if (((totalRounds_ / 2) < playerLrounds_) || ((totalRounds_ / 2) < playerRrounds_)) {
+		int winner;
+		//wins player1
+ 		if(playerLrounds_>playerRrounds_)
+			winner=0;
+		else winner=1;
 		ResetRounds();
-		GoBackToMain();
+		GoToEndMenu(winner);
 	}
 	else {
 		stateMachine->popState();
@@ -139,4 +149,18 @@ void GameManager::GoBackToMain()
 		app_->getStateMachine()->popState();
 		currState = app_->getStateMachine()->getCurrentState();
 	}
+}
+
+void GameManager::GoToEndMenu(int winner) {
+
+
+	resetCharacters();
+	ResetRounds();
+	GameState* currState = app_->getStateMachine()->getCurrentState();
+	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
+		app_->getStateMachine()->popState();
+		currState = app_->getStateMachine()->getCurrentState();
+	}
+	app_->getStateMachine()->pushState(new EndMenu(app_, winner));
+
 }

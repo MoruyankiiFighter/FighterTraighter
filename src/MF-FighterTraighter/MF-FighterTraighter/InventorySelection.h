@@ -7,7 +7,7 @@ public:
 	InventorySelection(App* app) : GameState(app) { init(); }
 	~InventorySelection() {};
 	void init() override;
-
+	void handleInput() override;
 private:
 
 };
