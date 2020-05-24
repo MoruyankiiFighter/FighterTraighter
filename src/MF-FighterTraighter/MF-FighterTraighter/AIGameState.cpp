@@ -10,6 +10,7 @@
 #include "PlayerOnHit.h"
 #include "Health.h"
 #include "PlayerAnimation.h"
+#include "ArcadeController.h"
 
 void AIGameState::init()
 {
@@ -45,6 +46,10 @@ void AIGameState::init()
 	Entity* AI2 = CharFactory::addAICharacterToGame(app_, this, -1, world, GameManager::F10R, 5, Vector2D(350, 450),
 		PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
 	entManager_.setHandler(AI2, ecs::Player2);
+
+	Entity* gameController = entManager_.addEntity();
+	gameController->addComponent<ArcadeController>(240, 180);
+	entManager_.setHandler(gameController, ecs::Controller);
 }
 
 void AIGameState::handleInput()

@@ -9,7 +9,7 @@ public:
 	void init() override;
 	void update() override;
 
-	void PlayerLost(int playerNumber);
+	virtual void PlayerLost(int playerNumber);
 
 	virtual ~FightController() {}
 protected:
@@ -20,9 +20,9 @@ protected:
 	int roundEndTime_;
 	int end_timer = 0;
 	int ini_timer = 0;
-
+	virtual void end();
 	//allows the players to perform any action
-	void disablePlayers(bool mode);
+	virtual void disablePlayers(bool mode);
 
 	//displays a message in the middle of the screen
 	void displayMessage(string msg);

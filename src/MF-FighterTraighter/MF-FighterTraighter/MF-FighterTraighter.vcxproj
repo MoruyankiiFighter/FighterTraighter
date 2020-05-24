@@ -162,6 +162,7 @@
     <ClCompile Include="GamepadHID.cpp" />
     <ClCompile Include="GraphicsOptionsLogic.cpp" />
     <ClCompile Include="HID.cpp" />
+    <ClCompile Include="ArcadeController.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="InventoryHandler.cpp" />
@@ -264,6 +265,7 @@
     <ClInclude Include="HID.h" />
     <ClInclude Include="HitboxData.h" />
     <ClInclude Include="AssetsExceptions.h" />
+    <ClInclude Include="ArcadeController.h" />
     <ClInclude Include="IceDestroyOnHit.h" />
     <ClInclude Include="IndexSlider.h" />
     <ClInclude Include="InventoryHandler.h" />

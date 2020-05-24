@@ -95,6 +95,13 @@ void GameManager::playerLost(int player)
 
 }
 
+void GameManager::AIWin()
+{
+	//ir al menu donde se muestra la puntuacion
+	//GoToEndMenu(1);
+	GoBackToMain();
+}
+
 void GameManager::ResetRounds()
 {
 	currentRound_ = 0;

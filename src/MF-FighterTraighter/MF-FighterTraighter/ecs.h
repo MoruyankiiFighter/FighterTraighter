@@ -49,6 +49,7 @@ namespace ecs {
 		TrainingController,
 		GraphicsOptionsLogic,
 		AudioOptionsLogic,
+		IAController,
 		/*
 		
 		*/

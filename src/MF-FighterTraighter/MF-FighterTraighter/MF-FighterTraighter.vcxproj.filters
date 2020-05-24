@@ -305,6 +305,7 @@
     <ClCompile Include="CharacterAttacks.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
+    <ClCompile Include="ArcadeController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -650,6 +651,7 @@
       <Filter>Header files\Components</Filter>
     </ClInclude>
     <ClInclude Include="EndMenu.h" />
+    <ClInclude Include="ArcadeController.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">
