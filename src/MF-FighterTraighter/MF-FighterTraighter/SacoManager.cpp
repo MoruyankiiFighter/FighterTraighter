@@ -12,14 +12,14 @@ void SacoManager::init() {
 	switch (rndInter)
 	{
 	case LAST_HIT:
-		pb = new LastHit_Wins(entity_, "¡Da el ultimo golpe!");
+		pb = new LastHit_Wins(entity_);
 		transform_->resetUserData(pb);
-		infoText = "¡Da el ultimo golpe!";
+		infoText = "Last Hit the Punching Bag!";
 		break;
 	case MORE_DAMAGE:
-		pb = new MoreDamage_Wins(entity_, "¡Daña el saco!");
+		pb = new MoreDamage_Wins(entity_);
 		transform_->resetUserData(pb);	//este seria diferente
-		infoText = "¡Daña el saco!";
+		infoText = "Destroy the Punching Bag!";
 		break;
 	default:
 		pb = nullptr;
