@@ -17,6 +17,8 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 	PlayerState* currState = entity_->getComponent<PlayerState>(ecs::PlayerState);
 	PlayerData* pD = entity_->getComponent<PlayerData>(ecs::PlayerData);
 	Health* helth = entity_->getComponent<Health>(ecs::Health);
+	double startHealth = helth->getHealth();
+
 	PlayerParticleSystem* pSystem = entity_->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem);
 	if (!currState->isProtected()) {
 		if (!hBox_data->guardBreaker_) {
@@ -57,6 +59,10 @@ void PlayerOnHit::onHit(b2Fixture* fixture)
 		cout << "He bloqueado dano pero estoy en hitstun" << endl;
 #endif
 
+	}
+
+	if (startHealth > helth->getHealth()) {
+		SDL_Delay((startHealth - helth->getHealth()) * 5);
 	}
 
 	// he died
