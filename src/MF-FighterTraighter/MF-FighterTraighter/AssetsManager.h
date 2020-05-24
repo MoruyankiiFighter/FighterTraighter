@@ -121,7 +121,8 @@ public:
 		FK1,
 		FK4,
 		AS1,
-		nk1
+		nk1,
+		kd1
 	};
 
 	enum FontNames {

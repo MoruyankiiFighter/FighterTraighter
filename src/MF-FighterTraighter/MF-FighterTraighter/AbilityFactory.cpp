@@ -1165,7 +1165,7 @@ void AbilityFactory::KD2(Entity* e)
 	//phtr->getBody()->SetLinearDamping(10);	
 	PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
 
-	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg1);
+	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::kd1);
 	//PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = phtr->getOrientation();
 
@@ -1185,9 +1185,9 @@ void AbilityFactory::KD2(Entity* e)
 	double width = 90;
 	double height = phtr->getHeight();
 
-	double projX = phtr->getPosition().getX()  + (phtr->getWidth() / 2)+60;
+	double projX = phtr->getPosition().getX()  + (phtr->getWidth() * 3 / 4);
 
-	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4);
 	int time = 10;
 	double damage = 11;
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());

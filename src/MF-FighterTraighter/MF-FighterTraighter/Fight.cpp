@@ -59,7 +59,7 @@ void Fight::init()
 	//Giving abilites
 	const GameManager::PlayerInfo& p1_info = app_->getGameManager()->getPlayerInfo(1);
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
-		->setAbility(AbilityFactory::GiveAbility(/*p1_info.abilities[p1_info.ability1Index]*/ GameManager::AbilityID::AcidSplit, player1), 0);
+		->setAbility(AbilityFactory::GiveAbility(/*p1_info.abilities[p1_info.ability1Index]*/ GameManager::AbilityID::KnockDown, player1), 0);
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
 		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability2Index], player1), 1);
 	entManager_.setHandler(player1, ecs::Player1);
@@ -76,7 +76,7 @@ void Fight::init()
 	*/
 
 	player2->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
-		->setAbility(AbilityFactory::GiveAbility(p2_info.abilities[p2_info.ability1Index], player2), 0);
+		->setAbility(AbilityFactory::GiveAbility(/*p2_info.abilities[p2_info.ability1Index]*/ GameManager::AbilityID::KnockDown, player2), 0);
 	player2->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
 		->setAbility(AbilityFactory::GiveAbility(p2_info.abilities[p2_info.ability2Index], player2), 1);
 	entManager_.setHandler(player2, ecs::Player2);
