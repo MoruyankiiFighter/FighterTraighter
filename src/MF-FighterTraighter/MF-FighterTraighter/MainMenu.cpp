@@ -23,6 +23,7 @@
 #include "UITransform.h"
 
 #include "SkillSelection.h"
+#include "EndMenu.h"
 
 MainMenu::MainMenu(App* app) : GameState(app)
 {
@@ -158,7 +159,7 @@ void MainMenu::GoPvP(App* app)
 #endif 
 		
 
-	 app->getStateMachine()->pushState(new CharacterSelection(app));
+	 app->getStateMachine()->pushState(new EndMenu(app, 0));
 	//app->getStateMachine()->pushState(new Fight(app));
 #ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
