@@ -838,12 +838,9 @@ void AbilityFactory::FK2(Entity* ent)
 	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -35, -18 };
-		pT->setOrientation(-1);
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, -18 };
-		pT->setOrientation(1);
-
 	}
 	else {
 		if (pT->getOrientation() == 1) {
@@ -869,14 +866,9 @@ void AbilityFactory::FK3(Entity* ent)
 
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -35, 18 };
-		pT->setOrientation(-1);
-
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, 18 };
-		pT->setOrientation(1);
-
-
 	}
 	else {
 		if (pT->getOrientation() == 1) {
@@ -925,9 +917,8 @@ void AbilityFactory::FK4(Entity* e)
 void AbilityFactory::FKC(Entity* ent)
 {
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)
-		pT->setOrientation(1);
-	else   pT->setOrientation(-1);
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) pT->setOrientation(1);
+	else pT->setOrientation(-1);
 	//pT->getBody()->SetLinearDamping(10);	//0 friction in the air
 	goOnCoolodwn(ent, 60 * 10);
 }
@@ -1062,12 +1053,9 @@ void AbilityFactory::NK3(Entity* ent)
 	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -35, -18 };
-		pT->setOrientation(-1);
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, -18 };
-		pT->setOrientation(1);
-
 	}
 	else {
 		if (pT->getOrientation() == 1) {
@@ -1079,15 +1067,12 @@ void AbilityFactory::NK3(Entity* ent)
 	}
 	pT->setSpeed(speed);
 
-	/*PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
-	pC->canJump(false);*/
-
+	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::TextureNames::nk1),
+		Vector2D(125, 0), Vector2D(250, 500), 115, PlayerParticleSystem::DeletionMethod::OnHit, 2, 5, true);
 }
 
 void AbilityFactory::NKF(Entity* ent)
 {	
-	/*PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
-	pC->canJump(true);*/
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
 		 pT->setOrientation(1);

@@ -119,7 +119,8 @@ public:
 		Hb2,
 		Ll1,
 		FK4,
-		AS1
+		AS1,
+		nk1
 	};
 
 	enum FontNames {
