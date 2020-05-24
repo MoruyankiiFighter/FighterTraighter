@@ -276,6 +276,7 @@ void InventorySelection::handleInput()
 
 }
 
+//check if the newAb is actually new 
 bool InventorySelection::checkAbility(GameManager::AbilityID newAb)
 {
 	
