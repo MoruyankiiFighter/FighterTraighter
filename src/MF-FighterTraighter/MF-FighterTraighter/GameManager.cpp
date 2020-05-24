@@ -16,6 +16,7 @@
 #include "InventorySelection.h"
 #include "AbilitySelection.h"
 #include "SkillSelection.h"
+#include "EndMenu.h"
 
 GameManager::GameManager(App* app) : app_(app)
 {
@@ -71,8 +72,13 @@ void GameManager::playerLost(int player)
 		break;
 	}
 	if (((totalRounds_ / 2) < playerLrounds_) || ((totalRounds_ / 2) < playerRrounds_)) {
+		int winner;
+		//wins player1
+ 		if(playerLrounds_>playerRrounds_)
+			winner=0;
+		else winner=1;
 		ResetRounds();
-		GoBackToMain();
+		GoToEndMenu(winner);
 	}
 	else {
 		stateMachine->popState();
@@ -121,4 +127,18 @@ void GameManager::GoBackToMain()
 		app_->getStateMachine()->popState();
 		currState = app_->getStateMachine()->getCurrentState();
 	}
+}
+
+void GameManager::GoToEndMenu(int winner) {
+
+
+	resetCharacters();
+	ResetRounds();
+	GameState* currState = app_->getStateMachine()->getCurrentState();
+	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
+		app_->getStateMachine()->popState();
+		currState = app_->getStateMachine()->getCurrentState();
+	}
+	app_->getStateMachine()->pushState(new EndMenu(app_, winner));
+
 }

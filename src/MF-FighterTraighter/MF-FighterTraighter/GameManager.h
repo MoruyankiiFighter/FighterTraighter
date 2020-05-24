@@ -137,7 +137,7 @@ public:
 	inline unsigned int getTotalRounds() { return totalRounds_; }
 
 	void GoBackToMain();
-
+	void GoToEndMenu(int winner);
 protected:
 	unsigned int playerLrounds_ = 0;
 	unsigned int playerRrounds_ = 0;

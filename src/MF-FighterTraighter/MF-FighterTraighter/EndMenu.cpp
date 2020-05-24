@@ -61,12 +61,12 @@ void EndMenu::init()
 	string text2;
 
 	if (winner == 0) {
-		text = "!!PLAYER 1 WINS!! YOU ARE A MONSTER!";
-		text2 = "PLAYER 2 IS SO BAD. TRY TO USE YOUR HANDS NEXT TIME NOOB";
+		text = "¡PLAYER 1 WINS! ¡YOU ARE A MONSTER!";
+		text2 = "PLAYER 2 IS A NOOB";
 	}
 	else {
-		text = "!!PLAYER 2 WINS!! YOU ARE A MONSTER!";
-		text2 = "PLAYER 1 IS SO BAD. TRY TO USE YOUR HANDS NEXT TIME NOOB";
+		text = "¡PLAYER 2 WINS! ¡YOU ARE A MONSTER!";
+		text2 = "PLAYER 1 IS A NOOB";
 	}
 		
 	//// Image
@@ -76,21 +76,26 @@ void EndMenu::init()
 	//	Vector2D(900, 900 / 2),
 	//	900, 900, 0);
 
+	Entity* textWinner = entManager_.addEntity();
+	textWinner->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 200), Vector2D(200, 50), Vector2D(400, 100));
+	textWinner->addComponent<TextComponent>(text, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::Center);
 
-
+	Entity* textLoser = entManager_.addEntity();
+	textLoser->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 500), Vector2D(200, 50), Vector2D(400, 100));
+	textLoser->addComponent<TextComponent>(text2, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::Center);
 
 	// Position variables
-	const double leftOffset = 100;
-	const double buttonInitPos = -160;
+	const double leftOffset = 250;
+	//const double buttonInitPos = -160;
 	const double buttonSeparation = 115;
-	const double textOffset = 5;
+	//const double textOffset = 5;
 	const double textSize = 85;
 
 
 
 	// Logo
 	Entity* logo = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Logo),
-		Vector2D(leftOffset, 160),
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 2-leftOffset, 160),
 		Vector2D(0, 0),
 		Vector2D(0, 91 * 1.5 / 2),
 		320 * 1.5, 91 * 1.5, 0);
