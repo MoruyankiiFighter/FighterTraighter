@@ -681,6 +681,7 @@ void AbilityFactory::VS1(Entity* ent)
 	VampiricDestroyAtTime* dT = new VampiricDestroyAtTime(5, 20, 30, { (double)orientation_ * 5, -1.3 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, 0.4);
 
 	AbilityFactory::instanceEntitywHitbox(ent, width, 145, pos, { 0, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::VAMPIRIC), false);
 }
 
 void AbilityFactory::VSC(Entity* ent)
