@@ -1046,8 +1046,8 @@ void AbilityFactory::NK2(Entity* ent)
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	phtr->setOrientation(-1 * phtr->getOrientation());
 	
-	PlayerState* pS = ent->getComponent<PlayerState>(ecs::PlayerState);
-	if (pS->isCasting() || pS->isAbletoMove()) pS->goIdle();
+	//PlayerState* pS = ent->getComponent<PlayerState>(ecs::PlayerState);
+	//if (pS->isCasting() || pS->isAbletoMove()) pS->goIdle();
 	NK1(ent);
 
 }
@@ -1079,15 +1079,15 @@ void AbilityFactory::NK3(Entity* ent)
 	}
 	pT->setSpeed(speed);
 
-	PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
-	pC->canJump(false);
+	/*PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
+	pC->canJump(false);*/
 
 }
 
 void AbilityFactory::NKF(Entity* ent)
 {	
-	PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
-	pC->canJump(true);
+	/*PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
+	pC->canJump(true);*/
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
 		 pT->setOrientation(1);

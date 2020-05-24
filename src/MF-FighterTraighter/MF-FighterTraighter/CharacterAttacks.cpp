@@ -36,18 +36,21 @@ void CharacterAttacks::setAbility(AnimationChain* newAbility, int index)
 	if (abilityList[index] != nullptr)delete abilityList[index]; //Necesario? no se
 	abilityList[index] = newAbility;
 }
-
+//if u are attacking, interrupt it, also check if your orientation is right just in case
 void CharacterAttacks::interruptAttack()
 {
 	PhysicsTransform* pT = entity_->getComponent<PhysicsTransform>(ecs::Transform);
 	if (entity_->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)
 		pT->setOrientation(1);
 	else   pT->setOrientation(-1);
+
+
 	if (activeAttack_ != nullptr) {
 		activeAttack_->reset();
 		activeAttack_ = nullptr;
 		resetOneTimeMultiplier();
 	}
+	//destroy all attack´s hitboxes
 	app_->getStateMachine()->getCurrentState()->resetGroup((entity_->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->GetFilterData().categoryBits) >> 2);
 }
 
