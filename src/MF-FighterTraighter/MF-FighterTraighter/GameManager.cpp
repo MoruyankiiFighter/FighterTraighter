@@ -23,14 +23,32 @@ GameManager::GameManager(App* app) : app_(app)
 	resetCharacters();
 
 	// TODO: Move this elsewhere
-	player1_.hid = new KeyboardHID(app_->getInputManager());
+	switch (app_->getInputManager()->NumGamepadConnected())
+	{
+	case 0:	player1_.hid = new KeyboardHID(app_->getInputManager());
+		player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
+		break;
+	case 1:
+		player1_.hid = new KeyboardHID(app_->getInputManager());
+		player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+		break;
+	case 2:
+		player1_.hid = new GamepadHID(app_->getInputManager(), 0);
+		player2_.hid = new GamepadHID(app_->getInputManager(), 1);
+
+		break;
+	}
+	
+
+	
+	//player1_.hid = new KeyboardHID(app_->getInputManager());
 	//player1_.hid = new GamepadHID(app_->getInputManager(),0);
 	
 	//player1_.character = F10R;
 	player1_.character = F10R;
 
 	//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
-	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+	//player2_.hid = new GamepadHID(app_->getInputManager(), 0);
 	player2_.character = F10R;
 }
 

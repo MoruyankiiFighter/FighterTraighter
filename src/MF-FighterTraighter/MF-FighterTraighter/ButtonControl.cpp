@@ -77,7 +77,7 @@ void ButtonControl::handleInput()
 		b = ini;
 		if (clickCallback_)
 		{
-			clickCallback_(app_, index, control);
+			clickCallback_(app_, index, control,player);
 		}
 		Buttonstate_ = Selected;
 		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
@@ -92,12 +92,12 @@ void ButtonControl::render()
 	{
 		if (control == 0)
 		{
-			text_->setText(SDL_GetScancodeName(dynamic_cast<KeyboardHID*>(app_->getGameManager()->getPlayerInfo(1).hid)->getkeys().at(index)));
+			text_->setText(SDL_GetScancodeName(dynamic_cast<KeyboardHID*>(app_->getGameManager()->getPlayerInfo(player).hid)->getkeys().at(index)));
 
 		}
 		else
 		{
-			text_->setText(dynamic_cast<GamepadHID*>(app_->getGameManager()->getPlayerInfo(2).hid)->getControl().at(index));
+			text_->setText(dynamic_cast<GamepadHID*>(app_->getGameManager()->getPlayerInfo(player).hid)->getControl().at(index));
 		}
 	}
 
