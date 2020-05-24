@@ -135,6 +135,11 @@ public:
 		if (player == 1) return playerLrounds_;
 		return playerRrounds_;
 	}
+
+	inline void increasePlayerRounds(int player) {
+		if (player == 1) ++playerLrounds_;
+		else ++playerRrounds_;
+	}
 	inline unsigned int getTotalRounds() { return totalRounds_; }
 
 	void GoBackToMain();

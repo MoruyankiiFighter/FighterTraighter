@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "UITransform.h"
 #include "Training.h"
-#include "AIGameState.h"
+#include "InventorySelection.h"
 void CharacterSelectionHandler::init()
 {
 	ent = state_->getEntityManager().addEntity();
@@ -14,7 +14,7 @@ void CharacterSelectionHandler::update()
 {
 	RenderImage* rImage = ent->getComponent<RenderImage>(ecs::RenderImage);
 	j1_ = log1->getComponent<CharacterSelectionLogic>(ecs::CharacterSelectionLogic)->getChosen();
-	if(log2)
+	if(log2)//2 players
 		j2_ = log2->getComponent<CharacterSelectionLogic>(ecs::CharacterSelectionLogic)->getChosen();
 
 	if (j1_ && j2_) {
@@ -23,12 +23,12 @@ void CharacterSelectionHandler::update()
 		if (goTimer == 0) {
 			app_->getStateMachine()->pushState(new Training(app_));
 		}
-	}
+	}//1 player
 	else if (j1_ && log2 == nullptr) {
 		--goTimer;
 		if (!rImage->getRendered()) rImage->setRendered(true);
 		if (goTimer == 0) {
-			app_->getStateMachine()->pushState(new AIGameState(app_));
+			app_->getStateMachine()->pushState(new InventorySelection(app_,1));
 		}
 	}
 	else {

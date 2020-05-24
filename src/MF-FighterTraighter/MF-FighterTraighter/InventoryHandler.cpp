@@ -3,6 +3,7 @@
 #include "UITransform.h"
 #include "Fight.h"
 #include "InventoryLogic.h"
+#include "AIGameState.h"
 void InventoryHandler::init()
 {
 	ent = new Entity();
@@ -13,7 +14,8 @@ void InventoryHandler::init()
 void InventoryHandler::update()
 {
 	pressed_1 = j1_->getComponent<InventoryLogic>(ecs::InventoryLogic)->getPressed();
-	pressed_2 = j2_->getComponent<InventoryLogic>(ecs::InventoryLogic)->getPressed();
+	if(j2_)
+		pressed_2 = j2_->getComponent<InventoryLogic>(ecs::InventoryLogic)->getPressed();
 }
 
 void InventoryHandler::render()
@@ -22,11 +24,20 @@ void InventoryHandler::render()
 		cout << "aaa";
 		ent->render();
 	}
+	else if (pressed_1 && j2_ == nullptr) {
+		ent->render();
+
+	}
+
 }
 
 void InventoryHandler::handleInput()
 {
 	if (pressed_1 && pressed_2) {
 		app_->getStateMachine()->pushState(new Fight(app_));
+	}
+	else if (pressed_1 && j2_ == nullptr) {
+		int rounds = app_->getGameManager()->getPlayerRounds(1);
+		app_->getStateMachine()->pushState(new AIGameState(app_,rounds));
 	}
 }
