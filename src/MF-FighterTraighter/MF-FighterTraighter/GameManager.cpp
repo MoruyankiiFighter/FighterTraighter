@@ -27,7 +27,7 @@ GameManager::GameManager(App* app) : app_(app)
 	//player1_.hid = new GamepadHID(app_->getInputManager(),0);
 	
 	//player1_.character = F10R;
-	player1_.character = MKWh00p;
+	player1_.character = F10R;
 
 	//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
 	player2_.hid = new GamepadHID(app_->getInputManager(), 0);

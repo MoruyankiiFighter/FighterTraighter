@@ -4,7 +4,7 @@
 #include "PlayerParticleSystem.h"
 F10RData::F10RData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber):
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber) {
-	animLength_ = { {4, true, 12}, {3, true, 15}, {2, true, 3}, {1, true, 15}, {2, false, 2}, {4, false, 10}, {6, false, 10}, {5, false, 12},
+	animLength_ = { {4, true, 12}, {3, true, 15}, {2, true, 3}, {1, true, 15}, {2, false, 4}, {4, false, 10}, {6, false, 10}, {5, false, 12},
 	{6, false, 14}, {5, false, 10}, {5, false, 9}, {5, false, 10}, {6, false, 12}, {2, true, 15}, {2, false, 10}, {2, false, 4}, {2, false, 10},
 	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 7}, {6, false, 12}, {3, true, 10} };
 }
@@ -79,7 +79,7 @@ void F10RData::NP1(Entity* ent)
 }
 
 PlayerData::CallbackData F10RData::np1 = PlayerData::CallbackData{
-	{ 110, -10 },
+	{ 110, -35 },
 	{ 50, 0 },
 	125,
 	95,
@@ -214,7 +214,7 @@ void F10RData::ANP1(Entity* ent)
 }
 
 PlayerData::CallbackData F10RData::anp1 = PlayerData::CallbackData{
-	{ -100, -140 },
+	{ -100, -180 },
 	{ 500, -270 },
 	350,
 	350,
@@ -291,12 +291,12 @@ void F10RData::ANK1(Entity* ent)
 	if (orientation_ == -1) projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX();
 	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + ank1.position.getY());
 
-	double projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX() - 70;
-	if (orientation_ == -1) projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX() + 70;
+	double projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX() - 45;
+	if (orientation_ == -1) projX2 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX() + 45;
 	Vector2D pos2 = Vector2D(projX2, phtr->getPosition().getY() + ank1.position.getY() - 100);
 
-	double projX3 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX() - 140;
-	if (orientation_ == -1) projX3 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX() + 140;
+	double projX3 = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (ank1.width / 2) + ank1.position.getX() - 90;
+	if (orientation_ == -1) projX3 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (ank1.width / 2) - ank1.position.getX() + 90;
 	Vector2D pos3 = Vector2D(projX3, phtr->getPosition().getY() + ank1.position.getY() - 200);
 
 	DestroyAtTime* dT1 = new DestroyAtTime(ank1.damage * pD->getAttack(), ank1.time, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
@@ -304,9 +304,9 @@ void F10RData::ANK1(Entity* ent)
 	DestroyAtTime* dT3 = new DestroyAtTime(ank1.damage * pD->getAttack(), ank1.time, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() }, false, pD->getPlayerNumber(), ent);
 	/*AbilityFactory::createProyectile(ent, ank1.width, ank1.height, pos, { (double)orientation_ * 2, 0 }, ank1.damage, ank1.hitstun, { (double)orientation_ * ank1.knockBack.getX(), ank1.knockBack.getY() },
 		ank1.time, mask, ent->getState(), ent->getApp(), texture, false);*/
-	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos1, { (double)orientation_ * 2, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT1);
-	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos2, { (double)orientation_ * 2.5, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT2);
-	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos3, { (double)orientation_ * 3, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT3);
+	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos1, { (double)orientation_ * 2.8, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT1);
+	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos2, { (double)orientation_ * 3.1, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT2);
+	AbilityFactory::instanceEntitywHitbox(ent, ank1.width, ank1.height, pos3, { (double)orientation_ * 3.4, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT3);
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::NORMALPUNCH), false);
 }
 
@@ -315,8 +315,8 @@ PlayerData::CallbackData F10RData::ank1 = PlayerData::CallbackData{
 	{ 3.5, -1.5 },
 	120,
 	55,
-	20,
-	9,
+	25,
+	4,
 	42 };
 
 void F10RData::AHK1(Entity* ent)
