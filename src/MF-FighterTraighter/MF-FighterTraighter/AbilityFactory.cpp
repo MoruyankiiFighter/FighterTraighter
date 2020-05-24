@@ -109,7 +109,7 @@ void AbilityFactory::MG2(Entity* ent)	//Finisher explosivo
 
 void AbilityFactory::MGC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60*10);
+	goOnCoolodwn(ent, 60*21);
 }
 
 AnimationChain* AbilityFactory::GiveSeismicShock(Entity* e) //ability that kick the floor and moments later 3 rocks fall on top of the other player
@@ -223,7 +223,7 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 
 void AbilityFactory::SeismicSC(Entity* ent)
 {
-	goOnCoolodwn(ent, 10 * 60);
+	goOnCoolodwn(ent, 22 * 60);
 }
 
 AnimationChain* AbilityFactory::GiveExplosiveWillpower(Entity* e)
@@ -240,7 +240,7 @@ AnimationChain* AbilityFactory::GiveExplosiveWillpower(Entity* e)
 
 void AbilityFactory::EWC(Entity* ent)
 {
-	goOnCoolodwn(ent, 10 * 60);
+	goOnCoolodwn(ent, 14 * 60);
 }
 
 void AbilityFactory::EW1(Entity* ent)
@@ -341,7 +341,7 @@ void AbilityFactory::AS1(Entity* ent)
 	bool gravity = true;
 	bool multiHit = true;
 	DestroyAtTime* dT = new DestroyAtTime(2, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, multiHit);
-	dT->enableMultiHit(40);
+	dT->enableMultiHit(50);
 	Texture* spawntexture = app->getAssetsManager()->getTexture(AssetsManager::As2);
 	Vector2D spawnEntSize(200, 110);
 	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize, false, true);	
@@ -352,7 +352,7 @@ void AbilityFactory::AS1(Entity* ent)
 
 void AbilityFactory::ASC(Entity* ent)
 {
-	goOnCoolodwn(ent,60 * 5);
+	goOnCoolodwn(ent,60 * 13);
 }
 
 AnimationChain* AbilityFactory::GiveMina(Entity* e)
@@ -413,7 +413,7 @@ void AbilityFactory::M1(Entity* ent)
 
 void AbilityFactory::MC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 7);
+	goOnCoolodwn(ent, 60 * 12);
 }
 
 AnimationChain* AbilityFactory::GivePollo(Entity* e)
@@ -448,7 +448,7 @@ void AbilityFactory::PO1(Entity* ent)
 	Vector2D pos = Vector2D(phTr->getPosition().getX() + phTr->getWidth() / 2, phTr->getPosition().getY() + phTr->getHeight() / 4);
 	Vector2D speed(orientation_ * 8.5, 1);
 
-	int damage = 0;
+	int damage = 1;
 	int hitstun = 0;
 
 	Vector2D knockBack(orientation_ * 3.5, 2);
@@ -467,7 +467,7 @@ void AbilityFactory::PO1(Entity* ent)
 
 void AbilityFactory::POC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 7);
+	goOnCoolodwn(ent, 60 * 9);
 }
 
 AnimationChain* AbilityFactory::GiveShrugOff(Entity* e)
@@ -506,7 +506,7 @@ void AbilityFactory::SO1(Entity* ent)
 
 void AbilityFactory::SOC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 7);
+	goOnCoolodwn(ent, 60 * 9);
 }
 
 AnimationChain* AbilityFactory::GiveMorePower(Entity* e)
@@ -540,7 +540,7 @@ void AbilityFactory::MP1(Entity* ent)
 
 void AbilityFactory::MPC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 7);
+	goOnCoolodwn(ent, 60 * 12);
 }
 
 AnimationChain* AbilityFactory::GiveHookshot(Entity* e)
@@ -686,7 +686,7 @@ void AbilityFactory::VS1(Entity* ent)
 
 void AbilityFactory::VSC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 8);
+	goOnCoolodwn(ent, 60 * 13);
 }
 
 AnimationChain* AbilityFactory::GiveHailBall(Entity* e)
@@ -775,14 +775,14 @@ void AbilityFactory::RS1(Entity* ent)
 
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + 250);
 
-	DestroyAtTime* dT = new DestroyAtTime(4, 10, 20, { (double)orientation_ * 2, -1.5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	DestroyAtTime* dT = new DestroyAtTime(6, 10, 20, { (double)orientation_ * 2, -1.5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
 	Entity* proj = AbilityFactory::instanceEntitywHitbox(ent, width, height, pos, speedd, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 }
 
 void AbilityFactory::RSC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 3);
+	goOnCoolodwn(ent, 60 * 11);
 }
 
 AnimationChain* AbilityFactory::GiveFlyingKicks(Entity* e)
@@ -921,7 +921,7 @@ void AbilityFactory::FKC(Entity* ent)
 	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) pT->setOrientation(1);
 	else pT->setOrientation(-1);*/
 	//pT->getBody()->SetLinearDamping(10);	//0 friction in the air
-	goOnCoolodwn(ent, 60 * 10);
+	goOnCoolodwn(ent, 60 * 20);
 }
 
 AnimationChain* AbilityFactory::GiveLaserLineal(Entity* e)
@@ -958,7 +958,7 @@ void AbilityFactory::LL1(Entity* ent)
 	if (orientation_ == -1) projX1 = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width1 / 2);
 
 	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 265);
-	DestroyAtTime* dT = new DestroyAtTime(4, 15, 100, { (double)orientation_ * 10, -1 }, false, id, ent);
+	DestroyAtTime* dT = new DestroyAtTime(7, 15, 100, { (double)orientation_ * 10, -1 }, false, id, ent);
 	instanceEntitywHitbox(ent, width1, 75, pos1, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::LASER), false);
 
@@ -966,7 +966,7 @@ void AbilityFactory::LL1(Entity* ent)
 
 void AbilityFactory::LLC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 8);
+	goOnCoolodwn(ent, 60 * 12);
 }
 
 AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
@@ -1113,7 +1113,7 @@ void AbilityFactory::NKC(Entity* ent)
 	else   pT->setOrientation(-1);*/
 	//ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
 	//pT->getBody()->SetLinearDamping(0);
-	goOnCoolodwn(ent, 60 * 10);
+	goOnCoolodwn(ent, 60 * 18);
 }
 
 AnimationChain* AbilityFactory::GiveKnockDown(Entity* e)
@@ -1202,7 +1202,7 @@ void AbilityFactory::KDC(Entity* e) {
 
 	//pT->getBody()->SetLinearDamping(0);//10 friction in the air in case you have 0
 
-	goOnCoolodwn(e, 60 * 10);
+	goOnCoolodwn(e, 60 * 15);
 }
 
 
