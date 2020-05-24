@@ -35,8 +35,9 @@ void AssetsManager::loadTextures()
 
 	//backgrounds
 	textures_.emplace(BackgroundFight, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/FONDO.png", 2, 1));
+	textures_.emplace(BackgroundFloor, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/flor_bg.png", 2, 1));
 	textures_.emplace(floor, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/floortemp.png", 1, 1));
-	//textures_.emplace(floor2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/floortemp2.png", 1, 1));
+	textures_.emplace(floorIA, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/floortempflor.png", 1, 1));
 
 	
 	//UI elements
