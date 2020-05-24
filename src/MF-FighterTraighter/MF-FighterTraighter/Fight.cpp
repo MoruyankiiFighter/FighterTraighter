@@ -58,6 +58,11 @@ void Fight::init()
 	Entity* player1 = CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1), PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	//Giving abilites
 	const GameManager::PlayerInfo& p1_info = app_->getGameManager()->getPlayerInfo(1);
+	//////HABILIDAD A CHOLON
+	/*player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::Pollo, player1), 0);
+	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::HailBall, player1), 1);*/
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
 		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability1Index], player1), 0);
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)

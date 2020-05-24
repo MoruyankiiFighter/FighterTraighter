@@ -36,7 +36,7 @@ public:
 						mask = entity_->getState()->PLAYER_1;
 					}
 					Vector2D newPos = pT->getPosition();
-					newPos.set(newPos.getX() + (0.5 * pT->getWidth()), newPos.getY() + (0.75 * pT->getHeight()));	//put the new entity on the ground
+					newPos.set(newPos.getX() + (0.5 * pT->getWidth()), newPos.getY() + (0.5 * pT->getHeight()));	//put the new entity on the ground
 					Entity* smoke = AbilityFactory::instanceEntitywHitbox(spawnData_->entity_, spawnEntSize_.getX(), spawnEntSize_.getY(), newPos, Vector2D(0, 0), mask, spawnData_->entity_->getState(),
 						spawnData_->entity_->getApp(), spawnTex_, pT->getOrientation(),
 						spawnData_, false, render_);
