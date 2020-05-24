@@ -78,13 +78,13 @@ void AssetsManager::loadTextures()
 	//ability icons
 	textures_.emplace(ShrugOff_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/so1.png", 1, 1));
 	textures_.emplace(Reach_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/ReachingStrikeIcon.png", 1, 1));
-	textures_.emplace(MorePower_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/so1.png", 1, 1));
+	textures_.emplace(MorePower_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/doping.png", 2, 1));
 	textures_.emplace(Chicken_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/pollo.png", 1, 1));
 	textures_.emplace(Acid_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/poison syrup.png", 2, 1));
 	textures_.emplace(Dash_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/dash.png", 1, 1));
 	textures_.emplace(Vampiric_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/Vampiric_ico.png", 1, 1));
 	textures_.emplace(L_Lineal_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/LaserLineal_ico.png", 1, 1));
-	textures_.emplace(Mina_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/mina.png", 2, 1));
+	textures_.emplace(Mina_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/mina2.png", 1, 1));
 	textures_.emplace(Hook_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/Ganchoicon.png", 1, 1));
 	textures_.emplace(HailBall_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/hielo.png", 2, 1));
 	textures_.emplace(Knockdown_ico, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/iconos/knockout.png", 1, 1));
@@ -118,7 +118,7 @@ void AssetsManager::loadTextures()
 	textures_.emplace(Hs1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hs1.png", 1, 1));
 	textures_.emplace(As2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/as2.png", 4, 1));
 	textures_.emplace(M1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mina1.png", 1, 1));
-	textures_.emplace(M2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mina2.png", 1, 1));
+	//textures_.emplace(M2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/mina2.png", 1, 1));
 	textures_.emplace(M3, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/minafinal.png", 2, 1));
 	textures_.emplace(PO1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/pollo.png", 1, 1));
 	textures_.emplace(Vs1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/vs1.png", 1, 1));
