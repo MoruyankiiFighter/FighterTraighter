@@ -38,7 +38,7 @@ void FightController::update()
 			disablePlayers(false);
 		}
 	}
-	if (playerLost_ != -1) {
+	if (playerLost_ != -2) {
 		if (end_timer > 0) {
 			--end_timer;
 		}
@@ -51,9 +51,13 @@ void FightController::update()
 
 void FightController::PlayerLost(int playerNumber)
 {
-	if (playerLost_ != -1) return;
-
-	string txt = "Player " + to_string(playerNumber == 0 ? 2 : 1) + " wins!";
+	if (playerLost_ != -2) return;
+	string txt = "";
+	if (playerNumber == -1) { // tie
+		txt = "Both players lost!";
+	} else {
+		txt = "Player " + to_string(playerNumber == 0 ? 2 : 1) + " wins!";
+	}
 	displayMessage(txt);
 	disablePlayers(true);
 

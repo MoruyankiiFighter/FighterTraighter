@@ -3,7 +3,7 @@
 class MoreDamage_Wins : public PunchingBagOnHit
 {
 public:
-	MoreDamage_Wins(Entity* e, string i) : PunchingBagOnHit(e, i) {}
+	MoreDamage_Wins(Entity* e) : PunchingBagOnHit(e) {}
 	~MoreDamage_Wins() {}
 	void onHit(b2Fixture* other) override;
 	int timeout_Winner() override;
