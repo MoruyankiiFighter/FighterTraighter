@@ -11,7 +11,6 @@
 #include "CharFactory.h"
 #include "AbilitiesTimerFunction.h"
 #include "FightController.h"
-#include "Entity.h"
 
 #include "Camera.h"
 #include "Shake.h"
@@ -155,6 +154,14 @@ void Fight::init()
 
 
 
+	//Timer Ent
+	Entity* timer = entManager_.addEntity();
+	timer->addComponent<UITransform>(Vector2D(0, 75), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
+	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
+	timer->addComponent<UITimer>(UITimer::Minutes)->setCountdown(240000); //4minutes timer
+
+
+
 	// Healthbar Player1
 	Entity* healthbarBack1 = entManager_.addEntity();
 	healthbarBack1->addComponent<UITransform>(Vector2D(460, 50), Vector2D(0, 0), Vector2D(365, 20), Vector2D(730, 40));
@@ -216,17 +223,6 @@ void Fight::init()
 	gameController->addComponent<UIRoundRenderer>(rightCounter)->setRoundsWon(app_->getGameManager()->getPlayerRounds(2));
 	gameController->addComponent<FightController>(240, 180);
 	entManager_.setHandler(gameController, ecs::Controller);
-
-
-
-	//Timer Ent
-	Entity* timer = entManager_.addEntity();
-	timer->addComponent<UITransform>(Vector2D(0, 75), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
-	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timer->addComponent<UITimer>(UITimer::Minutes, true, 240000, [gameController, timer, player1, player2]() { //4 minutes timer
-		gameController->getComponent<FightController>(ecs::FightController)
-			->PlayerLost(player1->getComponent<Health>(ecs::Health)->getHealth() > player2->getComponent<Health>(ecs::Health)->getHealth() ? 1 : 0);
-		}); 
 }
 
 void Fight::handleInput()

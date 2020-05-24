@@ -126,6 +126,7 @@ void AssetsManager::loadTextures()
 	textures_.emplace(Hb1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hb1.png", 1, 1));
 	textures_.emplace(Hb2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hb2.png", 1, 1));
 	textures_.emplace(Ll1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/laserlineal-2.png", 1, 1));
+	textures_.emplace(FK1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/FK1.png", 1, 1));
 	textures_.emplace(FK4, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/FK4.png", 1, 1));
 	textures_.emplace(AS1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/acidPotion.png", 1, 1));
 	textures_.emplace(Rs1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ReachingStrike.png", 1, 1));
