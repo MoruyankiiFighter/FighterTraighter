@@ -223,7 +223,10 @@ void Fight::init()
 	Entity* timer = entManager_.addEntity();
 	timer->addComponent<UITransform>(Vector2D(0, 75), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(200, 50), Vector2D(400, 100));
 	timer->addComponent<TextComponent>("0000", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 45, TextComponent::Center);
-	timer->addComponent<UITimer>(UITimer::Minutes, true, 240000, [gameController, timer]() { gameController->getComponent<FightController>(ecs::FightController)->PlayerLost(-1); }); //4 minutes timer
+	timer->addComponent<UITimer>(UITimer::Minutes, true, 1000 * 10, [gameController, timer, player1, player2]() { //4 minutes timer
+		gameController->getComponent<FightController>(ecs::FightController)
+			->PlayerLost(player1->getComponent<Health>(ecs::Health)->getHealth() > player2->getComponent<Health>(ecs::Health)->getHealth() ? 1 : 0);
+		}); 
 }
 
 void Fight::handleInput()
