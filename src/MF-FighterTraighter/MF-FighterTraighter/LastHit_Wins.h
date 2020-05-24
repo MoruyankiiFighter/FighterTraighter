@@ -9,7 +9,7 @@
 class LastHit_Wins : public PunchingBagOnHit
 {
 public:
-	LastHit_Wins(Entity* e, string i) : PunchingBagOnHit(e, i) {}
+	LastHit_Wins(Entity* e) : PunchingBagOnHit(e) {}
 	~LastHit_Wins() {}
 	void onHit(b2Fixture* other) override;
 	int timeout_Winner() override;
