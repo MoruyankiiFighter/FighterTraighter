@@ -343,8 +343,8 @@ void AbilityFactory::AS1(Entity* ent)
 	DestroyAtTime* dT = new DestroyAtTime(2, time, 0, Vector2D(0, 0), false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, multiHit);
 	dT->enableMultiHit(40);
 	Texture* spawntexture = app->getAssetsManager()->getTexture(AssetsManager::As2);
-	Vector2D spawnEntSize(spawntexture->getWidth() * 3.0, spawntexture->getHeight());
-	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize);	
+	Vector2D spawnEntSize(200, 110);
+	Fall_SpawnOnHit* fL = new Fall_SpawnOnHit(damage, time, hitstun, knockBack, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, dT, spawntexture, spawnEntSize, false, true);	
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::AS1);
 	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity);
 	//createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact, gravity);
