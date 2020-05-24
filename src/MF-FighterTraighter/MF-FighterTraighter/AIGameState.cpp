@@ -10,6 +10,8 @@
 #include "PlayerOnHit.h"
 #include "Health.h"
 #include "PlayerAnimation.h"
+#include "RenderAnimation.h"
+#include "Shake.h"
 
 void AIGameState::init()
 {
@@ -19,11 +21,17 @@ void AIGameState::init()
 	//delete app_->getGameManager()->getPlayerInfo(2).hid;
 	//*app_->getGameManager()->getPlayerInfo(2).hid = AIHID();
 
-	//Floor
+	// Background
+	Entity* bg = entManager_.addEntity();
+	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFloor), 20);
+	bg->addComponent<Shake>();
+	entManager_.setHandler(bg, ecs::Camara);
+
+	// Floor
 	Entity* floor = entManager_.addEntity();
 	PhysicsTransform* FpT = floor->addComponent<PhysicsTransform>(Vector2D(960, 1200), Vector2D(0, 0), 1920, 450, 0, world, BOUNDARY, EVERYTHING, 2);
-	/*floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Player));*/
-	//floor->addComponent<FloorOnHit>();
+	floor->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::TextureNames::floorIA));
 	FpT->changeFriction(3);
 	addHurtbox(FpT->getMainFixture());
 	//Walls
