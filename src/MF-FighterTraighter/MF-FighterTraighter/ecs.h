@@ -47,6 +47,8 @@ namespace ecs {
 		AILogic,
 		FightController,
 		TrainingController,
+		GraphicsOptionsLogic,
+		AudioOptionsLogic,
 		/*
 		
 		*/

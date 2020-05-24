@@ -27,7 +27,7 @@ void CharacterSelection::init()
 		Vector2D(0, -150), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), Vector2D(780, 360), 1560, 720, 0);
 	Entity* text = UIFactory::createText(app_, this, Vector2D(app_->getWindowManager()->getCurResolution().w / 3, 0),
 		Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0),
-		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "Choose your character", 60, 300, 100, 500);
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "Choose your character", 60, TextComponent::Left, 300, 100, 500);
 
 
 	// Icons of all characters
@@ -50,7 +50,6 @@ void CharacterSelection::init()
 
 
 
-	// TODO: give all characterElements an UITransform to use it to set the selection icon
 	// Player 1
 	Entity* leftP = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Banner),
 		Vector2D(50,50),
@@ -61,7 +60,7 @@ void CharacterSelection::init()
 	Entity* text_j1 = UIFactory::createText(app_, this, Vector2D(60, -30),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 4 * 3),
 		Vector2D(0, 50),
-		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j1", 25,
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j1", 25, TextComponent::Left,
 		100, 100, 25);
 	
 	Entity* florElement1 = entManager_.addEntity();
@@ -116,7 +115,7 @@ void CharacterSelection::init()
 	Entity* text_j2 = UIFactory::createText(app_, this, Vector2D(-360, -30),
 		Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h / 4 * 3),
 		Vector2D(0, 50),
-		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j2", 25,
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "description_ j2", 25, TextComponent::Left,
 		100, 100, 25);
 	
 	Entity* florElement2 = entManager_.addEntity();

@@ -120,6 +120,7 @@ public:
 		playerStatus_ = Casting;
 		holdingFrames_ = -1;
 	}
+	bool isCasting() { return playerStatus_ == Casting; }
 
 	//JUMPING
 	void goJumping() { playerStatus_ = Jumping; };

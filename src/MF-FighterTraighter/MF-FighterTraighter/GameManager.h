@@ -2,7 +2,6 @@
 #include <vector>
 #include <string>
 #include "HID.h"
-#include <SDL_mixer.h>
 
 class Entity;
 class App;
@@ -59,15 +58,13 @@ public:
 
 	struct PlayerInfo {
 		CharacterID character;
-		std::vector<AbilityID> abilities;
-		AbilityID ability1Index;
-		AbilityID ability2Index;
+		std::vector<AbilityID> abilities; //habilidades que tiene cada personaje en una ronda
+		int ability1Index;
+		int ability2Index;
 		HID* hid;
 		virtual ~PlayerInfo() {
 			delete hid;
 		}
-		//entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::MKWOP_1), false);
-		Mix_Chunk* onHitSound;
 
 	};
 	GameManager(App* app);
@@ -94,12 +91,7 @@ public:
 	}
 
 	void resetCharacters();
-	void setPlayer1Sound(Mix_Chunk* onHit) {
-		player1_.onHitSound = onHit;
-	}
-	void setPlayer2Sound(Mix_Chunk* onHit) {
-		player2_.onHitSound = onHit;
-	}
+	
 	//void setPlayer1
 	//void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
 	//void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
@@ -117,7 +109,7 @@ public:
 		}
 	}
 
-	void setFirstHab(AbilityID hab, int player) {
+	void setFirstHab(int hab, int player) {
 		if (player == 1) {
 			player1_.ability1Index = hab;
 		}
@@ -126,7 +118,7 @@ public:
 		}
 	}
 
-	void setSecondHab(AbilityID hab, int player) {
+	void setSecondHab(int hab, int player) {
 		if (player == 1) {
 			player1_.ability2Index = hab;
 		}

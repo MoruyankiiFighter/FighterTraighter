@@ -13,6 +13,9 @@
 #include "CharacterSelection.h"
 #include "KeyboardHID.h"
 #include "GamepadHID.h"
+#include "InventorySelection.h"
+#include "AbilitySelection.h"
+#include "SkillSelection.h"
 
 GameManager::GameManager(App* app) : app_(app)
 {
@@ -24,8 +27,8 @@ GameManager::GameManager(App* app) : app_(app)
 	//player1_.hid = new GamepadHID(app_->getInputManager(),0);
 	
 	//player1_.character = F10R;
-	player1_.character = MKWh00p;
-	
+	player1_.character = F10R;
+
 	//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
 	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
 	player2_.character = F10R;
@@ -76,18 +79,6 @@ void GameManager::playerLost(int player)
 		stateMachine->pushState(new Training(app_));
 		++currentRound_;
 	}
-	/*if (currentRound_ < totalRounds_ - 1) {
-		// Remove the current fight mode
-		stateMachine->popState();
-		stateMachine->pushState(new Training(app_));
-		++currentRound_;
-	}
-	else {
-		currentRound_ = 0;
-		playerLrounds_ = 0;
-		playerRrounds_ = 0;
-		GoBackToMain(stateMachine);
-	}*/
 
 }
 
@@ -102,54 +93,23 @@ void GameManager::ResetRounds()
 //winner = 1; player2 wins
 void GameManager::trainingEnded(int winner)
 {
-	cout << "Player " << winner + 1 << " wins the training!" << endl;
 	GameStateMachine* stateMachine = app_->getStateMachine();
-	PlayerInfo *pWin = nullptr, 
-				*pLose = nullptr;
-	if (winner == 0) {
-		pWin = &player1_;
-		pLose = &player2_;
-	}
-	else {
-		pWin = &player2_;
-		pLose = &player1_;
-	}
-	
-	//the wining player chooses 1 and gets other random
-	//por ahora tiene las dos random, habr�a usar el estado de selecci�n de habilidades aqu�
-	pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
-	pWin->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
-	//the losing player, gets random lvl sth 
-	pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
-	pLose->abilities.push_back((AbilityID)app_->getRandGen()->nextInt(level1_flag, max_level_flag));
+	cout << "Player " << winner + 1 << " wins the training!" << endl;
 	// Remove the current training mode
 	stateMachine->popState();
-	stateMachine->pushState(new Fight(app_));
+	stateMachine->pushState(new SkillSelection(app_, winner + 1));
 }
 
-//void GameManager::setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
-//{
-//	//player1_.character = character;
-//	//player1_.abilities = abilities;
-//	player1_.ability1Index = ability1Index;
-//	player1_.ability2Index = ability2Index;
-//	//player1_.onHitSound = onHit;
-//}
-//
-//void GameManager::setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index)
-//{
-//	//player2_.character = character;
-//	//player2_.abilities = abilities;
-//	player2_.ability1Index = ability1Index;
-//	player2_.ability2Index = ability2Index;
-//	//player2_.onHitSound = onHit;
-//
-//}
 
 void GameManager::resetCharacters()
 {
 	player1_.character = F10R;
+	player1_.abilities.clear();
+	player1_.ability1Index = player1_.ability2Index = 0;
+
 	player2_.character = F10R;
+	player2_.abilities.clear();
+	player2_.ability1Index = player2_.ability2Index = 0;
 }
 
 void GameManager::GoBackToMain()

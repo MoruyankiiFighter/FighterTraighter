@@ -17,8 +17,8 @@
 #include "Font.h"
 
 #include "App.h"
-#include "consts.h"
 #include "UIFactory.h"
+#include "RenderAnimation.h"
 
 #include "KeyboardHID.h"
 #include "GamepadHID.h"
@@ -42,6 +42,11 @@ void ControlsMenu::init()
 #ifdef _DEBUG
 	cout << "init" << endl;
 #endif	
+	// Background
+	Entity* background = entManager_.addEntity();
+	background->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
+	background->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
+
 	tuple<Entity*, Entity*> back = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(15, 10), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 0), Vector2D(7, 0), 100, 60, 0, GoBack, nullptr, "<-", 60);
 	initString();

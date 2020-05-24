@@ -49,7 +49,7 @@ private:
 	App* app_;
 	bool initialized_ = false;
 	int channels_ = -1;
-	int startGeneralVolume = 50,startSFXVolume = 50;
+	int startGeneralVolume = 20, startSFXVolume = 20;
 	int volumeSFX = startSFXVolume;
 	
 	bool silenced=false;

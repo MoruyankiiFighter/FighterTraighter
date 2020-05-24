@@ -1,6 +1,5 @@
 #include "WindowManager.h"
 #include "App.h"
-#include "consts.h"
 #include "SDLExceptions.h"
 
 WindowManager::WindowManager(App* app) : app_(app) {

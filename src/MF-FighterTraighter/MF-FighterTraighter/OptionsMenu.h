@@ -12,8 +12,6 @@ public:
 
 	//method overrided from GameState where the objects are created from the different factories
 	void init() override;
-	void handleInput() override;
-
 
 	//callbacks of the Entitys
 	
@@ -24,7 +22,7 @@ public:
 	static void GoControlsCallback(App* app);
 
 	//change the brightness
-	static void SetBright(App* app, double value);
+	static void brightnessCallback(App* app, double value);
 	
 
 	//changes the volume
@@ -34,10 +32,10 @@ public:
 	
 	static void silence(App* app);
 	//fullscreen
-	static void fullScreen(App* app);
+	static void fullscreenCallback(App* app);
 	
 	//changes the resolution
-	static void setResolution(App* app, double value);	
+	static void resolutionCallback(App* app, double value);	
 	
 	//saves the settings, and applies the resolution
 	static void applySettings(App* app);

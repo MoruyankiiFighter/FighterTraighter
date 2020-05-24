@@ -1,5 +1,4 @@
 #include "SkillSelection.h"
-#include "SkillSelection.h"
 #include "UIFactory.h"
 #include "Entity.h"
 #include "RenderImage.h"
@@ -7,20 +6,37 @@
 #include "Fight.h"
 #include "NavigationController.h"
 #include "InventorySelection.h"
+#include "SkillSelectionLogic.h"
+//#include "GameManager.h"
 
 void SkillSelection::init()
 {
 	GameState::init();
 	//crear fondo ->ser� el fndo de la pelea i guess???
 
+	
+	//Background
 	Entity* b = entManager_.addEntity();
 	b->addComponent<UITransform>(Vector2D(), Vector2D(), Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h));
 	b->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight));
 
-	//j1 fondo submenu
+
+	//GameStateMachine* stateMachine = app_->getStateMachine();
+	//GameManager::PlayerInfo *pWin = nullptr,
+	//						*pLose = nullptr;
+	int loser = 1;
+	if (winner_ == 1) 
+		loser = 2;
+	
+
+	////j1 fondo submenu
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
-		Vector2D(0, 0), Vector2D(50, 50), Vector2D(0, 0), (app_->getWindowManager()->getCurResolution().w / 2)-100, app_->getWindowManager()->getCurResolution().h-100, 0);
-	//j2 fondo submenu
+		Vector2D(0, 0), 
+		Vector2D(50, 50), 
+		Vector2D(0, 0), 
+		(app_->getWindowManager()->getCurResolution().w / 2)-100, app_->getWindowManager()->getCurResolution().h-100, 0);
+	
+	////j2 fondo submenu
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
 		Vector2D(0, 0),
 		Vector2D(app_->getWindowManager()->getCurResolution().w-430, 50),
@@ -28,145 +44,123 @@ void SkillSelection::init()
 		(app_->getWindowManager()->getCurResolution().w / 2)-100, (app_->getWindowManager()->getCurResolution().h)-100, 0);
 	
 
-	// Texto central
-	Entity* text_ = entManager_.addEntity();
-	//Vector2D pos, Vector2D anchor, Vector2D pivot, Vector2D size
-	text_->addComponent<UITransform>(Vector2D(0, 0), Vector2D((app_->getWindowManager()->getCurResolution().w) / 2, 0), 
-		Vector2D((app_->getWindowManager()->getCurResolution().w /2), 0), 
-		Vector2D(app_->getWindowManager()->getCurResolution().w - 50, 104));
-	text_->addComponent<TextComponent>("Elige tu habilidad", app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::TextAlignment::Center);
 
-	//boton
-	tuple <Entity*, Entity*> boton1 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, -190),
-		Vector2D((app_->getWindowManager()->getCurResolution().w /4)*3, app_->getWindowManager()->getCurResolution().h),
-		Vector2D(320, 90),
-		640, 180, 0, GoToNextSubMenu, nullptr, "Continue_J2", 80, TextComponent::TextAlignment::Center);
-	std::get<1>(boton1)->getComponent<UITransform>(ecs::Transform)->Bottom;
 
-	//j2
-	tuple <Entity*, Entity*> boton2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, -190),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 4, app_->getWindowManager()->getCurResolution().h),
-		Vector2D(320,90), 
-		640, 180, 0, GoToNextSubMenu, nullptr, "Continue_J1", 80, TextComponent::TextAlignment::Center);
-	std::get<1>(boton2)->getComponent<UITransform>(ecs::Transform)->Bottom;
-	
-	if (win1) {
-		// Fija ganador
+	GameManager::AbilityID abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
+	//El jugador que gana obtiene 3 habilidades aleatorias, 2 de ellas las tiene que elegir, la otra es aleatoria
+	Entity* nav_j1 = entManager_.addEntity();
+	NavigationController* nav = nav_j1->addComponent<NavigationController>(2, 2, app_->getGameManager()->getPlayerInfo(winner_).hid);
 
-		tuple<Entity*, Entity*> hf_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Vampiric_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0,-100),
-			Vector2D((app_->getWindowManager()->getCurResolution().w / 4), (app_->getWindowManager()->getCurResolution().h / 2)),
-			Vector2D(80,80),
-			(160), (160), 0, nullptr, nullptr, "fijawin", 0, TextComponent::TextAlignment::Center);
+	for (int i = 0; i < 3; i++) {
+		do {
+			//nueva habilidad
+			abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
+		} while (checkAbility(abi1, winner_));
 
-		// fija perdedor
-		tuple<Entity*, Entity*> hop_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::M_Grip_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0, -100),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4) * 3), (app_->getWindowManager()->getCurResolution().h / 2)),
-			Vector2D(80, 80),
-			(160), (160), 0, nullptr, nullptr, "fijalose", 0, TextComponent::TextAlignment::Center);
+		AssetsManager::TextureNames abrand = (AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + abi1 + 1);
+		
 
-		// Opcionales ganador
+		Entity* ab1 = entManager_.addEntity();
+		ab1->addComponent<UIElement>();
+		//pos,ancla,pivot, tamano
+		if (winner_ == 1) {
+			if (i < 2) {
+				ab1->addComponent<UITransform>(
+					Vector2D(0, 0),
+					Vector2D((i * 300)+300, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
+					Vector2D(80, 80),
+					Vector2D(160, 160));
 
-		tuple<Entity*, Entity*> hop_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0, 0),
-			Vector2D((app_->getWindowManager()->getCurResolution().w / 4)-200, (app_->getWindowManager()->getCurResolution().h / 2)-300),
-			Vector2D(80, 80),
-			(160), (160), 0, nullptr, nullptr, "opwin", 0, TextComponent::TextAlignment::Center);
-	
-		tuple<Entity*, Entity*> hop_win2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0, 0),
-			Vector2D((app_->getWindowManager()->getCurResolution().w / 4) + 200, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
-			Vector2D(80, 80),
-			(160), (160), 0, nullptr, nullptr, "opwin2", 0, TextComponent::TextAlignment::Center);
+				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+			}
+			else {
+				ab1->addComponent<UITransform>(
+					Vector2D(0, 0),
+					Vector2D(app_->getWindowManager()->getCurResolution().w / 4, (app_->getWindowManager()->getCurResolution().h / 2)),
+					Vector2D(80, 80),
+					Vector2D(160, 160));
 
-		//opcional perdedor
+				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i-1, 1);
+				app_->getGameManager()->addHability(abi1, winner_);
+			}
+		}
+		else {
+			if (i < 2) {
+				ab1->addComponent<UITransform>(
+					Vector2D(50,0),
+					Vector2D((app_->getWindowManager()->getCurResolution().w/2)+(i*300)+300, (app_->getWindowManager()->getCurResolution().h / 2)-300),
+					Vector2D(80, 80),
+					Vector2D(160, 160));
 
-		tuple<Entity*, Entity*> hf_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0, 0),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4)*3), (app_->getWindowManager()->getCurResolution().h / 2)-300),
-			Vector2D(80, 80),
-			(160), (160), 0, nullptr, nullptr, "oplose", 0, TextComponent::TextAlignment::Center);
-	
-	
-	//nav1
+				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i, 0);
+			}
+			else {
+				ab1->addComponent<UITransform>(
+					Vector2D(0,0),
+					Vector2D((app_->getWindowManager()->getCurResolution().w / 4)*3, (app_->getWindowManager()->getCurResolution().h / 2)),
+					Vector2D(80, 80),
+					Vector2D(160, 160));
 
-	//winner
-	Entity* nav_win = entManager_.addEntity();
-	NavigationController* ctrl = nav_win->addComponent<NavigationController>(2, 3, app_->getGameManager()->getPlayerInfo(1).hid);
-	ctrl->SetElementInPos(std::get<0>(hop_win)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-	ctrl->SetElementInPos(std::get<0>(hop_win2)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-	ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 0, 1);
-	ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 1, 1);
-	ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 0, 2);
-	ctrl->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 1, 2);
-
-	//loser
-	Entity* nav_loser = entManager_.addEntity();
-	NavigationController* ctrl_ = nav_loser->addComponent<NavigationController>(1, 3, app_->getGameManager()->getPlayerInfo(2).hid);
-	ctrl_->SetElementInPos(std::get<0>(hf_lose)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-	ctrl_->SetElementInPos(std::get<0>(hop_lose)->getComponent<UIElement>(ecs::UIElement), 0, 1);
-	ctrl_->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 2);
-	
+				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i-1, 1);
+				app_->getGameManager()->addHability(abi1, winner_);
+			}
+		}
 	}
-	else
-	{
-		
-		//gana player 2
+	Entity* text = UIFactory::createText(app_, this, 
+		Vector2D(0, 0),
+		Vector2D((app_->getWindowManager()->getCurResolution().w / 2), app_->getWindowManager()->getCurResolution().h - 200),
+		Vector2D(320, 90),
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), ("Player " + to_string(winner_) + " chooses!"),
+		60, TextComponent::Center, 300, 100, 500);
 
-		   // Fija ganador j2
-		tuple<Entity*, Entity*> hf_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::HailBall_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0, -100),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4) * 3), (app_->getWindowManager()->getCurResolution().h / 2)),
-			Vector2D(80, 80),
-			(160), (160), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-		
-		// Fija perdedor j1
-		tuple<Entity*, Entity*> hf_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Acid_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0, -100),
-			Vector2D((app_->getWindowManager()->getCurResolution().w / 4), (app_->getWindowManager()->getCurResolution().h / 2)),
-			Vector2D(80, 80),
-			(160), (160), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+	Entity* log = entManager_.addEntity();
 
-		// Opcionales ganador j2
-		tuple<Entity*, Entity*> hop_win = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Dash_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0,0),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4) * 3)-200, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
-			Vector2D(80, 80),
-			(160), (160), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+	if (winner_ == 1) {
+		log->addComponent<SkillSelectionLogic>(nav, winner_, generatedAbs_1);
+	}
+	else {
+		log->addComponent<SkillSelectionLogic>(nav, winner_, generatedAbs_2);
 
-		tuple<Entity*, Entity*> hop_win2 = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mina_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0,0),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4) * 3)+200, (app_->getWindowManager()->getCurResolution().h / 2) - 300),
-			Vector2D(80, 80),
-			(160), (160), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
+	}
+	
+	//Entity* nav_j2 = entManager_.addEntity();
+	//NavigationController* nav2 = nav_j2->addComponent<NavigationController>(1, 3, app_->getGameManager()->getPlayerInfo(loser).hid);
+	//El jugador que pierde obtiene 2 habilidades aleatorias y no elige
+	for (int i = 0; i < 2; i++) {
+		do {
+			//nueva habilidad
+			abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
+		} while (checkAbility(abi1, loser));//comprobamos que es adecuada
+		AssetsManager::TextureNames abrand = (AssetsManager::TextureNames)(AssetsManager::_abilityIcon_start + abi1 + 1);
+		Entity* ab1 = entManager_.addEntity();
+		if (winner_ == 1) {
+			
+			ab1->addComponent<UIElement>();
+			ab1->addComponent<UITransform>(
+				Vector2D(0, 0),
+				Vector2D((app_->getWindowManager()->getCurResolution().w / 4) * 3, (app_->getWindowManager()->getCurResolution().h / 2)+(300*(i-1))),
+				Vector2D(80, 80),
+				Vector2D(160, 160));
+			ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+			app_->getGameManager()->addHability(abi1, loser);
+			//nav2->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), 0, i);
+		}
+		else {
+			ab1->addComponent<UIElement>();
+			ab1->addComponent<UITransform>(
+				Vector2D(0, 0),
+				Vector2D((app_->getWindowManager()->getCurResolution().w / 4), (app_->getWindowManager()->getCurResolution().h / 2) + (300 * (i - 1))),
+				Vector2D(80, 80),
+				Vector2D(160, 160));
+			ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
+			app_->getGameManager()->addHability(abi1, loser);
+			//nav2->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), 0, i);
+		}
 
-		// Opcionales perdedor j1
-		tuple<Entity*, Entity*> hop_lose = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Ex_Will_ico), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-			Vector2D(0, 0),
-			Vector2D(((app_->getWindowManager()->getCurResolution().w / 4)), (app_->getWindowManager()->getCurResolution().h / 2) - 300),
-			Vector2D(80, 80),
-			(160), (160), 0, nullptr, nullptr, "", 0, TextComponent::TextAlignment::Center);
-
-		//winner
-		Entity* nav_win = entManager_.addEntity();
-		NavigationController* ctrl = nav_win->addComponent<NavigationController>(2, 3, app_->getGameManager()->getPlayerInfo(2).hid);
-		ctrl->SetElementInPos(std::get<0>(hop_win)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-		ctrl->SetElementInPos(std::get<0>(hop_win2)->getComponent<UIElement>(ecs::UIElement), 1, 0);
-		ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 0, 1);
-		ctrl->SetElementInPos(std::get<0>(hf_win)->getComponent<UIElement>(ecs::UIElement), 1, 1);
-		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 0, 2);
-		ctrl->SetElementInPos(std::get<0>(boton1)->getComponent<UIElement>(ecs::UIElement), 1, 2);
-
-		//loser
-		Entity* nav_loser = entManager_.addEntity();
-		NavigationController* ctrl_ = nav_loser->addComponent<NavigationController>(1, 3, app_->getGameManager()->getPlayerInfo(1).hid);
-		ctrl_->SetElementInPos(std::get<0>(hop_lose)->getComponent<UIElement>(ecs::UIElement), 0, 0);
-		ctrl_->SetElementInPos(std::get<0>(hf_lose)->getComponent<UIElement>(ecs::UIElement), 0, 1);
-		ctrl_->SetElementInPos(std::get<0>(boton2)->getComponent<UIElement>(ecs::UIElement), 0, 2);
-		
 	}
 
 
@@ -174,8 +168,10 @@ void SkillSelection::init()
 
 void SkillSelection::GoToNextSubMenu(App* app)
 {
-	app->getStateMachine()->popState();
-	app->getStateMachine()->pushState(new InventorySelection(app));
+	//app->getGameManager()->addHability(op_, winner);
+	//app->getStateMachine()->popState();
+	//no esta del todo bien
+	//app->getStateMachine()->pushState(new InventorySelection(app));
 }
 
 void SkillSelection::Pressed1(App* app)
@@ -184,4 +180,41 @@ void SkillSelection::Pressed1(App* app)
 
 void SkillSelection::Pressed2(App* app)
 {
+}
+
+//introduce la habilidad en el vector de habilidades generadas segun el jugador
+//y sus habilidades ya disponibles
+bool SkillSelection::checkAbility(GameManager::AbilityID newAb, int player) {
+
+	std::vector<GameManager::AbilityID> aux = app_->getGameManager()->getPlayerInfo(player).abilities;
+	if (player == 1) {	//player1
+		//player1 generated abilities
+		for (int i = 0; i < generatedAbs_1.size(); i++) {
+			if (newAb == generatedAbs_1[i])
+				return true;
+		}
+
+		//player1 abilities
+		for (int i = 0; i < aux.size(); i++) {
+			if (newAb == aux[i])
+				return true;
+		}
+		generatedAbs_1.push_back(newAb);
+		return false;
+	}
+	else {
+		for (int i = 0; i < generatedAbs_2.size(); i++) {
+			if (newAb == generatedAbs_2[i])
+				return true;
+		}
+
+		//player2 abilities
+		for (int i = 0; i < aux.size(); i++) {
+			if (newAb == aux[i])
+				return true;
+		}	
+		generatedAbs_2.push_back(newAb);
+		return false;
+	}
+	
 }

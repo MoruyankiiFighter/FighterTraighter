@@ -363,8 +363,8 @@ AnimationChain* AbilityFactory::GiveMina(Entity* e)
 	//vecMov.push_back(new Move(10, nullptr, EW2, e));
 	//vecMov.push_back(new Move(10, nullptr, EW3, e));
 	//vecMov.push_back(new Move(25, nullptr, nullptr, e));
-	AnimationChain* AcidSplit = new AnimationChain(vecMov);
-	return AcidSplit;
+	AnimationChain* Mina = new AnimationChain(vecMov);
+	return Mina;
 }
 void AbilityFactory::M1(Entity* ent)
 {
@@ -925,7 +925,7 @@ void AbilityFactory::FK4(Entity* e)
 void AbilityFactory::FKC(Entity* ent)
 {
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	if (ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1))
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)
 		pT->setOrientation(1);
 	else   pT->setOrientation(-1);
 	//pT->getBody()->SetLinearDamping(10);	//0 friction in the air
@@ -968,6 +968,8 @@ void AbilityFactory::LL1(Entity* ent)
 	Vector2D pos1 = Vector2D(projX1, phtr->getPosition().getY() + 265);
 	DestroyAtTime* dT = new DestroyAtTime(7, 15, 100, { (double)orientation_ * 10, -1 }, false, id, ent);
 	instanceEntitywHitbox(ent, width1, 75, pos1, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::LASER), false);
+
 }
 
 void AbilityFactory::LLC(Entity* ent)
@@ -980,6 +982,7 @@ AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
 	
 	//int orientation= phtr->getOrientation;
 	std::vector<Move*> vecMov;
+	vecMov.push_back(new Move(0, nullptr, NKC, e));//cd
 
 	vecMov.push_back(new Move(10, nullptr, NK3, e));
 	vecMov.push_back(new Move(10, nullptr, NK1, e));
@@ -991,9 +994,9 @@ AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
+	vecMov.push_back(new Move(5, nullptr, NKF, e));//right side
 
 	//vecMov.push_back(new Move(20, nullptr, NK1, e));
-	vecMov.push_back(new Move(0, nullptr, NKC, e));
 	AnimationChain* NadoKick = new AnimationChain(vecMov);
 
 	//phtr->setOrientation(orientation);
@@ -1043,7 +1046,8 @@ void AbilityFactory::NK2(Entity* ent)
 	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	phtr->setOrientation(-1 * phtr->getOrientation());
 	
-	ent->getComponent<PlayerState>(ecs::PlayerState)->goIdle();
+	//PlayerState* pS = ent->getComponent<PlayerState>(ecs::PlayerState);
+	//if (pS->isCasting() || pS->isAbletoMove()) pS->goIdle();
 	NK1(ent);
 
 }
@@ -1075,9 +1079,21 @@ void AbilityFactory::NK3(Entity* ent)
 	}
 	pT->setSpeed(speed);
 
-	PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
-	pC->canJump(false);
+	/*PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
+	pC->canJump(false);*/
 
+}
+
+void AbilityFactory::NKF(Entity* ent)
+{	
+	/*PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
+	pC->canJump(true);*/
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
+		 pT->setOrientation(1);
+	else   pT->setOrientation(-1);
+
+	//ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
 }
 
 void AbilityFactory::NKC(Entity* ent)
@@ -1089,7 +1105,7 @@ void AbilityFactory::NKC(Entity* ent)
 		 pT->setOrientation(1);
 	else   pT->setOrientation(-1);
 	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
-	pT->getBody()->SetLinearDamping(0);
+	//pT->getBody()->SetLinearDamping(0);
 	goOnCoolodwn(ent, 60 * 18);
 }
 

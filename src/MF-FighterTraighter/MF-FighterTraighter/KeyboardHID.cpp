@@ -32,16 +32,20 @@ void KeyboardHID::updateInput()
 	state |= inputM_->isKeyDown(keys_[12]) << 12;
 	//RightJoystickClick = 8192
 	state |= inputM_->isKeyDown(keys_[13]) << 13;
+	//LeftTrigger = 16384,
+	state |= inputM_->isKeyDown(keys_[14]) << 14;
+	//RightTrigger = 32768
+	state |= inputM_->isKeyDown(keys_[15]) << 15;
 	curbuttonState = state;
 
 	lastAxesState = curAxesState;
 	char Xstate = 0;
 	//LJoyX = 0,
-	if (inputM_->isKeyDown(keys_[14])) { // -1
+	if (inputM_->isKeyDown(keys_[16])) { // -1
 		axes[0] = -1;
 		Xstate |= 1;
 	}
-	else if (inputM_->isKeyDown(keys_[15])) { // 1
+	else if (inputM_->isKeyDown(keys_[17])) { // 1
 		axes[0] = 1;
 		Xstate |= 1;
 	}
@@ -49,11 +53,11 @@ void KeyboardHID::updateInput()
 		axes[0] = 0;
 	}
 	//LJoyY,
-	if (inputM_->isKeyDown(keys_[16])) { // -1
+	if (inputM_->isKeyDown(keys_[18])) { // -1
 		axes[1] = -1;
 		Xstate |= 1 << 1;
 	}
-	else if (inputM_->isKeyDown(keys_[17])) { // 1
+	else if (inputM_->isKeyDown(keys_[19])) { // 1
 		axes[1] = 1;
 		Xstate |= 1 << 1;
 	}
@@ -61,11 +65,11 @@ void KeyboardHID::updateInput()
 		axes[1] = 0;
 	}
 	//RJoyX,
-	if (inputM_->isKeyDown(keys_[18])) { // -1
+	if (inputM_->isKeyDown(keys_[20])) { // -1
 		axes[2] = -1;
 		Xstate |= 1 << 2;
 	}
-	else if (inputM_->isKeyDown(keys_[19])) { // 1
+	else if (inputM_->isKeyDown(keys_[21])) { // 1
 		axes[2] = 1;
 		Xstate |= 1 << 2;
 	}
@@ -73,32 +77,16 @@ void KeyboardHID::updateInput()
 		axes[2] = 0;
 	}
 	//RJoyY,
-	if (inputM_->isKeyDown(keys_[20])) { // -1
+	if (inputM_->isKeyDown(keys_[22])) { // -1
 		axes[3] = -1;
 		Xstate |= 1 << 3;
 	}
-	else if (inputM_->isKeyDown(keys_[21])) { // 1
+	else if (inputM_->isKeyDown(keys_[23])) { // 1
 		axes[3] = 1;
 		Xstate |= 1 << 3;
 	}
 	else {
 		axes[3] = 0;
 	}
-	////LTrigger,
-	//if (inputM_->isKeyDown(keys_[22])) {
-	//	axes[4] = 1;
-	//	Xstate |= 1 << 4;
-	//}
-	//else {
-	//	axes[4] = 0;
-	//}
-	////RTrigger,
-	//if (inputM_->isKeyDown(keys_[23])) {
-	//	axes[5] = 1;
-	//	Xstate |= 1 << 5;
-	//}
-	//else {
-	//	axes[5] = 0;
-	//}
 	curAxesState = Xstate;
 }

@@ -18,9 +18,9 @@
 #include "Font.h"
 
 #include "App.h"
-#include "consts.h"
 #include "UIFactory.h"
 #include "RenderAnimation.h"
+#include "UITransform.h"
 
 #include "SkillSelection.h"
 
@@ -40,36 +40,101 @@ MainMenu::~MainMenu()
 void MainMenu::init()
 {
 	GameState::init();
+
+
+
+	// Background
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);
 	bg->addComponent<RenderAnimation>(app_->getAssetsManager()->getTexture(AssetsManager::BackgroundFight), 20);
 
+
+
+	// Tint
+	Entity* tint = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Tint),
+		Vector2D(),
+		Vector2D(),
+		Vector2D(),
+		app_->getWindowManager()->getCurResolution().h, app_->getWindowManager()->getCurResolution().h, 0);
+
+
+
+	// Image
+	Entity* image = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::CollageCharacters),
+		Vector2D(-50, 0),
+		Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(900, 900 / 2),
+		900, 900, 0);
+
+
+
+
+	// Position variables
+	const double leftOffset = 100;
+	const double buttonInitPos = -160;
+	const double buttonSeparation = 115;
+	const double textOffset = 5;
+	const double textSize = 85;
+
+
+
+	// Logo
+	Entity* logo = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Logo),
+		Vector2D(leftOffset, 160),
+		Vector2D(0, 0),
+		Vector2D(0, 91 * 1.5 / 2),
+		320 * 1.5, 91 * 1.5, 0);
+
+
+
+	// 1v1 button
 	tuple < Entity*, Entity*> pvp = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, -200), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2), 
-		Vector2D(250, 75),
-		500, 150, 0, nullptr, GoPvP, "1 vs 1", 150, TextComponent::TextAlignment::Center);
+		Vector2D(leftOffset, buttonInitPos),
+		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2), 
+		Vector2D(0, 50),
+		340, 100, 0, nullptr, GoPvP, "Versus", textSize, TextComponent::TextAlignment::Left);
+	std::get<1>(pvp)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, buttonInitPos + textOffset);
 
+
+	// vsAI button
 	tuple < Entity*, Entity*> arcade = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, -50), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(250, 75),
-		500, 150, 0, nullptr, GoVsAI, "vs AI", 150, TextComponent::TextAlignment::Center);
+		Vector2D(leftOffset, buttonInitPos + buttonSeparation),
+		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(0, 50),
+		340, 100, 0, nullptr, GoVsAI, "Arcade", textSize, TextComponent::TextAlignment::Left);
+	std::get<1>(arcade)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, -40);
 
+
+
+	// Options button
 	tuple < Entity*, Entity*> options = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, 100), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(300, 75),
-		600, 150, 0, nullptr, GoOptions, "Options", 150, TextComponent::TextAlignment::Center);
+		Vector2D(leftOffset, buttonInitPos + 2 * buttonSeparation),
+		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(0, 50),
+		370, 100, 0, nullptr, GoOptions, "Options", textSize, TextComponent::TextAlignment::Left);
+	std::get<1>(options)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, buttonInitPos + 2 * buttonSeparation + textOffset);
 
+
+
+	// Exit button
 	tuple < Entity*, Entity*> exit = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
-		Vector2D(0, 250), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2),
-		Vector2D(250, 75),
-		500, 150, 0, nullptr, Leave, "Exit", 150, TextComponent::TextAlignment::Center);
+		Vector2D(leftOffset, buttonInitPos + 3 * buttonSeparation),
+		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
+		Vector2D(0, 50),
+		300, 100, 0, nullptr, Leave, "Leave", textSize, TextComponent::TextAlignment::Left);
+	std::get<1>(exit)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, buttonInitPos + 3 * buttonSeparation + textOffset);
 
+
+	// Navigation
 	Entity* navEnt = entManager_.addEntity();
 	NavigationController* nav = navEnt->addComponent<NavigationController>(1, 4);
 	nav->SetElementInPos(std::get<0>(pvp)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	nav->SetElementInPos(std::get<0>(arcade)->getComponent<UIElement>(ecs::UIElement), 0, 1);
 	nav->SetElementInPos(std::get<0>(options)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 	nav->SetElementInPos(std::get<0>(exit)->getComponent<UIElement>(ecs::UIElement), 0, 3);
+
+
+
 
 	app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::MENU_PRINCIPAL), true);
 }

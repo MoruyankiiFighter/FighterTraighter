@@ -11,45 +11,55 @@ void NavigationController::init()
 
 void NavigationController::handleInput()
 {
-	InputManager* mngr = app_->getInputManager();
-	int oldX = cursorPositionX_, oldY = cursorPositionY_;
-	int temp;
-	if ((!owner_ && mngr->pressedUp() ||
-		owner_ && (owner_->ButtonPressed(HID::LeftPad_Up) ||
-		((owner_->AxisChanged(HID::LJoyY)) && owner_->AxisInput(HID::LJoyY) < 0))) 
-			&& cursorPositionY_ > 0 && (temp = findInRowFrom(--cursorPositionY_)) != -1)
-	{
-		cursorPositionX_ = temp;
-	}
-	else if ((!owner_ && mngr->pressedDown() ||
-		owner_ && (owner_->ButtonPressed(HID::LeftPad_Down) ||
-		((owner_->AxisChanged(HID::LJoyY)) && owner_->AxisInput(HID::LJoyY) > 0))) 
-			&& cursorPositionY_ < grid_.GetSizeY() - 1 && (temp = findInRowFrom(++cursorPositionY_)) != -1) 
-	{
-		cursorPositionX_ = temp;
-	}
-	if ((!owner_ && mngr->pressedLeft() ||
-		owner_ && (owner_->ButtonPressed(HID::LeftPad_Left) ||
-		((owner_->AxisChanged(HID::LJoyX)) && owner_->AxisInput(HID::LJoyX) < 0))) 
-			&& cursorPositionX_ > 0 && (temp = findInColFrom(--cursorPositionX_)) != -1) 
-	{
-		cursorPositionY_ = temp;
-	}
-	else if ((!owner_ && mngr->pressedRight() ||
-		owner_ && (owner_->ButtonPressed(HID::LeftPad_Right) ||
-		((owner_->AxisChanged(HID::LJoyX)) && owner_->AxisInput(HID::LJoyX) > 0)))
-			&& cursorPositionX_ < grid_.GetSizeX() - 1 && (temp = findInColFrom(++cursorPositionX_)) != -1) 
-	{
-		cursorPositionY_ = temp;
-	}
+	if (enabled_) {
+		InputManager* mngr = app_->getInputManager();
+		int newX = cursorPositionX_, newY = cursorPositionY_;
+		int temp;
+		if ((!owner_ && mngr->pressedUp() ||
+			owner_ && (owner_->ButtonPressed(HID::LeftPad_Up) ||
+			((owner_->AxisChanged(HID::LJoyY)) && owner_->AxisInput(HID::LJoyY) < 0)))
+			&& cursorPositionY_ > 0 && (temp = findInRowFrom(--newY)) != -1)
+		{
+			newX = temp;
+		}
+		else if ((!owner_ && mngr->pressedDown() ||
+			owner_ && (owner_->ButtonPressed(HID::LeftPad_Down) ||
+			((owner_->AxisChanged(HID::LJoyY)) && owner_->AxisInput(HID::LJoyY) > 0)))
+			&& cursorPositionY_ < grid_.GetSizeY() - 1 && (temp = findInRowFrom(++newY)) != -1)
+		{
+			newX = temp;
+		}
+		if ((!owner_ && mngr->pressedLeft() ||
+			owner_ && (owner_->ButtonPressed(HID::LeftPad_Left) ||
+			((owner_->AxisChanged(HID::LJoyX)) && owner_->AxisInput(HID::LJoyX) < 0)))
+			&& cursorPositionX_ > 0 && (temp = findInColFrom(--newX)) != -1)
+		{
+			newY = temp;
+		}
+		else if ((!owner_ && mngr->pressedRight() ||
+			owner_ && (owner_->ButtonPressed(HID::LeftPad_Right) ||
+			((owner_->AxisChanged(HID::LJoyX)) && owner_->AxisInput(HID::LJoyX) > 0)))
+			&& cursorPositionX_ < grid_.GetSizeX() - 1 && (temp = findInColFrom(++newX)) != -1)
+		{
+			newY = temp;
+		}
 
-	if (cursorPositionX_ != oldX || cursorPositionY_ != oldY) // If the cursor moved
-	{
-		UIElement* ent = grid_.GetItem(oldX, oldY);
-		ent->Deselect();
-		ent = grid_.GetItem(cursorPositionX_, cursorPositionY_);
-		ent->Select();
+		if (newX != cursorPositionX_ || newY != cursorPositionY_) // If the cursor moved
+		{
+			ChangeSelectedItem(newX, newY);
+			entity_->getApp()->getAudioMngr()->playSFX(entity_->getApp()->getAssetsManager()->getSFX(AssetsManager::BOTON), false);
+		}
 	}
+}
+
+void NavigationController::ChangeSelectedItem(int x, int y)
+{
+	UIElement* ent = grid_.GetItem(cursorPositionX_, cursorPositionY_);
+	ent->Deselect();
+	ent = grid_.GetItem(x, y);
+	ent->Select();
+	cursorPositionX_ = x;
+	cursorPositionY_ = y;
 }
 
 void NavigationController::SetElementInPos(UIElement* ent, size_t x, size_t y)

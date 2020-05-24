@@ -12,10 +12,11 @@ class AssetsManager
 {
 public:
 	enum TextureNames {
-		Player,
+		EmptyHability,
 		Saco,
 		Button,
 		Logo,
+		Tint,
 		Controller,
 		Slidebar,
 		SliderRegulator,
@@ -46,6 +47,7 @@ public:
 		floor,
 		//floor2,
 		saco2,
+		CollageCharacters,
 
 		//resources of aisha
 		Aisha_icon,
@@ -74,22 +76,25 @@ public:
 		Random_icon,
 		RandomArtwork,
 
+		_abilityIcon_start,
 		//Ability icons
-		S_Sock_ico,
-		M_Grip_ico,
-		Ex_Will_ico,
-		Acid_ico,
-		Mina_ico,
 		ShrugOff_ico,
-		MorePower_ico,
-		Hook_ico,
-		Dash_ico,
+		Reach_ico,	//no existe esta creada con otra textura
+		MorePower_ico, //igual que el de arriba
+		Chicken_ico,	//es la textura n oel icono
+		Acid_ico,
+		Dash_ico,			//tp esta metido todavia
 		Vampiric_ico,
-		HailBall_ico,
-		Reach_ico,
-		FlyingKicks_ico,
 		L_Lineal_ico,
+		Mina_ico,
+		Hook_ico,
+		HailBall_ico,
+		Knockdown_ico,// ya esta pero es el de hailball
+		Ex_Will_ico,
+		FlyingKicks_ico,
 		Nado_ico,
+		M_Grip_ico,
+		S_Sock_ico,
 
 		//Ability sprites
 
@@ -152,12 +157,28 @@ public:
 		MKBIRD_2,
 		MKBIRD_3,
 		/// SFX
+		SALTO,
 
+		
 		PUNCH,
+		GANCHO,
 		KICK,
 		DASH,
 		POLLO,
 		MINA,
+		HIELO,
+		LASER,
+		ATAQUE,
+		ATAQUE2,
+		BOTON,
+		PLACAJE,
+		FLOORATTACK,
+		FLOORATTACK2,
+		PUNCH2,
+		HIT,
+		HIT2,
+		NORMALPUNCH
+
 
 	};
 	//constructors
