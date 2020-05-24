@@ -540,7 +540,7 @@ void AbilityFactory::MP1(Entity* ent)
 
 void AbilityFactory::MPC(Entity* ent)
 {
-	goOnCoolodwn(ent, 60 * 10);
+	goOnCoolodwn(ent, 60 * 12);
 }
 
 AnimationChain* AbilityFactory::GiveHookshot(Entity* e)
