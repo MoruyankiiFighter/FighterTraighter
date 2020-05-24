@@ -208,6 +208,7 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(HIT, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hit.wav"));
 	sfx_.emplace(HIT2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hit2.wav"));
 	sfx_.emplace(NORMALPUNCH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/flykick.wav"));
+	sfx_.emplace(VAMPIRIC, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/vampiric.wav"));
 
 }
 
