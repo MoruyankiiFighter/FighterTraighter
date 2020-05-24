@@ -12,6 +12,7 @@ public:
 	SkillSelection(App* app, int winner) : GameState(app), winner_(winner) { init(); }
 
 	void init() override;
+	void handleInput() override;
 
 	static void GoToNextSubMenu(App* app);
 	static void Pressed1(App* app);

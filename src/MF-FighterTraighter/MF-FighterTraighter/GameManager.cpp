@@ -17,6 +17,7 @@
 #include "AbilitySelection.h"
 #include "SkillSelection.h"
 #include "EndMenu.h"
+#include "InventorySelection.h"
 
 GameManager::GameManager(App* app) : app_(app)
 {
@@ -30,8 +31,8 @@ GameManager::GameManager(App* app) : app_(app)
 	//player1_.character = F10R;
 	player1_.character = F10R;
 
-	player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
-	//player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+	//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
+	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
 	player2_.character = F10R;
 }
 
@@ -52,7 +53,10 @@ void GameManager::pressedStart()
 		|| dynamic_cast<OptionsMenu*>(curState)
 		|| dynamic_cast<CharacterSelection*>(curState)) app_->getStateMachine()->popState();
 	else if (dynamic_cast<Fight*>(curState)
-		|| dynamic_cast<Training*>(curState)) app_->getStateMachine()->pushState(new PauseMenu(app_));
+		|| dynamic_cast<Training*>(curState)
+		|| dynamic_cast<SkillSelection*>(curState)
+		|| dynamic_cast<InventorySelection*>(curState))
+		app_->getStateMachine()->pushState(new PauseMenu(app_));
 }
 
 void GameManager::playerLost(int player)
