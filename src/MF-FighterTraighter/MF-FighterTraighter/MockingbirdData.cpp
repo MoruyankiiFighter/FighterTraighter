@@ -5,7 +5,7 @@ MockingbirdData::MockingbirdData(double width, double height, double rotation, d
 {
 	animLength_ = { {4, true, 12}, {6, true, 15}, {2, true, 3}, {2, true, 15}, {2, false, 2}, {4, false, 10}, {3, false, 10}, {6, false, 8},
 	{5, false, 7}, {3, false, 13}, {6, false, 10}, {3, false, 7}, {6, false, 15}, {2, true, 15}, {1, false, 10}, {1, true, 4}, {1, false, 10},
-	{2, false, 3}, {2, true, 12}, {2, false, 7}, {2, true, 7}, {2, false, 15}, {2, true, 10} };
+	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 7}, {2, false, 15}, {2, false, 10} };
 }
 
 void MockingbirdData::init()
