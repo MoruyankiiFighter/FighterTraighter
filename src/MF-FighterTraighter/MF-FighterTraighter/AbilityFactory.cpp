@@ -925,7 +925,7 @@ void AbilityFactory::FK4(Entity* e)
 void AbilityFactory::FKC(Entity* ent)
 {
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	if (ent->getApp()->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1))
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)
 		pT->setOrientation(1);
 	else   pT->setOrientation(-1);
 	//pT->getBody()->SetLinearDamping(10);	//0 friction in the air
