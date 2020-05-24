@@ -822,7 +822,7 @@ void AbilityFactory::FK1(Entity* e)
 
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
-	FollowPlayer* dT = new FollowPlayer(17, 15, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
+	FollowPlayer* dT = new FollowPlayer(17, 15, 35, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);	
 }
@@ -910,7 +910,7 @@ void AbilityFactory::FK4(Entity* e)
 
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight()-50 );
-	FollowPlayer* dT = new FollowPlayer(5, 20, 200, { (double)orientation_ * 5, -5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
+	FollowPlayer* dT = new FollowPlayer(5, 20, 20, { (double)orientation_ * 5, -5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(e, width, height, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
 }
@@ -978,13 +978,13 @@ AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
 
 	vecMov.push_back(new Move(10, nullptr, NK3, e));
 	vecMov.push_back(new Move(10, nullptr, NK1, e));
-	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
-	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
-	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
-	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
-	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
-	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
-	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
+	vecMov.push_back(new Move(10, nullptr, NK1, e));//flip
+	vecMov.push_back(new Move(10, nullptr, NK1, e));//right side
+	vecMov.push_back(new Move(10, nullptr, NK1, e));//flip
+	vecMov.push_back(new Move(10, nullptr, NK1, e));//right side
+	vecMov.push_back(new Move(10, nullptr, NK1, e));//flip
+	vecMov.push_back(new Move(10, nullptr, NK1, e));//right side
+	vecMov.push_back(new Move(10, nullptr, NK1, e));//flip
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
 
 	//vecMov.push_back(new Move(20, nullptr, NK1, e));
@@ -1022,25 +1022,47 @@ void AbilityFactory::NK1(Entity* e)
 
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
 	int time = 10;
-	double damage = 11;
+	double damage = 2;
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
 	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
-	FollowPlayer* dT = new FollowPlayer(damage, time, 50, { (double)orientation_ * 25, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
+	FollowPlayer* dT = new FollowPlayer(damage, time, 50, { (double)orientation_ * 0.02, -1.5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
-
-	
 }
 
 void AbilityFactory::NK2(Entity* ent)
 {
-	/*PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	phtr->setOrientation(-1 * phtr->getOrientation());*/
-	
-	//PlayerState* pS = ent->getComponent<PlayerState>(ecs::PlayerState);
-	//if (pS->isCasting() || pS->isAbletoMove()) pS->goIdle();
-	NK1(ent);
+	//phtr->getBody()->SetLinearDamping(10);	
+	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
 
+	Texture* texture = ent->getApp()->getAssetsManager()->getTexture(AssetsManager::FK1);
+	//PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
+	int orientation_ = phtr->getOrientation();
+
+	App* app = ent->getApp();
+	Entity* otherPlayer;
+	GameState* currentState = app->getStateMachine()->getCurrentState();
+	uint16 mask;
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player2);
+		mask = currentState->PLAYER_2;
+	}
+	else {
+		otherPlayer = app->getStateMachine()->getCurrentState()->getEntityManager().getHandler(ecs::Player1);
+		mask = currentState->PLAYER_1;
+	}
+
+	int width = 120;
+	double projX = phtr->getPosition().getX() + (phtr->getWidth() * 3 / 4) + (width / 2);
+
+	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
+	int time = 10;
+	double damage = 10;
+	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
+	FollowPlayer* dT = new FollowPlayer(damage, time, 50, { (double)orientation_ * 25, 5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
+	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
+	instanceEntitywHitbox(ent, width, 150, pos, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 }
 
 void AbilityFactory::NK3(Entity* ent)
