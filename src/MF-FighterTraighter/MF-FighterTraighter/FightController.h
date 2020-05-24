@@ -13,7 +13,7 @@ public:
 
 	virtual ~FightController() {}
 protected:
-	int playerLost_ = -1; // -1 = round is still going, 0 = leftPlayer, 1 = rightPlayer
+	int playerLost_ = -2; // -2 = round is still going, -1 = tie, 0 = leftPlayer, 1 = rightPlayer
 
 	Entity* msgEnt = nullptr;
 	bool showInitialMessage = true;

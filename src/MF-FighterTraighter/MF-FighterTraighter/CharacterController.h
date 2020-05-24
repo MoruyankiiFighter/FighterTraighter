@@ -27,14 +27,13 @@ public:
 	float getJumpImpulse() { return jumpImpulse; }
 	double getMovSpeed() { return movSpeed; }
 
-	void canJump(bool jump) { canJump_ = jump; }
+	
 	inline void setDisabled(bool d) { disabled_ = d; }
 protected:
 	PhysicsTransform* transform_ = nullptr;
 	float jumpImpulse = 0;
 	double movSpeed = 1;
 
-	bool canJump_ = true;
 	bool disabled_ = false;
 };
 

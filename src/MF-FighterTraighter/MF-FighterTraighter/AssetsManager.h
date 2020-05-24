@@ -118,8 +118,10 @@ public:
 		Hb1,
 		Hb2,
 		Ll1,
+		FK1,
 		FK4,
-		AS1
+		AS1,
+		nk1
 	};
 
 	enum FontNames {
@@ -177,7 +179,8 @@ public:
 		PUNCH2,
 		HIT,
 		HIT2,
-		NORMALPUNCH
+		NORMALPUNCH,
+		VAMPIRIC
 
 
 	};

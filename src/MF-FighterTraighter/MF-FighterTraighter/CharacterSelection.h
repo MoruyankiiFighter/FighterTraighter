@@ -13,10 +13,10 @@ public:
 	void handleInput() override;
 private:
 	
-	string mkwhoop_desc= "MKW00P: Tiene un playstyle lento pero poderoso, con golpes contundentes y de alto empuje. Tiene una vida alta.";
-	string aisha_desc= "Aisha: Tiene un playstyle balanceado, ni muy rápido ni muy lento, con movimientos que brillan sobre todo en el aire. Tiene una vida media.";
-	string flor_desc= "F10R: Es capaz de atacar desde muy lejos, evitando que sus oponentes se acerquen, tiene el rol de zoner. Tiene una vida media-baja.";
-	string mock_desc = "MockingBird: Sus ataques son rápidos pero de poco daño, promoviendo un playstyle de hacer combos mezclándolos. Tiene una vida baja.";
+	string mkwhoop_desc= "MKW00P: Has a slow and powerfull playstyle, with hard hits and high push and a lot of live points.";
+	string aisha_desc= "Aisha: Has a balanced playstyle, not specialy fast or slow, with aerial attacks specialy skillfull. Has medium live points.";
+	string flor_desc= "F10R: Is a range attacks character, able to keep distance with the enemy. It does not have very much live points.";
+	string mock_desc = "MockingBird: Has fast attacks but not very powerful. His playstyle is about combos and velocity. His live points are low.";
 
 };
 

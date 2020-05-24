@@ -126,9 +126,11 @@ void AssetsManager::loadTextures()
 	textures_.emplace(Hb1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hb1.png", 1, 1));
 	textures_.emplace(Hb2, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/hb2.png", 1, 1));
 	textures_.emplace(Ll1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/laserlineal-2.png", 1, 1));
+	textures_.emplace(FK1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/FK1.png", 1, 1));
 	textures_.emplace(FK4, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/FK4.png", 1, 1));
 	textures_.emplace(AS1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/acidPotion.png", 1, 1));
 	textures_.emplace(Rs1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/ReachingStrike.png", 1, 1));
+	textures_.emplace(nk1, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/skills/nk1.png", 2, 1));
 
 	// textures_.emplace("key", new Texture(app_->getRenderer(), "Filepath", cols, fils));
 	textures_.emplace(SelectionSquare, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/recuadro.png", 1, 1));
@@ -207,6 +209,7 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(HIT, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hit.wav"));
 	sfx_.emplace(HIT2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hit2.wav"));
 	sfx_.emplace(NORMALPUNCH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/flykick.wav"));
+	sfx_.emplace(VAMPIRIC, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/vampiric.wav"));
 
 }
 

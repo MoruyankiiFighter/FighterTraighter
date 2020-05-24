@@ -149,10 +149,10 @@ void AbilityFactory::SeismicS1(Entity* e)	//the attack to the floor
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
 
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
-	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -65);
 	DestroyAtTime* dT = new DestroyAtTime(17, 50, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
-	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
+	instanceEntitywHitbox(e, width, 120, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
 }
 
 void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
@@ -639,7 +639,7 @@ void AbilityFactory::Dash(Entity* ent)
 
 void AbilityFactory::DashC(Entity* ent)
 {
-	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	//PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	goOnCoolodwn(ent, 60 * 15);
 }
 
@@ -681,6 +681,7 @@ void AbilityFactory::VS1(Entity* ent)
 	VampiricDestroyAtTime* dT = new VampiricDestroyAtTime(5, 20, 30, { (double)orientation_ * 5, -1.3 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent, 0.4);
 
 	AbilityFactory::instanceEntitywHitbox(ent, width, 145, pos, { 0, 0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::VAMPIRIC), false);
 }
 
 void AbilityFactory::VSC(Entity* ent)
@@ -798,7 +799,7 @@ AnimationChain* AbilityFactory::GiveFlyingKicks(Entity* e)
 //attack
 void AbilityFactory::FK1(Entity* e)
 {
-	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg1);
+	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::FK1);
 	PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = phtr->getOrientation();
 
@@ -838,12 +839,9 @@ void AbilityFactory::FK2(Entity* ent)
 	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -35, -18 };
-		pT->setOrientation(-1);
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, -18 };
-		pT->setOrientation(1);
-
 	}
 	else {
 		if (pT->getOrientation() == 1) {
@@ -869,14 +867,9 @@ void AbilityFactory::FK3(Entity* ent)
 
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -35, 18 };
-		pT->setOrientation(-1);
-
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, 18 };
-		pT->setOrientation(1);
-
-
 	}
 	else {
 		if (pT->getOrientation() == 1) {
@@ -924,10 +917,9 @@ void AbilityFactory::FK4(Entity* e)
 
 void AbilityFactory::FKC(Entity* ent)
 {
-	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0)
-		pT->setOrientation(1);
-	else   pT->setOrientation(-1);
+	/*PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) pT->setOrientation(1);
+	else pT->setOrientation(-1);*/
 	//pT->getBody()->SetLinearDamping(10);	//0 friction in the air
 	goOnCoolodwn(ent, 60 * 10);
 }
@@ -994,7 +986,6 @@ AnimationChain* AbilityFactory::GiveNadoKick(Entity* e)
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//flip
 	vecMov.push_back(new Move(10, nullptr, NK2, e));//right side
-	vecMov.push_back(new Move(5, nullptr, NKF, e));//right side
 
 	//vecMov.push_back(new Move(20, nullptr, NK1, e));
 	AnimationChain* NadoKick = new AnimationChain(vecMov);
@@ -1009,7 +1000,7 @@ void AbilityFactory::NK1(Entity* e)
 	//phtr->getBody()->SetLinearDamping(10);	
 	PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
 
-	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg1);
+	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::FK1);
 	//PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = phtr->getOrientation();
 
@@ -1043,8 +1034,8 @@ void AbilityFactory::NK1(Entity* e)
 
 void AbilityFactory::NK2(Entity* ent)
 {
-	PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	phtr->setOrientation(-1 * phtr->getOrientation());
+	/*PhysicsTransform* phtr = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	phtr->setOrientation(-1 * phtr->getOrientation());*/
 	
 	//PlayerState* pS = ent->getComponent<PlayerState>(ecs::PlayerState);
 	//if (pS->isCasting() || pS->isAbletoMove()) pS->goIdle();
@@ -1062,12 +1053,9 @@ void AbilityFactory::NK3(Entity* ent)
 	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -35, -18 };
-		pT->setOrientation(-1);
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 35, -18 };
-		pT->setOrientation(1);
-
 	}
 	else {
 		if (pT->getOrientation() == 1) {
@@ -1079,32 +1067,29 @@ void AbilityFactory::NK3(Entity* ent)
 	}
 	pT->setSpeed(speed);
 
-	/*PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
-	pC->canJump(false);*/
-
+	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::TextureNames::nk1),
+		Vector2D(125, 0), Vector2D(250, 500), 115, PlayerParticleSystem::DeletionMethod::OnHit, 2, 5, true);
 }
-
-void AbilityFactory::NKF(Entity* ent)
-{	
-	/*PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
-	pC->canJump(true);*/
-	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
-		 pT->setOrientation(1);
-	else   pT->setOrientation(-1);
-
-	//ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
-}
+//
+//void AbilityFactory::NKF(Entity* ent)
+//{	
+//	/*PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+//	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
+//		 pT->setOrientation(1);
+//	else   pT->setOrientation(-1);
+//*/
+//	//ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
+//}
 
 void AbilityFactory::NKC(Entity* ent)
 {
-	PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
+	/*PlayerController* pC = ent->getComponent<PlayerController>(ecs::CharacterController);
 	pC->canJump(true);
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	if (ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber() == 0) 
 		 pT->setOrientation(1);
-	else   pT->setOrientation(-1);
-	ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
+	else   pT->setOrientation(-1);*/
+	//ent->getComponent<PlayerState>(ecs::PlayerState)->goCasting();
 	//pT->getBody()->SetLinearDamping(0);
 	goOnCoolodwn(ent, 60 * 10);
 }
@@ -1132,11 +1117,11 @@ void AbilityFactory::KD1(Entity* ent)
 	HID* inputSt_ = ent->getApp()->getGameManager()->getPlayerInfo(pD->getPlayerNumber() + 1).hid;
 	if (inputSt_->ButtonDown(HID::LeftPad_Left) || inputSt_->AxisInput(HID::LJoyX) < 0) {
 		speed = Vector2D{ -20, 0 };
-		pT->setOrientation(-1);
+		//pT->setOrientation(-1);
 	}
 	else if ((inputSt_->ButtonDown(HID::LeftPad_Right) || inputSt_->AxisInput(HID::LJoyX) > 0)) {
 		speed = Vector2D{ 20, 0 };
-		pT->setOrientation(1);
+		//pT->setOrientation(1);
 
 	}
 	else {
