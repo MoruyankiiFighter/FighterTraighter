@@ -49,8 +49,8 @@ void AIGameState::init()
 
 void AIGameState::handleInput()
 {
-	/*if (app_->getInputManager()->pressedStart()) {
-		app_->Exit();
+	if (app_->getInputManager()->pressedStart()) {
+		app_->getGameManager()->pressedStart();
 	}
-	else*/ GameState::handleInput();
+	else GameState::handleInput();
 }
