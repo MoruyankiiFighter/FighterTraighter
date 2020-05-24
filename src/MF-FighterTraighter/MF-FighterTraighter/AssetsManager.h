@@ -118,6 +118,7 @@ public:
 		Hb1,
 		Hb2,
 		Ll1,
+		FK1,
 		FK4,
 		AS1,
 		nk1

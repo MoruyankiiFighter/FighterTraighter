@@ -11,7 +11,6 @@
 #include "CharFactory.h"
 #include "AbilitiesTimerFunction.h"
 #include "FightController.h"
-#include "Entity.h"
 
 #include "Camera.h"
 #include "Shake.h"

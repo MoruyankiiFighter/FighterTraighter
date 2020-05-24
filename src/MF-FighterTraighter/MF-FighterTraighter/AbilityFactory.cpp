@@ -149,10 +149,10 @@ void AbilityFactory::SeismicS1(Entity* e)	//the attack to the floor
 	if (orientation_ == -1) projX = phtr->getPosition().getX() + (phtr->getWidth() * 1 / 4) - (width / 2);
 
 	//e->getApp()->getStateMachine()->getCurrentState()->addHitbox({ (double)orientation_ * hitboxX, 105 }, width, 150, 17, 17, 50, { (double)orientation_ * 5, -100 }, pT->getBody(), e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e, pT->getCategory(), pT->getMask());
-	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -75);
+	Vector2D pos = Vector2D(projX, phtr->getPosition().getY() + phtr->getHeight() + -65);
 	DestroyAtTime* dT = new DestroyAtTime(17, 50, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
-	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
+	instanceEntitywHitbox(e, width, 120, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
 }
 
 void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
@@ -799,7 +799,7 @@ AnimationChain* AbilityFactory::GiveFlyingKicks(Entity* e)
 //attack
 void AbilityFactory::FK1(Entity* e)
 {
-	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg1);
+	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::FK1);
 	PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = phtr->getOrientation();
 
@@ -1000,7 +1000,7 @@ void AbilityFactory::NK1(Entity* e)
 	//phtr->getBody()->SetLinearDamping(10);	
 	PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
 
-	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::Mg1);
+	Texture* texture = e->getApp()->getAssetsManager()->getTexture(AssetsManager::FK1);
 	//PhysicsTransform* phtr = e->getComponent<PhysicsTransform>(ecs::Transform);
 	int orientation_ = phtr->getOrientation();
 
