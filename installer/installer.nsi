@@ -33,17 +33,14 @@ Section
 
 	StrCpy $FTName "Fighter Traighter"
 	
-    # set the installation directory as the destination for the following actions
+    # set the directory and files to go to the output directory
+	
     SetOutPath $INSTDIR
 
-
-	# specify files to go in output path
-	
 	File "..\src\MF-FighterTraighter\x64\Release\MF-FighterTraighter.exe"
 	File "..\src\MF-FighterTraighter\x64\Release\MF-FighterTraighter.iobj"
 	File "..\src\MF-FighterTraighter\x64\Release\MF-FighterTraighter.ipdb"
 	File "..\src\MF-FighterTraighter\x64\Release\MF-FighterTraighter.pdb"
-	
 	File "..\src\MF-FighterTraighter\x64\Release\libFLAC-8.dll"
 	File "..\src\MF-FighterTraighter\x64\Release\libfreetype-6.dll"
 	File "..\src\MF-FighterTraighter\x64\Release\libjpeg-9.dll"
@@ -62,9 +59,12 @@ Section
 	File "..\src\MF-FighterTraighter\x64\Release\SDL2_mixer.dll"
 	File "..\src\MF-FighterTraighter\x64\Release\SDL2_ttf.dll"
 	File "..\src\MF-FighterTraighter\x64\Release\zlib1.dll"
-
 	
-	# end of files
+	SetOutPath $INSTDIR\assets\Assets
+	
+	File "..\assets\Assets\personaje.png"
+	
+	#end of files
  
  
     # create the uninstaller
@@ -92,7 +92,6 @@ Section "Uninstall"
 	Delete $INSTDIR\MF-FighterTraighter.iobj
 	Delete $INSTDIR\MF-FighterTraighter.ipdb
 	Delete $INSTDIR\MF-FighterTraighter.pdb
-	
 	Delete $INSTDIR\libFLAC-8.dll
 	Delete $INSTDIR\libfreetype-6.dll
 	Delete $INSTDIR\libjpeg-9.dll
@@ -111,6 +110,8 @@ Section "Uninstall"
 	Delete $INSTDIR\SDL2_mixer.dll
 	Delete $INSTDIR\SDL2_ttf.dll
 	Delete $INSTDIR\zlib1.dll
+	
+	Delete $INSTDIR\assets\Assets\personaje.png
 	
 	#end of files
  
