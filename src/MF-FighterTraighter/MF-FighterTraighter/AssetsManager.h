@@ -178,7 +178,8 @@ public:
 		PUNCH2,
 		HIT,
 		HIT2,
-		NORMALPUNCH
+		NORMALPUNCH,
+		VAMPIRIC
 
 
 	};
