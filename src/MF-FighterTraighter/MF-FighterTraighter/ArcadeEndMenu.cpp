@@ -65,8 +65,8 @@ void ArcadeEndMenu::init()
 	//	900, 900, 0);
 
 	Entity* textWinner = entManager_.addEntity();
-	textWinner->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 200), Vector2D(200, 50), Vector2D(400, 100));
-	textWinner->addComponent<TextComponent>(text, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::Center);
+	textWinner->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 200), Vector2D(450, 50), Vector2D(900, 450));
+	textWinner->addComponent<TextComponent>(text, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 200, TextComponent::Center);
 
 	
 
