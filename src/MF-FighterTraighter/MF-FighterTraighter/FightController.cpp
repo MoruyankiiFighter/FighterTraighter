@@ -51,12 +51,20 @@ void FightController::update()
 
 void FightController::PlayerLost(int playerNumber)
 {
+	
 	if (playerLost_ != -2) return;
 	string txt = "";
-	if (playerNumber == -1) { // tie
-		txt = "Both players lost!";
-	} else {
-		txt = "Player " + to_string(playerNumber == 0 ? 2 : 1) + " wins!";
+	if (playerNumber_ == 2) {
+		if (playerNumber == -1) { // tie
+			txt = "Both players lost!";
+		}
+		else {
+			txt = "Player " + to_string(playerNumber == 0 ? 2 : 1) + " wins!";
+		}
+	}
+	else {
+		if (playerNumber == 1) txt = "¡You win!";
+		else "¡You lose!";
 	}
 	displayMessage(txt);
 	disablePlayers(true);

@@ -4,7 +4,7 @@ class FightController :
 	public Component
 {
 public:
-	FightController(int roundIniTime, int roundEndTime) : Component(ecs::FightController), ini_timer(roundIniTime), roundEndTime_(roundEndTime) {}
+	FightController(int roundIniTime, int roundEndTime, int playerNumber=2) : Component(ecs::FightController), ini_timer(roundIniTime), roundEndTime_(roundEndTime),playerNumber_(playerNumber) {}
 
 	void init() override;
 	void update() override;
@@ -26,5 +26,6 @@ protected:
 
 	//displays a message in the middle of the screen
 	void displayMessage(string msg);
+	int playerNumber_ = 2;
 };
 

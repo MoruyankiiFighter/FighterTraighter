@@ -118,7 +118,7 @@ PlayerData::CallbackData F10RData::hp1 = PlayerData::CallbackData{
 	325,
 	70,
 	20,
-	12,
+	1200,
 	28 };
 
 void F10RData::NK1(Entity* ent)

@@ -1,4 +1,4 @@
-#include "EndMenu.h"
+#include "ArcadeEndMenu.h"
 
 #include "InputManager.h"
 
@@ -11,22 +11,24 @@
 #include "UIFactory.h"
 #include "RenderAnimation.h"
 #include "UITransform.h"
+#include "SkillSelection.h"
 
-EndMenu::EndMenu(App* app, int playerWin) : GameState(app), winner(playerWin)
+ArcadeEndMenu::ArcadeEndMenu(App* app, int numRound): GameState(app), numRound_(numRound)
 {
+
 #ifdef _DEBUG
 	cout << "Menu Final" << endl;
 #endif 
 	init();
 }
 
-EndMenu::~EndMenu()
+ArcadeEndMenu::~ArcadeEndMenu()
 {
-
 }
 
-void EndMenu::init()
+void ArcadeEndMenu::init()
 {
+
 	GameState::init();
 
 
@@ -45,18 +47,16 @@ void EndMenu::init()
 		Vector2D(),
 		app_->getWindowManager()->getCurResolution().h, app_->getWindowManager()->getCurResolution().h, 0);
 
-	string text;
-	string text2;
 
-	if (winner == 0) {
-		text = "¡PLAYER 1 WINS! ¡YOU ARE A MONSTER!";
-		text2 = "PLAYER 2 IS A NOOB";
-	}
-	else {
-		text = "¡PLAYER 2 WINS! ¡YOU ARE A MONSTER!";
-		text2 = "PLAYER 1 IS A NOOB";
-	}
-		
+	//UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::FlorArtwork),
+		//Vector2D(-125, -125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0);
+
+
+	
+	string text = "You win "+  to_string(numRound_) +" rounds";
+	//text2 = "PLAYER 1 IS A NOOB";
+	
+
 	//// Image
 	//Entity* image = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::CollageCharacters),
 	//	Vector2D(-50, 0),
@@ -68,9 +68,7 @@ void EndMenu::init()
 	textWinner->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 200), Vector2D(200, 50), Vector2D(400, 100));
 	textWinner->addComponent<TextComponent>(text, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::Center);
 
-	Entity* textLoser = entManager_.addEntity();
-	textLoser->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 500), Vector2D(200, 50), Vector2D(400, 100));
-	textLoser->addComponent<TextComponent>(text2, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::Center);
+	
 
 	// Position variables
 	const double leftOffset = 250;
@@ -83,7 +81,7 @@ void EndMenu::init()
 
 	// Logo
 	Entity* logo = UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Logo),
-		Vector2D(app_->getWindowManager()->getCurResolution().w / 2-leftOffset, 160),
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 2 - leftOffset, 160),
 		Vector2D(0, 0),
 		Vector2D(0, 91 * 1.5 / 2),
 		320 * 1.5, 91 * 1.5, 0);
@@ -93,11 +91,11 @@ void EndMenu::init()
 	// 1v1 button
 	tuple < Entity*, Entity*> menu_button = UIFactory::createButton(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button), app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),
 		Vector2D(-buttonSeparation, 0),
-		Vector2D(app_->getWindowManager()->getCurResolution().w/2-150.0, app_->getWindowManager()->getCurResolution().h -100.0),
+		Vector2D(app_->getWindowManager()->getCurResolution().w / 2 - 150.0, app_->getWindowManager()->getCurResolution().h - 100.0),
 		Vector2D(0, 50),
 		480, 100, 0, nullptr, GoMainMenu, "Go to menu", textSize, TextComponent::TextAlignment::Left);
 	//std::get<1>(pvp)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, 0);
-	std::get<1>(menu_button)->getComponent<UITransform>(ecs::Transform)->setPosition(- 85, 0);
+	std::get<1>(menu_button)->getComponent<UITransform>(ecs::Transform)->setPosition(-85, 0);
 
 
 	// Navigation
@@ -107,7 +105,7 @@ void EndMenu::init()
 	app_->getAudioMngr()->playMusic(app_->getAssetsManager()->getMusic(AssetsManager::MENU_OPCIONES), true);
 }
 
-void EndMenu::handleInput()
+void ArcadeEndMenu::handleInput()
 {
 	if (app_->getInputManager()->pressedStart()) {
 		app_->getAudioMngr()->stopMusic();
@@ -116,12 +114,10 @@ void EndMenu::handleInput()
 	}
 	else
 		GameState::handleInput();
-
 }
 
-void EndMenu::GoMainMenu(App* app)
+void ArcadeEndMenu::GoMainMenu(App* app)
 {
 	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::MENU_PRINCIPAL), true);
-
 	app->getGameManager()->GoBackToMain();
 }

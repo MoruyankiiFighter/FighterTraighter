@@ -19,6 +19,7 @@
 #include "EndMenu.h"
 #include "InventorySelection.h"
 #include "AIGameState.h"
+#include "ArcadeEndMenu.h"
 GameManager::GameManager(App* app) : app_(app)
 {
 	app_->getStateMachine()->pushState(new MainMenu(app_));
@@ -113,11 +114,12 @@ void GameManager::playerLost(int player)
 
 }
 
-void GameManager::AIWin()
-{
+void GameManager::AIWin(){
 	//ir al menu donde se muestra la puntuacion
 	//GoToEndMenu(1);
-	GoBackToMain();
+	app_->getStateMachine()->pushState(new ArcadeEndMenu(app_, playerLrounds_));
+
+	//GoBackToMain();
 }
 
 void GameManager::ResetRounds()

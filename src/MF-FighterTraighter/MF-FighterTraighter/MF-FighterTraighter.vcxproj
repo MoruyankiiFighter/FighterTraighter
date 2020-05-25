@@ -142,6 +142,7 @@
     <ClCompile Include="AILogic.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="ArcadeEndMenu.cpp" />
     <ClCompile Include="AudioOptionsLogic.cpp" />
     <ClCompile Include="ButtonControl.cpp" />
     <ClCompile Include="CharacterAttacks.cpp" />
@@ -239,6 +240,7 @@
     <ClInclude Include="AILogic.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="ArcadeEndMenu.h" />
     <ClInclude Include="AudioOptionsLogic.h" />
     <ClInclude Include="ButtonControl.h" />
     <ClInclude Include="CharacterAttacks.h" />

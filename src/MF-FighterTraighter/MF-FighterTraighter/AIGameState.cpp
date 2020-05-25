@@ -156,6 +156,14 @@ void AIGameState::init()
 
 
 
+
+	string text = "Round " + to_string(app_->getGameManager()->getPlayerRounds(1)+1);
+	Entity* textWinner = entManager_.addEntity();
+	textWinner->addComponent<UITransform>(Vector2D(0, 50), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 30), Vector2D(200, 50), Vector2D(400, 100));
+	textWinner->addComponent<TextComponent>(text, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black),40, TextComponent::Center);
+
+
+
 	// Healthbar Player2
 	Entity* healthbarBack2 = entManager_.addEntity();
 	healthbarBack2->addComponent<UITransform>(Vector2D(-460, 50), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(365, 20), Vector2D(730, 40));
