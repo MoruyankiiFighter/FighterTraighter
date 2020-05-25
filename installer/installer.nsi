@@ -87,14 +87,150 @@ Section
 	File "..\assets\Assets\Sounds\Taunts\Mockingbird\pain.wav"
 	File "..\assets\Assets\Sounds\Taunts\Mockingbird\yeow.wav"
 	
+	SetOutPath $INSTDIR\assets\Assets\Sounds\SFX
 	
+	File "..\assets\Assets\Sounds\SFX\florAttack3.wav"
+	File "..\assets\Assets\Sounds\SFX\florAttack2.ogg"
+	File "..\assets\Assets\Sounds\SFX\salto.wav"
+	File "..\assets\Assets\Sounds\SFX\punch.wav"
+	File "..\assets\Assets\Sounds\SFX\gancho.wav"
+	File "..\assets\Assets\Sounds\SFX\patada.wav"
+	File "..\assets\Assets\Sounds\SFX\failattack.wav"
+	File "..\assets\Assets\Sounds\SFX\pollo.wav"
+	File "..\assets\Assets\Sounds\SFX\mina.wav"
+	File "..\assets\Assets\Sounds\SFX\hielo.wav"
+	File "..\assets\Assets\Sounds\SFX\laser3.wav"
+	File "..\assets\Assets\Sounds\SFX\boton.wav"
+	File "..\assets\Assets\Sounds\SFX\ataque.wav"
+	File "..\assets\Assets\Sounds\SFX\ataque2.wav"
+	File "..\assets\Assets\Sounds\SFX\placaje.wav"
+	File "..\assets\Assets\Sounds\SFX\floorAttack.wav"
+	File "..\assets\Assets\Sounds\SFX\floorAttack2.wav"
+	File "..\assets\Assets\Sounds\SFX\normalpunch.wav"
+	File "..\assets\Assets\Sounds\SFX\hit.wav"
+	File "..\assets\Assets\Sounds\SFX\hit2.wav"
+	File "..\assets\Assets\Sounds\SFX\flykick.wav"
+	File "..\assets\Assets\Sounds\SFX\vampiric.wav"
+	
+	SetOutPath $INSTDIR\assets\Assets\
+	
+	File "..\assets\Assets\personaje.png"
+	File "..\assets\Assets\personajeActing.png"
+
+	SetOutPath $INSTDIR\assets\Assets\images
+	
+	File "..\assets\Assets\images\backgroundtemp.png"
+	File "..\assets\Assets\images\warbanner.png"
+	File "..\assets\Assets\images\FONDO.png"
+	File "..\assets\Assets\images\floortemp.png"
+	File "..\assets\Assets\images\panel.png"
+	File "..\assets\Assets\images\submenuFondo.jpg"
+	File "..\assets\Assets\images\submenuwin.jpg"
+	
+	SetOutPath $INSTDIR\assets\Assets\images\UI
+	
+	File "..\assets\Assets\images\UI\buttons.png"
+	File "..\assets\Assets\images\UI\logo.png"
+	File "..\assets\Assets\images\UI\Tint.png"
+	File "..\assets\Assets\images\UI\controller.png"
+	File "..\assets\Assets\images\UI\slidebar.png"
+	File "..\assets\Assets\images\UI\regulador.png"
+	File "..\assets\Assets\images\UI\characters_selection.png"
+	File "..\assets\Assets\images\UI\healthbar.png"
+	File "..\assets\Assets\images\UI\healthbarSaco.png"
+	File "..\assets\Assets\images\UI\healthbarBack.png"
+	File "..\assets\Assets\images\UI\RoundCounter.png"
+	File "..\assets\Assets\images\UI\marco1.png"
+	File "..\assets\Assets\images\UI\marco2.png"
+
+	SetOutPath $INSTDIR\assets\Assets\images\characters
+	
+	File "..\assets\Assets\images\characters\saco.png"
+	File "..\assets\Assets\images\characters\sacoNoSombra.png"
+	File "..\assets\Assets\images\characters\flor_spritesheet.png"
+	File "..\assets\Assets\images\characters\Ganonbot_spritesheet.png"
+	
+	SetOutPath "$INSTDIR\assets\Assets\images\selection characters"
+	
+	File "..\assets\Assets\images\selection characters\aisha-icon.png"
+	File "..\assets\Assets\images\selection characters\aisha.png"
+	File "..\assets\Assets\images\selection characters\flor-icon.png"
+	File "..\assets\Assets\images\selection characters\flor.png"
+	File "..\assets\Assets\images\selection characters\ganonbot-icon.png"
+	File "..\assets\Assets\images\selection characters\ganonbot.png"
+	File "..\assets\Assets\images\selection characters\moc-icon.png"
+	File "..\assets\Assets\images\selection characters\mock.png"
+	File "..\assets\Assets\images\selection characters\Random-icon.png"
+	File "..\assets\Assets\images\selection characters\random.png"
+	File "..\assets\Assets\images\selection characters\imagenMenu.png"
+	File "..\assets\Assets\images\selection characters\recuadro.png"
+	
+	SetOutPath $INSTDIR\assets\Assets\images\attacks
+
+	File "..\assets\Assets\images\attacks\F10RHp.png"
+	File "..\assets\Assets\images\attacks\F10RHk.png"
+	File "..\assets\Assets\images\attacks\MkWH00PHk.png"
+	
+	SetOutPath $INSTDIR\assets\Assets\images\skills\iconos
+
+	File "..\assets\Assets\images\skills\iconos\so1.png"
+	;File "..\assets\Assets\images\skills\iconos\so1.png"
+	;File "..\assets\Assets\images\skills\iconos\so1.png"
+	File "..\assets\Assets\images\skills\iconos\poison syrup.png"
+	; File "..\assets\Assets\images\skills\iconos\poison syrup.png"
+	File "..\assets\Assets\images\skills\iconos\Vampiric_ico.png"
+	File "..\assets\Assets\images\skills\iconos\LaserLineal_ico.png"
+	File "..\assets\Assets\images\skills\iconos\mina.png"
+	File "..\assets\Assets\images\skills\iconos\Ganchoicon.png"
+	File "..\assets\Assets\images\skills\iconos\hielo.png"
+	; File "..\assets\Assets\images\skills\iconos\hielo.png"
+	File "..\assets\Assets\images\skills\iconos\ExplosiveWillPower.png"
+	File "..\assets\Assets\images\skills\iconos\PatadasVoladoras.png"
+	File "..\assets\Assets\images\skills\iconos\NadoKick_ico.png"
+	File "..\assets\Assets\images\skills\iconos\MegatonGrip.png"
+	File "..\assets\Assets\images\skills\iconos\Seismicshock.png"
+	File "..\assets\Assets\images\skills\iconos\RandomRage.png"
+	File "..\assets\Assets\images\skills\iconos\KnifeDance.png"
+	File "..\assets\Assets\images\skills\iconos\doping.png"
+	
+	SetOutPath $INSTDIR\assets\Assets\images\skills\
+	
+	File "..\assets\Assets\images\skills\pollo.png"
+	File "..\assets\Assets\images\skills\mg1.png"
+	File "..\assets\Assets\images\skills\mg2-1.png"
+	File "..\assets\Assets\images\skills\mg2-2.png"
+	File "..\assets\Assets\images\skills\ss1.png"
+	File "..\assets\Assets\images\skills\ss2.png"
+	File "..\assets\Assets\images\skills\ew1.png"
+	; File "..\assets\Assets\images\skills\pollo.png"
+	File "..\assets\Assets\images\skills\so1.png"
+	File "..\assets\Assets\images\skills\mp1.png"
+	File "..\assets\Assets\images\skills\hs1.png"
+	File "..\assets\Assets\images\skills\as2.png"
+	File "..\assets\Assets\images\skills\mina1.png"
+	File "..\assets\Assets\images\skills\mina2.png"
+	File "..\assets\Assets\images\skills\minafinal.png"
+	; File "..\assets\Assets\images\skills\pollo.png"
+	File "..\assets\Assets\images\skills\vs1.png"
+	File "..\assets\Assets\images\skills\vs2.png"
+	File "..\assets\Assets\images\skills\hb1.png"
+	File "..\assets\Assets\images\skills\hb2.png"
+	File "..\assets\Assets\images\skills\laserlineal-2.png"
+	File "..\assets\Assets\images\skills\FK1.png"
+	File "..\assets\Assets\images\skills\FK4.png"
+	File "..\assets\Assets\images\skills\acidPotion.png"
+	File "..\assets\Assets\images\skills\ReachingStrike.png"
+	File "..\assets\Assets\images\skills\nk1.png"
+	File "..\assets\Assets\images\skills\kd1.png"
+
+
 	#end of files
  
  
     # create the uninstaller
     WriteUninstaller "$INSTDIR\uninstall $FTName.exe"
 	
-    CreateShortcut "$SMPROGRAMS\Fighter Traighter.lnk" "$INSTDIR\MF-FighterTraighter.exe" #change to the exe of the game
+    CreateShortcut "$SMPROGRAMS\Fighter Traighter.lnk" "$INSTDIR\DELETE\ME\IM\USELESS\MF-FighterTraighter.exe" #change to the exe of the game
 
 SectionEnd
 
@@ -152,6 +288,123 @@ Section "Uninstall"
 	Delete "$INSTDIR\assets\Assets\Sounds\Taunts\Mockingbird\pain.wav"
 	Delete "$INSTDIR\assets\Assets\Sounds\Taunts\Mockingbird\yeow.wav"
 
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\florAttack3.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\florAttack2.ogg"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\salto.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\punch.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\gancho.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\patada.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\failattack.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\pollo.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\mina.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\hielo.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\laser3.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\boton.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\ataque.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\ataque2.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\placaje.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\floorAttack.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\floorAttack2.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\normalpunch.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\hit.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\hit2.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\flykick.wav"
+	Delete "$INSTDIR\assets\Assets\Sounds\SFX\vampiric.wav"
+	
+	Delete "$INSTDIR\assets\Assets\personaje.png"
+	Delete "$INSTDIR\assets\Assets\personajeActing.png"
+	
+	Delete "$INSTDIR\assets\Assets\images\backgroundtemp.png"
+	Delete "$INSTDIR\assets\Assets\images\warbanner.png"
+	Delete "$INSTDIR\assets\Assets\images\FONDO.png"
+	Delete "$INSTDIR\assets\Assets\images\floortemp.png"
+	Delete "$INSTDIR\assets\Assets\images\panel.png"
+	Delete "$INSTDIR\assets\Assets\images\submenuFondo.jpg"
+	Delete "$INSTDIR\assets\Assets\images\submenuwin.jpg"
+	
+	Delete "$INSTDIR\assets\Assets\images\UI\buttons.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\logo.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\Tint.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\controller.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\slidebar.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\regulador.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\characters_selection.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\healthbar.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\healthbarSaco.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\healthbarBack.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\RoundCounter.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\marco1.png"
+	Delete "$INSTDIR\assets\Assets\images\UI\marco2.png"
+	
+	Delete "$INSTDIR\assets\Assets\images\characters\saco.png"
+	Delete "$INSTDIR\assets\Assets\images\characters\sacoNoSombra.png"
+	Delete "$INSTDIR\assets\Assets\images\characters\flor_spritesheet.png"
+	Delete "$INSTDIR\assets\Assets\images\characters\Ganonbot_spritesheet.png"
+	
+	Delete "$INSTDIR\assets\Assets\images\selection characters\aisha-icon.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\aisha.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\flor-icon.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\flor.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\ganonbot-icon.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\ganonbot.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\moc-icon.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\mock.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\Random-icon.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\random.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\imagenMenu.png"
+	Delete "$INSTDIR\assets\Assets\images\selection characters\recuadro.png"
+	
+	Delete "$INSTDIR\assets\Assets\images\attacks\F10RHp.png"
+	Delete "$INSTDIR\assets\Assets\images\attacks\F10RHk.png"
+	Delete "$INSTDIR\assets\Assets\images\attacks\MkWH00PHk.png"
+	
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\so1.png"
+	;Delete "$INSTDIR\assets\Assets\images\skills\iconos\so1.png"
+	;Delete "$INSTDIR\assets\Assets\images\skills\iconos\so1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\poison syrup.png"
+	; Delete "$INSTDIR\assets\Assets\images\skills\iconos\poison syrup.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\Vampiric_ico.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\LaserLineal_ico.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\mina.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\Ganchoicon.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\hielo.png"
+	; Delete "$INSTDIR\assets\Assets\images\skills\iconos\hielo.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\ExplosiveWillPower.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\PatadasVoladoras.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\NadoKick_ico.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\MegatonGrip.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\Seismicshock.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\RandomRage.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\KnifeDance.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\iconos\doping.png"
+	
+	Delete "$INSTDIR\assets\Assets\images\skills\pollo.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\mg1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\mg2-1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\mg2-2.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\ss1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\ss2.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\ew1.png"
+	; Delete "$INSTDIR\assets\Assets\images\skills\pollo.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\so1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\mp1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\hs1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\as2.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\mina1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\mina2.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\minafinal.png"
+	; Delete "$INSTDIR\assets\Assets\images\skills\pollo.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\vs1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\vs2.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\hb1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\hb2.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\laserlineal-2.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\FK1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\FK4.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\acidPotion.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\ReachingStrike.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\nk1.png"
+	Delete "$INSTDIR\assets\Assets\images\skills\kd1.png"
 	
 	#end of files
  
@@ -168,7 +421,15 @@ Section "Uninstall"
 	RMDir $INSTDIR\assets\Assets\Sounds\Taunts\F10R
 	RMDir $INSTDIR\assets\Assets\Sounds\Taunts\Mockingbird
 	RMDir $INSTDIR\assets\Assets\Sounds\Taunts
+	RMDir $INSTDIR\assets\Assets\Sounds\SFX
 	RMDir $INSTDIR\assets\Assets\Sounds
+	RMDir $INSTDIR\assets\Assets\images\UI
+	RMDir $INSTDIR\assets\Assets\images\characters
+	RMDir "$INSTDIR\assets\Assets\images\selection characters"
+	RMDir $INSTDIR\assets\Assets\images\attacks
+	RMDir $INSTDIR\assets\Assets\images\skills\iconos
+	RMDir $INSTDIR\assets\Assets\images\skills
+	RMDir $INSTDIR\assets\Assets\images
 	RMDir $INSTDIR\assets\Assets
 	RMDir $INSTDIR\assets
     RMDir $INSTDIR
