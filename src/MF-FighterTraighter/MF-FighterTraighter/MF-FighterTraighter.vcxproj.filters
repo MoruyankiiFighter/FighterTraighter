@@ -164,9 +164,6 @@
     <ClCompile Include="CharacterSelectionLogic.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="MockingbirdData.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletGravity.cpp">
@@ -308,6 +305,9 @@
     <ClCompile Include="ArcadeEndMenu.cpp" />
     <ClCompile Include="EndMenu.cpp">
       <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="MockingbirdData.cpp">
+      <Filter>Source Files\PlayerData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
