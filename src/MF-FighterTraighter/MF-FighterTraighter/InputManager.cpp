@@ -49,7 +49,7 @@ void InputManager::update()
 			}
 			break;
 		case SDL_KEYUP:
-			
+
 			keyboardEvent_ = true;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
@@ -93,7 +93,7 @@ void InputManager::update()
 			for (int i = 0; i < numGamepads; i++) {
 				if (e.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(connectedControllers[i]))) {
 					controllerInputs[i].buttons[e.cbutton.button] = false;
-					
+
 				}
 			}
 			break;
@@ -111,9 +111,9 @@ void InputManager::update()
 							lstButton = SDL_GameControllerGetStringForAxis((SDL_GameControllerAxis)e.caxis.axis);
 
 						}
-						
+
 					}
-					
+
 					controllerInputs[i].axis[e.caxis.axis] = e.caxis.value;
 				}
 			}
@@ -160,8 +160,8 @@ void InputManager::initControllers()
 				{
 					connectedControllers.push_back(pad);
 
-					 gControllerHaptic.push_back ( SDL_HapticOpenFromJoystick(SDL_GameControllerGetJoystick(pad)));
-				
+					gControllerHaptic.push_back(SDL_HapticOpenFromJoystick(SDL_GameControllerGetJoystick(pad)));
+
 					if (gControllerHaptic.back() == NULL)
 					{
 						printf("Warning: Controller does not support haptics! SDL Error: %s\n", SDL_GetError());
@@ -175,26 +175,28 @@ void InputManager::initControllers()
 						}
 					}
 				}
-				else
+				else {
 #ifdef _DEBUG
 
 					std::cout << "SDL_GetError() = " << SDL_GetError() << std::endl;
 #endif 
 				}
 			}
-			SDL_GameControllerEventState(SDL_ENABLE);
+		}
+		SDL_GameControllerEventState(SDL_ENABLE);
 
-		}	controllerInputs.resize(numGamepads);
-		lastControllerInputs.resize(numGamepads);
-		for (int i = 0; i < numGamepads; i++) {
-			for (int a = 0; a < SDL_CONTROLLER_AXIS_MAX; a++) {
-				controllerInputs[i].axis[a] = 0;
-				lastControllerInputs[i].axis[a] = 0;
-			}
-			for (int b = 0; b < SDL_CONTROLLER_BUTTON_MAX; b++) {
-				controllerInputs[i].buttons[b] = false;
-				lastControllerInputs[i].buttons[b] = false;
-			}
+	}
+	controllerInputs.resize(numGamepads);
+	lastControllerInputs.resize(numGamepads);
+	for (int i = 0; i < numGamepads; i++) {
+		for (int a = 0; a < SDL_CONTROLLER_AXIS_MAX; a++) {
+			controllerInputs[i].axis[a] = 0;
+			lastControllerInputs[i].axis[a] = 0;
+		}
+		for (int b = 0; b < SDL_CONTROLLER_BUTTON_MAX; b++) {
+			controllerInputs[i].buttons[b] = false;
+			lastControllerInputs[i].buttons[b] = false;
 		}
 	}
-	///
+}
+///

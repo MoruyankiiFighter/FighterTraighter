@@ -164,9 +164,6 @@
     <ClCompile Include="CharacterSelectionLogic.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="MockingbirdData.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletGravity.cpp">
@@ -230,9 +227,6 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="AIController.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="AIGameState.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="AILogic.cpp">
@@ -301,9 +295,19 @@
     <ClCompile Include="SkillSelectionLogic.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="EndMenu.cpp" />
     <ClCompile Include="CharacterAttacks.cpp">
       <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcadeController.cpp" />
+    <ClCompile Include="AIGameState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcadeEndMenu.cpp" />
+    <ClCompile Include="EndMenu.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="MockingbirdData.cpp">
+      <Filter>Source Files\PlayerData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -649,7 +653,11 @@
     <ClInclude Include="SkillSelectionLogic.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="EndMenu.h" />
+    <ClInclude Include="ArcadeController.h" />
+    <ClInclude Include="ArcadeEndMenu.h" />
+    <ClInclude Include="EndMenu.h">
+      <Filter>Header files\GameState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

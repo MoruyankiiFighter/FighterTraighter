@@ -76,10 +76,10 @@ void MockingbirdData::NP1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::np1 = PlayerData::CallbackData{
-	{ 125, -40 },
+	{ 125, -75 },
 	{50, 0},
-	150,
-	75,
+	120,
+	90,
 	10,
 	2,
 	25

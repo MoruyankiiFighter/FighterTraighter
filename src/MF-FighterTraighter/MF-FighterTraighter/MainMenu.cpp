@@ -158,7 +158,7 @@ void MainMenu::GoPvP(App* app)
 #endif 
 		
 
-	app->getStateMachine()->pushState(new CharacterSelection(app));
+	app->getStateMachine()->pushState(new CharacterSelection(app,2));
 #ifdef _DEBUG
 	std::cout << app->getStateMachine()->getCurrentState()->getb2World()->GetBodyCount() << std::endl;
 #endif 
@@ -169,7 +169,7 @@ void MainMenu::GoVsAI(App* app)
 {
 	app->getAudioMngr()->playMusic(app->getAssetsManager()->getMusic(AssetsManager::FIGHT_1), true);
 
-	app->getStateMachine()->pushState(new AIGameState(app));
+	app->getStateMachine()->pushState(new CharacterSelection(app,1));
 }
 
 void MainMenu::GoOptions(App* app)
