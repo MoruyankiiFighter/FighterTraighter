@@ -1,4 +1,5 @@
 #include "MockingbirdData.h"
+#include "PlayerParticleSystem.h"
 
 MockingbirdData::MockingbirdData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber)
@@ -161,6 +162,8 @@ PlayerData::CallbackData MockingbirdData::hk1 = PlayerData::CallbackData{
 	31
 };
 
+
+
 void MockingbirdData::ANP1(Entity* ent)
 {
 #ifdef _DEBUG
@@ -286,6 +289,35 @@ PlayerData::CallbackData MockingbirdData::ahk1 = PlayerData::CallbackData{
 	30
 };
 
+void MockingbirdData::AHK2(Entity* ent) {
+
+	double hitbox_X = ahk2.position.getX();
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	int orientation_ = pT->getOrientation();
+	if (orientation_ == -1) hitbox_X += ahk2.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, ahk2.position.getY() }, ahk2.width, ahk2.height, ahk2.time, pD->getAttack() * ahk2.damage, ahk2.hitstun,
+		{ (double)orientation_ * ahk2.knockBack.getX(), ahk2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+
+	double partX = pT->getWidth() * 3 / 4 - 20;
+	if (orientation_ == -1) partX = pT->getWidth() / 4 - ahk2.width + 20;
+	Vector2D pos = Vector2D(partX, 125);
+
+	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::MockAHK2),
+		pos, Vector2D(ahk2.width, ahk2.height), ahk2.time, PlayerParticleSystem::DeletionMethod::OnHit);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::HIT), false);
+}
+
+PlayerData::CallbackData MockingbirdData::ahk2 = PlayerData::CallbackData{
+	{ 125, -80 },
+	{100, 1000},
+	200,
+	200,
+	20,
+	10,
+	30
+};
 void MockingbirdData::GB(Entity* ent)
 {
 #ifdef _DEBUG

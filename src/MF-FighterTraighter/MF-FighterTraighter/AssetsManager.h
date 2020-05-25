@@ -64,6 +64,7 @@ public:
 		Mock_icon,
 		MockArtwork,
 		MockSheet,
+		MockAHK2,
 
 		//resources of flor
 		Flor_icon,
