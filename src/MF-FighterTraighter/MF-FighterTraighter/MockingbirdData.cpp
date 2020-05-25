@@ -4,7 +4,7 @@ MockingbirdData::MockingbirdData(double width, double height, double rotation, d
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber)
 {
 	animLength_ = { {4, true, 12}, {6, true, 10}, {2, true, 3}, {2, true, 15}, {2, false, 2}, {4, false, 10}, {4, false, 10}, {6, false, 8},
-	{5, false, 7}, {3, false, 13}, {6, false, 10}, {3, false, 7}, {6, false, 15}, {2, true, 15}, {1, false, 10}, {1, true, 4}, {1, false, 10},
+	{5, false, 10}, {3, false, 7}, {6, false, 7}, {3, false, 7}, {5, false, 11}, {2, true, 15}, {1, false, 10}, {1, true, 4}, {1, false, 10},
 	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 15}, {2, false, 15}, {2, false, 10} };
 }
 
@@ -105,7 +105,7 @@ PlayerData::CallbackData MockingbirdData::hp1 = PlayerData::CallbackData{
 	{ 125, -200 },
 	{ 700, 0 },
 	150,
-	180,
+	250,
 	5,
 	6,
 	36
@@ -127,7 +127,7 @@ void MockingbirdData::NK1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::nk1 = PlayerData::CallbackData{
-	{ 125, -40 },
+	{ 125, -90 },
 	{100, 0},
 	270,
 	75,
@@ -252,7 +252,7 @@ void MockingbirdData::ANK1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::ank1 = PlayerData::CallbackData{
-	{ 125, 10 },
+	{ 125, 70 },
 	{ 10, -150 },
 	250,
 	85,
