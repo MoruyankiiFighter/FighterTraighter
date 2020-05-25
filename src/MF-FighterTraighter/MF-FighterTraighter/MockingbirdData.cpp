@@ -3,9 +3,9 @@
 MockingbirdData::MockingbirdData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber)
 {
-	animLength_ = { {4, true, 12}, {6, true, 10}, {2, true, 3}, {2, true, 15}, {2, false, 2}, {4, false, 10}, {3, false, 10}, {6, false, 8},
+	animLength_ = { {4, true, 12}, {6, true, 10}, {2, true, 3}, {2, true, 15}, {2, false, 2}, {4, false, 10}, {4, false, 10}, {6, false, 8},
 	{5, false, 7}, {3, false, 13}, {6, false, 10}, {3, false, 7}, {6, false, 15}, {2, true, 15}, {1, false, 10}, {1, true, 4}, {1, false, 10},
-	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 7}, {2, false, 15}, {2, false, 10} };
+	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 15}, {2, false, 15}, {2, false, 10} };
 }
 
 void MockingbirdData::init()
@@ -54,8 +54,8 @@ void MockingbirdData::init()
 	air_hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(35, nullptr, GB, entity_));
-	vecMov.push_back(new Move(40, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(25, nullptr, GB, entity_));
+	vecMov.push_back(new Move(30, nullptr, nullptr, entity_));
 	guard_breaker_ = new AnimationChain(vecMov);
 	vecMov.clear();
 }
@@ -292,6 +292,8 @@ void MockingbirdData::AHK1(Entity* ent)
 		{ (double)orientation_ * hitbox_X, ahk1.position.getY() }, ahk1.width, ahk1.height, ahk1.time, pD->getAttack() * ahk1.damage, ahk1.hitstun, { (double)orientation_ * ahk1.knockBack.getX(), ahk1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::SAND), false);
 
+
+
 }
 
 PlayerData::CallbackData MockingbirdData::ahk1 = PlayerData::CallbackData{
@@ -321,8 +323,8 @@ void MockingbirdData::GB(Entity* ent)
 PlayerData::CallbackData MockingbirdData::gb = PlayerData::CallbackData{
 	{ 125, -75 },
 	{ -80, -50 },
-	300,
+	250,
 	150,
-	20,
+	10,
 	0,
 	85 };

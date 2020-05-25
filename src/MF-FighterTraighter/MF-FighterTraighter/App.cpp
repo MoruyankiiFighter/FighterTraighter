@@ -109,4 +109,4 @@ void App::clean()
 
 	SDL_Quit();
 	TTF_Quit();
-}
+}//
