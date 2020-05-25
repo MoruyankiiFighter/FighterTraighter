@@ -88,7 +88,7 @@ void App::init()
 	//audioManager_->silenceMusic();
 	gameManager_.reset(new GameManager(this));
 	random_.reset(new SRandBasedGenerator());
-
+	SDL_ShowCursor(0);
 
 }
 
