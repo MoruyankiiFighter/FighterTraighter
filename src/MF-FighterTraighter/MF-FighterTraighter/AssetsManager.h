@@ -191,7 +191,9 @@ public:
 		HIT,
 		HIT2,
 		NORMALPUNCH,
-		VAMPIRIC
+		VAMPIRIC,
+		KNIFE,
+		SAND
 
 
 	};
