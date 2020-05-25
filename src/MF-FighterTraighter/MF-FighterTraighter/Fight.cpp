@@ -58,7 +58,11 @@ void Fight::init()
 	Entity* player1 = CharFactory::addCharacterToGame(app_, this, 1, world, &app_->getGameManager()->getPlayerInfo(1), PLAYER_1, PLAYER_2 | WALLS | BOUNDARY | BULLET, 0);
 	//Giving abilites
 	const GameManager::PlayerInfo& p1_info = app_->getGameManager()->getPlayerInfo(1);
-
+	//////HABILIDAD A CHOLON
+	/*player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::KnockDown, player1), 0);
+	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
+		->setAbility(AbilityFactory::GiveAbility(GameManager::AbilityID::NadoKick, player1), 1);*/
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
 		->setAbility(AbilityFactory::GiveAbility(p1_info.abilities[p1_info.ability1Index], player1), 0);
 	player1->getComponent<CharacterAttacks>(ecs::CharacterAttacks)
@@ -79,11 +83,11 @@ void Fight::init()
 
 
 	// Position variables
-	const double abilityIconY = -190;
-	const double ability1X = 105 + 30;
-	const double ability2X = 280 + 30;
+	const double abilityIconY = -190.0;
+	const double ability1X = 105.0 + 30.0;
+	const double ability2X = 280.0 + 30.0;
 	const double windowWidth = app_->getWindowManager()->getCurResolution().w;
-	const double abilityIconSize = 125;
+	const double abilityIconSize = 125.0;
 
 
 

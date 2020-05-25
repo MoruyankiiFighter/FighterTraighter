@@ -12,8 +12,6 @@ public:
 	void render() override;
 	void handleInput() override;
 
-	inline bool getPressed() { return pressed; }
-
 private:
 	Entity* ent;
 
@@ -24,8 +22,5 @@ private:
 
 	vector<GameManager::AbilityID> v_;
 
-
-	bool eq;
-	bool pressed;
 };
 

@@ -51,9 +51,9 @@ public:
 	enum CharacterID {
 		/*None,*/
 		F10R,
-		Aisha,
 		MKWh00p,
-		Mockingbird
+		Mockingbird,
+		Aisha
 	};
 
 	struct PlayerInfo {

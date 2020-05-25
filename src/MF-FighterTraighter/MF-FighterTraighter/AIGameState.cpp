@@ -121,11 +121,11 @@ void AIGameState::init()
 
 
 
+	GameManager::CharacterID AICharacter = GameManager::CharacterID(app_->getRandGen()->nextInt(GameManager::F10R, GameManager::Aisha));
 
 
 
-
-	Entity* AI2 = CharFactory::addAICharacterToGame(app_, this, -1, world, GameManager::F10R, 5, Vector2D(350, 450),
+	Entity* AI2 = CharFactory::addAICharacterToGame(app_, this, -1, world, AICharacter, 5, Vector2D(350, 450),
 		PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
 	entManager_.setHandler(AI2, ecs::Player2);
 
