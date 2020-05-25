@@ -164,9 +164,17 @@ public:
 		/// SFX
 		SALTO,
 
-		
+		ROCAS,
+		POWER2,
+		LANZAR,
+		LANZAR4,
+		BURBUJA,
+		POWER1,
+		EWP,
+		CRISTAL,
 		PUNCH,
 		GANCHO,
+		EXPLOSION,
 		KICK,
 		DASH,
 		POLLO,

@@ -153,6 +153,7 @@ void AbilityFactory::SeismicS1(Entity* e)	//the attack to the floor
 	DestroyAtTime* dT = new DestroyAtTime(17, 50, 200, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(e, width, 120, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
+	e->getApp()->getAudioMngr()->playSFX(e->getApp()->getAssetsManager()->getSFX(AssetsManager::ROCAS), false);
 }
 
 void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
@@ -170,6 +171,7 @@ void AbilityFactory::SeismicS2(Entity* ent)	//Big rock upwards
 	DestroyAtTime* dT = new DestroyAtTime(0, 250, 0, { 0,0 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 	//createProyectile(ent, width, 300, pos, { 0,-10 }, 0, 0, { 0,0 }, 250, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(ent, width, 300, pos, { 0,-10 }, ent->getState()->NONE, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::POWER2), false);
 }
 
 void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
@@ -216,8 +218,11 @@ void AbilityFactory::SeismicS3(Entity* ent)	//3 rocks
 
 	
 	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_, dH);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::LANZAR), false);
 	instanceEntitywHitbox(ent, width, height, pos1, speed, mask, currentState, app, texture, orientation_, dH1);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::LANZAR), false);
 	instanceEntitywHitbox(ent, width, height, pos2, speed, mask, currentState, app, texture, orientation_, dH2);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::LANZAR), false);
 
 }
 
@@ -289,7 +294,7 @@ void AbilityFactory::EW1(Entity* ent)
 	dT = new DestroyAtTime(damage, time, hitstun, knockback, guardBreaker, id, ent);
 	//createProyectile(ent, width2, 375, pos2, { -4.5 * orientation_, 0 }, 10, 55, { -10.0 * orientation_, -5.0 }, 25, mask, currentState, app, app->getAssetsManager()->getTexture(AssetsManager::Ew1), -orientation_, false);
 	instanceEntitywHitbox(ent, width2, 375, pos2, { 4.5 * -orientation_, 0 }, mask, currentState, app, tex, -orientation_, dT);
-
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::EWP), false);
 	//Parriba
 	/*int width3 = 160;
 	int projX3 = pT->getPosition().getX() + (pT->getWidth() * 2 / 4);
@@ -330,7 +335,7 @@ void AbilityFactory::AS1(Entity* ent)
 	Vector2D speed(orientation_ * 10.0, 0);
 	
 	//pos2 = Vector2D(otherPos.getX()-150, -320);
-
+	
 	int damage = 10;
 	int hitstun = 9;
 	Vector2D knockBack(orientation_ * 5.0, 2);
@@ -348,11 +353,15 @@ void AbilityFactory::AS1(Entity* ent)
 	Texture* texture = app->getAssetsManager()->getTexture(AssetsManager::AS1);
 	instanceEntitywHitbox(ent, width, height, pos, speed, mask, currentState, app, texture, orientation_, fL, gravity);
 	//createProyectile(ent, width, height, pos, speed, damage, hitstun, knockBack, time, mask, currentState, app, texture, orientation_, destroyInContact, gravity);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::CRISTAL), false);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::BURBUJA), 3);
+	
 }
 
 void AbilityFactory::ASC(Entity* ent)
 {
 	goOnCoolodwn(ent,60 * 13);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::LANZAR4), false);
 }
 
 AnimationChain* AbilityFactory::GiveMina(Entity* e)
@@ -502,6 +511,7 @@ void AbilityFactory::SO1(Entity* ent)
 
 	//createProyectile(ent, width, 250, pos, { 0, 0 }, 0, 0, { 0, 0 }, 35, app->getStateMachine()->getCurrentState()->NONE, 
 		//app->getStateMachine()->getCurrentState(), app, app->getAssetsManager()->getTexture(AssetsManager::So1), orientation_);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::POWER1), false);
 }
 
 void AbilityFactory::SOC(Entity* ent)
@@ -536,6 +546,7 @@ void AbilityFactory::MP1(Entity* ent)
 
 	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(app->getAssetsManager()->getTexture(AssetsManager::Mp1),
 		pos, Vector2D(width, width), -2, PlayerParticleSystem::DeletionMethod::OnAttack);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::POWER1), false);
 }
 
 void AbilityFactory::MPC(Entity* ent)
@@ -591,6 +602,7 @@ void AbilityFactory::HS1(Entity* ent)
 	//TODO:
 	//Un-spaghettify
 	proj->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->SetSensor(true);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::GANCHO), false);
 }
 
 void AbilityFactory::HSC(Entity* ent)
@@ -634,7 +646,7 @@ void AbilityFactory::Dash(Entity* ent)
 	}
 	pT->setSpeed(speed);
 	//pT->getBody()->ApplyLinearImpulse(b2Vec2(knockBack.getX(), knockBack.getY()), pT->getBody()->GetWorldCenter(), true);
-
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
 }
 
 void AbilityFactory::DashC(Entity* ent)
@@ -731,6 +743,7 @@ void AbilityFactory::HB1(Entity* ent)
 	//TODO
 	//Un-spaghettify
 	proj->getComponent<PhysicsTransform>(ecs::Transform)->getMainFixture()->SetSensor(true);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::HIELO), false);
 }
 
 void AbilityFactory::HBC(Entity* ent)
@@ -778,6 +791,7 @@ void AbilityFactory::RS1(Entity* ent)
 	DestroyAtTime* dT = new DestroyAtTime(6, 10, 20, { (double)orientation_ * 2, -1.5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
 	Entity* proj = AbilityFactory::instanceEntitywHitbox(ent, width, height, pos, speedd, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
 }
 
 void AbilityFactory::RSC(Entity* ent)
@@ -825,13 +839,13 @@ void AbilityFactory::FK1(Entity* e)
 	FollowPlayer* dT = new FollowPlayer(17, 15, 35, { (double)orientation_ * 5, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);	
+	e->getApp()->getAudioMngr()->playSFX(e->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
 }
 
 //diagonal up dash
 void AbilityFactory::FK2(Entity* ent)
 {
 
-	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
 	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
 	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
 	pT->getBody()->SetLinearDamping(10);//10 friction in the air in case you have 0
@@ -853,6 +867,7 @@ void AbilityFactory::FK2(Entity* ent)
 	}
 	pT->setSpeed(speed);
 	//pT->getBody()->ApplyLinearImpulse(b2Vec2(knockBack.getX(), knockBack.getY()), pT->getBody()->GetWorldCenter(), true);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
 	FK1(ent);
 
 }
@@ -881,6 +896,7 @@ void AbilityFactory::FK3(Entity* ent)
 	}
 	pT->setSpeed(speed);
 	//pT->getBody()->ApplyLinearImpulse(b2Vec2(knockBack.getX(), knockBack.getY()), pT->getBody()->GetWorldCenter(), true);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
 	FK1(ent);
 }
 //shockwave
@@ -913,6 +929,7 @@ void AbilityFactory::FK4(Entity* e)
 	FollowPlayer* dT = new FollowPlayer(5, 20, 20, { (double)orientation_ * 5, -5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(e, width, height, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
+	e->getApp()->getAudioMngr()->playSFX(e->getApp()->getAssetsManager()->getSFX(AssetsManager::ROCAS), false);
 }
 
 void AbilityFactory::FKC(Entity* ent)
@@ -1028,6 +1045,8 @@ void AbilityFactory::NK1(Entity* e)
 	FollowPlayer* dT = new FollowPlayer(damage, time, 50, { (double)orientation_ * 0.02, -1.5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(e, width, 150, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
+	e->getApp()->getAudioMngr()->playSFX(e->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
+	e->getApp()->getAudioMngr()->playSFX(e->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
 }
 
 void AbilityFactory::NK2(Entity* ent)
@@ -1063,6 +1082,8 @@ void AbilityFactory::NK2(Entity* ent)
 	FollowPlayer* dT = new FollowPlayer(damage, time, 50, { (double)orientation_ * 25, 5 }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(ent, width, 150, pos, { 0,0 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
 }
 
 void AbilityFactory::NK3(Entity* ent)
@@ -1091,6 +1112,8 @@ void AbilityFactory::NK3(Entity* ent)
 
 	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::TextureNames::nk1),
 		Vector2D(125, 0), Vector2D(250, 500), 115, PlayerParticleSystem::DeletionMethod::OnHit, 2, 5, true);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::DASH), false);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::KICK), false);
 }
 //
 //void AbilityFactory::NKF(Entity* ent)
@@ -1195,6 +1218,7 @@ void AbilityFactory::KD2(Entity* e)
 	FollowPlayer* dT = new FollowPlayer(damage, time, 50, { (double)orientation_ * 25, 5 }, false, e->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), e);
 	//createProyectile(e, width, 150, pos, { 0, 0 }, 17, 200, { (double)orientation_ * 5, 5 }, 50, mask, e->getState(), e->getApp(), texture, orientation_, false);
 	instanceEntitywHitbox(e, width, height, pos, { 0,0 }, mask, e->getState(), e->getApp(), texture, orientation_, dT);
+	e->getApp()->getAudioMngr()->playSFX(e->getApp()->getAssetsManager()->getSFX(AssetsManager::EXPLOSION), false);
 }
 
 void AbilityFactory::KDC(Entity* e) {

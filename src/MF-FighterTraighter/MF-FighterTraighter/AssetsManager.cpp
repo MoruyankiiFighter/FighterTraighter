@@ -192,7 +192,15 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(AISHA_1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));*/
 	sfx_.emplace(SALTO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/salto.wav"));
-
+	sfx_.emplace(ROCAS, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/rocas.wav"));
+	sfx_.emplace(POWER2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/powerup2.wav"));
+	sfx_.emplace(LANZAR, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/lanzar.wav"));
+	sfx_.emplace(EWP, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/tambor.wav"));
+	sfx_.emplace(CRISTAL, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/cristal.wav"));
+	sfx_.emplace(LANZAR4, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/lanzamiento4.wav"));
+	sfx_.emplace(BURBUJA, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/burbuja2.wav"));
+	sfx_.emplace(POWER1, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/powerup1.wav"));
+	sfx_.emplace(EXPLOSION, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/explosionretro.wav"));
 
 	sfx_.emplace(PUNCH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/punch.wav"));
 	sfx_.emplace(GANCHO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/gancho.wav"));
