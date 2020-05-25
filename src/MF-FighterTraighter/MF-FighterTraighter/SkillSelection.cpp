@@ -49,7 +49,7 @@ void SkillSelection::init()
 	GameManager::AbilityID abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);
 	//El jugador que gana obtiene 3 habilidades aleatorias, 2 de ellas las tiene que elegir, la otra es aleatoria
 	Entity* nav_j1 = entManager_.addEntity();
-	NavigationController* nav = nav_j1->addComponent<NavigationController>(2, 2, app_->getGameManager()->getPlayerInfo(winner_).hid);
+	NavigationController* nav = nav_j1->addComponent<NavigationController>(2, 1, app_->getGameManager()->getPlayerInfo(winner_).hid);
 
 	for (int i = 0; i < 3; i++) {
 		do {
@@ -82,7 +82,7 @@ void SkillSelection::init()
 					Vector2D(160, 160));
 
 				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
-				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i-1, 1);
+				//nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i-1, 1);
 				app_->getGameManager()->addHability(abi1, winner_);
 			}
 		}
@@ -105,7 +105,7 @@ void SkillSelection::init()
 					Vector2D(160, 160));
 
 				ab1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(abrand));
-				nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i-1, 1);
+				//nav->SetElementInPos((ab1)->getComponent<UIElement>(ecs::UIElement), i-1, 1);
 				app_->getGameManager()->addHability(abi1, winner_);
 			}
 		}
@@ -217,4 +217,12 @@ bool SkillSelection::checkAbility(GameManager::AbilityID newAb, int player) {
 		return false;
 	}
 	
+}
+
+void SkillSelection::handleInput() {	
+	if (app_->getInputManager()->pressedStart()) {
+		app_->getGameManager()->pressedStart();
+	}
+	else
+		GameState::handleInput();
 }

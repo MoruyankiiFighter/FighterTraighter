@@ -4,13 +4,13 @@
 #include "UIElement.h"
 #include "TextComponent.h"
 
-using SetIndexOnClick = void(App* app, int index, int control);
+using SetIndexOnClick = void(App* app, int index, int control,int player);
 
 class ButtonControl : public UIElement {
 
 public:
 	//constructor
-	ButtonControl(SetIndexOnClick* startClickCallback = nullptr, int index = 0, int control = 0, TextComponent* text = nullptr) : UIElement(), clickCallback_(startClickCallback), index(index), control(control), text_(text) {};
+	ButtonControl(SetIndexOnClick* startClickCallback = nullptr, int index = 0, int control = 0, int player=0,TextComponent* text = nullptr) : UIElement(), clickCallback_(startClickCallback), index(index), control(control), player(player),text_(text) {};
 
 	virtual void Press()
 	{
@@ -54,6 +54,7 @@ private:
 	//SetIndexOnClick* stopClickCallback_ = nullptr;
 	int index;
 	int control;
+	int player;
 
 	enum state
 	{

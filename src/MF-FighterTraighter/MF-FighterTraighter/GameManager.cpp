@@ -16,6 +16,8 @@
 #include "InventorySelection.h"
 #include "AbilitySelection.h"
 #include "SkillSelection.h"
+#include "EndMenu.h"
+#include "InventorySelection.h"
 
 GameManager::GameManager(App* app) : app_(app)
 {
@@ -23,14 +25,32 @@ GameManager::GameManager(App* app) : app_(app)
 	resetCharacters();
 
 	// TODO: Move this elsewhere
-	player1_.hid = new KeyboardHID(app_->getInputManager());
+	switch (app_->getInputManager()->NumGamepadConnected())
+	{
+	case 0:	player1_.hid = new KeyboardHID(app_->getInputManager());
+		player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
+		break;
+	case 1:
+		player1_.hid = new KeyboardHID(app_->getInputManager());
+		player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+		break;
+	case 2:
+		player1_.hid = new GamepadHID(app_->getInputManager(), 0);
+		player2_.hid = new GamepadHID(app_->getInputManager(), 1);
+
+		break;
+	}
+	
+
+	
+	//player1_.hid = new KeyboardHID(app_->getInputManager());
 	//player1_.hid = new GamepadHID(app_->getInputManager(),0);
 	
 	//player1_.character = F10R;
 	player1_.character = F10R;
 
 	//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
-	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+	//player2_.hid = new GamepadHID(app_->getInputManager(), 0);
 	player2_.character = F10R;
 }
 
@@ -51,7 +71,10 @@ void GameManager::pressedStart()
 		|| dynamic_cast<OptionsMenu*>(curState)
 		|| dynamic_cast<CharacterSelection*>(curState)) app_->getStateMachine()->popState();
 	else if (dynamic_cast<Fight*>(curState)
-		|| dynamic_cast<Training*>(curState)) app_->getStateMachine()->pushState(new PauseMenu(app_));
+		|| dynamic_cast<Training*>(curState)
+		|| dynamic_cast<SkillSelection*>(curState)
+		|| dynamic_cast<InventorySelection*>(curState))
+		app_->getStateMachine()->pushState(new PauseMenu(app_));
 }
 
 void GameManager::playerLost(int player)
@@ -71,8 +94,13 @@ void GameManager::playerLost(int player)
 		break;
 	}
 	if (((totalRounds_ / 2) < playerLrounds_) || ((totalRounds_ / 2) < playerRrounds_)) {
+		int winner;
+		//wins player1
+ 		if(playerLrounds_>playerRrounds_)
+			winner=0;
+		else winner=1;
 		ResetRounds();
-		GoBackToMain();
+		GoToEndMenu(winner);
 	}
 	else {
 		stateMachine->popState();
@@ -121,4 +149,18 @@ void GameManager::GoBackToMain()
 		app_->getStateMachine()->popState();
 		currState = app_->getStateMachine()->getCurrentState();
 	}
+}
+
+void GameManager::GoToEndMenu(int winner) {
+
+
+	resetCharacters();
+	ResetRounds();
+	GameState* currState = app_->getStateMachine()->getCurrentState();
+	while (dynamic_cast<MainMenu*>(currState) == nullptr) {
+		app_->getStateMachine()->popState();
+		currState = app_->getStateMachine()->getCurrentState();
+	}
+	app_->getStateMachine()->pushState(new EndMenu(app_, winner));
+
 }

@@ -232,9 +232,6 @@
     <ClCompile Include="AIController.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="CharacterAttacks.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
     <ClCompile Include="AIGameState.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -302,6 +299,10 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="SkillSelectionLogic.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="EndMenu.cpp" />
+    <ClCompile Include="CharacterAttacks.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
@@ -648,6 +649,7 @@
     <ClInclude Include="SkillSelectionLogic.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="EndMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

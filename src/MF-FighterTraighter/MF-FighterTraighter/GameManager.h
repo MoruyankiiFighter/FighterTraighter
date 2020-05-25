@@ -137,11 +137,11 @@ public:
 	inline unsigned int getTotalRounds() { return totalRounds_; }
 
 	void GoBackToMain();
-
+	void GoToEndMenu(int winner);
 protected:
 	unsigned int playerLrounds_ = 0;
 	unsigned int playerRrounds_ = 0;
-	unsigned int totalRounds_ = 3;
+	unsigned int totalRounds_ = 5;
 	unsigned int currentRound_ = 0;
 
 	PlayerInfo player1_;
