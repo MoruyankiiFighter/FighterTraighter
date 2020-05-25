@@ -21,25 +21,21 @@ void SkillSelection::init()
 	if (winner_ == 1) 
 		loser = 2;
 	
-	//j1 submenu panel
+	// Player1 submenu panel
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
 		Vector2D(0, 0), 
 		Vector2D(50, 50), 
 		Vector2D(0, 0), 
 		((double)app_->getWindowManager()->getCurResolution().w / 2)-100, (double)app_->getWindowManager()->getCurResolution().h-100, 0);
 	
-	//j2 submenu panel
+	// Player2 submenu panel
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Celda1),
 		Vector2D(0, 0),
 		Vector2D((double)app_->getWindowManager()->getCurResolution().w - 430, 50),
 		Vector2D(430.0 + 50.0,0),
 		((double)app_->getWindowManager()->getCurResolution().w / 2) - 100, ((double)app_->getWindowManager()->getCurResolution().h) - 100, 0);
 	
-
-	GameManager::AbilityID abi1;
-	//The winner obtains 3 random abilities, he can choose between the first 2
-	Entity* nav_j1 = entManager_.addEntity();
-	NavigationController* nav = nav_j1->addComponent<NavigationController>(2, 1, app_->getGameManager()->getPlayerInfo(winner_).hid);
+	
 
 
 	//Winner chooses text
@@ -60,10 +56,14 @@ void SkillSelection::init()
 	//Icon position variables
 	Vector2D iconPos = Vector2D();
 	Vector2D iconAnchor = Vector2D();
-	Vector2D iconPivot = Vector2D(80, 80);
-	Vector2D iconSize = Vector2D(160, 160);
-	double frameSep = 300.0;
+	const Vector2D iconPivot = Vector2D(80, 80);
+	const Vector2D iconSize = Vector2D(160, 160);
+	const double frameSep = 300.0;
 
+	//The winner obtains 3 random abilities, he can choose between the first 2
+	GameManager::AbilityID abi1;
+	Entity* nav_j1 = entManager_.addEntity();
+	NavigationController* nav = nav_j1->addComponent<NavigationController>(2, 1, app_->getGameManager()->getPlayerInfo(winner_).hid);
 	for (int i = 0; i < 3; i++) {
 		do {
 			abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);

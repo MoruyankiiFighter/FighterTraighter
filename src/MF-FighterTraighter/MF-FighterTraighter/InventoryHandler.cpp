@@ -11,6 +11,7 @@ void InventoryHandler::init()
 	ent->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::Panel));
 }
 
+// Checks if both players pressed the ready button
 void InventoryHandler::update()
 {
 	pressed_1 = j1_->getComponent<InventoryLogic>(ecs::InventoryLogic)->getPressed();
@@ -18,10 +19,11 @@ void InventoryHandler::update()
 		pressed_2 = j2_->getComponent<InventoryLogic>(ecs::InventoryLogic)->getPressed();
 }
 
+// Renders the pannel if both players pressed or there's only  
+// a player and he's ready
 void InventoryHandler::render()
 {
 	if (pressed_1 && pressed_2) {
-		cout << "aaa";
 		ent->render();
 	}
 	else if (pressed_1 && j2_ == nullptr) {
@@ -30,7 +32,7 @@ void InventoryHandler::render()
 	}
 
 }
-
+// Pushes Fight or AI states depending on the game mode
 void InventoryHandler::handleInput()
 {
 	if (pressed_1 && pressed_2) {

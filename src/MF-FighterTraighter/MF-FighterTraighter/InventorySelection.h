@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "GameManager.h"
 #include <vector>
+
 class InventorySelection :
 	public GameState
 {
@@ -15,5 +16,7 @@ private:
 	std::vector<GameManager::AbilityID>	generatedAbs_1;
 
 	int numPlayer_=2;
+
+	void resolveHelpText(std::string& left, std::string& right, int player);
 };
 

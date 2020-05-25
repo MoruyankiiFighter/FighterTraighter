@@ -15,13 +15,14 @@ public:
 
 	inline bool getPressed() { return pressed; }
 private:
-	Entity* ent;
+	Entity* ent = nullptr;
+	Vector2D offset = Vector2D();
 
 	RenderImage* left_;
 	RenderImage* right_;
+
 	NavigationController* nav_;
 	int player_;
-	GameManager::AbilityID curr;
 	bool pressed = false;
 
 	int abs_size = 0,
