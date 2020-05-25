@@ -43,7 +43,7 @@ Entity* CharFactory::addCharacterToGame(App* app, GameState* state, double orien
 		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::MockSheet)); 
 		h = e->addComponent<Health>(100);
 		pdata = e->addComponent<MockingbirdData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100.0 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 1, playerNumber);
-		pdata->setDmgSound((app->getAssetsManager()->getSFX(AssetsManager::MKBIRD_1)));
+		pdata->setDmgSound((app->getAssetsManager()->getSFX(AssetsManager::MKBIRD_2)));
 
 		break;
 	case(GameManager::F10R):
@@ -102,7 +102,7 @@ Entity* CharFactory::addAICharacterToGame(App* app, GameState* state, double ori
 		pdata = e->addComponent<MkWH00PData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), -7, Vector2D(-orientation * 100.0 + 200, 10), 4.5, h->getHealth(), 1, 1, playerNumber);
 		break;
 	case(GameManager::Mockingbird):
-		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::GanonSheet));
+		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::MockSheet));
 		h = e->addComponent<Health>(100);
 		pdata = e->addComponent<MockingbirdData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), -7, Vector2D(-orientation * 100.0 + 200, 10), 4.5, h->getHealth(), 1, 1, playerNumber);
 		break;
