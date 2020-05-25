@@ -7,6 +7,9 @@ Unicode True
 InstallDir "$PROGRAMFILES64\Fighter Traighter"
 RequestExecutionLevel admin
 
+Var StartMenuFolder
+Var "FTName"
+
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "..\assets\Assets\images\installer\header_bitmap.bmp" ; NOTE: images have to be 8 bits in depth
 !define MUI_HEADERIMAGE_UNBITMAP "..\assets\Assets\images\installer\header_bitmap.bmp" ; NOTE: images have to be 8 bits in depth
@@ -14,9 +17,19 @@ RequestExecutionLevel admin
 !define MUI_WELCOMEFINISHPAGE_BITMAP "..\assets\Assets\images\installer\welcomepage_bitmap.bmp"
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP "..\assets\Assets\images\installer\welcomepage_bitmap.bmp"
 
+Function finishpageaction
+	CreateShortcut "$desktop\$FTName.lnk" "$INSTDIR\DELETE\ME\IM\USELESS\MF-FighterTraighter.exe"
+FunctionEnd
+
+!define MUI_FINISHPAGE_SHOWREADME ""
+!define MUI_FINISHPAGE_SHOWREADME_NOTCHECKED
+!define MUI_FINISHPAGE_SHOWREADME_TEXT "Create Desktop Shortcut"
+!define MUI_FINISHPAGE_SHOWREADME_FUNCTION finishpageaction
+
 !insertmacro MUI_PAGE_WELCOME
 ; !insertmacro MUI_PAGE_LICENSE "${NSISDIR}\Docs\Modern UI\License.txt" ; PLACE A LICENSE
 !insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_STARTMENU Fighter $StartMenuFolder
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
 
@@ -26,8 +39,6 @@ RequestExecutionLevel admin
 !insertmacro MUI_UNPAGE_FINISH
 
 !insertmacro MUI_LANGUAGE "English"
-
-Var "FTName"
 
 Section
 
@@ -230,7 +241,14 @@ Section
     # create the uninstaller
     WriteUninstaller "$INSTDIR\uninstall $FTName.exe"
 	
-    CreateShortcut "$SMPROGRAMS\Fighter Traighter.lnk" "$INSTDIR\DELETE\ME\IM\USELESS\MF-FighterTraighter.exe" #change to the exe of the game
+	!insertmacro MUI_STARTMENU_WRITE_BEGIN Fighter
+	
+    ;Create shortcuts
+    CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
+    CreateShortcut "$SMPROGRAMS\$StartMenuFolder\uninstall $FTName.lnk" "$INSTDIR\uninstall $FTName.exe"
+    CreateShortcut "$SMPROGRAMS\$StartMenuFolder\$FTName.lnk" "$INSTDIR\DELETE\ME\IM\USELESS\MF-FighterTraighter.exe"
+	
+	!insertmacro MUI_STARTMENU_WRITE_END
 
 SectionEnd
 
@@ -241,10 +259,13 @@ Section "Uninstall"
 	
     # first, delete the uninstaller
     Delete "$INSTDIR\uninstall $FTName.exe"
- 
-    # second, remove the link from the start menu
-    Delete "$SMPROGRAMS\$FTName.lnk"
 	
+	# second, remove the link from the start menu	
+   !insertmacro MUI_STARTMENU_GETFOLDER Fighter $StartMenuFolder
+   
+    Delete "$SMPROGRAMS\$StartMenuFolder\uninstall $FTName.lnk"
+    Delete "$SMPROGRAMS\$StartMenuFolder\$FTName.lnk"
+	RMDir "$SMPROGRAMS\$StartMenuFolder"
 	
 	# now delete installed files
 	
