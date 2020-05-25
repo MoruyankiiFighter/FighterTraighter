@@ -70,6 +70,7 @@ void AssetsManager::loadTextures()
 	textures_.emplace(Mock_icon, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/moc-icon.png", 2, 1));  
 	textures_.emplace(MockArtwork, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/mock.png", 1, 1));  
 	textures_.emplace(MockSheet, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/characters/mockingbird-spritesheet.png", 6, 24));  
+	textures_.emplace(MockAHK, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/attacks/MOCKAHK.png",1,1));  
 
 	textures_.emplace(Random_icon, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/Random-icon.png", 2, 1));
 	textures_.emplace(RandomArtwork, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/random.png", 1, 1));

@@ -1,4 +1,5 @@
 #include "MockingbirdData.h"
+#include "PlayerParticleSystem.h"
 
 MockingbirdData::MockingbirdData(double width, double height, double rotation, double jump_impulse, Vector2D ini_pos, double speed, double ini_health, double attack, double defense, int playerNumber) :
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber)
@@ -50,7 +51,7 @@ void MockingbirdData::init()
 	vecMov.clear();
 
 	vecMov.push_back(new Move(18, nullptr, AHK1, entity_));
-	vecMov.push_back(new Move(40, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(40, nullptr, AHK2, entity_));
 	air_hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -288,14 +289,13 @@ void MockingbirdData::AHK1(Entity* ent)
 	int orientation_ = pT->getOrientation();
 	if (orientation_ == -1)
 		hitbox_X += ahk1.width;
+
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, ahk1.position.getY() }, ahk1.width, ahk1.height, ahk1.time, pD->getAttack() * ahk1.damage, ahk1.hitstun, { (double)orientation_ * ahk1.knockBack.getX(), ahk1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::SAND), false);
 
 
-
 }
-
 PlayerData::CallbackData MockingbirdData::ahk1 = PlayerData::CallbackData{
 	{ 125, -80 },
 	{100, 1000},
@@ -303,6 +303,36 @@ PlayerData::CallbackData MockingbirdData::ahk1 = PlayerData::CallbackData{
 	200,
 	20,
 	8,
+	30
+};
+
+void MockingbirdData::AHK2(Entity* ent) {
+
+	double hitbox_X = ahk2.position.getX();
+	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
+	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
+	int orientation_ = pT->getOrientation();
+	if (orientation_ == -1) hitbox_X += ahk2.width;
+	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
+		{ (double)orientation_ * hitbox_X, ahk2.position.getY() }, ahk2.width, ahk2.height, ahk2.time, pD->getAttack() * ahk2.damage, ahk2.hitstun,
+		{ (double)orientation_ * ahk2.knockBack.getX(), ahk2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+
+	double partX = pT->getWidth() * 3 / 4 - 20;
+	if (orientation_ == -1) partX = pT->getWidth() / 4 - ahk2.width + 20;
+	Vector2D pos = Vector2D(partX, 125);
+
+	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::MockAHK),
+		pos, Vector2D(ahk2.width, ahk2.height), ahk2.time, PlayerParticleSystem::DeletionMethod::OnHit);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::HIT), false);
+}
+
+PlayerData::CallbackData MockingbirdData::ahk2 = PlayerData::CallbackData{
+	{ 125, -80 },
+	{100, 1000},
+	200,
+	200,
+	20,
+	10,
 	30
 };
 
