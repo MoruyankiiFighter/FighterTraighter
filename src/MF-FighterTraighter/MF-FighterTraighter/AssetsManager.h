@@ -34,6 +34,7 @@ public:
 		RandomRage,
 		KnifeDance,
 		BackgroundFight,
+		BackgroundFloor,
 		Celda1,
 		Celda2,
 		Pollo,
@@ -45,6 +46,7 @@ public:
 		Panel,
 		SelectionSquare,
 		floor,
+		floorIA,
 		//floor2,
 		saco2,
 		CollageCharacters,
@@ -79,17 +81,17 @@ public:
 		_abilityIcon_start,
 		//Ability icons
 		ShrugOff_ico,
-		Reach_ico,	//no existe esta creada con otra textura
-		MorePower_ico, //igual que el de arriba
-		Chicken_ico,	//es la textura n oel icono
+		Reach_ico,	
+		MorePower_ico, //mk
+		Chicken_ico,	
 		Acid_ico,
-		Dash_ico,			//tp esta metido todavia
+		Dash_ico,			
 		Vampiric_ico,
 		L_Lineal_ico,
 		Mina_ico,
 		Hook_ico,
 		HailBall_ico,
-		Knockdown_ico,// ya esta pero es el de hailball
+		Knockdown_ico,
 		Ex_Will_ico,
 		FlyingKicks_ico,
 		Nado_ico,

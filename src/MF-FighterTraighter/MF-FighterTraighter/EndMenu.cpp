@@ -11,7 +11,6 @@
 #include "UIFactory.h"
 #include "RenderAnimation.h"
 #include "UITransform.h"
-#include "SkillSelection.h"
 
 EndMenu::EndMenu(App* app, int playerWin) : GameState(app), winner(playerWin)
 {
