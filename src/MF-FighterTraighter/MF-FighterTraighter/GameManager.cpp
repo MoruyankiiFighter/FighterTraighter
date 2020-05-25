@@ -18,7 +18,8 @@
 #include "SkillSelection.h"
 #include "EndMenu.h"
 #include "InventorySelection.h"
-
+#include "AIGameState.h"
+#include "ArcadeEndMenu.h"
 GameManager::GameManager(App* app) : app_(app)
 {
 	app_->getStateMachine()->pushState(new MainMenu(app_));
@@ -66,14 +67,17 @@ void GameManager::pressedStart()
 	if (dynamic_cast<MainMenu*>(curState)) { 
 		app_->Exit(); 
 	}
+
 	else if (dynamic_cast<PauseMenu*>(curState)
 		|| dynamic_cast<ControlsMenu*>(curState)
 		|| dynamic_cast<OptionsMenu*>(curState)
 		|| dynamic_cast<CharacterSelection*>(curState)) app_->getStateMachine()->popState();
+
 	else if (dynamic_cast<Fight*>(curState)
 		|| dynamic_cast<Training*>(curState)
 		|| dynamic_cast<SkillSelection*>(curState)
-		|| dynamic_cast<InventorySelection*>(curState))
+		|| dynamic_cast<InventorySelection*>(curState)
+		|| dynamic_cast<AIGameState*>(curState))
 		app_->getStateMachine()->pushState(new PauseMenu(app_));
 }
 
@@ -108,6 +112,14 @@ void GameManager::playerLost(int player)
 		++currentRound_;
 	}
 
+}
+
+void GameManager::AIWin(){
+	//ir al menu donde se muestra la puntuacion
+	//GoToEndMenu(1);
+	app_->getStateMachine()->pushState(new ArcadeEndMenu(app_, playerLrounds_));
+
+	//GoBackToMain();
 }
 
 void GameManager::ResetRounds()

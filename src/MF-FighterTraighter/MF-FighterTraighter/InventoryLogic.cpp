@@ -97,12 +97,13 @@ void InventoryLogic::handleInput()
 	}
 	else 
 	{
-		if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Down) && !pressed) {
+		HID* owner_controller = app_->getGameManager()->getPlayerInfo(player_).hid;
+		if ((owner_controller->ButtonPressed(HID::RightPad_Down) || owner_controller->ButtonPressed(HID::Select)) && !pressed) {
 			pressed = true;
 			cout << "waiting for fight";
 		}
 		
-		else if (pressed && app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Right)) {
+		else if (pressed && owner_controller->ButtonPressed(HID::RightPad_Right)) {
 			pressed = false;
 			cout << "Canceled";
 		}

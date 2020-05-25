@@ -16,7 +16,6 @@ SkillSelectionLogic::~SkillSelectionLogic()
 
 void SkillSelectionLogic::init()
 {
-	pressed = false;
 	op = v_[0];
 	ent = new Entity();
 	ent->addComponent<Transform>(Vector2D(), Vector2D(), 170, 170, 0);
@@ -25,41 +24,25 @@ void SkillSelectionLogic::init()
 
 void SkillSelectionLogic::update()
 {
-	if (!pressed) {
-
-		ent->getComponent<Transform>(ecs::Transform)->setPosition
-		(nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY())->getEntity()->getComponent<UITransform>(ecs::Transform)->getPosition());
-		//cout << ent->getComponent<Transform>(ecs::Transform)->getPosition().getX()<<endl;
-	}
+	ent->getComponent<Transform>(ecs::Transform)->setPosition
+	(nav_->GetElementInPos(nav_->GetPosX(), nav_->GetPosY())->getEntity()->getComponent<UITransform>(ecs::Transform)->getPosition());
 }
 
 void SkillSelectionLogic::render()
 {
-	if (!pressed) {
-		ent->render();
-	}
+	ent->render();
 }
 
 void SkillSelectionLogic::handleInput()
 {
-	if (app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Down)) {
+	HID* owner_controller = app_->getGameManager()->getPlayerInfo(player_).hid;
+	if (owner_controller->ButtonPressed(HID::RightPad_Down) || owner_controller->ButtonPressed(HID::Select)) {
 		// estamos en la fila 0 y escogemos la habilidad opcional
 		if (nav_->GetPosY() == 0) {
 
 			op = v_[nav_->GetPosX()];
 			app_->getGameManager()->addHability(op, player_);
 			app_->getStateMachine()->pushState(new InventorySelection(app_));
-
-			//pressed = true; // por ahora
 		}
-	}
-	if (nav_->GetPosY() == 2 && app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Down) && !pressed) {
-		pressed = true;
-		cout << "waiting for fight";
-	}
-
-	else if (pressed && app_->getGameManager()->getPlayerInfo(player_).hid->ButtonPressed(HID::RightPad_Right)) {
-		pressed = false;
-		cout << "Canceled";
 	}
 }
