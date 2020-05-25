@@ -65,6 +65,11 @@ void AIGameState::init()
 
 
 
+	GameManager::CharacterID AICharacter = GameManager::CharacterID(app_->getRandGen()->nextInt(GameManager::F10R, GameManager::Aisha));
+	Entity* AI2 = CharFactory::addAICharacterToGame(app_, this, -1, world, AICharacter, 5, Vector2D(350, 450),
+		PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
+	entManager_.setHandler(AI2, ecs::Player2);
+
 	// Position variables
 	const double abilityIconY = -190;
 	const double ability1X = 105 + 30;
@@ -121,14 +126,6 @@ void AIGameState::init()
 
 
 
-	GameManager::CharacterID AICharacter = GameManager::CharacterID(app_->getRandGen()->nextInt(GameManager::F10R, GameManager::Aisha));
-
-
-
-	Entity* AI2 = CharFactory::addAICharacterToGame(app_, this, -1, world, AICharacter, 5, Vector2D(350, 450),
-		PLAYER_2, PLAYER_1 | WALLS | BOUNDARY | BULLET, 1);
-	entManager_.setHandler(AI2, ecs::Player2);
-
 	Entity* gameController = entManager_.addEntity();
 	gameController->addComponent<ArcadeController>(240, 180);
 	entManager_.setHandler(gameController, ecs::Controller);
@@ -174,7 +171,7 @@ void AIGameState::init()
 	Entity* character2 = entManager_.addEntity();
 	character2->addComponent<UITransform>(Vector2D(-70, 70), Vector2D(app_->getWindowManager()->getCurResolution().w, 0), Vector2D(70, 70), Vector2D(140, 140));
 	RenderImage* charIcon2 = character2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::CharacterSelection));
-	switch (app_->getGameManager()->getPlayerInfo(2).character) {
+	switch (AICharacter) {
 	case GameManager::Aisha: charIcon2->setFrame(0, 0); break;
 	case GameManager::Mockingbird: charIcon2->setFrame(3, 0); break;
 	case GameManager::MKWh00p: charIcon2->setFrame(2, 0); break;
