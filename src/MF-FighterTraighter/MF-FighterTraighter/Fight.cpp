@@ -89,11 +89,11 @@ void Fight::init()
 
 
 	// Position variables
-	const double abilityIconY = -190;
-	const double ability1X = 105 + 30;
-	const double ability2X = 280 + 30;
+	const double abilityIconY = -190.0;
+	const double ability1X = 105.0 + 30.0;
+	const double ability2X = 280.0 + 30.0;
 	const double windowWidth = app_->getWindowManager()->getCurResolution().w;
-	const double abilityIconSize = 125;
+	const double abilityIconSize = 125.0;
 
 
 
