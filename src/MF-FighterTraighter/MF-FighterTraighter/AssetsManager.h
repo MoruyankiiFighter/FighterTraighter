@@ -193,7 +193,8 @@ public:
 		NORMALPUNCH,
 		VAMPIRIC,
 		KNIFE,
-		SAND
+		SAND,
+		GBMKW00P
 
 
 	};
