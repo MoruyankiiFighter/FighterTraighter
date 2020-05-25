@@ -109,7 +109,7 @@ PlayerData::CallbackData MockingbirdData::hp1 = PlayerData::CallbackData{
 	{ 125, -200 },
 	{ 700, 0 },
 	150,
-	180,
+	250,
 	5,
 	6,
 	36
@@ -133,7 +133,7 @@ void MockingbirdData::NK1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::nk1 = PlayerData::CallbackData{
-	{ 125, -40 },
+	{ 125, -90 },
 	{100, 0},
 	270,
 	75,
@@ -268,7 +268,7 @@ void MockingbirdData::ANK1(Entity* ent)
 }
 
 PlayerData::CallbackData MockingbirdData::ank1 = PlayerData::CallbackData{
-	{ 125, 10 },
+	{ 125, 70 },
 	{ 10, -150 },
 	250,
 	85,
