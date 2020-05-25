@@ -74,7 +74,7 @@ void Training::init()
 	pBpT->changeFriction(0);
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::saco2));
 	Health* sacoHealth = saco->addComponent<Health>(200);
-	SacoManager* sM = saco->addComponent<SacoManager>(3000);
+	SacoManager* sM = saco->addComponent<SacoManager>(20000);
 	entManager_.setHandler(saco, ecs::Saco);
 	
 

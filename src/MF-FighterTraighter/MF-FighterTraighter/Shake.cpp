@@ -63,4 +63,5 @@ void Shake::applyScreenShake()
     }
     m_shake->setX(xOffset);
     m_shake->setY(yOffset);
+    SDL_Delay(100);
 }

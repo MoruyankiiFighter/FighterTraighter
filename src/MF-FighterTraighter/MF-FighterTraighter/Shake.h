@@ -30,6 +30,8 @@ public:
     void playShake()
     {
         shaking = true;
+        timeStart_ = SDL_GetTicks();
+
     }
 
     //delta is the ms passed since last update
@@ -37,7 +39,6 @@ public:
     void init()override
     {
         //cam = entity_->getComponent<Transform>(ecs::Transform);
-        timeStart_ = SDL_GetTicks();
         xOffset = 0;
         yOffset = 0;
         m_shake = new Vector2D();

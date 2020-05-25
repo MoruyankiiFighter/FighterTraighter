@@ -65,12 +65,12 @@ void EndMenu::init()
 	//	900, 900, 0);
 
 	Entity* textWinner = entManager_.addEntity();
-	textWinner->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 200), Vector2D(200, 50), Vector2D(400, 100));
-	textWinner->addComponent<TextComponent>(text, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::Center);
+	textWinner->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 200), Vector2D(450, 50), Vector2D(900, 250));
+	textWinner->addComponent<TextComponent>(text, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 100, TextComponent::Center);
 
 	Entity* textLoser = entManager_.addEntity();
-	textLoser->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 500), Vector2D(200, 50), Vector2D(400, 100));
-	textLoser->addComponent<TextComponent>(text2, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 80, TextComponent::Center);
+	textLoser->addComponent<UITransform>(Vector2D(0, 120), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, 500), Vector2D(450, 50), Vector2D(900, 250));
+	textLoser->addComponent<TextComponent>(text2, app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 150, TextComponent::Center);
 
 	// Position variables
 	const double leftOffset = 250;
