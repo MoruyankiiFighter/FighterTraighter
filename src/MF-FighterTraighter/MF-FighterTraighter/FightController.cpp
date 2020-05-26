@@ -52,7 +52,7 @@ void FightController::update()
 
 void FightController::PlayerLost(int playerNumber)
 {
-	//entity_->getState()->getEntityManager().getHandler(ecs::Camara)->getComponent<Shake>(ecs::Shake)->playShake();
+	entity_->getState()->getEntityManager().getHandler(ecs::Camara)->getComponent<Shake>(ecs::Shake)->playShake();
 
 	if (playerLost_ != -2) return;
 	string txt = "";

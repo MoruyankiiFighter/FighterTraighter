@@ -13,7 +13,12 @@ void Shake::updateShake()
 {
     if (delta==0)
     {
-        SDL_HapticRumblePlay(app_->getInputManager()->getHaptic(0), 0.75, SHAKE_TIME_MS);
+        for (int i = 0; i < app_->getInputManager()->NumGamepadConnected(); i++)
+        {
+            SDL_HapticRumblePlay(app_->getInputManager()->getHaptic(i), 0.75, SHAKE_TIME_MS);
+
+        }
+       
         
     }
     //Add passed milliseconds to timer... If timer exceeds configuration, shaking ends
