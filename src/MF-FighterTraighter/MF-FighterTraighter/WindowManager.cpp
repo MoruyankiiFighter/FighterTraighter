@@ -14,7 +14,7 @@ WindowManager::WindowManager(App* app) : app_(app) {
 	}
 	//window = SDL_CreateWindow("Fighter Traighter ver 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		//supportedResolutions_[currentResolution_].w, supportedResolutions_[currentResolution_].h, SDL_WINDOW_SHOWN)
-	window = SDL_CreateWindow("Fighter Traighter ver 0.2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+	window = SDL_CreateWindow("Fighter Traighter 1.0", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		1280, 720, SDL_WINDOW_SHOWN);
 	if (!window) throw new SDLExceptions::SDLException("Unable to create window");
 	SDL_GetCurrentDisplayMode(0, &initialDisplayMode_);
