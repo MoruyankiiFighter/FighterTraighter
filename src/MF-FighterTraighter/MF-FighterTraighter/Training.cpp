@@ -73,7 +73,7 @@ void Training::init()
 	addHurtbox(pBpT->getMainFixture());
 	pBpT->changeFriction(0);
 	saco->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::saco2));
-	Health* sacoHealth = saco->addComponent<Health>(200);
+	Health* sacoHealth = saco->addComponent<Health>(165);
 	SacoManager* sM = saco->addComponent<SacoManager>(20000);
 	entManager_.setHandler(saco, ecs::Saco);
 	

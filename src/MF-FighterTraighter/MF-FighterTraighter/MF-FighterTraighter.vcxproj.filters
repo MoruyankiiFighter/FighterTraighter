@@ -298,7 +298,6 @@
     <ClCompile Include="CharacterAttacks.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="ArcadeController.cpp" />
     <ClCompile Include="AIGameState.cpp">
       <Filter>Source Files\GameState</Filter>
     </ClCompile>
@@ -310,6 +309,9 @@
     </ClCompile>
     <ClCompile Include="ArcadeEndMenu.cpp">
       <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="ArcadeController.cpp">
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -655,12 +657,14 @@
     <ClInclude Include="SkillSelectionLogic.h">
       <Filter>Header files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="ArcadeController.h" />
     <ClInclude Include="EndMenu.h">
       <Filter>Header files\GameState</Filter>
     </ClInclude>
     <ClInclude Include="ArcadeEndMenu.h">
       <Filter>Header files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="ArcadeController.h">
+      <Filter>Header files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

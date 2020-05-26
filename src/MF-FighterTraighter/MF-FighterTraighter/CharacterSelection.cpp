@@ -38,7 +38,7 @@ void CharacterSelection::init()
 		Vector2D(125, -125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0);
 
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Aisha_icon),
-		Vector2D(-125, 125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0);
+		Vector2D(-125, 125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0)->getComponent<RenderImage>(ecs::RenderImage)->setColor({125, 125, 125, 255});
 
 	UIFactory::createPanel(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Mock_icon),
 		Vector2D(125, 125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(115, 115), 230, 230, 0);
@@ -94,7 +94,7 @@ void CharacterSelection::init()
 	ctrl1->SetElementInPos(florElement1->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrl1->SetElementInPos(MKElement1->getComponent<UIElement>(ecs::UIElement), 1, 0);
 	ctrl1->SetElementInPos(randElement1->getComponent<UIElement>(ecs::UIElement), 0, 1);
-	ctrl1->SetElementInPos(aishaElement1->getComponent<UIElement>(ecs::UIElement), 0, 2);
+	//ctrl1->SetElementInPos(aishaElement1->getComponent<UIElement>(ecs::UIElement), 0, 2);
 	ctrl1->SetElementInPos(mockElement1->getComponent<UIElement>(ecs::UIElement), 1, 2);
 
 	Entity* logic1 = entManager_.addEntity();
@@ -154,9 +154,9 @@ void CharacterSelection::init()
 		ctrl2->SetElementInPos((florElement2)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 		ctrl2->SetElementInPos((MKElement2)->getComponent<UIElement>(ecs::UIElement), 1, 0);
 		ctrl2->SetElementInPos((randElement2)->getComponent<UIElement>(ecs::UIElement), 0, 1);
-		ctrl2->SetElementInPos((aishaElement2)->getComponent<UIElement>(ecs::UIElement), 0, 2);
+		//ctrl2->SetElementInPos((aishaElement2)->getComponent<UIElement>(ecs::UIElement), 0, 2);
 		ctrl2->SetElementInPos((mockElement2)->getComponent<UIElement>(ecs::UIElement), 1, 2);
-		//ctrl2->SetElementInPos(std::get<0>(button2)->getComponent<UIElement>(ecs::UIElement), 0, 3);
+		
 		Entity* logic2 = entManager_.addEntity();
 		logic2->addComponent<CharacterSelectionLogic>(2, text_j2->getComponent<TextComponent>(ecs::TextComponent), rightP->getComponent<RenderImage>(ecs::RenderImage), aisha_desc, mkwhoop_desc, flor_desc, mock_desc, nav_->getComponent<NavigationController>(ecs::NavigationController),
 			aishaElement2, florElement2, MKElement2, mockElement2, randElement2,
