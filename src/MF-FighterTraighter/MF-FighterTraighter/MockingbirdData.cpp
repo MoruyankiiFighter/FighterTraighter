@@ -5,7 +5,7 @@ MockingbirdData::MockingbirdData(double width, double height, double rotation, d
 	PlayerData(width, height, rotation, jump_impulse, ini_pos, speed, ini_health, attack, defense, playerNumber)
 {
 	animLength_ = { {4, true, 12}, {6, true, 10}, {2, true, 3}, {2, true, 15}, {2, false, 2}, {4, false, 10}, {4, false, 10}, {6, false, 8},
-	{5, false, 7}, {3, false, 13}, {6, false, 10}, {3, false, 7}, {6, false, 15}, {2, true, 15}, {1, false, 10}, {1, true, 4}, {1, false, 10},
+	{5, false, 10}, {3, false, 7}, {6, false, 7}, {3, false, 7}, {5, false, 11}, {2, true, 15}, {1, false, 10}, {1, true, 4}, {1, false, 10},
 	{2, false, 3}, {2, true, 12}, {2, false, 7}, {3, false, 15}, {2, false, 15}, {2, false, 10} };
 }
 
@@ -33,13 +33,13 @@ void MockingbirdData::init()
 	hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(18, nullptr, ANP1, entity_));
+	vecMov.push_back(new Move(9, nullptr, ANP1, entity_));
 	vecMov.push_back(new Move(34, nullptr, nullptr, entity_));
 	air_normal_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(15, nullptr, AHP1, entity_));
-	vecMov.push_back(new Move(15, nullptr, AHP1, entity_));
+	vecMov.push_back(new Move(12, nullptr, AHP1, entity_));
+	vecMov.push_back(new Move(6, nullptr, AHP1, entity_));
 	vecMov.push_back(new Move(19, nullptr, AHP2, entity_));
 	vecMov.push_back(new Move(20, nullptr, nullptr, entity_));
 	air_hard_punch_ = new AnimationChain(vecMov);
@@ -51,12 +51,12 @@ void MockingbirdData::init()
 	vecMov.clear();
 
 	vecMov.push_back(new Move(18, nullptr, AHK1, entity_));
-	vecMov.push_back(new Move(40, nullptr, AHK2, entity_));
+	vecMov.push_back(new Move(40, nullptr, nullptr, entity_));
 	air_hard_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(25, nullptr, GB, entity_));
-	vecMov.push_back(new Move(30, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(35, nullptr, GB, entity_));
+	vecMov.push_back(new Move(40, nullptr, nullptr, entity_));
 	guard_breaker_ = new AnimationChain(vecMov);
 	vecMov.clear();
 }
@@ -169,6 +169,8 @@ PlayerData::CallbackData MockingbirdData::hk1 = PlayerData::CallbackData{
 	4,
 	31
 };
+
+
 
 void MockingbirdData::ANP1(Entity* ent)
 {
@@ -292,47 +294,25 @@ void MockingbirdData::AHK1(Entity* ent)
 
 	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
 		{ (double)orientation_ * hitbox_X, ahk1.position.getY() }, ahk1.width, ahk1.height, ahk1.time, pD->getAttack() * ahk1.damage, ahk1.hitstun, { (double)orientation_ * ahk1.knockBack.getX(), ahk1.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
+
+	double partX = pT->getWidth() * 3 / 4 - 20;
+	if (orientation_ == -1) partX = pT->getWidth() / 4 - 200 + 20;
+	Vector2D pos = Vector2D(partX, 200);
+
+	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::MockAHK),
+		pos, Vector2D(200, 200), 20, PlayerParticleSystem::DeletionMethod::OnHit);
+		
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::SAND), false);
 
-
 }
+
 PlayerData::CallbackData MockingbirdData::ahk1 = PlayerData::CallbackData{
-	{ 125, -80 },
+	{ 125, -40 },
 	{100, 1000},
 	200,
 	200,
 	20,
 	8,
-	30
-};
-
-void MockingbirdData::AHK2(Entity* ent) {
-
-	double hitbox_X = ahk2.position.getX();
-	PhysicsTransform* pT = ent->getComponent<PhysicsTransform>(ecs::Transform);
-	PlayerData* pD = ent->getComponent<PlayerData>(ecs::PlayerData);
-	int orientation_ = pT->getOrientation();
-	if (orientation_ == -1) hitbox_X += ahk2.width;
-	ent->getApp()->getStateMachine()->getCurrentState()->addHitbox(
-		{ (double)orientation_ * hitbox_X, ahk2.position.getY() }, ahk2.width, ahk2.height, ahk2.time, pD->getAttack() * ahk2.damage, ahk2.hitstun,
-		{ (double)orientation_ * ahk2.knockBack.getX(), ahk2.knockBack.getY() }, pT->getBody(), pD->getPlayerNumber(), ent, pT->getCategory(), pT->getMask());
-
-	double partX = pT->getWidth() * 3 / 4 - 20;
-	if (orientation_ == -1) partX = pT->getWidth() / 4 - ahk2.width + 20;
-	Vector2D pos = Vector2D(partX, 125);
-
-	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::MockAHK),
-		pos, Vector2D(ahk2.width, ahk2.height), ahk2.time, PlayerParticleSystem::DeletionMethod::OnHit);
-	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::HIT), false);
-}
-
-PlayerData::CallbackData MockingbirdData::ahk2 = PlayerData::CallbackData{
-	{ 125, -80 },
-	{100, 1000},
-	200,
-	200,
-	20,
-	10,
 	30
 };
 

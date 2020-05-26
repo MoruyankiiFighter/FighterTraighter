@@ -13,8 +13,8 @@ void F10RData::init()
 {
 	std::vector<Move*> vecMov;
 
-	vecMov.push_back(new Move(15, nullptr, NP1, entity_));
-	vecMov.push_back(new Move(25, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(30, nullptr, NP1, entity_));
+	vecMov.push_back(new Move(23, nullptr, nullptr, entity_));
 	normal_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -23,8 +23,8 @@ void F10RData::init()
 	hard_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
-	vecMov.push_back(new Move(25, nullptr, NK1, entity_));
-	vecMov.push_back(new Move(35, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(20, nullptr, NK1, entity_));
+	vecMov.push_back(new Move(33, nullptr, nullptr, entity_));
 	normal_kick_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -79,13 +79,13 @@ void F10RData::NP1(Entity* ent)
 }
 
 PlayerData::CallbackData F10RData::np1 = PlayerData::CallbackData{
-	{ 110, -35 },
+	{ 125, -35 },
 	{ 50, 0 },
-	125,
+	80,
 	95,
-	10,
-	7,
-	18 };
+	5,
+	2,
+	45 };
 
 void F10RData::HP1(Entity* ent)
 {
@@ -118,7 +118,7 @@ PlayerData::CallbackData F10RData::hp1 = PlayerData::CallbackData{
 	325,
 	70,
 	20,
-	12,
+	10,
 	28 };
 
 void F10RData::NK1(Entity* ent)
@@ -141,12 +141,12 @@ void F10RData::NK1(Entity* ent)
 }
 
 PlayerData::CallbackData F10RData::nk1 = PlayerData::CallbackData{
-	{ 105, 95 },
+	{ 125, 95 },
 	{ 500, -200 },
-	100,
+	80,
 	100,
 	15,
-	15,
+	6,
 	31 };
 
 void F10RData::HK1(Entity* ent)
@@ -191,7 +191,7 @@ PlayerData::CallbackData F10RData::hk1 = PlayerData::CallbackData{
 	120,
 	210,
 	20,
-	17,
+	14,
 	39 };
 
 void F10RData::ANP1(Entity* ent)
@@ -250,7 +250,7 @@ void F10RData::AHP1(Entity* ent)
 
 	DestroyAtTime* dT = new DestroyAtTime(ahp1.damage * pD->getAttack(), ahp1.time, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() }, false, ent->getComponent<PlayerData>(ecs::PlayerData)->getPlayerNumber(), ent);
 
-	AbilityFactory::instanceEntitywHitbox(ent, ahp1.width, ahp1.height, pos, { (double)orientation_ * 1.4, 4 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
+	AbilityFactory::instanceEntitywHitbox(ent, ahp1.width, ahp1.height, pos, { (double)orientation_ * 2.7, 4 }, mask, ent->getState(), ent->getApp(), texture, orientation_, dT);
 	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::FLOR_2), false);
 
 	//AbilityFactory::createProyectile(ent, ahp1.width, ahp1.height, pos, { (double)orientation_* 1.4, 4 }, ahp1.damage, ahp1.hitstun, { (double)orientation_ * ahp1.knockBack.getX(), ahp1.knockBack.getY() },
@@ -316,7 +316,7 @@ PlayerData::CallbackData F10RData::ank1 = PlayerData::CallbackData{
 	120,
 	55,
 	25,
-	4,
+	3,
 	42 };
 
 void F10RData::AHK1(Entity* ent)
@@ -339,12 +339,12 @@ void F10RData::AHK1(Entity* ent)
 }
 
 PlayerData::CallbackData F10RData::ahk1 = PlayerData::CallbackData{
-	{ 30, -120 },
-	{ 300, 360 },
+	{ 65, -120 },
+	{ 300, 160 },
 	150,
 	350,
 	20,
-	9,
+	6,
 	42 };
 
 void F10RData::GB(Entity* ent)
