@@ -302,7 +302,7 @@ void MockingbirdData::AHK1(Entity* ent)
 	ent->getComponent<PlayerParticleSystem>(ecs::PlayerParticleSystem)->addNewParticle(ent->getApp()->getAssetsManager()->getTexture(AssetsManager::MockAHK),
 		pos, Vector2D(200, 200), 20, PlayerParticleSystem::DeletionMethod::OnHit);
 		
-	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::SAND), false);
+	ent->getApp()->getAudioMngr()->playSFX(ent->getApp()->getAssetsManager()->getSFX(AssetsManager::ROCAS), false);
 
 }
 
