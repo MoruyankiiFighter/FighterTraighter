@@ -35,6 +35,9 @@ public:
 	static void AHK1(Entity* ent);
 	static CallbackData ahk1;
 
+	static void AHK2(Entity* ent);
+	static CallbackData ahk2;
+
 	static void GB(Entity* ent);
 	static CallbackData gb;
 };

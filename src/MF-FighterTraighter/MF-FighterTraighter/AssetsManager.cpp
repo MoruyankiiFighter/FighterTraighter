@@ -70,6 +70,7 @@ void AssetsManager::loadTextures()
 	textures_.emplace(Mock_icon, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/moc-icon.png", 2, 1));  
 	textures_.emplace(MockArtwork, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/mock.png", 1, 1));  
 	textures_.emplace(MockSheet, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/characters/mockingbird-spritesheet.png", 6, 24));  
+	textures_.emplace(MockAHK, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/attacks/MOCKAHK.png",1,1));  
 
 	textures_.emplace(Random_icon, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/Random-icon.png", 2, 1));
 	textures_.emplace(RandomArtwork, new Texture(app_->getRenderer(), "../../../../assets/Assets/images/selection characters/random.png", 1, 1));
@@ -210,6 +211,7 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(MINA, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/mina.wav"));
 	sfx_.emplace(HIELO, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hielo.wav"));
 	sfx_.emplace(LASER, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/laser3.wav"));
+	sfx_.emplace(GBMKW00P, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/laser1.wav"));
 	sfx_.emplace(BOTON, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/boton.wav"));
 	sfx_.emplace(ATAQUE2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/ataque.wav"));
 	sfx_.emplace(ATAQUE, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/ataque2.wav"));
@@ -221,6 +223,8 @@ void AssetsManager::loadSFX()
 	sfx_.emplace(HIT2, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/hit2.wav"));
 	sfx_.emplace(NORMALPUNCH, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/flykick.wav"));
 	sfx_.emplace(VAMPIRIC, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/vampiric.wav"));
+	sfx_.emplace(KNIFE, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/cuchillo.mp3"));
+	sfx_.emplace(SAND, app_->getAudioMngr()->loadSFX("../../../../assets/Assets/Sounds/SFX/arena.mp3"));
 
 }
 

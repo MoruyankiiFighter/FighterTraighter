@@ -45,6 +45,7 @@ public:
 		Banner,
 		Panel,
 		SelectionSquare,
+		
 		floor,
 		floorIA,
 		//floor2,
@@ -66,6 +67,7 @@ public:
 		Mock_icon,
 		MockArtwork,
 		MockSheet,
+		MockAHK,
 
 		//resources of flor
 		Flor_icon,
@@ -191,7 +193,10 @@ public:
 		HIT,
 		HIT2,
 		NORMALPUNCH,
-		VAMPIRIC
+		VAMPIRIC,
+		KNIFE,
+		SAND,
+		GBMKW00P
 
 
 	};

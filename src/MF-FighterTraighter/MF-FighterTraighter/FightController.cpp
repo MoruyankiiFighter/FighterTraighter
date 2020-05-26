@@ -4,6 +4,7 @@
 #include "TextComponent.h"
 #include "PlayerController.h"
 #include "PlayerAttacks.h"
+#include "Shake.h"
 
 void FightController::init() {
 	SDL_Rect wSize = app_->getWindowManager()->getCurResolution();
@@ -51,7 +52,8 @@ void FightController::update()
 
 void FightController::PlayerLost(int playerNumber)
 {
-	
+	//entity_->getState()->getEntityManager().getHandler(ecs::Camara)->getComponent<Shake>(ecs::Shake)->playShake();
+
 	if (playerLost_ != -2) return;
 	string txt = "";
 	if (playerNumber_ == 2) {
