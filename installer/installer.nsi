@@ -282,6 +282,7 @@ Section "Uninstall"
    
     Delete "$SMPROGRAMS\$StartMenuFolder\uninstall $FTName.lnk"
     Delete "$SMPROGRAMS\$StartMenuFolder\$FTName.lnk"
+	Delete "$desktop\$FTName.lnk"
 	RMDir "$SMPROGRAMS\$StartMenuFolder"
 	
 	# now delete installed files
