@@ -1,1 +1,1 @@
-Usamos arquitecura por componentes y posiblemente con mensajes
+Utiliza una estructura por componentes, que se incluyen en entidades para darles funcionalidad. Estas entidades se encuentran dentro de gamestates que componen cada uno de los estados del juego y están supervisadas por managers. Hay factorías que ayudan a la creación de entidades. Hay callbacks (programación asíncrona). Hay herencia en las clases en las que se usa Box2D (hitboxes).
