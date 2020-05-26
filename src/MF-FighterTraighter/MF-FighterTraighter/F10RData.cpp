@@ -19,7 +19,7 @@ void F10RData::init()
 	vecMov.clear();
 
 	vecMov.push_back(new Move(29, nullptr, HP1, entity_));
-	vecMov.push_back(new Move(36, nullptr, nullptr, entity_));
+	vecMov.push_back(new Move(44, nullptr, nullptr, entity_));
 	hard_punch_ = new AnimationChain(vecMov);
 	vecMov.clear();
 
@@ -114,12 +114,12 @@ void F10RData::HP1(Entity* ent)
 
 PlayerData::CallbackData F10RData::hp1 = PlayerData::CallbackData{
 	{ 0, 35 },
-	{ 350, -175 },
+	{ 375, -175 },
 	325,
 	70,
-	20,
-	10,
-	28 };
+	15,
+	9,
+	22 };
 
 void F10RData::NK1(Entity* ent)
 {
