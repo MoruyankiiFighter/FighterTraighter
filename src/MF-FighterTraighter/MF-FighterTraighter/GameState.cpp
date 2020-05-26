@@ -32,10 +32,6 @@ void GameState::handleInput()
 
 void GameState::update()
 {
-	/*for (b2Fixture* mainHB : mainHurtboxes) {
-		cout << "friction: " << mainHB->GetFriction() << endl;
-	}*/
-
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		(*it)->update();
 	}
@@ -47,6 +43,9 @@ void GameState::update()
 		world->Step(1.0 / app_->getFrameRate(), 8, 3); //update box2d
 }
 
+// Updates every hitbox
+// Checks hitbox overlaps with the main hurtbox and 
+// if they overlap, it does both objects onHits
 void GameState::UpdateHitboxes()
 {
 	for (unsigned int i = 0; i < 2; i++) {
@@ -73,40 +72,32 @@ void GameState::UpdateHitboxes()
 	}
 }
 
-//Adds a hitbox relative to a body parameter
-//pos is the positon of the hitbox relative to the body
-//width and height of the hitbox
-//time is the lifetime of the hitbox
-//damage, hitstun and knockback(as meters)
-//id is the player ID
-//cBits are the same as the player, and mBits are the same except it excludes boundaries and walls to avoid bugs /*CAMBIAR CON CLASE BASE*/
-//guardBreaker indicates if the hitbox is a GuardBreaker
+// Adds a hitbox relative to a body parameter
+// pos is the positon of the hitbox relative to the body
+// width and height of the hitbox
+// time is the lifetime of the hitbox
+// damage, hitstun and knockback(as meters)
+// id is the player ID
+// cBits are the same as the player, and mBits are the same except it excludes boundaries and walls to avoid bugs /*CAMBIAR CON CLASE BASE*/
+// guardBreaker indicates if the hitbox is a GuardBreaker
 void GameState::addHitbox(Vector2D pos, int width, int height, int time, int damage, int hitstun, Vector2D knockBack, b2Body* body, uint16 id, Entity* e, uint16 cBits, uint16 mBits, bool guardBreaker)
 {
 	b2PolygonShape shape;
 	shape.SetAsBox(width * app_->METERS_PER_PIXEL / 2, height * app_->METERS_PER_PIXEL / 2, { float32((pos.getX() + width / 2) * app_->METERS_PER_PIXEL),float32((pos.getY() + height / 2) * app_->METERS_PER_PIXEL) }, 0);
 	b2FixtureDef fixturedef;
 	fixturedef.shape = &shape;
-	fixturedef.density = 0.0f;			//densidad casi 0, para que no cambie segun el ancho y el alto por ahora
+	fixturedef.density = 0.0f;			
 	fixturedef.isSensor = true;
 	fixturedef.filter.categoryBits = cBits;
 	fixturedef.filter.maskBits = mBits & (PLAYER_1 | PLAYER_2 | P_BAG); //kk
-	//fixturedef.userData
-	//if (PLAYER_1 == cBits >> 2) fixturedef.filter.maskBits = PLAYER_2;
-	//else  fixturedef.filter.maskBits = PLAYER_1;
-	//HitboxData* hitbox = new HitboxData{ damage,time, hitstun, knockBack,guardBreaker };//create the hitbox's data
-	////for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
-	//hitboxGroups_[cBits >> 2].push_back(body->CreateFixture(&fixturedef));
-	//hitboxGroups_[cBits >> 2].back()->SetUserData(hitbox);//saving hitbox's data
-	////for now we can use the category bits to use the group that we want Player1HB = hitboxgroup[0] // Player2HB = hitboxgroup[1]
 	HitboxData* hData = new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, e);
 	fixturedef.userData = hData;
 
 	hitboxGroups_[id].push_back(body->CreateFixture(&fixturedef));
 	hData->setIt(--hitboxGroups_[id].end());
-	//hitboxGroups_[id].back()->SetUserData(new HitboxData(damage, time, hitstun, knockBack * app_->METERS_PER_PIXEL, guardBreaker, id, this));//saving hitbox's data
 }
 
+// Adds a hitbox with its data
 void GameState::addHitbox( uint16 id, HitboxData* hitbox, b2Fixture* fixture)
 {
 	hitbox->proyectile_ = true;
@@ -116,7 +107,7 @@ void GameState::addHitbox( uint16 id, HitboxData* hitbox, b2Fixture* fixture)
 	hitboxGroups_[id].back()->SetUserData(hitbox);//saving hitbox's data
 }
 
-//destruye las hitbox que haya que destruir
+// Destroy every hitbox that has to be destroyed
 void GameState::RemoveHitbox()
 {
 	for (auto hb_it = hitboxRemove_pair_.begin(); hb_it != hitboxRemove_pair_.end(); ++hb_it) {
@@ -128,7 +119,7 @@ void GameState::RemoveHitbox()
 	hitboxRemove_pair_.clear();
 }
 
-//deleting all 
+// Deleting all 
 void GameState::clearHitboxes() {
 	mainHurtboxes.clear();
 	hitboxRemove_pair_.clear();
@@ -143,8 +134,8 @@ void GameState::clearHitboxes() {
 
 
 
-//hacer un refresh para destruir las hitboxes
-//it is called when you interrupt an attack 
+// Clears all the hitbox of a hitboxGroup   
+// it is called when you interrupt an attack 
 void GameState::resetGroup(int group) {
 
 	for (auto it = hitboxGroups_[group].begin(); it != hitboxGroups_[group].end(); ++it) {
@@ -156,6 +147,7 @@ void GameState::resetGroup(int group) {
 	}
 }
 
+// Puts a hitbox in the remove list
 void GameState::killHitbox(std::list<b2Fixture*>::iterator it, unsigned int id) {
 	hitboxRemove_pair_.push_back(std::pair<std::list<b2Fixture*>::iterator, unsigned int>(it, id));
 }
@@ -175,7 +167,6 @@ void GameState::render()
 
 void GameState::empty()
 {
-	//entManager_.empty();
 	for (auto it = entManager_.getScene().begin(); it != entManager_.getScene().end(); ++it) {
 		delete* it;
 		*it = nullptr;
