@@ -43,7 +43,7 @@ Entity* UIFactory::createButton(int n,App* app, GameState* state, Texture* butto
 	return button;
 }
 	
-std::tuple<Entity*, Entity*>UIFactory::createButtonControl(App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position, Vector2D anchor, Vector2D pivot, double width, double height, double rotation, SetIndexOnClick* clickCallback, std::string text, int fontSize, TextComponent::TextAlignment alignment, int index, int control)
+std::tuple<Entity*, Entity*>UIFactory::createButtonControl(App* app, GameState* state, Texture* buttonTex, Font* font, Vector2D position, Vector2D anchor, Vector2D pivot, double width, double height, double rotation, SetIndexOnClick* clickCallback, std::string text, int fontSize, TextComponent::TextAlignment alignment, int index, int control,int player)
 {
 
 
@@ -55,7 +55,7 @@ std::tuple<Entity*, Entity*>UIFactory::createButtonControl(App* app, GameState* 
 	Entity* textEnt = state->getEntityManager().addEntity();
 	textEnt->addComponent<UITransform>(position, anchor, pivot, Vector2D(width, height));
 
-	button->addComponent<ButtonControl>(clickCallback, index, control, textEnt->addComponent<TextComponent>(text, font, fontSize, alignment));
+	button->addComponent<ButtonControl>(clickCallback, index, control, player,textEnt->addComponent<TextComponent>(text, font, fontSize, alignment));
 
 
 

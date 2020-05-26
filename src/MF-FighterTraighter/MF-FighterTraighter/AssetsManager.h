@@ -34,6 +34,7 @@ public:
 		RandomRage,
 		KnifeDance,
 		BackgroundFight,
+		BackgroundFloor,
 		Celda1,
 		Celda2,
 		Pollo,
@@ -44,7 +45,9 @@ public:
 		Banner,
 		Panel,
 		SelectionSquare,
+		
 		floor,
+		floorIA,
 		//floor2,
 		saco2,
 		CollageCharacters,
@@ -64,7 +67,7 @@ public:
 		Mock_icon,
 		MockArtwork,
 		MockSheet,
-		MockAHK2,
+		MockAHK,
 
 		//resources of flor
 		Flor_icon,
@@ -80,17 +83,17 @@ public:
 		_abilityIcon_start,
 		//Ability icons
 		ShrugOff_ico,
-		Reach_ico,	//no existe esta creada con otra textura
-		MorePower_ico, //igual que el de arriba
-		Chicken_ico,	//es la textura n oel icono
+		Reach_ico,	
+		MorePower_ico, //mk
+		Chicken_ico,	
 		Acid_ico,
-		Dash_ico,			//tp esta metido todavia
+		Dash_ico,			
 		Vampiric_ico,
 		L_Lineal_ico,
 		Mina_ico,
 		Hook_ico,
 		HailBall_ico,
-		Knockdown_ico,// ya esta pero es el de hailball
+		Knockdown_ico,
 		Ex_Will_ico,
 		FlyingKicks_ico,
 		Nado_ico,
@@ -163,9 +166,17 @@ public:
 		/// SFX
 		SALTO,
 
-		
+		ROCAS,
+		POWER2,
+		LANZAR,
+		LANZAR4,
+		BURBUJA,
+		POWER1,
+		EWP,
+		CRISTAL,
 		PUNCH,
 		GANCHO,
+		EXPLOSION,
 		KICK,
 		DASH,
 		POLLO,
@@ -182,7 +193,10 @@ public:
 		HIT,
 		HIT2,
 		NORMALPUNCH,
-		VAMPIRIC
+		VAMPIRIC,
+		KNIFE,
+		SAND,
+		GBMKW00P
 
 
 	};

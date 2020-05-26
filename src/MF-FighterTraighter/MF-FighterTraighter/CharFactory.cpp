@@ -43,7 +43,7 @@ Entity* CharFactory::addCharacterToGame(App* app, GameState* state, double orien
 		e->addComponent<RenderImage>(app->getAssetsManager()->getTexture(AssetsManager::MockSheet)); 
 		h = e->addComponent<Health>(100);
 		pdata = e->addComponent<MockingbirdData>(pT->getWidth(), pT->getHeight(), pT->getRotation(), pC->getJumpImpulse(), Vector2D(-orientation * 100.0 + 200, 10), pC->getMovSpeed(), h->getHealth(), 1, 1, playerNumber);
-		pdata->setDmgSound((app->getAssetsManager()->getSFX(AssetsManager::MKBIRD_1)));
+		pdata->setDmgSound((app->getAssetsManager()->getSFX(AssetsManager::MKBIRD_2)));
 
 		break;
 	case(GameManager::F10R):

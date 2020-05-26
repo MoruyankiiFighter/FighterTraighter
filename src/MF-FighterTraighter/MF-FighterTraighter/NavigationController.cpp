@@ -29,7 +29,7 @@ void NavigationController::handleInput()
 		{
 			newX = temp;
 		}
-		if ((!owner_ && mngr->pressedLeft() ||
+		else if ((!owner_ && mngr->pressedLeft() ||
 			owner_ && (owner_->ButtonPressed(HID::LeftPad_Left) ||
 			((owner_->AxisChanged(HID::LJoyX)) && owner_->AxisInput(HID::LJoyX) < 0)))
 			&& cursorPositionX_ > 0 && (temp = findInColFrom(--newX)) != -1)

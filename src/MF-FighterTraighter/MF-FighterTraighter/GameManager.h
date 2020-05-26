@@ -51,9 +51,9 @@ public:
 	enum CharacterID {
 		/*None,*/
 		F10R,
-		Aisha,
 		MKWh00p,
-		Mockingbird
+		Mockingbird,
+		Aisha
 	};
 
 	struct PlayerInfo {
@@ -77,6 +77,7 @@ public:
 	// To inform that player (0 or 1) lost a round, or that it's a draw (-1)
 	// Maybe there's something better than an int?
 	void playerLost(int player);
+	void AIWin();
 	void ResetRounds();
 	// To inform that saco has lost all its health
 	void trainingEnded(int winner);
@@ -133,6 +134,11 @@ public:
 	inline unsigned int getPlayerRounds(int player) {
 		if (player == 1) return playerLrounds_;
 		return playerRrounds_;
+	}
+
+	inline void increasePlayerRounds(int player) {
+		if (player == 1) ++playerLrounds_;
+		else ++playerRrounds_;
 	}
 	inline unsigned int getTotalRounds() { return totalRounds_; }
 

@@ -3,20 +3,14 @@
 #include "GameManager.h"
 #include <vector>
 
-//class GameManager;
 class SkillSelection: public GameState
 {
 
 public:
-	
 	SkillSelection(App* app, int winner) : GameState(app), winner_(winner) { init(); }
-
 	void init() override;
 	void handleInput() override;
 
-	static void GoToNextSubMenu(App* app);
-	static void Pressed1(App* app);
-	static void Pressed2(App* app);
 private:
 	int winner_;
 

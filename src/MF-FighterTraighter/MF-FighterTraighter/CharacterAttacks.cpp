@@ -36,6 +36,7 @@ void CharacterAttacks::setAbility(AnimationChain* newAbility, int index)
 	if (abilityList[index] != nullptr)delete abilityList[index]; //Necesario? no se
 	abilityList[index] = newAbility;
 }
+
 //if u are attacking, interrupt it, also check if your orientation is right just in case
 void CharacterAttacks::interruptAttack()
 {

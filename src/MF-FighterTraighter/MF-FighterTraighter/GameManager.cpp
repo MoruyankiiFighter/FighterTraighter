@@ -18,21 +18,40 @@
 #include "SkillSelection.h"
 #include "EndMenu.h"
 #include "InventorySelection.h"
-
+#include "AIGameState.h"
+#include "ArcadeEndMenu.h"
 GameManager::GameManager(App* app) : app_(app)
 {
 	app_->getStateMachine()->pushState(new MainMenu(app_));
 	resetCharacters();
 
 	// TODO: Move this elsewhere
-	player1_.hid = new KeyboardHID(app_->getInputManager());
+	switch (app_->getInputManager()->NumGamepadConnected())
+	{
+	case 0:	player1_.hid = new KeyboardHID(app_->getInputManager());
+		player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
+		break;
+	case 1:
+		player1_.hid = new KeyboardHID(app_->getInputManager());
+		player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+		break;
+	case 2:
+		player1_.hid = new GamepadHID(app_->getInputManager(), 0);
+		player2_.hid = new GamepadHID(app_->getInputManager(), 1);
+
+		break;
+	}
+	
+
+	
+	//player1_.hid = new KeyboardHID(app_->getInputManager());
 	//player1_.hid = new GamepadHID(app_->getInputManager(),0);
 	
 	//player1_.character = F10R;
 	player1_.character = F10R;
 
 	//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
-	player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+	//player2_.hid = new GamepadHID(app_->getInputManager(), 0);
 	player2_.character = F10R;
 }
 
@@ -48,14 +67,17 @@ void GameManager::pressedStart()
 	if (dynamic_cast<MainMenu*>(curState)) { 
 		app_->Exit(); 
 	}
+
 	else if (dynamic_cast<PauseMenu*>(curState)
 		|| dynamic_cast<ControlsMenu*>(curState)
 		|| dynamic_cast<OptionsMenu*>(curState)
 		|| dynamic_cast<CharacterSelection*>(curState)) app_->getStateMachine()->popState();
+
 	else if (dynamic_cast<Fight*>(curState)
 		|| dynamic_cast<Training*>(curState)
 		|| dynamic_cast<SkillSelection*>(curState)
-		|| dynamic_cast<InventorySelection*>(curState))
+		|| dynamic_cast<InventorySelection*>(curState)
+		|| dynamic_cast<AIGameState*>(curState))
 		app_->getStateMachine()->pushState(new PauseMenu(app_));
 }
 
@@ -90,6 +112,14 @@ void GameManager::playerLost(int player)
 		++currentRound_;
 	}
 
+}
+
+void GameManager::AIWin(){
+	//ir al menu donde se muestra la puntuacion
+	//GoToEndMenu(1);
+	app_->getStateMachine()->pushState(new ArcadeEndMenu(app_, playerLrounds_));
+
+	//GoBackToMain();
 }
 
 void GameManager::ResetRounds()

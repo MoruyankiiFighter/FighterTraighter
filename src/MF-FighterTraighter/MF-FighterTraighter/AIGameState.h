@@ -5,10 +5,11 @@ class AIGameState :
 	public GameState
 {
 public:
-	AIGameState(App* app): GameState(app) { init(); }
+	AIGameState(App* app,int round=0): GameState(app), round_(round) { init(); }
 	void init() override;
 	void handleInput() override;
 	virtual ~AIGameState() {};
 protected:
+	int round_ = 0;
 };
 

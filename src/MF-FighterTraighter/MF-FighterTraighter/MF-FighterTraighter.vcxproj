@@ -142,6 +142,7 @@
     <ClCompile Include="AILogic.cpp" />
     <ClCompile Include="AnimationChain.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="ArcadeEndMenu.cpp" />
     <ClCompile Include="AudioOptionsLogic.cpp" />
     <ClCompile Include="ButtonControl.cpp" />
     <ClCompile Include="CharacterAttacks.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="GamepadHID.cpp" />
     <ClCompile Include="GraphicsOptionsLogic.cpp" />
     <ClCompile Include="HID.cpp" />
+    <ClCompile Include="ArcadeController.cpp" />
     <ClCompile Include="IndexSlider.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="InventoryHandler.cpp" />
@@ -238,6 +240,7 @@
     <ClInclude Include="AILogic.h" />
     <ClInclude Include="AnimationChain.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="ArcadeEndMenu.h" />
     <ClInclude Include="AudioOptionsLogic.h" />
     <ClInclude Include="ButtonControl.h" />
     <ClInclude Include="CharacterAttacks.h" />
@@ -264,6 +267,7 @@
     <ClInclude Include="HID.h" />
     <ClInclude Include="HitboxData.h" />
     <ClInclude Include="AssetsExceptions.h" />
+    <ClInclude Include="ArcadeController.h" />
     <ClInclude Include="IceDestroyOnHit.h" />
     <ClInclude Include="IndexSlider.h" />
     <ClInclude Include="InventoryHandler.h" />
