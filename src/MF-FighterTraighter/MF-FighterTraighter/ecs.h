@@ -51,7 +51,7 @@ namespace ecs {
 		AudioOptionsLogic,
 		IAController,
 		/*
-		
+
 		*/
 		_LastCmptId_
 	};
@@ -63,7 +63,7 @@ namespace ecs {
 		Controller,
 		Camara,
 		/*
-		
+
 		*/
 		_LastHndlrId_
 	};
@@ -81,4 +81,24 @@ namespace ecs {
 #define GETCMP2(e,type) GETCMP3(e,ecs::type,type)
 #define GETCMP3(e,id,type) e->getComponent<type>(id)
 
+	struct C0;
+	struct C1;
+	struct C2;
+
+	template<typename ...Ts>
+	struct TypeList {
+		constexpr static std::size_t size = sizeof...(Ts);
+	};
+	
+	template<typename, typename>
+	struct IndexOf;
+	
+	template<typename T, typename ...Ts>
+	struct IndexOf<T, TypeList<T, Ts...>> : std::integral_constant<std::size_t, 0> {};
+
+	template<typename T, typename TOther, typename ...Ts>
+	struct IndexOf<T, TypeList<TOther, Ts...>> : std::integral_constant<std::size_t, 1+IndexOf<T, TypeList<Ts...>>()> {};
+
+	using ComponentsList = TypeList<C0, C1, C2>;
+	constexpr static std::size_t numOfComponents = ComponentsList::size;
 }
