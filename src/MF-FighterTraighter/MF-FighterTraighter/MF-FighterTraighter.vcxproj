@@ -170,6 +170,7 @@
     <ClCompile Include="InventoryLogic.cpp" />
     <ClCompile Include="InventorySelection.cpp" />
     <ClCompile Include="CharFactory.cpp" />
+    <ClCompile Include="jute.cpp" />
     <ClCompile Include="KeyboardHID.cpp" />
     <ClCompile Include="LastHit_Wins.cpp" />
     <ClCompile Include="MkWH00PData.cpp" />
@@ -273,6 +274,7 @@
     <ClInclude Include="InventoryHandler.h" />
     <ClInclude Include="InventoryLogic.h" />
     <ClInclude Include="InventorySelection.h" />
+    <ClInclude Include="jute.h" />
     <ClInclude Include="KeyboardHID.h" />
     <ClInclude Include="LastHit_Wins.h" />
     <ClInclude Include="MkWH00PData.h" />
