@@ -312,6 +312,7 @@
     <ClInclude Include="RenderAnimation.h" />
     <ClInclude Include="RenderImage.h" />
     <ClInclude Include="LinkedGrid.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Shake.h" />
     <ClInclude Include="SkillSelectionLogic.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
@@ -338,6 +339,12 @@
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="VerticalSlider.h" />
     <ClInclude Include="ControlsMenu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MF-FighterTraighter.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\assets\Assets\images\favicon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

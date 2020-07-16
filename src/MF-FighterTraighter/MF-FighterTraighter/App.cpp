@@ -89,7 +89,7 @@ void App::init()
 	gameManager_.reset(new GameManager(this));
 	random_.reset(new SRandBasedGenerator());
 	SDL_ShowCursor(0);
-
+	
 }
 
 void App::clean()
