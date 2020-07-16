@@ -22,6 +22,7 @@ App::~App()
 void App::run()
 {
 	exit = false;
+	SDL_ShowCursor(SDL_DISABLE);
 
 	while (!exit) {
 
