@@ -317,6 +317,7 @@
     <ClInclude Include="SkillSelectionLogic.h" />
     <ClInclude Include="SRandBasedGenerator.h" />
     <ClInclude Include="TrainingController.h" />
+    <ClInclude Include="UIElement.h" />
     <ClInclude Include="UIHealthbar.h" />
     <ClInclude Include="UITimer.h" />
     <ClInclude Include="UITransform.h" />

@@ -24,9 +24,6 @@ void AIGameState::init()
 	GameState::init();
 	doStep = true;
 
-	//delete app_->getGameManager()->getPlayerInfo(2).hid;
-	//*app_->getGameManager()->getPlayerInfo(2).hid = AIHID();
-
 	// Background
 	Entity* bg = entManager_.addEntity();
 	bg->addComponent<Transform>(Vector2D(), Vector2D(), app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h, 0);

@@ -12,7 +12,7 @@ class Slider :
 {
 public:
 	//constructor
-	Slider(double minValue, double maxValue, int steps = 10, CallbackOnValueChanged* valueChanged = nullptr, HID* owner = nullptr);
+	Slider(double minValue, double maxValue, int steps = 10, CallbackOnValueChanged* valueChanged = nullptr, GameManager::PlayerID owner = GameManager::NoPlayer);
 
 	//destructor
 	virtual ~Slider();

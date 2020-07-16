@@ -8,8 +8,8 @@ class Button : public UIElement {
 
 public:
 	//constructor
-	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr, HID* owner = nullptr) : UIElement(owner), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
-	Button(int player, SetOnClick* start = nullptr, SetOnClick* stop = nullptr, HID* owner = nullptr) : UIElement(owner),start_(start), stop_(stop), player_(player)  {};
+	Button(CallBackOnClick* startClickCallback = nullptr, CallBackOnClick* stopClickCallback = nullptr, GameManager::PlayerID owner = GameManager::NoPlayer) : UIElement(owner), clickCallback_(startClickCallback), stopClickCallback_(stopClickCallback) {};
+	Button(int player, SetOnClick* start = nullptr, SetOnClick* stop = nullptr, GameManager::PlayerID owner = GameManager::NoPlayer) : UIElement(owner),start_(start), stop_(stop), player_(player)  {};
 
 	virtual void Press()
 	{

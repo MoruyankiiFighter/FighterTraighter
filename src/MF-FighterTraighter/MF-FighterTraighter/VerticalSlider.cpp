@@ -16,7 +16,10 @@ VerticalSlider::~VerticalSlider()
 void VerticalSlider::handleInput()
 {
 	if (Buttonstate_ == Selected) {
-		if (!owner_ && app_->getInputManager()->pressedUp() || owner_ && owner_->ButtonPressed(HID::LeftPad_Up)) {
+		HID* hid = nullptr;
+		if (owner_ != GameManager::NoPlayer)
+			hid = app_->getGameManager()->getPlayerInfo(owner_).hid;
+		if (owner_ == GameManager::NoPlayer && app_->getInputManager()->pressedUp() || hid && hid->ButtonPressed(HID::LeftPad_Up)) {
 			if (steps_ > 1) {
 				setValue(value_ + (maxValue_ - minValue_) / steps_);
 			}
@@ -24,7 +27,7 @@ void VerticalSlider::handleInput()
 				setValue(value_ + 1);
 			}
 		}
-		else if (!owner_ && app_->getInputManager()->pressedDown() || owner_ && owner_->ButtonPressed(HID::LeftPad_Down)) {
+		else if (owner_ == GameManager::NoPlayer && app_->getInputManager()->pressedDown() || hid && hid->ButtonPressed(HID::LeftPad_Down)) {
 			if (steps_ > 1) {
 				setValue(value_ - (maxValue_ - minValue_) / steps_);
 			}

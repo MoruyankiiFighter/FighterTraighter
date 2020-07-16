@@ -1,7 +1,8 @@
 #include "NavigationController.h"
 #include "Button.h"
+#include "GameManager.h"
 
-NavigationController::NavigationController(size_t sizeX, size_t sizeY, HID* owner) : Component(ecs::NavigationController), grid_(sizeX, sizeY), cursorPositionX_(), cursorPositionY_(), owner_(owner)
+NavigationController::NavigationController(size_t sizeX, size_t sizeY, GameManager::PlayerID owner) : Component(ecs::NavigationController), grid_(sizeX, sizeY), cursorPositionX_(), cursorPositionY_(), owner_(owner)
 {
 }
 
@@ -13,32 +14,35 @@ void NavigationController::handleInput()
 {
 	if (enabled_) {
 		InputManager* mngr = app_->getInputManager();
+		HID* hid = nullptr;
+		if (owner_ != GameManager::NoPlayer)
+			hid = app_->getGameManager()->getPlayerInfo(owner_).hid;
 		int newX = cursorPositionX_, newY = cursorPositionY_;
 		int temp;
-		if ((!owner_ && mngr->pressedUp() ||
-			owner_ && (owner_->ButtonPressed(HID::LeftPad_Up) ||
-			((owner_->AxisChanged(HID::LJoyY)) && owner_->AxisInput(HID::LJoyY) < 0)))
+		if ((owner_ == GameManager::NoPlayer && mngr->pressedUp() ||
+			hid && (hid->ButtonPressed(HID::LeftPad_Up) ||
+			((hid->AxisChanged(HID::LJoyY)) && hid->AxisInput(HID::LJoyY) < 0)))
 			&& cursorPositionY_ > 0 && (temp = findInRowFrom(--newY)) != -1)
 		{
 			newX = temp;
 		}
-		else if ((!owner_ && mngr->pressedDown() ||
-			owner_ && (owner_->ButtonPressed(HID::LeftPad_Down) ||
-			((owner_->AxisChanged(HID::LJoyY)) && owner_->AxisInput(HID::LJoyY) > 0)))
+		else if ((owner_ == GameManager::NoPlayer && mngr->pressedDown() ||
+			hid && (hid->ButtonPressed(HID::LeftPad_Down) ||
+			((hid->AxisChanged(HID::LJoyY)) && hid->AxisInput(HID::LJoyY) > 0)))
 			&& cursorPositionY_ < grid_.GetSizeY() - 1 && (temp = findInRowFrom(++newY)) != -1)
 		{
 			newX = temp;
 		}
-		else if ((!owner_ && mngr->pressedLeft() ||
-			owner_ && (owner_->ButtonPressed(HID::LeftPad_Left) ||
-			((owner_->AxisChanged(HID::LJoyX)) && owner_->AxisInput(HID::LJoyX) < 0)))
+		else if ((owner_ == GameManager::NoPlayer && mngr->pressedLeft() ||
+			hid && (hid->ButtonPressed(HID::LeftPad_Left) ||
+			((hid->AxisChanged(HID::LJoyX)) && hid->AxisInput(HID::LJoyX) < 0)))
 			&& cursorPositionX_ > 0 && (temp = findInColFrom(--newX)) != -1)
 		{
 			newY = temp;
 		}
-		else if ((!owner_ && mngr->pressedRight() ||
-			owner_ && (owner_->ButtonPressed(HID::LeftPad_Right) ||
-			((owner_->AxisChanged(HID::LJoyX)) && owner_->AxisInput(HID::LJoyX) > 0)))
+		else if ((owner_ == GameManager::NoPlayer && mngr->pressedRight() ||
+			hid && (hid->ButtonPressed(HID::LeftPad_Right) ||
+			((hid->AxisChanged(HID::LJoyX)) && hid->AxisInput(HID::LJoyX) > 0)))
 			&& cursorPositionX_ < grid_.GetSizeX() - 1 && (temp = findInColFrom(++newX)) != -1)
 		{
 			newY = temp;

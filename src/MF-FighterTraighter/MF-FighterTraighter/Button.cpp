@@ -11,7 +11,10 @@ void Button::init()
 void Button::handleInput()
 {
 	if (Buttonstate_ == Selected) {
-		if (!owner_ && app_->getInputManager()->pressedAccept() || owner_ && (owner_->ButtonPressed(HID::RightPad_Down) || owner_->ButtonPressed(HID::Select))) {
+		HID* hid = nullptr;
+		if (owner_ != GameManager::NoPlayer)
+			hid = app_->getGameManager()->getPlayerInfo(owner_).hid;
+		if (owner_ == GameManager::NoPlayer && app_->getInputManager()->pressedAccept() || hid && (hid->ButtonPressed(HID::RightPad_Down) || hid->ButtonPressed(HID::Select))) {
 			Press();
 		}
 	}

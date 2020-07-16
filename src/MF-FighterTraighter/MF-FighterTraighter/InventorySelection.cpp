@@ -42,7 +42,7 @@ void InventorySelection::init()
 	Entity* mark;
 	// Player1 left slot, frame and help text
 	Entity* left_j1 = entManager_.addEntity();
-	left_j1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
+	left_j1->addComponent<UIElement>(GameManager::Player1);
 	left_j1->addComponent<UITransform>(
 		Vector2D(fourthScreenW + lPosX, lrPosY), 
 		Vector2D(fourthScreenW, lrAnchorPivotY), 
@@ -67,7 +67,7 @@ void InventorySelection::init()
 
 	// Player1 right slot, frame and help text
 	Entity* right_j1 = entManager_.addEntity();
-	right_j1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
+	right_j1->addComponent<UIElement>(GameManager::Player1);
 	right_j1->addComponent<UITransform>(
 		Vector2D(fourthScreenW + rPosX, lrPosY), 
 		Vector2D(fourthScreenW, lrAnchorPivotY),
@@ -139,7 +139,7 @@ void InventorySelection::init()
 
 	// Player 1 abilities placing
 	Entity* nav_j1 = entManager_.addEntity();
-	NavigationController* ctrl = nav_j1->addComponent<NavigationController>(5, 3, app_->getGameManager()->getPlayerInfo(1).hid);
+	NavigationController* ctrl = nav_j1->addComponent<NavigationController>(5, 3, GameManager::Player1);
 
 	for (double i = 0; i < 10; i++) {	
 		Entity* habj1 = entManager_.addEntity();
@@ -227,7 +227,7 @@ void InventorySelection::init()
 
 		// Player 2 left slot
 		Entity* left_j2 = entManager_.addEntity();
-		left_j2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
+		left_j2->addComponent<UIElement>(GameManager::Player2);
 		left_j2->addComponent<UITransform>(
 			Vector2D(3 * fourthScreenW + lPosX, lrPosY),
 			Vector2D(3 * fourthScreenW, lrAnchorPivotY),
@@ -252,7 +252,7 @@ void InventorySelection::init()
 
 		// Player 2 right slot
 		Entity* right_j2 = entManager_.addEntity();
-		right_j2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
+		right_j2->addComponent<UIElement>(GameManager::Player2);
 		right_j2->addComponent<UITransform>(
 			Vector2D(3 * fourthScreenW + rPosX, lrPosY),
 			Vector2D(3 * fourthScreenW, lrAnchorPivotY),
@@ -277,7 +277,7 @@ void InventorySelection::init()
 
 		// Player 2 abilities placing
 		Entity* nav_j2 = entManager_.addEntity();
-		NavigationController* ctrl_ = nav_j2->addComponent<NavigationController>(5, 3, app_->getGameManager()->getPlayerInfo(2).hid);
+		NavigationController* ctrl_ = nav_j2->addComponent<NavigationController>(5, 3, GameManager::Player2);
 		// Abilities collocation on the available slots
 		for (double i = 0; i < 10; i++) {
 			Entity* habj2 = entManager_.addEntity();

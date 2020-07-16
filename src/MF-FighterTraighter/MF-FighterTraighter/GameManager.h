@@ -56,6 +56,12 @@ public:
 		Aisha
 	};
 
+	enum PlayerID : uint8_t {
+		NoPlayer = 0,
+		Player1 = 1,
+		Player2 = 2
+	};
+
 	struct PlayerInfo {
 		CharacterID character;
 		std::vector<AbilityID> abilities; //habilidades que tiene cada personaje en una ronda
@@ -99,6 +105,11 @@ public:
 	const PlayerInfo& getPlayerInfo(int player) {
 		if (player == 1) return player1_;
 		return player2_;
+	}
+
+	inline const PlayerInfo& getPlayerInfo(PlayerID player) {
+		assert(player != GameManager::NoPlayer);
+		return getPlayerInfo((int)player);
 	}
 
 	void addHability(AbilityID hab, int player) {
