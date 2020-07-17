@@ -119,7 +119,7 @@ public:
 		return controllerInputs[controllerID].axis[axis] / 32768.0f;
 	}
 	inline bool GamepadConnected() { return numGamepads > 0; }
-	inline int NumGamepadConnected() { return numGamepads ; }
+	inline int NumGamepadConnected() { return numGamepads; }
 	// if pressed or released a controller button this frame
 	inline bool controllerEvent() {
 		return controllerEvent_;
