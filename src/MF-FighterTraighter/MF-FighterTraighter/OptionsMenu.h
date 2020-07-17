@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "Texture.h"
+#include "GameManager.h"
 
 class OptionsMenu:public GameState
 {
@@ -17,9 +18,6 @@ public:
 	
 	//go to the state that was before
 	static void GoBackCallback(App* app);
-	
-	//go to the controls menu
-	static void GoControlsCallback(App* app);
 
 	//change the brightness
 	static void brightnessCallback(App* app, double value);
@@ -36,6 +34,9 @@ public:
 	
 	//changes the resolution
 	static void resolutionCallback(App* app, double value);	
+
+	//
+	static void ChangeControl(App* app, int index, GameManager::PlayerID player);
 	
 	//saves the settings, and applies the resolution
 	static void applySettings(App* app);

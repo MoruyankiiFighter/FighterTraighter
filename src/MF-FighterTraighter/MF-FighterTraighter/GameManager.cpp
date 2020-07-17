@@ -30,21 +30,15 @@ GameManager::GameManager(App* app) : app_(app)
 	{
 	case 0:	
 		setHID<KeyboardHID>(Player1, app->getInputManager());
-		setHID<KeyboardHID>(Player2, app->getInputManager()); 
-		//player1_.hid = new KeyboardHID(app_->getInputManager());
-		//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
+		setHID<KeyboardHID>(Player2, app->getInputManager());
 		break;
 	case 1:
 		setHID<KeyboardHID>(Player1, app->getInputManager());
 		setHID<GamepadHID>(Player2, app->getInputManager(), 0);
-		//player1_.hid = new KeyboardHID(app_->getInputManager());
-		//player2_.hid = new GamepadHID(app_->getInputManager(), 0);
 		break;
 	case 2:
 		setHID<GamepadHID>(Player1, app->getInputManager(), 0);
 		setHID<GamepadHID>(Player2, app->getInputManager(), 1);
-		//player1_.hid = new GamepadHID(app_->getInputManager(), 0);
-		//player2_.hid = new GamepadHID(app_->getInputManager(), 1);
 		break;
 	}
 

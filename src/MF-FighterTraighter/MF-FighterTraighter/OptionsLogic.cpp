@@ -2,14 +2,17 @@
 #include "Entity.h"
 #include "AudioOptionsLogic.h"
 #include "GraphicsOptionsLogic.h"
+#include "ControlsOptionsLogic.h"
 
 void OptionsLogic::init()
 {
 	grLogic = entity_->getComponent<GraphicsOptionsLogic>(ecs::GraphicsOptionsLogic);
 	auLogic = entity_->getComponent<AudioOptionsLogic>(ecs::AudioOptionsLogic);
+	coLogic = entity_->getComponent<ControlsOptionsLogic>(ecs::ControlsOptionsLogic);
 
 	grLogic->setEnabled(false);
 	auLogic->setEnabled(false);
+	coLogic->setEnabled(false);
 }
 
 void OptionsLogic::handleInput()
@@ -19,17 +22,20 @@ void OptionsLogic::handleInput()
 		{
 			grLogic->setEnabled(true);
 			auLogic->setEnabled(false);
+			coLogic->setEnabled(false);
+			
 		}
 		else if (mainNav->GetSelectedElement() == audioButton) 
 		{
 			grLogic->setEnabled(false);
 			auLogic->setEnabled(true);
-
+			coLogic->setEnabled(false);
 		}
 		else if (mainNav->GetSelectedElement() == controlsButton) 
 		{
 			grLogic->setEnabled(false);
 			auLogic->setEnabled(false);
+			coLogic->setEnabled(true);
 		}
 		mainNav->setEnabled(false);
 		mainNavEnabled = false;
@@ -39,6 +45,7 @@ void OptionsLogic::handleInput()
 		mainNav->ChangeSelectedItem(mainNav->GetPosX(), mainNav->GetPosY());
 		grLogic->setEnabled(false);
 		auLogic->setEnabled(false);
+		coLogic->setEnabled(false);
 		mainNavEnabled = true;
 	}
 }

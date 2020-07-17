@@ -4,13 +4,14 @@
 #include "UIElement.h"
 #include "TextComponent.h"
 
-using SetIndexOnClick = void(App* app, int index, int control,int player);
+using SetIndexOnClick = void(App* app, int index, GameManager::PlayerID player);
 
 class ButtonControl : public UIElement {
 
 public:
 	//constructor
-	ButtonControl(SetIndexOnClick* startClickCallback = nullptr, int index = 0, int control = 0, int player=0,TextComponent* text = nullptr) : UIElement(), clickCallback_(startClickCallback), index(index), control(control), player(player),text_(text) {};
+	ButtonControl(SetIndexOnClick* startClickCallback = nullptr, int index = 0, GameManager::PlayerID owner = GameManager::NoPlayer, TextComponent* text = nullptr) 
+		: UIElement(owner), clickCallback_(startClickCallback), index(index), text_(text) {}
 
 	virtual void Press()
 	{
@@ -48,13 +49,16 @@ public:
 	{
 		return index;
 	}
+	void setEnabled(bool e) {
+		enabled = e;
+		if (!e) text_->setText("");
+	}
 
 private:
 	SetIndexOnClick* clickCallback_ = nullptr;
 	//SetIndexOnClick* stopClickCallback_ = nullptr;
 	int index;
-	int control;
-	int player;
+	bool enabled = true;
 
 	enum state
 	{
@@ -68,5 +72,4 @@ private:
 	state b;
 	string texto;
 	TextComponent* text_;
-
 };

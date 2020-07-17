@@ -3,6 +3,7 @@
 #include "NavigationController.h"
 class GraphicsOptionsLogic;
 class AudioOptionsLogic;
+class ControlsOptionsLogic;
 
 class OptionsLogic :
 	public Component
@@ -27,6 +28,7 @@ protected:
 
 	GraphicsOptionsLogic* grLogic = nullptr;
 	AudioOptionsLogic* auLogic = nullptr;
+	ControlsOptionsLogic* coLogic = nullptr;
 
 	bool mainNavEnabled = true;
 };

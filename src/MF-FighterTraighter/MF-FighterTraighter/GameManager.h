@@ -174,7 +174,6 @@ protected:
 		if (player == Player1) return player1_;
 		else return player2_;
 	}
-
 	App* app_;
 };
 

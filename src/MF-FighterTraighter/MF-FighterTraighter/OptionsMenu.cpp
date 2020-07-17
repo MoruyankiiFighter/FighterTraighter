@@ -12,12 +12,15 @@
 #include "OptionsLogic.h"
 #include "GraphicsOptionsLogic.h"
 #include "AudioOptionsLogic.h"
+#include "ControlsOptionsLogic.h"
 #include "NavigationController.h"
 #include "ControlsMenu.h"
 #include "App.h"
 #include <cmath>
 #include "RenderAnimation.h"
 #include "UITransform.h"
+#include "KeyboardHID.h"
+#include "GamepadHID.h"
 
 OptionsMenu::OptionsMenu(App* app) : GameState(app)
 {
@@ -115,7 +118,7 @@ void OptionsMenu::init()
 		Vector2D(leftOffset, buttonInitPos + buttonSeparation * 2),
 		Vector2D(0, app_->getWindowManager()->getCurResolution().h / 2),
 		Vector2D(0, buttonHeight / 2),
-		410, buttonHeight, 0, GoControlsCallback, nullptr, "Controls", textSize);
+		410, buttonHeight, 0, nullptr, nullptr, "Controls", textSize);
 	std::get<1>(controls)->getComponent<UITransform>(ecs::Transform)->setPosition(leftOffset + 35, buttonInitPos + buttonSeparation * 2 + textOffset);
 
 
@@ -235,10 +238,83 @@ void OptionsMenu::init()
 
 
 
+#pragma region Control options
+	// Navigation 1
+	Entity* navControls1 = entManager_.addEntity();
+	NavigationController* ctrlControls1 = navControls1->addComponent<NavigationController>(1, 16, GameManager::Player1);
+
+
+
+	// Navigation 2
+	Entity* navControls2 = entManager_.addEntity();
+	NavigationController* ctrlControls2 = navControls2->addComponent<NavigationController>(1, 16, GameManager::Player2);
+
+
+	
+	std::vector<tuple<Entity*, Entity*>> player1ControlButtons;
+	std::vector<tuple<Entity*, Entity*>> player2ControlButtons;
+	std::vector<Entity*> ControlKeyIdentifierTexts;
+	for (int i = 0; i < 16; ++i) {
+		// Player1 controls
+		std::tuple<Entity*, Entity*> controls1 = UIFactory::createButtonControl(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+			app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 
+			Vector2D(-leftOffset - 275, i * 45.0 - 350),
+			Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h / 2),
+			Vector2D(250, 25),
+			250, 50, 0, ChangeControl, "", 50, TextComponent::Center, i, GameManager::Player1);
+		ctrlControls1->SetElementInPos(std::get<0>(controls1)->getComponent<UIElement>(ecs::UIElement), 0, i);
+		player1ControlButtons.push_back(controls1);
+
+
+
+		// Player2 controls
+		std::tuple<Entity*, Entity*> controls2 = UIFactory::createButtonControl(app_, this, app_->getAssetsManager()->getTexture(AssetsManager::Button),
+			app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), 
+			Vector2D(-leftOffset, i * 45.0 - 350),
+			Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h / 2),
+			Vector2D(250, 25),
+			250, 50, 0, ChangeControl, "", 50, TextComponent::Center, i, GameManager::Player2);
+		ctrlControls2->SetElementInPos(std::get<0>(controls2)->getComponent<UIElement>(ecs::UIElement), 0, i);
+		player2ControlButtons.push_back(controls2);
+
+
+
+
+		// Key identifier text
+		Entity* KeyIdentifierText = UIFactory::createText(app_, this,
+			Vector2D(-leftOffset - 540, i * 45.0 - 350),
+			Vector2D(app_->getWindowManager()->getCurResolution().w, app_->getWindowManager()->getCurResolution().h / 2),
+			Vector2D(400, 25),
+			app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "", 50, TextComponent::Right, 400, 400, 50);
+		ControlKeyIdentifierTexts.push_back(KeyIdentifierText);
+	}
+
+
+
+	// Player1 text
+	Entity* ControlsPlayer1Text = UIFactory::createText(app_, this,
+		Vector2D(-leftOffset - 400, 130),
+		Vector2D(app_->getWindowManager()->getCurResolution().w, 0),
+		Vector2D(125, 25),
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "Player One", 40, TextComponent::Center, 250, 50, 500);
+
+
+
+	// Player2 text
+	Entity* ControlsPlayer2Text = UIFactory::createText(app_, this,
+		Vector2D(-leftOffset - 125, 130),
+		Vector2D(app_->getWindowManager()->getCurResolution().w, 0),
+		Vector2D(125, 25),
+		app_->getAssetsManager()->getFont(AssetsManager::Roboto_Black), "Player One", 40, TextComponent::Center, 250, 50, 500);
+#pragma endregion
+
+
+
 	// Logic
 	Entity* logic = entManager_.addEntity();
 	logic->addComponent<GraphicsOptionsLogic>(ctrlGraphics, fullscreen, resolutionSlider, brightSlider);
 	logic->addComponent<AudioOptionsLogic>(ctrlAudio, musicSlider, soundSlider, silenceVolume);
+	logic->addComponent<ControlsOptionsLogic>(ctrlControls1, ctrlControls2, player1ControlButtons, player2ControlButtons, ControlKeyIdentifierTexts, ControlsPlayer1Text, ControlsPlayer2Text);
 	logic->addComponent<OptionsLogic>(navMain->getComponent<NavigationController>(ecs::NavigationController),
 		std::get<0>(graphics)->getComponent<UIElement>(ecs::UIElement),
 		std::get<0>(audio)->getComponent<UIElement>(ecs::UIElement),
@@ -247,9 +323,6 @@ void OptionsMenu::init()
 
 void OptionsMenu::GoBackCallback(App* app) {
 	app->getStateMachine()->popState();
-}
-void OptionsMenu::GoControlsCallback(App* app) {
-	app->getStateMachine()->pushState(new ControlsMenu(app));
 }
 
 void OptionsMenu::brightnessCallback(App* app, double value)
@@ -293,6 +366,20 @@ void OptionsMenu::resolutionCallback(App* app, double value)
 {
 	OptionsMenu::curResolution_ = value;
 	// also save to a config file
+}
+
+void OptionsMenu::ChangeControl(App* app, int index, GameManager::PlayerID player)
+{
+	HID* hid = app->getGameManager()->getPlayerInfo(player).hid;
+
+	if (dynamic_cast<KeyboardHID*>(hid))
+	{
+		static_cast<KeyboardHID*>(hid)->changeKey(index, app->getInputManager()->lastKey());
+	}
+	else if(dynamic_cast<GamepadHID*>(hid))
+	{
+		static_cast<GamepadHID*>(hid)->change(index);
+	}
 }
 
 void OptionsMenu::applySettings(App* app)
