@@ -5,7 +5,6 @@
 #include "GameState.h"
 #include "MainMenu.h"
 #include "PauseMenu.h"
-#include "ControlsMenu.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
 #include "Training.h"
@@ -28,30 +27,21 @@ GameManager::GameManager(App* app) : app_(app)
 	// TODO: Move this elsewhere
 	switch (app_->getInputManager()->NumGamepadConnected())
 	{
-	case 0:	player1_.hid = new KeyboardHID(app_->getInputManager());
-		player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
+	case 0:	
+		setHID<KeyboardHID>(Player1, app->getInputManager());
+		setHID<KeyboardHID>(Player2, app->getInputManager());
 		break;
 	case 1:
-		player1_.hid = new KeyboardHID(app_->getInputManager());
-		player2_.hid = new GamepadHID(app_->getInputManager(), 0);
+		setHID<KeyboardHID>(Player1, app->getInputManager());
+		setHID<GamepadHID>(Player2, app->getInputManager(), 0);
 		break;
 	case 2:
-		player1_.hid = new GamepadHID(app_->getInputManager(), 0);
-		player2_.hid = new GamepadHID(app_->getInputManager(), 1);
-
+		setHID<GamepadHID>(Player1, app->getInputManager(), 0);
+		setHID<GamepadHID>(Player2, app->getInputManager(), 1);
 		break;
 	}
-	
 
-	
-	//player1_.hid = new KeyboardHID(app_->getInputManager());
-	//player1_.hid = new GamepadHID(app_->getInputManager(),0);
-	
-	//player1_.character = F10R;
 	player1_.character = F10R;
-
-	//player2_.hid = new KeyboardHID(app_->getInputManager());//keyboard too
-	//player2_.hid = new GamepadHID(app_->getInputManager(), 0);
 	player2_.character = F10R;
 }
 
@@ -69,7 +59,6 @@ void GameManager::pressedStart()
 	}
 
 	else if (dynamic_cast<PauseMenu*>(curState)
-		|| dynamic_cast<ControlsMenu*>(curState)
 		|| dynamic_cast<OptionsMenu*>(curState)
 		|| dynamic_cast<CharacterSelection*>(curState)) app_->getStateMachine()->popState();
 
@@ -139,7 +128,6 @@ void GameManager::trainingEnded(int winner)
 	stateMachine->popState();
 	stateMachine->pushState(new SkillSelection(app_, winner + 1));
 }
-
 
 void GameManager::resetCharacters()
 {

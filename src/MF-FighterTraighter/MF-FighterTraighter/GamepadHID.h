@@ -27,12 +27,8 @@ public:
 		}
 		if (!usado)
 		{
-
 			mando[index] = inputM_->lastcontrol();
-
 		}
-
-
 	}
 	
 	virtual void updateInput() override;
@@ -54,7 +50,7 @@ protected:
 	const float deadZoneAmount = 0.2; // 0 to 1
 	int gamepadID;
 	InputManager* inputM_;
-	std::vector<std::string>mando = {
+	std::vector<std::string> mando = {
 	"Start","Back","dpleft","dpup","dpright","dpdown","x","y","b","a","leftshoulder","rightshoulder","leftstick","rightstick","lefttrigger","righttrigger"
 	};
 	std::vector<SDL_GameControllerButton> buttons = { SDL_CONTROLLER_BUTTON_START,

@@ -16,9 +16,14 @@ public:
 		Right = 1,
 		Middle = 2
 	};
-	struct GamePad {
+	struct GamePadInput {
 		bool buttons[SDL_CONTROLLER_BUTTON_MAX];
 		int axis[SDL_CONTROLLER_AXIS_MAX];
+	};
+	struct Controller {
+		SDL_GameController* pad;
+		SDL_Haptic* haptic;
+		SDL_JoystickID id;
 	};
 	InputManager(App* app);
 	InputManager(InputManager&) = delete;
@@ -114,7 +119,7 @@ public:
 		return controllerInputs[controllerID].axis[axis] / 32768.0f;
 	}
 	inline bool GamepadConnected() { return numGamepads > 0; }
-	inline int NumGamepadConnected() { return numGamepads ; }
+	inline int NumGamepadConnected() { return numGamepads; }
 	// if pressed or released a controller button this frame
 	inline bool controllerEvent() {
 		return controllerEvent_;
@@ -166,12 +171,14 @@ public:
 	virtual ~InputManager();
 	SDL_Haptic* getHaptic(int id)
 	{
-		return gControllerHaptic.at(id);
+		return connectedControllers.at(id).haptic;
 	}
 private:
 	void clearState();
 
 	void initControllers();
+	void OpenController(int i);
+	void CloseController(int i);
 	inline void onMouseMotion(SDL_Event& e) {
 		mousePos_.set(e.motion.x, e.motion.y);
 	};
@@ -196,10 +203,9 @@ private:
 	Vector2D mousePos_;
 	std::array<bool, 3> mouseState_; // true = pressed
 	Vector2D mouseMovementInFrame_;
-	std::vector<SDL_GameController*> connectedControllers;
-	std::vector<SDL_Haptic*>gControllerHaptic;
-	std::vector<GamePad> controllerInputs;
-	std::vector<GamePad> lastControllerInputs;
+	std::vector<Controller> connectedControllers;
+	std::vector<GamePadInput> controllerInputs;
+	std::vector<GamePadInput> lastControllerInputs;
 	int numGamepads;
 	// if in this frame there has been an event
 	bool mouseEvent_ = false; // click

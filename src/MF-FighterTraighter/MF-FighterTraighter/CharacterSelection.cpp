@@ -65,32 +65,32 @@ void CharacterSelection::init()
 
 	Entity* florElement1 = entManager_.addEntity();
 	florElement1->addComponent<UITransform>(Vector2D(-125, -125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(125, 125), Vector2D(250, 250));
-	florElement1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
+	florElement1->addComponent<UIElement>(GameManager::Player1);
 	florElement1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 
 	Entity* mockElement1 = entManager_.addEntity();
 	mockElement1->addComponent<UITransform>(Vector2D(125, 125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(125, 125), Vector2D(250, 250));
-	mockElement1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
+	mockElement1->addComponent<UIElement>(GameManager::Player1);
 	mockElement1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 
 	Entity* MKElement1 = entManager_.addEntity();
 	MKElement1->addComponent<UITransform>(Vector2D(125, -125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(125, 125), Vector2D(250, 250));
-	MKElement1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
+	MKElement1->addComponent<UIElement>(GameManager::Player1);
 	MKElement1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 
 	Entity* aishaElement1 = entManager_.addEntity();
 	aishaElement1->addComponent<UITransform>(Vector2D(-125, 125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(125, 125), Vector2D(250, 250));
-	aishaElement1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
+	aishaElement1->addComponent<UIElement>(GameManager::Player1);
 	aishaElement1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 
 	Entity* randElement1 = entManager_.addEntity();
 	randElement1->addComponent<UITransform>(Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(125, 125), Vector2D(250, 250));
-	randElement1->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(1).hid);
+	randElement1->addComponent<UIElement>(GameManager::Player1);
 	randElement1->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 
 
 	Entity* nav1 = entManager_.addEntity();
-	NavigationController* ctrl1 = nav1->addComponent<NavigationController>(2, 3, app_->getGameManager()->getPlayerInfo(1).hid);
+	NavigationController* ctrl1 = nav1->addComponent<NavigationController>(2, 3, GameManager::Player1);
 	ctrl1->SetElementInPos(florElement1->getComponent<UIElement>(ecs::UIElement), 0, 0);
 	ctrl1->SetElementInPos(MKElement1->getComponent<UIElement>(ecs::UIElement), 1, 0);
 	ctrl1->SetElementInPos(randElement1->getComponent<UIElement>(ecs::UIElement), 0, 1);
@@ -121,36 +121,36 @@ void CharacterSelection::init()
 
 		Entity* florElement2 = entManager_.addEntity();
 		florElement2->addComponent<UITransform>(Vector2D(-125, -125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(125, 125), Vector2D(250, 250));
-		florElement2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
+		florElement2->addComponent<UIElement>(GameManager::Player2);
 		RenderImage* r = florElement2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 		r->setColor({ 255, 0, 0, 255 });
 
 		Entity* mockElement2 = entManager_.addEntity();
 		mockElement2->addComponent<UITransform>(Vector2D(125, 125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(125, 125), Vector2D(250, 250));
-		mockElement2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
+		mockElement2->addComponent<UIElement>(GameManager::Player2);
 		r = mockElement2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 		r->setColor({ 255, 0, 0, 255 });
 
 		Entity* MKElement2 = entManager_.addEntity();
 		MKElement2->addComponent<UITransform>(Vector2D(125, -125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(125, 125), Vector2D(250, 250));
-		MKElement2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
+		MKElement2->addComponent<UIElement>(GameManager::Player2);
 		r = MKElement2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 		r->setColor({ 255, 0, 0, 255 });
 
 		Entity* aishaElement2 = entManager_.addEntity();
 		aishaElement2->addComponent<UITransform>(Vector2D(-125, 125), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(125, 125), Vector2D(250, 250));
-		aishaElement2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
+		aishaElement2->addComponent<UIElement>(GameManager::Player2);
 		r = aishaElement2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 		r->setColor({ 255, 0, 0, 255 });
 
 		Entity* randElement2 = entManager_.addEntity();
 		randElement2->addComponent<UITransform>(Vector2D(), Vector2D(app_->getWindowManager()->getCurResolution().w / 2, app_->getWindowManager()->getCurResolution().h / 2 - 175), Vector2D(125, 125), Vector2D(250, 250));
-		randElement2->addComponent<UIElement>(app_->getGameManager()->getPlayerInfo(2).hid);
+		randElement2->addComponent<UIElement>(GameManager::Player2);
 		r = randElement2->addComponent<RenderImage>(app_->getAssetsManager()->getTexture(AssetsManager::SelectionSquare));
 		r->setColor({ 255, 0, 0, 255 });
 		Entity* nav_ = entManager_.addEntity();
 
-		NavigationController* ctrl2 = nav_->addComponent<NavigationController>(2, 3, app_->getGameManager()->getPlayerInfo(2).hid);
+		NavigationController* ctrl2 = nav_->addComponent<NavigationController>(2, 3, GameManager::Player2);
 		ctrl2->SetElementInPos((florElement2)->getComponent<UIElement>(ecs::UIElement), 0, 0);
 		ctrl2->SetElementInPos((MKElement2)->getComponent<UIElement>(ecs::UIElement), 1, 0);
 		ctrl2->SetElementInPos((randElement2)->getComponent<UIElement>(ecs::UIElement), 0, 1);

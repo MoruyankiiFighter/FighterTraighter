@@ -15,7 +15,7 @@ public:
 		Disabled
 	};
 
-	UIElement(HID* owner = nullptr) : Component(ecs::UIElement), owner_(owner) {}
+	UIElement(GameManager::PlayerID owner = GameManager::NoPlayer) : Component(ecs::UIElement), owner_(owner) {}
 
 	virtual void Press() {};
 	virtual void Select() {};
@@ -23,11 +23,11 @@ public:
 	virtual void Deselect() {};
 
 	Entity* getEntity() { return this->entity_; }
-	inline virtual void setOwner(HID* owner) { owner_ = owner; }
+	inline virtual void setOwner(GameManager::PlayerID owner) { owner_ = owner; }
 
 	virtual ~UIElement() {}
 protected:
 	State Buttonstate_ = Normal;
-	HID* owner_;
+	GameManager::PlayerID owner_;
 };
 

@@ -140,9 +140,6 @@
     <ClCompile Include="AbilityFactory.cpp">
       <Filter>Source Files\Manager and factories</Filter>
     </ClCompile>
-    <ClCompile Include="ControlsMenu.cpp">
-      <Filter>Source Files\GameState</Filter>
-    </ClCompile>
     <ClCompile Include="UITimer.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -316,6 +313,9 @@
     <ClCompile Include="jute.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ControlsOptionsLogic.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
@@ -470,9 +470,6 @@
     </ClInclude>
     <ClInclude Include="AbilityFactory.h">
       <Filter>Header files\Managers and factories</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlsMenu.h">
-      <Filter>Header files\GameState</Filter>
     </ClInclude>
     <ClInclude Include="UITimer.h">
       <Filter>Header files\Components</Filter>
@@ -674,6 +671,12 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElement.h">
+      <Filter>Header files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlsOptionsLogic.h">
+      <Filter>Header files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

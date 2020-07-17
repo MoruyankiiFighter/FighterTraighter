@@ -14,91 +14,92 @@ void ButtonControl::init()
 void ButtonControl::handleInput()
 {
 	InputManager* imngr = app_->getInputManager();
-
-	switch (b)
-	{
-	case ButtonControl::ini:
-		if (Buttonstate_ == Selected) {
-
-			if (imngr->isKeyDown(SDL_SCANCODE_RETURN) && control == 0) {
-				Press();
-				text_->setText("Press Key");
-
-				b = pressEnter;
+	HID* hid = app_->getGameManager()->getPlayerInfo(owner_).hid;
+	if (enabled) {
+		switch (b) {
+		case ButtonControl::ini:
+			if (Buttonstate_ == Selected) {
+				if (dynamic_cast<KeyboardHID*>(hid) && imngr->KeyPressed(SDL_SCANCODE_RETURN)) {
+					Press();
+					text_->setText("Press Key");
+					b = pressEnter;
+				}
+				else if (dynamic_cast<GamepadHID*>(hid) && imngr->isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_A))
+				{
+					Press();
+					text_->setText("Press Button");
+					b = pressA;
+				}
 			}
-			/**/else if (imngr->isControllerButtonPressed(0, SDL_CONTROLLER_BUTTON_A) && control == 1)
+			break;
+		case ButtonControl::pressEnter:
+			if (imngr->isKeyUp(SDL_GetScancodeFromName("Return")))
 			{
-				Press();
-				text_->setText("Press Button");
-				b = pressA;
+				imngr->readKey();
+				b = ENTERUP;
 			}
-		}
-		break;
-	case ButtonControl::pressEnter:
-		if (imngr->isKeyUp(SDL_GetScancodeFromName("Return")))
-		{
-			imngr->readKey();
 
-			b = ENTERUP;
-		}
-
-		break;
-	case ButtonControl::pressA:
-		if (imngr->isControllerButtonUp(0, SDL_CONTROLLER_BUTTON_A))
-		{
-			imngr->readKey();
-			b = AUP;
-
-		}
-		break;
-	case ButtonControl::AUP:
-
-		texto = imngr->lastcontrol();
-		if (texto != "")
-		{
-			b = leeInput;
-
-		}
-		break;
-	case ButtonControl::ENTERUP:
-		if (imngr->keyboardEvent())
-		{
-			texto = SDL_GetScancodeName(imngr->lastKey());
+			break;
+		case ButtonControl::pressA:
+			if (imngr->isControllerButtonUp(0, SDL_CONTROLLER_BUTTON_A))
+			{
+				imngr->readKey();
+				b = AUP;
+			}
+			break;
+		case ButtonControl::AUP:
+			texto = imngr->lastcontrol();
 			if (texto != "")
 			{
 				b = leeInput;
-
 			}
-
+			break;
+		case ButtonControl::ENTERUP:
+			if (imngr->keyboardEvent())
+			{
+				texto = SDL_GetScancodeName(imngr->lastKey());
+				if (texto != "") {
+					b = leeInput;
+				}
+			}
+			break;
+		case ButtonControl::leeInput:
+			texto = "";
+			b = ini;
+			if (clickCallback_) {
+				clickCallback_(app_, index, owner_);
+			}
+			Buttonstate_ = Selected;
+			entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
+			imngr->stopreadKey();
+			break;
 		}
-		break;
-	case ButtonControl::leeInput:
-		texto = "";
-		b = ini;
-		if (clickCallback_)
-		{
-			clickCallback_(app_, index, control,player);
-		}
-		Buttonstate_ = Selected;
-		entity_->getComponent<RenderImage>(ecs::RenderImage)->setFrame(1, 0);
+	}
+	else if (b != ini) {
 		imngr->stopreadKey();
-		break;
+		b = ini;
 	}
 }
 
 void ButtonControl::render()
 {
-	if (b == ini)
-	{
-		if (control == 0)
-		{
-			text_->setText(SDL_GetScancodeName(dynamic_cast<KeyboardHID*>(app_->getGameManager()->getPlayerInfo(player).hid)->getkeys().at(index)));
+	if (enabled) {
+		HID* hid = app_->getGameManager()->getPlayerInfo(owner_).hid;
 
-		}
-		else
+		if (b == ini)
 		{
-			text_->setText(dynamic_cast<GamepadHID*>(app_->getGameManager()->getPlayerInfo(player).hid)->getControl().at(index));
+			if (dynamic_cast<KeyboardHID*>(hid))
+			{
+				text_->setText(SDL_GetScancodeName(static_cast<KeyboardHID*>(hid)->getkeys().at(index)));
+
+			}
+			else if(dynamic_cast<GamepadHID*>(hid))
+			{
+				text_->setText(static_cast<GamepadHID*>(hid)->getControl().at(index));
+			}
 		}
 	}
-
+	else {
+		text_->setText("");
+	}
 };

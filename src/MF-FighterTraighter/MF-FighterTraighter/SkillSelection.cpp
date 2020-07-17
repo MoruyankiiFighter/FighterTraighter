@@ -63,7 +63,7 @@ void SkillSelection::init()
 	//The winner obtains 3 random abilities, he can choose between the first 2
 	GameManager::AbilityID abi1;
 	Entity* nav_j1 = entManager_.addEntity();
-	NavigationController* nav = nav_j1->addComponent<NavigationController>(2, 1, app_->getGameManager()->getPlayerInfo(winner_).hid);
+	NavigationController* nav = nav_j1->addComponent<NavigationController>(2, 1, (GameManager::PlayerID)winner_);
 	for (int i = 0; i < 3; i++) {
 		do {
 			abi1 = (GameManager::AbilityID)app_->getRandGen()->nextInt(GameManager::level1_flag, GameManager::max_level_flag);

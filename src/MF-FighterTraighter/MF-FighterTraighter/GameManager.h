@@ -56,6 +56,12 @@ public:
 		Aisha
 	};
 
+	enum PlayerID : uint8_t {
+		NoPlayer = 0,
+		Player1 = 1,
+		Player2 = 2
+	};
+
 	struct PlayerInfo {
 		CharacterID character;
 		std::vector<AbilityID> abilities; //habilidades que tiene cada personaje en una ronda
@@ -92,13 +98,14 @@ public:
 	}
 
 	void resetCharacters();
-	
-	//void setPlayer1
-	//void setPlayerInfo1(Entity* p1, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
-	//void setPlayerInfo2(Entity* p2, std::string character, std::vector<std::string> abilities, AbilityID ability1Index, AbilityID ability2Index);
+
 	const PlayerInfo& getPlayerInfo(int player) {
 		if (player == 1) return player1_;
 		return player2_;
+	}
+	inline const PlayerInfo& getPlayerInfo(PlayerID player) {
+		assert(player != GameManager::NoPlayer);
+		return getPlayerInfo((int)player);
 	}
 
 	void addHability(AbilityID hab, int player) {
@@ -128,6 +135,16 @@ public:
 		}
 	}
 
+	template<typename T, typename ...Ts>
+	void setHID(PlayerID player, Ts... args) {
+		PlayerInfo* p = &getPlayerInfo_(player);
+		if (p->hid) {
+			delete p->hid;
+			p->hid = nullptr;
+		}
+		p->hid = new T(std::forward<Ts>(args)...);
+	}
+
 	virtual ~GameManager() {
 
 	}
@@ -152,9 +169,11 @@ protected:
 
 	PlayerInfo player1_;
 	PlayerInfo player2_;
-
-	Vector2D p;
-
+	inline PlayerInfo& getPlayerInfo_(PlayerID player) {
+		assert(player != GameManager::NoPlayer);
+		if (player == Player1) return player1_;
+		else return player2_;
+	}
 	App* app_;
 };
 
