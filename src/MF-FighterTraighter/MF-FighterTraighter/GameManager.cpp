@@ -5,7 +5,6 @@
 #include "GameState.h"
 #include "MainMenu.h"
 #include "PauseMenu.h"
-#include "ControlsMenu.h"
 #include "Fight.h"
 #include "OptionsMenu.h"
 #include "Training.h"
@@ -60,7 +59,6 @@ void GameManager::pressedStart()
 	}
 
 	else if (dynamic_cast<PauseMenu*>(curState)
-		|| dynamic_cast<ControlsMenu*>(curState)
 		|| dynamic_cast<OptionsMenu*>(curState)
 		|| dynamic_cast<CharacterSelection*>(curState)) app_->getStateMachine()->popState();
 
