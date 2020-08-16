@@ -18,13 +18,14 @@ public:
 	
 	//return the component id
 	template<typename T>
-	T* getComponent(ecs::CmpIdType id) {
-		return static_cast<T*>(componentsArray_[id]);
+	T* getComponent() {
+		return static_cast<T*>(componentsArray_[ecs::IndexOf<T, ecs::ComponentsList>()]);
 	}
 
 	//check if this entity has the component id
-	bool hasComponent(int id) {
-		return componentsArray_[id] != nullptr;
+	template<typename T>
+	bool hasComponent() {
+		return componentsArray_[ecs::IndexOf<T, ecs::ComponentsList>()] != nullptr;
 	}
 	
 	//handle input of the entity= every component handle input
@@ -60,7 +61,7 @@ public:
 private:
 	App* app_=nullptr;
 	std::vector<std::unique_ptr<Component>> components_;
-	std::array<Component*, ecs::_LastCmptId_> componentsArray_ = {}; // to prevent the vector from resizing, and delete automatically
+	std::array<Component*, ecs::numOfComponents> componentsArray_ = {}; // to prevent the vector from resizing, and delete automatically
 	GameState* state_ = nullptr;
 };
 
@@ -70,7 +71,7 @@ inline T* Entity::addComponent(TArgs ...args)
 	T* t(new T(std::forward<TArgs>(args)...));
 	std::unique_ptr<Component> c(t);
 	components_.push_back(std::move(c));
-	componentsArray_[t->getID()] = t;
+	componentsArray_[ecs::IndexOf<T, ecs::ComponentsList>()] = t;
 	t->setEntity(this);
 	t->setApp(app_);
 	t->setState(state_);
